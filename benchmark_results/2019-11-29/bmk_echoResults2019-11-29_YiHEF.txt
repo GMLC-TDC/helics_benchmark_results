@@ -117,25 +117,7 @@ CPU MODEL:  Intel(R) Xeon(R) Platinum 8124M CPU @ 3.00GHz
       "real_time": 3.9284797189993697e+03,
       "cpu_time": 4.7341653200000036e+02,
       "time_unit": "ms"
-    }2433-y04SB-PWQOv-gmzfj-qfg0W (0)::now waiting for the core to finish registration before proceeding
-2433-y04SB-PWQOv-gmzfj-qfg0W (0)::broker state=-2, broker id=0, sleepcnt=7
-2433-y04SB-PWQOv-gmzfj-qfg0W (0)::broker state=-2, broker id=0, sleepcnt=8
-2433-y04SB-PWQOv-gmzfj-qfg0W (0)::broker state=-2, broker id=0, sleepcnt=9
-2433-y04SB-PWQOv-gmzfj-qfg0W (0)::broker state=-2, broker id=0, sleepcnt=10
-2433-y04SB-PWQOv-gmzfj-qfg0W (0)::broker state=-2, broker id=0, sleepcnt=11
-2433-y04SB-PWQOv-gmzfj-qfg0W (0)::broker state=-2, broker id=0, sleepcnt=12
-2433-y04SB-PWQOv-gmzfj-qfg0W (0)::broker state=-2, broker id=0, sleepcnt=13
-2433-y04SB-PWQOv-gmzfj-qfg0W (0)::broker state=-2, broker id=0, sleepcnt=14
-2433-y04SB-PWQOv-gmzfj-qfg0W (0)::broker state=-2, broker id=0, sleepcnt=15
-2433-y04SB-PWQOv-gmzfj-qfg0W (0)::broker state=-2, broker id=0, sleepcnt=16
-2433-y04SB-PWQOv-gmzfj-qfg0W (0)::broker state=-2, broker id=0, sleepcnt=17
-2433-y04SB-PWQOv-gmzfj-qfg0W (0)::broker state=-2, broker id=0, sleepcnt=18
-2433-y04SB-PWQOv-gmzfj-qfg0W (0)::broker state=-2, broker id=0, sleepcnt=19
-2433-y04SB-PWQOv-gmzfj-qfg0W (0)::broker state=-2, broker id=0, sleepcnt=20
-2433-y04SB-PWQOv-gmzfj-qfg0W (0)::resending reg message
-2433-y04SB-PWQOv-gmzfj-qfg0W (0)::got resend
-2433-y04SB-PWQOv-gmzfj-qfg0W (0)::resending broker reg
-,
+    },
     {
       "name": "BM_echo_multiCore/tcpssCore/4/iterations:1/real_time",
       "run_name": "BM_echo_multiCore/tcpssCore/4/iterations:1/real_time",

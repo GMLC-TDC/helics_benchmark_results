@@ -117,25 +117,7 @@ CPU MODEL:  Intel(R) Xeon(R) Platinum 8124M CPU @ 3.00GHz
       "real_time": 1.0108642901000167e+04,
       "cpu_time": 6.4965184400000055e+02,
       "time_unit": "ms"
-    }2836-InsJo-RqpzE-hUYZ7-oJZyR (0)::now waiting for the core to finish registration before proceeding
-2836-InsJo-RqpzE-hUYZ7-oJZyR (0)::broker state=-2, broker id=0, sleepcnt=7
-2836-InsJo-RqpzE-hUYZ7-oJZyR (0)::broker state=-2, broker id=0, sleepcnt=8
-2836-InsJo-RqpzE-hUYZ7-oJZyR (0)::broker state=-2, broker id=0, sleepcnt=9
-2836-InsJo-RqpzE-hUYZ7-oJZyR (0)::broker state=-2, broker id=0, sleepcnt=10
-2836-InsJo-RqpzE-hUYZ7-oJZyR (0)::broker state=-2, broker id=0, sleepcnt=11
-2836-InsJo-RqpzE-hUYZ7-oJZyR (0)::broker state=-2, broker id=0, sleepcnt=12
-2836-InsJo-RqpzE-hUYZ7-oJZyR (0)::broker state=-2, broker id=0, sleepcnt=13
-2836-InsJo-RqpzE-hUYZ7-oJZyR (0)::broker state=-2, broker id=0, sleepcnt=14
-2836-InsJo-RqpzE-hUYZ7-oJZyR (0)::broker state=-2, broker id=0, sleepcnt=15
-2836-InsJo-RqpzE-hUYZ7-oJZyR (0)::broker state=-2, broker id=0, sleepcnt=16
-2836-InsJo-RqpzE-hUYZ7-oJZyR (0)::broker state=-2, broker id=0, sleepcnt=17
-2836-InsJo-RqpzE-hUYZ7-oJZyR (0)::broker state=-2, broker id=0, sleepcnt=18
-2836-InsJo-RqpzE-hUYZ7-oJZyR (0)::broker state=-2, broker id=0, sleepcnt=19
-2836-InsJo-RqpzE-hUYZ7-oJZyR (0)::broker state=-2, broker id=0, sleepcnt=20
-2836-InsJo-RqpzE-hUYZ7-oJZyR (0)::resending reg message
-2836-InsJo-RqpzE-hUYZ7-oJZyR (0)::got resend
-2836-InsJo-RqpzE-hUYZ7-oJZyR (0)::resending broker reg
-,
+    },
     {
       "name": "BM_echo_multiCore/tcpssCore/4/iterations:1/real_time",
       "run_name": "BM_echo_multiCore/tcpssCore/4/iterations:1/real_time",
