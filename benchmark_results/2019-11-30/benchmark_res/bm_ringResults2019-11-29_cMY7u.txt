@@ -1,0 +1,432 @@
+HELICS_BENCHMARK: ringBenchmark
+------------HELICS BUILD INFO -------------
+HELICS VERSION: 2.3.1-benchmark_old_cmake-g9fe5f995 (2019-11-29)
+ZMQ VERSION: ZMQ v4.3.2
+COMPILER INFO: Unix Makefiles Linux-5.2.15-200.fc30.x86_64:GNU-9.2.1
+BUILD FLAGS:  -O2 -DNDEBUG  $<$<COMPILE_LANGUAGE:CXX>:-std=c++14> 
+------------PROCESSOR INFO ----------------
+HOST PROCESSOR TYPE: x86_64
+CPU MODEL:  Intel(R) Core(TM) i3-8350K CPU @ 4.00GHz
+-------------------------------------------
+{
+  "context": {
+    "date": "2019-11-29 13:25:29",
+    "host_name": "localhost.localdomain",
+    "executable": "./ringBenchmarks",
+    "num_cpus": 4,
+    "mhz_per_cpu": 4000,
+    "cpu_scaling_enabled": true,
+    "caches": [
+      {
+        "type": "Data",
+        "level": 1,
+        "size": 32000000,
+        "num_sharing": 1
+      },
+      {
+        "type": "Instruction",
+        "level": 1,
+        "size": 32000000,
+        "num_sharing": 1
+      },
+      {
+        "type": "Unified",
+        "level": 2,
+        "size": 256000000,
+        "num_sharing": 1
+      },
+      {
+        "type": "Unified",
+        "level": 3,
+        "size": 8192000000,
+        "num_sharing": 4
+      }
+    ],
+    "load_avg": [0.86,0.46,0.7],
+    "library_build_type": "release"
+  },
+  "benchmarks": [
+    {
+      "name": "BM_ring2_singleCore/iterations:3/real_time",
+      "run_name": "BM_ring2_singleCore/iterations:3/real_time",
+      "run_type": "iteration",
+      "repetitions": 0,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 3,
+      "real_time": 1.8589421933393169e+02,
+      "cpu_time": 8.8361739000000000e+01,
+      "time_unit": "ms"
+    },
+    {
+      "name": "BM_ring_multiCore/inprocCore/2/real_time",
+      "run_name": "BM_ring_multiCore/inprocCore/2/real_time",
+      "run_type": "iteration",
+      "repetitions": 0,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 2,
+      "real_time": 3.9441293499930907e+02,
+      "cpu_time": 6.8568045999999939e+01,
+      "time_unit": "ms"
+    },
+    {
+      "name": "BM_ring_multiCore/inprocCore/3/real_time",
+      "run_name": "BM_ring_multiCore/inprocCore/3/real_time",
+      "run_type": "iteration",
+      "repetitions": 0,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 1,
+      "real_time": 6.8802643799972429e+02,
+      "cpu_time": 7.9420603999999841e+01,
+      "time_unit": "ms"
+    },
+    {
+      "name": "BM_ring_multiCore/inprocCore/4/real_time",
+      "run_name": "BM_ring_multiCore/inprocCore/4/real_time",
+      "run_type": "iteration",
+      "repetitions": 0,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 1,
+      "real_time": 7.3336587599806080e+02,
+      "cpu_time": 6.3747394000000071e+01,
+      "time_unit": "ms"
+    },
+    {
+      "name": "BM_ring_multiCore/inprocCore/6/real_time",
+      "run_name": "BM_ring_multiCore/inprocCore/6/real_time",
+      "run_type": "iteration",
+      "repetitions": 0,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 1,
+      "real_time": 1.0744800369975565e+03,
+      "cpu_time": 6.5418905000000024e+01,
+      "time_unit": "ms"
+    },
+    {
+      "name": "BM_ring_multiCore/inprocCore/10/real_time",
+      "run_name": "BM_ring_multiCore/inprocCore/10/real_time",
+      "run_type": "iteration",
+      "repetitions": 0,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 1,
+      "real_time": 2.8810429360019043e+03,
+      "cpu_time": 1.2747532100000004e+02,
+      "time_unit": "ms"
+    },
+    {
+      "name": "BM_ring_multiCore/inprocCore/20/real_time",
+      "run_name": "BM_ring_multiCore/inprocCore/20/real_time",
+      "run_type": "iteration",
+      "repetitions": 0,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 1,
+      "real_time": 3.4570976310005790e+03,
+      "cpu_time": 6.6592607999999998e+01,
+      "time_unit": "ms"
+    },
+    {
+      "name": "BM_ring_multiCore/zmqCore/2/real_time",
+      "run_name": "BM_ring_multiCore/zmqCore/2/real_time",
+      "run_type": "iteration",
+      "repetitions": 0,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 1,
+      "real_time": 4.6412643789990398e+03,
+      "cpu_time": 3.3298420700000020e+02,
+      "time_unit": "ms"
+    },
+    {
+      "name": "BM_ring_multiCore/zmqCore/3/real_time",
+      "run_name": "BM_ring_multiCore/zmqCore/3/real_time",
+      "run_type": "iteration",
+      "repetitions": 0,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 1,
+      "real_time": 6.0277037169998948e+03,
+      "cpu_time": 3.0635689799999977e+02,
+      "time_unit": "ms"
+    },
+    {
+      "name": "BM_ring_multiCore/zmqCore/4/real_time",
+      "run_name": "BM_ring_multiCore/zmqCore/4/real_time",
+      "run_type": "iteration",
+      "repetitions": 0,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 1,
+      "real_time": 4.4698529969991796e+03,
+      "cpu_time": 1.8996657700000031e+02,
+      "time_unit": "ms"
+    },
+    {
+      "name": "BM_ring_multiCore/zmqCore/6/real_time",
+      "run_name": "BM_ring_multiCore/zmqCore/6/real_time",
+      "run_type": "iteration",
+      "repetitions": 0,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 1,
+      "real_time": 7.2088793059992895e+03,
+      "cpu_time": 2.0042170899999979e+02,
+      "time_unit": "ms"
+    },
+    {
+      "name": "BM_ring_multiCore/zmqCore/10/real_time",
+      "run_name": "BM_ring_multiCore/zmqCore/10/real_time",
+      "run_type": "iteration",
+      "repetitions": 0,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 1,
+      "real_time": 1.0494787956000437e+04,
+      "cpu_time": 1.7905266700000010e+02,
+      "time_unit": "ms"
+    },
+    {
+      "name": "BM_ring_multiCore/zmqCore/20/real_time",
+      "run_name": "BM_ring_multiCore/zmqCore/20/real_time",
+      "run_type": "iteration",
+      "repetitions": 0,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 1,
+      "real_time": 2.2382415382997351e+04,
+      "cpu_time": 1.8800399000000033e+02,
+      "time_unit": "ms"
+    },
+    {
+      "name": "BM_ring_multiCore/zmqssCore/2/real_time",
+      "run_name": "BM_ring_multiCore/zmqssCore/2/real_time",
+      "run_type": "iteration",
+      "repetitions": 0,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 1,
+      "real_time": 1.3450379009991593e+03,
+      "cpu_time": 6.5284611999999683e+01,
+      "time_unit": "ms"
+    },
+    {
+      "name": "BM_ring_multiCore/zmqssCore/3/real_time",
+      "run_name": "BM_ring_multiCore/zmqssCore/3/real_time",
+      "run_type": "iteration",
+      "repetitions": 0,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 1,
+      "real_time": 3.0912191070001427e+03,
+      "cpu_time": 1.3643558299999992e+02,
+      "time_unit": "ms"
+    },
+    {
+      "name": "BM_ring_multiCore/zmqssCore/4/real_time",
+      "run_name": "BM_ring_multiCore/zmqssCore/4/real_time",
+      "run_type": "iteration",
+      "repetitions": 0,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 1,
+      "real_time": 4.8496101199998520e+03,
+      "cpu_time": 1.4741921300000004e+02,
+      "time_unit": "ms"
+    },
+    {
+      "name": "BM_ring_multiCore/zmqssCore/6/real_time",
+      "run_name": "BM_ring_multiCore/zmqssCore/6/real_time",
+      "run_type": "iteration",
+      "repetitions": 0,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 1,
+      "real_time": 9.0410671659992659e+03,
+      "cpu_time": 1.2935141700000008e+02,
+      "time_unit": "ms"
+    },
+    {
+      "name": "BM_ring_multiCore/zmqssCore/10/real_time",
+      "run_name": "BM_ring_multiCore/zmqssCore/10/real_time",
+      "run_type": "iteration",
+      "repetitions": 0,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 1,
+      "real_time": 1.9127338123997106e+04,
+      "cpu_time": 9.7929329999999922e+01,
+      "time_unit": "ms"
+    },
+    {
+      "name": "BM_ring_multiCore/zmqssCore/20/real_time",
+      "run_name": "BM_ring_multiCore/zmqssCore/20/real_time",
+      "run_type": "iteration",
+      "repetitions": 0,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 1,
+      "real_time": 6.4597364745000959e+04,
+      "cpu_time": 1.2661075800000043e+02,
+      "time_unit": "ms"
+    },
+    {
+      "name": "BM_ring_multiCore/ipcCore/2/real_time",
+      "run_name": "BM_ring_multiCore/ipcCore/2/real_time",
+      "run_type": "iteration",
+      "repetitions": 0,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 1,
+      "real_time": 5.1917666600093071e+02,
+      "cpu_time": 6.4846231000000202e+01,
+      "time_unit": "ms"
+    },
+    {
+      "name": "BM_ring_multiCore/ipcCore/3/real_time",
+      "run_name": "BM_ring_multiCore/ipcCore/3/real_time",
+      "run_type": "iteration",
+      "repetitions": 0,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 1,
+      "real_time": 7.9807418400014285e+02,
+      "cpu_time": 6.5263586999999575e+01,
+      "time_unit": "ms"
+    },
+    {
+      "name": "BM_ring_multiCore/ipcCore/4/real_time",
+      "run_name": "BM_ring_multiCore/ipcCore/4/real_time",
+      "run_type": "iteration",
+      "repetitions": 0,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 1,
+      "real_time": 1.0282101609991514e+03,
+      "cpu_time": 6.3801545000000459e+01,
+      "time_unit": "ms"
+    },
+    {
+      "name": "BM_ring_multiCore/tcpCore/2/real_time",
+      "run_name": "BM_ring_multiCore/tcpCore/2/real_time",
+      "run_type": "iteration",
+      "repetitions": 0,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 1,
+      "real_time": 1.2317014020009083e+03,
+      "cpu_time": 1.5161728200000013e+02,
+      "time_unit": "ms"
+    },
+    {
+      "name": "BM_ring_multiCore/tcpCore/3/real_time",
+      "run_name": "BM_ring_multiCore/tcpCore/3/real_time",
+      "run_type": "iteration",
+      "repetitions": 0,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 1,
+      "real_time": 1.9854345110015856e+03,
+      "cpu_time": 1.6395661599999966e+02,
+      "time_unit": "ms"
+    },
+    {
+      "name": "BM_ring_multiCore/tcpCore/4/real_time",
+      "run_name": "BM_ring_multiCore/tcpCore/4/real_time",
+      "run_type": "iteration",
+      "repetitions": 0,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 1,
+      "real_time": 2.6324019839976245e+03,
+      "cpu_time": 1.6647800699999937e+02,
+      "time_unit": "ms"
+    },
+    {
+      "name": "BM_ring_multiCore/tcpCore/6/real_time",
+      "run_name": "BM_ring_multiCore/tcpCore/6/real_time",
+      "run_type": "iteration",
+      "repetitions": 0,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 1,
+      "real_time": 3.8961433470012707e+03,
+      "cpu_time": 1.6809678600000044e+02,
+      "time_unit": "ms"
+    },
+    {
+      "name": "BM_ring_multiCore/tcpCore/10/real_time",
+      "run_name": "BM_ring_multiCore/tcpCore/10/real_time",
+      "run_type": "iteration",
+      "repetitions": 0,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 1,
+      "real_time": 6.3768117359995813e+03,
+      "cpu_time": 1.6510201099999921e+02,
+      "time_unit": "ms"
+    },
+    {
+      "name": "BM_ring_multiCore/tcpCore/20/real_time",
+      "run_name": "BM_ring_multiCore/tcpCore/20/real_time",
+      "run_type": "iteration",
+      "repetitions": 0,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 1,
+      "real_time": 1.2232286866999857e+04,
+      "cpu_time": 1.5772947400000081e+02,
+      "time_unit": "ms"
+    },
+    {
+      "name": "BM_ring_multiCore/tcpssCore/2/real_time",
+      "run_name": "BM_ring_multiCore/tcpssCore/2/real_time",
+      "run_type": "iteration",
+      "repetitions": 0,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 1,
+      "real_time": 2.6290547752800194e+05,
+      "cpu_time": 1.4492596329999997e+03,
+      "time_unit": "ms"
+    },
+    {
+      "name": "BM_ring_multiCore/tcpssCore/3/real_time",
+      "run_name": "BM_ring_multiCore/tcpssCore/3/real_time",
+      "run_type": "iteration",
+      "repetitions": 0,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 1,
+      "real_time": 4.3372928932900139e+05,
+      "cpu_time": 1.3179038969999999e+03,
+      "time_unit": "ms"
+    },
+    {
+      "name": "BM_ring_multiCore/tcpssCore/4/real_time",
+      "run_name": "BM_ring_multiCore/tcpssCore/4/real_time",
+      "run_type": "iteration",
+      "repetitions": 0,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 1,
+      "real_time": 6.3511223577599775e+05,
+      "cpu_time": 1.3896606979999992e+03,
+      "time_unit": "ms"
+    },
+    {
+      "name": "BM_ring_multiCore/tcpssCore/6/real_time",
+      "run_name": "BM_ring_multiCore/tcpssCore/6/real_time",
+      "run_type": "iteration",
+      "repetitions": 0,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 1,
+      "real_time": 1.0033916502689990e+06,
+      "cpu_time": 1.3798522160000016e+03,
+      "time_unit": "ms"
+    }

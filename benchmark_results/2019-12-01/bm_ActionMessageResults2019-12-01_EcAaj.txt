@@ -1,0 +1,146 @@
+HELICS_BENCHMARK: actionMessageBenchmark
+------------HELICS BUILD INFO -------------
+HELICS VERSION: 2.3.1-benchmark_old_cmake-g31d3ec94-dirty (2019-12-01)
+ZMQ VERSION: ZMQ v4.2.5
+COMPILER INFO: Ninja  Linux-4.15.0-65-generic:GNU-7.4.0
+BUILD FLAGS:  -O3 -DNDEBUG  $<$<COMPILE_LANGUAGE:CXX>:-std=c++14> 
+------------PROCESSOR INFO ----------------
+HOST PROCESSOR TYPE: x86_64
+CPU MODEL:  AMD Ryzen Threadripper 1950X 16-Core Processor
+-------------------------------------------
+{
+  "context": {
+    "date": "2019-12-01 05:43:03",
+    "host_name": "UbuntuVirt",
+    "executable": "/home/phlptp/gcc_benchmarks/benchmarks/helics/ActionMessageBenchmarks",
+    "num_cpus": 8,
+    "mhz_per_cpu": 3394,
+    "cpu_scaling_enabled": false,
+    "caches": [
+      {
+        "type": "Data",
+        "level": 1,
+        "size": 32000,
+        "num_sharing": 1
+      },
+      {
+        "type": "Instruction",
+        "level": 1,
+        "size": 64000,
+        "num_sharing": 1
+      },
+      {
+        "type": "Unified",
+        "level": 2,
+        "size": 512000,
+        "num_sharing": 1
+      },
+      {
+        "type": "Unified",
+        "level": 3,
+        "size": 32768000,
+        "num_sharing": 8
+      }
+    ],
+    "load_avg": [3.94,1.7,0.62],
+    "library_build_type": "release"
+  },
+  "benchmarks": [
+    {
+      "name": "BM_AM_toString",
+      "run_name": "BM_AM_toString",
+      "run_type": "iteration",
+      "repetitions": 0,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 44849867,
+      "real_time": 1.5810055289576180e+01,
+      "cpu_time": 1.5810105523835778e+01,
+      "time_unit": "ns"
+    },
+    {
+      "name": "BM_AM_FromString",
+      "run_name": "BM_AM_FromString",
+      "run_type": "iteration",
+      "repetitions": 0,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 30046754,
+      "real_time": 2.4252269579530740e+01,
+      "cpu_time": 2.4252338605361494e+01,
+      "time_unit": "ns"
+    },
+    {
+      "name": "BM_AM_toString_time",
+      "run_name": "BM_AM_toString_time",
+      "run_type": "iteration",
+      "repetitions": 0,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 75245121,
+      "real_time": 9.4915866371553950e+00,
+      "cpu_time": 9.4914894481995677e+00,
+      "time_unit": "ns"
+    },
+    {
+      "name": "BM_AM_FromString_time",
+      "run_name": "BM_AM_FromString_time",
+      "run_type": "iteration",
+      "repetitions": 0,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 80879140,
+      "real_time": 8.9398349190837827e+00,
+      "cpu_time": 8.9398653966894326e+00,
+      "time_unit": "ns"
+    },
+    {
+      "name": "BM_AM_packetize",
+      "run_name": "BM_AM_packetize",
+      "run_type": "iteration",
+      "repetitions": 0,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 34504189,
+      "real_time": 2.0227281215058348e+01,
+      "cpu_time": 2.0227340164407273e+01,
+      "time_unit": "ns"
+    },
+    {
+      "name": "BM_AM_depacketize",
+      "run_name": "BM_AM_depacketize",
+      "run_type": "iteration",
+      "repetitions": 0,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 28709530,
+      "real_time": 2.4622885676106325e+01,
+      "cpu_time": 2.4622956175179482e+01,
+      "time_unit": "ns"
+    },
+    {
+      "name": "BM_AM_packetize_strings",
+      "run_name": "BM_AM_packetize_strings",
+      "run_type": "iteration",
+      "repetitions": 0,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 1374202,
+      "real_time": 5.2057387123242904e+02,
+      "cpu_time": 5.2056537321296332e+02,
+      "time_unit": "ns"
+    },
+    {
+      "name": "BM_AM_depacketize_strings",
+      "run_name": "BM_AM_depacketize_strings",
+      "run_type": "iteration",
+      "repetitions": 0,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 866075,
+      "real_time": 8.1912439684720016e+02,
+      "cpu_time": 8.1912687122939690e+02,
+      "time_unit": "ns"
+    }
+  ]
+}
