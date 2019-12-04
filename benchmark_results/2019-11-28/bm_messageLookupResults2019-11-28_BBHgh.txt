@@ -1,0 +1,408 @@
+HELICS_BENCHMARK: messageLookupBenchmark
+------------HELICS BUILD INFO -------------
+HELICS VERSION: 2.3.1-benchmark_old_cmake-g1855105d-dirty (2019-11-28)
+ZMQ VERSION: ZMQ v4.3.1
+COMPILER INFO: MSYS Makefiles Windows-10.0.18362:GNU-9.2.0
+BUILD FLAGS:  -O3 -DNDEBUG  $<$<COMPILE_LANGUAGE:CXX>:-std=c++14> 
+------------PROCESSOR INFO ----------------
+HOST PROCESSOR TYPE: AMD64
+CPU MODEL: AMD Ryzen Threadripper 1950X 16-Core Processor 
+-------------------------------------------
+{
+  "context": {
+    "date": "11/28/19 22:57:38",
+    "host_name": "SIRIUS",
+    "executable": "C:\\msys64\\home\\phlpt\\HELICS\\build_gcc\\benchmarks\\helics\\messageLookupBenchmarks.exe",
+    "num_cpus": 32,
+    "mhz_per_cpu": 3394,
+    "cpu_scaling_enabled": false,
+    "caches": [
+      {
+        "type": "Data",
+        "level": 1,
+        "size": 32768000,
+        "num_sharing": 2
+      },
+      {
+        "type": "Instruction",
+        "level": 1,
+        "size": 65536000,
+        "num_sharing": 2
+      },
+      {
+        "type": "Unified",
+        "level": 2,
+        "size": 524288000,
+        "num_sharing": 2
+      },
+      {
+        "type": "Unified",
+        "level": 3,
+        "size": 8388608000,
+        "num_sharing": 8
+      }
+    ],
+    "load_avg": [],
+    "library_build_type": "release"
+  },
+  "benchmarks": [
+    {
+      "name": "BM_mgen_singleFed/1/iterations:2/real_time",
+      "run_name": "BM_mgen_singleFed/1/iterations:2/real_time",
+      "run_type": "iteration",
+      "repetitions": 0,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 2,
+      "real_time": 4.6506300044711679e+01,
+      "cpu_time": 4.6875000000000000e+01,
+      "time_unit": "ms"
+    },
+    {
+      "name": "BM_mgen_singleFed/4/iterations:2/real_time",
+      "run_name": "BM_mgen_singleFed/4/iterations:2/real_time",
+      "run_type": "iteration",
+      "repetitions": 0,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 2,
+      "real_time": 2.8865599946584553e+01,
+      "cpu_time": 2.3437500000000000e+01,
+      "time_unit": "ms"
+    },
+    {
+      "name": "BM_mgen_singleFed/16/iterations:2/real_time",
+      "run_name": "BM_mgen_singleFed/16/iterations:2/real_time",
+      "run_type": "iteration",
+      "repetitions": 0,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 2,
+      "real_time": 4.0451399981975555e+01,
+      "cpu_time": 3.1250000000000000e+01,
+      "time_unit": "ms"
+    },
+    {
+      "name": "BM_mgen_singleFed/64/iterations:2/real_time",
+      "run_name": "BM_mgen_singleFed/64/iterations:2/real_time",
+      "run_type": "iteration",
+      "repetitions": 0,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 2,
+      "real_time": 8.0978150072041899e+01,
+      "cpu_time": 7.0312500000000000e+01,
+      "time_unit": "ms"
+    },
+    {
+      "name": "BM_mgen_singleFed/256/iterations:2/real_time",
+      "run_name": "BM_mgen_singleFed/256/iterations:2/real_time",
+      "run_type": "iteration",
+      "repetitions": 0,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 2,
+      "real_time": 2.3955349996685982e+02,
+      "cpu_time": 2.3437500000000000e+02,
+      "time_unit": "ms"
+    },
+    {
+      "name": "BM_mgen_singleFed/1024/iterations:2/real_time",
+      "run_name": "BM_mgen_singleFed/1024/iterations:2/real_time",
+      "run_type": "iteration",
+      "repetitions": 0,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 2,
+      "real_time": 8.8052110001444817e+02,
+      "cpu_time": 8.8281250000000000e+02,
+      "time_unit": "ms"
+    },
+    {
+      "name": "BM_mgen_singleFed/4096/iterations:2/real_time",
+      "run_name": "BM_mgen_singleFed/4096/iterations:2/real_time",
+      "run_type": "iteration",
+      "repetitions": 0,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 2,
+      "real_time": 3.4466474999208003e+03,
+      "cpu_time": 3.4453125000000000e+03,
+      "time_unit": "ms"
+    },
+    {
+      "name": "BM_mgen_singleFed/16384/iterations:2/real_time",
+      "run_name": "BM_mgen_singleFed/16384/iterations:2/real_time",
+      "run_type": "iteration",
+      "repetitions": 0,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 2,
+      "real_time": 1.5403356900031213e+04,
+      "cpu_time": 1.5398437500000000e+04,
+      "time_unit": "ms"
+    },
+    {
+      "name": "BM_mgen_singleFed/65536/iterations:2/real_time",
+      "run_name": "BM_mgen_singleFed/65536/iterations:2/real_time",
+      "run_type": "iteration",
+      "repetitions": 0,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 2,
+      "real_time": 8.8472260799899232e+04,
+      "cpu_time": 8.8460937500000000e+04,
+      "time_unit": "ms"
+    },
+    {
+      "name": "BM_mgen_singleFed/262144/iterations:2/real_time",
+      "run_name": "BM_mgen_singleFed/262144/iterations:2/real_time",
+      "run_type": "iteration",
+      "repetitions": 0,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 2,
+      "real_time": 3.9795895135001047e+05,
+      "cpu_time": 3.9780468750000000e+05,
+      "time_unit": "ms"
+    },
+    {
+      "name": "BM_mgen_multiCore/inprocCore/32/2/real_time",
+      "run_name": "BM_mgen_multiCore/inprocCore/32/2/real_time",
+      "run_type": "iteration",
+      "repetitions": 0,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 9,
+      "real_time": 7.7041377714421188e+01,
+      "cpu_time": 6.4236111111111114e+01,
+      "time_unit": "ms"
+    },
+    {
+      "name": "BM_mgen_multiCore/inprocCore/64/2/real_time",
+      "run_name": "BM_mgen_multiCore/inprocCore/64/2/real_time",
+      "run_type": "iteration",
+      "repetitions": 0,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 6,
+      "real_time": 1.1499603333262105e+02,
+      "cpu_time": 1.1197916666666667e+02,
+      "time_unit": "ms"
+    },
+    {
+      "name": "BM_mgen_multiCore/inprocCore/512/2/real_time",
+      "run_name": "BM_mgen_multiCore/inprocCore/512/2/real_time",
+      "run_type": "iteration",
+      "repetitions": 0,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 1,
+      "real_time": 6.5886539989151061e+02,
+      "cpu_time": 5.9375000000000000e+02,
+      "time_unit": "ms"
+    },
+    {
+      "name": "BM_mgen_multiCore/inprocCore/4096/2/real_time",
+      "run_name": "BM_mgen_multiCore/inprocCore/4096/2/real_time",
+      "run_type": "iteration",
+      "repetitions": 0,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 1,
+      "real_time": 4.8358721999684349e+03,
+      "cpu_time": 4.6406250000000000e+03,
+      "time_unit": "ms"
+    },
+    {
+      "name": "BM_mgen_multiCore/inprocCore/32768/2/real_time",
+      "run_name": "BM_mgen_multiCore/inprocCore/32768/2/real_time",
+      "run_type": "iteration",
+      "repetitions": 0,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 1,
+      "real_time": 3.8779296800144948e+04,
+      "cpu_time": 3.6812500000000000e+04,
+      "time_unit": "ms"
+    },
+    {
+      "name": "BM_mgen_multiCore/inprocCore/262144/2/real_time",
+      "run_name": "BM_mgen_multiCore/inprocCore/262144/2/real_time",
+      "run_type": "iteration",
+      "repetitions": 0,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 1,
+      "real_time": 3.8879484920005780e+05,
+      "cpu_time": 3.7343750000000000e+05,
+      "time_unit": "ms"
+    },
+    {
+      "name": "BM_mgen_multiCore/inprocCore/524288/2/real_time",
+      "run_name": "BM_mgen_multiCore/inprocCore/524288/2/real_time",
+      "run_type": "iteration",
+      "repetitions": 0,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 1,
+      "real_time": 7.0723285930010024e+05,
+      "cpu_time": 6.7210937500000000e+05,
+      "time_unit": "ms"
+    },
+    {
+      "name": "BM_mgen_multiCore/inprocCore/32/8/real_time",
+      "run_name": "BM_mgen_multiCore/inprocCore/32/8/real_time",
+      "run_type": "iteration",
+      "repetitions": 0,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 0,
+      "real_time": 0.0000000000000000e+00,
+      "cpu_time": 0.0000000000000000e+00,
+      "time_unit": "ms"
+    },
+    {
+      "name": "BM_mgen_multiCore/inprocCore/64/8/real_time",
+      "run_name": "BM_mgen_multiCore/inprocCore/64/8/real_time",
+      "run_type": "iteration",
+      "repetitions": 0,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 1,
+      "real_time": 5.7231170008890331e+02,
+      "cpu_time": 5.1562500000000000e+02,
+      "time_unit": "ms"
+    },
+    {
+      "name": "BM_mgen_multiCore/inprocCore/512/8/real_time",
+      "run_name": "BM_mgen_multiCore/inprocCore/512/8/real_time",
+      "run_type": "iteration",
+      "repetitions": 0,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 1,
+      "real_time": 2.7346996000269428e+03,
+      "cpu_time": 2.5625000000000000e+03,
+      "time_unit": "ms"
+    },
+    {
+      "name": "BM_mgen_multiCore/inprocCore/4096/8/real_time",
+      "run_name": "BM_mgen_multiCore/inprocCore/4096/8/real_time",
+      "run_type": "iteration",
+      "repetitions": 0,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 1,
+      "real_time": 1.7474535299930722e+04,
+      "cpu_time": 1.6468750000000000e+04,
+      "time_unit": "ms"
+    },
+    {
+      "name": "BM_mgen_multiCore/inprocCore/32768/8/real_time",
+      "run_name": "BM_mgen_multiCore/inprocCore/32768/8/real_time",
+      "run_type": "iteration",
+      "repetitions": 0,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 1,
+      "real_time": 2.4144967840006575e+05,
+      "cpu_time": 2.3315625000000000e+05,
+      "time_unit": "ms"
+    },
+    {
+      "name": "BM_mgen_multiCore/inprocCore/262144/8/real_time",
+      "run_name": "BM_mgen_multiCore/inprocCore/262144/8/real_time",
+      "run_type": "iteration",
+      "repetitions": 0,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 1,
+      "real_time": 1.3742746117999777e+06,
+      "cpu_time": 1.2738125000000000e+06,
+      "time_unit": "ms"
+    },
+    {
+      "name": "BM_mgen_multiCore/inprocCore/524288/8/real_time",
+      "run_name": "BM_mgen_multiCore/inprocCore/524288/8/real_time",
+      "run_type": "iteration",
+      "repetitions": 0,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 1,
+      "real_time": 3.0157521629999392e+06,
+      "cpu_time": 2.8662343750000000e+06,
+      "time_unit": "ms"
+    },
+    {
+      "name": "BM_mgen_multiCore/inprocCore/32/64/real_time",
+      "run_name": "BM_mgen_multiCore/inprocCore/32/64/real_time",
+      "run_type": "iteration",
+      "repetitions": 0,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 0,
+      "real_time": 0.0000000000000000e+00,
+      "cpu_time": 0.0000000000000000e+00,
+      "time_unit": "ms"
+    },
+    {
+      "name": "BM_mgen_multiCore/inprocCore/64/64/real_time",
+      "run_name": "BM_mgen_multiCore/inprocCore/64/64/real_time",
+      "run_type": "iteration",
+      "repetitions": 0,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 0,
+      "real_time": 0.0000000000000000e+00,
+      "cpu_time": 0.0000000000000000e+00,
+      "time_unit": "ms"
+    },
+    {
+      "name": "BM_mgen_multiCore/inprocCore/512/64/real_time",
+      "run_name": "BM_mgen_multiCore/inprocCore/512/64/real_time",
+      "run_type": "iteration",
+      "repetitions": 0,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 1,
+      "real_time": 6.3236129399971105e+04,
+      "cpu_time": 3.1609375000000000e+04,
+      "time_unit": "ms"
+    },
+    {
+      "name": "BM_mgen_multiCore/inprocCore/4096/64/real_time",
+      "run_name": "BM_mgen_multiCore/inprocCore/4096/64/real_time",
+      "run_type": "iteration",
+      "repetitions": 0,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 1,
+      "real_time": 2.1036976180004422e+05,
+      "cpu_time": 1.1992187500000000e+05,
+      "time_unit": "ms"
+    },
+    {
+      "name": "BM_mgen_multiCore/inprocCore/32768/64/real_time",
+      "run_name": "BM_mgen_multiCore/inprocCore/32768/64/real_time",
+      "run_type": "iteration",
+      "repetitions": 0,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 1,
+      "real_time": 1.3804198817999568e+06,
+      "cpu_time": 7.4962500000000000e+05,
+      "time_unit": "ms"
+    },
+    {
+      "name": "BM_mgen_multiCore/inprocCore/262144/64/real_time",
+      "run_name": "BM_mgen_multiCore/inprocCore/262144/64/real_time",
+      "run_type": "iteration",
+      "repetitions": 0,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 1,
+      "real_time": 1.1090763779700035e+07,
+      "cpu_time": 8.1465468750000000e+06,
+      "time_unit": "ms"
+    }
