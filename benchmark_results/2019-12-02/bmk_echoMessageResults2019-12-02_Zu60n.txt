@@ -1,0 +1,110 @@
+HELICS_BENCHMARK: echoMessageBenchmark
+------------HELICS BUILD INFO -------------
+HELICS VERSION: 2.3.1-develop-g807f55eb (2019-12-02)
+ZMQ VERSION: ZMQ v4.3.2
+COMPILER INFO: Visual Studio 16 2019 x64 Windows-10.0.17763:MSVC-19.23.28106.4
+BUILD FLAGS: /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MD /O2 /Ob2 /DNDEBUG /machine:x64 /EHsc;/std:c++14 
+------------PROCESSOR INFO ----------------
+HOST PROCESSOR TYPE: AMD64
+CPU MODEL: Intel(R) Core(TM) i7-4712HQ CPU @ 2.30GHz
+-------------------------------------------
+{
+  "context": {
+    "date": "12/02/19 10:09:34",
+    "host_name": "HERSCHEL",
+    "executable": "Release\\echoMessageBenchmarks.exe",
+    "num_cpus": 8,
+    "mhz_per_cpu": 2295,
+    "cpu_scaling_enabled": false,
+    "caches": [
+      {
+        "type": "Data",
+        "level": 1,
+        "size": 32768000,
+        "num_sharing": 2
+      },
+      {
+        "type": "Instruction",
+        "level": 1,
+        "size": 32768000,
+        "num_sharing": 2
+      },
+      {
+        "type": "Unified",
+        "level": 2,
+        "size": 262144000,
+        "num_sharing": 2
+      },
+      {
+        "type": "Unified",
+        "level": 3,
+        "size": 6291456000,
+        "num_sharing": 8
+      }
+    ],
+    "load_avg": [],
+    "library_build_type": "release"
+  },
+  "benchmarks": [
+    {
+      "name": "BM_echo_singleCore/4/iterations:1/real_time",
+      "run_name": "BM_echo_singleCore/4/iterations:1/real_time",
+      "run_type": "iteration",
+      "repetitions": 0,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 1,
+      "real_time": 4.8104780000039682e+02,
+      "cpu_time": 3.7500000000000000e+02,
+      "time_unit": "ms"
+    },
+    {
+      "name": "BM_echo_multiCore/inprocCore/4/real_time",
+      "run_name": "BM_echo_multiCore/inprocCore/4/real_time",
+      "run_type": "iteration",
+      "repetitions": 0,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 1,
+      "real_time": 7.1311809999997422e+02,
+      "cpu_time": 2.1875000000000000e+02,
+      "time_unit": "ms"
+    },
+    {
+      "name": "BM_echo_multiCore/zmqCore/4/iterations:1/real_time",
+      "run_name": "BM_echo_multiCore/zmqCore/4/iterations:1/real_time",
+      "run_type": "iteration",
+      "repetitions": 0,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 1,
+      "real_time": 2.4713180799999463e+04,
+      "cpu_time": 3.5937500000000000e+02,
+      "time_unit": "ms"
+    },
+    {
+      "name": "BM_echo_multiCore/zmqssCore/4/iterations:1/real_time",
+      "run_name": "BM_echo_multiCore/zmqssCore/4/iterations:1/real_time",
+      "run_type": "iteration",
+      "repetitions": 0,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 1,
+      "real_time": 2.5221746600000643e+04,
+      "cpu_time": 4.8437500000000000e+02,
+      "time_unit": "ms"
+    },
+    {
+      "name": "BM_echo_multiCore/ipcCore/4/iterations:1/real_time",
+      "run_name": "BM_echo_multiCore/ipcCore/4/iterations:1/real_time",
+      "run_type": "iteration",
+      "repetitions": 0,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 1,
+      "real_time": 1.0637841899999785e+04,
+      "cpu_time": 3.1250000000000000e+02,
+      "time_unit": "ms"
+    }
+  ]
+}

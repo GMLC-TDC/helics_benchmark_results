@@ -1,0 +1,146 @@
+HELICS_BENCHMARK: actionMessageBenchmark
+------------HELICS BUILD INFO -------------
+HELICS VERSION: 2.3.1-develop-g807f55eb (2019-12-02)
+ZMQ VERSION: ZMQ v4.3.2
+COMPILER INFO: Visual Studio 16 2019 x64 Windows-10.0.17763:MSVC-19.23.28106.4
+BUILD FLAGS: /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MD /O2 /Ob2 /DNDEBUG /machine:x64 /EHsc;/std:c++14 
+------------PROCESSOR INFO ----------------
+HOST PROCESSOR TYPE: AMD64
+CPU MODEL: Intel(R) Core(TM) i7-4712HQ CPU @ 2.30GHz
+-------------------------------------------
+{
+  "context": {
+    "date": "12/02/19 10:36:33",
+    "host_name": "HERSCHEL",
+    "executable": "Release\\ActionMessageBenchmarks.exe",
+    "num_cpus": 8,
+    "mhz_per_cpu": 2295,
+    "cpu_scaling_enabled": false,
+    "caches": [
+      {
+        "type": "Data",
+        "level": 1,
+        "size": 32768000,
+        "num_sharing": 2
+      },
+      {
+        "type": "Instruction",
+        "level": 1,
+        "size": 32768000,
+        "num_sharing": 2
+      },
+      {
+        "type": "Unified",
+        "level": 2,
+        "size": 262144000,
+        "num_sharing": 2
+      },
+      {
+        "type": "Unified",
+        "level": 3,
+        "size": 6291456000,
+        "num_sharing": 8
+      }
+    ],
+    "load_avg": [],
+    "library_build_type": "release"
+  },
+  "benchmarks": [
+    {
+      "name": "BM_AM_toString",
+      "run_name": "BM_AM_toString",
+      "run_type": "iteration",
+      "repetitions": 0,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 21333333,
+      "real_time": 3.5135189611502675e+01,
+      "cpu_time": 3.5156250549316418e+01,
+      "time_unit": "ns"
+    },
+    {
+      "name": "BM_AM_FromString",
+      "run_name": "BM_AM_FromString",
+      "run_type": "iteration",
+      "repetitions": 0,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 22400000,
+      "real_time": 2.9627982142861651e+01,
+      "cpu_time": 2.9296875000000000e+01,
+      "time_unit": "ns"
+    },
+    {
+      "name": "BM_AM_toString_time",
+      "run_name": "BM_AM_toString_time",
+      "run_type": "iteration",
+      "repetitions": 0,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 56000000,
+      "real_time": 1.1989187500002378e+01,
+      "cpu_time": 1.1997767857142858e+01,
+      "time_unit": "ns"
+    },
+    {
+      "name": "BM_AM_FromString_time",
+      "run_name": "BM_AM_FromString_time",
+      "run_type": "iteration",
+      "repetitions": 0,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 49777778,
+      "real_time": 1.2939412442240096e+01,
+      "cpu_time": 1.2869698603260273e+01,
+      "time_unit": "ns"
+    },
+    {
+      "name": "BM_AM_packetize",
+      "run_name": "BM_AM_packetize",
+      "run_type": "iteration",
+      "repetitions": 0,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 22400000,
+      "real_time": 2.9432674107121265e+01,
+      "cpu_time": 2.9296875000000000e+01,
+      "time_unit": "ns"
+    },
+    {
+      "name": "BM_AM_depacketize",
+      "run_name": "BM_AM_depacketize",
+      "run_type": "iteration",
+      "repetitions": 0,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 17230769,
+      "real_time": 3.8635623285273169e+01,
+      "cpu_time": 3.8992746057938561e+01,
+      "time_unit": "ns"
+    },
+    {
+      "name": "BM_AM_packetize_strings",
+      "run_name": "BM_AM_packetize_strings",
+      "run_type": "iteration",
+      "repetitions": 0,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 1120000,
+      "real_time": 7.1569508928551579e+02,
+      "cpu_time": 7.1149553571428567e+02,
+      "time_unit": "ns"
+    },
+    {
+      "name": "BM_AM_depacketize_strings",
+      "run_name": "BM_AM_depacketize_strings",
+      "run_type": "iteration",
+      "repetitions": 0,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 896000,
+      "real_time": 8.0511930803644259e+02,
+      "cpu_time": 8.0217633928571433e+02,
+      "time_unit": "ns"
+    }
+  ]
+}
