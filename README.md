@@ -1,7 +1,7 @@
 # helics\_benchmark\_results
 Repo containing [HELICS](www.github.com/GMLC-TDC/HELICS) benchmark results and processing code for the results
 
-# Slightly Helpful Benchmark Explanations
+## Slightly Helpful Benchmark Explanations
 + *ActionMessage* and *Conversion* are purely testing specific functions and activities and contain no scaling.
  
 + *echo* and *echoMessage* test a single root federate that is responding to leaf federates with values or messages. The number surrounded by "/" is the number of leaf federates sending messages.
