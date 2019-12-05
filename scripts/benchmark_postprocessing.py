@@ -128,7 +128,6 @@ def parse_and_add_benchmark_metadata(json_results):
 
         # Convenience and/or performance assignments
         filename = json_results[key]['filename']
-        core_pattern = re.compile('/.*?Core/')
 
         if 'ActionMessage' in filename:
             logging.warning('Added no benchmark metadata to {} as test type "ActionMessage"'.format(filename))
@@ -144,54 +143,79 @@ def parse_and_add_benchmark_metadata(json_results):
                 json_results[key]['benchmarks'][idx]['federate_count'] = federate_count
 
                 # Core type
-                #if 'multiCore' in bm_name:
-                #    core_str = _add_core(bm_name, core_pattern, filename)
-                #    json_results[key]['benchmarks'][idx]['core_type'] = core_str
+                json_results= _add_core(bm_name, filename, json_results, key, idx)
 
             logging.info('Added benchmark metadata to {} as test type "echo" or "echoMessage"'.format(filename))
         elif 'filter' in filename:
             logging.warning('Added no benchmark metadata to {} as test type "filter"'.format(filename))
         elif 'messageLookup' in filename:
             for idx, results_dict in enumerate(json_results[key]['benchmarks']):
+                bm_name = results_dict['name']
+
                 if 'multiCore' in results_dict['name']:
+                    # Interface count and federate count
                     match = re.search('/\d+/\d+/',results_dict['name'])
                     match2 = re.findall('\d+',match.group(0))
                     interface_count = int(match2[0])
                     federate_count = int(match2[1])
                     json_results[key]['benchmarks'][idx]['interface_count'] = interface_count
                     json_results[key]['benchmarks'][idx]['federate_count'] = federate_count
+
+                    # Core type
+                    json_results = _add_core(bm_name, filename, json_results, key, idx)
             logging.info('Added benchmark metadata to {} as test type "messageLookup"'.format(filename))
         elif 'messageSend' in filename:
             for idx, results_dict in enumerate(json_results[key]['benchmarks']):
+                bm_name = results_dict['name']
+
+                # Message size and message count
                 match = re.search('/\d+/\d+/',results_dict['name'])
                 match2 = re.findall('\d+',match.group(0))
                 message_size = int(match2[0])
                 message_count = int(match2[1])
                 json_results[key]['benchmarks'][idx]['message_size'] = message_size
                 json_results[key]['benchmarks'][idx]['message_count'] = message_count
+
+                # Core type
+                json_results = _add_core(bm_name, filename, json_results, key, idx)
             logging.info('Added benchmark metadata to {} as test type "messageSend"'.format(filename))
         elif 'ring' in filename:
             for idx, results_dict in enumerate(json_results[key]['benchmarks']):
+                bm_name = results_dict['name']
+
                 if 'multiCore' in results_dict['name']:
+                    # Federate count
                     match = re.search('/\d+/',results_dict['name'])
                     federate_count = int(match.group(0)[1:-1])
                     json_results[key]['benchmarks'][idx]['federate_count'] = federate_count
+
+                    # Core type
+                    json_results = _add_core(bm_name, filename, json_results, key, idx)
             logging.info('Added benchmark metadata to {} as test type "ring"'.format(filename))
         elif 'phold' in filename:
             for idx, results_dict in enumerate(json_results[key]['benchmarks']):
+                bm_name = results_dict['name']
+
+                # Federate count
                 match = re.search('/\d+/',results_dict['name'])
                 federate_count = int(match.group(0)[1:-1])
                 json_results[key]['benchmarks'][idx]['federate_count'] = federate_count
+
+                # Core type
+                json_results = _add_core(bm_name, filename, json_results, key, idx)
             logging.info('Added benchmark metadata to {} as test type "pHold"'.format(filename))
     return json_results
 
-def _get_core(bm_name, core_pattern, filename):
-    match = core_pattern.search(bm_name)
-    if match:
-        core_type = match.group(0)[1:-5]
+def _add_core(bm_name, filename, json_results, key, idx):
+    if '/multiCore/' in bm_name:
+        core_match = re.search('/multiCore/.*?Core', bm_name)
+        if core_match:
+            core_name = core_match.group(0)[11:-4]
+            json_results[key]['benchmarks'][idx]['core_type'] = core_name
     else:
-        logging.warning('Unable to find core type in {} in {}'.format(bm_name, filename))
-    return core_type
+        #logging.warning('Unable to find core type in {} in {}'.format(bm_name, filename))
+        pass
+    return json_results
 
 
 def _auto_run(args):
