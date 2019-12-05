@@ -71,8 +71,8 @@ CPU MODEL:  Intel(R) Xeon(R) Platinum 8124M CPU @ 3.00GHz
       "time_unit": "ms"
     },
     {
-      "name": "BM_mgen_multiCore/inprocCore/4096/2/real_time",
-      "run_name": "BM_mgen_multiCore/inprocCore/4096/2/real_time",
+      "name": "BM_mgen/multiCore/inprocCore/4096/2/real_time",
+      "run_name": "BM_mgen/multiCore/inprocCore/4096/2/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,
@@ -83,8 +83,8 @@ CPU MODEL:  Intel(R) Xeon(R) Platinum 8124M CPU @ 3.00GHz
       "time_unit": "ms"
     },
     {
-      "name": "BM_mgen_multiCore/inprocCore/4096/8/real_time",
-      "run_name": "BM_mgen_multiCore/inprocCore/4096/8/real_time",
+      "name": "BM_mgen/multiCore/inprocCore/4096/8/real_time",
+      "run_name": "BM_mgen/multiCore/inprocCore/4096/8/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,
@@ -95,8 +95,8 @@ CPU MODEL:  Intel(R) Xeon(R) Platinum 8124M CPU @ 3.00GHz
       "time_unit": "ms"
     },
     {
-      "name": "BM_mgen_multiCore/inprocCore/4096/64/real_time",
-      "run_name": "BM_mgen_multiCore/inprocCore/4096/64/real_time",
+      "name": "BM_mgen/multiCore/inprocCore/4096/64/real_time",
+      "run_name": "BM_mgen/multiCore/inprocCore/4096/64/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,
