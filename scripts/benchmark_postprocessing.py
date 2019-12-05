@@ -17,7 +17,7 @@ import os
 import json
 import re
 import uuid
-
+import sys
 
 # Setting up logging
 logger = logging.getLogger(__name__)
@@ -62,14 +62,14 @@ def parse_files(file_list):
                 #    generated in the log file.
                 try:
                     json_dict = json.loads(json_str)
-                    json_dict = _byteify(json_dict)
                     for key,value in json_dict['context'].items():
                         json_results[uuid_str][key] = value
                     json_results[uuid_str]['benchmarks'] = json_dict['benchmarks']
                     logging.info('Successfully captured JSON %s', filename)
                 except Exception as e:
                     logging.error('Failed to completely capture JSON %s', filename)
-                    logging.error('     exception{}'.format(e))
+                    logging.error('     exception {}'.format(e))
+                    sys.exit(1)
     return json_results
 
 
@@ -172,17 +172,6 @@ def parse_and_add_benchmark_metadata(json_results):
             logging.info('Added benchmark metadata to {} as test type "pHold"'.format(filename))
     return json_results
 
-
-def _byteify(input):
-    if isinstance(input, dict):
-        return {_byteify(key): _byteify(value)
-                for key, value in input.iteritems()}
-    elif isinstance(input, list):
-        return [_byteify(element) for element in input]
-    elif isinstance(input, unicode):
-        return input.encode('utf-8')
-    else:
-        return input
 
 
 def _auto_run(args):
