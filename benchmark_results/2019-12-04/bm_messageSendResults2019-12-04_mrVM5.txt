@@ -429,25 +429,7 @@ CPU MODEL:  Intel(R) Xeon(R) CPU E5-1620 v3 @ 3.50GHz
       "real_time": 2.5571799997123890e+01,
       "cpu_time": 0.0000000000000000e+00,
       "time_unit": "ms"
-    }17670-jmEeH-bN3A1-QCGur-S8BMK (0)::now waiting for the core to finish registration before proceeding
-17670-jmEeH-bN3A1-QCGur-S8BMK (0)::broker state=-2, broker id=0, sleepcnt=7
-17670-jmEeH-bN3A1-QCGur-S8BMK (0)::broker state=-2, broker id=0, sleepcnt=8
-17670-jmEeH-bN3A1-QCGur-S8BMK (0)::broker state=-2, broker id=0, sleepcnt=9
-17670-jmEeH-bN3A1-QCGur-S8BMK (0)::broker state=-2, broker id=0, sleepcnt=10
-17670-jmEeH-bN3A1-QCGur-S8BMK (0)::broker state=-2, broker id=0, sleepcnt=11
-17670-jmEeH-bN3A1-QCGur-S8BMK (0)::broker state=-2, broker id=0, sleepcnt=12
-17670-jmEeH-bN3A1-QCGur-S8BMK (0)::broker state=-2, broker id=0, sleepcnt=13
-17670-jmEeH-bN3A1-QCGur-S8BMK (0)::broker state=-2, broker id=0, sleepcnt=14
-17670-jmEeH-bN3A1-QCGur-S8BMK (0)::broker state=-2, broker id=0, sleepcnt=15
-17670-jmEeH-bN3A1-QCGur-S8BMK (0)::broker state=-2, broker id=0, sleepcnt=16
-17670-jmEeH-bN3A1-QCGur-S8BMK (0)::broker state=-2, broker id=0, sleepcnt=17
-17670-jmEeH-bN3A1-QCGur-S8BMK (0)::broker state=-2, broker id=0, sleepcnt=18
-17670-jmEeH-bN3A1-QCGur-S8BMK (0)::broker state=-2, broker id=0, sleepcnt=19
-17670-jmEeH-bN3A1-QCGur-S8BMK (0)::broker state=-2, broker id=0, sleepcnt=20
-17670-jmEeH-bN3A1-QCGur-S8BMK (0)::resending reg message
-17670-jmEeH-bN3A1-QCGur-S8BMK (0)::got resend
-17670-jmEeH-bN3A1-QCGur-S8BMK (0)::resending broker reg
-,
+    },
     {
       "name": "BM_sendMessage/multiCore/zmqCore/1/64/iterations:1/real_time",
       "run_name": "BM_sendMessage/multiCore/zmqCore/1/64/iterations:1/real_time",
