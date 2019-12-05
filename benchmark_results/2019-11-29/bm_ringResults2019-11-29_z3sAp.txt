@@ -47,8 +47,8 @@ CPU MODEL: AMD Ryzen Threadripper 1950X 16-Core Processor
   },
   "benchmarks": [
     {
-      "name": "BM_ring2_singleCore/iterations:3/real_time",
-      "run_name": "BM_ring2_singleCore/iterations:3/real_time",
+      "name": "BM_ring2/singleFed/iterations:3/real_time",
+      "run_name": "BM_ring2/singleFed/iterations:3/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,
@@ -59,8 +59,8 @@ CPU MODEL: AMD Ryzen Threadripper 1950X 16-Core Processor
       "time_unit": "ms"
     },
     {
-      "name": "BM_ring_multiCore/inprocCore/2/real_time",
-      "run_name": "BM_ring_multiCore/inprocCore/2/real_time",
+      "name": "BM_ring/multiCore/inprocCore/2/real_time",
+      "run_name": "BM_ring/multiCore/inprocCore/2/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,
@@ -71,8 +71,8 @@ CPU MODEL: AMD Ryzen Threadripper 1950X 16-Core Processor
       "time_unit": "ms"
     },
     {
-      "name": "BM_ring_multiCore/inprocCore/3/real_time",
-      "run_name": "BM_ring_multiCore/inprocCore/3/real_time",
+      "name": "BM_ring/multiCore/inprocCore/3/real_time",
+      "run_name": "BM_ring/multiCore/inprocCore/3/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,
@@ -83,8 +83,8 @@ CPU MODEL: AMD Ryzen Threadripper 1950X 16-Core Processor
       "time_unit": "ms"
     },
     {
-      "name": "BM_ring_multiCore/inprocCore/4/real_time",
-      "run_name": "BM_ring_multiCore/inprocCore/4/real_time",
+      "name": "BM_ring/multiCore/inprocCore/4/real_time",
+      "run_name": "BM_ring/multiCore/inprocCore/4/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,
@@ -95,8 +95,8 @@ CPU MODEL: AMD Ryzen Threadripper 1950X 16-Core Processor
       "time_unit": "ms"
     },
     {
-      "name": "BM_ring_multiCore/inprocCore/6/real_time",
-      "run_name": "BM_ring_multiCore/inprocCore/6/real_time",
+      "name": "BM_ring/multiCore/inprocCore/6/real_time",
+      "run_name": "BM_ring/multiCore/inprocCore/6/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,
@@ -107,8 +107,8 @@ CPU MODEL: AMD Ryzen Threadripper 1950X 16-Core Processor
       "time_unit": "ms"
     },
     {
-      "name": "BM_ring_multiCore/inprocCore/10/real_time",
-      "run_name": "BM_ring_multiCore/inprocCore/10/real_time",
+      "name": "BM_ring/multiCore/inprocCore/10/real_time",
+      "run_name": "BM_ring/multiCore/inprocCore/10/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,
@@ -119,8 +119,8 @@ CPU MODEL: AMD Ryzen Threadripper 1950X 16-Core Processor
       "time_unit": "ms"
     },
     {
-      "name": "BM_ring_multiCore/inprocCore/20/real_time",
-      "run_name": "BM_ring_multiCore/inprocCore/20/real_time",
+      "name": "BM_ring/multiCore/inprocCore/20/real_time",
+      "run_name": "BM_ring/multiCore/inprocCore/20/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,
@@ -131,8 +131,8 @@ CPU MODEL: AMD Ryzen Threadripper 1950X 16-Core Processor
       "time_unit": "ms"
     },
     {
-      "name": "BM_ring_multiCore/zmqCore/2/real_time",
-      "run_name": "BM_ring_multiCore/zmqCore/2/real_time",
+      "name": "BM_ring/multiCore/zmqCore/2/real_time",
+      "run_name": "BM_ring/multiCore/zmqCore/2/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,
@@ -143,8 +143,8 @@ CPU MODEL: AMD Ryzen Threadripper 1950X 16-Core Processor
       "time_unit": "ms"
     },
     {
-      "name": "BM_ring_multiCore/zmqCore/3/real_time",
-      "run_name": "BM_ring_multiCore/zmqCore/3/real_time",
+      "name": "BM_ring/multiCore/zmqCore/3/real_time",
+      "run_name": "BM_ring/multiCore/zmqCore/3/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,
@@ -155,8 +155,8 @@ CPU MODEL: AMD Ryzen Threadripper 1950X 16-Core Processor
       "time_unit": "ms"
     },
     {
-      "name": "BM_ring_multiCore/zmqCore/4/real_time",
-      "run_name": "BM_ring_multiCore/zmqCore/4/real_time",
+      "name": "BM_ring/multiCore/zmqCore/4/real_time",
+      "run_name": "BM_ring/multiCore/zmqCore/4/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,
@@ -167,8 +167,8 @@ CPU MODEL: AMD Ryzen Threadripper 1950X 16-Core Processor
       "time_unit": "ms"
     },
     {
-      "name": "BM_ring_multiCore/zmqCore/6/real_time",
-      "run_name": "BM_ring_multiCore/zmqCore/6/real_time",
+      "name": "BM_ring/multiCore/zmqCore/6/real_time",
+      "run_name": "BM_ring/multiCore/zmqCore/6/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,
@@ -179,8 +179,8 @@ CPU MODEL: AMD Ryzen Threadripper 1950X 16-Core Processor
       "time_unit": "ms"
     },
     {
-      "name": "BM_ring_multiCore/zmqCore/10/real_time",
-      "run_name": "BM_ring_multiCore/zmqCore/10/real_time",
+      "name": "BM_ring/multiCore/zmqCore/10/real_time",
+      "run_name": "BM_ring/multiCore/zmqCore/10/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,
@@ -191,8 +191,8 @@ CPU MODEL: AMD Ryzen Threadripper 1950X 16-Core Processor
       "time_unit": "ms"
     },
     {
-      "name": "BM_ring_multiCore/zmqCore/20/real_time",
-      "run_name": "BM_ring_multiCore/zmqCore/20/real_time",
+      "name": "BM_ring/multiCore/zmqCore/20/real_time",
+      "run_name": "BM_ring/multiCore/zmqCore/20/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,
@@ -203,8 +203,8 @@ CPU MODEL: AMD Ryzen Threadripper 1950X 16-Core Processor
       "time_unit": "ms"
     },
     {
-      "name": "BM_ring_multiCore/zmqssCore/2/real_time",
-      "run_name": "BM_ring_multiCore/zmqssCore/2/real_time",
+      "name": "BM_ring/multiCore/zmqssCore/2/real_time",
+      "run_name": "BM_ring/multiCore/zmqssCore/2/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,
@@ -215,8 +215,8 @@ CPU MODEL: AMD Ryzen Threadripper 1950X 16-Core Processor
       "time_unit": "ms"
     },
     {
-      "name": "BM_ring_multiCore/zmqssCore/3/real_time",
-      "run_name": "BM_ring_multiCore/zmqssCore/3/real_time",
+      "name": "BM_ring/multiCore/zmqssCore/3/real_time",
+      "run_name": "BM_ring/multiCore/zmqssCore/3/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,
@@ -227,8 +227,8 @@ CPU MODEL: AMD Ryzen Threadripper 1950X 16-Core Processor
       "time_unit": "ms"
     },
     {
-      "name": "BM_ring_multiCore/zmqssCore/4/real_time",
-      "run_name": "BM_ring_multiCore/zmqssCore/4/real_time",
+      "name": "BM_ring/multiCore/zmqssCore/4/real_time",
+      "run_name": "BM_ring/multiCore/zmqssCore/4/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,
@@ -239,8 +239,8 @@ CPU MODEL: AMD Ryzen Threadripper 1950X 16-Core Processor
       "time_unit": "ms"
     },
     {
-      "name": "BM_ring_multiCore/zmqssCore/6/real_time",
-      "run_name": "BM_ring_multiCore/zmqssCore/6/real_time",
+      "name": "BM_ring/multiCore/zmqssCore/6/real_time",
+      "run_name": "BM_ring/multiCore/zmqssCore/6/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,
@@ -251,8 +251,8 @@ CPU MODEL: AMD Ryzen Threadripper 1950X 16-Core Processor
       "time_unit": "ms"
     },
     {
-      "name": "BM_ring_multiCore/zmqssCore/10/real_time",
-      "run_name": "BM_ring_multiCore/zmqssCore/10/real_time",
+      "name": "BM_ring/multiCore/zmqssCore/10/real_time",
+      "run_name": "BM_ring/multiCore/zmqssCore/10/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,
@@ -263,8 +263,8 @@ CPU MODEL: AMD Ryzen Threadripper 1950X 16-Core Processor
       "time_unit": "ms"
     },
     {
-      "name": "BM_ring_multiCore/zmqssCore/20/real_time",
-      "run_name": "BM_ring_multiCore/zmqssCore/20/real_time",
+      "name": "BM_ring/multiCore/zmqssCore/20/real_time",
+      "run_name": "BM_ring/multiCore/zmqssCore/20/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,
@@ -275,8 +275,8 @@ CPU MODEL: AMD Ryzen Threadripper 1950X 16-Core Processor
       "time_unit": "ms"
     },
     {
-      "name": "BM_ring_multiCore/ipcCore/2/real_time",
-      "run_name": "BM_ring_multiCore/ipcCore/2/real_time",
+      "name": "BM_ring/multiCore/ipcCore/2/real_time",
+      "run_name": "BM_ring/multiCore/ipcCore/2/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,
@@ -287,8 +287,8 @@ CPU MODEL: AMD Ryzen Threadripper 1950X 16-Core Processor
       "time_unit": "ms"
     },
     {
-      "name": "BM_ring_multiCore/ipcCore/3/real_time",
-      "run_name": "BM_ring_multiCore/ipcCore/3/real_time",
+      "name": "BM_ring/multiCore/ipcCore/3/real_time",
+      "run_name": "BM_ring/multiCore/ipcCore/3/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,
@@ -299,8 +299,8 @@ CPU MODEL: AMD Ryzen Threadripper 1950X 16-Core Processor
       "time_unit": "ms"
     },
     {
-      "name": "BM_ring_multiCore/ipcCore/4/real_time",
-      "run_name": "BM_ring_multiCore/ipcCore/4/real_time",
+      "name": "BM_ring/multiCore/ipcCore/4/real_time",
+      "run_name": "BM_ring/multiCore/ipcCore/4/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,
@@ -311,8 +311,8 @@ CPU MODEL: AMD Ryzen Threadripper 1950X 16-Core Processor
       "time_unit": "ms"
     },
     {
-      "name": "BM_ring_multiCore/tcpCore/2/real_time",
-      "run_name": "BM_ring_multiCore/tcpCore/2/real_time",
+      "name": "BM_ring/multiCore/tcpCore/2/real_time",
+      "run_name": "BM_ring/multiCore/tcpCore/2/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,
@@ -323,8 +323,8 @@ CPU MODEL: AMD Ryzen Threadripper 1950X 16-Core Processor
       "time_unit": "ms"
     },
     {
-      "name": "BM_ring_multiCore/tcpCore/3/real_time",
-      "run_name": "BM_ring_multiCore/tcpCore/3/real_time",
+      "name": "BM_ring/multiCore/tcpCore/3/real_time",
+      "run_name": "BM_ring/multiCore/tcpCore/3/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,
@@ -335,8 +335,8 @@ CPU MODEL: AMD Ryzen Threadripper 1950X 16-Core Processor
       "time_unit": "ms"
     },
     {
-      "name": "BM_ring_multiCore/tcpCore/4/real_time",
-      "run_name": "BM_ring_multiCore/tcpCore/4/real_time",
+      "name": "BM_ring/multiCore/tcpCore/4/real_time",
+      "run_name": "BM_ring/multiCore/tcpCore/4/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,
@@ -347,8 +347,8 @@ CPU MODEL: AMD Ryzen Threadripper 1950X 16-Core Processor
       "time_unit": "ms"
     },
     {
-      "name": "BM_ring_multiCore/tcpCore/6/real_time",
-      "run_name": "BM_ring_multiCore/tcpCore/6/real_time",
+      "name": "BM_ring/multiCore/tcpCore/6/real_time",
+      "run_name": "BM_ring/multiCore/tcpCore/6/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,
@@ -359,8 +359,8 @@ CPU MODEL: AMD Ryzen Threadripper 1950X 16-Core Processor
       "time_unit": "ms"
     },
     {
-      "name": "BM_ring_multiCore/tcpCore/10/real_time",
-      "run_name": "BM_ring_multiCore/tcpCore/10/real_time",
+      "name": "BM_ring/multiCore/tcpCore/10/real_time",
+      "run_name": "BM_ring/multiCore/tcpCore/10/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,
@@ -371,8 +371,8 @@ CPU MODEL: AMD Ryzen Threadripper 1950X 16-Core Processor
       "time_unit": "ms"
     },
     {
-      "name": "BM_ring_multiCore/tcpCore/20/real_time",
-      "run_name": "BM_ring_multiCore/tcpCore/20/real_time",
+      "name": "BM_ring/multiCore/tcpCore/20/real_time",
+      "run_name": "BM_ring/multiCore/tcpCore/20/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,
@@ -383,8 +383,8 @@ CPU MODEL: AMD Ryzen Threadripper 1950X 16-Core Processor
       "time_unit": "ms"
     },
     {
-      "name": "BM_ring_multiCore/tcpssCore/2/real_time",
-      "run_name": "BM_ring_multiCore/tcpssCore/2/real_time",
+      "name": "BM_ring/multiCore/tcpssCore/2/real_time",
+      "run_name": "BM_ring/multiCore/tcpssCore/2/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,
@@ -395,8 +395,8 @@ CPU MODEL: AMD Ryzen Threadripper 1950X 16-Core Processor
       "time_unit": "ms"
     },
     {
-      "name": "BM_ring_multiCore/tcpssCore/3/real_time",
-      "run_name": "BM_ring_multiCore/tcpssCore/3/real_time",
+      "name": "BM_ring/multiCore/tcpssCore/3/real_time",
+      "run_name": "BM_ring/multiCore/tcpssCore/3/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,
@@ -407,8 +407,8 @@ CPU MODEL: AMD Ryzen Threadripper 1950X 16-Core Processor
       "time_unit": "ms"
     },
     {
-      "name": "BM_ring_multiCore/tcpssCore/4/real_time",
-      "run_name": "BM_ring_multiCore/tcpssCore/4/real_time",
+      "name": "BM_ring/multiCore/tcpssCore/4/real_time",
+      "run_name": "BM_ring/multiCore/tcpssCore/4/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,
@@ -419,8 +419,8 @@ CPU MODEL: AMD Ryzen Threadripper 1950X 16-Core Processor
       "time_unit": "ms"
     },
     {
-      "name": "BM_ring_multiCore/tcpssCore/6/real_time",
-      "run_name": "BM_ring_multiCore/tcpssCore/6/real_time",
+      "name": "BM_ring/multiCore/tcpssCore/6/real_time",
+      "run_name": "BM_ring/multiCore/tcpssCore/6/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,
@@ -431,8 +431,8 @@ CPU MODEL: AMD Ryzen Threadripper 1950X 16-Core Processor
       "time_unit": "ms"
     },
     {
-      "name": "BM_ring_multiCore/tcpssCore/10/real_time",
-      "run_name": "BM_ring_multiCore/tcpssCore/10/real_time",
+      "name": "BM_ring/multiCore/tcpssCore/10/real_time",
+      "run_name": "BM_ring/multiCore/tcpssCore/10/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,
@@ -443,8 +443,8 @@ CPU MODEL: AMD Ryzen Threadripper 1950X 16-Core Processor
       "time_unit": "ms"
     },
     {
-      "name": "BM_ring_multiCore/tcpssCore/20/real_time",
-      "run_name": "BM_ring_multiCore/tcpssCore/20/real_time",
+      "name": "BM_ring/multiCore/tcpssCore/20/real_time",
+      "run_name": "BM_ring/multiCore/tcpssCore/20/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,
@@ -455,8 +455,8 @@ CPU MODEL: AMD Ryzen Threadripper 1950X 16-Core Processor
       "time_unit": "ms"
     },
     {
-      "name": "BM_ring_multiCore/udpCore/2/real_time",
-      "run_name": "BM_ring_multiCore/udpCore/2/real_time",
+      "name": "BM_ring/multiCore/udpCore/2/real_time",
+      "run_name": "BM_ring/multiCore/udpCore/2/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,
@@ -467,8 +467,8 @@ CPU MODEL: AMD Ryzen Threadripper 1950X 16-Core Processor
       "time_unit": "ms"
     },
     {
-      "name": "BM_ring_multiCore/udpCore/3/real_time",
-      "run_name": "BM_ring_multiCore/udpCore/3/real_time",
+      "name": "BM_ring/multiCore/udpCore/3/real_time",
+      "run_name": "BM_ring/multiCore/udpCore/3/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,
@@ -479,8 +479,8 @@ CPU MODEL: AMD Ryzen Threadripper 1950X 16-Core Processor
       "time_unit": "ms"
     },
     {
-      "name": "BM_ring_multiCore/udpCore/4/real_time",
-      "run_name": "BM_ring_multiCore/udpCore/4/real_time",
+      "name": "BM_ring/multiCore/udpCore/4/real_time",
+      "run_name": "BM_ring/multiCore/udpCore/4/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,
@@ -491,8 +491,8 @@ CPU MODEL: AMD Ryzen Threadripper 1950X 16-Core Processor
       "time_unit": "ms"
     },
     {
-      "name": "BM_ring_multiCore/udpCore/6/real_time",
-      "run_name": "BM_ring_multiCore/udpCore/6/real_time",
+      "name": "BM_ring/multiCore/udpCore/6/real_time",
+      "run_name": "BM_ring/multiCore/udpCore/6/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,
@@ -503,8 +503,8 @@ CPU MODEL: AMD Ryzen Threadripper 1950X 16-Core Processor
       "time_unit": "ms"
     },
     {
-      "name": "BM_ring_multiCore/udpCore/10/real_time",
-      "run_name": "BM_ring_multiCore/udpCore/10/real_time",
+      "name": "BM_ring/multiCore/udpCore/10/real_time",
+      "run_name": "BM_ring/multiCore/udpCore/10/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,
@@ -515,8 +515,8 @@ CPU MODEL: AMD Ryzen Threadripper 1950X 16-Core Processor
       "time_unit": "ms"
     },
     {
-      "name": "BM_ring_multiCore/udpCore/20/real_time",
-      "run_name": "BM_ring_multiCore/udpCore/20/real_time",
+      "name": "BM_ring/multiCore/udpCore/20/real_time",
+      "run_name": "BM_ring/multiCore/udpCore/20/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,
