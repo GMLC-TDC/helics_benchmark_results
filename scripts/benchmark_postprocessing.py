@@ -125,16 +125,29 @@ def parse_header_lines(json_file, json_results, uuid_str):
 
 def parse_and_add_benchmark_metadata(json_results):
     for key, value in json_results.items():
+
+        # Convenience and/or performance assignments
         filename = json_results[key]['filename']
+        core_pattern = re.compile('/.*?Core/')
+
         if 'ActionMessage' in filename:
             logging.warning('Added no benchmark metadata to {} as test type "ActionMessage"'.format(filename))
         if 'conversion' in filename:
             logging.warning('Added no benchmark metadata to {} as test type "conversion"'.format(filename))
         elif 'echo' in filename:
             for idx, results_dict in enumerate(json_results[key]['benchmarks']):
-                match = re.search('/\d+/',results_dict['name'])
+                bm_name = results_dict['name']
+
+                # Federate count
+                match = re.search('/\d+/',bm_name)
                 federate_count = int(match.group(0)[1:-1])
                 json_results[key]['benchmarks'][idx]['federate_count'] = federate_count
+
+                # Core type
+                #if 'multiCore' in bm_name:
+                #    core_str = _add_core(bm_name, core_pattern, filename)
+                #    json_results[key]['benchmarks'][idx]['core_type'] = core_str
+
             logging.info('Added benchmark metadata to {} as test type "echo" or "echoMessage"'.format(filename))
         elif 'filter' in filename:
             logging.warning('Added no benchmark metadata to {} as test type "filter"'.format(filename))
@@ -172,12 +185,21 @@ def parse_and_add_benchmark_metadata(json_results):
             logging.info('Added benchmark metadata to {} as test type "pHold"'.format(filename))
     return json_results
 
+def _get_core(bm_name, core_pattern, filename):
+    match = core_pattern.search(bm_name)
+    if match:
+        core_type = match.group(0)[1:-5]
+    else:
+        logging.warning('Unable to find core type in {} in {}'.format(bm_name, filename))
+    return core_type
 
 
 def _auto_run(args):
     file_list = get_benchmark_files(args.benchmark_results_dir)
     json_results = parse_files(file_list)
     json_results = parse_and_add_benchmark_metadata(json_results)
+    with open('bm_results.json', 'w') as outfile:
+        json.dump(json_results, outfile)
 
 
 if __name__ == '__main__':
