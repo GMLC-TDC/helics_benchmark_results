@@ -40,10 +40,8 @@ def rename_bm(file_list):
             match1 = pattern1.search(filename)
             if match1:
                 # Most benchmark results will be updated here
-                #command_str = "sed -i '' -E -e 's~BM_([^\/]*)_multiCore\/([^\/]*)~BM_\1\/multiCore\/\2~g' -e 's~BM_([^\/]*)_singleCore~BM_\1\/singleFed~g {}'".format(file)
-                response = subprocess.run(['sed', '-i', "''", '-E', '-e', 's~BM_([^\/]*)_multiCore\/([^\/]*)~BM_\\1\/multiCore\/\\2~g',
+                response = subprocess.run(['sed', '-i', '', '-E', '-e', 's~BM_([^\/]*)_multiCore\/([^\/]*)~BM_\\1\/multiCore\/\\2~g',
                                '-e', 's~BM_([^\/]*)_singleCore~BM_\\1\/singleFed~g', file], text=True)
-                #response = subprocess.Popen(["sed -i '' -E -e 's~BM_([^\/]*)_multiCore\/([^\/]*)~BM_\1\/multiCore\/\2~g' -e 's~BM_([^\/]*)_singleCore~BM_\1\/singleFed~g {}'".format(file)],text=True, shell=False)
                 if response.returncode != 0:
                     logging.warning('Failed update of benchmark names in {}'.format(file))
                     logging.warning('    {}'.format(response.stderr))
@@ -55,7 +53,14 @@ def rename_bm(file_list):
                 if match2:
 
                     # Only the 'messageSendResults' results files get updated here
-                    pass
+                    response = subprocess.run(
+                        ['sed', '-i', '', '-E', '-e', 's~BM_([^\/]*)\/(.*)MultiCore~BM_\\1\/multiCore\/\\2Core~g',
+                         '-e', 's~BM_([^\/]*)\/singleCore~BM_\\1\/singleFed~g', file], text=True)
+                    if response.returncode != 0:
+                        logging.warning('Failed update of benchmark names in {}'.format(file))
+                        logging.warning('    {}'.format(response.stderr))
+                    else:
+                        logging.info('Updated benchmark names in {}'.format(file))
 
 
 
