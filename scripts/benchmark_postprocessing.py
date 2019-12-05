@@ -62,7 +62,7 @@ def parse_files(file_list):
                 #    generated in the log file.
                 try:
                     json_dict = json.loads(json_str)
-                    json_dict = byteify(json_dict)
+                    json_dict = _byteify(json_dict)
                     for key,value in json_dict['context'].items():
                         json_results[uuid_str][key] = value
                     json_results[uuid_str]['benchmarks'] = json_dict['benchmarks']
@@ -123,13 +123,62 @@ def parse_header_lines(json_file, json_results, uuid_str):
     return json_str, json_results
 
 
+def parse_and_add_benchmark_metadata(json_results):
+    for key, value in json_results.items():
+        filename = json_results[key]['filename']
+        if 'ActionMessage' in filename:
+            logging.warning('Added no benchmark metadata to {} as test type "ActionMessage"'.format(filename))
+        if 'conversion' in filename:
+            logging.warning('Added no benchmark metadata to {} as test type "conversion"'.format(filename))
+        elif 'echo' in filename:
+            for idx, results_dict in enumerate(json_results[key]['benchmarks']):
+                match = re.search('/\d+/',results_dict['name'])
+                federate_count = int(match.group(0)[1:-1])
+                json_results[key]['benchmarks'][idx]['federate_count'] = federate_count
+            logging.info('Added benchmark metadata to {} as test type "echo" or "echoMessage"'.format(filename))
+        elif 'filter' in filename:
+            logging.warning('Added no benchmark metadata to {} as test type "filter"'.format(filename))
+        elif 'messageLookup' in filename:
+            for idx, results_dict in enumerate(json_results[key]['benchmarks']):
+                if 'multiCore' in results_dict['name']:
+                    match = re.search('/\d+/\d+/',results_dict['name'])
+                    match2 = re.findall('\d+',match.group(0))
+                    interface_count = int(match2[0])
+                    federate_count = int(match2[1])
+                    json_results[key]['benchmarks'][idx]['interface_count'] = interface_count
+                    json_results[key]['benchmarks'][idx]['federate_count'] = federate_count
+            logging.info('Added benchmark metadata to {} as test type "messageLookup"'.format(filename))
+        elif 'messageSend' in filename:
+            for idx, results_dict in enumerate(json_results[key]['benchmarks']):
+                match = re.search('/\d+/\d+/',results_dict['name'])
+                match2 = re.findall('\d+',match.group(0))
+                message_size = int(match2[0])
+                message_count = int(match2[1])
+                json_results[key]['benchmarks'][idx]['message_size'] = message_size
+                json_results[key]['benchmarks'][idx]['message_count'] = message_count
+            logging.info('Added benchmark metadata to {} as test type "messageSend"'.format(filename))
+        elif 'ring' in filename:
+            for idx, results_dict in enumerate(json_results[key]['benchmarks']):
+                if 'multiCore' in results_dict['name']:
+                    match = re.search('/\d+/',results_dict['name'])
+                    federate_count = int(match.group(0)[1:-1])
+                    json_results[key]['benchmarks'][idx]['federate_count'] = federate_count
+            logging.info('Added benchmark metadata to {} as test type "ring"'.format(filename))
+        elif 'phold' in filename:
+            for idx, results_dict in enumerate(json_results[key]['benchmarks']):
+                match = re.search('/\d+/',results_dict['name'])
+                federate_count = int(match.group(0)[1:-1])
+                json_results[key]['benchmarks'][idx]['federate_count'] = federate_count
+            logging.info('Added benchmark metadata to {} as test type "pHold"'.format(filename))
+    return json_results
 
-def byteify(input):
+
+def _byteify(input):
     if isinstance(input, dict):
-        return {byteify(key): byteify(value)
+        return {_byteify(key): _byteify(value)
                 for key, value in input.iteritems()}
     elif isinstance(input, list):
-        return [byteify(element) for element in input]
+        return [_byteify(element) for element in input]
     elif isinstance(input, unicode):
         return input.encode('utf-8')
     else:
@@ -139,6 +188,7 @@ def byteify(input):
 def _auto_run(args):
     file_list = get_benchmark_files(args.benchmark_results_dir)
     json_results = parse_files(file_list)
+    json_results = parse_and_add_benchmark_metadata(json_results)
 
 
 if __name__ == '__main__':
