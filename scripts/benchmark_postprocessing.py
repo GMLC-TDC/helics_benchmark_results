@@ -102,6 +102,7 @@ def parse_header_lines(json_file, json_results, uuid_str):
                 log.error('Failed to parse ZMQ VERSION line.')
         elif 'COMPILER INFO:' in line:
             json_results[uuid_str]['compiler_info_string']  = line[14:]
+            json_results = _parse_compiler_string(uuid_str, json_results)
         elif 'BUILD FLAGS:' in line:
             json_results[uuid_str]['build_flags_string'] = line[12:]
         elif 'HOST PROCESSOR TYPE:' in line:
@@ -225,6 +226,35 @@ def _add_run_id(key, json_results):
         json_results[key]['run_id'] = run_id
     else:
         json_results[key]['run_id'] = ''
+    return json_results
+
+def _parse_compiler_string(uuid, json_results):
+    # Since I'm going to be using it alot...
+    compiler_str = json_results[uuid]['compiler_info_string']
+
+    # CXX compiler
+    match = re.search(':.*$', compiler_str)
+    if match:
+        # compiler name
+        match2 = re.search(':.*-', match.group(0))
+
+        if match2:
+            cxx_compiler = match2.group(0)[1:-1]
+            json_results[uuid]['cxx_compiler'] = cxx_compiler
+        else:
+            json_results[uuid]['cxx_compiler'] = ''
+
+        # compiler version
+        match2 = re.search('-.*$', match.group(0))
+        if match2:
+            cxx_compiler_version = match2.group(0)[1:]
+            json_results[uuid]['cxx_compiler_version'] = cxx_compiler_version
+        else:
+            json_results[uuid]['cxx_compiler_version'] = ''
+    else:
+        json_results[uuid]['cxx_compiler'] = ''
+        json_results[uuid]['cxx_compiler_version'] = ''
+
     return json_results
 
 
