@@ -208,6 +208,8 @@ def parse_and_add_benchmark_metadata(json_results):
             logging.info('Added benchmark metadata to {} as test type is "pHold"'.format(filename))
     return json_results
 
+
+
 def _add_core(bm_name, filename, json_results, key, idx):
     if '/multiCore/' in bm_name:
         core_match = re.search('/multiCore/.*?Core', bm_name)
@@ -219,6 +221,8 @@ def _add_core(bm_name, filename, json_results, key, idx):
         pass
     return json_results
 
+
+
 def _add_run_id(key, json_results):
     match = re.search('\d_.*?\.txt', json_results[key]['filename'])
     if match:
@@ -228,9 +232,27 @@ def _add_run_id(key, json_results):
         json_results[key]['run_id'] = ''
     return json_results
 
+
+
 def _parse_compiler_string(uuid, json_results):
     # Since I'm going to be using it alot...
     compiler_str = json_results[uuid]['compiler_info_string']
+
+    # Generator
+    generators = ['Ninja',
+                  'Visual Studio 15 2017',
+                  'Visual Studio 16 2019',
+                  'Unix Makefiles',
+                  'MSYS Makefiles']
+    match = re.search('^.*?:', compiler_str)
+    matched_generator = False
+    for item in generators:
+        if item in match.group(0):
+            json_results[uuid]['generator'] = item
+            matched_generator = True
+            break
+    if matched_generator == False:
+        logging.error('Unable to match element in string "{}" to known generator in compiler options: {}'.format(match.group(0), pp.pformat(generators)))
 
     # System
     match = re.search('\s.*?:', compiler_str)
@@ -278,6 +300,17 @@ def _parse_compiler_string(uuid, json_results):
                 logging.error('Unexpected Windows compiler system data, could not parse {}'.format(compiler_str))
     else:
         logging.error('Unexpected compiler system data, could not parse {}'.format(compiler_str))
+
+    # Platform
+    # TDH: This string can be null so I'm having to find it by process of elimination
+    match = re.search('.*?[Windows|Linux]-', compiler_str)
+    trimmed_str = re.sub(json_results[uuid]['generator'], '', match.group(0))
+    trimmed_str = re.sub(json_results[uuid]['system'], '', trimmed_str)
+    trimmed_str = re.sub('-', '', trimmed_str)
+    trimmed_str = trimmed_str.strip()
+    json_results[uuid]['platform'] = trimmed_str
+
+
 
     # CXX compiler
     match = re.search(':.*$', compiler_str)
