@@ -218,6 +218,15 @@ def _add_core(bm_name, filename, json_results, key, idx):
         pass
     return json_results
 
+def _add_run_id(key, json_results):
+    match = re.search('\d_.*?\.txt', json_results[key]['filename'])
+    if match:
+        run_id = match.group(0)[2:-4]
+        json_results[key]['run_id'] = run_id
+    else:
+        json_results[key]['run_id'] = ''
+    return json_results
+
 
 def _auto_run(args):
     file_list = get_benchmark_files(args.benchmark_results_dir)
