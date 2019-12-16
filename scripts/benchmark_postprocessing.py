@@ -101,7 +101,7 @@ def parse_header_lines(json_file, json_results, uuid_str):
             else:
                 log.error('Failed to parse ZMQ VERSION line.')
         elif 'COMPILER INFO:' in line:
-            json_results[uuid_str]['compiler_info_string']  = line[14:]
+            json_results[uuid_str]['compiler_info_string']  = line[15:]
             json_results = _parse_compiler_string(uuid_str, json_results)
         elif 'BUILD FLAGS:' in line:
             json_results[uuid_str]['build_flags_string'] = line[12:]
