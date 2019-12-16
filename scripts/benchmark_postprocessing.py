@@ -128,11 +128,12 @@ def parse_and_add_benchmark_metadata(json_results):
 
         # Convenience and/or performance assignments
         filename = json_results[key]['filename']
+        json_results = _add_run_id(key, json_results)
 
         if 'ActionMessage' in filename:
-            logging.warning('Added no benchmark metadata to {} as test type "ActionMessage"'.format(filename))
+            logging.warning('Added no benchmark metadata to {} as test type is "ActionMessage"'.format(filename))
         if 'conversion' in filename:
-            logging.warning('Added no benchmark metadata to {} as test type "conversion"'.format(filename))
+            logging.warning('Added no benchmark metadata to {} as test type is "conversion"'.format(filename))
         elif 'echo' in filename:
             for idx, results_dict in enumerate(json_results[key]['benchmarks']):
                 bm_name = results_dict['name']
@@ -147,7 +148,7 @@ def parse_and_add_benchmark_metadata(json_results):
 
             logging.info('Added benchmark metadata to {} as test type "echo" or "echoMessage"'.format(filename))
         elif 'filter' in filename:
-            logging.warning('Added no benchmark metadata to {} as test type "filter"'.format(filename))
+            logging.warning('Added no benchmark metadata to {} as test type is "filter"'.format(filename))
         elif 'messageLookup' in filename:
             for idx, results_dict in enumerate(json_results[key]['benchmarks']):
                 bm_name = results_dict['name']
@@ -178,7 +179,7 @@ def parse_and_add_benchmark_metadata(json_results):
 
                 # Core type
                 json_results = _add_core(bm_name, filename, json_results, key, idx)
-            logging.info('Added benchmark metadata to {} as test type "messageSend"'.format(filename))
+            logging.info('Added benchmark metadata to {} as test type is "messageSend"'.format(filename))
         elif 'ring' in filename:
             for idx, results_dict in enumerate(json_results[key]['benchmarks']):
                 bm_name = results_dict['name']
@@ -191,7 +192,7 @@ def parse_and_add_benchmark_metadata(json_results):
 
                     # Core type
                     json_results = _add_core(bm_name, filename, json_results, key, idx)
-            logging.info('Added benchmark metadata to {} as test type "ring"'.format(filename))
+            logging.info('Added benchmark metadata to {} as test type is "ring"'.format(filename))
         elif 'phold' in filename:
             for idx, results_dict in enumerate(json_results[key]['benchmarks']):
                 bm_name = results_dict['name']
@@ -203,7 +204,7 @@ def parse_and_add_benchmark_metadata(json_results):
 
                 # Core type
                 json_results = _add_core(bm_name, filename, json_results, key, idx)
-            logging.info('Added benchmark metadata to {} as test type "pHold"'.format(filename))
+            logging.info('Added benchmark metadata to {} as test type is "pHold"'.format(filename))
     return json_results
 
 def _add_core(bm_name, filename, json_results, key, idx):
