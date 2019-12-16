@@ -232,6 +232,53 @@ def _parse_compiler_string(uuid, json_results):
     # Since I'm going to be using it alot...
     compiler_str = json_results[uuid]['compiler_info_string']
 
+    # System
+    match = re.search('\s.*?:', compiler_str)
+    if match:
+        match2 = re.search('Linux-.*?:', match.group(0))
+        if match2:
+            # Linux system
+
+            json_results[uuid]['system'] = 'Linux'
+            linux_version = match2.group(0)[6:]
+            json_results[uuid]['system_version'] = linux_version
+
+            # Splitting up the Linux version string
+            match3= re.search('\d+\.',linux_version)
+            json_results[uuid]['linux_kernel_version'] = match3.group(0)[:-1]
+            match3 = re.search('\.\d+\.', linux_version)
+            json_results[uuid]['linux_major_version'] = match3.group(0)[1:-1]
+            match3 = re.search('\.\d+-', linux_version)
+            json_results[uuid]['linux_minor_version'] = match3.group(0)[1:-1]
+
+            # TDH: There's some weirdness with the bug fix version and/or distro string.
+            #   I'm doing my best to handle it.
+            match3 = re.search('-\d+-', linux_version)
+            if match3:
+                json_results[uuid]['linux_bug_fix_version'] = match3.group(0)[1:-1]
+                match4 = re.search('-(?!\d).*$', linux_version)
+                json_results[uuid]['linux_distro_string'] = match4.group(0)[1:-1]
+            else:
+                match3 = re.search('-.*:(?!-\d+\.\d+\.\d+-)', linux_version)
+                if match3:
+                    json_results[uuid]['linux_bug_fix_version'] = match3.group(0)[1:-1]
+                    json_results[uuid]['linux_distro_string'] = ''
+                else:
+                    logging.error('Unable to parse Linux kernel bug fix version: {}'.format(linux_version))
+
+        else:
+            match2 = re.search('Windows-[\d|\.]*', match.group(0))
+            if match2:
+                # Windows
+
+                json_results[uuid]['system'] = 'Windows'
+                windows_version =  match2.group(0)[8:]
+                json_results[uuid]['system_version'] = windows_version
+            else:
+                logging.error('Unexpected Windows compiler system data, could not parse {}'.format(compiler_str))
+    else:
+        logging.error('Unexpected compiler system data, could not parse {}'.format(compiler_str))
+
     # CXX compiler
     match = re.search(':.*$', compiler_str)
     if match:
