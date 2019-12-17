@@ -108,7 +108,7 @@ def parse_header_lines(json_file, json_results, uuid_str):
         elif 'HOST PROCESSOR TYPE:' in line:
             json_results[uuid_str]['host_processor'] = line[21:]
         elif 'CPU MODEL:' in line:
-            json_results[uuid_str]['host_processor_string'] = line[21:]
+            json_results[uuid_str]['host_processor_string'] = line[10:].strip()
         elif '-------------------------------------------' in line and json_body == 0:
             # Last line of non-JSON header
             json_body = 1
