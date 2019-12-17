@@ -133,7 +133,7 @@ def parse_and_add_benchmark_metadata(json_results):
 
         if 'ActionMessage' in filename:
             logging.warning('Added no benchmark metadata to {} as test type is "ActionMessage"'.format(filename))
-        if 'conversion' in filename:
+        elif 'conversion' in filename:
             logging.warning('Added no benchmark metadata to {} as test type is "conversion"'.format(filename))
         elif 'echo' in filename:
             for idx, results_dict in enumerate(json_results[key]['benchmarks']):
@@ -149,14 +149,32 @@ def parse_and_add_benchmark_metadata(json_results):
 
             logging.info('Added benchmark metadata to {} as test type "echo" or "echoMessage"'.format(filename))
         elif 'filter' in filename:
-            logging.warning('Added no benchmark metadata to {} as test type is "filter"'.format(filename))
+            for idx, results_dict in enumerate(json_results[key]['benchmarks']):
+                bm_name = results_dict['name']
+
+                # Federate count and filter location
+                match = re.search('/\d+/\d+/', bm_name)
+                match2 = re.findall('\d+', match.group(0))
+                federate_count = int(match2[0])
+                if match2[1] == "1":
+                    filter_location = "destination"
+                elif match2[1] == "2":
+                    filter_location = "source"
+                else:
+                    logging.error('Filter location {} is not a valid value of "0" or "1"'.format(match2[1]))
+                json_results[key]['benchmarks'][idx]['filter_location'] = filter_location
+                json_results[key]['benchmarks'][idx]['federate_count'] = federate_count
+
+                # Core type
+                json_results = _add_core(bm_name, filename, json_results, key, idx)
+            logging.info('Added benchmark metadata to {} as test type is "filter"'.format(filename))
         elif 'messageLookup' in filename:
             for idx, results_dict in enumerate(json_results[key]['benchmarks']):
                 bm_name = results_dict['name']
 
-                if 'multiCore' in results_dict['name']:
+                if 'multiCore' in bm_name:
                     # Interface count and federate count
-                    match = re.search('/\d+/\d+/',results_dict['name'])
+                    match = re.search('/\d+/\d+/',bm_name)
                     match2 = re.findall('\d+',match.group(0))
                     interface_count = int(match2[0])
                     federate_count = int(match2[1])
@@ -171,7 +189,7 @@ def parse_and_add_benchmark_metadata(json_results):
                 bm_name = results_dict['name']
 
                 # Message size and message count
-                match = re.search('/\d+/\d+/',results_dict['name'])
+                match = re.search('/\d+/\d+/',bm_name)
                 match2 = re.findall('\d+',match.group(0))
                 message_size = int(match2[0])
                 message_count = int(match2[1])
@@ -185,9 +203,9 @@ def parse_and_add_benchmark_metadata(json_results):
             for idx, results_dict in enumerate(json_results[key]['benchmarks']):
                 bm_name = results_dict['name']
 
-                if 'multiCore' in results_dict['name']:
+                if 'multiCore' in bm_name:
                     # Federate count
-                    match = re.search('/\d+/',results_dict['name'])
+                    match = re.search('/\d+/',bm_name)
                     federate_count = int(match.group(0)[1:-1])
                     json_results[key]['benchmarks'][idx]['federate_count'] = federate_count
 
@@ -199,7 +217,7 @@ def parse_and_add_benchmark_metadata(json_results):
                 bm_name = results_dict['name']
 
                 # Federate count
-                match = re.search('/\d+/',results_dict['name'])
+                match = re.search('/\d+/',bm_name)
                 federate_count = int(match.group(0)[1:-1])
                 json_results[key]['benchmarks'][idx]['federate_count'] = federate_count
 
