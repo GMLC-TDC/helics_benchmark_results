@@ -47,8 +47,8 @@ CPU MODEL: AMD Ryzen Threadripper 1950X 16-Core Processor
   },
   "benchmarks": [
     {
-      "name": "BM_ring2/singleFed/iterations:3/real_time",
-      "run_name": "BM_ring2/singleFed/iterations:3/real_time",
+      "name": "BM_ring2/singleCore/iterations:3/real_time",
+      "run_name": "BM_ring2/singleCore/iterations:3/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,

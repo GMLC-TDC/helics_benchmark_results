@@ -47,8 +47,8 @@ CPU MODEL:  Intel(R) Core(TM) i3-8350K CPU @ 4.00GHz
   },
   "benchmarks": [
     {
-      "name": "BM_ring2/singleFed/iterations:3/real_time",
-      "run_name": "BM_ring2/singleFed/iterations:3/real_time",
+      "name": "BM_ring2/singleCore/iterations:3/real_time",
+      "run_name": "BM_ring2/singleCore/iterations:3/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,

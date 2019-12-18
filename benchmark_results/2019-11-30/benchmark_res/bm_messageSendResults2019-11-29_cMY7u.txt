@@ -47,8 +47,8 @@ CPU MODEL:  Intel(R) Core(TM) i3-8350K CPU @ 4.00GHz
   },
   "benchmarks": [
     {
-      "name": "BM_sendMessage/singleFed/1/1/iterations:1/real_time",
-      "run_name": "BM_sendMessage/singleFed/1/1/iterations:1/real_time",
+      "name": "BM_sendMessage/singleCore/1/1/iterations:1/real_time",
+      "run_name": "BM_sendMessage/singleCore/1/1/iterations:1/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,
@@ -59,8 +59,8 @@ CPU MODEL:  Intel(R) Core(TM) i3-8350K CPU @ 4.00GHz
       "time_unit": "ms"
     },
     {
-      "name": "BM_sendMessage/singleFed/8/1/iterations:1/real_time",
-      "run_name": "BM_sendMessage/singleFed/8/1/iterations:1/real_time",
+      "name": "BM_sendMessage/singleCore/8/1/iterations:1/real_time",
+      "run_name": "BM_sendMessage/singleCore/8/1/iterations:1/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,
@@ -71,8 +71,8 @@ CPU MODEL:  Intel(R) Core(TM) i3-8350K CPU @ 4.00GHz
       "time_unit": "ms"
     },
     {
-      "name": "BM_sendMessage/singleFed/64/1/iterations:1/real_time",
-      "run_name": "BM_sendMessage/singleFed/64/1/iterations:1/real_time",
+      "name": "BM_sendMessage/singleCore/64/1/iterations:1/real_time",
+      "run_name": "BM_sendMessage/singleCore/64/1/iterations:1/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,
@@ -83,8 +83,8 @@ CPU MODEL:  Intel(R) Core(TM) i3-8350K CPU @ 4.00GHz
       "time_unit": "ms"
     },
     {
-      "name": "BM_sendMessage/singleFed/512/1/iterations:1/real_time",
-      "run_name": "BM_sendMessage/singleFed/512/1/iterations:1/real_time",
+      "name": "BM_sendMessage/singleCore/512/1/iterations:1/real_time",
+      "run_name": "BM_sendMessage/singleCore/512/1/iterations:1/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,
@@ -95,8 +95,8 @@ CPU MODEL:  Intel(R) Core(TM) i3-8350K CPU @ 4.00GHz
       "time_unit": "ms"
     },
     {
-      "name": "BM_sendMessage/singleFed/4096/1/iterations:1/real_time",
-      "run_name": "BM_sendMessage/singleFed/4096/1/iterations:1/real_time",
+      "name": "BM_sendMessage/singleCore/4096/1/iterations:1/real_time",
+      "run_name": "BM_sendMessage/singleCore/4096/1/iterations:1/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,
@@ -107,8 +107,8 @@ CPU MODEL:  Intel(R) Core(TM) i3-8350K CPU @ 4.00GHz
       "time_unit": "ms"
     },
     {
-      "name": "BM_sendMessage/singleFed/32768/1/iterations:1/real_time",
-      "run_name": "BM_sendMessage/singleFed/32768/1/iterations:1/real_time",
+      "name": "BM_sendMessage/singleCore/32768/1/iterations:1/real_time",
+      "run_name": "BM_sendMessage/singleCore/32768/1/iterations:1/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,
@@ -119,8 +119,8 @@ CPU MODEL:  Intel(R) Core(TM) i3-8350K CPU @ 4.00GHz
       "time_unit": "ms"
     },
     {
-      "name": "BM_sendMessage/singleFed/262144/1/iterations:1/real_time",
-      "run_name": "BM_sendMessage/singleFed/262144/1/iterations:1/real_time",
+      "name": "BM_sendMessage/singleCore/262144/1/iterations:1/real_time",
+      "run_name": "BM_sendMessage/singleCore/262144/1/iterations:1/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,
@@ -131,8 +131,8 @@ CPU MODEL:  Intel(R) Core(TM) i3-8350K CPU @ 4.00GHz
       "time_unit": "ms"
     },
     {
-      "name": "BM_sendMessage/singleFed/1048576/1/iterations:1/real_time",
-      "run_name": "BM_sendMessage/singleFed/1048576/1/iterations:1/real_time",
+      "name": "BM_sendMessage/singleCore/1048576/1/iterations:1/real_time",
+      "run_name": "BM_sendMessage/singleCore/1048576/1/iterations:1/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,
@@ -143,8 +143,8 @@ CPU MODEL:  Intel(R) Core(TM) i3-8350K CPU @ 4.00GHz
       "time_unit": "ms"
     },
     {
-      "name": "BM_sendMessage/singleFed/1/1/iterations:1/real_time",
-      "run_name": "BM_sendMessage/singleFed/1/1/iterations:1/real_time",
+      "name": "BM_sendMessage/singleCore/1/1/iterations:1/real_time",
+      "run_name": "BM_sendMessage/singleCore/1/1/iterations:1/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,
@@ -155,8 +155,8 @@ CPU MODEL:  Intel(R) Core(TM) i3-8350K CPU @ 4.00GHz
       "time_unit": "ms"
     },
     {
-      "name": "BM_sendMessage/singleFed/1/8/iterations:1/real_time",
-      "run_name": "BM_sendMessage/singleFed/1/8/iterations:1/real_time",
+      "name": "BM_sendMessage/singleCore/1/8/iterations:1/real_time",
+      "run_name": "BM_sendMessage/singleCore/1/8/iterations:1/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,
@@ -167,8 +167,8 @@ CPU MODEL:  Intel(R) Core(TM) i3-8350K CPU @ 4.00GHz
       "time_unit": "ms"
     },
     {
-      "name": "BM_sendMessage/singleFed/1/64/iterations:1/real_time",
-      "run_name": "BM_sendMessage/singleFed/1/64/iterations:1/real_time",
+      "name": "BM_sendMessage/singleCore/1/64/iterations:1/real_time",
+      "run_name": "BM_sendMessage/singleCore/1/64/iterations:1/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,
@@ -179,8 +179,8 @@ CPU MODEL:  Intel(R) Core(TM) i3-8350K CPU @ 4.00GHz
       "time_unit": "ms"
     },
     {
-      "name": "BM_sendMessage/singleFed/1/512/iterations:1/real_time",
-      "run_name": "BM_sendMessage/singleFed/1/512/iterations:1/real_time",
+      "name": "BM_sendMessage/singleCore/1/512/iterations:1/real_time",
+      "run_name": "BM_sendMessage/singleCore/1/512/iterations:1/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,

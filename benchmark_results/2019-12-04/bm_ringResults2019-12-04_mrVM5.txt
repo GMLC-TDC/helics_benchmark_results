@@ -23,8 +23,8 @@ CPU MODEL:  Intel(R) Xeon(R) CPU E5-1620 v3 @ 3.50GHz
   },
   "benchmarks": [
     {
-      "name": "BM_ring2/singleFed/iterations:3/real_time",
-      "run_name": "BM_ring2/singleFed/iterations:3/real_time",
+      "name": "BM_ring2/singleCore/iterations:3/real_time",
+      "run_name": "BM_ring2/singleCore/iterations:3/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,

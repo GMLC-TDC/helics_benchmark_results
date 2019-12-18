@@ -47,8 +47,8 @@ CPU MODEL: Intel(R) Core(TM) i7-4712HQ CPU @ 2.30GHz
   },
   "benchmarks": [
     {
-      "name": "BM_echo/singleFed/4/iterations:1/real_time",
-      "run_name": "BM_echo/singleFed/4/iterations:1/real_time",
+      "name": "BM_echo/singleCore/4/iterations:1/real_time",
+      "run_name": "BM_echo/singleCore/4/iterations:1/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,

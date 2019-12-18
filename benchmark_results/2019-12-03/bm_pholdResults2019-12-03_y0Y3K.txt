@@ -23,8 +23,8 @@ CPU MODEL:  Intel(R) Xeon(R) CPU E5-1620 v3 @ 3.50GHz
   },
   "benchmarks": [
     {
-      "name": "BM_phold/singleFed/1/iterations:1/real_time",
-      "run_name": "BM_phold/singleFed/1/iterations:1/real_time",
+      "name": "BM_phold/singleCore/1/iterations:1/real_time",
+      "run_name": "BM_phold/singleCore/1/iterations:1/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,
@@ -36,8 +36,8 @@ CPU MODEL:  Intel(R) Xeon(R) CPU E5-1620 v3 @ 3.50GHz
       "EvCount": 3.2022000000000000e+04
     },
     {
-      "name": "BM_phold/singleFed/2/iterations:1/real_time",
-      "run_name": "BM_phold/singleFed/2/iterations:1/real_time",
+      "name": "BM_phold/singleCore/2/iterations:1/real_time",
+      "run_name": "BM_phold/singleCore/2/iterations:1/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,
@@ -49,8 +49,8 @@ CPU MODEL:  Intel(R) Xeon(R) CPU E5-1620 v3 @ 3.50GHz
       "EvCount": 4.7958000000000000e+04
     },
     {
-      "name": "BM_phold/singleFed/4/iterations:1/real_time",
-      "run_name": "BM_phold/singleFed/4/iterations:1/real_time",
+      "name": "BM_phold/singleCore/4/iterations:1/real_time",
+      "run_name": "BM_phold/singleCore/4/iterations:1/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,
@@ -62,8 +62,8 @@ CPU MODEL:  Intel(R) Xeon(R) CPU E5-1620 v3 @ 3.50GHz
       "EvCount": 8.0070000000000000e+04
     },
     {
-      "name": "BM_phold/singleFed/8/iterations:1/real_time",
-      "run_name": "BM_phold/singleFed/8/iterations:1/real_time",
+      "name": "BM_phold/singleCore/8/iterations:1/real_time",
+      "run_name": "BM_phold/singleCore/8/iterations:1/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,
@@ -75,8 +75,8 @@ CPU MODEL:  Intel(R) Xeon(R) CPU E5-1620 v3 @ 3.50GHz
       "EvCount": 1.4387000000000000e+05
     },
     {
-      "name": "BM_phold/singleFed/16/iterations:1/real_time",
-      "run_name": "BM_phold/singleFed/16/iterations:1/real_time",
+      "name": "BM_phold/singleCore/16/iterations:1/real_time",
+      "run_name": "BM_phold/singleCore/16/iterations:1/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,

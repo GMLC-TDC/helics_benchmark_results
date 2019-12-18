@@ -47,8 +47,8 @@ CPU MODEL:  Intel(R) Xeon(R) Platinum 8124M CPU @ 3.00GHz
   },
   "benchmarks": [
     {
-      "name": "BM_echo/singleFed/4/iterations:1/real_time",
-      "run_name": "BM_echo/singleFed/4/iterations:1/real_time",
+      "name": "BM_echo/singleCore/4/iterations:1/real_time",
+      "run_name": "BM_echo/singleCore/4/iterations:1/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,
