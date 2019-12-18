@@ -190,25 +190,7 @@ CPU MODEL:  Intel(R) Xeon(R) CPU E5-1620 v3 @ 3.50GHz
       "cpu_time": 1.1406250000000000e+03,
       "time_unit": "ms",
       "EvCount": 3.2022000000000000e+04
-    }16063-SwDlY-AdHSF-2kUDK-gKu1f (0)::now waiting for the core to finish registration before proceeding
-16063-SwDlY-AdHSF-2kUDK-gKu1f (0)::broker state=-2, broker id=0, sleepcnt=7
-16063-SwDlY-AdHSF-2kUDK-gKu1f (0)::broker state=-2, broker id=0, sleepcnt=8
-16063-SwDlY-AdHSF-2kUDK-gKu1f (0)::broker state=-2, broker id=0, sleepcnt=9
-16063-SwDlY-AdHSF-2kUDK-gKu1f (0)::broker state=-2, broker id=0, sleepcnt=10
-16063-SwDlY-AdHSF-2kUDK-gKu1f (0)::broker state=-2, broker id=0, sleepcnt=11
-16063-SwDlY-AdHSF-2kUDK-gKu1f (0)::broker state=-2, broker id=0, sleepcnt=12
-16063-SwDlY-AdHSF-2kUDK-gKu1f (0)::broker state=-2, broker id=0, sleepcnt=13
-16063-SwDlY-AdHSF-2kUDK-gKu1f (0)::broker state=-2, broker id=0, sleepcnt=14
-16063-SwDlY-AdHSF-2kUDK-gKu1f (0)::broker state=-2, broker id=0, sleepcnt=15
-16063-SwDlY-AdHSF-2kUDK-gKu1f (0)::broker state=-2, broker id=0, sleepcnt=16
-16063-SwDlY-AdHSF-2kUDK-gKu1f (0)::broker state=-2, broker id=0, sleepcnt=17
-16063-SwDlY-AdHSF-2kUDK-gKu1f (0)::broker state=-2, broker id=0, sleepcnt=18
-16063-SwDlY-AdHSF-2kUDK-gKu1f (0)::broker state=-2, broker id=0, sleepcnt=19
-16063-SwDlY-AdHSF-2kUDK-gKu1f (0)::broker state=-2, broker id=0, sleepcnt=20
-16063-SwDlY-AdHSF-2kUDK-gKu1f (0)::resending reg message
-16063-SwDlY-AdHSF-2kUDK-gKu1f (0)::got resend
-16063-SwDlY-AdHSF-2kUDK-gKu1f (0)::resending broker reg
-,
+    },
     {
       "name": "BM_phold/multiCore/zmqCore/2/iterations:1/real_time",
       "run_name": "BM_phold/multiCore/zmqCore/2/iterations:1/real_time",
