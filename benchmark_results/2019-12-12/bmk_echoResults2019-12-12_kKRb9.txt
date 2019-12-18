@@ -46,8 +46,8 @@ HOST PROCESSOR TYPE: ppc64le
   },
   "benchmarks": [
     {
-      "name": "BM_echo_singleCore/4/iterations:1/real_time",
-      "run_name": "BM_echo_singleCore/4/iterations:1/real_time",
+      "name": "BM_echo/singleCore/4/iterations:1/real_time",
+      "run_name": "BM_echo/singleCore/4/iterations:1/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,
@@ -58,8 +58,8 @@ HOST PROCESSOR TYPE: ppc64le
       "time_unit": "ms"
     },
     {
-      "name": "BM_echo_multiCore/inprocCore/4/real_time",
-      "run_name": "BM_echo_multiCore/inprocCore/4/real_time",
+      "name": "BM_echo/multiCore/inprocCore/4/real_time",
+      "run_name": "BM_echo/multiCore/inprocCore/4/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,
@@ -70,8 +70,8 @@ HOST PROCESSOR TYPE: ppc64le
       "time_unit": "ms"
     },
     {
-      "name": "BM_echo_multiCore/zmqCore/4/iterations:1/real_time",
-      "run_name": "BM_echo_multiCore/zmqCore/4/iterations:1/real_time",
+      "name": "BM_echo/multiCore/zmqCore/4/iterations:1/real_time",
+      "run_name": "BM_echo/multiCore/zmqCore/4/iterations:1/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,
@@ -82,8 +82,8 @@ HOST PROCESSOR TYPE: ppc64le
       "time_unit": "ms"
     },
     {
-      "name": "BM_echo_multiCore/zmqssCore/4/iterations:1/real_time",
-      "run_name": "BM_echo_multiCore/zmqssCore/4/iterations:1/real_time",
+      "name": "BM_echo/multiCore/zmqssCore/4/iterations:1/real_time",
+      "run_name": "BM_echo/multiCore/zmqssCore/4/iterations:1/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,
@@ -94,8 +94,8 @@ HOST PROCESSOR TYPE: ppc64le
       "time_unit": "ms"
     },
     {
-      "name": "BM_echo_multiCore/ipcCore/4/iterations:1/real_time",
-      "run_name": "BM_echo_multiCore/ipcCore/4/iterations:1/real_time",
+      "name": "BM_echo/multiCore/ipcCore/4/iterations:1/real_time",
+      "run_name": "BM_echo/multiCore/ipcCore/4/iterations:1/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,
@@ -106,8 +106,8 @@ HOST PROCESSOR TYPE: ppc64le
       "time_unit": "ms"
     },
     {
-      "name": "BM_echo_multiCore/tcpCore/4/iterations:1/real_time",
-      "run_name": "BM_echo_multiCore/tcpCore/4/iterations:1/real_time",
+      "name": "BM_echo/multiCore/tcpCore/4/iterations:1/real_time",
+      "run_name": "BM_echo/multiCore/tcpCore/4/iterations:1/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,
@@ -118,8 +118,8 @@ HOST PROCESSOR TYPE: ppc64le
       "time_unit": "ms"
     },
     {
-      "name": "BM_echo_multiCore/tcpssCore/4/iterations:1/real_time",
-      "run_name": "BM_echo_multiCore/tcpssCore/4/iterations:1/real_time",
+      "name": "BM_echo/multiCore/tcpssCore/4/iterations:1/real_time",
+      "run_name": "BM_echo/multiCore/tcpssCore/4/iterations:1/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,
@@ -130,8 +130,8 @@ HOST PROCESSOR TYPE: ppc64le
       "time_unit": "ms"
     },
     {
-      "name": "BM_echo_multiCore/udpCore/4/iterations:1/real_time",
-      "run_name": "BM_echo_multiCore/udpCore/4/iterations:1/real_time",
+      "name": "BM_echo/multiCore/udpCore/4/iterations:1/real_time",
+      "run_name": "BM_echo/multiCore/udpCore/4/iterations:1/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,
