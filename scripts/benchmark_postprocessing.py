@@ -69,6 +69,9 @@ def parse_files(file_list):
                 except Exception as e:
                     logging.error('Failed to completely capture JSON %s', filename)
                     logging.error('     exception {}'.format(e))
+                    logging.error(json_str)
+                    print('Failed to completely capture JSON %s', filename)
+                    print('     exception {}'.format(e))
                     sys.exit(1)
     return json_results
 
@@ -181,8 +184,8 @@ def parse_and_add_benchmark_metadata(json_results):
                     json_results[key]['benchmarks'][idx]['interface_count'] = interface_count
                     json_results[key]['benchmarks'][idx]['federate_count'] = federate_count
 
-                    # Core type
-                    json_results = _add_core(bm_name, filename, json_results, key, idx)
+                # Core type
+                json_results = _add_core(bm_name, filename, json_results, key, idx)
             logging.info('Added benchmark metadata to {} as test type "messageLookup"'.format(filename))
         elif 'messageSend' in filename:
             for idx, results_dict in enumerate(json_results[key]['benchmarks']):
@@ -209,8 +212,8 @@ def parse_and_add_benchmark_metadata(json_results):
                     federate_count = int(match.group(0)[1:-1])
                     json_results[key]['benchmarks'][idx]['federate_count'] = federate_count
 
-                    # Core type
-                    json_results = _add_core(bm_name, filename, json_results, key, idx)
+                # Core type
+                json_results = _add_core(bm_name, filename, json_results, key, idx)
             logging.info('Added benchmark metadata to {} as test type is "ring"'.format(filename))
         elif 'phold' in filename:
             for idx, results_dict in enumerate(json_results[key]['benchmarks']):
@@ -234,8 +237,10 @@ def _add_core(bm_name, filename, json_results, key, idx):
         if core_match:
             core_name = core_match.group(0)[11:-4]
             json_results[key]['benchmarks'][idx]['core_type'] = core_name
+    elif '/singleFed/' in bm_name:
+            json_results[key]['benchmarks'][idx]['core_type'] = 'singleFed'
     else:
-        #logging.warning('Unable to find core type in {} in {}'.format(bm_name, filename))
+        logging.warning('Unable to find core type in {} in {}'.format(bm_name, filename))
         pass
     return json_results
 
