@@ -134,6 +134,7 @@ def parse_and_add_benchmark_metadata(json_results):
         filename = json_results[key]['filename']
         json_results = _add_run_id(key, json_results)
 
+
         if 'ActionMessage' in filename:
             logging.warning('Added no benchmark metadata to {} as test type is "ActionMessage"'.format(filename))
         elif 'conversion' in filename:
@@ -232,13 +233,19 @@ def parse_and_add_benchmark_metadata(json_results):
 
 
 def _add_core(bm_name, filename, json_results, key, idx):
-    if '/multiCore/' in bm_name:
-        core_match = re.search('/multiCore/.*?Core', bm_name)
+    if 'multiCore/' in bm_name:
+        core_match = re.search('multiCore/.*?Core', bm_name)
         if core_match:
-            core_name = core_match.group(0)[11:-4]
+            core_name = core_match.group(0)[10:-4]
             json_results[key]['benchmarks'][idx]['core_type'] = core_name
-    elif '/singleFed/' in bm_name:
+
+    # TDH (2019-12-29): This is trying to deal with the inconsistency in the naming convention that, as of this writing,
+    #  exists in the results files. Hopefully we can soon arrive at a convention and retroactively change all the results
+    #  files to conform to that convention.
+    elif 'singleFed/' in bm_name:
             json_results[key]['benchmarks'][idx]['core_type'] = 'singleFed'
+    elif 'singleCore/' in bm_name:
+            json_results[key]['benchmarks'][idx]['core_type'] = 'singleCore'
     else:
         logging.warning('Unable to find core type in {} in {}'.format(bm_name, filename))
         pass
