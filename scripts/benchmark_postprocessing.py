@@ -246,6 +246,8 @@ def _add_core(bm_name, filename, json_results, key, idx):
         if core_match:
             core_name = core_match.group(0)[10:-4]
             json_results[key]['benchmarks'][idx]['core_type'] = core_name
+        else:
+            logging.error('No core_type added to {} in {}'.format(bm_name, filename))
 
     # TDH (2019-12-29): This is trying to deal with the inconsistency in the naming convention that, as of this writing,
     #  exists in the results files. Hopefully we can soon arrive at a convention and retroactively change all the results
@@ -256,13 +258,19 @@ def _add_core(bm_name, filename, json_results, key, idx):
             json_results[key]['benchmarks'][idx]['core_type'] = 'singleCore'
     else:
         json_results[key]['benchmarks'][idx]['core_type'] = 'unspecified'
-        if 'conversion' not in bm_name  and 'interpret' not in bm_name  and 'AM' not in bm_name:
+        if 'conversion' not in bm_name  and 'interpret' not in bm_name and 'AM' not in bm_name:
             # TDH (2019-12-19): I know these benchmarks don't have a core specified and don't want to write out a
             #  warning and clutter up the log file.
             logging.warning('Unable to find core type in {} in {}; setting to "unspecified"'.format(bm_name, filename))
-        pass
     return json_results
 
+def _check_missing_core_type(json_results):
+    for uuid in json_results:
+        for idx, benchmark in enumerate(json_results[uuid]['benchmarks']):
+            if 'core_type' not in benchmark:
+                logging.error('No core_type found in {} in {}'.format(benchmark, json_results[uuid]['filename']))
+            else:
+                logging.info('core_type found in {} in {}'.format(benchmark, json_results[uuid]['filename']))
 
 
 def _add_run_id(key, json_results):
@@ -386,6 +394,9 @@ def _auto_run(args):
     json_results = parse_and_add_benchmark_metadata(json_results)
     with open('bm_results.json', 'w') as outfile:
         json.dump(json_results, outfile)
+
+    # TDH (2019-12-19): Trouble-shooting function whose purpose you'll never guess
+    #_check_missing_core_type(json_results)
 
 
 if __name__ == '__main__':
