@@ -136,8 +136,16 @@ def parse_and_add_benchmark_metadata(json_results):
 
 
         if 'ActionMessage' in filename:
+            for idx, results_dict in enumerate(json_results[key]['benchmarks']):
+                bm_name = results_dict['name']
+                # Core type
+                json_results = _add_core(bm_name, filename, json_results, key, idx)
             logging.warning('Added no benchmark metadata to {} as test type is "ActionMessage"'.format(filename))
         elif 'conversion' in filename:
+            for idx, results_dict in enumerate(json_results[key]['benchmarks']):
+                bm_name = results_dict['name']
+                # Core type
+                json_results = _add_core(bm_name, filename, json_results, key, idx)
             logging.warning('Added no benchmark metadata to {} as test type is "conversion"'.format(filename))
         elif 'echo' in filename:
             for idx, results_dict in enumerate(json_results[key]['benchmarks']):
@@ -247,7 +255,11 @@ def _add_core(bm_name, filename, json_results, key, idx):
     elif 'singleCore/' in bm_name:
             json_results[key]['benchmarks'][idx]['core_type'] = 'singleCore'
     else:
-        logging.warning('Unable to find core type in {} in {}'.format(bm_name, filename))
+        json_results[key]['benchmarks'][idx]['core_type'] = 'unspecified'
+        if 'conversion' not in bm_name  and 'interpret' not in bm_name  and 'AM' not in bm_name:
+            # TDH (2019-12-19): I know these benchmarks don't have a core specified and don't want to write out a
+            #  warning and clutter up the log file.
+            logging.warning('Unable to find core type in {} in {}; setting to "unspecified"'.format(bm_name, filename))
         pass
     return json_results
 
