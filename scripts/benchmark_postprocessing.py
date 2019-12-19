@@ -140,13 +140,13 @@ def parse_and_add_benchmark_metadata(json_results):
                 bm_name = results_dict['name']
                 # Core type
                 json_results = _add_core(bm_name, filename, json_results, key, idx)
-            logging.warning('Added no benchmark metadata to {} as test type is "ActionMessage"'.format(filename))
+            logging.warning('Added minimal benchmark metadata to {} as test type is "ActionMessage"'.format(filename))
         elif 'conversion' in filename:
             for idx, results_dict in enumerate(json_results[key]['benchmarks']):
                 bm_name = results_dict['name']
                 # Core type
                 json_results = _add_core(bm_name, filename, json_results, key, idx)
-            logging.warning('Added no benchmark metadata to {} as test type is "conversion"'.format(filename))
+            logging.warning('Added minimal benchmark metadata to {} as test type is "conversion"'.format(filename))
         elif 'echo' in filename:
             for idx, results_dict in enumerate(json_results[key]['benchmarks']):
                 bm_name = results_dict['name']
