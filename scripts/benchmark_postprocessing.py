@@ -69,6 +69,9 @@ def parse_files(file_list):
                 except Exception as e:
                     logging.error('Failed to completely capture JSON %s', filename)
                     logging.error('     exception {}'.format(e))
+                    logging.error(json_str)
+                    print('Failed to completely capture JSON %s', filename)
+                    print('     exception {}'.format(e))
                     sys.exit(1)
     return json_results
 
@@ -108,7 +111,7 @@ def parse_header_lines(json_file, json_results, uuid_str):
         elif 'HOST PROCESSOR TYPE:' in line:
             json_results[uuid_str]['host_processor'] = line[21:]
         elif 'CPU MODEL:' in line:
-            json_results[uuid_str]['host_processor_string'] = line[21:]
+            json_results[uuid_str]['host_processor_string'] = line[10:].strip()
         elif '-------------------------------------------' in line and json_body == 0:
             # Last line of non-JSON header
             json_body = 1
@@ -131,10 +134,19 @@ def parse_and_add_benchmark_metadata(json_results):
         filename = json_results[key]['filename']
         json_results = _add_run_id(key, json_results)
 
+
         if 'ActionMessage' in filename:
-            logging.warning('Added no benchmark metadata to {} as test type is "ActionMessage"'.format(filename))
-        if 'conversion' in filename:
-            logging.warning('Added no benchmark metadata to {} as test type is "conversion"'.format(filename))
+            for idx, results_dict in enumerate(json_results[key]['benchmarks']):
+                bm_name = results_dict['name']
+                # Core type
+                json_results = _add_core(bm_name, filename, json_results, key, idx)
+            logging.warning('Added minimal benchmark metadata to {} as test type is "ActionMessage"'.format(filename))
+        elif 'conversion' in filename:
+            for idx, results_dict in enumerate(json_results[key]['benchmarks']):
+                bm_name = results_dict['name']
+                # Core type
+                json_results = _add_core(bm_name, filename, json_results, key, idx)
+            logging.warning('Added minimal benchmark metadata to {} as test type is "conversion"'.format(filename))
         elif 'echo' in filename:
             for idx, results_dict in enumerate(json_results[key]['benchmarks']):
                 bm_name = results_dict['name']
@@ -149,29 +161,47 @@ def parse_and_add_benchmark_metadata(json_results):
 
             logging.info('Added benchmark metadata to {} as test type "echo" or "echoMessage"'.format(filename))
         elif 'filter' in filename:
-            logging.warning('Added no benchmark metadata to {} as test type is "filter"'.format(filename))
+            for idx, results_dict in enumerate(json_results[key]['benchmarks']):
+                bm_name = results_dict['name']
+
+                # Federate count and filter location
+                match = re.search('/\d+/\d+/', bm_name)
+                match2 = re.findall('\d+', match.group(0))
+                federate_count = int(match2[0])
+                if match2[1] == "1":
+                    filter_location = "destination"
+                elif match2[1] == "2":
+                    filter_location = "source"
+                else:
+                    logging.error('Filter location {} is not a valid value of "0" or "1"'.format(match2[1]))
+                json_results[key]['benchmarks'][idx]['filter_location'] = filter_location
+                json_results[key]['benchmarks'][idx]['federate_count'] = federate_count
+
+                # Core type
+                json_results = _add_core(bm_name, filename, json_results, key, idx)
+            logging.info('Added benchmark metadata to {} as test type is "filter"'.format(filename))
         elif 'messageLookup' in filename:
             for idx, results_dict in enumerate(json_results[key]['benchmarks']):
                 bm_name = results_dict['name']
 
-                if 'multiCore' in results_dict['name']:
+                if 'multiCore' in bm_name:
                     # Interface count and federate count
-                    match = re.search('/\d+/\d+/',results_dict['name'])
+                    match = re.search('/\d+/\d+/',bm_name)
                     match2 = re.findall('\d+',match.group(0))
                     interface_count = int(match2[0])
                     federate_count = int(match2[1])
                     json_results[key]['benchmarks'][idx]['interface_count'] = interface_count
                     json_results[key]['benchmarks'][idx]['federate_count'] = federate_count
 
-                    # Core type
-                    json_results = _add_core(bm_name, filename, json_results, key, idx)
+                # Core type
+                json_results = _add_core(bm_name, filename, json_results, key, idx)
             logging.info('Added benchmark metadata to {} as test type "messageLookup"'.format(filename))
         elif 'messageSend' in filename:
             for idx, results_dict in enumerate(json_results[key]['benchmarks']):
                 bm_name = results_dict['name']
 
                 # Message size and message count
-                match = re.search('/\d+/\d+/',results_dict['name'])
+                match = re.search('/\d+/\d+/',bm_name)
                 match2 = re.findall('\d+',match.group(0))
                 message_size = int(match2[0])
                 message_count = int(match2[1])
@@ -185,21 +215,21 @@ def parse_and_add_benchmark_metadata(json_results):
             for idx, results_dict in enumerate(json_results[key]['benchmarks']):
                 bm_name = results_dict['name']
 
-                if 'multiCore' in results_dict['name']:
+                if 'multiCore' in bm_name:
                     # Federate count
-                    match = re.search('/\d+/',results_dict['name'])
+                    match = re.search('/\d+/',bm_name)
                     federate_count = int(match.group(0)[1:-1])
                     json_results[key]['benchmarks'][idx]['federate_count'] = federate_count
 
-                    # Core type
-                    json_results = _add_core(bm_name, filename, json_results, key, idx)
+                # Core type
+                json_results = _add_core(bm_name, filename, json_results, key, idx)
             logging.info('Added benchmark metadata to {} as test type is "ring"'.format(filename))
         elif 'phold' in filename:
             for idx, results_dict in enumerate(json_results[key]['benchmarks']):
                 bm_name = results_dict['name']
 
                 # Federate count
-                match = re.search('/\d+/',results_dict['name'])
+                match = re.search('/\d+/',bm_name)
                 federate_count = int(match.group(0)[1:-1])
                 json_results[key]['benchmarks'][idx]['federate_count'] = federate_count
 
@@ -208,16 +238,40 @@ def parse_and_add_benchmark_metadata(json_results):
             logging.info('Added benchmark metadata to {} as test type is "pHold"'.format(filename))
     return json_results
 
+
+
 def _add_core(bm_name, filename, json_results, key, idx):
-    if '/multiCore/' in bm_name:
-        core_match = re.search('/multiCore/.*?Core', bm_name)
+    if 'multiCore/' in bm_name:
+        core_match = re.search('multiCore/.*?Core', bm_name)
         if core_match:
-            core_name = core_match.group(0)[11:-4]
+            core_name = core_match.group(0)[10:-4]
             json_results[key]['benchmarks'][idx]['core_type'] = core_name
+        else:
+            logging.error('No core_type added to {} in {}'.format(bm_name, filename))
+
+    # TDH (2019-12-29): This is trying to deal with the inconsistency in the naming convention that, as of this writing,
+    #  exists in the results files. Hopefully we can soon arrive at a convention and retroactively change all the results
+    #  files to conform to that convention.
+    elif 'singleFed/' in bm_name:
+            json_results[key]['benchmarks'][idx]['core_type'] = 'singleFed'
+    elif 'singleCore/' in bm_name:
+            json_results[key]['benchmarks'][idx]['core_type'] = 'singleCore'
     else:
-        #logging.warning('Unable to find core type in {} in {}'.format(bm_name, filename))
-        pass
+        json_results[key]['benchmarks'][idx]['core_type'] = 'unspecified'
+        if 'conversion' not in bm_name  and 'interpret' not in bm_name and 'AM' not in bm_name:
+            # TDH (2019-12-19): I know these benchmarks don't have a core specified and don't want to write out a
+            #  warning and clutter up the log file.
+            logging.warning('Unable to find core type in {} in {}; setting to "unspecified"'.format(bm_name, filename))
     return json_results
+
+def _check_missing_core_type(json_results):
+    for uuid in json_results:
+        for idx, benchmark in enumerate(json_results[uuid]['benchmarks']):
+            if 'core_type' not in benchmark:
+                logging.error('No core_type found in {} in {}'.format(benchmark, json_results[uuid]['filename']))
+            else:
+                logging.info('core_type found in {} in {}'.format(benchmark, json_results[uuid]['filename']))
+
 
 def _add_run_id(key, json_results):
     match = re.search('\d_.*?\.txt', json_results[key]['filename'])
@@ -228,9 +282,27 @@ def _add_run_id(key, json_results):
         json_results[key]['run_id'] = ''
     return json_results
 
+
+
 def _parse_compiler_string(uuid, json_results):
     # Since I'm going to be using it alot...
     compiler_str = json_results[uuid]['compiler_info_string']
+
+    # Generator
+    generators = ['Ninja',
+                  'Visual Studio 15 2017',
+                  'Visual Studio 16 2019',
+                  'Unix Makefiles',
+                  'MSYS Makefiles']
+    match = re.search('^.*?:', compiler_str)
+    matched_generator = False
+    for item in generators:
+        if item in match.group(0):
+            json_results[uuid]['generator'] = item
+            matched_generator = True
+            break
+    if matched_generator == False:
+        logging.error('Unable to match element in string "{}" to known generator in compiler options: {}'.format(match.group(0), pp.pformat(generators)))
 
     # System
     match = re.search('\s.*?:', compiler_str)
@@ -279,6 +351,17 @@ def _parse_compiler_string(uuid, json_results):
     else:
         logging.error('Unexpected compiler system data, could not parse {}'.format(compiler_str))
 
+    # Platform
+    # TDH: This string can be null so I'm having to find it by process of elimination
+    match = re.search('.*?[Windows|Linux]-', compiler_str)
+    trimmed_str = re.sub(json_results[uuid]['generator'], '', match.group(0))
+    trimmed_str = re.sub(json_results[uuid]['system'], '', trimmed_str)
+    trimmed_str = re.sub('-', '', trimmed_str)
+    trimmed_str = trimmed_str.strip()
+    json_results[uuid]['platform'] = trimmed_str
+
+
+
     # CXX compiler
     match = re.search(':.*$', compiler_str)
     if match:
@@ -311,6 +394,9 @@ def _auto_run(args):
     json_results = parse_and_add_benchmark_metadata(json_results)
     with open('bm_results.json', 'w') as outfile:
         json.dump(json_results, outfile)
+
+    # TDH (2019-12-19): Trouble-shooting function whose purpose you'll never guess
+    #_check_missing_core_type(json_results)
 
 
 if __name__ == '__main__':
