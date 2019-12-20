@@ -1,47 +1,48 @@
 HELICS_BENCHMARK: actionMessageBenchmark
 ------------HELICS BUILD INFO -------------
-HELICS VERSION: 2.3.1 (2019-11-22)
-ZMQ VERSION: ZMQ v4.1.5
-COMPILER INFO: Unix Makefiles  Linux-4.14.0-115.10.1.1chaos.ch6a.ppc64le:GNU-4.9.3
-BUILD FLAGS:  -O3 -DNDEBUG  $<$<COMPILE_LANGUAGE:CXX>:-std=c++14> 
+HELICS VERSION: 2.3.1-develop-g99ccc3ff-dirty (2019-12-06)
+ZMQ VERSION: ZMQ v4.3.2
+COMPILER INFO: Visual Studio 15 2017 x64 Windows-10.0.17763:MSVC-19.12.25835.0
+BUILD FLAGS: /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MD /O2 /Ob2 /DNDEBUG /machine:x64 /EHsc;/std:c++14 
 ------------PROCESSOR INFO ----------------
-HOST PROCESSOR TYPE: ppc64le
+HOST PROCESSOR TYPE: AMD64
+CPU MODEL: Intel(R) Xeon(R) CPU E5-1620 v3 @ 3.50GHz
 -------------------------------------------
 {
   "context": {
-    "date": "2019-12-12 15:28:10",
-    "host_name": "lassen708",
-    "executable": "./ActionMessageBenchmarks",
-    "num_cpus": 128,
-    "mhz_per_cpu": 3800,
-    "cpu_scaling_enabled": true,
+    "date": "12/06/19 13:13:16",
+    "host_name": "STEADMAN",
+    "executable": "Release\\ActionMessageBenchmarks.exe",
+    "num_cpus": 8,
+    "mhz_per_cpu": 3492,
+    "cpu_scaling_enabled": false,
     "caches": [
       {
         "type": "Data",
         "level": 1,
-        "size": 32000000,
-        "num_sharing": 4
+        "size": 32768000,
+        "num_sharing": 2
       },
       {
         "type": "Instruction",
         "level": 1,
-        "size": 32000000,
-        "num_sharing": 4
+        "size": 32768000,
+        "num_sharing": 2
       },
       {
         "type": "Unified",
         "level": 2,
-        "size": 512000000,
-        "num_sharing": 8
+        "size": 262144000,
+        "num_sharing": 2
       },
       {
         "type": "Unified",
         "level": 3,
-        "size": 10240000000,
+        "size": 10485760000,
         "num_sharing": 8
       }
     ],
-    "load_avg": [1.93,2.59,2.85],
+    "load_avg": [],
     "library_build_type": "release"
   },
   "benchmarks": [
@@ -52,9 +53,9 @@ HOST PROCESSOR TYPE: ppc64le
       "repetitions": 0,
       "repetition_index": 0,
       "threads": 1,
-      "iterations": 20870332,
-      "real_time": 3.5212940262914110e+01,
-      "cpu_time": 3.5209787558722120e+01,
+      "iterations": 28000000,
+      "real_time": 1.9374042857504850e+01,
+      "cpu_time": 1.9531250000000000e+01,
       "time_unit": "ns"
     },
     {
@@ -64,9 +65,9 @@ HOST PROCESSOR TYPE: ppc64le
       "repetitions": 0,
       "repetition_index": 0,
       "threads": 1,
-      "iterations": 11178996,
-      "real_time": 6.3824853950704750e+01,
-      "cpu_time": 6.3818527173638863e+01,
+      "iterations": 24888889,
+      "real_time": 3.0225704326566262e+01,
+      "cpu_time": 3.0133928436902107e+01,
       "time_unit": "ns"
     },
     {
@@ -76,9 +77,9 @@ HOST PROCESSOR TYPE: ppc64le
       "repetitions": 0,
       "repetition_index": 0,
       "threads": 1,
-      "iterations": 29622701,
-      "real_time": 2.4444983764751854e+01,
-      "cpu_time": 2.4442018437143879e+01,
+      "iterations": 74666667,
+      "real_time": 1.0295778974229600e+01,
+      "cpu_time": 1.0253906204223632e+01,
       "time_unit": "ns"
     },
     {
@@ -88,9 +89,9 @@ HOST PROCESSOR TYPE: ppc64le
       "repetitions": 0,
       "repetition_index": 0,
       "threads": 1,
-      "iterations": 30140117,
-      "real_time": 2.0088077526495887e+01,
-      "cpu_time": 2.0085477571304718e+01,
+      "iterations": 56000000,
+      "real_time": 1.1271621429062050e+01,
+      "cpu_time": 1.1160714285714286e+01,
       "time_unit": "ns"
     },
     {
@@ -100,9 +101,9 @@ HOST PROCESSOR TYPE: ppc64le
       "repetitions": 0,
       "repetition_index": 0,
       "threads": 1,
-      "iterations": 12416311,
-      "real_time": 5.4828250277994620e+01,
-      "cpu_time": 5.4822178986979345e+01,
+      "iterations": 22400000,
+      "real_time": 2.7242741073548263e+01,
+      "cpu_time": 2.7204241071428573e+01,
       "time_unit": "ns"
     },
     {
@@ -112,9 +113,9 @@ HOST PROCESSOR TYPE: ppc64le
       "repetitions": 0,
       "repetition_index": 0,
       "threads": 1,
-      "iterations": 11585589,
-      "real_time": 6.3978529181683236e+01,
-      "cpu_time": 6.3972535190053719e+01,
+      "iterations": 17920000,
+      "real_time": 3.5843426342450712e+01,
+      "cpu_time": 3.5749162946428569e+01,
       "time_unit": "ns"
     },
     {
@@ -124,9 +125,9 @@ HOST PROCESSOR TYPE: ppc64le
       "repetitions": 0,
       "repetition_index": 0,
       "threads": 1,
-      "iterations": 499535,
-      "real_time": 1.2679210067050694e+03,
-      "cpu_time": 1.2677713793828261e+03,
+      "iterations": 1120000,
+      "real_time": 6.3587437512718941e+02,
+      "cpu_time": 6.2779017857142856e+02,
       "time_unit": "ns"
     },
     {
@@ -136,9 +137,9 @@ HOST PROCESSOR TYPE: ppc64le
       "repetitions": 0,
       "repetition_index": 0,
       "threads": 1,
-      "iterations": 334714,
-      "real_time": 2.0910183500530788e+03,
-      "cpu_time": 2.0910965779740300e+03,
+      "iterations": 746667,
+      "real_time": 8.8245335593109655e+02,
+      "cpu_time": 8.7890585763131355e+02,
       "time_unit": "ns"
     }
   ]

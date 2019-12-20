@@ -1,47 +1,48 @@
 HELICS_BENCHMARK: echoBenchmark
 ------------HELICS BUILD INFO -------------
-HELICS VERSION: 2.3.1 (2019-11-22)
-ZMQ VERSION: ZMQ v4.1.5
-COMPILER INFO: Unix Makefiles  Linux-4.14.0-115.10.1.1chaos.ch6a.ppc64le:GNU-4.9.3
-BUILD FLAGS:  -O3 -DNDEBUG  $<$<COMPILE_LANGUAGE:CXX>:-std=c++14> 
+HELICS VERSION: 2.3.1-develop-g99ccc3ff-dirty (2019-12-06)
+ZMQ VERSION: ZMQ v4.3.2
+COMPILER INFO: Visual Studio 15 2017 x64 Windows-10.0.17763:MSVC-19.12.25835.0
+BUILD FLAGS: /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MD /O2 /Ob2 /DNDEBUG /machine:x64 /EHsc;/std:c++14 
 ------------PROCESSOR INFO ----------------
-HOST PROCESSOR TYPE: ppc64le
+HOST PROCESSOR TYPE: AMD64
+CPU MODEL: Intel(R) Xeon(R) CPU E5-1620 v3 @ 3.50GHz
 -------------------------------------------
 {
   "context": {
-    "date": "2019-12-12 15:28:32",
-    "host_name": "lassen708",
-    "executable": "./echoBenchmarks",
-    "num_cpus": 128,
-    "mhz_per_cpu": 3800,
-    "cpu_scaling_enabled": true,
+    "date": "12/06/19 13:13:39",
+    "host_name": "STEADMAN",
+    "executable": "Release\\echoBenchmarks.exe",
+    "num_cpus": 8,
+    "mhz_per_cpu": 3492,
+    "cpu_scaling_enabled": false,
     "caches": [
       {
         "type": "Data",
         "level": 1,
-        "size": 32000000,
-        "num_sharing": 4
+        "size": 32768000,
+        "num_sharing": 2
       },
       {
         "type": "Instruction",
         "level": 1,
-        "size": 32000000,
-        "num_sharing": 4
+        "size": 32768000,
+        "num_sharing": 2
       },
       {
         "type": "Unified",
         "level": 2,
-        "size": 512000000,
-        "num_sharing": 8
+        "size": 262144000,
+        "num_sharing": 2
       },
       {
         "type": "Unified",
         "level": 3,
-        "size": 10240000000,
+        "size": 10485760000,
         "num_sharing": 8
       }
     ],
-    "load_avg": [1.92,2.55,2.83],
+    "load_avg": [],
     "library_build_type": "release"
   },
   "benchmarks": [
@@ -53,8 +54,8 @@ HOST PROCESSOR TYPE: ppc64le
       "repetition_index": 0,
       "threads": 1,
       "iterations": 1,
-      "real_time": 1.3666735810693353e+02,
-      "cpu_time": 6.4465801999999996e+01,
+      "real_time": 2.4161939998157322e+02,
+      "cpu_time": 7.8125000000000000e+01,
       "time_unit": "ms"
     },
     {
@@ -65,8 +66,8 @@ HOST PROCESSOR TYPE: ppc64le
       "repetition_index": 0,
       "threads": 1,
       "iterations": 1,
-      "real_time": 1.7742120195180178e+02,
-      "cpu_time": 1.2058940999999999e+02,
+      "real_time": 8.6381200002506375e+01,
+      "cpu_time": 9.3750000000000000e+01,
       "time_unit": "ms"
     },
     {
@@ -77,8 +78,8 @@ HOST PROCESSOR TYPE: ppc64le
       "repetition_index": 0,
       "threads": 1,
       "iterations": 1,
-      "real_time": 2.8962051100097597e+02,
-      "cpu_time": 1.2314031200000001e+02,
+      "real_time": 2.0362389995716512e+02,
+      "cpu_time": 1.5625000000000000e+02,
       "time_unit": "ms"
     },
     {
@@ -89,8 +90,8 @@ HOST PROCESSOR TYPE: ppc64le
       "repetition_index": 0,
       "threads": 1,
       "iterations": 1,
-      "real_time": 4.1927768604364246e+02,
-      "cpu_time": 1.7203489399999998e+02,
+      "real_time": 4.4672399992123246e+02,
+      "cpu_time": 2.1875000000000000e+02,
       "time_unit": "ms"
     },
     {
@@ -101,8 +102,8 @@ HOST PROCESSOR TYPE: ppc64le
       "repetition_index": 0,
       "threads": 1,
       "iterations": 1,
-      "real_time": 1.1617806620197371e+03,
-      "cpu_time": 4.6625592800000015e+02,
+      "real_time": 1.2434636000543833e+03,
+      "cpu_time": 3.5937500000000000e+02,
       "time_unit": "ms"
     },
     {
@@ -113,8 +114,8 @@ HOST PROCESSOR TYPE: ppc64le
       "repetition_index": 0,
       "threads": 1,
       "iterations": 1,
-      "real_time": 2.3230814690468833e+03,
-      "cpu_time": 9.8760734600000001e+02,
+      "real_time": 2.6884245001710951e+03,
+      "cpu_time": 7.1875000000000000e+02,
       "time_unit": "ms"
     },
     {
@@ -125,8 +126,8 @@ HOST PROCESSOR TYPE: ppc64le
       "repetition_index": 0,
       "threads": 1,
       "iterations": 1,
-      "real_time": 4.1557295188540593e+03,
-      "cpu_time": 2.2354376820000007e+03,
+      "real_time": 5.0426060999743640e+03,
+      "cpu_time": 1.0156250000000000e+03,
       "time_unit": "ms"
     },
     {
@@ -137,8 +138,8 @@ HOST PROCESSOR TYPE: ppc64le
       "repetition_index": 0,
       "threads": 1,
       "iterations": 1,
-      "real_time": 7.1061776489950716e+03,
-      "cpu_time": 4.7304733580000002e+03,
+      "real_time": 9.8142430002335459e+03,
+      "cpu_time": 2.0468750000000000e+03,
       "time_unit": "ms"
     },
     {
@@ -149,8 +150,8 @@ HOST PROCESSOR TYPE: ppc64le
       "repetition_index": 0,
       "threads": 1,
       "iterations": 1,
-      "real_time": 1.8452668686048128e+04,
-      "cpu_time": 9.1461287819999980e+03,
+      "real_time": 2.0156342200236395e+04,
+      "cpu_time": 5.3750000000000000e+03,
       "time_unit": "ms"
     },
     {
@@ -160,9 +161,9 @@ HOST PROCESSOR TYPE: ppc64le
       "repetitions": 0,
       "repetition_index": 0,
       "threads": 1,
-      "iterations": 2,
-      "real_time": 4.4262750592315570e+02,
-      "cpu_time": 8.5739891999999429e+01,
+      "iterations": 1,
+      "real_time": 7.1302110026590526e+02,
+      "cpu_time": 1.4062500000000000e+02,
       "time_unit": "ms"
     },
     {
@@ -173,8 +174,8 @@ HOST PROCESSOR TYPE: ppc64le
       "repetition_index": 0,
       "threads": 1,
       "iterations": 2,
-      "real_time": 3.1147524487460032e+02,
-      "cpu_time": 1.4335172099999838e+02,
+      "real_time": 3.8787155004683882e+02,
+      "cpu_time": 9.3750000000000000e+01,
       "time_unit": "ms"
     },
     {
@@ -184,9 +185,9 @@ HOST PROCESSOR TYPE: ppc64le
       "repetitions": 0,
       "repetition_index": 0,
       "threads": 1,
-      "iterations": 1,
-      "real_time": 5.0385343201924115e+02,
-      "cpu_time": 1.6512816999999913e+02,
+      "iterations": 2,
+      "real_time": 3.4586014982778579e+02,
+      "cpu_time": 6.2500000000000000e+01,
       "time_unit": "ms"
     },
     {
@@ -197,8 +198,8 @@ HOST PROCESSOR TYPE: ppc64le
       "repetition_index": 0,
       "threads": 1,
       "iterations": 1,
-      "real_time": 6.6724644007626921e+02,
-      "cpu_time": 4.2339619999999559e+02,
+      "real_time": 5.0792360003106296e+02,
+      "cpu_time": 1.8750000000000000e+02,
       "time_unit": "ms"
     },
     {
@@ -209,8 +210,8 @@ HOST PROCESSOR TYPE: ppc64le
       "repetition_index": 0,
       "threads": 1,
       "iterations": 1,
-      "real_time": 1.2291647598613054e+03,
-      "cpu_time": 8.2932166999999879e+02,
+      "real_time": 9.1626759991049767e+02,
+      "cpu_time": 4.3750000000000000e+02,
       "time_unit": "ms"
     },
     {
@@ -221,8 +222,8 @@ HOST PROCESSOR TYPE: ppc64le
       "repetition_index": 0,
       "threads": 1,
       "iterations": 1,
-      "real_time": 2.0386836859397590e+03,
-      "cpu_time": 1.5333535599999948e+02,
+      "real_time": 1.0055268799886107e+04,
+      "cpu_time": 1.4062500000000000e+02,
       "time_unit": "ms"
     },
     {
@@ -233,8 +234,8 @@ HOST PROCESSOR TYPE: ppc64le
       "repetition_index": 0,
       "threads": 1,
       "iterations": 1,
-      "real_time": 1.4298006050521508e+03,
-      "cpu_time": 2.6349560000000236e+02,
+      "real_time": 8.7859302000142634e+03,
+      "cpu_time": 1.7187500000000000e+02,
       "time_unit": "ms"
     },
     {
@@ -245,8 +246,8 @@ HOST PROCESSOR TYPE: ppc64le
       "repetition_index": 0,
       "threads": 1,
       "iterations": 1,
-      "real_time": 2.4705355749465525e+03,
-      "cpu_time": 4.2256387400000153e+02,
+      "real_time": 1.7209519600030035e+04,
+      "cpu_time": 2.6562500000000000e+02,
       "time_unit": "ms"
     },
     {
@@ -257,8 +258,8 @@ HOST PROCESSOR TYPE: ppc64le
       "repetition_index": 0,
       "threads": 1,
       "iterations": 1,
-      "real_time": 3.8080231171334162e+03,
-      "cpu_time": 9.9332824999999752e+02,
+      "real_time": 3.2546126300003380e+04,
+      "cpu_time": 6.4062500000000000e+02,
       "time_unit": "ms"
     },
     {
@@ -269,8 +270,8 @@ HOST PROCESSOR TYPE: ppc64le
       "repetition_index": 0,
       "threads": 1,
       "iterations": 1,
-      "real_time": 7.3370075119892135e+03,
-      "cpu_time": 1.4429838720000027e+03,
+      "real_time": 6.7807720799930394e+04,
+      "cpu_time": 1.2656250000000000e+03,
       "time_unit": "ms"
     },
     {
@@ -281,8 +282,8 @@ HOST PROCESSOR TYPE: ppc64le
       "repetition_index": 0,
       "threads": 1,
       "iterations": 1,
-      "real_time": 1.5691830458818004e+03,
-      "cpu_time": 9.6264293999997363e+01,
+      "real_time": 8.0451080999337137e+03,
+      "cpu_time": 9.3750000000000000e+01,
       "time_unit": "ms"
     },
     {
@@ -293,8 +294,8 @@ HOST PROCESSOR TYPE: ppc64le
       "repetition_index": 0,
       "threads": 1,
       "iterations": 1,
-      "real_time": 1.1522078600246459e+03,
-      "cpu_time": 2.2986244200000527e+02,
+      "real_time": 8.2113159999717027e+03,
+      "cpu_time": 2.5000000000000000e+02,
       "time_unit": "ms"
     },
     {
@@ -305,8 +306,8 @@ HOST PROCESSOR TYPE: ppc64le
       "repetition_index": 0,
       "threads": 1,
       "iterations": 1,
-      "real_time": 2.2111501380568370e+03,
-      "cpu_time": 3.4030637200000058e+02,
+      "real_time": 1.4756057200022042e+04,
+      "cpu_time": 4.3750000000000000e+02,
       "time_unit": "ms"
     },
     {
@@ -317,8 +318,8 @@ HOST PROCESSOR TYPE: ppc64le
       "repetition_index": 0,
       "threads": 1,
       "iterations": 1,
-      "real_time": 4.7783326079370454e+03,
-      "cpu_time": 5.4358710199999655e+02,
+      "real_time": 2.7812383600044996e+04,
+      "cpu_time": 7.1875000000000000e+02,
       "time_unit": "ms"
     },
     {
@@ -329,8 +330,8 @@ HOST PROCESSOR TYPE: ppc64le
       "repetition_index": 0,
       "threads": 1,
       "iterations": 1,
-      "real_time": 8.5300184149527922e+03,
-      "cpu_time": 1.4338730079999991e+03,
+      "real_time": 5.4185248499969020e+04,
+      "cpu_time": 1.4375000000000000e+03,
       "time_unit": "ms"
     },
     {
@@ -341,8 +342,8 @@ HOST PROCESSOR TYPE: ppc64le
       "repetition_index": 0,
       "threads": 1,
       "iterations": 1,
-      "real_time": 8.9756948396097869e+02,
-      "cpu_time": 1.1356405600000130e+02,
+      "real_time": 1.9934981399914250e+04,
+      "cpu_time": 6.2500000000000000e+01,
       "time_unit": "ms"
     },
     {
@@ -353,8 +354,8 @@ HOST PROCESSOR TYPE: ppc64le
       "repetition_index": 0,
       "threads": 1,
       "iterations": 1,
-      "real_time": 4.5974227704573423e+02,
-      "cpu_time": 1.9093768399999789e+02,
+      "real_time": 3.7386429985053837e+02,
+      "cpu_time": 6.2500000000000000e+01,
       "time_unit": "ms"
     },
     {
@@ -365,8 +366,8 @@ HOST PROCESSOR TYPE: ppc64le
       "repetition_index": 0,
       "threads": 1,
       "iterations": 1,
-      "real_time": 6.4769445010460913e+02,
-      "cpu_time": 2.7536759599999880e+02,
+      "real_time": 7.2403389960527420e+02,
+      "cpu_time": 1.8750000000000000e+02,
       "time_unit": "ms"
     },
     {
@@ -377,8 +378,8 @@ HOST PROCESSOR TYPE: ppc64le
       "repetition_index": 0,
       "threads": 1,
       "iterations": 1,
-      "real_time": 1.0376573100220412e+03,
-      "cpu_time": 4.1978278799999555e+02,
+      "real_time": 2.1353784003295004e+03,
+      "cpu_time": 2.8125000000000000e+02,
       "time_unit": "ms"
     },
     {
@@ -389,8 +390,8 @@ HOST PROCESSOR TYPE: ppc64le
       "repetition_index": 0,
       "threads": 1,
       "iterations": 1,
-      "real_time": 1.9955907880794257e+03,
-      "cpu_time": 6.1331436399999711e+02,
+      "real_time": 6.4411667999811471e+03,
+      "cpu_time": 4.3750000000000000e+02,
       "time_unit": "ms"
     },
     {
@@ -401,8 +402,8 @@ HOST PROCESSOR TYPE: ppc64le
       "repetition_index": 0,
       "threads": 1,
       "iterations": 1,
-      "real_time": 1.5468863159185275e+03,
-      "cpu_time": 1.6839467000000496e+02,
+      "real_time": 7.5593037002254277e+03,
+      "cpu_time": 3.1250000000000000e+02,
       "time_unit": "ms"
     },
     {
@@ -413,8 +414,8 @@ HOST PROCESSOR TYPE: ppc64le
       "repetition_index": 0,
       "threads": 1,
       "iterations": 1,
-      "real_time": 1.9455905150389299e+03,
-      "cpu_time": 2.9951045600000015e+02,
+      "real_time": 1.1451576400082558e+04,
+      "cpu_time": 5.1562500000000000e+02,
       "time_unit": "ms"
     },
     {
@@ -425,8 +426,8 @@ HOST PROCESSOR TYPE: ppc64le
       "repetition_index": 0,
       "threads": 1,
       "iterations": 1,
-      "real_time": 3.7755050769774243e+03,
-      "cpu_time": 4.0347959799999700e+02,
+      "real_time": 1.5289809900103137e+04,
+      "cpu_time": 3.9062500000000000e+02,
       "time_unit": "ms"
     },
     {
@@ -437,8 +438,8 @@ HOST PROCESSOR TYPE: ppc64le
       "repetition_index": 0,
       "threads": 1,
       "iterations": 1,
-      "real_time": 9.6571690139826387e+03,
-      "cpu_time": 5.2313036000000329e+02,
+      "real_time": 3.0845231700222939e+04,
+      "cpu_time": 7.9687500000000000e+02,
       "time_unit": "ms"
     },
     {
@@ -449,7 +450,129 @@ HOST PROCESSOR TYPE: ppc64le
       "repetition_index": 0,
       "threads": 1,
       "iterations": 1,
-      "real_time": 1.3902546032099053e+04,
-      "cpu_time": 9.5204977799999926e+02,
+      "real_time": 6.0550634799757972e+04,
+      "cpu_time": 1.7187500000000000e+03,
+      "time_unit": "ms"
+    },
+    {
+      "name": "BM_echo_multiCore/tcpssCore/1/iterations:1/real_time",
+      "run_name": "BM_echo_multiCore/tcpssCore/1/iterations:1/real_time",
+      "run_type": "iteration",
+      "repetitions": 0,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 1,
+      "real_time": 6.0161538000684232e+03,
+      "cpu_time": 4.2187500000000000e+02,
+      "time_unit": "ms"
+    },
+    {
+      "name": "BM_echo_multiCore/tcpssCore/2/iterations:1/real_time",
+      "run_name": "BM_echo_multiCore/tcpssCore/2/iterations:1/real_time",
+      "run_type": "iteration",
+      "repetitions": 0,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 1,
+      "real_time": 5.6881289000157267e+03,
+      "cpu_time": 2.8125000000000000e+02,
+      "time_unit": "ms"
+    },
+    {
+      "name": "BM_echo_multiCore/tcpssCore/4/iterations:1/real_time",
+      "run_name": "BM_echo_multiCore/tcpssCore/4/iterations:1/real_time",
+      "run_type": "iteration",
+      "repetitions": 0,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 1,
+      "real_time": 9.4206934000831097e+03,
+      "cpu_time": 3.2812500000000000e+02,
+      "time_unit": "ms"
+    },
+    {
+      "name": "BM_echo_multiCore/tcpssCore/8/iterations:1/real_time",
+      "run_name": "BM_echo_multiCore/tcpssCore/8/iterations:1/real_time",
+      "run_type": "iteration",
+      "repetitions": 0,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 1,
+      "real_time": 1.4063696099910885e+04,
+      "cpu_time": 6.2500000000000000e+02,
+      "time_unit": "ms"
+    },
+    {
+      "name": "BM_echo_multiCore/tcpssCore/16/iterations:1/real_time",
+      "run_name": "BM_echo_multiCore/tcpssCore/16/iterations:1/real_time",
+      "run_type": "iteration",
+      "repetitions": 0,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 1,
+      "real_time": 2.6634891600348055e+04,
+      "cpu_time": 9.2187500000000000e+02,
+      "time_unit": "ms"
+    },
+    {
+      "name": "BM_echo_multiCore/udpCore/1/iterations:1/real_time",
+      "run_name": "BM_echo_multiCore/udpCore/1/iterations:1/real_time",
+      "run_type": "iteration",
+      "repetitions": 0,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 1,
+      "real_time": 4.3403794001787901e+03,
+      "cpu_time": 2.9687500000000000e+02,
+      "time_unit": "ms"
+    },
+    {
+      "name": "BM_echo_multiCore/udpCore/2/iterations:1/real_time",
+      "run_name": "BM_echo_multiCore/udpCore/2/iterations:1/real_time",
+      "run_type": "iteration",
+      "repetitions": 0,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 1,
+      "real_time": 5.5494919999036938e+03,
+      "cpu_time": 3.1250000000000000e+02,
+      "time_unit": "ms"
+    },
+    {
+      "name": "BM_echo_multiCore/udpCore/4/iterations:1/real_time",
+      "run_name": "BM_echo_multiCore/udpCore/4/iterations:1/real_time",
+      "run_type": "iteration",
+      "repetitions": 0,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 1,
+      "real_time": 9.1630455001723021e+03,
+      "cpu_time": 5.6250000000000000e+02,
+      "time_unit": "ms"
+    },
+    {
+      "name": "BM_echo_multiCore/udpCore/8/iterations:1/real_time",
+      "run_name": "BM_echo_multiCore/udpCore/8/iterations:1/real_time",
+      "run_type": "iteration",
+      "repetitions": 0,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 1,
+      "real_time": 1.9874454400036484e+04,
+      "cpu_time": 1.2500000000000000e+03,
+      "time_unit": "ms"
+    },
+    {
+      "name": "BM_echo_multiCore/udpCore/16/iterations:1/real_time",
+      "run_name": "BM_echo_multiCore/udpCore/16/iterations:1/real_time",
+      "run_type": "iteration",
+      "repetitions": 0,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 1,
+      "real_time": 4.0927704100031406e+04,
+      "cpu_time": 2.5781250000000000e+03,
       "time_unit": "ms"
     }
+  ]
+}
