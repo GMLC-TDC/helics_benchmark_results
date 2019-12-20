@@ -146,10 +146,8 @@ def add_benchmark_graphs(pdf, benchmark_results_dir):
             if extension == '.png':
                 graph_file_path = os.path.join(benchmark_results_dir, 'report', file)
                 # Scaling image; shouldn't need this for the actual graphs as we can specify the size on output
-                size = 15
-                width = size * 10
-                height = size * 8
-                pdf.image(graph_file_path, w=width, h=height)
+                width = 150
+                pdf.image(graph_file_path, w=width,)
                 logging.info('Added graph file {} to PDF'.format(graph_file_path))
     return pdf
 
