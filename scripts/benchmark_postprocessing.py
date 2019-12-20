@@ -38,9 +38,10 @@ def parse_files(file_list):
     json_results = {}
     for file in file_list:
         path, filename = os.path.split(file)
+        file_valid =_check_file_validity(path, filename)
         with open(file) as json_file:
             #logging.info('Trying to parse %s', filename)
-            if filename != '.DS_Store': # Stupid macOS file we can ignore
+            if file_valid:
 
                 # At the time of this writing, results files are not guaranteed to have unique names (though the data
                 #    in two identically named files can be different. To solve this problem a unique ID is generated
@@ -75,6 +76,19 @@ def parse_files(file_list):
                     sys.exit(1)
     return json_results
 
+
+def _check_file_validity(path, filename):
+    file_valid = True
+    name, extension = os.path.splitext(filename)
+    if filename == '.DS_Store':
+        file_valid = False
+    elif extension == '.png':
+        file_valid = False
+    elif extension == '.jpg':
+        file_valid = False
+    elif extension == '.pdf':
+        file_valid = False
+    return file_valid
 
 def parse_header_lines(json_file, json_results, uuid_str):
     json_str = ''
