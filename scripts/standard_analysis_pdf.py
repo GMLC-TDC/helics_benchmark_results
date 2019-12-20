@@ -69,6 +69,11 @@ def grab_header_metadata(json_results):
     else:
         logging.warning('"run_id" not found in metadata.')
 
+    if 'date' in json_results[key]:
+        header_metadata_str = header_metadata_str + '{:<25}{}\n'.format('Timestamp:', json_results[key]['date'])
+    else:
+        logging.warning('"run_id" not found in metadata.')
+
     if 'helics_version' in json_results[key]:
         header_metadata_str = header_metadata_str + '{:<25}{}\n'.format('HELICS version:', json_results[key]['helics_version'])
     else:
