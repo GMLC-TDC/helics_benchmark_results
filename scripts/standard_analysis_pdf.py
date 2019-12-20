@@ -130,7 +130,7 @@ def grab_header_metadata(json_results):
         logging.warning('"num_cpus" not found in metadata.')
 
     if 'mhz_per_cpu' in json_results[key]:
-        header_metadata_str = header_metadata_str + '{:<25}{}\n'.format('base processor speed:', json_results[key]['mhz_per_cpu'])
+        header_metadata_str = header_metadata_str + '{:<25}{}\n'.format('processor speed (MHz):', json_results[key]['mhz_per_cpu'])
     else:
         logging.warning('"mhz_per_cpu" not found in metadata.')
 
