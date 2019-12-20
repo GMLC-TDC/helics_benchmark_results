@@ -13,11 +13,9 @@ import argparse
 import logging
 import pprint
 import os
-import json
-import re
-import sys
-import benchmark_postprocessing as bmpp
 from fpdf import FPDF
+
+# Installation of FPDF is: python -m pip install fpdf
 
 
 # Setting up logging
@@ -63,33 +61,76 @@ def grab_header_metadata(json_results):
     header_metadata_str = ''
     if 'benchmark' in json_results[key]:
         header_metadata_str = header_metadata_str + '{:<25}{}\n\n'.format('BENCHMARK:', json_results[key]['benchmark'])
+    else:
+        logging.warning('"benchmark" not found in metadata.')
+
     if 'run_id' in json_results[key]:
         header_metadata_str = header_metadata_str + '{:<25}{}\n'.format('run ID:', json_results[key]['run_id'])
+    else:
+        logging.warning('"run_id" not found in metadata.')
+
     if 'helics_version' in json_results[key]:
         header_metadata_str = header_metadata_str + '{:<25}{}\n'.format('HELICS version:', json_results[key]['helics_version'])
+    else:
+        logging.warning('"helics_version" not found in metadata.')
+
     if 'generator' in json_results[key]:
         header_metadata_str = header_metadata_str + '{:<25}{}\n'.format('generator:', json_results[key]['generator'])
+    else:
+        logging.warning('"generator" not found in metadata.')
+
     if 'system' in json_results[key]:
         header_metadata_str = header_metadata_str + '{:<25}{}\n'.format('system:', json_results[key]['system'])
+    else:
+        logging.warning('"system" not found in metadata.')
+
     if 'system_version' in json_results[key]:
         header_metadata_str = header_metadata_str + '{:<25}{}\n'.format('system version:', json_results[key]['system_version'])
+    else:
+        logging.warning('"system_version" not found in metadata.')
+
     if 'platform' in json_results[key]:
         header_metadata_str = header_metadata_str + '{:<25}{}\n'.format('platform:', json_results[key]['platform'])
+    else:
+        logging.warning('"platform" not found in metadata.')
+
     if 'cxx_compiler' in json_results[key]:
         header_metadata_str = header_metadata_str + '{:<25}{}\n'.format('C++ compiler:', json_results[key]['cxx_compiler'])
+    else:
+        logging.warning('"cxx_compiler" not found in metadata.')
+
     if 'cxx_compiler_version' in json_results[key]:
         header_metadata_str = header_metadata_str + '{:<25}{}\n'.format('C++ compiler version:', json_results[key]['cxx_compiler_version'])
+    else:
+        logging.warning('"cxx_compiler_version" not found in metadata.')
+
     if 'build_flags_string' in json_results[key]:
         header_metadata_str = header_metadata_str + '{:<25}{}\n'.format('compiler string:', json_results[key]['build_flags_string'])
+    else:
+        logging.warning('"build_flags_string" not found in metadata.')
+
     if 'host_name' in json_results[key]:
         header_metadata_str = header_metadata_str + '{:<25}{}\n'.format('host name:', json_results[key]['host_name'])
+    else:
+        logging.warning('"host_name" not found in metadata.')
+
     if 'host_processor' in json_results[key]:
         header_metadata_str = header_metadata_str + '{:<25}{}\n'.format('host processor:', json_results[key]['host_processor'])
+    else:
+        logging.warning('"host_processor" not found in metadata.')
+
     if 'num_cpus' in json_results[key]:
         header_metadata_str = header_metadata_str + '{:<25}{}\n'.format('CPU core count:', json_results[key]['num_cpus'])
+    else:
+        logging.warning('"num_cpus" not found in metadata.')
+
     if 'mhz_per_cpu' in json_results[key]:
         header_metadata_str = header_metadata_str + '{:<25}{}\n'.format('base processor speed:', json_results[key]['mhz_per_cpu'])
+    else:
+        logging.warning('"mhz_per_cpu" not found in metadata.')
+
     header_metadata_str = header_metadata_str + '\n' + '\n'
+    logging.info('Final metadata header:\n{}'.format(header_metadata_str))
     return header_metadata_str
 
 def add_benchmark_graphs(pdf, benchmark_results_dir):
@@ -104,9 +145,11 @@ def add_benchmark_graphs(pdf, benchmark_results_dir):
                 width = size * 10
                 height = size * 8
                 pdf.image(graph_file_path, w=width, h=height)
+                logging.info('Added graph file {} to PDF'.format(graph_file_path))
     return pdf
 
 def _auto_run(args):
+    import benchmark_postprocessing as bmpp
     file_list = bmpp.get_benchmark_files(args.benchmark_results_dir)
     json_results = bmpp.parse_files(file_list)
     json_results = bmpp.parse_and_add_benchmark_metadata(json_results)
