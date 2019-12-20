@@ -47,8 +47,8 @@ CPU MODEL:  Intel(R) Xeon(R) Platinum 8124M CPU @ 3.00GHz
   },
   "benchmarks": [
     {
-      "name": "BM_mgen_singleFed/1024/iterations:2/real_time",
-      "run_name": "BM_mgen_singleFed/1024/iterations:2/real_time",
+      "name": "BMmgen_singleCore/1024/iterations:2/real_time",
+      "run_name": "BMmgen_singleCore/1024/iterations:2/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,
@@ -59,8 +59,8 @@ CPU MODEL:  Intel(R) Xeon(R) Platinum 8124M CPU @ 3.00GHz
       "time_unit": "ms"
     },
     {
-      "name": "BM_mgen_singleFed/4096/iterations:2/real_time",
-      "run_name": "BM_mgen_singleFed/4096/iterations:2/real_time",
+      "name": "BMmgen_singleCore/4096/iterations:2/real_time",
+      "run_name": "BMmgen_singleCore/4096/iterations:2/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,
@@ -71,8 +71,8 @@ CPU MODEL:  Intel(R) Xeon(R) Platinum 8124M CPU @ 3.00GHz
       "time_unit": "ms"
     },
     {
-      "name": "BM_mgen/multiCore/inprocCore/4096/2/real_time",
-      "run_name": "BM_mgen/multiCore/inprocCore/4096/2/real_time",
+      "name": "BMmgen_multiCore/inprocCore/4096/2/real_time",
+      "run_name": "BMmgen_multiCore/inprocCore/4096/2/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,
@@ -83,8 +83,8 @@ CPU MODEL:  Intel(R) Xeon(R) Platinum 8124M CPU @ 3.00GHz
       "time_unit": "ms"
     },
     {
-      "name": "BM_mgen/multiCore/inprocCore/4096/8/real_time",
-      "run_name": "BM_mgen/multiCore/inprocCore/4096/8/real_time",
+      "name": "BMmgen_multiCore/inprocCore/4096/8/real_time",
+      "run_name": "BMmgen_multiCore/inprocCore/4096/8/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,
@@ -95,8 +95,8 @@ CPU MODEL:  Intel(R) Xeon(R) Platinum 8124M CPU @ 3.00GHz
       "time_unit": "ms"
     },
     {
-      "name": "BM_mgen/multiCore/inprocCore/4096/64/real_time",
-      "run_name": "BM_mgen/multiCore/inprocCore/4096/64/real_time",
+      "name": "BMmgen_multiCore/inprocCore/4096/64/real_time",
+      "run_name": "BMmgen_multiCore/inprocCore/4096/64/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,

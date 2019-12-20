@@ -47,8 +47,8 @@ CPU MODEL: Intel(R) Xeon(R) CPU E5-1620 v3 @ 3.50GHz
   },
   "benchmarks": [
     {
-      "name": "BM_echo/singleCore/1/iterations:1/real_time",
-      "run_name": "BM_echo/singleCore/1/iterations:1/real_time",
+      "name": "BMecho_singleCore/1/iterations:1/real_time",
+      "run_name": "BMecho_singleCore/1/iterations:1/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,
@@ -59,8 +59,8 @@ CPU MODEL: Intel(R) Xeon(R) CPU E5-1620 v3 @ 3.50GHz
       "time_unit": "ms"
     },
     {
-      "name": "BM_echo/singleCore/2/iterations:1/real_time",
-      "run_name": "BM_echo/singleCore/2/iterations:1/real_time",
+      "name": "BMecho_singleCore/2/iterations:1/real_time",
+      "run_name": "BMecho_singleCore/2/iterations:1/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,
@@ -71,8 +71,8 @@ CPU MODEL: Intel(R) Xeon(R) CPU E5-1620 v3 @ 3.50GHz
       "time_unit": "ms"
     },
     {
-      "name": "BM_echo/singleCore/4/iterations:1/real_time",
-      "run_name": "BM_echo/singleCore/4/iterations:1/real_time",
+      "name": "BMecho_singleCore/4/iterations:1/real_time",
+      "run_name": "BMecho_singleCore/4/iterations:1/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,
@@ -83,8 +83,8 @@ CPU MODEL: Intel(R) Xeon(R) CPU E5-1620 v3 @ 3.50GHz
       "time_unit": "ms"
     },
     {
-      "name": "BM_echo/singleCore/8/iterations:1/real_time",
-      "run_name": "BM_echo/singleCore/8/iterations:1/real_time",
+      "name": "BMecho_singleCore/8/iterations:1/real_time",
+      "run_name": "BMecho_singleCore/8/iterations:1/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,
@@ -95,8 +95,8 @@ CPU MODEL: Intel(R) Xeon(R) CPU E5-1620 v3 @ 3.50GHz
       "time_unit": "ms"
     },
     {
-      "name": "BM_echo/singleCore/16/iterations:1/real_time",
-      "run_name": "BM_echo/singleCore/16/iterations:1/real_time",
+      "name": "BMecho_singleCore/16/iterations:1/real_time",
+      "run_name": "BMecho_singleCore/16/iterations:1/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,
@@ -107,8 +107,8 @@ CPU MODEL: Intel(R) Xeon(R) CPU E5-1620 v3 @ 3.50GHz
       "time_unit": "ms"
     },
     {
-      "name": "BM_echo/singleCore/32/iterations:1/real_time",
-      "run_name": "BM_echo/singleCore/32/iterations:1/real_time",
+      "name": "BMecho_singleCore/32/iterations:1/real_time",
+      "run_name": "BMecho_singleCore/32/iterations:1/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,
@@ -119,8 +119,8 @@ CPU MODEL: Intel(R) Xeon(R) CPU E5-1620 v3 @ 3.50GHz
       "time_unit": "ms"
     },
     {
-      "name": "BM_echo/multiCore/inprocCore/1/real_time",
-      "run_name": "BM_echo/multiCore/inprocCore/1/real_time",
+      "name": "BMecho_multiCore/inprocCore/1/real_time",
+      "run_name": "BMecho_multiCore/inprocCore/1/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,
@@ -131,8 +131,8 @@ CPU MODEL: Intel(R) Xeon(R) CPU E5-1620 v3 @ 3.50GHz
       "time_unit": "ms"
     },
     {
-      "name": "BM_echo/multiCore/inprocCore/2/real_time",
-      "run_name": "BM_echo/multiCore/inprocCore/2/real_time",
+      "name": "BMecho_multiCore/inprocCore/2/real_time",
+      "run_name": "BMecho_multiCore/inprocCore/2/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,
@@ -143,8 +143,8 @@ CPU MODEL: Intel(R) Xeon(R) CPU E5-1620 v3 @ 3.50GHz
       "time_unit": "ms"
     },
     {
-      "name": "BM_echo/multiCore/inprocCore/4/real_time",
-      "run_name": "BM_echo/multiCore/inprocCore/4/real_time",
+      "name": "BMecho_multiCore/inprocCore/4/real_time",
+      "run_name": "BMecho_multiCore/inprocCore/4/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,
@@ -155,8 +155,8 @@ CPU MODEL: Intel(R) Xeon(R) CPU E5-1620 v3 @ 3.50GHz
       "time_unit": "ms"
     },
     {
-      "name": "BM_echo/multiCore/inprocCore/8/real_time",
-      "run_name": "BM_echo/multiCore/inprocCore/8/real_time",
+      "name": "BMecho_multiCore/inprocCore/8/real_time",
+      "run_name": "BMecho_multiCore/inprocCore/8/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,
@@ -167,8 +167,8 @@ CPU MODEL: Intel(R) Xeon(R) CPU E5-1620 v3 @ 3.50GHz
       "time_unit": "ms"
     },
     {
-      "name": "BM_echo/multiCore/inprocCore/16/real_time",
-      "run_name": "BM_echo/multiCore/inprocCore/16/real_time",
+      "name": "BMecho_multiCore/inprocCore/16/real_time",
+      "run_name": "BMecho_multiCore/inprocCore/16/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,
@@ -179,8 +179,8 @@ CPU MODEL: Intel(R) Xeon(R) CPU E5-1620 v3 @ 3.50GHz
       "time_unit": "ms"
     },
     {
-      "name": "BM_echo/multiCore/inprocCore/32/real_time",
-      "run_name": "BM_echo/multiCore/inprocCore/32/real_time",
+      "name": "BMecho_multiCore/inprocCore/32/real_time",
+      "run_name": "BMecho_multiCore/inprocCore/32/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,
@@ -191,8 +191,8 @@ CPU MODEL: Intel(R) Xeon(R) CPU E5-1620 v3 @ 3.50GHz
       "time_unit": "ms"
     },
     {
-      "name": "BM_echo/multiCore/inprocCore/64/real_time",
-      "run_name": "BM_echo/multiCore/inprocCore/64/real_time",
+      "name": "BMecho_multiCore/inprocCore/64/real_time",
+      "run_name": "BMecho_multiCore/inprocCore/64/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,
@@ -203,8 +203,8 @@ CPU MODEL: Intel(R) Xeon(R) CPU E5-1620 v3 @ 3.50GHz
       "time_unit": "ms"
     },
     {
-      "name": "BM_echo/multiCore/zmqCore/1/iterations:1/real_time",
-      "run_name": "BM_echo/multiCore/zmqCore/1/iterations:1/real_time",
+      "name": "BMecho_multiCore/zmqCore/1/iterations:1/real_time",
+      "run_name": "BMecho_multiCore/zmqCore/1/iterations:1/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,
@@ -215,8 +215,8 @@ CPU MODEL: Intel(R) Xeon(R) CPU E5-1620 v3 @ 3.50GHz
       "time_unit": "ms"
     },
     {
-      "name": "BM_echo/multiCore/zmqCore/2/iterations:1/real_time",
-      "run_name": "BM_echo/multiCore/zmqCore/2/iterations:1/real_time",
+      "name": "BMecho_multiCore/zmqCore/2/iterations:1/real_time",
+      "run_name": "BMecho_multiCore/zmqCore/2/iterations:1/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,
@@ -227,8 +227,8 @@ CPU MODEL: Intel(R) Xeon(R) CPU E5-1620 v3 @ 3.50GHz
       "time_unit": "ms"
     },
     {
-      "name": "BM_echo/multiCore/zmqCore/4/iterations:1/real_time",
-      "run_name": "BM_echo/multiCore/zmqCore/4/iterations:1/real_time",
+      "name": "BMecho_multiCore/zmqCore/4/iterations:1/real_time",
+      "run_name": "BMecho_multiCore/zmqCore/4/iterations:1/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,
@@ -239,8 +239,8 @@ CPU MODEL: Intel(R) Xeon(R) CPU E5-1620 v3 @ 3.50GHz
       "time_unit": "ms"
     },
     {
-      "name": "BM_echo/multiCore/zmqCore/8/iterations:1/real_time",
-      "run_name": "BM_echo/multiCore/zmqCore/8/iterations:1/real_time",
+      "name": "BMecho_multiCore/zmqCore/8/iterations:1/real_time",
+      "run_name": "BMecho_multiCore/zmqCore/8/iterations:1/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,
@@ -251,8 +251,8 @@ CPU MODEL: Intel(R) Xeon(R) CPU E5-1620 v3 @ 3.50GHz
       "time_unit": "ms"
     },
     {
-      "name": "BM_echo/multiCore/zmqCore/16/iterations:1/real_time",
-      "run_name": "BM_echo/multiCore/zmqCore/16/iterations:1/real_time",
+      "name": "BMecho_multiCore/zmqCore/16/iterations:1/real_time",
+      "run_name": "BMecho_multiCore/zmqCore/16/iterations:1/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,
@@ -263,8 +263,8 @@ CPU MODEL: Intel(R) Xeon(R) CPU E5-1620 v3 @ 3.50GHz
       "time_unit": "ms"
     },
     {
-      "name": "BM_echo/multiCore/zmqCore/32/iterations:1/real_time",
-      "run_name": "BM_echo/multiCore/zmqCore/32/iterations:1/real_time",
+      "name": "BMecho_multiCore/zmqCore/32/iterations:1/real_time",
+      "run_name": "BMecho_multiCore/zmqCore/32/iterations:1/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,
@@ -275,8 +275,8 @@ CPU MODEL: Intel(R) Xeon(R) CPU E5-1620 v3 @ 3.50GHz
       "time_unit": "ms"
     },
     {
-      "name": "BM_echo/multiCore/zmqssCore/1/iterations:1/real_time",
-      "run_name": "BM_echo/multiCore/zmqssCore/1/iterations:1/real_time",
+      "name": "BMecho_multiCore/zmqssCore/1/iterations:1/real_time",
+      "run_name": "BMecho_multiCore/zmqssCore/1/iterations:1/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,
@@ -287,8 +287,8 @@ CPU MODEL: Intel(R) Xeon(R) CPU E5-1620 v3 @ 3.50GHz
       "time_unit": "ms"
     },
     {
-      "name": "BM_echo/multiCore/zmqssCore/2/iterations:1/real_time",
-      "run_name": "BM_echo/multiCore/zmqssCore/2/iterations:1/real_time",
+      "name": "BMecho_multiCore/zmqssCore/2/iterations:1/real_time",
+      "run_name": "BMecho_multiCore/zmqssCore/2/iterations:1/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,
@@ -299,8 +299,8 @@ CPU MODEL: Intel(R) Xeon(R) CPU E5-1620 v3 @ 3.50GHz
       "time_unit": "ms"
     },
     {
-      "name": "BM_echo/multiCore/zmqssCore/4/iterations:1/real_time",
-      "run_name": "BM_echo/multiCore/zmqssCore/4/iterations:1/real_time",
+      "name": "BMecho_multiCore/zmqssCore/4/iterations:1/real_time",
+      "run_name": "BMecho_multiCore/zmqssCore/4/iterations:1/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,
@@ -311,8 +311,8 @@ CPU MODEL: Intel(R) Xeon(R) CPU E5-1620 v3 @ 3.50GHz
       "time_unit": "ms"
     },
     {
-      "name": "BM_echo/multiCore/zmqssCore/8/iterations:1/real_time",
-      "run_name": "BM_echo/multiCore/zmqssCore/8/iterations:1/real_time",
+      "name": "BMecho_multiCore/zmqssCore/8/iterations:1/real_time",
+      "run_name": "BMecho_multiCore/zmqssCore/8/iterations:1/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,
@@ -323,8 +323,8 @@ CPU MODEL: Intel(R) Xeon(R) CPU E5-1620 v3 @ 3.50GHz
       "time_unit": "ms"
     },
     {
-      "name": "BM_echo/multiCore/zmqssCore/16/iterations:1/real_time",
-      "run_name": "BM_echo/multiCore/zmqssCore/16/iterations:1/real_time",
+      "name": "BMecho_multiCore/zmqssCore/16/iterations:1/real_time",
+      "run_name": "BMecho_multiCore/zmqssCore/16/iterations:1/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,
@@ -335,8 +335,8 @@ CPU MODEL: Intel(R) Xeon(R) CPU E5-1620 v3 @ 3.50GHz
       "time_unit": "ms"
     },
     {
-      "name": "BM_echo/multiCore/zmqssCore/32/iterations:1/real_time",
-      "run_name": "BM_echo/multiCore/zmqssCore/32/iterations:1/real_time",
+      "name": "BMecho_multiCore/zmqssCore/32/iterations:1/real_time",
+      "run_name": "BMecho_multiCore/zmqssCore/32/iterations:1/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,
@@ -347,8 +347,8 @@ CPU MODEL: Intel(R) Xeon(R) CPU E5-1620 v3 @ 3.50GHz
       "time_unit": "ms"
     },
     {
-      "name": "BM_echo/multiCore/ipcCore/1/iterations:1/real_time",
-      "run_name": "BM_echo/multiCore/ipcCore/1/iterations:1/real_time",
+      "name": "BMecho_multiCore/ipcCore/1/iterations:1/real_time",
+      "run_name": "BMecho_multiCore/ipcCore/1/iterations:1/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,
@@ -359,8 +359,8 @@ CPU MODEL: Intel(R) Xeon(R) CPU E5-1620 v3 @ 3.50GHz
       "time_unit": "ms"
     },
     {
-      "name": "BM_echo/multiCore/ipcCore/2/iterations:1/real_time",
-      "run_name": "BM_echo/multiCore/ipcCore/2/iterations:1/real_time",
+      "name": "BMecho_multiCore/ipcCore/2/iterations:1/real_time",
+      "run_name": "BMecho_multiCore/ipcCore/2/iterations:1/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,
@@ -371,8 +371,8 @@ CPU MODEL: Intel(R) Xeon(R) CPU E5-1620 v3 @ 3.50GHz
       "time_unit": "ms"
     },
     {
-      "name": "BM_echo/multiCore/ipcCore/4/iterations:1/real_time",
-      "run_name": "BM_echo/multiCore/ipcCore/4/iterations:1/real_time",
+      "name": "BMecho_multiCore/ipcCore/4/iterations:1/real_time",
+      "run_name": "BMecho_multiCore/ipcCore/4/iterations:1/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,
@@ -383,8 +383,8 @@ CPU MODEL: Intel(R) Xeon(R) CPU E5-1620 v3 @ 3.50GHz
       "time_unit": "ms"
     },
     {
-      "name": "BM_echo/multiCore/ipcCore/8/iterations:1/real_time",
-      "run_name": "BM_echo/multiCore/ipcCore/8/iterations:1/real_time",
+      "name": "BMecho_multiCore/ipcCore/8/iterations:1/real_time",
+      "run_name": "BMecho_multiCore/ipcCore/8/iterations:1/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,
@@ -395,8 +395,8 @@ CPU MODEL: Intel(R) Xeon(R) CPU E5-1620 v3 @ 3.50GHz
       "time_unit": "ms"
     },
     {
-      "name": "BM_echo/multiCore/ipcCore/16/iterations:1/real_time",
-      "run_name": "BM_echo/multiCore/ipcCore/16/iterations:1/real_time",
+      "name": "BMecho_multiCore/ipcCore/16/iterations:1/real_time",
+      "run_name": "BMecho_multiCore/ipcCore/16/iterations:1/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,
@@ -407,8 +407,8 @@ CPU MODEL: Intel(R) Xeon(R) CPU E5-1620 v3 @ 3.50GHz
       "time_unit": "ms"
     },
     {
-      "name": "BM_echo/multiCore/ipcCore/32/iterations:1/real_time",
-      "run_name": "BM_echo/multiCore/ipcCore/32/iterations:1/real_time",
+      "name": "BMecho_multiCore/ipcCore/32/iterations:1/real_time",
+      "run_name": "BMecho_multiCore/ipcCore/32/iterations:1/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,
@@ -419,8 +419,8 @@ CPU MODEL: Intel(R) Xeon(R) CPU E5-1620 v3 @ 3.50GHz
       "time_unit": "ms"
     },
     {
-      "name": "BM_echo/multiCore/ipcCore/64/iterations:1/real_time",
-      "run_name": "BM_echo/multiCore/ipcCore/64/iterations:1/real_time",
+      "name": "BMecho_multiCore/ipcCore/64/iterations:1/real_time",
+      "run_name": "BMecho_multiCore/ipcCore/64/iterations:1/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,

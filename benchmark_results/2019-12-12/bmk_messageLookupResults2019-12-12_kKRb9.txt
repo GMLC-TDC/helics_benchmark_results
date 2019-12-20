@@ -46,8 +46,8 @@ HOST PROCESSOR TYPE: ppc64le
   },
   "benchmarks": [
     {
-      "name": "BM_mgen/singleCore/1024/iterations:1/real_time",
-      "run_name": "BM_mgen/singleCore/1024/iterations:1/real_time",
+      "name": "BMmgen_singleCore/1024/iterations:1/real_time",
+      "run_name": "BMmgen_singleCore/1024/iterations:1/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,
@@ -58,8 +58,8 @@ HOST PROCESSOR TYPE: ppc64le
       "time_unit": "ms"
     },
     {
-      "name": "BM_mgen/singleCore/4096/iterations:1/real_time",
-      "run_name": "BM_mgen/singleCore/4096/iterations:1/real_time",
+      "name": "BMmgen_singleCore/4096/iterations:1/real_time",
+      "run_name": "BMmgen_singleCore/4096/iterations:1/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,
@@ -70,8 +70,8 @@ HOST PROCESSOR TYPE: ppc64le
       "time_unit": "ms"
     },
     {
-      "name": "BM_mgen/multiCore/inprocCore/4096/2/iterations:1/real_time",
-      "run_name": "BM_mgen/multiCore/inprocCore/4096/2/iterations:1/real_time",
+      "name": "BMmgen_multiCore/inprocCore/4096/2/iterations:1/real_time",
+      "run_name": "BMmgen_multiCore/inprocCore/4096/2/iterations:1/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,
@@ -82,8 +82,8 @@ HOST PROCESSOR TYPE: ppc64le
       "time_unit": "ms"
     },
     {
-      "name": "BM_mgen/multiCore/inprocCore/4096/8/iterations:1/real_time",
-      "run_name": "BM_mgen/multiCore/inprocCore/4096/8/iterations:1/real_time",
+      "name": "BMmgen_multiCore/inprocCore/4096/8/iterations:1/real_time",
+      "run_name": "BMmgen_multiCore/inprocCore/4096/8/iterations:1/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,
@@ -94,8 +94,8 @@ HOST PROCESSOR TYPE: ppc64le
       "time_unit": "ms"
     },
     {
-      "name": "BM_mgen/multiCore/inprocCore/4096/64/iterations:1/real_time",
-      "run_name": "BM_mgen/multiCore/inprocCore/4096/64/iterations:1/real_time",
+      "name": "BMmgen_multiCore/inprocCore/4096/64/iterations:1/real_time",
+      "run_name": "BMmgen_multiCore/inprocCore/4096/64/iterations:1/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,

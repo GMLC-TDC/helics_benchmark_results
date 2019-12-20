@@ -47,8 +47,8 @@ CPU MODEL: Intel(R) Core(TM) i7-4712HQ CPU @ 2.30GHz
   },
   "benchmarks": [
     {
-      "name": "BM_ring2/singleCore/iterations:3/real_time",
-      "run_name": "BM_ring2/singleCore/iterations:3/real_time",
+      "name": "BMring2_singleCore/iterations:3/real_time",
+      "run_name": "BMring2_singleCore/iterations:3/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,
@@ -59,8 +59,8 @@ CPU MODEL: Intel(R) Core(TM) i7-4712HQ CPU @ 2.30GHz
       "time_unit": "ms"
     },
     {
-      "name": "BM_ring/multiCore/inprocCore/2/real_time",
-      "run_name": "BM_ring/multiCore/inprocCore/2/real_time",
+      "name": "BMring_multiCore/inprocCore/2/real_time",
+      "run_name": "BMring_multiCore/inprocCore/2/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,
@@ -71,8 +71,8 @@ CPU MODEL: Intel(R) Core(TM) i7-4712HQ CPU @ 2.30GHz
       "time_unit": "ms"
     },
     {
-      "name": "BM_ring/multiCore/inprocCore/3/real_time",
-      "run_name": "BM_ring/multiCore/inprocCore/3/real_time",
+      "name": "BMring_multiCore/inprocCore/3/real_time",
+      "run_name": "BMring_multiCore/inprocCore/3/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,
@@ -83,8 +83,8 @@ CPU MODEL: Intel(R) Core(TM) i7-4712HQ CPU @ 2.30GHz
       "time_unit": "ms"
     },
     {
-      "name": "BM_ring/multiCore/inprocCore/4/real_time",
-      "run_name": "BM_ring/multiCore/inprocCore/4/real_time",
+      "name": "BMring_multiCore/inprocCore/4/real_time",
+      "run_name": "BMring_multiCore/inprocCore/4/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,
@@ -95,8 +95,8 @@ CPU MODEL: Intel(R) Core(TM) i7-4712HQ CPU @ 2.30GHz
       "time_unit": "ms"
     },
     {
-      "name": "BM_ring/multiCore/inprocCore/6/real_time",
-      "run_name": "BM_ring/multiCore/inprocCore/6/real_time",
+      "name": "BMring_multiCore/inprocCore/6/real_time",
+      "run_name": "BMring_multiCore/inprocCore/6/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,
@@ -107,8 +107,8 @@ CPU MODEL: Intel(R) Core(TM) i7-4712HQ CPU @ 2.30GHz
       "time_unit": "ms"
     },
     {
-      "name": "BM_ring/multiCore/inprocCore/10/real_time",
-      "run_name": "BM_ring/multiCore/inprocCore/10/real_time",
+      "name": "BMring_multiCore/inprocCore/10/real_time",
+      "run_name": "BMring_multiCore/inprocCore/10/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,
@@ -119,8 +119,8 @@ CPU MODEL: Intel(R) Core(TM) i7-4712HQ CPU @ 2.30GHz
       "time_unit": "ms"
     },
     {
-      "name": "BM_ring/multiCore/inprocCore/20/real_time",
-      "run_name": "BM_ring/multiCore/inprocCore/20/real_time",
+      "name": "BMring_multiCore/inprocCore/20/real_time",
+      "run_name": "BMring_multiCore/inprocCore/20/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,
@@ -131,8 +131,8 @@ CPU MODEL: Intel(R) Core(TM) i7-4712HQ CPU @ 2.30GHz
       "time_unit": "ms"
     },
     {
-      "name": "BM_ring/multiCore/zmqCore/2/real_time",
-      "run_name": "BM_ring/multiCore/zmqCore/2/real_time",
+      "name": "BMring_multiCore/zmqCore/2/real_time",
+      "run_name": "BMring_multiCore/zmqCore/2/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,
@@ -143,8 +143,8 @@ CPU MODEL: Intel(R) Core(TM) i7-4712HQ CPU @ 2.30GHz
       "time_unit": "ms"
     },
     {
-      "name": "BM_ring/multiCore/zmqCore/3/real_time",
-      "run_name": "BM_ring/multiCore/zmqCore/3/real_time",
+      "name": "BMring_multiCore/zmqCore/3/real_time",
+      "run_name": "BMring_multiCore/zmqCore/3/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,
@@ -155,8 +155,8 @@ CPU MODEL: Intel(R) Core(TM) i7-4712HQ CPU @ 2.30GHz
       "time_unit": "ms"
     },
     {
-      "name": "BM_ring/multiCore/zmqCore/4/real_time",
-      "run_name": "BM_ring/multiCore/zmqCore/4/real_time",
+      "name": "BMring_multiCore/zmqCore/4/real_time",
+      "run_name": "BMring_multiCore/zmqCore/4/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,
@@ -167,8 +167,8 @@ CPU MODEL: Intel(R) Core(TM) i7-4712HQ CPU @ 2.30GHz
       "time_unit": "ms"
     },
     {
-      "name": "BM_ring/multiCore/zmqCore/6/real_time",
-      "run_name": "BM_ring/multiCore/zmqCore/6/real_time",
+      "name": "BMring_multiCore/zmqCore/6/real_time",
+      "run_name": "BMring_multiCore/zmqCore/6/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,
@@ -179,8 +179,8 @@ CPU MODEL: Intel(R) Core(TM) i7-4712HQ CPU @ 2.30GHz
       "time_unit": "ms"
     },
     {
-      "name": "BM_ring/multiCore/zmqCore/10/real_time",
-      "run_name": "BM_ring/multiCore/zmqCore/10/real_time",
+      "name": "BMring_multiCore/zmqCore/10/real_time",
+      "run_name": "BMring_multiCore/zmqCore/10/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,
@@ -191,8 +191,8 @@ CPU MODEL: Intel(R) Core(TM) i7-4712HQ CPU @ 2.30GHz
       "time_unit": "ms"
     },
     {
-      "name": "BM_ring/multiCore/zmqssCore/2/real_time",
-      "run_name": "BM_ring/multiCore/zmqssCore/2/real_time",
+      "name": "BMring_multiCore/zmqssCore/2/real_time",
+      "run_name": "BMring_multiCore/zmqssCore/2/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,
@@ -203,8 +203,8 @@ CPU MODEL: Intel(R) Core(TM) i7-4712HQ CPU @ 2.30GHz
       "time_unit": "ms"
     },
     {
-      "name": "BM_ring/multiCore/zmqssCore/3/real_time",
-      "run_name": "BM_ring/multiCore/zmqssCore/3/real_time",
+      "name": "BMring_multiCore/zmqssCore/3/real_time",
+      "run_name": "BMring_multiCore/zmqssCore/3/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,
@@ -215,8 +215,8 @@ CPU MODEL: Intel(R) Core(TM) i7-4712HQ CPU @ 2.30GHz
       "time_unit": "ms"
     },
     {
-      "name": "BM_ring/multiCore/zmqssCore/4/real_time",
-      "run_name": "BM_ring/multiCore/zmqssCore/4/real_time",
+      "name": "BMring_multiCore/zmqssCore/4/real_time",
+      "run_name": "BMring_multiCore/zmqssCore/4/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,
@@ -227,8 +227,8 @@ CPU MODEL: Intel(R) Core(TM) i7-4712HQ CPU @ 2.30GHz
       "time_unit": "ms"
     },
     {
-      "name": "BM_ring/multiCore/zmqssCore/6/real_time",
-      "run_name": "BM_ring/multiCore/zmqssCore/6/real_time",
+      "name": "BMring_multiCore/zmqssCore/6/real_time",
+      "run_name": "BMring_multiCore/zmqssCore/6/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,
@@ -239,8 +239,8 @@ CPU MODEL: Intel(R) Core(TM) i7-4712HQ CPU @ 2.30GHz
       "time_unit": "ms"
     },
     {
-      "name": "BM_ring/multiCore/zmqssCore/10/real_time",
-      "run_name": "BM_ring/multiCore/zmqssCore/10/real_time",
+      "name": "BMring_multiCore/zmqssCore/10/real_time",
+      "run_name": "BMring_multiCore/zmqssCore/10/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,
@@ -251,8 +251,8 @@ CPU MODEL: Intel(R) Core(TM) i7-4712HQ CPU @ 2.30GHz
       "time_unit": "ms"
     },
     {
-      "name": "BM_ring/multiCore/ipcCore/2/real_time",
-      "run_name": "BM_ring/multiCore/ipcCore/2/real_time",
+      "name": "BMring_multiCore/ipcCore/2/real_time",
+      "run_name": "BMring_multiCore/ipcCore/2/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,
@@ -263,8 +263,8 @@ CPU MODEL: Intel(R) Core(TM) i7-4712HQ CPU @ 2.30GHz
       "time_unit": "ms"
     },
     {
-      "name": "BM_ring/multiCore/ipcCore/3/real_time",
-      "run_name": "BM_ring/multiCore/ipcCore/3/real_time",
+      "name": "BMring_multiCore/ipcCore/3/real_time",
+      "run_name": "BMring_multiCore/ipcCore/3/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,
@@ -275,8 +275,8 @@ CPU MODEL: Intel(R) Core(TM) i7-4712HQ CPU @ 2.30GHz
       "time_unit": "ms"
     },
     {
-      "name": "BM_ring/multiCore/ipcCore/4/real_time",
-      "run_name": "BM_ring/multiCore/ipcCore/4/real_time",
+      "name": "BMring_multiCore/ipcCore/4/real_time",
+      "run_name": "BMring_multiCore/ipcCore/4/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,
