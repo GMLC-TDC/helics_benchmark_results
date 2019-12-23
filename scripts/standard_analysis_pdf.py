@@ -25,39 +25,34 @@ logger = logging.getLogger(__name__)
 pp = pprint.PrettyPrinter(indent=4)
 
 
-def create_standard_analysis_report(benchmark_results_dir, json_results):
+def create_standard_analysis_report(output_path, json_results, run_id):
     # Create the PDF
     pdf = FPDF()
     pdf.add_page()
     pdf.set_font("Courier", size=8)
-    # Getting the run ID for results file name
-    key_list = list(json_results.keys())
-    run_id = json_results[key_list[0]]['run_id']
     report_name = run_id + ' standard analysis.pdf'
-    output_path = os.path.join(benchmark_results_dir, 'report', report_name)
+    report_path = os.path.join(output_path, report_name)
 
     # Create the header metadata from the metadata in the JSON results and write out to PDF
-    header_metadata_str = grab_header_metadata(json_results)
+    header_metadata_str = grab_header_metadata(json_results, run_id)
     pdf.write(3, header_metadata_str)
 
     # Add graphs
-    pdf = add_benchmark_graphs(pdf, benchmark_results_dir)
-
-
+    pdf = add_benchmark_graphs(pdf, output_path)
 
     # Output final PDF
-    pdf.output(output_path)
-
-
+    pdf.output(report_path)
 
     #print(header_metadata_str)
 
 
-def grab_header_metadata(json_results):
+def grab_header_metadata(json_results, run_id):
     # TDH (2019-12-20): Since all the metadata is common for each run, I can grab the metadata I need from any
-    #   of the results files in this dictionary
+    #   of the results files corresponding to the indicated run.
     key_list = list(json_results.keys())
-    key = key_list[0]
+    for key in key_list:
+        if json_results[key]['run_id'] == run_id:
+            break
     header_metadata_str = ''
     if 'benchmark' in json_results[key]:
         header_metadata_str = header_metadata_str + '{:<25}{}\n\n'.format('BENCHMARK:', json_results[key]['benchmark'])
@@ -138,25 +133,40 @@ def grab_header_metadata(json_results):
     logging.info('Final metadata header:\n{}'.format(header_metadata_str))
     return header_metadata_str
 
-def add_benchmark_graphs(pdf, benchmark_results_dir):
-    graph_path = os.path.join(benchmark_results_dir, 'report')
-    for root, dirs, files in os.walk(graph_path):
+def add_benchmark_graphs(pdf, output_path):
+    for root, dirs, files in os.walk(output_path):
         for file in files:
             name, extension = os.path.splitext(file)
             if extension == '.png':
-                graph_file_path = os.path.join(benchmark_results_dir, 'report', file)
+                graph_file_path = os.path.join(output_path, file)
                 # Scaling image; shouldn't need this for the actual graphs as we can specify the size on output
-                width = 150
-                pdf.image(graph_file_path, w=width,)
-                logging.info('Added graph file {} to PDF'.format(graph_file_path))
+                # width = 0
+                # pdf.image(graph_file_path, w=width,)
+                pdf.image(graph_file_path)
+                logging.info('Added graph file {} to PDF'.format(output_path))
     return pdf
+
+def get_unique_run_ids(json_results):
+    run_id_list = []
+    for key in json_results:
+        if json_results[key]['run_id'] not in run_id_list:
+            run_id_list.append(json_results[key]['run_id'])
+    return run_id_list
 
 def _auto_run(args):
     import benchmark_postprocessing as bmpp
     file_list = bmpp.get_benchmark_files(args.benchmark_results_dir)
     json_results = bmpp.parse_files(file_list)
     json_results = bmpp.parse_and_add_benchmark_metadata(json_results)
-    create_standard_analysis_report(args.benchmark_results_dir, json_results)
+    run_id_list = get_unique_run_ids(json_results)
+    for run_id in run_id_list:
+        output_path = os.path.join(args.benchmark_results_dir, '{}_report'.format(run_id))
+        try:
+            os.mkdir(output_path)
+        except OSError:
+            logging.error('Failed to create directory for report at {}'.format(output_path))
+            print ('Failed to create directory for report at {}'.format(output_path))
+        create_standard_analysis_report(output_path, json_results, run_id)
 
 
 
@@ -165,6 +175,6 @@ if __name__ == '__main__':
                         level=logging.INFO)
     parser = argparse.ArgumentParser(description='Generate PDF report.')
     parser.add_argument('benchmark_results_dir', nargs='?',
-                        default='../benchmark_results/2019-12-05')
+                        default='../benchmark_results/2019-11-27')
     args = parser.parse_args()
     _auto_run(args)

@@ -25,13 +25,13 @@ hv.extension('bokeh', 'matplotlib', width=100)
 #file_list = bmpp.get_benchmark_files('C:\Users\barn553\Documents\GitHub\helics_benchmark_results\benchmark_results\2019-11-28')
 #json_results = bmpp.parse_files(file_list)
 #json_results = bmpp.parse_and_add_benchmark_metadata(json_results)
-json_file = 'bm_results.json'
-meta_bmk_df = md.make_dataframe(json_file)
+#json_file = 'bm_results.json'
+#meta_bmk_df = md.make_dataframe(json_file)
 #print(meta_bmk_df.shape)
-meta_bmk_df.sort_values('federate_count').hvplot.line('federate_count', 'real_time')
+#meta_bmk_df.sort_values('federate_count').hvplot.line('federate_count', 'real_time')
 
 
-def plot_echo_msg(dataframe, run_id):
+def plot_echo_msg(dataframe, run_id, output_path):
     """This function creates a multi-line graph for the benchmark, 
     echoMessageBenchmark, of 'federate_count' versus 'real_time' and
     it is organized by 'core_type'.
@@ -43,22 +43,26 @@ def plot_echo_msg(dataframe, run_id):
         echo_msg (obj): IPython holoviews plot of the data.
     """
     
-    echo_df = dataframe[ dataframe.benchmark == 'echoMessageBenchmark']
-    echo_df = echo_df[ echo_df.run_id == '{}'.format(run_id)]
-    echo_msg = echo_df.sort_values('federate_count').hvplot.line(
+    echo_msg = dataframe[ dataframe.benchmark == 'echoMessageBenchmark']
+    echo_msg = echo_msg[ echo_msg.run_id == '{}'.format(run_id)]
+    echo_msg = echo_msg.sort_values('federate_count').hvplot.line(
             'federate_count', 
             'real_time', 
             ylabel='real_time (ns)', 
             title='run_id {} echoMessageBenchmark: federate_count vs real_time'.format(run_id), 
             by='core_type', 
             alpha=0.5).opts(
-                    width=1000, 
-                    height=600, 
+                    width=600,
+                    height=360,
                     logx=True, 
-                    logy=True)
+                    logy=True,
+                    fontsize={'title':9,'labels':10,'xticks':10,'yticks':10}
+                    )
+    save_path = os.path.join(output_path, '{} echoMessage.png'.format(run_id))
+    hvplot.save(echo_msg, save_path)
     return echo_msg
 
-def plot_echo_result(dataframe, run_id):
+def plot_echo_result(dataframe, run_id, output_path):
     """This function creates a multi-line graph for the benchmark, 
     echoBenchmark, of 'federate_count' versus 'real_time' and
     it is organized by 'core_type'.
@@ -78,13 +82,17 @@ def plot_echo_result(dataframe, run_id):
             title='run_id {} echoBenchmark: federate_count vs real_time'.format(run_id),
             by='core_type', 
             alpha=0.5).opts(
-                    width=1000, 
-                    height=600, 
+                    width=600,
+                    height=360,
                     logx=True, 
-                    logy=True)
+                    logy=True,
+                    fontsize={'title':9,'labels':10,'xticks':10,'yticks':10}
+                    )
+    save_path = os.path.join(output_path, '{} echoResult.png'.format(run_id))
+    hvplot.save(echo_res, save_path)
     return echo_res
 
-def plot_msg_lookup(dataframe, run_id):
+def plot_msg_lookup(dataframe, run_id, output_path):
     """This function creates a multi-line graph for the benchmark, 
     messageLookupBenchmark, of 'federate_count' versus 'real_time' and
     it is organized by a single 'core_type': 'inproc'.
@@ -104,13 +112,17 @@ def plot_msg_lookup(dataframe, run_id):
             ylabel='real_time (ns)', 
             title='run_id {} messageLookupBenchmark: federate_count vs real_time'.format(run_id),
             alpha=0.5).opts(
-                    width=1000, 
-                    height=600, 
+                    width=590,
+                    height=360,
                     logx=True, 
-                    logy=True)
+                    logy=True,
+                    fontsize={'title':9,'labels':10,'xticks':10,'yticks':10}
+                    )
+    save_path = os.path.join(output_path, '{} messageLookup.png'.format(run_id))
+    hvplot.save(msg_lookup, save_path)
     return msg_lookup
 
-def plot_msg_send_1(dataframe, run_id):
+def plot_msg_send_1(dataframe, run_id, output_path):
     """This function creates a multi-line graph for the benchmark, 
     messageSendBenchmark, of 'message_size' versus 'real_time' and
     it is organized by a single 'core_type': 'singleFed'.
@@ -122,21 +134,25 @@ def plot_msg_send_1(dataframe, run_id):
         msg_send (obj): IPython holoviews plot of the data.
     """
     msg_snd_df = dataframe[ dataframe.benchmark == 'messageSendBenchmark']
-    msg_snd_df = msg_snd_df[ msg_snd_df.core_type == 'singleFed']
+    msg_snd_df = msg_snd_df[ msg_snd_df.core_type == 'singleCore']
     msg_snd_df = msg_snd_df[ msg_snd_df.run_id == '{}'.format(run_id)]
     msg_send = msg_snd_df.sort_values('message_size').hvplot.line(
             'message_size', 
             'real_time', 
             ylabel='real_time (ns)', 
-            title='run_id {} messageSendBenchmark, core_type {}: message_size vs real_time'.format(run_id, 'singleFed'),
+            title='run_id {} messageSendBenchmark, core_type {}: message_size vs real_time'.format(run_id, 'singleCore'),
             alpha=0.5).opts(
-                    width=1000, 
-                    height=600, 
+                    width=580,
+                    height=360,
                     logx=True, 
-                    logy=True)
+                    logy=True,
+                    fontsize={'title':9,'labels':10,'xticks':10,'yticks':10}
+                    )
+    save_path = os.path.join(output_path, '{} messageSend1.png'.format(run_id))
+    hvplot.save(msg_send, save_path)
     return msg_send
 
-def plot_msg_send_2(dataframe, run_id):
+def plot_msg_send_2(dataframe, run_id, output_path):
     """This function creates a multi-line graph for the benchmark, 
     messageSendBenchmark, of 'message_size' versus 'real_time' and
     it is organized by 'core_type' and 'message_count'= 1.
@@ -157,13 +173,17 @@ def plot_msg_send_2(dataframe, run_id):
             title='run_id {} messageSendBenchmark, message_count = 1: message_size vs real_time'.format(run_id),
             by='core_type', 
             alpha=0.5).opts(
-                    width=1000, 
-                    height=600, 
+                    width=600,
+                    height=360,
                     logx=True, 
-                    logy=True)
+                    logy=True,
+                    fontsize={'title':9,'labels':10,'xticks':10,'yticks':10}
+                    )
+    save_path = os.path.join(output_path, '{} messageSend2.png'.format(run_id))
+    hvplot.save(msg_count, save_path)
     return msg_count
 
-def plot_msg_send_3(dataframe, run_id):
+def plot_msg_send_3(dataframe, run_id, output_path):
     """This function creates a multi-line graph for the benchmark, 
     messageSendBenchmark, of 'message_count' versus 'real_time' and
     it is organized by 'core_type' and 'message_size'= 1.
@@ -184,13 +204,17 @@ def plot_msg_send_3(dataframe, run_id):
             title='run_id {} messageSendBenchmark, message_size = 1: message_count vs real_time'.format(run_id),
             by='core_type', 
             alpha=0.5).opts(
-                    width=1000, 
-                    height=600, 
+                    width=600,
+                    height=360,
                     logx=True, 
-                    logy=True)
+                    logy=True,
+                    fontsize={'title':9,'labels':10,'xticks':10,'yticks':10}
+                    )
+    save_path = os.path.join(output_path, '{} messageSend3.png'.format(run_id))
+    hvplot.save(msg_size, save_path)
     return msg_size
 
-def plot_phold(dataframe, run_id):
+def plot_phold(dataframe, run_id, output_path):
     """This function creates a multi-line graph for the benchmark, 
     pholdBenchmark, of 'federate_count' versus 'real_time' and
     it is organized by 'core_type'.
@@ -210,13 +234,17 @@ def plot_phold(dataframe, run_id):
             title='run_id {} pholdBenchmark: federate_count vs real_time'.format(run_id),
             by='core_type', 
             alpha=0.5).opts(
-                    width=1000, 
-                    height=600, 
+                    width=600,
+                    height=360,
                     logx=True, 
-                    logy=True)
+                    logy=True,
+                    fontsize={'title':9,'labels':10,'xticks':10,'yticks':10}
+                    )
+    save_path = os.path.join(output_path, '{} pHold.png'.format(run_id))
+    hvplot.save(phold, save_path)
     return phold
 
-def plot_ring(dataframe, run_id):
+def plot_ring(dataframe, run_id, output_path):
     """This function creates a multi-line graph for the benchmark, 
     ringBenchmark, of 'federate_count' versus 'real_time' and
     it is organized by 'core_type'.
@@ -236,13 +264,17 @@ def plot_ring(dataframe, run_id):
             title='run_id {} ringBenchmark: federate_count vs real_time'.format(run_id),
             by='core_type', 
             alpha=0.5).opts(
-                    width=1000, 
-                    height=600, 
+                    width=600,
+                    height=360,
                     logx=True, 
-                    logy=True)
+                    logy=True,
+                    fontsize={'title':9,'labels':10,'xticks':10,'yticks':10}
+                    )
+    save_path = os.path.join(output_path, '{} ring.png'.format(run_id))
+    hvplot.save(ring, save_path)
     return ring
 
-def plot_filter(dataframe, run_id):
+def plot_filter(dataframe, run_id, output_path):
     """This function creates a multi-line graph for the benchmark, 
     filterBenchmark, of 'federate_count' versus 'real_time' and
     it is organized by 'core_type': 'singleCore'.
@@ -263,11 +295,15 @@ def plot_filter(dataframe, run_id):
             title='run_id {} filterBenchmark, core_type {}: federate_count vs real_time'.format(run_id, 'singleCore'), 
             by='filter_location',
             alpha=0.5).opts(
-                    width=1000, 
-                    height=600)
+                    width=600,
+                    height=360,
+                    fontsize={'title':9,'labels':10,'xticks':10,'yticks':10}
+                    )
+    save_path = os.path.join(output_path, '{} filter.png'.format(run_id))
+    hvplot.save(filtr, save_path)
     return filtr
 
-def plot_src(dataframe, run_id):
+def plot_src(dataframe, run_id, output_path):
     """This function creates a multi-line graph for the benchmark, 
     filterBenchmark, of 'federate_count' versus 'real_time' and
     it is organized by 'core_type' and 'filter_location' = 'source'.
@@ -288,13 +324,17 @@ def plot_src(dataframe, run_id):
             title='run_id {} filterBenchmark, filter_location {}: federate_count vs real_time'.format(run_id, 'source'),
             by='core_type', 
             alpha=0.5).opts(
-                    width=1000, 
-                    height=600, 
+                    width=600,
+                    height=360,
                     logx=True, 
-                    logy=True)
+                    logy=True,
+                    fontsize={'title':9,'labels':10,'xticks':10,'yticks':10}
+                    )
+    save_path = os.path.join(output_path, '{} source.png'.format(run_id))
+    hvplot.save(source, save_path)
     return source
 
-def plot_dest(dataframe, run_id):
+def plot_dest(dataframe, run_id, output_path):
     """This function creates a multi-line graph for the benchmark, 
     filterBenchmark, of 'federate_count' versus 'real_time' and
     it is organized by 'core_type' and 'filter_location' = 'destination'.
@@ -315,10 +355,14 @@ def plot_dest(dataframe, run_id):
             title='run_id {} filterBenchmark, filter_location {}: federate_count vs real_time'.format(run_id, 'destination'),
             by='core_type', 
             alpha=0.5).opts(
-                    width=1000, 
-                    height=600, 
+                    width=600,
+                    height=360,
                     logx=True, 
-                    logy=True)
+                    logy=True,
+                    fontsize={'title':9,'labels':10,'xticks':10,'yticks':10}
+                    )
+    save_path = os.path.join(output_path, '{} destination.png'.format(run_id))
+    hvplot.save(dest, save_path)
     return dest
 
 def save_plots(plot_list, run_id):
@@ -363,4 +407,4 @@ def main():
     
     save_plots(plot_list, 'r1Nr5')
     
-main()
+# main()
