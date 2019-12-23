@@ -5,5 +5,5 @@ modules.xml
 vcs.xml
 workspace.xml
 v1_v2_name_converter.log
-*.log
 *.pyc
+*.log

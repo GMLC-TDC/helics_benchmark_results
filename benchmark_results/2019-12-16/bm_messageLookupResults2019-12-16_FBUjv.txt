@@ -47,8 +47,8 @@ CPU MODEL:  Intel(R) Xeon(R) CPU E5-2695 v4 @ 2.10GHz
   },
   "benchmarks": [
     {
-      "name": "BM_mgen_singleCore/1/iterations:1/real_time",
-      "run_name": "BM_mgen_singleCore/1/iterations:1/real_time",
+      "name": "BMmgen_singleCore/1/iterations:1/real_time",
+      "run_name": "BMmgen_singleCore/1/iterations:1/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,
@@ -59,8 +59,8 @@ CPU MODEL:  Intel(R) Xeon(R) CPU E5-2695 v4 @ 2.10GHz
       "time_unit": "ms"
     },
     {
-      "name": "BM_mgen_singleCore/4/iterations:1/real_time",
-      "run_name": "BM_mgen_singleCore/4/iterations:1/real_time",
+      "name": "BMmgen_singleCore/4/iterations:1/real_time",
+      "run_name": "BMmgen_singleCore/4/iterations:1/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,
@@ -71,8 +71,8 @@ CPU MODEL:  Intel(R) Xeon(R) CPU E5-2695 v4 @ 2.10GHz
       "time_unit": "ms"
     },
     {
-      "name": "BM_mgen_singleCore/16/iterations:1/real_time",
-      "run_name": "BM_mgen_singleCore/16/iterations:1/real_time",
+      "name": "BMmgen_singleCore/16/iterations:1/real_time",
+      "run_name": "BMmgen_singleCore/16/iterations:1/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,
@@ -83,8 +83,8 @@ CPU MODEL:  Intel(R) Xeon(R) CPU E5-2695 v4 @ 2.10GHz
       "time_unit": "ms"
     },
     {
-      "name": "BM_mgen_singleCore/64/iterations:1/real_time",
-      "run_name": "BM_mgen_singleCore/64/iterations:1/real_time",
+      "name": "BMmgen_singleCore/64/iterations:1/real_time",
+      "run_name": "BMmgen_singleCore/64/iterations:1/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,
@@ -95,8 +95,8 @@ CPU MODEL:  Intel(R) Xeon(R) CPU E5-2695 v4 @ 2.10GHz
       "time_unit": "ms"
     },
     {
-      "name": "BM_mgen_singleCore/256/iterations:1/real_time",
-      "run_name": "BM_mgen_singleCore/256/iterations:1/real_time",
+      "name": "BMmgen_singleCore/256/iterations:1/real_time",
+      "run_name": "BMmgen_singleCore/256/iterations:1/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,
@@ -107,8 +107,8 @@ CPU MODEL:  Intel(R) Xeon(R) CPU E5-2695 v4 @ 2.10GHz
       "time_unit": "ms"
     },
     {
-      "name": "BM_mgen_singleCore/1024/iterations:1/real_time",
-      "run_name": "BM_mgen_singleCore/1024/iterations:1/real_time",
+      "name": "BMmgen_singleCore/1024/iterations:1/real_time",
+      "run_name": "BMmgen_singleCore/1024/iterations:1/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,
@@ -119,8 +119,8 @@ CPU MODEL:  Intel(R) Xeon(R) CPU E5-2695 v4 @ 2.10GHz
       "time_unit": "ms"
     },
     {
-      "name": "BM_mgen_singleCore/4096/iterations:1/real_time",
-      "run_name": "BM_mgen_singleCore/4096/iterations:1/real_time",
+      "name": "BMmgen_singleCore/4096/iterations:1/real_time",
+      "run_name": "BMmgen_singleCore/4096/iterations:1/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,
@@ -131,8 +131,8 @@ CPU MODEL:  Intel(R) Xeon(R) CPU E5-2695 v4 @ 2.10GHz
       "time_unit": "ms"
     },
     {
-      "name": "BM_mgen_singleCore/16384/iterations:1/real_time",
-      "run_name": "BM_mgen_singleCore/16384/iterations:1/real_time",
+      "name": "BMmgen_singleCore/16384/iterations:1/real_time",
+      "run_name": "BMmgen_singleCore/16384/iterations:1/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,
@@ -143,8 +143,8 @@ CPU MODEL:  Intel(R) Xeon(R) CPU E5-2695 v4 @ 2.10GHz
       "time_unit": "ms"
     },
     {
-      "name": "BM_mgen_singleCore/65536/iterations:1/real_time",
-      "run_name": "BM_mgen_singleCore/65536/iterations:1/real_time",
+      "name": "BMmgen_singleCore/65536/iterations:1/real_time",
+      "run_name": "BMmgen_singleCore/65536/iterations:1/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,
@@ -155,8 +155,8 @@ CPU MODEL:  Intel(R) Xeon(R) CPU E5-2695 v4 @ 2.10GHz
       "time_unit": "ms"
     },
     {
-      "name": "BM_mgen_singleCore/262144/iterations:1/real_time",
-      "run_name": "BM_mgen_singleCore/262144/iterations:1/real_time",
+      "name": "BMmgen_singleCore/262144/iterations:1/real_time",
+      "run_name": "BMmgen_singleCore/262144/iterations:1/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,
@@ -167,8 +167,8 @@ CPU MODEL:  Intel(R) Xeon(R) CPU E5-2695 v4 @ 2.10GHz
       "time_unit": "ms"
     },
     {
-      "name": "BM_mgen_multiCore/inprocCore/32/2/iterations:1/real_time",
-      "run_name": "BM_mgen_multiCore/inprocCore/32/2/iterations:1/real_time",
+      "name": "BMmgen_multiCore/inprocCore/32/2/iterations:1/real_time",
+      "run_name": "BMmgen_multiCore/inprocCore/32/2/iterations:1/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,
@@ -179,8 +179,8 @@ CPU MODEL:  Intel(R) Xeon(R) CPU E5-2695 v4 @ 2.10GHz
       "time_unit": "ms"
     },
     {
-      "name": "BM_mgen_multiCore/inprocCore/64/2/iterations:1/real_time",
-      "run_name": "BM_mgen_multiCore/inprocCore/64/2/iterations:1/real_time",
+      "name": "BMmgen_multiCore/inprocCore/64/2/iterations:1/real_time",
+      "run_name": "BMmgen_multiCore/inprocCore/64/2/iterations:1/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,
@@ -191,8 +191,8 @@ CPU MODEL:  Intel(R) Xeon(R) CPU E5-2695 v4 @ 2.10GHz
       "time_unit": "ms"
     },
     {
-      "name": "BM_mgen_multiCore/inprocCore/512/2/iterations:1/real_time",
-      "run_name": "BM_mgen_multiCore/inprocCore/512/2/iterations:1/real_time",
+      "name": "BMmgen_multiCore/inprocCore/512/2/iterations:1/real_time",
+      "run_name": "BMmgen_multiCore/inprocCore/512/2/iterations:1/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,
@@ -203,8 +203,8 @@ CPU MODEL:  Intel(R) Xeon(R) CPU E5-2695 v4 @ 2.10GHz
       "time_unit": "ms"
     },
     {
-      "name": "BM_mgen_multiCore/inprocCore/4096/2/iterations:1/real_time",
-      "run_name": "BM_mgen_multiCore/inprocCore/4096/2/iterations:1/real_time",
+      "name": "BMmgen_multiCore/inprocCore/4096/2/iterations:1/real_time",
+      "run_name": "BMmgen_multiCore/inprocCore/4096/2/iterations:1/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,
@@ -215,8 +215,8 @@ CPU MODEL:  Intel(R) Xeon(R) CPU E5-2695 v4 @ 2.10GHz
       "time_unit": "ms"
     },
     {
-      "name": "BM_mgen_multiCore/inprocCore/32768/2/iterations:1/real_time",
-      "run_name": "BM_mgen_multiCore/inprocCore/32768/2/iterations:1/real_time",
+      "name": "BMmgen_multiCore/inprocCore/32768/2/iterations:1/real_time",
+      "run_name": "BMmgen_multiCore/inprocCore/32768/2/iterations:1/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,
@@ -227,8 +227,8 @@ CPU MODEL:  Intel(R) Xeon(R) CPU E5-2695 v4 @ 2.10GHz
       "time_unit": "ms"
     },
     {
-      "name": "BM_mgen_multiCore/inprocCore/32/8/iterations:1/real_time",
-      "run_name": "BM_mgen_multiCore/inprocCore/32/8/iterations:1/real_time",
+      "name": "BMmgen_multiCore/inprocCore/32/8/iterations:1/real_time",
+      "run_name": "BMmgen_multiCore/inprocCore/32/8/iterations:1/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,
@@ -239,8 +239,8 @@ CPU MODEL:  Intel(R) Xeon(R) CPU E5-2695 v4 @ 2.10GHz
       "time_unit": "ms"
     },
     {
-      "name": "BM_mgen_multiCore/inprocCore/64/8/iterations:1/real_time",
-      "run_name": "BM_mgen_multiCore/inprocCore/64/8/iterations:1/real_time",
+      "name": "BMmgen_multiCore/inprocCore/64/8/iterations:1/real_time",
+      "run_name": "BMmgen_multiCore/inprocCore/64/8/iterations:1/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,
@@ -251,8 +251,8 @@ CPU MODEL:  Intel(R) Xeon(R) CPU E5-2695 v4 @ 2.10GHz
       "time_unit": "ms"
     },
     {
-      "name": "BM_mgen_multiCore/inprocCore/512/8/iterations:1/real_time",
-      "run_name": "BM_mgen_multiCore/inprocCore/512/8/iterations:1/real_time",
+      "name": "BMmgen_multiCore/inprocCore/512/8/iterations:1/real_time",
+      "run_name": "BMmgen_multiCore/inprocCore/512/8/iterations:1/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,
@@ -263,8 +263,8 @@ CPU MODEL:  Intel(R) Xeon(R) CPU E5-2695 v4 @ 2.10GHz
       "time_unit": "ms"
     },
     {
-      "name": "BM_mgen_multiCore/inprocCore/4096/8/iterations:1/real_time",
-      "run_name": "BM_mgen_multiCore/inprocCore/4096/8/iterations:1/real_time",
+      "name": "BMmgen_multiCore/inprocCore/4096/8/iterations:1/real_time",
+      "run_name": "BMmgen_multiCore/inprocCore/4096/8/iterations:1/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,
@@ -275,8 +275,8 @@ CPU MODEL:  Intel(R) Xeon(R) CPU E5-2695 v4 @ 2.10GHz
       "time_unit": "ms"
     },
     {
-      "name": "BM_mgen_multiCore/inprocCore/32768/8/iterations:1/real_time",
-      "run_name": "BM_mgen_multiCore/inprocCore/32768/8/iterations:1/real_time",
+      "name": "BMmgen_multiCore/inprocCore/32768/8/iterations:1/real_time",
+      "run_name": "BMmgen_multiCore/inprocCore/32768/8/iterations:1/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,
@@ -287,8 +287,8 @@ CPU MODEL:  Intel(R) Xeon(R) CPU E5-2695 v4 @ 2.10GHz
       "time_unit": "ms"
     },
     {
-      "name": "BM_mgen_multiCore/inprocCore/32/64/iterations:1/real_time",
-      "run_name": "BM_mgen_multiCore/inprocCore/32/64/iterations:1/real_time",
+      "name": "BMmgen_multiCore/inprocCore/32/64/iterations:1/real_time",
+      "run_name": "BMmgen_multiCore/inprocCore/32/64/iterations:1/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,
@@ -299,8 +299,8 @@ CPU MODEL:  Intel(R) Xeon(R) CPU E5-2695 v4 @ 2.10GHz
       "time_unit": "ms"
     },
     {
-      "name": "BM_mgen_multiCore/inprocCore/64/64/iterations:1/real_time",
-      "run_name": "BM_mgen_multiCore/inprocCore/64/64/iterations:1/real_time",
+      "name": "BMmgen_multiCore/inprocCore/64/64/iterations:1/real_time",
+      "run_name": "BMmgen_multiCore/inprocCore/64/64/iterations:1/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,
@@ -311,8 +311,8 @@ CPU MODEL:  Intel(R) Xeon(R) CPU E5-2695 v4 @ 2.10GHz
       "time_unit": "ms"
     },
     {
-      "name": "BM_mgen_multiCore/inprocCore/512/64/iterations:1/real_time",
-      "run_name": "BM_mgen_multiCore/inprocCore/512/64/iterations:1/real_time",
+      "name": "BMmgen_multiCore/inprocCore/512/64/iterations:1/real_time",
+      "run_name": "BMmgen_multiCore/inprocCore/512/64/iterations:1/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,
@@ -323,8 +323,8 @@ CPU MODEL:  Intel(R) Xeon(R) CPU E5-2695 v4 @ 2.10GHz
       "time_unit": "ms"
     },
     {
-      "name": "BM_mgen_multiCore/inprocCore/4096/64/iterations:1/real_time",
-      "run_name": "BM_mgen_multiCore/inprocCore/4096/64/iterations:1/real_time",
+      "name": "BMmgen_multiCore/inprocCore/4096/64/iterations:1/real_time",
+      "run_name": "BMmgen_multiCore/inprocCore/4096/64/iterations:1/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,
@@ -335,8 +335,8 @@ CPU MODEL:  Intel(R) Xeon(R) CPU E5-2695 v4 @ 2.10GHz
       "time_unit": "ms"
     },
     {
-      "name": "BM_mgen_multiCore/inprocCore/32768/64/iterations:1/real_time",
-      "run_name": "BM_mgen_multiCore/inprocCore/32768/64/iterations:1/real_time",
+      "name": "BMmgen_multiCore/inprocCore/32768/64/iterations:1/real_time",
+      "run_name": "BMmgen_multiCore/inprocCore/32768/64/iterations:1/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,
@@ -347,8 +347,8 @@ CPU MODEL:  Intel(R) Xeon(R) CPU E5-2695 v4 @ 2.10GHz
       "time_unit": "ms"
     },
     {
-      "name": "BM_mgen_multiCore/inprocCore_big2/131072/2/iterations:1/real_time",
-      "run_name": "BM_mgen_multiCore/inprocCore_big2/131072/2/iterations:1/real_time",
+      "name": "BMmgen_multiCore/inprocCore_big2/131072/2/iterations:1/real_time",
+      "run_name": "BMmgen_multiCore/inprocCore_big2/131072/2/iterations:1/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,
@@ -359,8 +359,8 @@ CPU MODEL:  Intel(R) Xeon(R) CPU E5-2695 v4 @ 2.10GHz
       "time_unit": "ms"
     },
     {
-      "name": "BM_mgen_multiCore/inprocCore_big2/262144/2/iterations:1/real_time",
-      "run_name": "BM_mgen_multiCore/inprocCore_big2/262144/2/iterations:1/real_time",
+      "name": "BMmgen_multiCore/inprocCore_big2/262144/2/iterations:1/real_time",
+      "run_name": "BMmgen_multiCore/inprocCore_big2/262144/2/iterations:1/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,
@@ -371,8 +371,8 @@ CPU MODEL:  Intel(R) Xeon(R) CPU E5-2695 v4 @ 2.10GHz
       "time_unit": "ms"
     },
     {
-      "name": "BM_mgen_multiCore/inprocCore_big2/524288/2/iterations:1/real_time",
-      "run_name": "BM_mgen_multiCore/inprocCore_big2/524288/2/iterations:1/real_time",
+      "name": "BMmgen_multiCore/inprocCore_big2/524288/2/iterations:1/real_time",
+      "run_name": "BMmgen_multiCore/inprocCore_big2/524288/2/iterations:1/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,
@@ -383,8 +383,8 @@ CPU MODEL:  Intel(R) Xeon(R) CPU E5-2695 v4 @ 2.10GHz
       "time_unit": "ms"
     },
     {
-      "name": "BM_mgen_multiCore/inprocCore_big8/131072/8/iterations:1/real_time",
-      "run_name": "BM_mgen_multiCore/inprocCore_big8/131072/8/iterations:1/real_time",
+      "name": "BMmgen_multiCore/inprocCore_big8/131072/8/iterations:1/real_time",
+      "run_name": "BMmgen_multiCore/inprocCore_big8/131072/8/iterations:1/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,
@@ -395,8 +395,8 @@ CPU MODEL:  Intel(R) Xeon(R) CPU E5-2695 v4 @ 2.10GHz
       "time_unit": "ms"
     },
     {
-      "name": "BM_mgen_multiCore/inprocCore_big8/262144/8/iterations:1/real_time",
-      "run_name": "BM_mgen_multiCore/inprocCore_big8/262144/8/iterations:1/real_time",
+      "name": "BMmgen_multiCore/inprocCore_big8/262144/8/iterations:1/real_time",
+      "run_name": "BMmgen_multiCore/inprocCore_big8/262144/8/iterations:1/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,
@@ -407,8 +407,8 @@ CPU MODEL:  Intel(R) Xeon(R) CPU E5-2695 v4 @ 2.10GHz
       "time_unit": "ms"
     },
     {
-      "name": "BM_mgen_multiCore/inprocCore_big8/524288/8/iterations:1/real_time",
-      "run_name": "BM_mgen_multiCore/inprocCore_big8/524288/8/iterations:1/real_time",
+      "name": "BMmgen_multiCore/inprocCore_big8/524288/8/iterations:1/real_time",
+      "run_name": "BMmgen_multiCore/inprocCore_big8/524288/8/iterations:1/real_time",
       "run_type": "iteration",
       "repetitions": 0,
       "repetition_index": 0,
