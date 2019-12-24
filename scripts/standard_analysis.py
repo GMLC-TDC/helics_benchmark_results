@@ -94,6 +94,8 @@ def make_SA_graphs(meta_bmk_df, bm, run_id, output_path):
 
 def _auto_run(args):
     run_dirs_list, paths_with_reports = find_runs(args.benchmark_results_dir)
+    # TDH (2019-12-23): Trying to keep the processing of the benchmarks in a consistent order
+    run_dirs_list.sort()
     if args.remove_all_reports:
         run_dirs_list = remove_all_reports(run_dirs_list, paths_with_reports)
     for path in run_dirs_list:
@@ -122,7 +124,7 @@ if __name__ == '__main__':
                         level=logging.INFO)
     parser = argparse.ArgumentParser(description='Generate PDF report.')
     parser.add_argument('benchmark_results_dir', nargs='?',
-                        default='../benchmark_results/2019-12-02')
+                        default='../benchmark_results/')
     parser.add_argument('remove_all_reports', nargs='?',
                         default=False)
     args = parser.parse_args()
