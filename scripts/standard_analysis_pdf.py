@@ -135,6 +135,9 @@ def grab_header_metadata(json_results, run_id):
 
 def add_benchmark_graphs(pdf, output_path):
     for root, dirs, files in os.walk(output_path):
+        # TDH (2019-12-23): Trying to keep the graphs in a consistent order so they appear in the report in the
+        #   same order from report to report.
+        files.sort()
         for file in files:
             name, extension = os.path.splitext(file)
             if extension == '.png':
