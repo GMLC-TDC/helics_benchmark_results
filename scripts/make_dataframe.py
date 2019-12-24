@@ -10,12 +10,14 @@ import json
 import pandas as pd
 import os
 from functools import reduce
+import benchmark_postprocessing as bmpp
+
 
 ### TODO: turn these into function(s) and figure out how to combine them
 ### into one meta-data frame.
 ### Creating benchmarks dataframe.
 
-def make_dataframe(json_file):
+def make_dataframe(json_results):
     """This function creates a meta data frame to be used for 
     post-processing the Benchmark Results.
     
@@ -25,9 +27,16 @@ def make_dataframe(json_file):
     Returns:
         meta_df: a data frame of all benckmark information
     """
-
-    with open(json_file, 'r') as f:
-        dct = json.load(f)
+    
+    # TDH (2019-12-23): Doing some datatype checking to figure out if we were 
+    #   passed in a json dictionary (in which case we really need to do little
+    #   else) or something else. I assume "something else" is a path as a string
+    #   to a JSON file that contains the results.
+    if isinstance(json_results, dict):
+        dct = json_results
+    else: 
+        with open(json_results, 'r') as f:
+            dct = json.load(f)
     # pprint(f_dict)
     
     ### Getting the benchmarks columns and creating a data frame.
@@ -153,12 +162,13 @@ def make_dataframe(json_file):
     ### Concatenating all three data frames into one meta data frame
     ### and sending to csv.
     meta_bmk_df = reduce(lambda x, y: pd.merge(x, y, on='identifier_id', how='outer'), [info_df, cache_df, bmk_df])
-    meta_bmk_df.to_csv(r'{}\bmk_meta_df.csv'.format(os.getcwd()))
+    csv_path = os.path.join(os.getcwd(), 'bmk_meta_df.csv')
+    meta_bmk_df.to_csv(r'{}'.format(csv_path))
     
     ### Reading in the csv; seems unnecessary, but works due to
     ### plotting difficulties.
-    naerm_dir = os.path.join(os.getcwd())
-    final_meta_bmk_df = pd.read_csv(os.path.join(naerm_dir, 'bmk_meta_df.csv'), index_col='Unnamed: 0')
+    final_meta_bmk_df = pd.read_csv(csv_path, index_col='Unnamed: 0')
+    os.remove(csv_path)
     
     return final_meta_bmk_df
 
