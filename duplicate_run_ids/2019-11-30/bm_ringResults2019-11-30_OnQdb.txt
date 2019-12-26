@@ -1,21 +1,21 @@
 HELICS_BENCHMARK: ringBenchmark
 ------------HELICS BUILD INFO -------------
-HELICS VERSION: 2.3.1-benchmark_old_cmake-g9fe5f995 (2019-11-29)
-ZMQ VERSION: ZMQ v4.3.2
-COMPILER INFO: Unix Makefiles Linux-5.2.15-200.fc30.x86_64:GNU-9.2.1
-BUILD FLAGS:  -O2 -DNDEBUG  $<$<COMPILE_LANGUAGE:CXX>:-std=c++14> 
+HELICS VERSION: 2.3.1-benchmark_old_cmake-g5c2e1f79 (2019-11-30)
+ZMQ VERSION: ZMQ v4.2.5
+COMPILER INFO: Ninja  Linux-4.15.0-65-generic:GNU-7.4.0
+BUILD FLAGS:  -O3 -DNDEBUG  $<$<COMPILE_LANGUAGE:CXX>:-std=c++14> 
 ------------PROCESSOR INFO ----------------
 HOST PROCESSOR TYPE: x86_64
-CPU MODEL:  Intel(R) Core(TM) i3-8350K CPU @ 4.00GHz
+CPU MODEL:  AMD Ryzen Threadripper 1950X 16-Core Processor
 -------------------------------------------
 {
   "context": {
-    "date": "2019-11-29 13:25:29",
-    "host_name": "localhost.localdomain",
-    "executable": "./ringBenchmarks",
-    "num_cpus": 4,
-    "mhz_per_cpu": 4000,
-    "cpu_scaling_enabled": true,
+    "date": "2019-11-30 15:32:18",
+    "host_name": "UbuntuVirt",
+    "executable": "/home/phlptp/gcc_benchmarks/benchmarks/helics/ringBenchmarks",
+    "num_cpus": 8,
+    "mhz_per_cpu": 3394,
+    "cpu_scaling_enabled": false,
     "caches": [
       {
         "type": "Data",
@@ -26,24 +26,24 @@ CPU MODEL:  Intel(R) Core(TM) i3-8350K CPU @ 4.00GHz
       {
         "type": "Instruction",
         "level": 1,
-        "size": 32000000,
+        "size": 64000000,
         "num_sharing": 1
       },
       {
         "type": "Unified",
         "level": 2,
-        "size": 256000000,
+        "size": 512000000,
         "num_sharing": 1
       },
       {
         "type": "Unified",
         "level": 3,
-        "size": 8192000000,
-        "num_sharing": 4
+        "size": 32768000000,
+        "num_sharing": 8
       }
     ],
-    "load_avg": [0.86,0.46,0.7],
-    "library_build_type": "release"
+    "load_avg": [3,0.79,0.46],
+    "library_build_type": "debug"
   },
   "benchmarks": [
     {
@@ -54,8 +54,8 @@ CPU MODEL:  Intel(R) Core(TM) i3-8350K CPU @ 4.00GHz
       "repetition_index": 0,
       "threads": 1,
       "iterations": 3,
-      "real_time": 1.8589421933393169e+02,
-      "cpu_time": 8.8361739000000000e+01,
+      "real_time": 1.1709202989999692e+03,
+      "cpu_time": 6.1040013400000009e+02,
       "time_unit": "ms"
     },
     {
@@ -65,9 +65,9 @@ CPU MODEL:  Intel(R) Core(TM) i3-8350K CPU @ 4.00GHz
       "repetitions": 0,
       "repetition_index": 0,
       "threads": 1,
-      "iterations": 2,
-      "real_time": 3.9441293499930907e+02,
-      "cpu_time": 6.8568045999999939e+01,
+      "iterations": 1,
+      "real_time": 3.0034759400000439e+03,
+      "cpu_time": 6.2569391000000053e+02,
       "time_unit": "ms"
     },
     {
@@ -78,8 +78,8 @@ CPU MODEL:  Intel(R) Core(TM) i3-8350K CPU @ 4.00GHz
       "repetition_index": 0,
       "threads": 1,
       "iterations": 1,
-      "real_time": 6.8802643799972429e+02,
-      "cpu_time": 7.9420603999999841e+01,
+      "real_time": 4.5350316099998054e+03,
+      "cpu_time": 7.9049601600000005e+02,
       "time_unit": "ms"
     },
     {
@@ -90,8 +90,8 @@ CPU MODEL:  Intel(R) Core(TM) i3-8350K CPU @ 4.00GHz
       "repetition_index": 0,
       "threads": 1,
       "iterations": 1,
-      "real_time": 7.3336587599806080e+02,
-      "cpu_time": 6.3747394000000071e+01,
+      "real_time": 6.2471755140004461e+03,
+      "cpu_time": 8.2786719099999925e+02,
       "time_unit": "ms"
     },
     {
@@ -102,8 +102,8 @@ CPU MODEL:  Intel(R) Core(TM) i3-8350K CPU @ 4.00GHz
       "repetition_index": 0,
       "threads": 1,
       "iterations": 1,
-      "real_time": 1.0744800369975565e+03,
-      "cpu_time": 6.5418905000000024e+01,
+      "real_time": 9.2231549489999907e+03,
+      "cpu_time": 8.5551627900000062e+02,
       "time_unit": "ms"
     },
     {
@@ -114,8 +114,8 @@ CPU MODEL:  Intel(R) Core(TM) i3-8350K CPU @ 4.00GHz
       "repetition_index": 0,
       "threads": 1,
       "iterations": 1,
-      "real_time": 2.8810429360019043e+03,
-      "cpu_time": 1.2747532100000004e+02,
+      "real_time": 1.5686738206999962e+04,
+      "cpu_time": 9.0158591500000091e+02,
       "time_unit": "ms"
     },
     {
@@ -126,8 +126,8 @@ CPU MODEL:  Intel(R) Core(TM) i3-8350K CPU @ 4.00GHz
       "repetition_index": 0,
       "threads": 1,
       "iterations": 1,
-      "real_time": 3.4570976310005790e+03,
-      "cpu_time": 6.6592607999999998e+01,
+      "real_time": 3.1669355493999545e+04,
+      "cpu_time": 9.4085083900000029e+02,
       "time_unit": "ms"
     },
     {
@@ -138,8 +138,8 @@ CPU MODEL:  Intel(R) Core(TM) i3-8350K CPU @ 4.00GHz
       "repetition_index": 0,
       "threads": 1,
       "iterations": 1,
-      "real_time": 4.6412643789990398e+03,
-      "cpu_time": 3.3298420700000020e+02,
+      "real_time": 5.9820410240004094e+03,
+      "cpu_time": 6.3952756000000034e+02,
       "time_unit": "ms"
     },
     {
@@ -150,8 +150,8 @@ CPU MODEL:  Intel(R) Core(TM) i3-8350K CPU @ 4.00GHz
       "repetition_index": 0,
       "threads": 1,
       "iterations": 1,
-      "real_time": 6.0277037169998948e+03,
-      "cpu_time": 3.0635689799999977e+02,
+      "real_time": 9.1940984449997813e+03,
+      "cpu_time": 8.3040913400000079e+02,
       "time_unit": "ms"
     },
     {
@@ -162,8 +162,8 @@ CPU MODEL:  Intel(R) Core(TM) i3-8350K CPU @ 4.00GHz
       "repetition_index": 0,
       "threads": 1,
       "iterations": 1,
-      "real_time": 4.4698529969991796e+03,
-      "cpu_time": 1.8996657700000031e+02,
+      "real_time": 1.2503065826999773e+04,
+      "cpu_time": 8.7745523300000093e+02,
       "time_unit": "ms"
     },
     {
@@ -174,8 +174,8 @@ CPU MODEL:  Intel(R) Core(TM) i3-8350K CPU @ 4.00GHz
       "repetition_index": 0,
       "threads": 1,
       "iterations": 1,
-      "real_time": 7.2088793059992895e+03,
-      "cpu_time": 2.0042170899999979e+02,
+      "real_time": 1.9054953507999926e+04,
+      "cpu_time": 9.0873114700000099e+02,
       "time_unit": "ms"
     },
     {
@@ -186,20 +186,8 @@ CPU MODEL:  Intel(R) Core(TM) i3-8350K CPU @ 4.00GHz
       "repetition_index": 0,
       "threads": 1,
       "iterations": 1,
-      "real_time": 1.0494787956000437e+04,
-      "cpu_time": 1.7905266700000010e+02,
-      "time_unit": "ms"
-    },
-    {
-      "name": "BMring_multiCore/zmqCore/20/real_time",
-      "run_name": "BMring_multiCore/zmqCore/20/real_time",
-      "run_type": "iteration",
-      "repetitions": 0,
-      "repetition_index": 0,
-      "threads": 1,
-      "iterations": 1,
-      "real_time": 2.2382415382997351e+04,
-      "cpu_time": 1.8800399000000033e+02,
+      "real_time": 3.3364971008000342e+04,
+      "cpu_time": 9.6150697499999887e+02,
       "time_unit": "ms"
     },
     {
@@ -210,8 +198,8 @@ CPU MODEL:  Intel(R) Core(TM) i3-8350K CPU @ 4.00GHz
       "repetition_index": 0,
       "threads": 1,
       "iterations": 1,
-      "real_time": 1.3450379009991593e+03,
-      "cpu_time": 6.5284611999999683e+01,
+      "real_time": 4.9082062210000004e+03,
+      "cpu_time": 8.8737279699999942e+02,
       "time_unit": "ms"
     },
     {
@@ -222,8 +210,8 @@ CPU MODEL:  Intel(R) Core(TM) i3-8350K CPU @ 4.00GHz
       "repetition_index": 0,
       "threads": 1,
       "iterations": 1,
-      "real_time": 3.0912191070001427e+03,
-      "cpu_time": 1.3643558299999992e+02,
+      "real_time": 7.4031985800002076e+03,
+      "cpu_time": 8.3847180699999763e+02,
       "time_unit": "ms"
     },
     {
@@ -234,8 +222,8 @@ CPU MODEL:  Intel(R) Core(TM) i3-8350K CPU @ 4.00GHz
       "repetition_index": 0,
       "threads": 1,
       "iterations": 1,
-      "real_time": 4.8496101199998520e+03,
-      "cpu_time": 1.4741921300000004e+02,
+      "real_time": 1.0300262486999600e+04,
+      "cpu_time": 8.6192909500000064e+02,
       "time_unit": "ms"
     },
     {
@@ -246,8 +234,8 @@ CPU MODEL:  Intel(R) Core(TM) i3-8350K CPU @ 4.00GHz
       "repetition_index": 0,
       "threads": 1,
       "iterations": 1,
-      "real_time": 9.0410671659992659e+03,
-      "cpu_time": 1.2935141700000008e+02,
+      "real_time": 1.6033962327000154e+04,
+      "cpu_time": 6.7489233600000273e+02,
       "time_unit": "ms"
     },
     {
@@ -258,20 +246,8 @@ CPU MODEL:  Intel(R) Core(TM) i3-8350K CPU @ 4.00GHz
       "repetition_index": 0,
       "threads": 1,
       "iterations": 1,
-      "real_time": 1.9127338123997106e+04,
-      "cpu_time": 9.7929329999999922e+01,
-      "time_unit": "ms"
-    },
-    {
-      "name": "BMring_multiCore/zmqssCore/20/real_time",
-      "run_name": "BMring_multiCore/zmqssCore/20/real_time",
-      "run_type": "iteration",
-      "repetitions": 0,
-      "repetition_index": 0,
-      "threads": 1,
-      "iterations": 1,
-      "real_time": 6.4597364745000959e+04,
-      "cpu_time": 1.2661075800000043e+02,
+      "real_time": 3.7638927180999417e+04,
+      "cpu_time": 6.8668972999999767e+02,
       "time_unit": "ms"
     },
     {
@@ -282,8 +258,8 @@ CPU MODEL:  Intel(R) Core(TM) i3-8350K CPU @ 4.00GHz
       "repetition_index": 0,
       "threads": 1,
       "iterations": 1,
-      "real_time": 5.1917666600093071e+02,
-      "cpu_time": 6.4846231000000202e+01,
+      "real_time": 4.5794294020001871e+03,
+      "cpu_time": 6.7249764499999992e+02,
       "time_unit": "ms"
     },
     {
@@ -294,8 +270,8 @@ CPU MODEL:  Intel(R) Core(TM) i3-8350K CPU @ 4.00GHz
       "repetition_index": 0,
       "threads": 1,
       "iterations": 1,
-      "real_time": 7.9807418400014285e+02,
-      "cpu_time": 6.5263586999999575e+01,
+      "real_time": 6.9116154769999412e+03,
+      "cpu_time": 8.4904055299999823e+02,
       "time_unit": "ms"
     },
     {
@@ -306,8 +282,8 @@ CPU MODEL:  Intel(R) Core(TM) i3-8350K CPU @ 4.00GHz
       "repetition_index": 0,
       "threads": 1,
       "iterations": 1,
-      "real_time": 1.0282101609991514e+03,
-      "cpu_time": 6.3801545000000459e+01,
+      "real_time": 8.7825480329997845e+03,
+      "cpu_time": 8.3243136399999787e+02,
       "time_unit": "ms"
     },
     {
@@ -318,8 +294,8 @@ CPU MODEL:  Intel(R) Core(TM) i3-8350K CPU @ 4.00GHz
       "repetition_index": 0,
       "threads": 1,
       "iterations": 1,
-      "real_time": 1.2317014020009083e+03,
-      "cpu_time": 1.5161728200000013e+02,
+      "real_time": 5.1153618870002902e+03,
+      "cpu_time": 6.8881058899999914e+02,
       "time_unit": "ms"
     },
     {
@@ -330,8 +306,8 @@ CPU MODEL:  Intel(R) Core(TM) i3-8350K CPU @ 4.00GHz
       "repetition_index": 0,
       "threads": 1,
       "iterations": 1,
-      "real_time": 1.9854345110015856e+03,
-      "cpu_time": 1.6395661599999966e+02,
+      "real_time": 7.7336220859997411e+03,
+      "cpu_time": 7.6995062399999983e+02,
       "time_unit": "ms"
     },
     {
@@ -342,8 +318,8 @@ CPU MODEL:  Intel(R) Core(TM) i3-8350K CPU @ 4.00GHz
       "repetition_index": 0,
       "threads": 1,
       "iterations": 1,
-      "real_time": 2.6324019839976245e+03,
-      "cpu_time": 1.6647800699999937e+02,
+      "real_time": 1.0536119220000273e+04,
+      "cpu_time": 8.0991970999999910e+02,
       "time_unit": "ms"
     },
     {
@@ -354,8 +330,8 @@ CPU MODEL:  Intel(R) Core(TM) i3-8350K CPU @ 4.00GHz
       "repetition_index": 0,
       "threads": 1,
       "iterations": 1,
-      "real_time": 3.8961433470012707e+03,
-      "cpu_time": 1.6809678600000044e+02,
+      "real_time": 1.5450750503000108e+04,
+      "cpu_time": 8.0364773199999468e+02,
       "time_unit": "ms"
     },
     {
@@ -366,20 +342,8 @@ CPU MODEL:  Intel(R) Core(TM) i3-8350K CPU @ 4.00GHz
       "repetition_index": 0,
       "threads": 1,
       "iterations": 1,
-      "real_time": 6.3768117359995813e+03,
-      "cpu_time": 1.6510201099999921e+02,
-      "time_unit": "ms"
-    },
-    {
-      "name": "BMring_multiCore/tcpCore/20/real_time",
-      "run_name": "BMring_multiCore/tcpCore/20/real_time",
-      "run_type": "iteration",
-      "repetitions": 0,
-      "repetition_index": 0,
-      "threads": 1,
-      "iterations": 1,
-      "real_time": 1.2232286866999857e+04,
-      "cpu_time": 1.5772947400000081e+02,
+      "real_time": 2.6717561699000271e+04,
+      "cpu_time": 8.5853929599999651e+02,
       "time_unit": "ms"
     },
     {
@@ -390,8 +354,8 @@ CPU MODEL:  Intel(R) Core(TM) i3-8350K CPU @ 4.00GHz
       "repetition_index": 0,
       "threads": 1,
       "iterations": 1,
-      "real_time": 2.6290547752800194e+05,
-      "cpu_time": 1.4492596329999997e+03,
+      "real_time": 7.4123860060200014e+05,
+      "cpu_time": 2.4823819790000030e+03,
       "time_unit": "ms"
     },
     {
@@ -402,8 +366,8 @@ CPU MODEL:  Intel(R) Core(TM) i3-8350K CPU @ 4.00GHz
       "repetition_index": 0,
       "threads": 1,
       "iterations": 1,
-      "real_time": 4.3372928932900139e+05,
-      "cpu_time": 1.3179038969999999e+03,
+      "real_time": 1.0523714526450008e+06,
+      "cpu_time": 2.0152967329999997e+03,
       "time_unit": "ms"
     },
     {
@@ -414,8 +378,8 @@ CPU MODEL:  Intel(R) Core(TM) i3-8350K CPU @ 4.00GHz
       "repetition_index": 0,
       "threads": 1,
       "iterations": 1,
-      "real_time": 6.3511223577599775e+05,
-      "cpu_time": 1.3896606979999992e+03,
+      "real_time": 1.4693123721879993e+06,
+      "cpu_time": 1.9999499879999973e+03,
       "time_unit": "ms"
     },
     {
@@ -426,8 +390,80 @@ CPU MODEL:  Intel(R) Core(TM) i3-8350K CPU @ 4.00GHz
       "repetition_index": 0,
       "threads": 1,
       "iterations": 1,
-      "real_time": 1.0033916502689990e+06,
-      "cpu_time": 1.3798522160000016e+03,
+      "real_time": 2.3521482319800006e+06,
+      "cpu_time": 1.9290092050000035e+03,
+      "time_unit": "ms"
+    },
+    {
+      "name": "BMring_multiCore/tcpssCore/10/real_time",
+      "run_name": "BMring_multiCore/tcpssCore/10/real_time",
+      "run_type": "iteration",
+      "repetitions": 0,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 1,
+      "real_time": 4.1578074758869996e+06,
+      "cpu_time": 2.0094305669999990e+03,
+      "time_unit": "ms"
+    },
+    {
+      "name": "BMring_multiCore/udpCore/2/real_time",
+      "run_name": "BMring_multiCore/udpCore/2/real_time",
+      "run_type": "iteration",
+      "repetitions": 0,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 1,
+      "real_time": 4.5864740309971239e+03,
+      "cpu_time": 6.7085270500000865e+02,
+      "time_unit": "ms"
+    },
+    {
+      "name": "BMring_multiCore/udpCore/3/real_time",
+      "run_name": "BMring_multiCore/udpCore/3/real_time",
+      "run_type": "iteration",
+      "repetitions": 0,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 1,
+      "real_time": 7.0064511149976170e+03,
+      "cpu_time": 7.7908086899999773e+02,
+      "time_unit": "ms"
+    },
+    {
+      "name": "BMring_multiCore/udpCore/4/real_time",
+      "run_name": "BMring_multiCore/udpCore/4/real_time",
+      "run_type": "iteration",
+      "repetitions": 0,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 1,
+      "real_time": 9.4411155449997750e+03,
+      "cpu_time": 8.3155062300000532e+02,
+      "time_unit": "ms"
+    },
+    {
+      "name": "BMring_multiCore/udpCore/6/real_time",
+      "run_name": "BMring_multiCore/udpCore/6/real_time",
+      "run_type": "iteration",
+      "repetitions": 0,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 1,
+      "real_time": 1.4135135723001440e+04,
+      "cpu_time": 8.3168864199999598e+02,
+      "time_unit": "ms"
+    },
+    {
+      "name": "BMring_multiCore/udpCore/10/real_time",
+      "run_name": "BMring_multiCore/udpCore/10/real_time",
+      "run_type": "iteration",
+      "repetitions": 0,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 1,
+      "real_time": 2.3877970769999592e+04,
+      "cpu_time": 8.9078669399999910e+02,
       "time_unit": "ms"
     }
   ]
