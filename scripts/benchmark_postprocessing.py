@@ -16,7 +16,7 @@ import pprint
 import os
 import json
 import re
-import uuid
+# import uuid
 import sys
 import standard_analysis as sa
 
@@ -49,7 +49,10 @@ def parse_files(file_list):
                 #    in two identically named files can be different. To solve this problem a unique ID is generated
                 #    for each results file and used as the key in the dictionary for the results in that file.
                 #    The filename and path are saved as entities in the dictionary.
-                uuid_str = str(uuid.uuid4())
+                # uuid_str = str(uuid.uuid4())
+
+                # TDH (2019-12-26): run IDs can now assumed to be unique so filenames should now be unique.
+                uuid_str = filename
                 json_results[uuid_str] = {}
                 json_results[uuid_str]['filename'] = filename
                 json_results[uuid_str]['path'] = path
