@@ -144,6 +144,6 @@ if __name__ == '__main__':
     parser.add_argument('benchmark_results_dir', nargs='?',
                         default='../benchmark_results/')
     parser.add_argument('remove_all_reports', nargs='?',
-                        default=True)
+                        default=False)
     args = parser.parse_args()
     _auto_run(args)
