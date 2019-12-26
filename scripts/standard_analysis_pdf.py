@@ -30,7 +30,7 @@ def create_standard_analysis_report(output_path, json_results, run_id):
     pdf = FPDF()
     pdf.add_page()
     pdf.set_font("Courier", size=8)
-    report_name = run_id + ' standard analysis.pdf'
+    report_name = run_id + '_standard_analysis.pdf'
     report_path = os.path.join(output_path, report_name)
 
     # Create the header metadata from the metadata in the JSON results and write out to PDF

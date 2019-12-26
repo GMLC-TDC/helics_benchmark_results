@@ -58,7 +58,7 @@ def plot_echo_msg(dataframe, run_id, output_path):
                     logy=True,
                     fontsize={'title':9,'labels':10,'xticks':10,'yticks':10}
                     )
-    save_path = os.path.join(output_path, '{} echoMessage.png'.format(run_id))
+    save_path = os.path.join(output_path, '{}_echoMessage.png'.format(run_id))
     hvplot.save(echo_msg, save_path)
     return echo_msg
 
@@ -88,7 +88,7 @@ def plot_echo_result(dataframe, run_id, output_path):
                     logy=True,
                     fontsize={'title':9,'labels':10,'xticks':10,'yticks':10}
                     )
-    save_path = os.path.join(output_path, '{} echoResult.png'.format(run_id))
+    save_path = os.path.join(output_path, '{}_echoResult.png'.format(run_id))
     hvplot.save(echo_res, save_path)
     return echo_res
 
@@ -118,7 +118,7 @@ def plot_msg_lookup(dataframe, run_id, output_path):
                     logy=True,
                     fontsize={'title':9,'labels':10,'xticks':10,'yticks':10}
                     )
-    save_path = os.path.join(output_path, '{} messageLookup.png'.format(run_id))
+    save_path = os.path.join(output_path, '{}_messageLookup.png'.format(run_id))
     hvplot.save(msg_lookup, save_path)
     return msg_lookup
 
@@ -148,7 +148,7 @@ def plot_msg_send_1(dataframe, run_id, output_path):
                     logy=True,
                     fontsize={'title':9,'labels':10,'xticks':10,'yticks':10}
                     )
-    save_path = os.path.join(output_path, '{} messageSend1.png'.format(run_id))
+    save_path = os.path.join(output_path, '{}_messageSend1.png'.format(run_id))
     hvplot.save(msg_send, save_path)
     return msg_send
 
@@ -179,7 +179,7 @@ def plot_msg_send_2(dataframe, run_id, output_path):
                     logy=True,
                     fontsize={'title':9,'labels':10,'xticks':10,'yticks':10}
                     )
-    save_path = os.path.join(output_path, '{} messageSend2.png'.format(run_id))
+    save_path = os.path.join(output_path, '{}_messageSend2.png'.format(run_id))
     hvplot.save(msg_count, save_path)
     return msg_count
 
@@ -210,7 +210,7 @@ def plot_msg_send_3(dataframe, run_id, output_path):
                     logy=True,
                     fontsize={'title':9,'labels':10,'xticks':10,'yticks':10}
                     )
-    save_path = os.path.join(output_path, '{} messageSend3.png'.format(run_id))
+    save_path = os.path.join(output_path, '{}_messageSend3.png'.format(run_id))
     hvplot.save(msg_size, save_path)
     return msg_size
 
@@ -240,7 +240,7 @@ def plot_phold(dataframe, run_id, output_path):
                     logy=True,
                     fontsize={'title':9,'labels':10,'xticks':10,'yticks':10}
                     )
-    save_path = os.path.join(output_path, '{} pHold.png'.format(run_id))
+    save_path = os.path.join(output_path, '{}_pHold.png'.format(run_id))
     hvplot.save(phold, save_path)
     return phold
 
@@ -270,7 +270,7 @@ def plot_ring(dataframe, run_id, output_path):
                     logy=True,
                     fontsize={'title':9,'labels':10,'xticks':10,'yticks':10}
                     )
-    save_path = os.path.join(output_path, '{} ring.png'.format(run_id))
+    save_path = os.path.join(output_path, '{}_ring.png'.format(run_id))
     hvplot.save(ring, save_path)
     return ring
 
@@ -299,7 +299,7 @@ def plot_filter(dataframe, run_id, output_path):
                     height=360,
                     fontsize={'title':9,'labels':10,'xticks':10,'yticks':10}
                     )
-    save_path = os.path.join(output_path, '{} filter.png'.format(run_id))
+    save_path = os.path.join(output_path, '{}_filter.png'.format(run_id))
     hvplot.save(filtr, save_path)
     return filtr
 
@@ -330,7 +330,7 @@ def plot_src(dataframe, run_id, output_path):
                     logy=True,
                     fontsize={'title':9,'labels':10,'xticks':10,'yticks':10}
                     )
-    save_path = os.path.join(output_path, '{} source.png'.format(run_id))
+    save_path = os.path.join(output_path, '{}_source.png'.format(run_id))
     hvplot.save(source, save_path)
     return source
 
@@ -361,7 +361,7 @@ def plot_dest(dataframe, run_id, output_path):
                     logy=True,
                     fontsize={'title':9,'labels':10,'xticks':10,'yticks':10}
                     )
-    save_path = os.path.join(output_path, '{} destination.png'.format(run_id))
+    save_path = os.path.join(output_path, '{}_destination.png'.format(run_id))
     hvplot.save(dest, save_path)
     return dest
 
