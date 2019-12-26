@@ -53,6 +53,9 @@ def parse_files(file_list):
 
                 # TDH (2019-12-26): run IDs can now assumed to be unique so filenames should now be unique.
                 uuid_str = filename
+                if uuid_str in json_results.keys():
+                    logging.error('{} already exists in dictionary and shouldn\'t (filenames should be unique)'.format(uuid_str))
+                    raise Exception('{} already exists in dictionary and shouldn\'t (filenames should be unique)'.format(uuid_str))
                 json_results[uuid_str] = {}
                 json_results[uuid_str]['filename'] = filename
                 json_results[uuid_str]['path'] = path
