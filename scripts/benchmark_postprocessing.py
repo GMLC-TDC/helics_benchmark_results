@@ -18,6 +18,7 @@ import json
 import re
 import uuid
 import sys
+import standard_analysis as sa
 
 # Setting up logging
 logger = logging.getLogger(__name__)
@@ -25,14 +26,15 @@ logger = logging.getLogger(__name__)
 # Setting up pretty printing, mostly for debugging.
 pp = pprint.PrettyPrinter(indent=4)
 
-def get_benchmark_files(results_dir):
-    # Find all the results files in the user-provided results directory
-    file_list = []
-    for root, dirs, files in os.walk(results_dir):
-        for file in files:
-            file_list.append(os.path.join(root, file))
-    logger.info('Files to parse:\n %s', pp.pformat(file_list))
-    return file_list
+# standard_analysis.find_runs() returns a dictionary that contains the runs needed or each
+# def get_benchmark_files(results_dir):
+#     # Find all the results files in the user-provided results directory
+#     file_list = []
+#     for root, dirs, files in os.walk(results_dir):
+#         for file in files:
+#             file_list.append(os.path.join(root, file))
+#     logger.info('Files to parse:\n %s', pp.pformat(file_list))
+#     return file_list
 
 def parse_files(file_list):
     json_results = {}
@@ -409,11 +411,15 @@ def _parse_compiler_string(uuid, json_results):
 
 
 def _auto_run(args):
-    file_list = get_benchmark_files(args.benchmark_results_dir)
-    json_results = parse_files(file_list)
-    json_results = parse_and_add_benchmark_metadata(json_results)
-    with open('bm_results.json', 'w') as outfile:
-        json.dump(json_results, outfile)
+    run_id_dict = sa.find_runs(args.benchmark_results_dir)
+    run_id_dict = sa.add_report_path(run_id_dict)
+    for run_id in run_id_dict:
+        file_list = run_id_dict[run_id]['files']
+        #file_list = get_benchmark_files(args.benchmark_results_dir)
+        json_results = parse_files(file_list)
+        json_results = parse_and_add_benchmark_metadata(json_results)
+        with open('bm_results.json', 'w') as outfile:
+            json.dump(json_results, outfile)
 
     # TDH (2019-12-19): Trouble-shooting function whose purpose you'll never guess
     #_check_missing_core_type(json_results)

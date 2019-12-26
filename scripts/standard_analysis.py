@@ -30,33 +30,45 @@ logger = logging.getLogger(__name__)
 pp = pprint.PrettyPrinter(indent=4)
 
 def find_runs(benchmark_results_dir):
-    run_dirs_list = []
-    paths_with_reports = []
+    run_id_dict = {}
+    # TDH (2019-20-23): Find the unique run IDs. These are the key values that will determine what standard reports
+    #   to generate and which can be skipped (because they already exist).
     for root, dirs, files in os.walk(benchmark_results_dir):
-        for dir in dirs:
-            dir_full_path = os.path.join(root, dir)
-            # Don't generate a report if one already exists
-            if dir_full_path[-6:] == 'report':
-                paths_with_reports.append(dir_full_path)
-                # TDH (2019-12-20): Gotta remove the folder that already has the report in it so we don't re-run it.
-                report_parent, report = os.path.split(dir_full_path)
-                paths_with_reports.append(report_parent)
-            else:
-                run_dirs_list.append(dir_full_path)
-    if len(run_dirs_list) == 0:
-        # The only directory we need to do an analysis in is the one passed in.
-        run_dirs_list.append(root)
-    return run_dirs_list, paths_with_reports
+        for file in files:
+            # If the root ends in 'report' than we are in a report directory and don't need to do much.
+            if root[-6:] != 'report':
+                # TDH (2019-12-26):  Assume only files ending in '.txt' are the results files.
+                #   Files in the reports folders should all end in '.png' or '.pdf'
+                head, tail = os.path.splitext(file)
+                if tail == '.txt':
+                    # TDH (2019-12-23): Assuming that the files are always named such that the run id is the last
+                    #   five characters before the ".txt"...
+                    run_id = file[-9:-4]
+                    if run_id not in run_id_dict:
+                        run_id_dict[run_id] = {}
+                        run_id_dict[run_id]['files'] = []
+
+                        # Checking to see if a report folder exists
+                        report_dir_name = run_id + '_report'
+                        if report_dir_name in dirs:
+                            run_id_dict[run_id]['report_exists'] = True
+                        else:
+                            run_id_dict[run_id]['report_exists'] = False
+                    if 'bm_data_path' not in run_id_dict[run_id].keys():
+                        run_id_dict[run_id]['bm_data_path'] = root
+                    if file not in run_id_dict[run_id]['files']:
+                        run_id_dict[run_id]['files'].append(os.path.join(root,file))
+
+    return run_id_dict
 
 
-def remove_all_reports(run_dirs_list, paths_with_reports):
-    for path in paths_with_reports:
-        if path[-6:] == 'report':
-            shutil.rmtree(path)
-        else:
-            # These are the parents of the dirs with a "report" and now need to be re-run
-            run_dirs_list.append(path)
-    return run_dirs_list
+def remove_all_reports(run_id_dict):
+    for key in run_id_dict:
+        if run_id_dict[key]['report_exists']:
+            shutil.rmtree(run_id_dict[key]['report_path'])
+            run_id_dict[key]['report_exists'] = False
+            logger.info('Removed report directory {}'.format(run_id_dict[key]['report_path']))
+    return run_id_dict
 
 
 def find_bm_to_graph(json_results, run_id):
@@ -90,32 +102,38 @@ def make_SA_graphs(meta_bmk_df, bm, run_id, output_path):
         bmk_plotting.plot_dest(meta_bmk_df, run_id, output_path)
     pass
 
-
+def add_report_path(run_id_dict):
+    for key in run_id_dict:
+        report_dir_name = key + '_report'
+        report_path = os.path.join(run_id_dict[key]['bm_data_path'],report_dir_name)
+        run_id_dict[key]['report_path'] = report_path
+    return run_id_dict
 
 def _auto_run(args):
-    run_dirs_list, paths_with_reports = find_runs(args.benchmark_results_dir)
-    # TDH (2019-12-23): Trying to keep the processing of the benchmarks in a consistent order
-    run_dirs_list.sort()
+    run_id_dict = find_runs(args.benchmark_results_dir)
+    run_id_dict = add_report_path(run_id_dict)
     if args.remove_all_reports:
-        run_dirs_list = remove_all_reports(run_dirs_list, paths_with_reports)
-    for path in run_dirs_list:
-        file_list = bmpp.get_benchmark_files(path)
-        json_results = bmpp.parse_files(file_list)
-        json_results = bmpp.parse_and_add_benchmark_metadata(json_results)
-        meta_bmk_df = md.make_dataframe(json_results)
-        # Any given folder may contain multiple run_ids
-        for run_id in meta_bmk_df.run_id.unique():
-            bm_list = find_bm_to_graph(json_results, run_id)
-            output_path = os.path.join(path, '{}_report'.format(run_id))
-            # Making results directory
-            try:
-                os.mkdir(output_path)
-            except OSError:
-                logging.error('Failed to create directory for report at {}'.format(output_path))
-                print ('Failed to create directory for report at {}'.format(output_path))
-            for bm in bm_list:
-                make_SA_graphs(meta_bmk_df, bm, run_id, output_path)
-            saPDF.create_standard_analysis_report(output_path, json_results, run_id)
+        run_id_dict = remove_all_reports(run_id_dict)
+    for run_id in run_id_dict:
+        if run_id_dict[run_id]['report_exists'] == False:
+            # find_runs returns a list of files for the run, now.
+            # file_list = bmpp.get_benchmark_files(run_id_dict[run_id]['bm_data_path'])
+            file_list = run_id_dict[run_id]['files']
+            json_results = bmpp.parse_files(file_list)
+            json_results = bmpp.parse_and_add_benchmark_metadata(json_results)
+            meta_bmk_df = md.make_dataframe(json_results)
+            # Any given folder may contain multiple run_ids
+            for run_id in meta_bmk_df.run_id.unique():
+                bm_list = find_bm_to_graph(json_results, run_id)
+                # Making results directory
+                try:
+                    os.mkdir(run_id_dict[run_id]['report_path'])
+                except OSError:
+                    logging.error('Failed to create directory for report at {}'.format(run_id_dict[run_id]['report_path']))
+                    print ('Failed to create directory for report at {}'.format(run_id_dict[run_id]['report_path']))
+                for bm in bm_list:
+                    make_SA_graphs(meta_bmk_df, bm, run_id, run_id_dict[run_id]['report_path'])
+                saPDF.create_standard_analysis_report(run_id_dict[run_id]['report_path'], json_results, run_id)
 
 
 
@@ -126,6 +144,6 @@ if __name__ == '__main__':
     parser.add_argument('benchmark_results_dir', nargs='?',
                         default='../benchmark_results/')
     parser.add_argument('remove_all_reports', nargs='?',
-                        default=False)
+                        default=True)
     args = parser.parse_args()
     _auto_run(args)
