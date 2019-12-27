@@ -57,6 +57,7 @@ def find_specific_run_id(benchmark_results_dir, run_id_list):
                             run_id_dict[run_id]['bm_data_path'] = root
                         if file not in run_id_dict[run_id]['files']:
                             run_id_dict[run_id]['files'].append(os.path.join(root, file))
+                            logging.info('Added file to process {}'.format(file))
     return run_id_dict
 
 
@@ -83,8 +84,37 @@ def create_output_path(output_path, delete_existing_report):
             print('Failed to create directory {}'.format(output_path))
 
 
-
-
+def find_common_bm_to_graph(json_results, run_id_dict):
+    bm_list_to_graph = []
+    # TDH (2019-12-27): Building lists of benchmarks for each run ID to find matches for cross-run-ID comparison
+    bm_dict = {}
+    for run_id in run_id_dict.keys():
+        bm_dict[run_id] = []
+    for bm in json_results:
+        bm_name = json_results[bm]['benchmark']
+        if bm_name != 'actionMessageBenchmark' and bm_name != 'conversionBenchmark':
+            if json_results[bm]['benchmark_type'] == 'key':
+                bm_name = bm_name + '_key'
+            else:
+                bm_name = bm_name + '_full'
+            bm_dict[json_results[bm]['run_id']].append(bm_name)
+    # TDH (2019-12-27): pick list of benchmarks in first list arbitrarily as reference for comparison
+    key = list(run_id_dict.keys())[0]
+    for bm in bm_dict[key]:
+        comparison_possible = True
+        for run_id in bm_dict:
+            if bm not in bm_dict[run_id]:
+                comparison_possible = False
+                break
+        if comparison_possible:
+            if bm[-4:] == 'full':
+                bm_type = 'full'
+            else:
+                bm_type = 'key'
+            bm_name_parts = bm.split('_')
+            bm_name = bm_name_parts[0]
+            bm_list_to_graph.append({'bm_name': bm_name, 'bm_type':bm_type})
+    return bm_list_to_graph
 
 def _auto_run(args):
     run_id_dict = find_specific_run_id(args.benchmark_results_dir, args.run_id_list)
@@ -96,14 +126,15 @@ def _auto_run(args):
     json_results = bmpp.parse_and_add_benchmark_metadata(json_results)
     meta_bmk_df = md.make_dataframe(json_results)
     for run_id in meta_bmk_df.run_id.unique():
-        bm_list = sa.find_bm_to_graph(json_results, run_id)
+        bm_list = find_common_bm_to_graph(json_results, run_id_dict)
         # make_cross_case_graphs()
         # make_cross_case_PDF()
+        pass
 
 
 
 if __name__ == '__main__':
-    logging.basicConfig(filename="cross_case_comparison.log", filemode='w',
+    logging.basicConfig(filename="cross_run_id.log", filemode='w',
                        level=logging.INFO)
     parser = argparse.ArgumentParser(description='Cross case comparison.')
     script_path = os.path.dirname(os.path.realpath(__file__))
