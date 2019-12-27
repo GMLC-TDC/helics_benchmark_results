@@ -23,6 +23,7 @@ import standard_analysis as sa
 # Setting up logging
 logger = logging.getLogger(__name__)
 
+
 # Setting up pretty printing, mostly for debugging.
 pp = pprint.PrettyPrinter(indent=4)
 
@@ -123,14 +124,14 @@ def parse_header_lines(json_file, json_results, uuid_str):
             if match:
                 json_results[uuid_str]['helics_version'] = match.group(0)[:-1] # trimming the trailing dash
             else:
-                log.error('Failed to parse HELICS VERSION line.')
+                logging.error('{}: Failed to parse HELICS VERSION line.'.format(json_file['name']))
         elif 'ZMQ VERSION:' in line:
             json_results[uuid_str]['zmq_version_string']  = line[12:]
             match = re.search('v\d+\..*',line)
             if match:
                 json_results[uuid_str]['zmq_version'] = match.group(0)[1:]
             else:
-                log.error('Failed to parse ZMQ VERSION line.')
+                logging.error('{}: Failed to parse ZMQ VERSION line.'.format(json_file['name']))
         elif 'COMPILER INFO:' in line:
             json_results[uuid_str]['compiler_info_string']  = line[15:]
             json_results = _parse_compiler_string(uuid_str, json_results)
@@ -201,7 +202,7 @@ def parse_and_add_benchmark_metadata(json_results):
                 elif match2[1] == "2":
                     filter_location = "source"
                 else:
-                    logging.error('Filter location {} is not a valid value of "0" or "1"'.format(match2[1]))
+                    logging.error('{}: {}: Filter location {} is not a valid value of "0" or "1"'.format(filename, bm_name, match2[1]))
                 json_results[key]['benchmarks'][idx]['filter_location'] = filter_location
                 json_results[key]['benchmarks'][idx]['federate_count'] = federate_count
 
