@@ -116,6 +116,39 @@ def find_common_bm_to_graph(json_results, run_id_dict):
             bm_list_to_graph.append({'bm_name': bm_name, 'bm_type':bm_type})
     return bm_list_to_graph
 
+def make_cross_run_id_graphs(meta_bmk_df, bm, run_id_list, output_path):
+    # TDH note to Corinne:
+    # All of these calls to your bmk_plotting need new versions that appropriately handle multiple run IDs
+    #   as specified in the run_id_list. That is, you'll need to create a plot_echo_results_cross_run_ID that makes
+    #   one or more graphs. I've commented out the calls and added the "pass" just so the code doesn't crash when run.
+
+    if bm == 'echoBenchmark':
+        # bmk_plotting.plot_echo_result(meta_bmk_df, run_id, output_path)
+        pass
+    if bm == 'echoMessageBenchmark':
+        # bmk_plotting.plot_echo_msg(meta_bmk_df, run_id, output_path)
+        pass
+    if bm == 'messageLookupBenchmark':
+        # bmk_plotting.plot_msg_lookup(meta_bmk_df, run_id, output_path)
+        pass
+    if bm == 'ringBenchmark':
+        # bmk_plotting.plot_ring(meta_bmk_df, run_id, output_path)
+        pass
+    if bm == 'pholdBenchmark':
+        # bmk_plotting.plot_phold(meta_bmk_df, run_id, output_path)
+        pass
+    if bm == 'messageSendBenchmark':
+        # bmk_plotting.plot_msg_send_1(meta_bmk_df, run_id, output_path)
+        # bmk_plotting.plot_msg_send_2(meta_bmk_df, run_id, output_path)
+        # bmk_plotting.plot_msg_send_3(meta_bmk_df, run_id, output_path)
+        pass
+    if bm == 'filterBenchmark':
+        # bmk_plotting.plot_filter(meta_bmk_df, run_id, output_path)
+        # bmk_plotting.plot_src(meta_bmk_df, run_id, output_path)
+        # bmk_plotting.plot_dest(meta_bmk_df, run_id, output_path)
+        pass
+
+
 def _auto_run(args):
     run_id_dict = find_specific_run_id(args.benchmark_results_dir, args.run_id_list)
     create_output_path(args.output_path, args.delete_report)
@@ -125,9 +158,9 @@ def _auto_run(args):
     json_results = bmpp.parse_files(file_list)
     json_results = bmpp.parse_and_add_benchmark_metadata(json_results)
     meta_bmk_df = md.make_dataframe(json_results)
-    for run_id in meta_bmk_df.run_id.unique():
-        bm_list = find_common_bm_to_graph(json_results, run_id_dict)
-        # make_cross_case_graphs()
+    bm_list = find_common_bm_to_graph(json_results, run_id_dict)
+    for bm in bm_list:
+        make_cross_run_id_graphs(meta_bmk_df, bm['bm_name'], list(run_id_dict.keys()), args.output_path)
         # make_cross_case_PDF()
         pass
 
