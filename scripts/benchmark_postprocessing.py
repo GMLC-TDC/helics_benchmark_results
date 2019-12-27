@@ -61,6 +61,12 @@ def parse_files(file_list):
                 json_results[uuid_str]['filename'] = filename
                 json_results[uuid_str]['path'] = path
 
+                # TDH (2019-12-27): Adding in whether this is a "full" (bm) or "key" (bmk) results file
+                if filename[0:3] == 'bmk':
+                    json_results[uuid_str]['benchmark_type'] = 'key'
+                else:
+                    json_results[uuid_str]['benchmark_type'] = 'full'
+
                 # The header lines in the results file contain metadata that is not JSON formatted and needs to be
                 #    "hand-parsed". After these lines are parsed, the remainder of the file is correctly JSON formatted
                 #    and is aggregated into a single string to be later used by Python's built-in JSON parser.
