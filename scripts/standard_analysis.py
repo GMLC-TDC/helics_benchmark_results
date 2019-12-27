@@ -152,9 +152,13 @@ if __name__ == '__main__':
     # console_handler.setLevel(logging.ERROR)
     # logger.addHandler(console_handler)
     parser = argparse.ArgumentParser(description='Generate PDF report.')
-    parser.add_argument('benchmark_results_dir',
+    script_path = os.path.dirname(os.path.realpath(__file__))
+    head, tail = os.path.split(script_path)
+    benchmark_results_dir = os.path.join(head,'benchmark_results')
+    parser.add_argument('-r',
+                        '--benchmark_results_dir',
                         nargs='?',
-                        default='../benchmark_results/')
+                        default=benchmark_results_dir)
     parser.add_argument('-d',
                         '--delete_all_reports',
                         nargs='?',
