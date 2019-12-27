@@ -17,6 +17,7 @@ import benchmark_postprocessing as bmpp
 import standard_analysis_pdf as saPDF
 import bmk_plotting
 import make_dataframe as md
+import sys
 
 # Installation of FPDF is: python -m pip install fpdf
 # Installation of hvplot.pandas is: conda install -c pyviz hvplot
@@ -25,6 +26,8 @@ import make_dataframe as md
 
 # Setting up logging
 logger = logging.getLogger(__name__)
+
+
 
 # Setting up pretty printing, mostly for debugging.
 pp = pprint.PrettyPrinter(indent=4)
@@ -112,7 +115,7 @@ def add_report_path(run_id_dict):
 def _auto_run(args):
     run_id_dict = find_runs(args.benchmark_results_dir)
     run_id_dict = add_report_path(run_id_dict)
-    if args.remove_all_reports:
+    if args.delete_all_reports:
         run_id_dict = remove_all_reports(run_id_dict)
     for run_id in run_id_dict:
         if run_id_dict[run_id]['report_exists'] == False:
@@ -138,12 +141,23 @@ def _auto_run(args):
 
 
 if __name__ == '__main__':
-    logging.basicConfig(filename="standard_analysis_PDF.log", filemode='w',
-                        level=logging.INFO)
+    logging.basicConfig(filename="standard_analysis.log", filemode='w',
+                       level=logging.INFO)
+    # TDH (2019-12-26): Can't get messages to both the log file and console. I've spent enough time on it for now.
+    # logger.setLevel(logging.INFO)
+    # file_handler = logging.FileHandler('standard_analysis.log', mode='w')
+    # file_handler.setLevel(logging.INFO)
+    # logger.addHandler(file_handler)
+    # console_handler = logging.StreamHandler(sys.stdout)
+    # console_handler.setLevel(logging.ERROR)
+    # logger.addHandler(console_handler)
     parser = argparse.ArgumentParser(description='Generate PDF report.')
-    parser.add_argument('benchmark_results_dir', nargs='?',
+    parser.add_argument('benchmark_results_dir',
+                        nargs='?',
                         default='../benchmark_results/')
-    parser.add_argument('remove_all_reports', nargs='?',
+    parser.add_argument('-d',
+                        '--delete_all_reports',
+                        nargs='?',
                         default=False)
     args = parser.parse_args()
     _auto_run(args)
