@@ -81,7 +81,6 @@ def create_output_path(output_path, delete_existing_report):
             os.mkdir(output_path)
         except OSError:
             logging.error('Failed to create directory {}'.format(output_path))
-            print('Failed to create directory {}'.format(output_path))
 
 
 def find_common_bm_to_graph(json_results, run_id_dict):
@@ -167,8 +166,12 @@ def _auto_run(args):
 
 
 if __name__ == '__main__':
-    logging.basicConfig(filename="cross_run_id.log", filemode='w',
-                       level=logging.INFO)
+    fileHandle = logging.FileHandler("cross_run_id.log", mode='w')
+    fileHandle.setLevel(logging.DEBUG)
+    streamHandle = logging.StreamHandler(sys.stdout)
+    streamHandle.setLevel(logging.ERROR)
+    logging.basicConfig(level=logging.INFO,
+                        handlers=[fileHandle, streamHandle])
     parser = argparse.ArgumentParser(description='Cross case comparison.')
     script_path = os.path.dirname(os.path.realpath(__file__))
     head, tail = os.path.split(script_path)

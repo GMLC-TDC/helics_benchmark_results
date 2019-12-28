@@ -439,8 +439,12 @@ def _auto_run(args):
 
 
 if __name__ == '__main__':
-    logging.basicConfig(filename="helics_benchmark_postprocessing.log", filemode='w',
-                        level=logging.INFO)
+    fileHandle = logging.FileHandler("benchmark_postprocessing.log", mode='w')
+    fileHandle.setLevel(logging.DEBUG)
+    streamHandle = logging.StreamHandler(sys.stdout)
+    streamHandle.setLevel(logging.ERROR)
+    logging.basicConfig(level=logging.INFO,
+                        handlers=[fileHandle, streamHandle])
     parser = argparse.ArgumentParser(description='Process input files.')
     parser.add_argument('benchmark_results_dir', nargs='?',
                         default='../benchmark_results/')  #

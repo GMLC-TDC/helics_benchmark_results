@@ -168,14 +168,17 @@ def _auto_run(args):
             os.mkdir(output_path)
         except OSError:
             logging.error('Failed to create directory for report at {}'.format(output_path))
-            print ('Failed to create directory for report at {}'.format(output_path))
         create_standard_analysis_report(output_path, json_results, run_id)
 
 
 
 if __name__ == '__main__':
-    logging.basicConfig(filename="standard_analysis_PDF.log", filemode='w',
-                        level=logging.INFO)
+    fileHandle = logging.FileHandler("standard_analysis_PDF.log", mode='w')
+    fileHandle.setLevel(logging.DEBUG)
+    streamHandle = logging.StreamHandler(sys.stdout)
+    streamHandle.setLevel(logging.ERROR)
+    logging.basicConfig(level=logging.INFO,
+                        handlers=[fileHandle, streamHandle])
     parser = argparse.ArgumentParser(description='Generate PDF report.')
     parser.add_argument('benchmark_results_dir', nargs='?',
                         default='../benchmark_results/2019-11-27')

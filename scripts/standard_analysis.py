@@ -133,7 +133,6 @@ def _auto_run(args):
                     os.mkdir(run_id_dict[run_id]['report_path'])
                 except OSError:
                     logging.error('Failed to create directory for report at {}'.format(run_id_dict[run_id]['report_path']))
-                    print ('Failed to create directory for report at {}'.format(run_id_dict[run_id]['report_path']))
                 for bm in bm_list:
                     make_SA_graphs(meta_bmk_df, bm, run_id, run_id_dict[run_id]['report_path'])
                 saPDF.create_standard_analysis_report(run_id_dict[run_id]['report_path'], json_results, run_id)
@@ -141,16 +140,13 @@ def _auto_run(args):
 
 
 if __name__ == '__main__':
-    logging.basicConfig(filename="standard_analysis.log", filemode='w',
-                       level=logging.INFO)
+    fileHandle = logging.FileHandler("standard_analysis.log", mode='w')
+    fileHandle.setLevel(logging.DEBUG)
+    streamHandle = logging.StreamHandler(sys.stdout)
+    streamHandle.setLevel(logging.ERROR)
+    logging.basicConfig(level=logging.INFO,
+                        handlers=[fileHandle, streamHandle])
     # TDH (2019-12-26): Can't get messages to both the log file and console. I've spent enough time on it for now.
-    # logger.setLevel(logging.INFO)
-    # file_handler = logging.FileHandler('standard_analysis.log', mode='w')
-    # file_handler.setLevel(logging.INFO)
-    # logger.addHandler(file_handler)
-    # console_handler = logging.StreamHandler(sys.stdout)
-    # console_handler.setLevel(logging.ERROR)
-    # logger.addHandler(console_handler)
     parser = argparse.ArgumentParser(description='Generate PDF report.')
     script_path = os.path.dirname(os.path.realpath(__file__))
     head, tail = os.path.split(script_path)
