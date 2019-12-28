@@ -80,30 +80,54 @@ def find_bm_to_graph(json_results, run_id):
         if json_results[bm]['run_id'] == run_id:
             bm_name = json_results[bm]['benchmark']
             if bm_name != 'actionMessageBenchmark' and bm_name != 'conversionBenchmark':
-                bm_list_to_graph.append(bm_name)
-            pass
+                #bm_list_to_graph.append(bm_name)
+                if json_results[bm]['benchmark_type'] == 'key':
+                    bm_type = 'key'
+                else:
+                    bm_type = 'full'
+                bm_list_to_graph.append({'bm_name': bm_name, 'bm_type':bm_type})
     return bm_list_to_graph
 
 def make_SA_graphs(meta_bmk_df, bm, run_id, output_path):
-    if bm == 'echoBenchmark':
-        bmk_plotting.plot_echo_result(meta_bmk_df, run_id, output_path)
-    if bm == 'echoMessageBenchmark':
-        bmk_plotting.plot_echo_msg(meta_bmk_df, run_id, output_path)
-    if bm == 'messageLookupBenchmark':
-        bmk_plotting.plot_msg_lookup(meta_bmk_df, run_id, output_path)
-    if bm == 'ringBenchmark':
-        bmk_plotting.plot_ring(meta_bmk_df, run_id, output_path)
-    if bm == 'pholdBenchmark':
-        bmk_plotting.plot_phold(meta_bmk_df, run_id, output_path)
-    if bm == 'messageSendBenchmark':
-        bmk_plotting.plot_msg_send_1(meta_bmk_df, run_id, output_path)
-        bmk_plotting.plot_msg_send_2(meta_bmk_df, run_id, output_path)
-        bmk_plotting.plot_msg_send_3(meta_bmk_df, run_id, output_path)
-    if bm == 'filterBenchmark':
-        bmk_plotting.plot_filter(meta_bmk_df, run_id, output_path)
-        bmk_plotting.plot_src(meta_bmk_df, run_id, output_path)
-        bmk_plotting.plot_dest(meta_bmk_df, run_id, output_path)
-    pass
+    if bm['bm_name'] == 'echoBenchmark':
+        if bm['bm_type'] == 'full':
+            bmk_plotting.plot_echo_result(meta_bmk_df, run_id, output_path)
+        else:
+            pass
+    if bm['bm_name'] == 'echoMessageBenchmark':
+        if bm['bm_type'] == 'full':
+            bmk_plotting.plot_echo_msg(meta_bmk_df, run_id, output_path)
+        else:
+            pass
+    if bm['bm_name'] == 'messageLookupBenchmark':
+        if bm['bm_type'] == 'full':
+            bmk_plotting.plot_msg_lookup(meta_bmk_df, run_id, output_path)
+        else:
+            pass
+    if bm['bm_name'] == 'ringBenchmark':
+        if bm['bm_type'] == 'full':
+            bmk_plotting.plot_ring(meta_bmk_df, run_id, output_path)
+        else:
+            pass
+    if bm['bm_name'] == 'pholdBenchmark':
+        if bm['bm_type'] == 'full':
+            bmk_plotting.plot_phold(meta_bmk_df, run_id, output_path)
+        else:
+            pass
+    if bm['bm_name'] == 'messageSendBenchmark':
+        if bm['bm_type'] == 'full':
+            bmk_plotting.plot_msg_send_1(meta_bmk_df, run_id, output_path)
+            bmk_plotting.plot_msg_send_2(meta_bmk_df, run_id, output_path)
+            bmk_plotting.plot_msg_send_3(meta_bmk_df, run_id, output_path)
+        else:
+            pass
+    if bm['bm_name'] == 'filterBenchmark':
+        if bm['bm_type'] == 'full':
+            bmk_plotting.plot_filter(meta_bmk_df, run_id, output_path)
+            bmk_plotting.plot_src(meta_bmk_df, run_id, output_path)
+            bmk_plotting.plot_dest(meta_bmk_df, run_id, output_path)
+        else:
+            pass
 
 def add_report_path(run_id_dict):
     for key in run_id_dict:
