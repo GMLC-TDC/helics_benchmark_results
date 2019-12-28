@@ -182,6 +182,6 @@ if __name__ == '__main__':
     parser.add_argument('-d',
                         '--delete_all_reports',
                         nargs='?',
-                        default=False)
+                        default=True)
     args = parser.parse_args()
     _auto_run(args)
