@@ -4,7 +4,7 @@
 Created on Fri Dec 20 10:21:03 2019
 
 Given the results of a single run as a JSON string and the path to those results (where graph images have already been
-created, generate a PDF report headed by all appropriate metadata and including all images.
+created), generate a PDF report headed by all appropriate metadata and including all images.
 
 @author: hard312
 """
