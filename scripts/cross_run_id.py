@@ -14,11 +14,12 @@ import pprint
 import os
 import shutil
 import benchmark_postprocessing as bmpp
-import standard_analysis_pdf as saPDF
+import cross_run_id_pdf as criPDF
 import bmk_plotting
 import make_dataframe as md
 import standard_analysis as sa
 import sys
+import holoviews as hv
 
 # Installation of FPDF is: python -m pip install fpdf
 # Installation of hvplot.pandas is: conda install -c pyviz hvplot
@@ -122,30 +123,29 @@ def make_cross_run_id_graphs(meta_bmk_df, bm, run_id_list, output_path):
     #   one or more graphs. I've commented out the calls and added the "pass" just so the code doesn't crash when run.
 
     if bm == 'echoBenchmark':
-        # bmk_plotting.plot_echo_result(meta_bmk_df, run_id, output_path)
-        pass
+        for core_type in meta_bmk_df.core_type.unique():
+            bmk_plotting.plot_echo_result_cr(meta_bmk_df, run_id_list, core_type, output_path)
     if bm == 'echoMessageBenchmark':
-        # bmk_plotting.plot_echo_msg(meta_bmk_df, run_id, output_path)
-        pass
+        for core_type in meta_bmk_df.core_type.unique():
+            bmk_plotting.plot_echo_msg_cr(meta_bmk_df, run_id_list, core_type, output_path)
     if bm == 'messageLookupBenchmark':
-        # bmk_plotting.plot_msg_lookup(meta_bmk_df, run_id, output_path)
-        pass
+        bmk_plotting.plot_msg_lookup_cr(meta_bmk_df, run_id_list, output_path)
     if bm == 'ringBenchmark':
-        # bmk_plotting.plot_ring(meta_bmk_df, run_id, output_path)
-        pass
+        for core_type in meta_bmk_df.core_type.unique():
+            bmk_plotting.plot_ring_cr(meta_bmk_df, run_id_list, core_type, output_path)
     if bm == 'pholdBenchmark':
-        # bmk_plotting.plot_phold(meta_bmk_df, run_id, output_path)
-        pass
+        for core_type in meta_bmk_df.core_type.unique():
+            bmk_plotting.plot_phold_cr(meta_bmk_df, run_id_list, core_type, output_path)
     if bm == 'messageSendBenchmark':
-        # bmk_plotting.plot_msg_send_1(meta_bmk_df, run_id, output_path)
-        # bmk_plotting.plot_msg_send_2(meta_bmk_df, run_id, output_path)
-        # bmk_plotting.plot_msg_send_3(meta_bmk_df, run_id, output_path)
-        pass
+        bmk_plotting.plot_msg_send_1_cr(meta_bmk_df, run_id_list, output_path)
+        for core_type in meta_bmk_df.core_type.unique():
+            bmk_plotting.plot_msg_send_2_cr(meta_bmk_df, run_id_list, core_type, output_path)
+            bmk_plotting.plot_msg_send_3_cr(meta_bmk_df, run_id_list, core_type, output_path)
     if bm == 'filterBenchmark':
-        # bmk_plotting.plot_filter(meta_bmk_df, run_id, output_path)
-        # bmk_plotting.plot_src(meta_bmk_df, run_id, output_path)
-        # bmk_plotting.plot_dest(meta_bmk_df, run_id, output_path)
-        pass
+        bmk_plotting.plot_filter_cr(meta_bmk_df, run_id_list, output_path)
+        for core_type in meta_bmk_df.core_type.unique():
+            bmk_plotting.plot_src_cr(meta_bmk_df, run_id_list, core_type, output_path)
+            bmk_plotting.plot_dest_cr(meta_bmk_df, run_id_list, core_type, output_path)
 
 
 def _auto_run(args):
@@ -160,8 +160,8 @@ def _auto_run(args):
     bm_list = find_common_bm_to_graph(json_results, run_id_dict)
     for bm in bm_list:
         make_cross_run_id_graphs(meta_bmk_df, bm['bm_name'], list(run_id_dict.keys()), args.output_path)
-        # make_cross_case_PDF()
-        pass
+    criPDF.create_cross_run_id_report(json_results, list(run_id_dict.keys()), args.output_path)
+
 
 
 
