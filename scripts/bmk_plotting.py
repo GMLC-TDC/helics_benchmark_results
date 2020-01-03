@@ -22,13 +22,7 @@ from holoviews.operation.datashader import datashade, dynspread
 hv.extension('bokeh', 'matplotlib', width=100)
 
 
-#file_list = bmpp.get_benchmark_files('C:\Users\barn553\Documents\GitHub\helics_benchmark_results\benchmark_results\2019-11-28')
-#json_results = bmpp.parse_files(file_list)
-#json_results = bmpp.parse_and_add_benchmark_metadata(json_results)
-json_file = 'bm_results.json'
-meta_bmk_df = md.make_dataframe(json_file)
-#print(meta_bmk_df.shape)
-meta_bmk_df.sort_values('federate_count').hvplot.line('federate_count', 'real_time')
+
 
 
 def plot_echo_msg(dataframe, run_id):
@@ -696,6 +690,15 @@ def save_plots_cr(plot_list, run_id_list, core_type):
         hvplot.save(p, 'run_ids {} plot_{}.png'.format(run_id_list, i))
         i += 1
 
+
+if __name__ == '__main__':
+    # file_list = bmpp.get_benchmark_files('C:\Users\barn553\Documents\GitHub\helics_benchmark_results\benchmark_results\2019-11-28')
+    # json_results = bmpp.parse_files(file_list)
+    # json_results = bmpp.parse_and_add_benchmark_metadata(json_results)
+    json_file = 'bm_results.json'
+    meta_bmk_df = md.make_dataframe(json_file)
+    # print(meta_bmk_df.shape)
+    meta_bmk_df.sort_values('federate_count').hvplot.line('federate_count', 'real_time')
 
 ### Testing
 #def main():
