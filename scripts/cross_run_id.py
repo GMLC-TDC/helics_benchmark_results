@@ -34,6 +34,23 @@ logger = logging.getLogger(__name__)
 # Setting up pretty printing, mostly for debugging.
 pp = pprint.PrettyPrinter(indent=4)
 
+# TDH (2020-01-06): The hard-coded list below allows the metadata header to be generated programatically (instead
+#   of through a lot of copy and paste).
+parameter_list = [
+    'date',
+    'helics_version',
+    'generator',
+    'system',
+    'system_version',
+    'platform',
+    'cxx_compiler',
+    'cxx_compiler_version',
+    'build_flags_string',
+    'host_name',
+    'host_processor',
+    'num_cpus',
+    'mhz_per_cpu'
+]
 
 
 def find_specific_run_id(benchmark_results_dir, run_id_list):
@@ -158,9 +175,9 @@ def _auto_run(args):
     json_results = bmpp.parse_and_add_benchmark_metadata(json_results)
     meta_bmk_df = md.make_dataframe(json_results)
     bm_list = find_common_bm_to_graph(json_results, run_id_dict)
-    for bm in bm_list:
-        make_cross_run_id_graphs(meta_bmk_df, bm['bm_name'], list(run_id_dict.keys()), args.output_path)
-    criPDF.create_cross_run_id_report(json_results, list(run_id_dict.keys()), args.output_path)
+    #for bm in bm_list:
+    #    make_cross_run_id_graphs(meta_bmk_df, bm['bm_name'], list(run_id_dict.keys()), args.output_path)
+    criPDF.create_cross_run_id_report(json_results, list(run_id_dict.keys()), args.output_path, parameter_list)
 
 
 

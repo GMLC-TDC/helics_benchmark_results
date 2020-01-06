@@ -26,7 +26,9 @@ logger = logging.getLogger(__name__)
 pp = pprint.PrettyPrinter(indent=4)
 
 
-def create_cross_run_id_report(json_results, run_id_list, output_path):
+def create_cross_run_id_report(json_results, run_id_list, output_path, parameter_list):
+    run_id_keys = get_run_id_keys(json_results, run_id_list)
+
     # Create the PDF
     pdf = FPDF()
     pdf.add_page()
@@ -36,9 +38,26 @@ def create_cross_run_id_report(json_results, run_id_list, output_path):
     report_path = os.path.join(output_path, report_name)
 
     # Create the header metadata from the metadata in the JSON results and write out to PDF
-    #header_metadata_str = grab_header_metadata(json_results, run_id_list)
-    #line_height = 3
-    #pdf.write(line_height, header_metadata_str)
+    line_height = 3
+
+    # TDH (2020-01-06): Create report title
+    pdf.set_font("Courier", style='', size=20)
+    title = 'Cross-run-ID Comparison Report\n\n\n '
+    pdf.write(line_height, title)
+
+    for param in parameter_list:
+        param_title = '{}:\n'.format(param.upper())
+        pdf.set_font("Courier", style='', size=10)
+        pdf.write(line_height, param_title)
+        header_metadata_str, diff = grab_header_metadata(json_results, run_id_keys, param)
+        # TDH (2020-01-06): Parameters that are different get written out in bold
+        if diff:
+            pdf.set_font("Courier", style = 'B', size=10)
+            pdf.write(line_height, header_metadata_str)
+        else:
+            pdf.set_font("Courier", style='', size=8)
+            pdf.write(line_height, header_metadata_str)
+
 
     # Add graphs
     pdf = saPDF.add_benchmark_graphs(pdf, output_path)
@@ -48,88 +67,40 @@ def create_cross_run_id_report(json_results, run_id_list, output_path):
 
     #print(header_metadata_str)
 
+def get_run_id_keys(json_results, run_id_list):
+    run_id_keys = {}
+    for run_id in run_id_list:
+        for key in json_results:
+            if run_id in key:
+                if run_id not in run_id_keys:
+                    run_id_keys[run_id] = key
+                    break
+    return run_id_keys
 
-def grab_header_metadata(json_results, run_id_list):
 
+def grab_header_metadata(json_results, run_id_keys, param):
+    param_value_list = []
     header_metadata_str = ''
-    if 'benchmark' in json_results[key]:
-        header_metadata_str = header_metadata_str + '{:<25}{}\n\n'.format('BENCHMARK:', json_results[key]['benchmark'])
-    else:
-        logging.warning('"benchmark" not found in metadata.')
+    for key, value in run_id_keys.items():
+        if param in json_results[value]:
+            header_metadata_str = header_metadata_str + '{}: {}\n'.format(key, json_results[value][param])
+            param_value_list.append(json_results[value][param])
+        else:
+            header_metadata_str = header_metadata_str + '{}: (value not found)\n'.format(key)
+            logging.warning('{} not found in metadata for {}.'.format(param, value))
+    header_metadata_str = header_metadata_str + '\n'
 
-    if 'run_id' in json_results[key]:
-        header_metadata_str = header_metadata_str + '{:<25}{}\n'.format('run ID:', json_results[key]['run_id'])
+    # TDH (2020-01-06): Skipping date since that will always (?) be different and doesn't need to be highlighted.
+    if param != 'date':
+        for value in param_value_list:
+            if value == param_value_list[0]:
+                diff = False
+            else:
+                diff = True
+                break
     else:
-        logging.warning('"run_id" not found in metadata.')
-
-    if 'date' in json_results[key]:
-        header_metadata_str = header_metadata_str + '{:<25}{}\n'.format('Timestamp:', json_results[key]['date'])
-    else:
-        logging.warning('"run_id" not found in metadata.')
-
-    if 'helics_version' in json_results[key]:
-        header_metadata_str = header_metadata_str + '{:<25}{}\n'.format('HELICS version:', json_results[key]['helics_version'])
-    else:
-        logging.warning('"helics_version" not found in metadata.')
-
-    if 'generator' in json_results[key]:
-        header_metadata_str = header_metadata_str + '{:<25}{}\n'.format('generator:', json_results[key]['generator'])
-    else:
-        logging.warning('"generator" not found in metadata.')
-
-    if 'system' in json_results[key]:
-        header_metadata_str = header_metadata_str + '{:<25}{}\n'.format('system:', json_results[key]['system'])
-    else:
-        logging.warning('"system" not found in metadata.')
-
-    if 'system_version' in json_results[key]:
-        header_metadata_str = header_metadata_str + '{:<25}{}\n'.format('system version:', json_results[key]['system_version'])
-    else:
-        logging.warning('"system_version" not found in metadata.')
-
-    if 'platform' in json_results[key]:
-        header_metadata_str = header_metadata_str + '{:<25}{}\n'.format('platform:', json_results[key]['platform'])
-    else:
-        logging.warning('"platform" not found in metadata.')
-
-    if 'cxx_compiler' in json_results[key]:
-        header_metadata_str = header_metadata_str + '{:<25}{}\n'.format('C++ compiler:', json_results[key]['cxx_compiler'])
-    else:
-        logging.warning('"cxx_compiler" not found in metadata.')
-
-    if 'cxx_compiler_version' in json_results[key]:
-        header_metadata_str = header_metadata_str + '{:<25}{}\n'.format('C++ compiler version:', json_results[key]['cxx_compiler_version'])
-    else:
-        logging.warning('"cxx_compiler_version" not found in metadata.')
-
-    if 'build_flags_string' in json_results[key]:
-        header_metadata_str = header_metadata_str + '{:<25}{}\n'.format('compiler string:', json_results[key]['build_flags_string'])
-    else:
-        logging.warning('"build_flags_string" not found in metadata.')
-
-    if 'host_name' in json_results[key]:
-        header_metadata_str = header_metadata_str + '{:<25}{}\n'.format('host name:', json_results[key]['host_name'])
-    else:
-        logging.warning('"host_name" not found in metadata.')
-
-    if 'host_processor' in json_results[key]:
-        header_metadata_str = header_metadata_str + '{:<25}{}\n'.format('host processor:', json_results[key]['host_processor'])
-    else:
-        logging.warning('"host_processor" not found in metadata.')
-
-    if 'num_cpus' in json_results[key]:
-        header_metadata_str = header_metadata_str + '{:<25}{}\n'.format('CPU core count:', json_results[key]['num_cpus'])
-    else:
-        logging.warning('"num_cpus" not found in metadata.')
-
-    if 'mhz_per_cpu' in json_results[key]:
-        header_metadata_str = header_metadata_str + '{:<25}{}\n'.format('processor speed (MHz):', json_results[key]['mhz_per_cpu'])
-    else:
-        logging.warning('"mhz_per_cpu" not found in metadata.')
-
-    header_metadata_str = header_metadata_str + '\n' + '\n'
-    logging.info('Final metadata header:\n{}'.format(header_metadata_str))
-    return header_metadata_str
+        diff = False
+    return header_metadata_str, diff
 
 
 def get_unique_run_ids(json_results):
