@@ -42,7 +42,11 @@ def create_cross_run_id_report(json_results, run_id_list, output_path, parameter
 
     # TDH (2020-01-06): Create report title
     pdf.set_font("Courier", style='', size=20)
-    title = 'Cross-run-ID Comparison Report\n\n\n '
+    title = 'Cross-run-ID Comparison Report\n\n'
+    pdf.write(line_height, title)
+
+    pdf.set_font("Courier", style='', size=10)
+    title = '(differences in bold)\n\n\n'
     pdf.write(line_height, title)
 
     for param in parameter_list:
