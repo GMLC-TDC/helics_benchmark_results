@@ -40,12 +40,13 @@ def plot_echo_msg(dataframe, run_id, output_path):
     Args:
         dataframe (obj): A data frame created by make_dataframe.
         run_id (str): Specific run_id used to create this plot.
+        output_path (path): Location to send the graph.
     Returns:
         echo_msg (obj): IPython holoviews plot of the data.
     """
 
     echo_df = dataframe[dataframe.benchmark == 'echoMessageBenchmark']
-    echo_df = echo_df[echo_msg.run_id == '{}'.format(run_id)]
+    echo_df = echo_df[echo_df.run_id == '{}'.format(run_id)]
     echo_msg = echo_df.sort_values('federate_count').hvplot.line(
         'federate_count',
         'real_time',
@@ -72,6 +73,7 @@ def plot_echo_result(dataframe, run_id, output_path):
     Args:
         dataframe (obj): A data frame created by make_dataframe.
         run_id (str): Specific run_id used to create this plot.
+        output_path (path): Location to send the graph.
     Returns:
         echo_res (obj): IPython holoviews plot of the data.
     """
@@ -95,7 +97,7 @@ def plot_echo_result(dataframe, run_id, output_path):
     return echo_res
 
 
-def plot_msg_lookup(dataframe, run_id, output_path):
+def plot_msg_lookup_1(dataframe, run_id, output_path):
     """This function creates a multi-line graph for the benchmark,
     messageLookupBenchmark, of 'federate_count' versus 'real_time' and
     it is organized by a single 'core_type': 'inproc'.
@@ -103,17 +105,83 @@ def plot_msg_lookup(dataframe, run_id, output_path):
     Args:
         dataframe (obj): A data frame created by make_dataframe.
         run_id (str): Specific run_id used to create this plot.
+        output_path (path): Location to send the graph.
     Returns:
         msg_lookup (obj): IPython holoviews plot of the data.
     """
     msg_lkp_df = dataframe[dataframe.benchmark == 'messageLookupBenchmark']
     inproc_df = msg_lkp_df[msg_lkp_df.core_type == 'inproc']
     inproc_df = inproc_df[inproc_df.run_id == '{}'.format(run_id)]
-    msg_lookup = inproc_df.sort_values('federate_count').hvplot.bar(
-        'federate_count',
+    inproc_df = inproc_df[inproc_df.federate_count == 2]
+    msg_lookup = inproc_df.sort_values('interface_count').hvplot.bar(
+        'interface_count',
         'real_time',
         ylabel='real_time (ns)',
-        title='run_id {} messageLookupBenchmark: federate_count vs real_time'.format(run_id),
+        title='run_id {} messageLookupBenchmark: interface_count vs real_time'.format(run_id),
+        alpha=0.5).opts(
+        width=590,
+        height=360,
+        logx=True,
+        logy=True,
+        fontsize={'title': 9, 'labels': 10, 'xticks': 10, 'yticks': 10}
+    )
+    save_path = os.path.join(output_path, '{}_messageLookup.png'.format(run_id))
+    hvplot.save(msg_lookup, save_path)
+    return msg_lookup
+
+def plot_msg_lookup_2(dataframe, run_id, output_path):
+    """This function creates a multi-line graph for the benchmark,
+    messageLookupBenchmark, of 'federate_count' versus 'real_time' and
+    it is organized by a single 'core_type': 'inproc'.
+
+    Args:
+        dataframe (obj): A data frame created by make_dataframe.
+        run_id (str): Specific run_id used to create this plot.
+        output_path (path): Location to send the graph.
+    Returns:
+        msg_lookup (obj): IPython holoviews plot of the data.
+    """
+    msg_lkp_df = dataframe[dataframe.benchmark == 'messageLookupBenchmark']
+    inproc_df = msg_lkp_df[msg_lkp_df.core_type == 'inproc']
+    inproc_df = inproc_df[inproc_df.run_id == '{}'.format(run_id)]
+    inproc_df = inproc_df[inproc_df.federate_count == 8]
+    msg_lookup = inproc_df.sort_values('interface_count').hvplot.bar(
+        'interface_count',
+        'real_time',
+        ylabel='real_time (ns)',
+        title='run_id {} messageLookupBenchmark: interface_count vs real_time'.format(run_id),
+        alpha=0.5).opts(
+        width=590,
+        height=360,
+        logx=True,
+        logy=True,
+        fontsize={'title': 9, 'labels': 10, 'xticks': 10, 'yticks': 10}
+    )
+    save_path = os.path.join(output_path, '{}_messageLookup.png'.format(run_id))
+    hvplot.save(msg_lookup, save_path)
+    return msg_lookup
+
+def plot_msg_lookup_3(dataframe, run_id, output_path):
+    """This function creates a multi-line graph for the benchmark,
+    messageLookupBenchmark, of 'federate_count' versus 'real_time' and
+    it is organized by a single 'core_type': 'inproc'.
+
+    Args:
+        dataframe (obj): A data frame created by make_dataframe.
+        run_id (str): Specific run_id used to create this plot.
+        output_path (path): Location to send the graph.
+    Returns:
+        msg_lookup (obj): IPython holoviews plot of the data.
+    """
+    msg_lkp_df = dataframe[dataframe.benchmark == 'messageLookupBenchmark']
+    inproc_df = msg_lkp_df[msg_lkp_df.core_type == 'inproc']
+    inproc_df = inproc_df[inproc_df.run_id == '{}'.format(run_id)]
+    inproc_df = inproc_df[inproc_df.federate_count == 64]
+    msg_lookup = inproc_df.sort_values('interface_count').hvplot.bar(
+        'interface_count',
+        'real_time',
+        ylabel='real_time (ns)',
+        title='run_id {} messageLookupBenchmark: interface_count vs real_time'.format(run_id),
         alpha=0.5).opts(
         width=590,
         height=360,
@@ -134,6 +202,7 @@ def plot_msg_send_1(dataframe, run_id, output_path):
     Args:
         dataframe (obj): A data frame created by make_dataframe.
         run_id (str): Specific run_id used to create this plot.
+        output_path (path): Location to send the graph.
     Returns:
         msg_send (obj): IPython holoviews plot of the data.
     """
@@ -165,6 +234,7 @@ def plot_msg_send_2(dataframe, run_id, output_path):
     Args:
         dataframe (obj): A data frame created by make_dataframe.
         run_id (str): Specific run_id used to create this plot.
+        output_path (path): Location to send the graph.
     Returns:
         msg_count (obj): IPython holoviews plot of the data.
     """
@@ -197,6 +267,7 @@ def plot_msg_send_3(dataframe, run_id, output_path):
     Args:
         dataframe (obj): A data frame created by make_dataframe.
         run_id (str): Specific run_id used to create this plot.
+        output_path (path): Location to send the graph.
     Returns:
         msg_size (obj): IPython holoviews plot of the data.
     """
@@ -229,6 +300,7 @@ def plot_phold(dataframe, run_id, output_path):
     Args:
         dataframe (obj): A data frame created by make_dataframe.
         run_id (str): Specific run_id used to create this plot.
+        output_path (path): Location to send the graph.
     Returns:
         phold (obj): IPython holoviews plot of the data.
     """
@@ -260,6 +332,7 @@ def plot_ring(dataframe, run_id, output_path):
     Args:
         dataframe (obj): A data frame created by make_dataframe.
         run_id (str): Specific run_id used to create this plot.
+        output_path (path): Location to send the graph.
     Returns:
         ring (obj): IPython holoviews plot of the data.
     """
@@ -291,6 +364,7 @@ def plot_filter(dataframe, run_id, output_path):
     Args:
         dataframe (obj): A data frame created by make_dataframe.
         run_id (str): Specific run_id used to create this plot.
+        output_path (path): Location to send the graph.
     Returns:
         filtr (obj): IPython holoviews plot of the data.
     """
@@ -321,6 +395,7 @@ def plot_src(dataframe, run_id, output_path):
     Args:
         dataframe (obj): A data frame created by make_dataframe.
         run_id (str): Specific run_id used to create this plot.
+        output_path (path): Location to send the graph.
     Returns:
         source (obj): IPython holoviews plot of the data.
     """
@@ -353,6 +428,7 @@ def plot_dest(dataframe, run_id, output_path):
     Args:
         dataframe (obj): A data frame created by make_dataframe.
         run_id (str): Specific run_id used to create this plot.
+        output_path (path): Location to send the graph.
     Returns:
         dest (obj): IPython holoviews plot of the data.
     """
@@ -379,7 +455,7 @@ def plot_dest(dataframe, run_id, output_path):
 
 #-----------------------------------------------------------------------#
 #------------------  Cross-run_id comparison plots ---------------------#
-def plot_echo_msg_cr(dataframe, run_id_list, core_type, output_path, paramtr):
+def plot_echo_msg_cr(dataframe, run_id_list, core_type, output_path, comparison_parameter):
     """This function creates a multi-line graph for the benchmark,
     echoMessageBenchmark, of 'federate_count' versus 'real_time', and
     it is organized by a single 'core_type' and compares run_ids' data.
@@ -389,7 +465,7 @@ def plot_echo_msg_cr(dataframe, run_id_list, core_type, output_path, paramtr):
         run_id_list (list): Specific run_ids used to create this plot.
         core_type (str): Specific core_type for cross-run_id comparison plots.
         output_path (path): Location to send the graph.
-        paramtr (str): Specific parameter to view.
+        comparison_parameter (str): Specific parameter to view.
         
     Returns:
         echo_msg_plot (obj): IPython holoviews plot of the data.
@@ -405,21 +481,22 @@ def plot_echo_msg_cr(dataframe, run_id_list, core_type, output_path, paramtr):
                 'real_time', 
                 ylabel='real_time (ns)', 
                 title='echoMessageBenchmark: federate_count vs real_time', 
-                label='run_id: {}, core_type: {}, {}: {}'.format(run_id, core_type, paramtr, echo_df['{}'.format(paramtr)].unique()),
-                alpha=0.5).opts(
+                label='run_id: {}, core_type: {}, {}: {}'.format(run_id, core_type, comparison_parameter, echo_df['{}'.format(comparison_parameter)].unique()),
+                alpha=0.5)
+        echo_msgs.append(echo_msg)
+    echo_msg_plot = (reduce((lambda x, y: x*y), echo_msgs)).opts(
                         width=590, 
                         height=360, 
                         logx=True, 
-                        logy=True)
-        echo_msgs.append(echo_msg)
-    echo_msg_plot = reduce((lambda x, y: x*y), echo_msgs)
+                        logy=True, 
+                        legend_position='top_left')
     run_id_str = '_'.join(run_id_list)
     save_path = os.path.join(output_path, '{}_{}Core_echoMessage.png'.format(run_id_str, core_type))
     hvplot.save(echo_msg_plot, save_path)
     return echo_msg_plot
 
 
-def plot_echo_result_cr(dataframe, run_id_list, core_type, output_path, paramtr):
+def plot_echo_result_cr(dataframe, run_id_list, core_type, output_path, comparison_parameter):
     """This function creates a multi-line graph for the benchmark,
     echoBenchmark, of 'federate_count' versus 'real_time' and
     it is organized a single 'core_type' and compares run_ids' data.
@@ -429,7 +506,7 @@ def plot_echo_result_cr(dataframe, run_id_list, core_type, output_path, paramtr)
         run_id_list (list): Specific run_ids used to create this plot.
         core_type (str): Specific core_type for cross-run_id comparison plots.
         output_path (path): Location to send the graph.
-        paramtr (str): Specific parameter to view.
+        comparison_parameter (str): Specific parameter to view.
         
     Returns:
         echo_res_plot (obj): IPython holoviews plot of the data.
@@ -445,21 +522,22 @@ def plot_echo_result_cr(dataframe, run_id_list, core_type, output_path, paramtr)
             'real_time',
             ylabel='real_time (ns)',
             title='echoBenchmark: federate_count vs real_time',
-            label='run_id: {}, core_type: {}, {}: {}'.format(run_id, core_type, paramtr, echo_df['{}'.format(paramtr)].unique()),
-            alpha=0.5).opts(
-            width=590,
-            height=360,
-            logx=True,
-            logy=True)
+            label='run_id: {}, core_type: {}, {}: {}'.format(run_id, core_type, comparison_parameter, echo_df['{}'.format(comparison_parameter)].unique()),
+            alpha=0.5)
         echo_ress.append(echo_res)
-    echo_res_plot = reduce((lambda x, y: x*y), echo_ress)
+    echo_res_plot = (reduce((lambda x, y: x*y), echo_ress)).opts(
+                        width=590, 
+                        height=360, 
+                        logx=True, 
+                        logy=True, 
+                        legend_position='top_left')
     run_id_str = '_'.join(run_id_list)
     save_path = os.path.join(output_path, '{}_{}Core_echo.png'.format(run_id_str, core_type))
     hvplot.save(echo_res_plot, save_path)
     return echo_res_plot
 
 
-def plot_msg_lookup_cr(dataframe, run_id_list, output_path, paramtr):
+def plot_msg_lookup_1_cr(dataframe, run_id_list, output_path, comparison_parameter):
     """This function creates a multi-line graph for the benchmark,
     messageLookupBenchmark, of 'federate_count' versus 'real_time' and
     it is organized by a single 'core_type': 'inproc' and compares
@@ -469,7 +547,7 @@ def plot_msg_lookup_cr(dataframe, run_id_list, output_path, paramtr):
         dataframe (obj): A data frame created by make_dataframe.
         run_id_list (list): Specific run_ids used to create this plot.
         output_path (path): Location to send the graph.
-        paramtr (str): Specific parameter to view.
+        comparison_parameter (str): Specific parameter to view.
         
     Returns:
         msg_lookup_plot (obj): IPython holoviews plot of the data.
@@ -478,27 +556,108 @@ def plot_msg_lookup_cr(dataframe, run_id_list, output_path, paramtr):
     msg_lookups = []
     for run_id in run_id_list:
         msg_lkp_df = dataframe[(dataframe.benchmark == 'messageLookupBenchmark') & (dataframe.core_type == 'inproc') & (
-                    dataframe.run_id == '{}'.format(run_id))]
-        msg_lookup = msg_lkp_df.sort_values('federate_count').hvplot.bar(
-            'federate_count',
+                    dataframe.run_id == '{}'.format(run_id)) & (dataframe.federate_count == 2)]
+        msg_lookup = msg_lkp_df.sort_values('interface_count').hvplot.line(
+            'interface_count',
             'real_time',
             ylabel='real_time (ns)',
-            title='messageLookupBenchmark: federate_count vs real_time',
-            label='run_id: {}, core_type: inproc, {}: {}'.format(run_id, paramtr, msg_lkp_df['{}'.format(paramtr)].unique()),
-            alpha=0.5).opts(
-            width=590,
-            height=360,
-            logx=True,
-            logy=True)
+            title='fed_ct = 2, messageLookup: interface_count vs real_time',
+            label='run_id: {}, core_type: inproc, {}: {}'.format(run_id, comparison_parameter, msg_lkp_df['{}'.format(comparison_parameter)].unique()),
+            alpha=0.5)
         msg_lookups.append(msg_lookup)
-    msg_lookup_plot = reduce((lambda x, y: x*y), msg_lookups)
+    msg_lookup_plot = reduce((lambda x, y: x*y), msg_lookups).opts(
+                        width=590, 
+                        height=360, 
+                        logx=True, 
+                        logy=True, 
+                        legend_position='top_left')
     run_id_str = '_'.join(run_id_list)
     save_path = os.path.join(output_path, '{}__messageLookup.png'.format(run_id_str))
     hvplot.save(msg_lookup_plot, save_path)
     return msg_lookup_plot
 
 
-def plot_msg_send_1_cr(dataframe, run_id_list, output_path, paramtr):
+def plot_msg_lookup_2_cr(dataframe, run_id_list, output_path, comparison_parameter):
+    """This function creates a multi-line graph for the benchmark,
+    messageLookupBenchmark, of 'federate_count' versus 'real_time' and
+    it is organized by a single 'core_type': 'inproc' and compares
+    run_ids' data.
+
+    Args:
+        dataframe (obj): A data frame created by make_dataframe.
+        run_id_list (list): Specific run_ids used to create this plot.
+        output_path (path): Location to send the graph.
+        comparison_parameter (str): Specific parameter to view.
+        
+    Returns:
+        msg_lookup_plot (obj): IPython holoviews plot of the data.
+    """
+    run_id_list = run_id_list
+    msg_lookups = []
+    for run_id in run_id_list:
+        msg_lkp_df = dataframe[(dataframe.benchmark == 'messageLookupBenchmark') & (dataframe.core_type == 'inproc') & (
+                    dataframe.run_id == '{}'.format(run_id)) & (dataframe.federate_count == 8)]
+        msg_lookup = msg_lkp_df.sort_values('interface_count').hvplot.line(
+            'interface_count',
+            'real_time',
+            ylabel='real_time (ns)',
+            title='fed_ct = 8, messageLookup: interface_count vs real_time',
+            label='run_id: {}, core_type: inproc, {}: {}'.format(run_id, comparison_parameter, msg_lkp_df['{}'.format(comparison_parameter)].unique()),
+            alpha=0.5)
+        msg_lookups.append(msg_lookup)
+    msg_lookup_plot = reduce((lambda x, y: x*y), msg_lookups).opts(
+                        width=590, 
+                        height=360, 
+                        logx=True, 
+                        logy=True, 
+                        legend_position='top_left')
+    run_id_str = '_'.join(run_id_list)
+    save_path = os.path.join(output_path, '{}__messageLookup.png'.format(run_id_str))
+    hvplot.save(msg_lookup_plot, save_path)
+    return msg_lookup_plot
+
+
+def plot_msg_lookup_3_cr(dataframe, run_id_list, output_path, comparison_parameter):
+    """This function creates a multi-line graph for the benchmark,
+    messageLookupBenchmark, of 'federate_count' versus 'real_time' and
+    it is organized by a single 'core_type': 'inproc' and compares
+    run_ids' data.
+
+    Args:
+        dataframe (obj): A data frame created by make_dataframe.
+        run_id_list (list): Specific run_ids used to create this plot.
+        output_path (path): Location to send the graph.
+        comparison_parameter (str): Specific parameter to view.
+        
+    Returns:
+        msg_lookup_plot (obj): IPython holoviews plot of the data.
+    """
+    run_id_list = run_id_list
+    msg_lookups = []
+    for run_id in run_id_list:
+        msg_lkp_df = dataframe[(dataframe.benchmark == 'messageLookupBenchmark') & (dataframe.core_type == 'inproc') & (
+                    dataframe.run_id == '{}'.format(run_id)) & (dataframe.federate_count == 64)]
+        msg_lookup = msg_lkp_df.sort_values('interface_count').hvplot.line(
+            'interface_count',
+            'real_time',
+            ylabel='real_time (ns)',
+            title='fed_ct = 64, messageLookup: interface_count vs real_time',
+            label='run_id: {}, core_type: inproc, {}: {}'.format(run_id, comparison_parameter, msg_lkp_df['{}'.format(comparison_parameter)].unique()),
+            alpha=0.5)
+        msg_lookups.append(msg_lookup)
+    msg_lookup_plot = reduce((lambda x, y: x*y), msg_lookups).opts(
+                        width=590, 
+                        height=360, 
+                        logx=True, 
+                        logy=True, 
+                        legend_position='top_left')
+    run_id_str = '_'.join(run_id_list)
+    save_path = os.path.join(output_path, '{}__messageLookup.png'.format(run_id_str))
+    hvplot.save(msg_lookup_plot, save_path)
+    return msg_lookup_plot
+
+
+def plot_msg_send_1_cr(dataframe, run_id_list, output_path, comparison_parameter):
     """This function creates a multi-line graph for the benchmark,
     messageSendBenchmark, of 'message_size' versus 'real_time' and
     it is organized by a single 'core_type': 'singleFed' and compares
@@ -508,7 +667,7 @@ def plot_msg_send_1_cr(dataframe, run_id_list, output_path, paramtr):
         dataframe (obj): A data frame created by make_dataframe.
         run_id_list (list): Specific run_ids used to create this plot.
         output_path (path): Location to send the graph.
-        paramtr (str): Specific parameter to view.
+        comparison_parameter (str): Specific parameter to view.
         
     Returns:
         msg_send_plot (obj): IPython holoviews plot of the data.
@@ -524,21 +683,22 @@ def plot_msg_send_1_cr(dataframe, run_id_list, output_path, paramtr):
             'real_time',
             ylabel='real_time (ns)',
             title='messageSendBenchmark: message_size vs real_time',
-            label='run_id: {}, core_type: singleFed, {}: {}'.format(run_id, paramtr, msg_snd_df['{}'.format(paramtr)].unique()),
-            alpha=0.5).opts(
-            width=590,
-            height=360,
-            logx=True,
-            logy=True)
+            label='run_id: {}, core_type: singleFed, {}: {}'.format(run_id, comparison_parameter, msg_snd_df['{}'.format(comparison_parameter)].unique()),
+            alpha=0.5)
         msg_sends.append(msg_send)
-    msg_send_plot = reduce((lambda x, y: x*y), msg_sends)
+    msg_send_plot = (reduce((lambda x, y: x*y), msg_sends)).opts(
+                        width=590, 
+                        height=360, 
+                        logx=True, 
+                        logy=True, 
+                        legend_position='top_left')
     run_id_str = '_'.join(run_id_list)
     save_path = os.path.join(output_path, '{}__messageSend1.png'.format(run_id_str))
     hvplot.save(msg_send_plot, save_path)
     return msg_send_plot
 
 
-def plot_msg_send_2_cr(dataframe, run_id_list, core_type, output_path, paramtr):
+def plot_msg_send_2_cr(dataframe, run_id_list, core_type, output_path, comparison_parameter):
     """This function creates a multi-line graph for the benchmark,
     messageSendBenchmark, of 'message_size' versus 'real_time' and
     it is organized by a single 'core_type', 'message_count'= 1, and
@@ -549,7 +709,7 @@ def plot_msg_send_2_cr(dataframe, run_id_list, core_type, output_path, paramtr):
         run_id_list (list): Specific run_ids used to create this plot.
         core_type (str): Specific core_type for cross-run_id comparison plots.
         output_path (path): Location to send the graph.
-        paramtr (str): Specific parameter to view.
+        comparison_parameter (str): Specific parameter to view.
         
     Returns:
         msg_count_plot (obj): IPython holoviews plot of the data.
@@ -563,22 +723,23 @@ def plot_msg_send_2_cr(dataframe, run_id_list, core_type, output_path, paramtr):
             'message_size',
             'real_time',
             ylabel='real_time (ns)',
-            title='message_count = 1, messageSendBenchmark: message_size vs real_time', 
-            label='run_id: {}, core_type: {}, {}: {}'.format(run_id, core_type, paramtr, msg_ct_df['{}'.format(paramtr)].unique()),
-            alpha=0.5).opts(
-            width=590,
-            height=360,
-            logx=True,
-            logy=True)
+            title='msg_ct = 1, messageSendBenchmark: message_size vs real_time', 
+            label='run_id: {}, core_type: {}, {}: {}'.format(run_id, core_type, comparison_parameter, msg_ct_df['{}'.format(comparison_parameter)].unique()),
+            alpha=0.5)
         msg_cts.append(msg_count)
-    msg_count_plot = reduce((lambda x, y: x*y), msg_cts)
+    msg_count_plot = (reduce((lambda x, y: x*y), msg_cts)).opts(
+                        width=590, 
+                        height=360, 
+                        logx=True, 
+                        logy=True, 
+                        legend_position='top_left')
     run_id_str = '_'.join(run_id_list)
     save_path = os.path.join(output_path, '{}_{}Core_messageSend2.png'.format(run_id_str, core_type))
     hvplot.save(msg_count_plot, save_path)
     return msg_count_plot
 
 
-def plot_msg_send_3_cr(dataframe, run_id_list, core_type, output_path, paramtr):
+def plot_msg_send_3_cr(dataframe, run_id_list, core_type, output_path, comparison_parameter):
     """This function creates a multi-line graph for the benchmark,
     messageSendBenchmark, of 'message_count' versus 'real_time' and
     it is organized by a single 'core_type', 'message_size'= 1, and
@@ -589,7 +750,7 @@ def plot_msg_send_3_cr(dataframe, run_id_list, core_type, output_path, paramtr):
         run_id_list (list): Specific run_ids used to create this plot.
         core_type (str): Specific core_type for cross-run_id comparison plots.
         output_path (path): Location to send the graph.
-        paramtr (str): Specific parameter to view.
+        comparison_parameter (str): Specific parameter to view.
         
     Returns:
         msg_size_plot (obj): IPython holoviews plot of the data.
@@ -603,22 +764,23 @@ def plot_msg_send_3_cr(dataframe, run_id_list, core_type, output_path, paramtr):
             'message_count',
             'real_time',
             ylabel='real_time (ns)',
-            title='message_size = 1, messageSendBenchmark: message_count vs real_time',
-            label='run_id: {}, core_type: {}, {}: {}'.format(run_id, core_type, paramtr, msg_sz_df['{}'.format(paramtr)].unique()),
-            alpha=0.5).opts(
-            width=590,
-            height=360,
-            logx=True,
-            logy=True)
+            title='msg_sz = 1, messageSendBenchmark: message_count vs real_time',
+            label='run_id: {}, core_type: {}, {}: {}'.format(run_id, core_type, comparison_parameter, msg_sz_df['{}'.format(comparison_parameter)].unique()),
+            alpha=0.5)
         msg_sizes.append(msg_size)
-    msg_size_plot = reduce((lambda x, y: x*y), msg_sizes)
+    msg_size_plot = (reduce((lambda x, y: x*y), msg_sizes)).opts(
+                        width=590, 
+                        height=360, 
+                        logx=True, 
+                        logy=True, 
+                        legend_position='top_left')
     run_id_str = '_'.join(run_id_list)
     save_path = os.path.join(output_path, '{}_{}Core_messageSend3.png'.format(run_id_str, core_type))
     hvplot.save(msg_size_plot, save_path)
     return msg_size_plot
 
 
-def plot_phold_cr(dataframe, run_id_list, core_type, output_path, paramtr):
+def plot_phold_cr(dataframe, run_id_list, core_type, output_path, comparison_parameter):
     """This function creates a multi-line graph for the benchmark,
     pholdBenchmark, of 'federate_count' versus 'real_time' and
     it is organized by a single 'core_type' and compares run_ids' data.
@@ -628,7 +790,7 @@ def plot_phold_cr(dataframe, run_id_list, core_type, output_path, paramtr):
         run_id_list (list): Specific run_ids used to create this plot.
         core_type (str): Specific core_type for cross-run_id comparison plots.
         output_path (path): Location to send the graph.
-        paramtr (str): Sepcific parameter to view.
+        comparison_parameter (str): Sepcific parameter to view.
         
     Returns:
         phold_plot (obj): IPython holoviews plot of the data.
@@ -644,21 +806,22 @@ def plot_phold_cr(dataframe, run_id_list, core_type, output_path, paramtr):
             'real_time',
             ylabel='real_time (ns)',
             title='pholdBenchmark: federate_count vs real_time',
-            label='run_id: {}, core_type: {}, {}: {}'.format(run_id, core_type, paramtr, phold_df['{}'.format(paramtr)].unique()),
-            alpha=0.5).opts(
-            width=590,
-            height=360,
-            logx=True,
-            logy=True)
+            label='run_id: {}, core_type: {}, {}: {}'.format(run_id, core_type, comparison_parameter, phold_df['{}'.format(comparison_parameter)].unique()),
+            alpha=0.5)
         pholds.append(phold)
-    phold_plot = reduce((lambda x, y: x*y), pholds)
+    phold_plot = (reduce((lambda x, y: x*y), pholds)).opts(
+                        width=590, 
+                        height=360, 
+                        logx=True, 
+                        logy=True, 
+                        legend_position='top_left')
     run_id_str = '_'.join(run_id_list)
     save_path = os.path.join(output_path, '{}_{}Core_phold.png'.format(run_id_str, core_type))
     hvplot.save(phold_plot, save_path)
     return phold_plot
 
 
-def plot_ring_cr(dataframe, run_id_list, core_type, output_path, paramtr):
+def plot_ring_cr(dataframe, run_id_list, core_type, output_path, comparison_parameter):
     """This function creates a multi-line graph for the benchmark,
     ringBenchmark, of 'federate_count' versus 'real_time' and
     it is organized by a single 'core_type' and compares run_ids' data.
@@ -668,7 +831,7 @@ def plot_ring_cr(dataframe, run_id_list, core_type, output_path, paramtr):
         run_id_list (list): Specific run_ids used to create this plot.
         core_type (str): Specific core_type for cross-run_id comparison plots.
         output_path (path): Location to send the graph.
-        paramtr (str): Specific parameter to view.
+        comparison_parameter (str): Specific parameter to view.
         
     Returns:
         ring_plot (obj): IPython holoviews plot of the data.
@@ -684,21 +847,22 @@ def plot_ring_cr(dataframe, run_id_list, core_type, output_path, paramtr):
             'real_time',
             ylabel='real_time (ns)',
             title='ringBenchmark: federate_count vs real_time',
-            label='run_id: {}, core_type: {}, {}: {}'.format(run_id, core_type, paramtr, ring_df['{}'.format(paramtr)].unique()),
-            alpha=0.5).opts(
-            width=590,
-            height=360,
-            logx=True,
-            logy=True)
+            label='run_id: {}, core_type: {}, {}: {}'.format(run_id, core_type, comparison_parameter, ring_df['{}'.format(comparison_parameter)].unique()),
+            alpha=0.5)
         rings.append(ring)
-    ring_plot = reduce((lambda x, y: x*y), rings)
+    ring_plot = (reduce((lambda x, y: x*y), rings)).opts(
+                        width=590, 
+                        height=360, 
+                        logx=True, 
+                        logy=True, 
+                        legend_position='top_left')
     run_id_str = '_'.join(run_id_list)
     save_path = os.path.join(output_path, '{}_{}Core_ring.png'.format(run_id_str, core_type))
     hvplot.save(ring_plot, save_path)
     return ring_plot
 
 
-def plot_filter_cr(dataframe, run_id_list, output_path, paramtr):
+def plot_filter_cr(dataframe, run_id_list, output_path, comparison_parameter):
     """This function creates a multi-line graph for the benchmark,
     filterBenchmark, of 'federate_count' versus 'real_time' and
     it is organized by a single 'core_type': 'singleCore' and compares
@@ -708,7 +872,7 @@ def plot_filter_cr(dataframe, run_id_list, output_path, paramtr):
         dataframe (obj): A data frame created by make_dataframe.
         run_id_list (list): Specific run_ids used to create this plot.
         output_path (path): Location to send the graph.
-        paramtr (str): Specific parameter to view.
+        comparison_parameter (str): Specific parameter to view.
         
     Returns:
         filter_plot (obj): IPython holoviews plot of the data.
@@ -723,20 +887,21 @@ def plot_filter_cr(dataframe, run_id_list, output_path, paramtr):
             'real_time',
             ylabel='real_time (ns)',
             title='filterBenchmark: federate_count vs real_time',
-            label='run_id: {}, core_type: singleCore, {}: {}'.format(run_id, paramtr, filter_df['{}'.format(paramtr)].unique()),
+            label='run_id: {}, core_type: singleCore, {}: {}'.format(run_id, comparison_parameter, filter_df['{}'.format(comparison_parameter)].unique()),
             by='filter_location',
-            alpha=0.5).opts(
-            width=590,
-            height=360)
+            alpha=0.5)
         filters.append(filtr)
-    filter_plot = reduce((lambda x, y: x*y), filters)
+    filter_plot = (reduce((lambda x, y: x*y), filters)).opts(
+                        width=590, 
+                        height=360,
+                        legend_position='top_left')
     run_id_str = '_'.join(run_id_list)
     save_path = os.path.join(output_path, '{}__filter.png'.format(run_id_str))
     hvplot.save(filter_plot, save_path)
     return filter_plot
 
 
-def plot_src_cr(dataframe, run_id_list, core_type, output_path, paramtr):
+def plot_src_cr(dataframe, run_id_list, core_type, output_path, comparison_parameter):
     """This function creates a multi-line graph for the benchmark,
     filterBenchmark, of 'federate_count' versus 'real_time' and
     it is organized by a single 'core_type', 'filter_location' = 'source',
@@ -747,7 +912,7 @@ def plot_src_cr(dataframe, run_id_list, core_type, output_path, paramtr):
         run_id_list (list): Specific run_ids used to create this plot.
         core_type (str): Specific core_type for cross-run_id comparison plots.
         output_path (path): Location to send the graph.
-        paramtr (str): Specific parameter to view.
+        comparison_parameter (str): Specific parameter to view.
         
     Returns:
         source_plot (obj): IPython holoviews plot of the data.
@@ -763,21 +928,22 @@ def plot_src_cr(dataframe, run_id_list, core_type, output_path, paramtr):
             'real_time',
             ylabel='real_time (ns)',
             title='filter_location-source, filterBenchmark: federate_count vs real_time',
-            label='run_id: {}, core_type: {}, {}: {}'.format(run_id, core_type, paramtr, filter_df['{}'.format(paramtr)].unique()),
-            alpha=0.5).opts(
-            width=590,
-            height=360,
-            logx=True,
-            logy=True)
+            label='run_id: {}, core_type: {}, {}: {}'.format(run_id, core_type, comparison_parameter, filter_df['{}'.format(comparison_parameter)].unique()),
+            alpha=0.5)
         sources.append(source)
-    source_plot = reduce((lambda x, y: x*y), sources)
+    source_plot = (reduce((lambda x, y: x*y), sources)).opts(
+                        width=590, 
+                        height=360, 
+                        logx=True, 
+                        logy=True, 
+                        legend_position='top_left')
     run_id_str = '_'.join(run_id_list)
     save_path = os.path.join(output_path, '{}_{}Core_srcFilter.png'.format(run_id_str, core_type))
     hvplot.save(source_plot, save_path)
     return source_plot
 
 
-def plot_dest_cr(dataframe, run_id_list, core_type, output_path, paramtr):
+def plot_dest_cr(dataframe, run_id_list, core_type, output_path, comparison_parameter):
     """This function creates a multi-line graph for the benchmark,
     filterBenchmark, of 'federate_count' versus 'real_time' and
     it is organized by a single 'core_type', 'filter_location' = 'destination',
@@ -788,7 +954,7 @@ def plot_dest_cr(dataframe, run_id_list, core_type, output_path, paramtr):
         run_id_list (list): Specific run_ids used to create this plot.
         core_type (str): Specific core_type for cross-run_id comparison plots.
         output_path (path): Location to send the graph.
-        paramtr (str): Specific parameter to view.
+        comparison_parameter (str): Specific parameter to view.
         
     Returns:
         dest_plot (obj): IPython holoviews plot of the data.
@@ -805,14 +971,15 @@ def plot_dest_cr(dataframe, run_id_list, core_type, output_path, paramtr):
             'real_time',
             ylabel='real_time (ns)',
             title='filter_location-destination, filterBenchmark: federate_count vs real_time',
-            label='run_id: {}, core_type: {}, {}: {}'.format(run_id, core_type, paramtr, filter_df['{}'.format(paramtr)].unique()),
-            alpha=0.5).opts(
-            width=590,
-            height=360,
-            logx=True,
-            logy=True)
+            label='run_id: {}, core_type: {}, {}: {}'.format(run_id, core_type, comparison_parameter, filter_df['{}'.format(comparison_parameter)].unique()),
+            alpha=0.5)
         dests.append(dest)
-    dest_plot = reduce((lambda x, y: x*y), dests)
+    dest_plot = (reduce((lambda x, y: x*y), dests)).opts(
+                        width=590, 
+                        height=360, 
+                        logx=True, 
+                        logy=True, 
+                        legend_position='top_left')
     run_id_str = '_'.join(run_id_list)
     save_path = os.path.join(output_path, '{}_{}Core_destFilter.png'.format(run_id_str, core_type))
     hvplot.save(dest_plot, save_path)
@@ -884,4 +1051,5 @@ if __name__ == '__main__':
     #              destination]
     #
     # save_plots(plot_list, 'r1Nr5')
+
 
