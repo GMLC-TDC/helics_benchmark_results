@@ -20,6 +20,7 @@ import make_dataframe as md
 import standard_analysis as sa
 import sys
 import holoviews as hv
+import math
 
 # Installation of FPDF is: python -m pip install fpdf
 # Installation of hvplot.pandas is: conda install -c pyviz hvplot
@@ -133,7 +134,7 @@ def find_common_bm_to_graph(json_results, run_id_dict):
             bm_list_to_graph.append({'bm_name': bm_name, 'bm_type':bm_type})
     return bm_list_to_graph
 
-def make_cross_run_id_graphs(meta_bmk_df, bm, run_id_list, output_path):
+def make_cross_run_id_graphs(meta_bmk_df, bm, run_id_list, output_path, comparison_parameter):
     # TDH note to Corinne:
     # All of these calls to your bmk_plotting need new versions that appropriately handle multiple run IDs
     #   as specified in the run_id_list. That is, you'll need to create a plot_echo_results_cross_run_ID that makes
@@ -141,31 +142,42 @@ def make_cross_run_id_graphs(meta_bmk_df, bm, run_id_list, output_path):
 
     if bm == 'echoBenchmark':
         for core_type in meta_bmk_df.core_type.unique():
-            bmk_plotting.plot_echo_result_cr(meta_bmk_df, run_id_list, core_type, output_path)
+            bmk_plotting.plot_echo_result_cr(meta_bmk_df, run_id_list, core_type, output_path, comparison_parameter)
     if bm == 'echoMessageBenchmark':
         for core_type in meta_bmk_df.core_type.unique():
-            bmk_plotting.plot_echo_msg_cr(meta_bmk_df, run_id_list, core_type, output_path)
+            bmk_plotting.plot_echo_msg_cr(meta_bmk_df, run_id_list, core_type, output_path, comparison_parameter)
     if bm == 'messageLookupBenchmark':
-        bmk_plotting.plot_msg_lookup_cr(meta_bmk_df, run_id_list, output_path)
+        # TDH (2020-01-07): Extra work for this one as we want to iterate over only the federate_count values that are
+        # in the messageLookupBenchmark
+        meta_bmk_df = meta_bmk_df[meta_bmk_df.benchmark == 'messageLookupBenchmark']
+        fed_list = [i for i in meta_bmk_df.federate_count]
+        fed_list = [x for x in fed_list if not math.isnan(x)]
+        fed_list = list(set(fed_list))
+        for federate_count in fed_list:
+            #bmk_plotting.plot_msg_lookup_cr(meta_bmk_df, run_id_list, federate_count, output_path, comparison_parameter)
+            pass
     if bm == 'ringBenchmark':
         for core_type in meta_bmk_df.core_type.unique():
-            bmk_plotting.plot_ring_cr(meta_bmk_df, run_id_list, core_type, output_path)
+            bmk_plotting.plot_ring_cr(meta_bmk_df, run_id_list, core_type, output_path, comparison_parameter)
     if bm == 'pholdBenchmark':
         for core_type in meta_bmk_df.core_type.unique():
-            bmk_plotting.plot_phold_cr(meta_bmk_df, run_id_list, core_type, output_path)
+            bmk_plotting.plot_phold_cr(meta_bmk_df, run_id_list, core_type, output_path, comparison_parameter)
     if bm == 'messageSendBenchmark':
-        bmk_plotting.plot_msg_send_1_cr(meta_bmk_df, run_id_list, output_path)
+        bmk_plotting.plot_msg_send_1_cr(meta_bmk_df, run_id_list, output_path, comparison_parameter)
         for core_type in meta_bmk_df.core_type.unique():
-            bmk_plotting.plot_msg_send_2_cr(meta_bmk_df, run_id_list, core_type, output_path)
-            bmk_plotting.plot_msg_send_3_cr(meta_bmk_df, run_id_list, core_type, output_path)
+            bmk_plotting.plot_msg_send_2_cr(meta_bmk_df, run_id_list, core_type, output_path, comparison_parameter)
+            bmk_plotting.plot_msg_send_3_cr(meta_bmk_df, run_id_list, core_type, output_path, comparison_parameter)
     if bm == 'filterBenchmark':
-        bmk_plotting.plot_filter_cr(meta_bmk_df, run_id_list, output_path)
+        bmk_plotting.plot_filter_cr(meta_bmk_df, run_id_list, output_path, comparison_parameter)
         for core_type in meta_bmk_df.core_type.unique():
-            bmk_plotting.plot_src_cr(meta_bmk_df, run_id_list, core_type, output_path)
-            bmk_plotting.plot_dest_cr(meta_bmk_df, run_id_list, core_type, output_path)
+            bmk_plotting.plot_src_cr(meta_bmk_df, run_id_list, core_type, output_path, comparison_parameter)
+            bmk_plotting.plot_dest_cr(meta_bmk_df, run_id_list, core_type, output_path, comparison_parameter)
 
 
 def _auto_run(args):
+    # TDH (2020-01-07) For now, I'm going to hard-code the parameter of interest that we will be comparing across
+    # run IDs.
+    comparison_parameter = 'mhz_per_cpu'
     run_id_dict = find_specific_run_id(args.benchmark_results_dir, args.run_id_list)
     create_output_path(args.output_path, args.delete_report)
     file_list = []
@@ -175,8 +187,8 @@ def _auto_run(args):
     json_results = bmpp.parse_and_add_benchmark_metadata(json_results)
     meta_bmk_df = md.make_dataframe(json_results)
     bm_list = find_common_bm_to_graph(json_results, run_id_dict)
-    #for bm in bm_list:
-    #    make_cross_run_id_graphs(meta_bmk_df, bm['bm_name'], list(run_id_dict.keys()), args.output_path)
+    for bm in bm_list:
+        make_cross_run_id_graphs(meta_bmk_df, bm['bm_name'], list(run_id_dict.keys()), args.output_path, comparison_parameter)
     criPDF.create_cross_run_id_report(json_results, list(run_id_dict.keys()), args.output_path, parameter_list)
 
 
