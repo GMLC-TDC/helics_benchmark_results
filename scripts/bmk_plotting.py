@@ -527,9 +527,7 @@ def plot_echo_result_cr(dataframe, run_id_list, core_type, output_path, comparis
         echo_ress.append(echo_res)
     echo_res_plot = (reduce((lambda x, y: x*y), echo_ress)).opts(
                         width=590, 
-                        height=360, 
-                        logx=True, 
-                        logy=True, 
+                        height=360,
                         legend_position='top_left')
     run_id_str = '_'.join(run_id_list)
     save_path = os.path.join(output_path, '{}_{}Core_echo.png'.format(run_id_str, core_type))
