@@ -491,7 +491,7 @@ def plot_echo_msg_cr(dataframe, run_id_list, core_type, output_path, comparison_
                         logy=True, 
                         legend_position='top_left')
     run_id_str = '_'.join(run_id_list)
-    save_path = os.path.join(output_path, '{}_{}Core_echoMessage.png'.format(run_id_str, core_type))
+    save_path = os.path.join(output_path, '{}_echoMessage_{}Core.png'.format(run_id_str, core_type))
     hvplot.save(echo_msg_plot, save_path)
     return echo_msg_plot
 
@@ -530,7 +530,7 @@ def plot_echo_result_cr(dataframe, run_id_list, core_type, output_path, comparis
                         height=360,
                         legend_position='top_left')
     run_id_str = '_'.join(run_id_list)
-    save_path = os.path.join(output_path, '{}_{}Core_echo.png'.format(run_id_str, core_type))
+    save_path = os.path.join(output_path, '{}_echo_{}Core.png'.format(run_id_str, core_type))
     hvplot.save(echo_res_plot, save_path)
     return echo_res_plot
 
@@ -570,7 +570,7 @@ def plot_msg_lookup_1_cr(dataframe, run_id_list, output_path, comparison_paramet
                         logy=True, 
                         legend_position='top_left')
     run_id_str = '_'.join(run_id_list)
-    save_path = os.path.join(output_path, '{}__messageLookup.png'.format(run_id_str))
+    save_path = os.path.join(output_path, '{}_messageLookup.png'.format(run_id_str))
     hvplot.save(msg_lookup_plot, save_path)
     return msg_lookup_plot
 
@@ -610,7 +610,7 @@ def plot_msg_lookup_2_cr(dataframe, run_id_list, output_path, comparison_paramet
                         logy=True, 
                         legend_position='top_left')
     run_id_str = '_'.join(run_id_list)
-    save_path = os.path.join(output_path, '{}__messageLookup.png'.format(run_id_str))
+    save_path = os.path.join(output_path, '{}_messageLookup.png'.format(run_id_str))
     hvplot.save(msg_lookup_plot, save_path)
     return msg_lookup_plot
 
@@ -650,7 +650,7 @@ def plot_msg_lookup_3_cr(dataframe, run_id_list, output_path, comparison_paramet
                         logy=True, 
                         legend_position='top_left')
     run_id_str = '_'.join(run_id_list)
-    save_path = os.path.join(output_path, '{}__messageLookup.png'.format(run_id_str))
+    save_path = os.path.join(output_path, '{}_messageLookup.png'.format(run_id_str))
     hvplot.save(msg_lookup_plot, save_path)
     return msg_lookup_plot
 
@@ -691,7 +691,7 @@ def plot_msg_send_1_cr(dataframe, run_id_list, output_path, comparison_parameter
                         logy=True, 
                         legend_position='top_left')
     run_id_str = '_'.join(run_id_list)
-    save_path = os.path.join(output_path, '{}__messageSend1.png'.format(run_id_str))
+    save_path = os.path.join(output_path, '{}_messageSend1.png'.format(run_id_str))
     hvplot.save(msg_send_plot, save_path)
     return msg_send_plot
 
@@ -732,7 +732,7 @@ def plot_msg_send_2_cr(dataframe, run_id_list, core_type, output_path, compariso
                         logy=True, 
                         legend_position='top_left')
     run_id_str = '_'.join(run_id_list)
-    save_path = os.path.join(output_path, '{}_{}Core_messageSend2.png'.format(run_id_str, core_type))
+    save_path = os.path.join(output_path, '{}_messageSend2_{}Core.png'.format(run_id_str, core_type))
     hvplot.save(msg_count_plot, save_path)
     return msg_count_plot
 
@@ -773,7 +773,7 @@ def plot_msg_send_3_cr(dataframe, run_id_list, core_type, output_path, compariso
                         logy=True, 
                         legend_position='top_left')
     run_id_str = '_'.join(run_id_list)
-    save_path = os.path.join(output_path, '{}_{}Core_messageSend3.png'.format(run_id_str, core_type))
+    save_path = os.path.join(output_path, '{}_messageSend3_{}Core.png'.format(run_id_str, core_type))
     hvplot.save(msg_size_plot, save_path)
     return msg_size_plot
 
@@ -814,7 +814,7 @@ def plot_phold_cr(dataframe, run_id_list, core_type, output_path, comparison_par
                         logy=True, 
                         legend_position='top_left')
     run_id_str = '_'.join(run_id_list)
-    save_path = os.path.join(output_path, '{}_{}Core_phold.png'.format(run_id_str, core_type))
+    save_path = os.path.join(output_path, '{}_phold_{}Core.png'.format(run_id_str, core_type))
     hvplot.save(phold_plot, save_path)
     return phold_plot
 
@@ -855,7 +855,7 @@ def plot_ring_cr(dataframe, run_id_list, core_type, output_path, comparison_para
                         logy=True, 
                         legend_position='top_left')
     run_id_str = '_'.join(run_id_list)
-    save_path = os.path.join(output_path, '{}_{}Core_ring.png'.format(run_id_str, core_type))
+    save_path = os.path.join(output_path, '{}_ring_{}Core.png'.format(run_id_str, core_type))
     hvplot.save(ring_plot, save_path)
     return ring_plot
 
@@ -894,7 +894,7 @@ def plot_filter_cr(dataframe, run_id_list, output_path, comparison_parameter):
                         height=360,
                         legend_position='top_left')
     run_id_str = '_'.join(run_id_list)
-    save_path = os.path.join(output_path, '{}__filter.png'.format(run_id_str))
+    save_path = os.path.join(output_path, '{}_filter.png'.format(run_id_str))
     hvplot.save(filter_plot, save_path)
     return filter_plot
 
@@ -936,7 +936,7 @@ def plot_src_cr(dataframe, run_id_list, core_type, output_path, comparison_param
                         logy=True, 
                         legend_position='top_left')
     run_id_str = '_'.join(run_id_list)
-    save_path = os.path.join(output_path, '{}_{}Core_srcFilter.png'.format(run_id_str, core_type))
+    save_path = os.path.join(output_path, '{}_srcFilter_{}Core.png'.format(run_id_str, core_type))
     hvplot.save(source_plot, save_path)
     return source_plot
 
@@ -979,7 +979,7 @@ def plot_dest_cr(dataframe, run_id_list, core_type, output_path, comparison_para
                         logy=True, 
                         legend_position='top_left')
     run_id_str = '_'.join(run_id_list)
-    save_path = os.path.join(output_path, '{}_{}Core_destFilter.png'.format(run_id_str, core_type))
+    save_path = os.path.join(output_path, '{}_destFilter_{}Core.png'.format(run_id_str, core_type))
     hvplot.save(dest_plot, save_path)
     return dest_plot
 
