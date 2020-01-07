@@ -51,6 +51,7 @@ def plot_echo_msg(dataframe, run_id, output_path):
         'federate_count',
         'real_time',
         ylabel='real_time (ns)',
+        xticks=list(range(0, echo_df.federate_count.max().astype(int), 2)),
         title='run_id {} echoMessageBenchmark: federate_count vs real_time'.format(run_id),
         by='core_type',
         alpha=0.5).opts(
@@ -83,13 +84,12 @@ def plot_echo_result(dataframe, run_id, output_path):
         'federate_count',
         'real_time',
         ylabel='real_time (ns)',
+        xticks=list(range(0, echo_df.federate_count.max().astype(int), 2)),
         title='run_id {} echoBenchmark: federate_count vs real_time'.format(run_id),
         by='core_type',
         alpha=0.5).opts(
         width=600,
         height=360,
-        logx=True,
-        logy=True,
         fontsize={'title': 9, 'labels': 10, 'xticks': 10, 'yticks': 10}
     )
     save_path = os.path.join(output_path, '{}_echoResult.png'.format(run_id))
@@ -117,6 +117,7 @@ def plot_msg_lookup_1(dataframe, run_id, output_path):
         'interface_count',
         'real_time',
         ylabel='real_time (ns)',
+        xticks=list(range(0, inproc_df.interface_count.max().astype(int), 2)),
         title='run_id {} messageLookupBenchmark: interface_count vs real_time'.format(run_id),
         alpha=0.5).opts(
         width=590,
@@ -149,6 +150,7 @@ def plot_msg_lookup_2(dataframe, run_id, output_path):
         'interface_count',
         'real_time',
         ylabel='real_time (ns)',
+        xticks=list(range(0, inproc_df.interface_count.max().astype(int), 2)),
         title='run_id {} messageLookupBenchmark: interface_count vs real_time'.format(run_id),
         alpha=0.5).opts(
         width=590,
@@ -181,6 +183,7 @@ def plot_msg_lookup_3(dataframe, run_id, output_path):
         'interface_count',
         'real_time',
         ylabel='real_time (ns)',
+        xticks=list(range(0, inproc_df.interface_count.max().astype(int), 2)),
         title='run_id {} messageLookupBenchmark: interface_count vs real_time'.format(run_id),
         alpha=0.5).opts(
         width=590,
@@ -213,6 +216,7 @@ def plot_msg_send_1(dataframe, run_id, output_path):
         'message_size',
         'real_time',
         ylabel='real_time (ns)',
+        xticks=list(range(0, msg_snd_df.message_size.max().astype(int), 2)),
         title='run_id {} messageSendBenchmark, core_type {}: message_size vs real_time'.format(run_id, 'singleCore'),
         alpha=0.5).opts(
         width=580,
@@ -245,6 +249,7 @@ def plot_msg_send_2(dataframe, run_id, output_path):
         'message_size',
         'real_time',
         ylabel='real_time (ns)',
+        xticks=list(range(0, msg_ct_df.message_size.max().astype(int), 2)),
         title='run_id {} messageSendBenchmark, message_count = 1: message_size vs real_time'.format(run_id),
         by='core_type',
         alpha=0.5).opts(
@@ -278,6 +283,7 @@ def plot_msg_send_3(dataframe, run_id, output_path):
         'message_count',
         'real_time',
         ylabel='real_time (ns)',
+        xticks=list(range(0, msg_sz_df.message_count.max().astype(int), 2)),
         title='run_id {} messageSendBenchmark, message_size = 1: message_count vs real_time'.format(run_id),
         by='core_type',
         alpha=0.5).opts(
@@ -310,6 +316,7 @@ def plot_phold(dataframe, run_id, output_path):
         'federate_count',
         'real_time',
         ylabel='real_time (ns)',
+        xticks=list(range(0, phold_df.federate_count.max().astype(int), 2)),
         title='run_id {} pholdBenchmark: federate_count vs real_time'.format(run_id),
         by='core_type',
         alpha=0.5).opts(
@@ -342,6 +349,7 @@ def plot_ring(dataframe, run_id, output_path):
         'federate_count',
         'real_time',
         ylabel='real_time (ns)',
+        xticks=list(range(0, ring_df.federate_count.max().astype(int), 2)),
         title='run_id {} ringBenchmark: federate_count vs real_time'.format(run_id),
         by='core_type',
         alpha=0.5).opts(
@@ -375,6 +383,7 @@ def plot_filter(dataframe, run_id, output_path):
         'federate_count',
         'real_time',
         ylabel='real_time (ns)',
+        xticks=list(range(0, filter_df.federate_count.max().astype(int), 2)),
         title='run_id {} filterBenchmark, core_type {}: federate_count vs real_time'.format(run_id, 'singleCore'),
         by='filter_location',
         alpha=0.5).opts(
@@ -406,6 +415,7 @@ def plot_src(dataframe, run_id, output_path):
         'federate_count',
         'real_time',
         ylabel='real_time (ns)',
+        xticks=list(range(0, filter_df.federate_count.max().astype(int), 2)),
         title='run_id {} filterBenchmark, filter_location {}: federate_count vs real_time'.format(run_id, 'source'),
         by='core_type',
         alpha=0.5).opts(
@@ -439,6 +449,7 @@ def plot_dest(dataframe, run_id, output_path):
         'federate_count',
         'real_time',
         ylabel='real_time (ns)',
+        xticks=list(range(0, filter_df.federate_count.max().astype(int), 2)),
         title='run_id {} filterBenchmark, filter_location {}: federate_count vs real_time'.format(run_id,
                                                                                                   'destination'),
         by='core_type',
@@ -479,7 +490,8 @@ def plot_echo_msg_cr(dataframe, run_id_list, core_type, output_path, comparison_
         echo_msg = echo_df.sort_values('federate_count').hvplot.line(
                 'federate_count', 
                 'real_time', 
-                ylabel='real_time (ns)', 
+                ylabel='real_time (ns)',
+                xticks=list(range(0, echo_df.federate_count.max().astype(int), 2)),
                 title='echoMessageBenchmark: federate_count vs real_time', 
                 label='run_id: {}, core_type: {}, {}: {}'.format(run_id, core_type, comparison_parameter, echo_df['{}'.format(comparison_parameter)].unique()),
                 alpha=0.5)
@@ -521,6 +533,7 @@ def plot_echo_result_cr(dataframe, run_id_list, core_type, output_path, comparis
             'federate_count',
             'real_time',
             ylabel='real_time (ns)',
+            xticks=list(range(0, echo_df.federate_count.max().astype(int), 2)),
             title='echoBenchmark: federate_count vs real_time',
             label='run_id: {}, core_type: {}, {}: {}'.format(run_id, core_type, comparison_parameter, echo_df['{}'.format(comparison_parameter)].unique()),
             alpha=0.5)
@@ -559,6 +572,7 @@ def plot_msg_lookup_1_cr(dataframe, run_id_list, output_path, comparison_paramet
             'interface_count',
             'real_time',
             ylabel='real_time (ns)',
+            xticks=list(range(0, msg_lkp_df.interface_count.max().astype(int), 2)),
             title='fed_ct = 2, messageLookup: interface_count vs real_time',
             label='run_id: {}, core_type: inproc, {}: {}'.format(run_id, comparison_parameter, msg_lkp_df['{}'.format(comparison_parameter)].unique()),
             alpha=0.5)
@@ -599,6 +613,7 @@ def plot_msg_lookup_2_cr(dataframe, run_id_list, output_path, comparison_paramet
             'interface_count',
             'real_time',
             ylabel='real_time (ns)',
+            xticks=list(range(0, msg_lkp_df.interface_count.max().astype(int), 2)),
             title='fed_ct = 8, messageLookup: interface_count vs real_time',
             label='run_id: {}, core_type: inproc, {}: {}'.format(run_id, comparison_parameter, msg_lkp_df['{}'.format(comparison_parameter)].unique()),
             alpha=0.5)
@@ -639,6 +654,7 @@ def plot_msg_lookup_3_cr(dataframe, run_id_list, output_path, comparison_paramet
             'interface_count',
             'real_time',
             ylabel='real_time (ns)',
+            xticks=list(range(0, msg_lkp_df.interface_count.max().astype(int), 2)),
             title='fed_ct = 64, messageLookup: interface_count vs real_time',
             label='run_id: {}, core_type: inproc, {}: {}'.format(run_id, comparison_parameter, msg_lkp_df['{}'.format(comparison_parameter)].unique()),
             alpha=0.5)
@@ -680,6 +696,7 @@ def plot_msg_send_1_cr(dataframe, run_id_list, output_path, comparison_parameter
             'message_size',
             'real_time',
             ylabel='real_time (ns)',
+            xticks=list(range(0, msg_snd_df.message_size.max().astype(int), 2)),
             title='messageSendBenchmark: message_size vs real_time',
             label='run_id: {}, core_type: singleFed, {}: {}'.format(run_id, comparison_parameter, msg_snd_df['{}'.format(comparison_parameter)].unique()),
             alpha=0.5)
@@ -721,6 +738,7 @@ def plot_msg_send_2_cr(dataframe, run_id_list, core_type, output_path, compariso
             'message_size',
             'real_time',
             ylabel='real_time (ns)',
+            xticks=list(range(0, msg_ct_df.message_size.max().astype(int), 2)),
             title='msg_ct = 1, messageSendBenchmark: message_size vs real_time', 
             label='run_id: {}, core_type: {}, {}: {}'.format(run_id, core_type, comparison_parameter, msg_ct_df['{}'.format(comparison_parameter)].unique()),
             alpha=0.5)
@@ -762,6 +780,7 @@ def plot_msg_send_3_cr(dataframe, run_id_list, core_type, output_path, compariso
             'message_count',
             'real_time',
             ylabel='real_time (ns)',
+            xticks=list(range(0, msg_sz_df.message_count.max().astype(int), 2)),
             title='msg_sz = 1, messageSendBenchmark: message_count vs real_time',
             label='run_id: {}, core_type: {}, {}: {}'.format(run_id, core_type, comparison_parameter, msg_sz_df['{}'.format(comparison_parameter)].unique()),
             alpha=0.5)
@@ -803,6 +822,7 @@ def plot_phold_cr(dataframe, run_id_list, core_type, output_path, comparison_par
             'federate_count',
             'real_time',
             ylabel='real_time (ns)',
+            xticks=list(range(0, phold_df.federate_count.max().astype(int), 2)),
             title='pholdBenchmark: federate_count vs real_time',
             label='run_id: {}, core_type: {}, {}: {}'.format(run_id, core_type, comparison_parameter, phold_df['{}'.format(comparison_parameter)].unique()),
             alpha=0.5)
@@ -844,6 +864,7 @@ def plot_ring_cr(dataframe, run_id_list, core_type, output_path, comparison_para
             'federate_count',
             'real_time',
             ylabel='real_time (ns)',
+            xticks=list(range(0, ring_df.federate_count.max().astype(int), 2)),
             title='ringBenchmark: federate_count vs real_time',
             label='run_id: {}, core_type: {}, {}: {}'.format(run_id, core_type, comparison_parameter, ring_df['{}'.format(comparison_parameter)].unique()),
             alpha=0.5)
@@ -884,6 +905,7 @@ def plot_filter_cr(dataframe, run_id_list, output_path, comparison_parameter):
             'federate_count',
             'real_time',
             ylabel='real_time (ns)',
+            xticks=list(range(0, filter_df.federate_count.max().astype(int), 2)),
             title='filterBenchmark: federate_count vs real_time',
             label='run_id: {}, core_type: singleCore, {}: {}'.format(run_id, comparison_parameter, filter_df['{}'.format(comparison_parameter)].unique()),
             by='filter_location',
@@ -925,6 +947,7 @@ def plot_src_cr(dataframe, run_id_list, core_type, output_path, comparison_param
             'federate_count',
             'real_time',
             ylabel='real_time (ns)',
+            xticks=list(range(0, filter_df.federate_count.max().astype(int), 2)),
             title='filter_location-source, filterBenchmark: federate_count vs real_time',
             label='run_id: {}, core_type: {}, {}: {}'.format(run_id, core_type, comparison_parameter, filter_df['{}'.format(comparison_parameter)].unique()),
             alpha=0.5)
@@ -968,6 +991,7 @@ def plot_dest_cr(dataframe, run_id_list, core_type, output_path, comparison_para
             'federate_count',
             'real_time',
             ylabel='real_time (ns)',
+            xticks=list(range(0, filter_df.federate_count.max().astype(int), 2)),
             title='filter_location-destination, filterBenchmark: federate_count vs real_time',
             label='run_id: {}, core_type: {}, {}: {}'.format(run_id, core_type, comparison_parameter, filter_df['{}'.format(comparison_parameter)].unique()),
             alpha=0.5)
