@@ -183,6 +183,8 @@ def _auto_run(args):
     file_list = []
     for run_id in run_id_dict:
         file_list.extend(run_id_dict[run_id]['files'])
+    bm_files, bmk_files = sa.sort_results_files(file_list)
+    file_list = bm_files
     json_results = bmpp.parse_files(file_list)
     json_results = bmpp.parse_and_add_benchmark_metadata(json_results)
     meta_bmk_df = md.make_dataframe(json_results)
