@@ -51,7 +51,7 @@ def plot_echo_msg(dataframe, run_id, output_path):
         'federate_count',
         'real_time',
         ylabel='real_time (ns)',
-        xticks=list(range(0, echo_df.federate_count.max().astype(int), 2)),
+        xticks=list(range(0, (int(float(echo_df.federate_count.max()))+1), 4)),
         title='run_id {} echoMessageBenchmark: federate_count vs real_time'.format(run_id),
         by='core_type',
         alpha=0.5).opts(
@@ -59,7 +59,7 @@ def plot_echo_msg(dataframe, run_id, output_path):
         height=360,
         logx=True,
         logy=True,
-        fontsize={'title': 9, 'labels': 10, 'xticks': 10, 'yticks': 10}
+        fontsize={'title': 9.5, 'labels': 10, 'xticks': 10, 'yticks': 10}
     )
     save_path = os.path.join(output_path, '{}_echoMessage.png'.format(run_id))
     hvplot.save(echo_msg, save_path)
@@ -84,13 +84,13 @@ def plot_echo_result(dataframe, run_id, output_path):
         'federate_count',
         'real_time',
         ylabel='real_time (ns)',
-        xticks=list(range(0, echo_df.federate_count.max().astype(int), 2)),
+        xticks=list(range(0, (int(float(echo_df.federate_count.max()))+1), 1)),
         title='run_id {} echoBenchmark: federate_count vs real_time'.format(run_id),
         by='core_type',
         alpha=0.5).opts(
         width=600,
         height=360,
-        fontsize={'title': 9, 'labels': 10, 'xticks': 10, 'yticks': 10}
+        fontsize={'title': 9.5, 'labels': 10, 'xticks': 10, 'yticks': 10}
     )
     save_path = os.path.join(output_path, '{}_echoResult.png'.format(run_id))
     hvplot.save(echo_res, save_path)
@@ -117,14 +117,13 @@ def plot_msg_lookup_1(dataframe, run_id, output_path):
         'interface_count',
         'real_time',
         ylabel='real_time (ns)',
-        xticks=list(range(0, inproc_df.interface_count.max().astype(int), 2)),
         title='run_id {} messageLookupBenchmark: interface_count vs real_time'.format(run_id),
         alpha=0.5).opts(
         width=590,
         height=360,
         logx=True,
         logy=True,
-        fontsize={'title': 9, 'labels': 10, 'xticks': 10, 'yticks': 10}
+        fontsize={'title': 9.5, 'labels': 10, 'xticks': 10, 'yticks': 10}
     )
     save_path = os.path.join(output_path, '{}_messageLookup.png'.format(run_id))
     hvplot.save(msg_lookup, save_path)
@@ -150,14 +149,13 @@ def plot_msg_lookup_2(dataframe, run_id, output_path):
         'interface_count',
         'real_time',
         ylabel='real_time (ns)',
-        xticks=list(range(0, inproc_df.interface_count.max().astype(int), 2)),
         title='run_id {} messageLookupBenchmark: interface_count vs real_time'.format(run_id),
         alpha=0.5).opts(
         width=590,
         height=360,
         logx=True,
         logy=True,
-        fontsize={'title': 9, 'labels': 10, 'xticks': 10, 'yticks': 10}
+        fontsize={'title': 9.5, 'labels': 10, 'xticks': 10, 'yticks': 10}
     )
     save_path = os.path.join(output_path, '{}_messageLookup.png'.format(run_id))
     hvplot.save(msg_lookup, save_path)
@@ -183,14 +181,13 @@ def plot_msg_lookup_3(dataframe, run_id, output_path):
         'interface_count',
         'real_time',
         ylabel='real_time (ns)',
-        xticks=list(range(0, inproc_df.interface_count.max().astype(int), 2)),
         title='run_id {} messageLookupBenchmark: interface_count vs real_time'.format(run_id),
         alpha=0.5).opts(
         width=590,
         height=360,
         logx=True,
         logy=True,
-        fontsize={'title': 9, 'labels': 10, 'xticks': 10, 'yticks': 10}
+        fontsize={'title': 9.5, 'labels': 10, 'xticks': 10, 'yticks': 10}
     )
     save_path = os.path.join(output_path, '{}_messageLookup.png'.format(run_id))
     hvplot.save(msg_lookup, save_path)
@@ -216,14 +213,13 @@ def plot_msg_send_1(dataframe, run_id, output_path):
         'message_size',
         'real_time',
         ylabel='real_time (ns)',
-        xticks=list(range(0, msg_snd_df.message_size.max().astype(int), 2)),
         title='run_id {} messageSendBenchmark, core_type {}: message_size vs real_time'.format(run_id, 'singleCore'),
         alpha=0.5).opts(
         width=580,
         height=360,
         logx=True,
         logy=True,
-        fontsize={'title': 9, 'labels': 10, 'xticks': 10, 'yticks': 10}
+        fontsize={'title': 9.5, 'labels': 10, 'xticks': 10, 'yticks': 10}
     )
     save_path = os.path.join(output_path, '{}_messageSend1.png'.format(run_id))
     hvplot.save(msg_send, save_path)
@@ -249,7 +245,6 @@ def plot_msg_send_2(dataframe, run_id, output_path):
         'message_size',
         'real_time',
         ylabel='real_time (ns)',
-        xticks=list(range(0, msg_ct_df.message_size.max().astype(int), 2)),
         title='run_id {} messageSendBenchmark, message_count = 1: message_size vs real_time'.format(run_id),
         by='core_type',
         alpha=0.5).opts(
@@ -257,7 +252,7 @@ def plot_msg_send_2(dataframe, run_id, output_path):
         height=360,
         logx=True,
         logy=True,
-        fontsize={'title': 9, 'labels': 10, 'xticks': 10, 'yticks': 10}
+        fontsize={'title': 9.5, 'labels': 10, 'xticks': 10, 'yticks': 10}
     )
     save_path = os.path.join(output_path, '{}_messageSend2.png'.format(run_id))
     hvplot.save(msg_count, save_path)
@@ -283,7 +278,6 @@ def plot_msg_send_3(dataframe, run_id, output_path):
         'message_count',
         'real_time',
         ylabel='real_time (ns)',
-        xticks=list(range(0, msg_sz_df.message_count.max().astype(int), 2)),
         title='run_id {} messageSendBenchmark, message_size = 1: message_count vs real_time'.format(run_id),
         by='core_type',
         alpha=0.5).opts(
@@ -291,7 +285,7 @@ def plot_msg_send_3(dataframe, run_id, output_path):
         height=360,
         logx=True,
         logy=True,
-        fontsize={'title': 9, 'labels': 10, 'xticks': 10, 'yticks': 10}
+        fontsize={'title': 9.5, 'labels': 10, 'xticks': 10, 'yticks': 10}
     )
     save_path = os.path.join(output_path, '{}_messageSend3.png'.format(run_id))
     hvplot.save(msg_size, save_path)
@@ -316,7 +310,7 @@ def plot_phold(dataframe, run_id, output_path):
         'federate_count',
         'real_time',
         ylabel='real_time (ns)',
-        xticks=list(range(0, phold_df.federate_count.max().astype(int), 2)),
+        xticks=list(range(0, (int(float(phold_df.federate_count.max()))+1), 5)),
         title='run_id {} pholdBenchmark: federate_count vs real_time'.format(run_id),
         by='core_type',
         alpha=0.5).opts(
@@ -324,7 +318,7 @@ def plot_phold(dataframe, run_id, output_path):
         height=360,
         logx=True,
         logy=True,
-        fontsize={'title': 9, 'labels': 10, 'xticks': 10, 'yticks': 10}
+        fontsize={'title': 9.5, 'labels': 10, 'xticks': 10, 'yticks': 10}
     )
     save_path = os.path.join(output_path, '{}_pHold.png'.format(run_id))
     hvplot.save(phold, save_path)
@@ -349,7 +343,7 @@ def plot_ring(dataframe, run_id, output_path):
         'federate_count',
         'real_time',
         ylabel='real_time (ns)',
-        xticks=list(range(0, ring_df.federate_count.max().astype(int), 2)),
+        xticks=list(range(0, (int(float(ring_df.federate_count.max()))+2), 1)),
         title='run_id {} ringBenchmark: federate_count vs real_time'.format(run_id),
         by='core_type',
         alpha=0.5).opts(
@@ -357,7 +351,7 @@ def plot_ring(dataframe, run_id, output_path):
         height=360,
         logx=True,
         logy=True,
-        fontsize={'title': 9, 'labels': 10, 'xticks': 10, 'yticks': 10}
+        fontsize={'title': 9.5, 'labels': 10, 'xticks': 10, 'yticks': 10}
     )
     save_path = os.path.join(output_path, '{}_ring.png'.format(run_id))
     hvplot.save(ring, save_path)
@@ -383,13 +377,13 @@ def plot_filter(dataframe, run_id, output_path):
         'federate_count',
         'real_time',
         ylabel='real_time (ns)',
-        xticks=list(range(0, filter_df.federate_count.max().astype(int), 2)),
+        xticks=list(range(0, (int(float(filter_df.federate_count.max()))+1), 2)),
         title='run_id {} filterBenchmark, core_type {}: federate_count vs real_time'.format(run_id, 'singleCore'),
         by='filter_location',
         alpha=0.5).opts(
         width=600,
         height=360,
-        fontsize={'title': 9, 'labels': 10, 'xticks': 10, 'yticks': 10}
+        fontsize={'title': 9.5, 'labels': 10, 'xticks': 10, 'yticks': 10}
     )
     save_path = os.path.join(output_path, '{}_filter.png'.format(run_id))
     hvplot.save(filtr, save_path)
@@ -415,7 +409,7 @@ def plot_src(dataframe, run_id, output_path):
         'federate_count',
         'real_time',
         ylabel='real_time (ns)',
-        xticks=list(range(0, filter_df.federate_count.max().astype(int), 2)),
+        xticks=list(range(0, (int(float(filter_df.federate_count.max()))+4), 4)),
         title='run_id {} filterBenchmark, filter_location {}: federate_count vs real_time'.format(run_id, 'source'),
         by='core_type',
         alpha=0.5).opts(
@@ -423,7 +417,7 @@ def plot_src(dataframe, run_id, output_path):
         height=360,
         logx=True,
         logy=True,
-        fontsize={'title': 9, 'labels': 10, 'xticks': 10, 'yticks': 10}
+        fontsize={'title': 9.5, 'labels': 10, 'xticks': 10, 'yticks': 10}
     )
     save_path = os.path.join(output_path, '{}_source.png'.format(run_id))
     hvplot.save(source, save_path)
@@ -449,7 +443,7 @@ def plot_dest(dataframe, run_id, output_path):
         'federate_count',
         'real_time',
         ylabel='real_time (ns)',
-        xticks=list(range(0, filter_df.federate_count.max().astype(int), 2)),
+        xticks=list(range(0, (int(float(filter_df.federate_count.max()))+1), 4)),
         title='run_id {} filterBenchmark, filter_location {}: federate_count vs real_time'.format(run_id,
                                                                                                   'destination'),
         by='core_type',
@@ -458,7 +452,7 @@ def plot_dest(dataframe, run_id, output_path):
         height=360,
         logx=True,
         logy=True,
-        fontsize={'title': 9, 'labels': 10, 'xticks': 10, 'yticks': 10}
+        fontsize={'title': 9.5, 'labels': 10, 'xticks': 10, 'yticks': 10}
     )
     save_path = os.path.join(output_path, '{}_destination.png'.format(run_id))
     hvplot.save(dest, save_path)
@@ -491,7 +485,7 @@ def plot_echo_msg_cr(dataframe, run_id_list, core_type, output_path, comparison_
                 'federate_count', 
                 'real_time', 
                 ylabel='real_time (ns)',
-                xticks=list(range(0, echo_df.federate_count.max().astype(int), 2)),
+                xticks=list(range(0, (int(float(echo_df.federate_count.max()))+1), 4)),
                 title='echoMessageBenchmark: federate_count vs real_time', 
                 label='run_id: {}, core_type: {}, {}: {}'.format(run_id, core_type, comparison_parameter, echo_df['{}'.format(comparison_parameter)].unique()),
                 alpha=0.5)
@@ -501,7 +495,8 @@ def plot_echo_msg_cr(dataframe, run_id_list, core_type, output_path, comparison_
                         height=360, 
                         logx=True, 
                         logy=True, 
-                        legend_position='top_left')
+                        legend_position='top_left',
+                        fontsize={'title': 9.5, 'labels': 10, 'xticks': 10, 'yticks': 10})
     run_id_str = '_'.join(run_id_list)
     save_path = os.path.join(output_path, '{}_echoMessage_{}Core.png'.format(run_id_str, core_type))
     hvplot.save(echo_msg_plot, save_path)
@@ -533,7 +528,7 @@ def plot_echo_result_cr(dataframe, run_id_list, core_type, output_path, comparis
             'federate_count',
             'real_time',
             ylabel='real_time (ns)',
-            xticks=list(range(0, echo_df.federate_count.max().astype(int), 2)),
+            xticks=list(range(0, (int(float(echo_df.federate_count.max()))+1), 1)),
             title='echoBenchmark: federate_count vs real_time',
             label='run_id: {}, core_type: {}, {}: {}'.format(run_id, core_type, comparison_parameter, echo_df['{}'.format(comparison_parameter)].unique()),
             alpha=0.5)
@@ -541,7 +536,8 @@ def plot_echo_result_cr(dataframe, run_id_list, core_type, output_path, comparis
     echo_res_plot = (reduce((lambda x, y: x*y), echo_ress)).opts(
                         width=590, 
                         height=360,
-                        legend_position='top_left')
+                        legend_position='top_left',
+                        fontsize={'title': 9.5, 'labels': 10, 'xticks': 10, 'yticks': 10})
     run_id_str = '_'.join(run_id_list)
     save_path = os.path.join(output_path, '{}_echo_{}Core.png'.format(run_id_str, core_type))
     hvplot.save(echo_res_plot, save_path)
@@ -572,7 +568,6 @@ def plot_msg_lookup_1_cr(dataframe, run_id_list, output_path, comparison_paramet
             'interface_count',
             'real_time',
             ylabel='real_time (ns)',
-            xticks=list(range(0, msg_lkp_df.interface_count.max().astype(int), 2)),
             title='fed_ct = 2, messageLookup: interface_count vs real_time',
             label='run_id: {}, core_type: inproc, {}: {}'.format(run_id, comparison_parameter, msg_lkp_df['{}'.format(comparison_parameter)].unique()),
             alpha=0.5)
@@ -582,7 +577,8 @@ def plot_msg_lookup_1_cr(dataframe, run_id_list, output_path, comparison_paramet
                         height=360, 
                         logx=True, 
                         logy=True, 
-                        legend_position='top_left')
+                        legend_position='top_left',
+                        fontsize={'title': 9.5, 'labels': 10, 'xticks': 10, 'yticks': 10})
     run_id_str = '_'.join(run_id_list)
     save_path = os.path.join(output_path, '{}_messageLookup.png'.format(run_id_str))
     hvplot.save(msg_lookup_plot, save_path)
@@ -613,7 +609,6 @@ def plot_msg_lookup_2_cr(dataframe, run_id_list, output_path, comparison_paramet
             'interface_count',
             'real_time',
             ylabel='real_time (ns)',
-            xticks=list(range(0, msg_lkp_df.interface_count.max().astype(int), 2)),
             title='fed_ct = 8, messageLookup: interface_count vs real_time',
             label='run_id: {}, core_type: inproc, {}: {}'.format(run_id, comparison_parameter, msg_lkp_df['{}'.format(comparison_parameter)].unique()),
             alpha=0.5)
@@ -623,7 +618,8 @@ def plot_msg_lookup_2_cr(dataframe, run_id_list, output_path, comparison_paramet
                         height=360, 
                         logx=True, 
                         logy=True, 
-                        legend_position='top_left')
+                        legend_position='top_left',
+                        fontsize={'title': 9.5, 'labels': 10, 'xticks': 10, 'yticks': 10})
     run_id_str = '_'.join(run_id_list)
     save_path = os.path.join(output_path, '{}_messageLookup.png'.format(run_id_str))
     hvplot.save(msg_lookup_plot, save_path)
@@ -654,7 +650,6 @@ def plot_msg_lookup_3_cr(dataframe, run_id_list, output_path, comparison_paramet
             'interface_count',
             'real_time',
             ylabel='real_time (ns)',
-            xticks=list(range(0, msg_lkp_df.interface_count.max().astype(int), 2)),
             title='fed_ct = 64, messageLookup: interface_count vs real_time',
             label='run_id: {}, core_type: inproc, {}: {}'.format(run_id, comparison_parameter, msg_lkp_df['{}'.format(comparison_parameter)].unique()),
             alpha=0.5)
@@ -664,7 +659,8 @@ def plot_msg_lookup_3_cr(dataframe, run_id_list, output_path, comparison_paramet
                         height=360, 
                         logx=True, 
                         logy=True, 
-                        legend_position='top_left')
+                        legend_position='bottom_right',
+                        fontsize={'title': 9.5, 'labels': 10, 'xticks': 10, 'yticks': 10})
     run_id_str = '_'.join(run_id_list)
     save_path = os.path.join(output_path, '{}__messageLookup.png'.format(run_id_str))
     hvplot.save(msg_lookup_plot, save_path)
@@ -696,7 +692,6 @@ def plot_msg_send_1_cr(dataframe, run_id_list, output_path, comparison_parameter
             'message_size',
             'real_time',
             ylabel='real_time (ns)',
-            xticks=list(range(0, msg_snd_df.message_size.max().astype(int), 2)),
             title='messageSendBenchmark: message_size vs real_time',
             label='run_id: {}, core_type: singleFed, {}: {}'.format(run_id, comparison_parameter, msg_snd_df['{}'.format(comparison_parameter)].unique()),
             alpha=0.5)
@@ -706,7 +701,8 @@ def plot_msg_send_1_cr(dataframe, run_id_list, output_path, comparison_parameter
                         height=360, 
                         logx=True, 
                         logy=True, 
-                        legend_position='top_left')
+                        legend_position='top_left',
+                        fontsize={'title': 9.5, 'labels': 10, 'xticks': 10, 'yticks': 10})
     run_id_str = '_'.join(run_id_list)
     save_path = os.path.join(output_path, '{}_messageSend1.png'.format(run_id_str))
     hvplot.save(msg_send_plot, save_path)
@@ -738,7 +734,6 @@ def plot_msg_send_2_cr(dataframe, run_id_list, core_type, output_path, compariso
             'message_size',
             'real_time',
             ylabel='real_time (ns)',
-            xticks=list(range(0, msg_ct_df.message_size.max().astype(int), 2)),
             title='msg_ct = 1, messageSendBenchmark: message_size vs real_time', 
             label='run_id: {}, core_type: {}, {}: {}'.format(run_id, core_type, comparison_parameter, msg_ct_df['{}'.format(comparison_parameter)].unique()),
             alpha=0.5)
@@ -748,7 +743,8 @@ def plot_msg_send_2_cr(dataframe, run_id_list, core_type, output_path, compariso
                         height=360, 
                         logx=True, 
                         logy=True, 
-                        legend_position='top_left')
+                        legend_position='top_left',
+                        fontsize={'title': 9.5, 'labels': 10, 'xticks': 10, 'yticks': 10})
     run_id_str = '_'.join(run_id_list)
     save_path = os.path.join(output_path, '{}_messageSend2_{}Core.png'.format(run_id_str, core_type))
     hvplot.save(msg_count_plot, save_path)
@@ -780,7 +776,6 @@ def plot_msg_send_3_cr(dataframe, run_id_list, core_type, output_path, compariso
             'message_count',
             'real_time',
             ylabel='real_time (ns)',
-            xticks=list(range(0, msg_sz_df.message_count.max().astype(int), 2)),
             title='msg_sz = 1, messageSendBenchmark: message_count vs real_time',
             label='run_id: {}, core_type: {}, {}: {}'.format(run_id, core_type, comparison_parameter, msg_sz_df['{}'.format(comparison_parameter)].unique()),
             alpha=0.5)
@@ -790,7 +785,8 @@ def plot_msg_send_3_cr(dataframe, run_id_list, core_type, output_path, compariso
                         height=360, 
                         logx=True, 
                         logy=True, 
-                        legend_position='top_left')
+                        legend_position='top_left',
+                        fontsize={'title': 9.5, 'labels': 10, 'xticks': 10, 'yticks': 10})
     run_id_str = '_'.join(run_id_list)
     save_path = os.path.join(output_path, '{}_messageSend3_{}Core.png'.format(run_id_str, core_type))
     hvplot.save(msg_size_plot, save_path)
@@ -822,7 +818,7 @@ def plot_phold_cr(dataframe, run_id_list, core_type, output_path, comparison_par
             'federate_count',
             'real_time',
             ylabel='real_time (ns)',
-            xticks=list(range(0, phold_df.federate_count.max().astype(int), 2)),
+            xticks=list(range(0, (int(float(phold_df.federate_count.max()))+1), 5)),
             title='pholdBenchmark: federate_count vs real_time',
             label='run_id: {}, core_type: {}, {}: {}'.format(run_id, core_type, comparison_parameter, phold_df['{}'.format(comparison_parameter)].unique()),
             alpha=0.5)
@@ -832,7 +828,8 @@ def plot_phold_cr(dataframe, run_id_list, core_type, output_path, comparison_par
                         height=360, 
                         logx=True, 
                         logy=True, 
-                        legend_position='top_left')
+                        legend_position='top_left',
+                        fontsize={'title': 9.5, 'labels': 10, 'xticks': 10, 'yticks': 10})
     run_id_str = '_'.join(run_id_list)
     save_path = os.path.join(output_path, '{}_phold_{}Core.png'.format(run_id_str, core_type))
     hvplot.save(phold_plot, save_path)
@@ -864,7 +861,7 @@ def plot_ring_cr(dataframe, run_id_list, core_type, output_path, comparison_para
             'federate_count',
             'real_time',
             ylabel='real_time (ns)',
-            xticks=list(range(0, ring_df.federate_count.max().astype(int), 2)),
+            xticks=list(range(0, (int(float(ring_df.federate_count.max()))+2), 1)),
             title='ringBenchmark: federate_count vs real_time',
             label='run_id: {}, core_type: {}, {}: {}'.format(run_id, core_type, comparison_parameter, ring_df['{}'.format(comparison_parameter)].unique()),
             alpha=0.5)
@@ -874,7 +871,8 @@ def plot_ring_cr(dataframe, run_id_list, core_type, output_path, comparison_para
                         height=360, 
                         logx=True, 
                         logy=True, 
-                        legend_position='top_left')
+                        legend_position='top_left',
+                        fontsize={'title': 9.5, 'labels': 10, 'xticks': 10, 'yticks': 10})
     run_id_str = '_'.join(run_id_list)
     save_path = os.path.join(output_path, '{}_ring_{}Core.png'.format(run_id_str, core_type))
     hvplot.save(ring_plot, save_path)
@@ -905,16 +903,16 @@ def plot_filter_cr(dataframe, run_id_list, output_path, comparison_parameter):
             'federate_count',
             'real_time',
             ylabel='real_time (ns)',
-            xticks=list(range(0, filter_df.federate_count.max().astype(int), 2)),
+            xticks=list(range(0, (int(float(filter_df.federate_count.max()))+1), 2)),
             title='filterBenchmark: federate_count vs real_time',
             label='run_id: {}, core_type: singleCore, {}: {}'.format(run_id, comparison_parameter, filter_df['{}'.format(comparison_parameter)].unique()),
-            by='filter_location',
             alpha=0.5)
         filters.append(filtr)
     filter_plot = (reduce((lambda x, y: x*y), filters)).opts(
                         width=590, 
                         height=360,
-                        legend_position='top_left')
+                        legend_position='top_left',
+                        fontsize={'title': 9.5, 'labels': 10, 'xticks': 10, 'yticks': 10})
     run_id_str = '_'.join(run_id_list)
     save_path = os.path.join(output_path, '{}_filter.png'.format(run_id_str))
     hvplot.save(filter_plot, save_path)
@@ -947,7 +945,7 @@ def plot_src_cr(dataframe, run_id_list, core_type, output_path, comparison_param
             'federate_count',
             'real_time',
             ylabel='real_time (ns)',
-            xticks=list(range(0, filter_df.federate_count.max().astype(int), 2)),
+            xticks=list(range(0, (int(float(filter_df.federate_count.max()))+4), 4)),
             title='filter_location-source, filterBenchmark: federate_count vs real_time',
             label='run_id: {}, core_type: {}, {}: {}'.format(run_id, core_type, comparison_parameter, filter_df['{}'.format(comparison_parameter)].unique()),
             alpha=0.5)
@@ -957,7 +955,8 @@ def plot_src_cr(dataframe, run_id_list, core_type, output_path, comparison_param
                         height=360, 
                         logx=True, 
                         logy=True, 
-                        legend_position='top_left')
+                        legend_position='top_left',
+                        fontsize={'title': 9.5, 'labels': 10, 'xticks': 10, 'yticks': 10})
     run_id_str = '_'.join(run_id_list)
     save_path = os.path.join(output_path, '{}_srcFilter_{}Core.png'.format(run_id_str, core_type))
     hvplot.save(source_plot, save_path)
@@ -991,7 +990,7 @@ def plot_dest_cr(dataframe, run_id_list, core_type, output_path, comparison_para
             'federate_count',
             'real_time',
             ylabel='real_time (ns)',
-            xticks=list(range(0, filter_df.federate_count.max().astype(int), 2)),
+            xticks=list(range(0, (int(float(filter_df.federate_count.max()))+1), 4)),
             title='filter_location-destination, filterBenchmark: federate_count vs real_time',
             label='run_id: {}, core_type: {}, {}: {}'.format(run_id, core_type, comparison_parameter, filter_df['{}'.format(comparison_parameter)].unique()),
             alpha=0.5)
@@ -1001,7 +1000,8 @@ def plot_dest_cr(dataframe, run_id_list, core_type, output_path, comparison_para
                         height=360, 
                         logx=True, 
                         logy=True, 
-                        legend_position='top_left')
+                        legend_position='top_left',
+                        fontsize={'title': 9.5, 'labels': 10, 'xticks': 10, 'yticks': 10})
     run_id_str = '_'.join(run_id_list)
     save_path = os.path.join(output_path, '{}_destFilter_{}Core.png'.format(run_id_str, core_type))
     hvplot.save(dest_plot, save_path)
