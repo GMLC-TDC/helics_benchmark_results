@@ -101,7 +101,9 @@ def make_SA_graphs(meta_bmk_df, bm, run_id, output_path):
             pass
     if bm['bm_name'] == 'messageLookupBenchmark':
         if bm['bm_type'] == 'full':
-            bmk_plotting.plot_msg_lookup(meta_bmk_df, run_id, output_path)
+            bmk_plotting.plot_msg_lookup_1(meta_bmk_df, run_id, output_path)
+            bmk_plotting.plot_msg_lookup_2(meta_bmk_df, run_id, output_path)
+            bmk_plotting.plot_msg_lookup_3(meta_bmk_df, run_id, output_path)
         else:
             pass
     if bm['bm_name'] == 'ringBenchmark':
@@ -136,6 +138,21 @@ def add_report_path(run_id_dict):
         run_id_dict[key]['report_path'] = report_path
     return run_id_dict
 
+
+def sort_results_files(file_list):
+    bm_files = []
+    bmk_files = []
+    for file in file_list:
+        head, tail = os.path.split(file)
+        # TDH (2020-01-08) just need to check to see if file starts out as "bm" or "bmk"
+        if tail[0:3] == 'bmk':
+            bmk_files.append(file)
+        elif tail[0:2] == 'bm':
+            bm_files.append(file)
+        else:
+            logging.error('File {} does not begin with "bm" or "bmk, cannot be classified, and will be ignored'.format(file))
+    return bm_files, bmk_files
+
 def _auto_run(args):
     run_id_dict = find_runs(args.benchmark_results_dir)
     run_id_dict = add_report_path(run_id_dict)
@@ -145,7 +162,9 @@ def _auto_run(args):
         if run_id_dict[run_id]['report_exists'] == False:
             # find_runs returns a list of files for the run, now.
             # file_list = bmpp.get_benchmark_files(run_id_dict[run_id]['bm_data_path'])
-            file_list = run_id_dict[run_id]['files']
+            bm_files, bmk_files = sort_results_files(run_id_dict[run_id]['files'])
+            #file_list = run_id_dict[run_id]['files']
+            file_list = bm_files
             json_results = bmpp.parse_files(file_list)
             json_results = bmpp.parse_and_add_benchmark_metadata(json_results)
             meta_bmk_df = md.make_dataframe(json_results)
