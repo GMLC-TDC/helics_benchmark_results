@@ -113,7 +113,7 @@ def plot_msg_lookup_1(dataframe, run_id, output_path):
     inproc_df = msg_lkp_df[msg_lkp_df.core_type == 'inproc']
     inproc_df = inproc_df[inproc_df.run_id == '{}'.format(run_id)]
     inproc_df = inproc_df[inproc_df.federate_count == 2]
-    msg_lookup = inproc_df.sort_values('interface_count').hvplot.bar(
+    msg_lookup = inproc_df.sort_values('interface_count').hvplot.line(
         'interface_count',
         'real_time',
         ylabel='real_time (ns)',
@@ -145,7 +145,7 @@ def plot_msg_lookup_2(dataframe, run_id, output_path):
     inproc_df = msg_lkp_df[msg_lkp_df.core_type == 'inproc']
     inproc_df = inproc_df[inproc_df.run_id == '{}'.format(run_id)]
     inproc_df = inproc_df[inproc_df.federate_count == 8]
-    msg_lookup = inproc_df.sort_values('interface_count').hvplot.bar(
+    msg_lookup = inproc_df.sort_values('interface_count').hvplot.line(
         'interface_count',
         'real_time',
         ylabel='real_time (ns)',
@@ -177,7 +177,7 @@ def plot_msg_lookup_3(dataframe, run_id, output_path):
     inproc_df = msg_lkp_df[msg_lkp_df.core_type == 'inproc']
     inproc_df = inproc_df[inproc_df.run_id == '{}'.format(run_id)]
     inproc_df = inproc_df[inproc_df.federate_count == 64]
-    msg_lookup = inproc_df.sort_values('interface_count').hvplot.bar(
+    msg_lookup = inproc_df.sort_values('interface_count').hvplot.line(
         'interface_count',
         'real_time',
         ylabel='real_time (ns)',
