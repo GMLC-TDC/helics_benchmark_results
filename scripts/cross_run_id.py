@@ -141,9 +141,11 @@ def make_cross_run_id_graphs(meta_bmk_df, bm, run_id_list, output_path, comparis
     #   one or more graphs. I've commented out the calls and added the "pass" just so the code doesn't crash when run.
 
     if bm == 'echoBenchmark':
+        meta_bmk_df = meta_bmk_df[meta_bmk_df.benchmark == 'echoBenchmark']
         for core_type in meta_bmk_df.core_type.unique():
             bmk_plotting.plot_echo_result_cr(meta_bmk_df, run_id_list, core_type, output_path, comparison_parameter)
     if bm == 'echoMessageBenchmark':
+        meta_bmk_df = meta_bmk_df[meta_bmk_df.benchmark == 'echoMessageBenchmark']
         for core_type in meta_bmk_df.core_type.unique():
             bmk_plotting.plot_echo_msg_cr(meta_bmk_df, run_id_list, core_type, output_path, comparison_parameter)
     if bm == 'messageLookupBenchmark':
@@ -157,17 +159,21 @@ def make_cross_run_id_graphs(meta_bmk_df, bm, run_id_list, output_path, comparis
             #bmk_plotting.plot_msg_lookup_cr(meta_bmk_df, run_id_list, federate_count, output_path, comparison_parameter)
             pass
     if bm == 'ringBenchmark':
+        meta_bmk_df = meta_bmk_df[meta_bmk_df.benchmark == 'ringBenchmark']
         for core_type in meta_bmk_df.core_type.unique():
             bmk_plotting.plot_ring_cr(meta_bmk_df, run_id_list, core_type, output_path, comparison_parameter)
     if bm == 'pholdBenchmark':
+        meta_bmk_df = meta_bmk_df[meta_bmk_df.benchmark == 'pholdBenchmark']
         for core_type in meta_bmk_df.core_type.unique():
             bmk_plotting.plot_phold_cr(meta_bmk_df, run_id_list, core_type, output_path, comparison_parameter)
     if bm == 'messageSendBenchmark':
+        meta_bmk_df = meta_bmk_df[meta_bmk_df.benchmark == 'messageSendBenchmark']
         bmk_plotting.plot_msg_send_1_cr(meta_bmk_df, run_id_list, output_path, comparison_parameter)
         for core_type in meta_bmk_df.core_type.unique():
             bmk_plotting.plot_msg_send_2_cr(meta_bmk_df, run_id_list, core_type, output_path, comparison_parameter)
             bmk_plotting.plot_msg_send_3_cr(meta_bmk_df, run_id_list, core_type, output_path, comparison_parameter)
     if bm == 'filterBenchmark':
+        meta_bmk_df = meta_bmk_df[meta_bmk_df.benchmark == 'filterBenchmark']
         bmk_plotting.plot_filter_cr(meta_bmk_df, run_id_list, output_path, comparison_parameter)
         for core_type in meta_bmk_df.core_type.unique():
             bmk_plotting.plot_src_cr(meta_bmk_df, run_id_list, core_type, output_path, comparison_parameter)
