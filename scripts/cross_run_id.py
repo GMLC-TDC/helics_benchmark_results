@@ -161,7 +161,10 @@ def make_cross_run_id_graphs(meta_bmk_df, bm, run_id_list, output_path, comparis
     if bm == 'ringBenchmark':
         meta_bmk_df = meta_bmk_df[meta_bmk_df.benchmark == 'ringBenchmark']
         for core_type in meta_bmk_df.core_type.unique():
-            bmk_plotting.plot_ring_cr(meta_bmk_df, run_id_list, core_type, output_path, comparison_parameter)
+            # TDH (2020-01-09) - Special case because only a single data point is run for the singleCore data. All
+            # the others have multiple data points and can actually be used to form a graph.
+            if core_type != 'singleCore':
+                bmk_plotting.plot_ring_cr(meta_bmk_df, run_id_list, core_type, output_path, comparison_parameter)
     if bm == 'pholdBenchmark':
         meta_bmk_df = meta_bmk_df[meta_bmk_df.benchmark == 'pholdBenchmark']
         for core_type in meta_bmk_df.core_type.unique():
