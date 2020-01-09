@@ -1,0 +1,37 @@
+33613-Oy9Uf-9a7ip-xwVjU-Krfbv (0)::connecting
+33613-Oy9Uf-9a7ip-xwVjU-Krfbv (0)::||connected on 127.0.0.1:23901
+33613-Oy9Uf-9a7ip-xwVjU-Krfbv (1)::registering broker 33691-ff9Su-NZtVK-19EXs-5SMd6(1879048192) on route 1
+33613-Oy9Uf-9a7ip-xwVjU-Krfbv (1)::registering federate phold_7(131072) on route 1
+33613-Oy9Uf-9a7ip-xwVjU-Krfbv (1)::registering broker 8832-61X1d-7eFI9-VXSuf-CC8Qa(1879048193) on route 2
+33613-Oy9Uf-9a7ip-xwVjU-Krfbv (1)::registering broker 12751-42GO7-sgY2h-6iF4W-5M7fU(1879048194) on route 3
+33613-Oy9Uf-9a7ip-xwVjU-Krfbv (1)::registering federate phold_1(131073) on route 2
+33613-Oy9Uf-9a7ip-xwVjU-Krfbv (1)::registering federate phold_5(131074) on route 3
+33613-Oy9Uf-9a7ip-xwVjU-Krfbv (1)::registering broker 1160-YJdii-DUq01-qD2HQ-UTzXY(1879048195) on route 4
+33613-Oy9Uf-9a7ip-xwVjU-Krfbv (1)::registering broker 9081-wTttJ-uAqiq-ZGi9v-RdMYt(1879048196) on route 5
+33613-Oy9Uf-9a7ip-xwVjU-Krfbv (1)::registering broker 47321-oKzFo-OPiBk-x1Qij-eNYcJ(1879048197) on route 6
+33613-Oy9Uf-9a7ip-xwVjU-Krfbv (1)::registering broker 36590-vNA2C-QNj4K-QXKxU-brJg7(1879048198) on route 7
+33613-Oy9Uf-9a7ip-xwVjU-Krfbv (1)::registering broker 22827-VAggJ-uQk2X-LI5kf-wlpnT(1879048199) on route 8
+33613-Oy9Uf-9a7ip-xwVjU-Krfbv (1)::registering federate phold_3(131075) on route 4
+33613-Oy9Uf-9a7ip-xwVjU-Krfbv (1)::registering federate phold_2(131076) on route 5
+33613-Oy9Uf-9a7ip-xwVjU-Krfbv (1)::registering federate phold_4(131077) on route 6
+33613-Oy9Uf-9a7ip-xwVjU-Krfbv (1)::registering federate phold_0(131078) on route 7
+33613-Oy9Uf-9a7ip-xwVjU-Krfbv (1)::registering federate phold_6(131079) on route 8
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	8 federates [min 8]
+	0/8 brokers/cores [min 0]
+	0 publications
+	0 inputs
+	8 endpoints
+	0 filters
+<<<<<<<<<
+33613-Oy9Uf-9a7ip-xwVjU-Krfbv (1)::entering Exec Mode
+33613-Oy9Uf-9a7ip-xwVjU-Krfbv (0)::got disconnect from 33691-ff9Su-NZtVK-19EXs-5SMd6(1879048192)
+33613-Oy9Uf-9a7ip-xwVjU-Krfbv (0)::got disconnect from 1160-YJdii-DUq01-qD2HQ-UTzXY(1879048195)
+33613-Oy9Uf-9a7ip-xwVjU-Krfbv (0)::got disconnect from 8832-61X1d-7eFI9-VXSuf-CC8Qa(1879048193)
+33613-Oy9Uf-9a7ip-xwVjU-Krfbv (0)::got disconnect from 9081-wTttJ-uAqiq-ZGi9v-RdMYt(1879048196)
+33613-Oy9Uf-9a7ip-xwVjU-Krfbv (0)::got disconnect from 36590-vNA2C-QNj4K-QXKxU-brJg7(1879048198)
+33613-Oy9Uf-9a7ip-xwVjU-Krfbv (0)::got disconnect from 22827-VAggJ-uQk2X-LI5kf-wlpnT(1879048199)
+33613-Oy9Uf-9a7ip-xwVjU-Krfbv (0)::got disconnect from 12751-42GO7-sgY2h-6iF4W-5M7fU(1879048194)
+33613-Oy9Uf-9a7ip-xwVjU-Krfbv (0)::got disconnect from 47321-oKzFo-OPiBk-x1Qij-eNYcJ(1879048197)
+33613-Oy9Uf-9a7ip-xwVjU-Krfbv (0)::||disconnecting

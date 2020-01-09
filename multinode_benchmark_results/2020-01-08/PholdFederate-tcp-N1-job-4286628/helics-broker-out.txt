@@ -1,0 +1,15 @@
+70004-wtVqM-4iflc-j8765-BALd5 (0)::connecting
+70004-wtVqM-4iflc-j8765-BALd5 (0)::||connected on 127.0.0.1:24160
+70004-wtVqM-4iflc-j8765-BALd5 (1)::registering broker 70036-LG77f-74Yyj-RwPjW-1lmgU(1879048192) on route 1
+70004-wtVqM-4iflc-j8765-BALd5 (1)::registering federate phold_0(131072) on route 1
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	1 federates [min 1]
+	0/1 brokers/cores [min 0]
+	0 publications
+	0 inputs
+	1 endpoints
+	0 filters
+<<<<<<<<<
+70004-wtVqM-4iflc-j8765-BALd5 (0)::got disconnect from 70036-LG77f-74Yyj-RwPjW-1lmgU(1879048192)
+70004-wtVqM-4iflc-j8765-BALd5 (0)::||disconnecting
