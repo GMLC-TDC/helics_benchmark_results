@@ -391,7 +391,7 @@ def _parse_compiler_string(uuid, json_results):
             match3 = re.search('\.\d+\.', darwin_version)
             json_results[uuid]['darwin_major_version'] = match3.group(0)[1:-1]
             match3 = re.search('\.\d+$', darwin_version)
-            json_results[uuid]['darwin_minor_version'] = match3.group(0)[1:-1]
+            json_results[uuid]['darwin_minor_version'] = match3.group(0)[1:]
     else:
         logging.error('Unexpected compiler system data, could not parse {}'.format(compiler_str))
 
@@ -435,13 +435,14 @@ def _parse_compiler_string(uuid, json_results):
 def _auto_run(args):
     run_id_dict = sa.find_runs(args.benchmark_results_dir)
     run_id_dict = sa.add_report_path(run_id_dict)
+    json_results = {}
     for run_id in run_id_dict:
         file_list = run_id_dict[run_id]['files']
         #file_list = get_benchmark_files(args.benchmark_results_dir)
-        json_results = parse_files(file_list)
+        json_results.update(parse_files(file_list))
         json_results = parse_and_add_benchmark_metadata(json_results)
-        with open('bm_results.json', 'w') as outfile:
-            json.dump(json_results, outfile)
+    with open('bm_results.json', 'w') as outfile:
+        json.dump(json_results, outfile)
 
     # TDH (2019-12-19): Trouble-shooting function whose purpose you'll never guess
     #_check_missing_core_type(json_results)
