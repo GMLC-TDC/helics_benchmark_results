@@ -342,12 +342,13 @@ def _parse_compiler_string(uuid, json_results):
     # System
     match = re.search('\s.*?:', compiler_str)
     if match:
-        match2 = re.search('Linux-.*?:', match.group(0))
-        if match2:
+        match_linux = re.search('Linux-.*?:', match.group(0))
+        match_windows = re.search('Windows-[\d|\.]*', match.group(0))
+        match_darwin = re.search('Darwin-[\d|\.]*', match.group(0))
+        if match_linux:
             # Linux system
-
             json_results[uuid]['system'] = 'Linux'
-            linux_version = match2.group(0)[6:]
+            linux_version = match_linux.group(0)[6:]
             json_results[uuid]['system_version'] = linux_version
 
             # Splitting up the Linux version string
@@ -359,7 +360,7 @@ def _parse_compiler_string(uuid, json_results):
             json_results[uuid]['linux_minor_version'] = match3.group(0)[1:-1]
 
             # TDH: There's some weirdness with the bug fix version and/or distro string.
-            #   I'm doing my best to handle it.
+            # I'm doing my best to handle it.
             match3 = re.search('-\d+-', linux_version)
             if match3:
                 json_results[uuid]['linux_bug_fix_version'] = match3.group(0)[1:-1]
@@ -373,16 +374,24 @@ def _parse_compiler_string(uuid, json_results):
                 else:
                     logging.error('Unable to parse Linux kernel bug fix version: {}'.format(linux_version))
 
-        else:
-            match2 = re.search('Windows-[\d|\.]*', match.group(0))
-            if match2:
-                # Windows
+        elif match_windows:
+            # Windows
+            json_results[uuid]['system'] = 'Windows'
+            windows_version =  match_windows.group(0)[8:]
+            json_results[uuid]['system_version'] = windows_version
+        elif match_darwin:
+            # Darwin (Mac) system
+            json_results[uuid]['system'] = 'Darwin'
+            darwin_version = match_darwin.group(0)[7:]
+            json_results[uuid]['system_version'] = darwin_version
 
-                json_results[uuid]['system'] = 'Windows'
-                windows_version =  match2.group(0)[8:]
-                json_results[uuid]['system_version'] = windows_version
-            else:
-                logging.error('Unexpected Windows compiler system data, could not parse {}'.format(compiler_str))
+            # Splitting up the Linux version string
+            match3 = re.search('\d+\.', darwin_version)
+            json_results[uuid]['darwin_kernel_version'] = match3.group(0)[:-1]
+            match3 = re.search('\.\d+\.', darwin_version)
+            json_results[uuid]['darwin_major_version'] = match3.group(0)[1:-1]
+            match3 = re.search('\.\d+$', darwin_version)
+            json_results[uuid]['darwin_minor_version'] = match3.group(0)[1:-1]
     else:
         logging.error('Unexpected compiler system data, could not parse {}'.format(compiler_str))
 
