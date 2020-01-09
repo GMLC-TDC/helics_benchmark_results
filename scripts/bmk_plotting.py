@@ -59,7 +59,7 @@ def plot_echo_msg(dataframe, run_id, output_path):
         height=360,
         logx=True,
         logy=True,
-        fontsize={'title': 9.5, 'labels': 10, 'xticks': 10, 'yticks': 10}
+        fontsize={'title': 9.5, 'labels': 10, 'legend': 9, 'xticks': 10, 'yticks': 10})
     )
     save_path = os.path.join(output_path, '{}_echoMessage.png'.format(run_id))
     hvplot.save(echo_msg, save_path)
@@ -90,7 +90,7 @@ def plot_echo_result(dataframe, run_id, output_path):
         alpha=0.5).opts(
         width=600,
         height=360,
-        fontsize={'title': 9.5, 'labels': 10, 'xticks': 10, 'yticks': 10}
+        fontsize={'title': 9.5, 'labels': 10, 'legend': 9, 'xticks': 10, 'yticks': 10})
     )
     save_path = os.path.join(output_path, '{}_echoResult.png'.format(run_id))
     hvplot.save(echo_res, save_path)
@@ -123,7 +123,7 @@ def plot_msg_lookup_1(dataframe, run_id, output_path):
         height=360,
         logx=True,
         logy=True,
-        fontsize={'title': 9.5, 'labels': 10, 'xticks': 10, 'yticks': 10}
+        fontsize={'title': 9.5, 'labels': 10, 'legend': 9, 'xticks': 10, 'yticks': 10})
     )
     save_path = os.path.join(output_path, '{}_messageLookup.png'.format(run_id))
     hvplot.save(msg_lookup, save_path)
@@ -155,7 +155,7 @@ def plot_msg_lookup_2(dataframe, run_id, output_path):
         height=360,
         logx=True,
         logy=True,
-        fontsize={'title': 9.5, 'labels': 10, 'xticks': 10, 'yticks': 10}
+        fontsize={'title': 9.5, 'labels': 10, 'legend': 9, 'xticks': 10, 'yticks': 10})
     )
     save_path = os.path.join(output_path, '{}_messageLookup.png'.format(run_id))
     hvplot.save(msg_lookup, save_path)
@@ -187,7 +187,7 @@ def plot_msg_lookup_3(dataframe, run_id, output_path):
         height=360,
         logx=True,
         logy=True,
-        fontsize={'title': 9.5, 'labels': 10, 'xticks': 10, 'yticks': 10}
+        fontsize={'title': 9.5, 'labels': 10, 'legend': 9, 'xticks': 10, 'yticks': 10})
     )
     save_path = os.path.join(output_path, '{}_messageLookup.png'.format(run_id))
     hvplot.save(msg_lookup, save_path)
@@ -219,7 +219,7 @@ def plot_msg_send_1(dataframe, run_id, output_path):
         height=360,
         logx=True,
         logy=True,
-        fontsize={'title': 9.5, 'labels': 10, 'xticks': 10, 'yticks': 10}
+        fontsize={'title': 9.5, 'labels': 10, 'legend': 9, 'xticks': 10, 'yticks': 10})
     )
     save_path = os.path.join(output_path, '{}_messageSend1.png'.format(run_id))
     hvplot.save(msg_send, save_path)
@@ -252,7 +252,7 @@ def plot_msg_send_2(dataframe, run_id, output_path):
         height=360,
         logx=True,
         logy=True,
-        fontsize={'title': 9.5, 'labels': 10, 'xticks': 10, 'yticks': 10}
+        fontsize={'title': 9.5, 'labels': 10, 'legend': 9, 'xticks': 10, 'yticks': 10})
     )
     save_path = os.path.join(output_path, '{}_messageSend2.png'.format(run_id))
     hvplot.save(msg_count, save_path)
@@ -285,7 +285,7 @@ def plot_msg_send_3(dataframe, run_id, output_path):
         height=360,
         logx=True,
         logy=True,
-        fontsize={'title': 9.5, 'labels': 10, 'xticks': 10, 'yticks': 10}
+        fontsize={'title': 9.5, 'labels': 10, 'legend': 9, 'xticks': 10, 'yticks': 10})
     )
     save_path = os.path.join(output_path, '{}_messageSend3.png'.format(run_id))
     hvplot.save(msg_size, save_path)
@@ -318,7 +318,7 @@ def plot_phold(dataframe, run_id, output_path):
         height=360,
         logx=True,
         logy=True,
-        fontsize={'title': 9.5, 'labels': 10, 'xticks': 10, 'yticks': 10}
+        fontsize={'title': 9.5, 'labels': 10, 'legend': 9, 'xticks': 10, 'yticks': 10})
     )
     save_path = os.path.join(output_path, '{}_pHold.png'.format(run_id))
     hvplot.save(phold, save_path)
@@ -351,7 +351,7 @@ def plot_ring(dataframe, run_id, output_path):
         height=360,
         logx=True,
         logy=True,
-        fontsize={'title': 9.5, 'labels': 10, 'xticks': 10, 'yticks': 10}
+        fontsize={'title': 9.5, 'labels': 10, 'legend': 9, 'xticks': 10, 'yticks': 10})
     )
     save_path = os.path.join(output_path, '{}_ring.png'.format(run_id))
     hvplot.save(ring, save_path)
@@ -383,7 +383,7 @@ def plot_filter(dataframe, run_id, output_path):
         alpha=0.5).opts(
         width=600,
         height=360,
-        fontsize={'title': 9.5, 'labels': 10, 'xticks': 10, 'yticks': 10}
+        fontsize={'title': 9.5, 'labels': 10, 'legend': 9, 'xticks': 10, 'yticks': 10})
     )
     save_path = os.path.join(output_path, '{}_filter.png'.format(run_id))
     hvplot.save(filtr, save_path)
@@ -417,7 +417,7 @@ def plot_src(dataframe, run_id, output_path):
         height=360,
         logx=True,
         logy=True,
-        fontsize={'title': 9.5, 'labels': 10, 'xticks': 10, 'yticks': 10}
+        fontsize={'title': 9.5, 'labels': 10, 'legend': 9, 'xticks': 10, 'yticks': 10})
     )
     save_path = os.path.join(output_path, '{}_source.png'.format(run_id))
     hvplot.save(source, save_path)
@@ -452,7 +452,7 @@ def plot_dest(dataframe, run_id, output_path):
         height=360,
         logx=True,
         logy=True,
-        fontsize={'title': 9.5, 'labels': 10, 'xticks': 10, 'yticks': 10}
+        fontsize={'title': 9.5, 'labels': 10, 'legend': 9, 'xticks': 10, 'yticks': 10})
     )
     save_path = os.path.join(output_path, '{}_destination.png'.format(run_id))
     hvplot.save(dest, save_path)
@@ -495,7 +495,7 @@ def plot_echo_msg_cr(dataframe, run_id_list, core_type, output_path, comparison_
                         logx=True, 
                         logy=True, 
                         legend_position='top_left',
-                        fontsize={'title': 9.5, 'labels': 10, 'xticks': 10, 'yticks': 10})
+                        fontsize={'title': 9.5, 'labels': 10, 'legend': 9, 'xticks': 10, 'yticks': 10})
     run_id_str = '_'.join(run_id_list)
     save_path = os.path.join(output_path, '{}_echoMessage_{}Core.png'.format(run_id_str, core_type))
     hvplot.save(echo_msg_plot, save_path)
@@ -535,7 +535,7 @@ def plot_echo_result_cr(dataframe, run_id_list, core_type, output_path, comparis
                         width=590, 
                         height=360,
                         legend_position='top_left',
-                        fontsize={'title': 9.5, 'labels': 10, 'xticks': 10, 'yticks': 10})
+                        fontsize={'title': 9.5, 'labels': 10, 'legend': 9, 'xticks': 10, 'yticks': 10})
     run_id_str = '_'.join(run_id_list)
     save_path = os.path.join(output_path, '{}_echo_{}Core.png'.format(run_id_str, core_type))
     hvplot.save(echo_res_plot, save_path)
@@ -576,7 +576,7 @@ def plot_msg_lookup_1_cr(dataframe, run_id_list, output_path, comparison_paramet
                         logx=True, 
                         logy=True, 
                         legend_position='top_left',
-                        fontsize={'title': 9.5, 'labels': 10, 'xticks': 10, 'yticks': 10})
+                        fontsize={'title': 9.5, 'labels': 10, 'legend': 9, 'xticks': 10, 'yticks': 10})
     run_id_str = '_'.join(run_id_list)
     save_path = os.path.join(output_path, '{}_messageLookup.png'.format(run_id_str))
     hvplot.save(msg_lookup_plot, save_path)
@@ -617,7 +617,7 @@ def plot_msg_lookup_2_cr(dataframe, run_id_list, output_path, comparison_paramet
                         logx=True, 
                         logy=True, 
                         legend_position='top_left',
-                        fontsize={'title': 9.5, 'labels': 10, 'xticks': 10, 'yticks': 10})
+                        fontsize={'title': 9.5, 'labels': 10, 'legend': 9, 'xticks': 10, 'yticks': 10})
     run_id_str = '_'.join(run_id_list)
     save_path = os.path.join(output_path, '{}_messageLookup.png'.format(run_id_str))
     hvplot.save(msg_lookup_plot, save_path)
@@ -658,7 +658,7 @@ def plot_msg_lookup_3_cr(dataframe, run_id_list, output_path, comparison_paramet
                         logx=True, 
                         logy=True, 
                         legend_position='bottom_right',
-                        fontsize={'title': 9.5, 'labels': 10, 'xticks': 10, 'yticks': 10})
+                        fontsize={'title': 9.5, 'labels': 10, 'legend': 9, 'xticks': 10, 'yticks': 10})
     run_id_str = '_'.join(run_id_list)
     save_path = os.path.join(output_path, '{}__messageLookup.png'.format(run_id_str))
     hvplot.save(msg_lookup_plot, save_path)
@@ -699,7 +699,7 @@ def plot_msg_send_1_cr(dataframe, run_id_list, output_path, comparison_parameter
                         logx=True, 
                         logy=True, 
                         legend_position='top_left',
-                        fontsize={'title': 9.5, 'labels': 10, 'xticks': 10, 'yticks': 10})
+                        fontsize={'title': 9.5, 'labels': 10, 'legend': 9, 'xticks': 10, 'yticks': 10})
     run_id_str = '_'.join(run_id_list)
     save_path = os.path.join(output_path, '{}_messageSend1.png'.format(run_id_str))
     hvplot.save(msg_send_plot, save_path)
@@ -741,7 +741,7 @@ def plot_msg_send_2_cr(dataframe, run_id_list, core_type, output_path, compariso
                         logx=True, 
                         logy=True, 
                         legend_position='top_left',
-                        fontsize={'title': 9.5, 'labels': 10, 'xticks': 10, 'yticks': 10})
+                        fontsize={'title': 9.5, 'labels': 10, 'legend': 9, 'xticks': 10, 'yticks': 10})
     run_id_str = '_'.join(run_id_list)
     save_path = os.path.join(output_path, '{}_messageSend2_{}Core.png'.format(run_id_str, core_type))
     hvplot.save(msg_count_plot, save_path)
@@ -783,7 +783,7 @@ def plot_msg_send_3_cr(dataframe, run_id_list, core_type, output_path, compariso
                         logx=True, 
                         logy=True, 
                         legend_position='top_left',
-                        fontsize={'title': 9.5, 'labels': 10, 'xticks': 10, 'yticks': 10})
+                        fontsize={'title': 9.5, 'labels': 10, 'legend': 9, 'xticks': 10, 'yticks': 10})
     run_id_str = '_'.join(run_id_list)
     save_path = os.path.join(output_path, '{}_messageSend3_{}Core.png'.format(run_id_str, core_type))
     hvplot.save(msg_size_plot, save_path)
@@ -825,7 +825,7 @@ def plot_phold_cr(dataframe, run_id_list, core_type, output_path, comparison_par
                         logx=True, 
                         logy=True, 
                         legend_position='top_left',
-                        fontsize={'title': 9.5, 'labels': 10, 'xticks': 10, 'yticks': 10})
+                        fontsize={'title': 9.5, 'labels': 10, 'legend': 9, 'xticks': 10, 'yticks': 10})
     run_id_str = '_'.join(run_id_list)
     save_path = os.path.join(output_path, '{}_phold_{}Core.png'.format(run_id_str, core_type))
     hvplot.save(phold_plot, save_path)
@@ -849,25 +849,44 @@ def plot_ring_cr(dataframe, run_id_list, core_type, output_path, comparison_para
     """
     run_id_list = run_id_list
     rings = []
-    for run_id in run_id_list:
-        ring_df = dataframe[(dataframe.core_type == '{}'.format(core_type)) & (
-                    dataframe.run_id == '{}'.format(run_id))]
-        ring = ring_df.sort_values('federate_count').hvplot.line(
-            'federate_count',
-            'real_time',
-            ylabel='real_time (ns)',
-            #(range(0, (int(float(ring_df.federate_count.max()))+2), 1)),
-            title='ringBenchmark: federate_count vs real_time',
-            label='run_id: {}, core_type: {}, {}: {}'.format(run_id, core_type, comparison_parameter, ring_df['{}'.format(comparison_parameter)].unique()),
-            alpha=0.5)
-        rings.append(ring)
-    ring_plot = (reduce((lambda x, y: x*y), rings)).opts(
-                        width=590, 
-                        height=360, 
-                        logx=True, 
-                        logy=True, 
-                        legend_position='top_left',
-                        fontsize={'title': 9.5, 'labels': 10, 'xticks': 10, 'yticks': 10})
+    if core_type == 'singleCore':
+        for run_id in run_id_list:
+            ring_df = dataframe[(dataframe.core_type == '{}'.format(core_type)) & (
+                        dataframe.run_id == '{}'.format(run_id))]
+            ring = ring_df.hvplot.bar(
+                'run_id',
+                'real_time',
+                ylabel='real_time (ns)',
+                #(range(0, (int(float(ring_df.federate_count.max()))+2), 1)),
+                title='ringBenchmark: federate_count vs real_time',
+                label='run_id: {}, core_type: {}, {}: {}'.format(run_id, core_type, comparison_parameter, ring_df['{}'.format(comparison_parameter)].unique()),
+                alpha=0.5)
+            rings.append(ring)
+        ring_plot = (reduce((lambda x, y: x*y), rings)).opts(
+                            width=590, 
+                            height=360, 
+                            legend_position='top_left',
+                            fontsize={'title': 9.5, 'labels': 10, 'legend': 9, 'xticks': 10, 'yticks': 10})
+    else:
+        for run_id in run_id_list:
+            ring_df = dataframe[(dataframe.core_type == '{}'.format(core_type)) & (
+                        dataframe.run_id == '{}'.format(run_id))]
+            ring = ring_df.sort_values('federate_count').hvplot.line(
+                'federate_count',
+                'real_time',
+                ylabel='real_time (ns)',
+                #(range(0, (int(float(ring_df.federate_count.max()))+2), 1)),
+                title='ringBenchmark: federate_count vs real_time',
+                label='run_id: {}, core_type: {}, {}: {}'.format(run_id, core_type, comparison_parameter, ring_df['{}'.format(comparison_parameter)].unique()),
+                alpha=0.5)
+            rings.append(ring)
+        ring_plot = (reduce((lambda x, y: x*y), rings)).opts(
+                            width=590, 
+                            height=360,
+                            logx=True,
+                            logy=True,
+                            legend_position='top_left',
+                            fontsize={'title': 9.5, 'labels': 10, 'legend': 9, 'xticks': 10, 'yticks': 10})
     run_id_str = '_'.join(run_id_list)
     save_path = os.path.join(output_path, '{}_ring_{}Core.png'.format(run_id_str, core_type))
     hvplot.save(ring_plot, save_path)
@@ -907,7 +926,7 @@ def plot_filter_cr(dataframe, run_id_list, output_path, comparison_parameter):
                         width=590, 
                         height=360,
                         legend_position='top_left',
-                        fontsize={'title': 9.5, 'labels': 10, 'xticks': 10, 'yticks': 10})
+                        fontsize={'title': 9.5, 'labels': 10, 'legend': 9, 'xticks': 10, 'yticks': 10})
     run_id_str = '_'.join(run_id_list)
     save_path = os.path.join(output_path, '{}_filter.png'.format(run_id_str))
     hvplot.save(filter_plot, save_path)
@@ -950,7 +969,7 @@ def plot_src_cr(dataframe, run_id_list, core_type, output_path, comparison_param
                         logx=True, 
                         logy=True, 
                         legend_position='top_left',
-                        fontsize={'title': 9.5, 'labels': 10, 'xticks': 10, 'yticks': 10})
+                        fontsize={'title': 9.5, 'labels': 10, 'legend': 9, 'xticks': 10, 'yticks': 10})
     run_id_str = '_'.join(run_id_list)
     save_path = os.path.join(output_path, '{}_srcFilter_{}Core.png'.format(run_id_str, core_type))
     hvplot.save(source_plot, save_path)
@@ -994,7 +1013,7 @@ def plot_dest_cr(dataframe, run_id_list, core_type, output_path, comparison_para
                         logx=True, 
                         logy=True, 
                         legend_position='top_left',
-                        fontsize={'title': 9.5, 'labels': 10, 'xticks': 10, 'yticks': 10})
+                        fontsize={'title': 9.5, 'labels': 10, 'legend': 9, 'xticks': 10, 'yticks': 10})
     run_id_str = '_'.join(run_id_list)
     save_path = os.path.join(output_path, '{}_destFilter_{}Core.png'.format(run_id_str, core_type))
     hvplot.save(dest_plot, save_path)
