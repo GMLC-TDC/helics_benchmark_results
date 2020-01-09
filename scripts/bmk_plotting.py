@@ -51,7 +51,7 @@ def plot_echo_msg(dataframe, run_id, output_path):
         'federate_count',
         'real_time',
         ylabel='real_time (ns)',
-        xticks=list(range(0, (int(float(echo_df.federate_count.max()))+1), 4)),
+        #(range(0, (int(float(echo_df.federate_count.max()))+1), 4)),
         title='run_id {} echoMessageBenchmark: federate_count vs real_time'.format(run_id),
         by='core_type',
         alpha=0.5).opts(
@@ -84,7 +84,7 @@ def plot_echo_result(dataframe, run_id, output_path):
         'federate_count',
         'real_time',
         ylabel='real_time (ns)',
-        xticks=list(range(0, (int(float(echo_df.federate_count.max()))+1), 1)),
+        #(range(0, (int(float(echo_df.federate_count.max()))+1), 1)),
         title='run_id {} echoBenchmark: federate_count vs real_time'.format(run_id),
         by='core_type',
         alpha=0.5).opts(
@@ -197,7 +197,7 @@ def plot_msg_lookup_3(dataframe, run_id, output_path):
 def plot_msg_send_1(dataframe, run_id, output_path):
     """This function creates a multi-line graph for the benchmark,
     messageSendBenchmark, of 'message_size' versus 'real_time' and
-    it is organized by a single 'core_type': 'singleFed'.
+    it is organized by a single 'core_type': 'singleCore'.
 
     Args:
         dataframe (obj): A data frame created by make_dataframe.
@@ -310,7 +310,7 @@ def plot_phold(dataframe, run_id, output_path):
         'federate_count',
         'real_time',
         ylabel='real_time (ns)',
-        xticks=list(range(0, (int(float(phold_df.federate_count.max()))+1), 5)),
+        #(range(0, (int(float(phold_df.federate_count.max()))+1), 5)),
         title='run_id {} pholdBenchmark: federate_count vs real_time'.format(run_id),
         by='core_type',
         alpha=0.5).opts(
@@ -343,7 +343,7 @@ def plot_ring(dataframe, run_id, output_path):
         'federate_count',
         'real_time',
         ylabel='real_time (ns)',
-        xticks=list(range(0, (int(float(ring_df.federate_count.max()))+2), 1)),
+        #(range(0, (int(float(ring_df.federate_count.max()))+2), 1)),
         title='run_id {} ringBenchmark: federate_count vs real_time'.format(run_id),
         by='core_type',
         alpha=0.5).opts(
@@ -377,7 +377,7 @@ def plot_filter(dataframe, run_id, output_path):
         'federate_count',
         'real_time',
         ylabel='real_time (ns)',
-        xticks=list(range(0, (int(float(filter_df.federate_count.max()))+1), 2)),
+        #(range(0, (int(float(filter_df.federate_count.max()))+1), 2)),
         title='run_id {} filterBenchmark, core_type {}: federate_count vs real_time'.format(run_id, 'singleCore'),
         by='filter_location',
         alpha=0.5).opts(
@@ -409,7 +409,7 @@ def plot_src(dataframe, run_id, output_path):
         'federate_count',
         'real_time',
         ylabel='real_time (ns)',
-        xticks=list(range(0, (int(float(filter_df.federate_count.max()))+4), 4)),
+        #(range(0, (int(float(filter_df.federate_count.max()))+4), 4)),
         title='run_id {} filterBenchmark, filter_location {}: federate_count vs real_time'.format(run_id, 'source'),
         by='core_type',
         alpha=0.5).opts(
@@ -443,7 +443,7 @@ def plot_dest(dataframe, run_id, output_path):
         'federate_count',
         'real_time',
         ylabel='real_time (ns)',
-        xticks=list(range(0, (int(float(filter_df.federate_count.max()))+1), 4)),
+        #(range(0, (int(float(filter_df.federate_count.max()))+1), 4)),
         title='run_id {} filterBenchmark, filter_location {}: federate_count vs real_time'.format(run_id,
                                                                                                   'destination'),
         by='core_type',
@@ -478,14 +478,13 @@ def plot_echo_msg_cr(dataframe, run_id_list, core_type, output_path, comparison_
     run_id_list = run_id_list
     echo_msgs = []
     for run_id in run_id_list:
-        echo_df = dataframe[
-            (dataframe.benchmark == 'echoMessageBenchmark') & (dataframe.core_type == '{}'.format(core_type)) & (
+        echo_df = dataframe[(dataframe.core_type == '{}'.format(core_type)) & (
                         dataframe.run_id == '{}'.format(run_id))]
         echo_msg = echo_df.sort_values('federate_count').hvplot.line(
                 'federate_count', 
                 'real_time', 
                 ylabel='real_time (ns)',
-                xticks=list(range(0, (int(float(echo_df.federate_count.max()))+1), 4)),
+                #(range(0, (int(float(echo_df.federate_count.max()))+1), 4)),
                 title='echoMessageBenchmark: federate_count vs real_time', 
                 label='run_id: {}, core_type: {}, {}: {}'.format(run_id, core_type, comparison_parameter, echo_df['{}'.format(comparison_parameter)].unique()),
                 alpha=0.5)
@@ -521,14 +520,13 @@ def plot_echo_result_cr(dataframe, run_id_list, core_type, output_path, comparis
     run_id_list = run_id_list
     echo_ress = []
     for run_id in run_id_list:
-        echo_df = dataframe[
-            (dataframe.benchmark == 'echoBenchmark') & (dataframe.core_type == '{}'.format(core_type)) & (
+        echo_df = dataframe[(dataframe.core_type == '{}'.format(core_type)) & (
                     dataframe.run_id == '{}'.format(run_id))]
         echo_res = echo_df.sort_values('federate_count').hvplot.line(
             'federate_count',
             'real_time',
             ylabel='real_time (ns)',
-            xticks=list(range(0, (int(float(echo_df.federate_count.max()))+1), 1)),
+            #(range(0, (int(float(echo_df.federate_count.max()))+1), 1)),
             title='echoBenchmark: federate_count vs real_time',
             label='run_id: {}, core_type: {}, {}: {}'.format(run_id, core_type, comparison_parameter, echo_df['{}'.format(comparison_parameter)].unique()),
             alpha=0.5)
@@ -562,7 +560,7 @@ def plot_msg_lookup_1_cr(dataframe, run_id_list, output_path, comparison_paramet
     run_id_list = run_id_list
     msg_lookups = []
     for run_id in run_id_list:
-        msg_lkp_df = dataframe[(dataframe.benchmark == 'messageLookupBenchmark') & (dataframe.core_type == 'inproc') & (
+        msg_lkp_df = dataframe[(dataframe.core_type == 'inproc') & (
                     dataframe.run_id == '{}'.format(run_id)) & (dataframe.federate_count == 2)]
         msg_lookup = msg_lkp_df.sort_values('interface_count').hvplot.line(
             'interface_count',
@@ -603,7 +601,7 @@ def plot_msg_lookup_2_cr(dataframe, run_id_list, output_path, comparison_paramet
     run_id_list = run_id_list
     msg_lookups = []
     for run_id in run_id_list:
-        msg_lkp_df = dataframe[(dataframe.benchmark == 'messageLookupBenchmark') & (dataframe.core_type == 'inproc') & (
+        msg_lkp_df = dataframe[(dataframe.core_type == 'inproc') & (
                     dataframe.run_id == '{}'.format(run_id)) & (dataframe.federate_count == 8)]
         msg_lookup = msg_lkp_df.sort_values('interface_count').hvplot.line(
             'interface_count',
@@ -644,7 +642,7 @@ def plot_msg_lookup_3_cr(dataframe, run_id_list, output_path, comparison_paramet
     run_id_list = run_id_list
     msg_lookups = []
     for run_id in run_id_list:
-        msg_lkp_df = dataframe[(dataframe.benchmark == 'messageLookupBenchmark') & (dataframe.core_type == 'inproc') & (
+        msg_lkp_df = dataframe[(dataframe.core_type == 'inproc') & (
                     dataframe.run_id == '{}'.format(run_id)) & (dataframe.federate_count == 64)]
         msg_lookup = msg_lkp_df.sort_values('interface_count').hvplot.line(
             'interface_count',
@@ -670,7 +668,7 @@ def plot_msg_lookup_3_cr(dataframe, run_id_list, output_path, comparison_paramet
 def plot_msg_send_1_cr(dataframe, run_id_list, output_path, comparison_parameter):
     """This function creates a multi-line graph for the benchmark,
     messageSendBenchmark, of 'message_size' versus 'real_time' and
-    it is organized by a single 'core_type': 'singleFed' and compares
+    it is organized by a single 'core_type': 'singleCore' and compares
     run_ids' data.
 
     Args:
@@ -685,15 +683,14 @@ def plot_msg_send_1_cr(dataframe, run_id_list, output_path, comparison_parameter
     run_id_list = run_id_list
     msg_sends = []
     for run_id in run_id_list:
-        msg_snd_df = dataframe[
-            (dataframe.benchmark == 'messageSendBenchmark') & (dataframe.core_type == 'singleFed') & (
+        msg_snd_df = dataframe[(dataframe.core_type == 'singleCore') & (
                         dataframe.run_id == '{}'.format(run_id))]
         msg_send = msg_snd_df.sort_values('message_size').hvplot.line(
             'message_size',
             'real_time',
             ylabel='real_time (ns)',
             title='messageSendBenchmark: message_size vs real_time',
-            label='run_id: {}, core_type: singleFed, {}: {}'.format(run_id, comparison_parameter, msg_snd_df['{}'.format(comparison_parameter)].unique()),
+            label='run_id: {}, core_type: singleCore, {}: {}'.format(run_id, comparison_parameter, msg_snd_df['{}'.format(comparison_parameter)].unique()),
             alpha=0.5)
         msg_sends.append(msg_send)
     msg_send_plot = (reduce((lambda x, y: x*y), msg_sends)).opts(
@@ -728,7 +725,7 @@ def plot_msg_send_2_cr(dataframe, run_id_list, core_type, output_path, compariso
     run_id_list = run_id_list
     msg_cts = []
     for run_id in run_id_list:
-        msg_ct_df = dataframe[(dataframe.benchmark == 'messageSendBenchmark') & (dataframe.core_type == 'singleFed') & (
+        msg_ct_df = dataframe[(dataframe.core_type == 'singleCore') & (
                 dataframe.run_id == '{}'.format(run_id)) & (dataframe.message_count == 1)]
         msg_count = msg_ct_df.sort_values('message_size').hvplot.line(
             'message_size',
@@ -770,7 +767,7 @@ def plot_msg_send_3_cr(dataframe, run_id_list, core_type, output_path, compariso
     run_id_list = run_id_list
     msg_sizes = []
     for run_id in run_id_list:
-        msg_sz_df = dataframe[(dataframe.benchmark == 'messageSendBenchmark') & (dataframe.core_type == 'singleFed') & (
+        msg_sz_df = dataframe[(dataframe.core_type == 'singleCore') & (
                 dataframe.run_id == '{}'.format(run_id)) & (dataframe.message_size == 1)]
         msg_size = msg_sz_df.sort_values('message_count').hvplot.line(
             'message_count',
@@ -811,14 +808,13 @@ def plot_phold_cr(dataframe, run_id_list, core_type, output_path, comparison_par
     run_id_list = run_id_list
     pholds = []
     for run_id in run_id_list:
-        phold_df = dataframe[
-            (dataframe.benchmark == 'pholdBenchmark') & (dataframe.core_type == '{}'.format(core_type)) & (
+        phold_df = dataframe[(dataframe.core_type == '{}'.format(core_type)) & (
                     dataframe.run_id == '{}'.format(run_id))]
         phold = phold_df.sort_values('federate_count').hvplot.line(
             'federate_count',
             'real_time',
             ylabel='real_time (ns)',
-            xticks=list(range(0, (int(float(phold_df.federate_count.max()))+1), 5)),
+            #(range(0, (int(float(phold_df.federate_count.max()))+1), 5)),
             title='pholdBenchmark: federate_count vs real_time',
             label='run_id: {}, core_type: {}, {}: {}'.format(run_id, core_type, comparison_parameter, phold_df['{}'.format(comparison_parameter)].unique()),
             alpha=0.5)
@@ -854,14 +850,13 @@ def plot_ring_cr(dataframe, run_id_list, core_type, output_path, comparison_para
     run_id_list = run_id_list
     rings = []
     for run_id in run_id_list:
-        ring_df = dataframe[
-            (dataframe.benchmark == 'ringBenchmark') & (dataframe.core_type == '{}'.format(core_type)) & (
+        ring_df = dataframe[(dataframe.core_type == '{}'.format(core_type)) & (
                     dataframe.run_id == '{}'.format(run_id))]
         ring = ring_df.sort_values('federate_count').hvplot.line(
             'federate_count',
             'real_time',
             ylabel='real_time (ns)',
-            xticks=list(range(0, (int(float(ring_df.federate_count.max()))+2), 1)),
+            #(range(0, (int(float(ring_df.federate_count.max()))+2), 1)),
             title='ringBenchmark: federate_count vs real_time',
             label='run_id: {}, core_type: {}, {}: {}'.format(run_id, core_type, comparison_parameter, ring_df['{}'.format(comparison_parameter)].unique()),
             alpha=0.5)
@@ -897,13 +892,13 @@ def plot_filter_cr(dataframe, run_id_list, output_path, comparison_parameter):
     run_id_list = run_id_list
     filters = []
     for run_id in run_id_list:
-        filter_df = dataframe[(dataframe.benchmark == 'filterBenchmark') & (dataframe.core_type == 'singleCore') & (
+        filter_df = dataframe[(dataframe.core_type == 'singleCore') & (
                 dataframe.run_id == '{}'.format(run_id))]
         filtr = filter_df.sort_values('federate_count').hvplot.line(
             'federate_count',
             'real_time',
             ylabel='real_time (ns)',
-            xticks=list(range(0, (int(float(filter_df.federate_count.max()))+1), 2)),
+            #(range(0, (int(float(filter_df.federate_count.max()))+1), 2)),
             title='filterBenchmark: federate_count vs real_time',
             label='run_id: {}, core_type: singleCore, {}: {}'.format(run_id, comparison_parameter, filter_df['{}'.format(comparison_parameter)].unique()),
             alpha=0.5)
@@ -938,14 +933,13 @@ def plot_src_cr(dataframe, run_id_list, core_type, output_path, comparison_param
     run_id_list = run_id_list
     sources = []
     for run_id in run_id_list:
-        filter_df = dataframe[
-            (dataframe.benchmark == 'filterBenchmark') & (dataframe.core_type == '{}'.format(core_type)) & (
+        filter_df = dataframe[(dataframe.core_type == '{}'.format(core_type)) & (
                     dataframe.run_id == '{}'.format(run_id)) & (dataframe.filter_location == 'source')]
         source = filter_df.sort_values('federate_count').hvplot.line(
             'federate_count',
             'real_time',
             ylabel='real_time (ns)',
-            xticks=list(range(0, (int(float(filter_df.federate_count.max()))+4), 4)),
+            #(range(0, (int(float(filter_df.federate_count.max()))+4), 4)),
             title='filter_location-source, filterBenchmark: federate_count vs real_time',
             label='run_id: {}, core_type: {}, {}: {}'.format(run_id, core_type, comparison_parameter, filter_df['{}'.format(comparison_parameter)].unique()),
             alpha=0.5)
@@ -982,15 +976,14 @@ def plot_dest_cr(dataframe, run_id_list, core_type, output_path, comparison_para
     run_id_list = run_id_list
     dests = []
     for run_id in run_id_list:
-        filter_df = dataframe[
-            (dataframe.benchmark == 'filterBenchmark') & (dataframe.core_type == '{}'.format(core_type)) & (
+        filter_df = dataframe[(dataframe.core_type == '{}'.format(core_type)) & (
                     dataframe.run_id == '{}'.format(run_id)) & (dataframe.filter_location == 'destination')]
         filter_df = filter_df[filter_df.run_id == '{}'.format(run_id)]
         dest = filter_df.sort_values('federate_count').hvplot.line(
             'federate_count',
             'real_time',
             ylabel='real_time (ns)',
-            xticks=list(range(0, (int(float(filter_df.federate_count.max()))+1), 4)),
+            #(range(0, (int(float(filter_df.federate_count.max()))+1), 4)),
             title='filter_location-destination, filterBenchmark: federate_count vs real_time',
             label='run_id: {}, core_type: {}, {}: {}'.format(run_id, core_type, comparison_parameter, filter_df['{}'.format(comparison_parameter)].unique()),
             alpha=0.5)
