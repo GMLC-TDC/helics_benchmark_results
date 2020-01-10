@@ -1,0 +1,19 @@
+5338-JtlPG-WaepD-6gPan-QrO5U (0)::connecting
+5338-JtlPG-WaepD-6gPan-QrO5U (0)::||connected on tcp://127.0.0.1:23404
+5338-JtlPG-WaepD-6gPan-QrO5U (1)::registering broker 5377-uS2EH-Wl3b1-xH1nU-UHfad(1879048192) on route 1
+5338-JtlPG-WaepD-6gPan-QrO5U (1)::registering federate phold_0(131072) on route 1
+5338-JtlPG-WaepD-6gPan-QrO5U (1)::registering broker 50930-sdmxw-ir76F-QX7F5-GNoel(1879048193) on route 2
+5338-JtlPG-WaepD-6gPan-QrO5U (1)::registering federate phold_1(131073) on route 2
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	2 federates [min 2]
+	0/2 brokers/cores [min 0]
+	0 publications
+	0 inputs
+	2 endpoints
+	0 filters
+<<<<<<<<<
+5338-JtlPG-WaepD-6gPan-QrO5U (1)::entering Exec Mode
+5338-JtlPG-WaepD-6gPan-QrO5U (0)::got disconnect from 5377-uS2EH-Wl3b1-xH1nU-UHfad(1879048192)
+5338-JtlPG-WaepD-6gPan-QrO5U (0)::got disconnect from 50930-sdmxw-ir76F-QX7F5-GNoel(1879048193)
+5338-JtlPG-WaepD-6gPan-QrO5U (0)::||disconnecting

@@ -1,0 +1,37 @@
+33903-2kdQx-2YL0e-6jR74-LGbql (0)::connecting
+33903-2kdQx-2YL0e-6jR74-LGbql (0)::||connected on tcp://127.0.0.1:23404
+33903-2kdQx-2YL0e-6jR74-LGbql (1)::registering broker 33982-8jQFm-8EpPH-PseNQ-4tqge(1879048192) on route 1
+33903-2kdQx-2YL0e-6jR74-LGbql (1)::registering federate phold_7(131072) on route 1
+33903-2kdQx-2YL0e-6jR74-LGbql (1)::registering broker 13429-Tbz1Z-YV1pl-CzNuo-ZQXQa(1879048193) on route 2
+33903-2kdQx-2YL0e-6jR74-LGbql (1)::registering federate phold_4(131073) on route 2
+33903-2kdQx-2YL0e-6jR74-LGbql (1)::registering broker 55989-Fk5EJ-aUDCI-Xwde6-eMAcw(1879048194) on route 3
+33903-2kdQx-2YL0e-6jR74-LGbql (1)::registering broker 52822-eDmTn-4EYsL-97zmS-SG2AL(1879048195) on route 4
+33903-2kdQx-2YL0e-6jR74-LGbql (1)::registering broker 49563-E41qi-Qy4vU-cz91D-QkTlb(1879048196) on route 5
+33903-2kdQx-2YL0e-6jR74-LGbql (1)::registering broker 7442-ucu2g-M4e5c-6kMWJ-V3TPT(1879048197) on route 6
+33903-2kdQx-2YL0e-6jR74-LGbql (1)::registering broker 28213-UOFvt-lej0p-LhL6E-f7TuA(1879048198) on route 7
+33903-2kdQx-2YL0e-6jR74-LGbql (1)::registering broker 65736-Kto1B-7Q8Da-3v3Xm-a8VEe(1879048199) on route 8
+33903-2kdQx-2YL0e-6jR74-LGbql (1)::registering federate phold_1(131074) on route 3
+33903-2kdQx-2YL0e-6jR74-LGbql (1)::registering federate phold_3(131075) on route 4
+33903-2kdQx-2YL0e-6jR74-LGbql (1)::registering federate phold_2(131076) on route 5
+33903-2kdQx-2YL0e-6jR74-LGbql (1)::registering federate phold_5(131077) on route 6
+33903-2kdQx-2YL0e-6jR74-LGbql (1)::registering federate phold_6(131078) on route 7
+33903-2kdQx-2YL0e-6jR74-LGbql (1)::registering federate phold_0(131079) on route 8
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	8 federates [min 8]
+	0/8 brokers/cores [min 0]
+	0 publications
+	0 inputs
+	8 endpoints
+	0 filters
+<<<<<<<<<
+33903-2kdQx-2YL0e-6jR74-LGbql (1)::entering Exec Mode
+33903-2kdQx-2YL0e-6jR74-LGbql (0)::got disconnect from 33982-8jQFm-8EpPH-PseNQ-4tqge(1879048192)
+33903-2kdQx-2YL0e-6jR74-LGbql (0)::got disconnect from 52822-eDmTn-4EYsL-97zmS-SG2AL(1879048195)
+33903-2kdQx-2YL0e-6jR74-LGbql (0)::got disconnect from 13429-Tbz1Z-YV1pl-CzNuo-ZQXQa(1879048193)
+33903-2kdQx-2YL0e-6jR74-LGbql (0)::got disconnect from 7442-ucu2g-M4e5c-6kMWJ-V3TPT(1879048197)
+33903-2kdQx-2YL0e-6jR74-LGbql (0)::got disconnect from 55989-Fk5EJ-aUDCI-Xwde6-eMAcw(1879048194)
+33903-2kdQx-2YL0e-6jR74-LGbql (0)::got disconnect from 65736-Kto1B-7Q8Da-3v3Xm-a8VEe(1879048199)
+33903-2kdQx-2YL0e-6jR74-LGbql (0)::got disconnect from 49563-E41qi-Qy4vU-cz91D-QkTlb(1879048196)
+33903-2kdQx-2YL0e-6jR74-LGbql (0)::got disconnect from 28213-UOFvt-lej0p-LhL6E-f7TuA(1879048198)
+33903-2kdQx-2YL0e-6jR74-LGbql (0)::||disconnecting

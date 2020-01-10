@@ -1,0 +1,25 @@
+37167-tSvSr-qqmMZ-7QFCs-VSEiH (0)::connecting
+37167-tSvSr-qqmMZ-7QFCs-VSEiH (0)::||connected on 127.0.0.1:24160
+37167-tSvSr-qqmMZ-7QFCs-VSEiH (1)::registering broker 37217-JbSYB-ifJzD-qaC3J-0s5Bt(1879048192) on route 1
+37167-tSvSr-qqmMZ-7QFCs-VSEiH (1)::registering federate phold_2(131072) on route 1
+37167-tSvSr-qqmMZ-7QFCs-VSEiH (1)::registering broker 25346-nRnAt-njb8Y-d7FrF-hqS8w(1879048193) on route 2
+37167-tSvSr-qqmMZ-7QFCs-VSEiH (1)::registering broker 67680-gIZPO-txHZo-Um7He-Sbrix(1879048194) on route 3
+37167-tSvSr-qqmMZ-7QFCs-VSEiH (1)::registering broker 13837-1lfyS-gCKJg-9DcpA-aRzRQ(1879048195) on route 4
+37167-tSvSr-qqmMZ-7QFCs-VSEiH (1)::registering federate phold_1(131073) on route 2
+37167-tSvSr-qqmMZ-7QFCs-VSEiH (1)::registering federate phold_0(131074) on route 3
+37167-tSvSr-qqmMZ-7QFCs-VSEiH (1)::registering federate phold_3(131075) on route 4
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	4 federates [min 4]
+	0/4 brokers/cores [min 0]
+	0 publications
+	0 inputs
+	4 endpoints
+	0 filters
+<<<<<<<<<
+37167-tSvSr-qqmMZ-7QFCs-VSEiH (1)::entering Exec Mode
+37167-tSvSr-qqmMZ-7QFCs-VSEiH (0)::got disconnect from 67680-gIZPO-txHZo-Um7He-Sbrix(1879048194)
+37167-tSvSr-qqmMZ-7QFCs-VSEiH (0)::got disconnect from 37217-JbSYB-ifJzD-qaC3J-0s5Bt(1879048192)
+37167-tSvSr-qqmMZ-7QFCs-VSEiH (0)::got disconnect from 13837-1lfyS-gCKJg-9DcpA-aRzRQ(1879048195)
+37167-tSvSr-qqmMZ-7QFCs-VSEiH (0)::got disconnect from 25346-nRnAt-njb8Y-d7FrF-hqS8w(1879048193)
+37167-tSvSr-qqmMZ-7QFCs-VSEiH (0)::||disconnecting
