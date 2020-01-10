@@ -3,7 +3,7 @@
 """
 Created on Fri Dec 20 15:00:00 2019
 
-Performs standard analysis for all runs in a given path (searches directory tree for runs)
+Performs cross-run-id analysis for user-provided run-ids.
 
 @author: hard312
 """
