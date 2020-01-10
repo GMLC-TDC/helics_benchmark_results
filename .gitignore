@@ -7,3 +7,5 @@ workspace.xml
 v1_v2_name_converter.log
 *.pyc
 *.log
+Project_Default.xml
+codeStyleConfig.xml
