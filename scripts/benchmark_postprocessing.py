@@ -179,12 +179,6 @@ def parse_and_add_benchmark_metadata(json_results):
         elif 'conversion' in filename:
             for idx, results_dict in enumerate(json_results[key]['benchmarks']):
                 bm_name = results_dict['name']
-                
-                # Federate count
-                match = re.search('/\d+/',bm_name)
-                federate_count = int(match.group(0)[1:-1])
-                json_results[key]['benchmarks'][idx]['federate_count'] = federate_count
-                
                 # Core type
                 json_results = _add_core(bm_name, filename, json_results, key, idx)
             logging.warning('Added minimal benchmark metadata to {} as test type is "conversion"'.format(filename))
