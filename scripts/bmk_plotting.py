@@ -44,9 +44,7 @@ def plot_echo_msg(dataframe, run_id, output_path):
     Returns:
         echo_msg (obj): IPython holoviews plot of the data.
     """
-
-    echo_df = dataframe[dataframe.benchmark == 'echoMessageBenchmark']
-    echo_df = echo_df[echo_df.run_id == '{}'.format(run_id)]
+    echo_df = dataframe[dataframe.run_id == '{}'.format(run_id)]
     echo_msg = echo_df.sort_values('federate_count').hvplot.line(
         'federate_count',
         'real_time',
@@ -77,8 +75,7 @@ def plot_echo_result(dataframe, run_id, output_path):
     Returns:
         echo_res (obj): IPython holoviews plot of the data.
     """
-    echo_df = dataframe[dataframe.benchmark == 'echoBenchmark']
-    echo_df = echo_df[echo_df.run_id == '{}'.format(run_id)]
+    echo_df = dataframe[dataframe.run_id == '{}'.format(run_id)]
     echo_res = echo_df.sort_values('federate_count').hvplot.line(
         'federate_count',
         'real_time',
@@ -107,8 +104,7 @@ def plot_msg_lookup_1(dataframe, run_id, output_path):
     Returns:
         msg_lookup (obj): IPython holoviews plot of the data.
     """
-    msg_lkp_df = dataframe[dataframe.benchmark == 'messageLookupBenchmark']
-    inproc_df = msg_lkp_df[msg_lkp_df.core_type == 'inproc']
+    inproc_df = dataframe[dataframe.core_type == 'inproc']
     inproc_df = inproc_df[inproc_df.run_id == '{}'.format(run_id)]
     inproc_df = inproc_df[inproc_df.federate_count == 2]
     msg_lookup = inproc_df.sort_values('interface_count').hvplot.line(
@@ -138,8 +134,7 @@ def plot_msg_lookup_2(dataframe, run_id, output_path):
     Returns:
         msg_lookup (obj): IPython holoviews plot of the data.
     """
-    msg_lkp_df = dataframe[dataframe.benchmark == 'messageLookupBenchmark']
-    inproc_df = msg_lkp_df[msg_lkp_df.core_type == 'inproc']
+    inproc_df = dataframe[dataframe.core_type == 'inproc']
     inproc_df = inproc_df[inproc_df.run_id == '{}'.format(run_id)]
     inproc_df = inproc_df[inproc_df.federate_count == 8]
     msg_lookup = inproc_df.sort_values('interface_count').hvplot.line(
@@ -169,8 +164,7 @@ def plot_msg_lookup_3(dataframe, run_id, output_path):
     Returns:
         msg_lookup (obj): IPython holoviews plot of the data.
     """
-    msg_lkp_df = dataframe[dataframe.benchmark == 'messageLookupBenchmark']
-    inproc_df = msg_lkp_df[msg_lkp_df.core_type == 'inproc']
+    inproc_df = dataframe[dataframe.core_type == 'inproc']
     inproc_df = inproc_df[inproc_df.run_id == '{}'.format(run_id)]
     inproc_df = inproc_df[inproc_df.federate_count == 64]
     msg_lookup = inproc_df.sort_values('interface_count').hvplot.line(
@@ -201,8 +195,7 @@ def plot_msg_send_1(dataframe, run_id, output_path):
     Returns:
         msg_send (obj): IPython holoviews plot of the data.
     """
-    msg_snd_df = dataframe[dataframe.benchmark == 'messageSendBenchmark']
-    msg_snd_df = msg_snd_df[msg_snd_df.core_type == 'singleCore']
+    msg_snd_df = dataframe[dataframe.core_type == 'singleCore']
     msg_snd_df = msg_snd_df[msg_snd_df.run_id == '{}'.format(run_id)]
     msg_send = msg_snd_df.sort_values('message_size').hvplot.line(
         'message_size',
@@ -232,8 +225,7 @@ def plot_msg_send_2(dataframe, run_id, output_path):
     Returns:
         msg_count (obj): IPython holoviews plot of the data.
     """
-    msg_snd_df = dataframe[dataframe.benchmark == 'messageSendBenchmark']
-    msg_ct_df = msg_snd_df[msg_snd_df.run_id == '{}'.format(run_id)]
+    msg_ct_df = dataframe[dataframe.run_id == '{}'.format(run_id)]
     msg_ct_df = msg_ct_df[msg_ct_df.message_count == 1]
     msg_count = msg_ct_df.sort_values('message_size').hvplot.line(
         'message_size',
@@ -264,8 +256,7 @@ def plot_msg_send_3(dataframe, run_id, output_path):
     Returns:
         msg_size (obj): IPython holoviews plot of the data.
     """
-    msg_snd_df = dataframe[dataframe.benchmark == 'messageSendBenchmark']
-    msg_sz_df = msg_snd_df[msg_snd_df.message_size == 1]
+    msg_sz_df = dataframe[dataframe.message_size == 1]
     msg_sz_df = msg_sz_df[msg_sz_df.run_id == '{}'.format(run_id)]
     msg_size = msg_sz_df.sort_values('message_count').hvplot.line(
         'message_count',
@@ -296,8 +287,7 @@ def plot_phold(dataframe, run_id, output_path):
     Returns:
         phold (obj): IPython holoviews plot of the data.
     """
-    phold_df = dataframe[dataframe.benchmark == 'pholdBenchmark']
-    phold_df = phold_df[phold_df.run_id == '{}'.format(run_id)]
+    phold_df = dataframe[dataframe.run_id == '{}'.format(run_id)]
     phold = phold_df.sort_values('federate_count').hvplot.line(
         'federate_count',
         'real_time',
@@ -328,8 +318,7 @@ def plot_ring(dataframe, run_id, output_path):
     Returns:
         ring (obj): IPython holoviews plot of the data.
     """
-    ring_df = dataframe[dataframe.benchmark == 'ringBenchmark']
-    ring_df = ring_df[ring_df.run_id == '{}'.format(run_id)]
+    ring_df = dataframe[dataframe.run_id == '{}'.format(run_id)]
     ring = ring_df.sort_values('federate_count').hvplot.line(
         'federate_count',
         'real_time',
@@ -360,8 +349,7 @@ def plot_filter(dataframe, run_id, output_path):
     Returns:
         filtr (obj): IPython holoviews plot of the data.
     """
-    filter_df = dataframe[dataframe.benchmark == 'filterBenchmark']
-    filter_df = filter_df[filter_df.core_type == 'singleCore']
+    filter_df = dataframe[dataframe.core_type == 'singleCore']
     filter_df = filter_df[filter_df.run_id == '{}'.format(run_id)]
     filtr = filter_df.sort_values('federate_count').hvplot.line(
         'federate_count',
@@ -391,8 +379,7 @@ def plot_src(dataframe, run_id, output_path):
     Returns:
         source (obj): IPython holoviews plot of the data.
     """
-    filter_df = dataframe[dataframe.benchmark == 'filterBenchmark']
-    filter_df = filter_df[filter_df.filter_location == 'source']
+    filter_df = dataframe[dataframe.filter_location == 'source']
     filter_df = filter_df[filter_df.run_id == '{}'.format(run_id)]
     source = filter_df.sort_values('federate_count').hvplot.line(
         'federate_count',
@@ -424,8 +411,7 @@ def plot_dest(dataframe, run_id, output_path):
     Returns:
         dest (obj): IPython holoviews plot of the data.
     """
-    filter_df = dataframe[dataframe.benchmark == 'filterBenchmark']
-    filter_df = filter_df[filter_df.filter_location == 'destination']
+    filter_df = dataframe[dataframe.filter_location == 'destination']
     filter_df = filter_df[filter_df.run_id == '{}'.format(run_id)]
     dest = filter_df.sort_values('federate_count').hvplot.line(
         'federate_count',
