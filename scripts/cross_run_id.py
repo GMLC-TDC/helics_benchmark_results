@@ -3,7 +3,34 @@
 """
 Created on Fri Dec 20 15:00:00 2019
 
-Performs cross-run-id analysis for user-provided run-ids.
+Performs an analysis comparing the results of the same benchmark results
+across multiple run IDs.  It is assumed that the run IDs are chosen
+because they are identical in most of the test conditions (found in the
+the benchmark metadata and containing items such as mhz_per_cpu,
+helics_version, system, etc) except for one of interest. For each
+benchmark results that exists in both run IDs, graphs comparing the
+performance in that benchmark are created. A single PDF is created from
+all of these including a metadata header highlighting the difference in
+test conditions (metadata) between the run IDs.
+
+The data from these results files exists in few forms:
+    - benchmark results files that are largely JSON formatted with a
+    metadata header
+    - "json_results" dictionary which is a parsed version of the JSON
+    file with the associated metadata.
+    - "meta_bmk_df" pandas dataframe which is largely a reformatted
+    version of the JSON into a strcuture more readily handled by
+    the holoview graphing utility
+
+This script can be run as a standalone script to generate the standard
+analysis for every run in the user-provided path. By default it will not
+overwrite any existing report. A "run" is specified by the 5 character
+unique ID in the filename for every results file associated with that
+run.
+
+The command line arguments for the function can be found in the code
+following the lines following the "if __name__ == '__main__':" line
+at the end of this file.
 
 @author: hard312
 """
@@ -223,7 +250,7 @@ if __name__ == '__main__':
     parser.add_argument('-l',
                         '--run_id_list',
                         nargs='+',
-                        default=['aUZF6', 'Zu60n'])
+                        default=['aUZF6', 'Zu60n', 'bScQ6'])
 
 
     # TDH (2019-12-27): Building the output results directory name based on the run IDs specified
