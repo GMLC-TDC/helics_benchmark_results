@@ -123,7 +123,10 @@ def parse_header_lines(json_file, json_results, uuid_str):
         #    string is not saved separately. Sometimes the details in the string are not known and thus no specific
         #    pieces are pulled out for later use.
         if 'HELICS_BENCHMARK:' in line:
-            json_results[uuid_str]['benchmark'] = line[18:]
+            if 'echo_cResults' in json_results[uuid_str]['filename']:
+                json_results[uuid_str]['benchmark'] = 'cEchoBenchmark'
+            else:
+                json_results[uuid_str]['benchmark'] = line[18:]
         elif 'HELICS VERSION:' in line:
             json_results[uuid_str]['helics_version_string']  = line[16:]
             match = re.search('\d+.*?-',line)
