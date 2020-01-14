@@ -273,7 +273,7 @@ def sort_results_files(file_list):
 
 def _auto_run(args):
     """This function executes when the script is called as a stand-alone
-    exectuable. It is used both for development/testing as well as the
+    executable. It is used both for development/testing as well as the
     primary executable for generating the standard analysis PDF report.
 
     A more complete description of this code can be found in the
