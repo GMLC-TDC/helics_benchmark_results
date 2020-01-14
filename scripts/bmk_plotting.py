@@ -94,7 +94,7 @@ def plot_echo_result(dataframe, run_id, output_path):
 
 def plot_echo_c(dataframe, run_id, output_path):
     """This function creates a multi-line graph for the benchmark,
-    echoBenchmark, of 'federate_count' versus 'real_time' and
+    cEchoBenchmark, of 'federate_count' versus 'real_time' and
     it is organized by 'core_type'.
 
     Args:
@@ -110,14 +110,14 @@ def plot_echo_c(dataframe, run_id, output_path):
         'real_time',
         ylabel='real_time (ns)',
         #(range(0, (int(float(echo_df.federate_count.max()))+1), 1)),
-        title='run_id {} echoBenchmark: federate_count vs real_time'.format(run_id),
+        title='run_id {} cEchoBenchmark: federate_count vs real_time'.format(run_id),
         by='core_type',
         alpha=0.5).opts(
         width=600,
         height=360,
         fontsize={'title': 9.5, 'labels': 10, 'legend': 9, 'xticks': 10, 'yticks': 10})
-    save_path = os.path.join(output_path, '{}_echoResult.png'.format(run_id))
-    hvplot.save(echo_res, save_path)
+    save_path = os.path.join(output_path, '{}_echo_cResult.png'.format(run_id))
+    hvplot.save(echo_c_res, save_path)
     return echo_c_res
 
 
@@ -460,6 +460,37 @@ def plot_dest(dataframe, run_id, output_path):
     hvplot.save(dest, save_path)
     return dest
 
+
+def plot_timing(dataframe, run_id, output_path):
+    """This function creates a multi-line graph for the benchmark,
+    timingBenchmark, of 'federate_count' versus 'real_time' and
+    it is organized by 'core_type'.
+
+    Args:
+        dataframe (obj): A data frame created by make_dataframe.
+        run_id (str): Specific run_id used to create this plot.
+        output_path (path): Location to send the graph.
+    Returns:
+        timing (obj): IPython holoviews plot of the data.
+    """
+    time_df = dataframe[dataframe.run_id == '{}'.format(run_id)]
+    timing = time_df.sort_values('federate_count').hvplot.line(
+        'federate_count',
+        'real_time',
+        ylabel='real_time (ns)',
+        #(range(0, (int(float(echo_df.federate_count.max()))+1), 4)),
+        title='run_id {} timingBenchmark: federate_count vs real_time'.format(run_id),
+        by='core_type',
+        alpha=0.5).opts(
+        width=600,
+        height=360,
+        logx=True,
+        logy=True,
+        fontsize={'title': 9.5, 'labels': 10, 'legend': 9, 'xticks': 10, 'yticks': 10})
+    save_path = os.path.join(output_path, '{}_timing.png'.format(run_id))
+    hvplot.save(timing, save_path)
+    return timing
+
 #-----------------------------------------------------------------------#
 #------------------  Cross-run_id comparison plots ---------------------#
 def plot_echo_msg_cr(dataframe, run_id_list, core_type, output_path, comparison_parameter):
@@ -546,7 +577,7 @@ def plot_echo_result_cr(dataframe, run_id_list, core_type, output_path, comparis
 
 def plot_echo_c_cr(dataframe, run_id_list, core_type, output_path, comparison_parameter):
     """This function creates a multi-line graph for the benchmark,
-    echoBenchmark, of 'federate_count' versus 'real_time' and
+    cEchoBenchmark, of 'federate_count' versus 'real_time' and
     it is organized a single 'core_type' and compares run_ids' data.
 
     Args:
@@ -569,7 +600,7 @@ def plot_echo_c_cr(dataframe, run_id_list, core_type, output_path, comparison_pa
             'real_time',
             ylabel='real_time (ns)',
             #(range(0, (int(float(echo_df.federate_count.max()))+1), 1)),
-            title='echoBenchmark: federate_count vs real_time',
+            title='cEchoBenchmark: federate_count vs real_time',
             label='run_id: {}, core_type: {}, {}: {}'.format(run_id, core_type, comparison_parameter, echo_df['{}'.format(comparison_parameter)].unique()),
             alpha=0.5)
         echo_cs.append(echo_c_res)
@@ -579,7 +610,7 @@ def plot_echo_c_cr(dataframe, run_id_list, core_type, output_path, comparison_pa
                         legend_position='top_left',
                         fontsize={'title': 9.5, 'labels': 10, 'legend': 9, 'xticks': 10, 'yticks': 10})
     run_id_str = '_'.join(run_id_list)
-    save_path = os.path.join(output_path, '{}_echo_{}Core.png'.format(run_id_str, core_type))
+    save_path = os.path.join(output_path, '{}_echo_c_{}Core.png'.format(run_id_str, core_type))
     hvplot.save(echo_c_res_plot, save_path)
     return echo_c_res_plot
 
@@ -1060,6 +1091,48 @@ def plot_dest_cr(dataframe, run_id_list, core_type, output_path, comparison_para
     save_path = os.path.join(output_path, '{}_destFilter_{}Core.png'.format(run_id_str, core_type))
     hvplot.save(dest_plot, save_path)
     return dest_plot
+
+
+def plot_timing_cr(dataframe, run_id_list, core_type, output_path, comparison_parameter):
+    """This function creates a multi-line graph for the benchmark,
+    timingBenchmark, of 'federate_count' versus 'real_time', and
+    it is organized by a single 'core_type' and compares run_ids' data.
+
+    Args:
+        dataframe (obj): A data frame created by make_dataframe.
+        run_id_list (list): Specific run_ids used to create this plot.
+        core_type (str): Specific core_type for cross-run_id comparison plots.
+        output_path (path): Location to send the graph.
+        comparison_parameter (str): Specific parameter to view.
+        
+    Returns:
+        timing_plot (obj): IPython holoviews plot of the data.
+    """
+    run_id_list = run_id_list
+    times = []
+    for run_id in run_id_list:
+        time_df = dataframe[(dataframe.core_type == '{}'.format(core_type)) & (
+                        dataframe.run_id == '{}'.format(run_id))]
+        time = time_df.sort_values('federate_count').hvplot.line(
+                'federate_count', 
+                'real_time', 
+                ylabel='real_time (ns)',
+                #(range(0, (int(float(echo_df.federate_count.max()))+1), 4)),
+                title='timingBenchmark: federate_count vs real_time', 
+                label='run_id: {}, core_type: {}, {}: {}'.format(run_id, core_type, comparison_parameter, time_df['{}'.format(comparison_parameter)].unique()),
+                alpha=0.5)
+        times.append(time)
+    timing_plot = (reduce((lambda x, y: x*y), times)).opts(
+                        width=590, 
+                        height=360, 
+                        logx=True, 
+                        logy=True, 
+                        legend_position='top_left',
+                        fontsize={'title': 9.5, 'labels': 10, 'legend': 9, 'xticks': 10, 'yticks': 10})
+    run_id_str = '_'.join(run_id_list)
+    save_path = os.path.join(output_path, '{}_timing_{}Core.png'.format(run_id_str, core_type))
+    hvplot.save(timing_plot, save_path)
+    return timing_plot
 
 
 def save_plots(plot_list, run_id):
