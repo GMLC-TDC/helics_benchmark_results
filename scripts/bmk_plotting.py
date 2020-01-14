@@ -92,6 +92,35 @@ def plot_echo_result(dataframe, run_id, output_path):
     return echo_res
 
 
+def plot_echo_c(dataframe, run_id, output_path):
+    """This function creates a multi-line graph for the benchmark,
+    echoBenchmark, of 'federate_count' versus 'real_time' and
+    it is organized by 'core_type'.
+
+    Args:
+        dataframe (obj): A data frame created by make_dataframe.
+        run_id (str): Specific run_id used to create this plot.
+        output_path (path): Location to send the graph.
+    Returns:
+        echo_c_res (obj): IPython holoviews plot of the data.
+    """
+    echo_c = dataframe[dataframe.run_id == '{}'.format(run_id)]
+    echo_c_res = echo_c.sort_values('federate_count').hvplot.line(
+        'federate_count',
+        'real_time',
+        ylabel='real_time (ns)',
+        #(range(0, (int(float(echo_df.federate_count.max()))+1), 1)),
+        title='run_id {} echoBenchmark: federate_count vs real_time'.format(run_id),
+        by='core_type',
+        alpha=0.5).opts(
+        width=600,
+        height=360,
+        fontsize={'title': 9.5, 'labels': 10, 'legend': 9, 'xticks': 10, 'yticks': 10})
+    save_path = os.path.join(output_path, '{}_echoResult.png'.format(run_id))
+    hvplot.save(echo_res, save_path)
+    return echo_c_res
+
+
 def plot_msg_lookup_1(dataframe, run_id, output_path):
     """This function creates a multi-line graph for the benchmark,
     messageLookupBenchmark, of 'federate_count' versus 'real_time' and
@@ -513,6 +542,46 @@ def plot_echo_result_cr(dataframe, run_id_list, core_type, output_path, comparis
     save_path = os.path.join(output_path, '{}_echo_{}Core.png'.format(run_id_str, core_type))
     hvplot.save(echo_res_plot, save_path)
     return echo_res_plot
+
+
+def plot_echo_c_cr(dataframe, run_id_list, core_type, output_path, comparison_parameter):
+    """This function creates a multi-line graph for the benchmark,
+    echoBenchmark, of 'federate_count' versus 'real_time' and
+    it is organized a single 'core_type' and compares run_ids' data.
+
+    Args:
+        dataframe (obj): A data frame created by make_dataframe.
+        run_id_list (list): Specific run_ids used to create this plot.
+        core_type (str): Specific core_type for cross-run_id comparison plots.
+        output_path (path): Location to send the graph.
+        comparison_parameter (str): Specific parameter to view.
+        
+    Returns:
+        echo_c_res_plot (obj): IPython holoviews plot of the data.
+    """
+    run_id_list = run_id_list
+    echo_cs = []
+    for run_id in run_id_list:
+        echo_df = dataframe[(dataframe.core_type == '{}'.format(core_type)) & (
+                    dataframe.run_id == '{}'.format(run_id))]
+        echo_c_res = echo_df.sort_values('federate_count').hvplot.line(
+            'federate_count',
+            'real_time',
+            ylabel='real_time (ns)',
+            #(range(0, (int(float(echo_df.federate_count.max()))+1), 1)),
+            title='echoBenchmark: federate_count vs real_time',
+            label='run_id: {}, core_type: {}, {}: {}'.format(run_id, core_type, comparison_parameter, echo_df['{}'.format(comparison_parameter)].unique()),
+            alpha=0.5)
+        echo_cs.append(echo_c_res)
+    echo_c_res_plot = (reduce((lambda x, y: x*y), echo_cs)).opts(
+                        width=590, 
+                        height=360,
+                        legend_position='top_left',
+                        fontsize={'title': 9.5, 'labels': 10, 'legend': 9, 'xticks': 10, 'yticks': 10})
+    run_id_str = '_'.join(run_id_list)
+    save_path = os.path.join(output_path, '{}_echo_{}Core.png'.format(run_id_str, core_type))
+    hvplot.save(echo_c_res_plot, save_path)
+    return echo_c_res_plot
 
 
 def plot_msg_lookup_1_cr(dataframe, run_id_list, output_path, comparison_parameter):
