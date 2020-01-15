@@ -444,7 +444,7 @@ if __name__ == '__main__':
     parser.add_argument('-l',
                         '--run_id_list',
                         nargs='+',
-                        default=['aUZF6', 'Zu60n']['aUZF6', 'Zu60n'])
+                        default=['aUZF6', 'Zu60n'])
     parser.add_argument('-p',
                         '--comparison_parameter',
                         nargs='?',
