@@ -205,6 +205,11 @@ def make_SA_graphs(meta_bmk_df, bm, run_id, output_path):
             bmk_plotting.plot_echo_result(meta_bmk_df, run_id, output_path)
         else:
             pass
+    if bm['bm_name'] == 'cEchoBenchmark':
+        if bm['bm_type'] == 'full':
+            bmk_plotting.plot_echo_c(meta_bmk_df, run_id, output_path)
+        else:
+            pass
     if bm['bm_name'] == 'echoMessageBenchmark':
         if bm['bm_type'] == 'full':
             bmk_plotting.plot_echo_msg(meta_bmk_df, run_id, output_path)
@@ -239,6 +244,11 @@ def make_SA_graphs(meta_bmk_df, bm, run_id, output_path):
             bmk_plotting.plot_filter(meta_bmk_df, run_id, output_path)
             bmk_plotting.plot_src(meta_bmk_df, run_id, output_path)
             bmk_plotting.plot_dest(meta_bmk_df, run_id, output_path)
+        else:
+            pass
+    if bm['bm_name'] == 'timingBenchmark':
+        if bm['bm_type'] == 'full':
+            bmk_plotting.plot_timing(meta_bmk_df, run_id, output_path)
         else:
             pass
 

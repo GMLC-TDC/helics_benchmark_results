@@ -268,6 +268,14 @@ def make_cross_run_id_graphs(meta_bmk_df,
                                              core_type,
                                              output_path,
                                              comparison_parameter)
+    if bm == 'cEchoBenchmark':
+        meta_bmk_df = meta_bmk_df[meta_bmk_df.benchmark == 'cEchoBenchmark']
+        for core_type in meta_bmk_df.core_type.unique():
+            bmk_plotting.plot_echo_c_cr(meta_bmk_df,
+                                        run_id_list,
+                                        core_type,
+                                        output_path,
+                                        comparison_parameter)
     if bm == 'echoMessageBenchmark':
         meta_bmk_df = meta_bmk_df[meta_bmk_df.benchmark == 'echoMessageBenchmark']
         for core_type in meta_bmk_df.core_type.unique():
@@ -341,6 +349,14 @@ def make_cross_run_id_graphs(meta_bmk_df,
                                       core_type,
                                       output_path,
                                       comparison_parameter)
+    if bm == 'timingBenchmark':
+        meta_bmk_df = meta_bmk_df[meta_bmk_df.benchmark == 'timingBenchmark']
+        for core_type in meta_bmk_df.core_type.unique():
+            bmk_plotting.plot_timing_cr(meta_bmk_df,
+                                        run_id_list,
+                                        core_type,
+                                        output_path,
+                                        comparison_parameter)
 
 
 def _auto_run(args):
