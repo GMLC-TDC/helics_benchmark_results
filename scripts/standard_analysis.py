@@ -342,7 +342,7 @@ if __name__ == '__main__':
     # TDH: Standard argument parsing
     parser = argparse.ArgumentParser(description='Generate PDF report.')
     # TDH: Have to do a little bit of work to generate a good default
-    # parth for the results folder. Default only works if being run
+    # path for the results folder. Default only works if being run
     # from the "scripts" directory in the repository structure.
     script_path = os.path.dirname(os.path.realpath(__file__))
     head, tail = os.path.split(script_path)
