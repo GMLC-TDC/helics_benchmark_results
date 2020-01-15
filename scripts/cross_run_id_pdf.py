@@ -230,10 +230,14 @@ def _auto_run(args):
     import make_dataframe as md
     # TDH (2020-01-14)
     # Hard-coding some inputs for development purposes
+    # The "benchmark_results_name" folder and the values in "run_id_list"
+    # must be manually made to match.
+    benchmark_results_name = '2019-12-02'
     run_id_list = ['aUZF6', 'Zu60n']
     dir_name = 'aUZF6_Zu60n_report'
     comparison_results_root = 'cross_case_comparison'
     delete_report = True
+    comparison_parameter = 'mhz_per_cpu'
     parameter_list = [
         'date',
         'helics_version',
@@ -251,14 +255,17 @@ def _auto_run(args):
     ]
 
     # TDH (2020-01-14)
-    # Generating output path
+    # Generating results path and output path
     script_path = os.path.dirname(os.path.realpath(__file__))
     head, tail = os.path.split(script_path)
     output_dir = os.path.join(head, comparison_results_root)
     output_path = os.path.join(output_dir, dir_name)
+    benchmark_results_dir = os.path.join(head,
+                                         'benchmark_results',
+                                         benchmark_results_name)
 
 
-    run_id_dict = cri.find_specific_run_id(args.benchmark_results_dir,
+    run_id_dict = cri.find_specific_run_id(benchmark_results_dir,
                                        run_id_list)
 
     cri.create_output_path(output_path, delete_report)
@@ -275,30 +282,22 @@ def _auto_run(args):
         cri.make_cross_run_id_graphs(meta_bmk_df,
                                  bm['bm_name'],
                                  list(run_id_dict.keys()),
-                                 args.output_path,
-                                 args.comparison_parameter)
-        try:
-            os.mkdir(output_path)
-        except OSError:
-            logging.error('Failed to create directory for report at {}'.format(output_path))
-        create_cross_run_id_report(json_results,
-                                   run_id_list,
-                                   output_path,
-                                   parameter_list)
+                                 output_path,
+                                 comparison_parameter)
+    create_cross_run_id_report(json_results,
+                                run_id_list,
+                                output_path,
+                                parameter_list)
 
 
 
 if __name__ == '__main__':
-    fileHandle = logging.FileHandler("standard_analysis_PDF.log", mode='w')
+    fileHandle = logging.FileHandler("cross_run_id_PDF.log", mode='w')
     fileHandle.setLevel(logging.DEBUG)
     streamHandle = logging.StreamHandler(sys.stdout)
     streamHandle.setLevel(logging.ERROR)
     logging.basicConfig(level=logging.INFO,
                         handlers=[fileHandle, streamHandle])
     parser = argparse.ArgumentParser(description='Generate PDF report.')
-    parser.add_argument('-r',
-                        'benchmark_results_dir',
-                        nargs='?',
-                        default='../benchmark_results/2019-11-27')
     args = parser.parse_args()
     _auto_run(args)
