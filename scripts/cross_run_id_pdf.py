@@ -27,6 +27,7 @@ import argparse
 import logging
 import pprint
 import os
+import sys
 import standard_analysis_pdf as saPDF
 from fpdf import FPDF
 
@@ -222,21 +223,68 @@ def _auto_run(args):
     # replicates the functionality of "cross_run_id.py" so that
     # json_results can be created and used to create the graph image
     # files.
+
+    import cross_run_id as cri
+    import standard_analysis as sa
     import benchmark_postprocessing as bmpp
-    file_list = bmpp.get_benchmark_files(args.benchmark_results_dir)
+    import make_dataframe as md
+    # TDH (2020-01-14)
+    # Hard-coding some inputs for development purposes
+    run_id_list = ['aUZF6', 'Zu60n']
+    dir_name = 'aUZF6_Zu60n_report'
+    comparison_results_root = 'cross_case_comparison'
+    delete_report = True
+    parameter_list = [
+        'date',
+        'helics_version',
+        'generator',
+        'system',
+        'system_version',
+        'platform',
+        'cxx_compiler',
+        'cxx_compiler_version',
+        'build_flags_string',
+        'host_name',
+        'host_processor',
+        'num_cpus',
+        'mhz_per_cpu'
+    ]
+
+    # TDH (2020-01-14)
+    # Generating output path
+    script_path = os.path.dirname(os.path.realpath(__file__))
+    head, tail = os.path.split(script_path)
+    output_dir = os.path.join(head, comparison_results_root)
+    output_path = os.path.join(output_dir, dir_name)
+
+
+    run_id_dict = cri.find_specific_run_id(args.benchmark_results_dir,
+                                       run_id_list)
+
+    cri.create_output_path(output_path, delete_report)
+    file_list = []
+    for run_id in run_id_dict:
+        file_list.extend(run_id_dict[run_id]['files'])
+    bm_files, bmk_files = sa.sort_results_files(file_list)
+    file_list = bm_files
     json_results = bmpp.parse_files(file_list)
     json_results = bmpp.parse_and_add_benchmark_metadata(json_results)
-    run_id_list = saPDF.get_unique_run_ids(json_results)
-    for run_id in run_id_list:
-        output_path = os.path.join(args.benchmark_results_dir, '{}_report'.format(run_id))
-
-        # TDH: Thorough attempt to safely create the results directory and
-        # provide good error reporting if something went wrong.
+    meta_bmk_df = md.make_dataframe(json_results)
+    bm_list = cri.find_common_bm_to_graph(json_results, run_id_dict)
+    for bm in bm_list:
+        cri.make_cross_run_id_graphs(meta_bmk_df,
+                                 bm['bm_name'],
+                                 list(run_id_dict.keys()),
+                                 args.output_path,
+                                 args.comparison_parameter)
         try:
             os.mkdir(output_path)
         except OSError:
             logging.error('Failed to create directory for report at {}'.format(output_path))
-        create_standard_analysis_report(output_path, json_results, run_id)
+        create_cross_run_id_report(json_results,
+                                   run_id_list,
+                                   output_path,
+                                   parameter_list)
 
 
 
