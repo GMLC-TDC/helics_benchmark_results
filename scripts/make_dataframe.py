@@ -117,7 +117,8 @@ def make_dataframe(json_results):
     columns3 = [
     'filename', 
     'path', 
-    'benchmark', 
+    'benchmark',
+    'benchmark_type',
     'helics_version_string', 
     'helics_version', 
     'zmq_version_string', 
