@@ -147,8 +147,6 @@ def plot_msg_lookup_1(dataframe, run_id, output_path):
         alpha=0.5).opts(
         width=600,
         height=360,
-        logx=True,
-        logy=True,
         fontsize={'title': 9, 'labels': 10, 'xticks': 10, 'yticks': 10})
     save_path = os.path.join(output_path, '{}_messageLookup.png'.format(run_id))
     hvplot.save(msg_lookup, save_path)
@@ -177,8 +175,6 @@ def plot_msg_lookup_2(dataframe, run_id, output_path):
         alpha=0.5).opts(
         width=600,
         height=360,
-        logx=True,
-        logy=True,
         fontsize={'title': 9, 'labels': 10, 'xticks': 10, 'yticks': 10})
     save_path = os.path.join(output_path, '{}_messageLookup.png'.format(run_id))
     hvplot.save(msg_lookup, save_path)
@@ -207,8 +203,6 @@ def plot_msg_lookup_3(dataframe, run_id, output_path):
         alpha=0.5).opts(
         width=600,
         height=360,
-        logx=True,
-        logy=True,
         fontsize={'title': 9, 'labels': 10, 'xticks': 10, 'yticks': 10})
     save_path = os.path.join(output_path, '{}_messageLookup.png'.format(run_id))
     hvplot.save(msg_lookup, save_path)
@@ -237,8 +231,6 @@ def plot_msg_send_1(dataframe, run_id, output_path):
         alpha=0.5).opts(
         width=600,
         height=360,
-        logx=True,
-        logy=True,
         fontsize={'title': 9, 'labels': 10, 'xticks': 10, 'yticks': 10})
     save_path = os.path.join(output_path, '{}_messageSend1.png'.format(run_id))
     hvplot.save(msg_send, save_path)
@@ -268,8 +260,6 @@ def plot_msg_send_2(dataframe, run_id, output_path):
         alpha=0.5).opts(
         width=600,
         height=360,
-        logx=True,
-        logy=True,
         fontsize={'title': 9, 'labels': 10, 'xticks': 10, 'yticks': 10})
     save_path = os.path.join(output_path, '{}_messageSend2.png'.format(run_id))
     hvplot.save(msg_count, save_path)
@@ -299,8 +289,6 @@ def plot_msg_send_3(dataframe, run_id, output_path):
         alpha=0.5).opts(
         width=600,
         height=360,
-        logx=True,
-        logy=True,
         fontsize={'title': 9, 'labels': 10, 'xticks': 10, 'yticks': 10})
     save_path = os.path.join(output_path, '{}_messageSend3.png'.format(run_id))
     hvplot.save(msg_size, save_path)
@@ -462,7 +450,7 @@ def plot_dest(dataframe, run_id, output_path):
         height=360,
         logx=True,
         logy=True,
-        legen_position='bottom_right',
+        legend_position='bottom_right',
         fontsize={'title': 9.5, 'labels': 10, 'legend': 9, 'xticks': 10, 'yticks': 10})
     save_path = os.path.join(output_path, '{}_destination.png'.format(run_id))
     hvplot.save(dest, save_path)
