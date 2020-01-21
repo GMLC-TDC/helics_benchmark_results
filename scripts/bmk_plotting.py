@@ -149,8 +149,7 @@ def plot_msg_lookup_1(dataframe, run_id, output_path):
         height=360,
         logx=True,
         logy=True,
-        legend_position='bottom_right',
-        fontsize={'title': 9, 'labels': 10, 'legend': 9, 'xticks': 10, 'yticks': 10})
+        fontsize={'title': 9, 'labels': 10, 'xticks': 10, 'yticks': 10})
     save_path = os.path.join(output_path, '{}_messageLookup.png'.format(run_id))
     hvplot.save(msg_lookup, save_path)
     return msg_lookup
@@ -180,8 +179,7 @@ def plot_msg_lookup_2(dataframe, run_id, output_path):
         height=360,
         logx=True,
         logy=True,
-        legend_position='bottom_right',
-        fontsize={'title': 9, 'labels': 10, 'legend': 9, 'xticks': 10, 'yticks': 10})
+        fontsize={'title': 9, 'labels': 10, 'xticks': 10, 'yticks': 10})
     save_path = os.path.join(output_path, '{}_messageLookup.png'.format(run_id))
     hvplot.save(msg_lookup, save_path)
     return msg_lookup
@@ -211,8 +209,7 @@ def plot_msg_lookup_3(dataframe, run_id, output_path):
         height=360,
         logx=True,
         logy=True,
-        legend_position='bottom_right',
-        fontsize={'title': 9, 'labels': 10, 'legend': 9, 'xticks': 10, 'yticks': 10})
+        fontsize={'title': 9, 'labels': 10, 'xticks': 10, 'yticks': 10})
     save_path = os.path.join(output_path, '{}_messageLookup.png'.format(run_id))
     hvplot.save(msg_lookup, save_path)
     return msg_lookup
