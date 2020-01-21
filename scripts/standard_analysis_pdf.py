@@ -313,7 +313,7 @@ if __name__ == '__main__':
     # TDH (2020-01-13): Standard argument parsing
     parser = argparse.ArgumentParser(description='Generate PDF report.')
     parser.add_argument('-r',
-                        'benchmark_results_dir',
+                        '--benchmark_results_dir',
                         nargs='?',
                         default='../benchmark_results/2019-11-27')
     args = parser.parse_args()
