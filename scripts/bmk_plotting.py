@@ -57,6 +57,7 @@ def plot_echo_msg(dataframe, run_id, output_path):
         height=360,
         logx=True,
         logy=True,
+        legend_position='bottom_right',
         fontsize={'title': 9.5, 'labels': 10, 'legend': 9, 'xticks': 10, 'yticks': 10})
     save_path = os.path.join(output_path, '{}_echoMessage.png'.format(run_id))
     hvplot.save(echo_msg, save_path)
@@ -86,6 +87,7 @@ def plot_echo_result(dataframe, run_id, output_path):
         alpha=0.5).opts(
         width=600,
         height=360,
+        legend_position='bottom_right',
         fontsize={'title': 9.5, 'labels': 10, 'legend': 9, 'xticks': 10, 'yticks': 10})
     save_path = os.path.join(output_path, '{}_echoResult.png'.format(run_id))
     hvplot.save(echo_res, save_path)
@@ -115,6 +117,7 @@ def plot_echo_c(dataframe, run_id, output_path):
         alpha=0.5).opts(
         width=600,
         height=360,
+        legend_position='bottom_right',
         fontsize={'title': 9.5, 'labels': 10, 'legend': 9, 'xticks': 10, 'yticks': 10})
     save_path = os.path.join(output_path, '{}_echo_cResult.png'.format(run_id))
     hvplot.save(echo_c_res, save_path)
@@ -142,10 +145,11 @@ def plot_msg_lookup_1(dataframe, run_id, output_path):
         ylabel='real_time (ns)',
         title='run_id {} messageLookupBenchmark: interface_count vs real_time'.format(run_id),
         alpha=0.5).opts(
-        width=590,
+        width=600,
         height=360,
         logx=True,
         logy=True,
+        legend_position='bottom_right',
         fontsize={'title': 9, 'labels': 10, 'legend': 9, 'xticks': 10, 'yticks': 10})
     save_path = os.path.join(output_path, '{}_messageLookup.png'.format(run_id))
     hvplot.save(msg_lookup, save_path)
@@ -172,10 +176,11 @@ def plot_msg_lookup_2(dataframe, run_id, output_path):
         ylabel='real_time (ns)',
         title='run_id {} messageLookupBenchmark: interface_count vs real_time'.format(run_id),
         alpha=0.5).opts(
-        width=590,
+        width=600,
         height=360,
         logx=True,
         logy=True,
+        legend_position='bottom_right',
         fontsize={'title': 9, 'labels': 10, 'legend': 9, 'xticks': 10, 'yticks': 10})
     save_path = os.path.join(output_path, '{}_messageLookup.png'.format(run_id))
     hvplot.save(msg_lookup, save_path)
@@ -202,10 +207,11 @@ def plot_msg_lookup_3(dataframe, run_id, output_path):
         ylabel='real_time (ns)',
         title='run_id {} messageLookupBenchmark: interface_count vs real_time'.format(run_id),
         alpha=0.5).opts(
-        width=590,
+        width=600,
         height=360,
         logx=True,
         logy=True,
+        legend_position='bottom_right',
         fontsize={'title': 9, 'labels': 10, 'legend': 9, 'xticks': 10, 'yticks': 10})
     save_path = os.path.join(output_path, '{}_messageLookup.png'.format(run_id))
     hvplot.save(msg_lookup, save_path)
@@ -232,10 +238,11 @@ def plot_msg_send_1(dataframe, run_id, output_path):
         ylabel='real_time (ns)',
         title='run_id {} messageSendBenchmark, core_type {}: message_size vs real_time'.format(run_id, 'singleCore'),
         alpha=0.5).opts(
-        width=580,
+        width=600,
         height=360,
         logx=True,
         logy=True,
+        legend_position='bottom_right',
         fontsize={'title': 9, 'labels': 10, 'legend': 9, 'xticks': 10, 'yticks': 10})
     save_path = os.path.join(output_path, '{}_messageSend1.png'.format(run_id))
     hvplot.save(msg_send, save_path)
@@ -267,6 +274,7 @@ def plot_msg_send_2(dataframe, run_id, output_path):
         height=360,
         logx=True,
         logy=True,
+        legend_position='bottom_right',
         fontsize={'title': 9, 'labels': 10, 'legend': 9, 'xticks': 10, 'yticks': 10})
     save_path = os.path.join(output_path, '{}_messageSend2.png'.format(run_id))
     hvplot.save(msg_count, save_path)
@@ -298,6 +306,7 @@ def plot_msg_send_3(dataframe, run_id, output_path):
         height=360,
         logx=True,
         logy=True,
+        legend_position='bottom_right',
         fontsize={'title': 9, 'labels': 10, 'legend': 9, 'xticks': 10, 'yticks': 10})
     save_path = os.path.join(output_path, '{}_messageSend3.png'.format(run_id))
     hvplot.save(msg_size, save_path)
@@ -329,6 +338,7 @@ def plot_phold(dataframe, run_id, output_path):
         height=360,
         logx=True,
         logy=True,
+        legend_position='bottom_right',
         fontsize={'title': 9.5, 'labels': 10, 'legend': 9, 'xticks': 10, 'yticks': 10})
     save_path = os.path.join(output_path, '{}_pHold.png'.format(run_id))
     hvplot.save(phold, save_path)
@@ -360,6 +370,7 @@ def plot_ring(dataframe, run_id, output_path):
         height=360,
         logx=True,
         logy=True,
+        legend_position='bottom_right',
         fontsize={'title': 9.5, 'labels': 10, 'legend': 9, 'xticks': 10, 'yticks': 10})
     save_path = os.path.join(output_path, '{}_ring.png'.format(run_id))
     hvplot.save(ring, save_path)
@@ -390,6 +401,7 @@ def plot_filter(dataframe, run_id, output_path):
         alpha=0.5).opts(
         width=600,
         height=360,
+        legend_position='bottom_right',
         fontsize={'title': 9.5, 'labels': 10, 'legend': 9, 'xticks': 10, 'yticks': 10})
     save_path = os.path.join(output_path, '{}_filter.png'.format(run_id))
     hvplot.save(filtr, save_path)
@@ -422,6 +434,7 @@ def plot_src(dataframe, run_id, output_path):
         height=360,
         logx=True,
         logy=True,
+        legend_position='bottom_right',
         fontsize={'title': 9.5, 'labels': 10, 'legend': 9, 'xticks': 10, 'yticks': 10})
     save_path = os.path.join(output_path, '{}_source.png'.format(run_id))
     hvplot.save(source, save_path)
@@ -455,6 +468,7 @@ def plot_dest(dataframe, run_id, output_path):
         height=360,
         logx=True,
         logy=True,
+        legen_position='bottom_right',
         fontsize={'title': 9.5, 'labels': 10, 'legend': 9, 'xticks': 10, 'yticks': 10})
     save_path = os.path.join(output_path, '{}_destination.png'.format(run_id))
     hvplot.save(dest, save_path)
@@ -486,6 +500,7 @@ def plot_timing(dataframe, run_id, output_path):
         height=360,
         logx=True,
         logy=True,
+        legend_position='bottom_right',
         fontsize={'title': 9.5, 'labels': 10, 'legend': 9, 'xticks': 10, 'yticks': 10})
     save_path = os.path.join(output_path, '{}_timing.png'.format(run_id))
     hvplot.save(timing, save_path)
@@ -524,7 +539,7 @@ def plot_echo_msg_cr(dataframe, run_id_list, core_type, output_path, comparison_
                 alpha=0.5)
         echo_msgs.append(echo_msg)
     echo_msg_plot = (reduce((lambda x, y: x*y), echo_msgs)).opts(
-                        width=590, 
+                        width=600, 
                         height=360, 
                         logx=True, 
                         logy=True, 
@@ -567,7 +582,7 @@ def plot_echo_result_cr(dataframe, run_id_list, core_type, output_path, comparis
             alpha=0.5)
         echo_ress.append(echo_res)
     echo_res_plot = (reduce((lambda x, y: x*y), echo_ress)).opts(
-                        width=590, 
+                        width=600, 
                         height=360,
                         legend_position='top_left',
                         fontsize={'title': 9.5, 'labels': 10, 'legend': 9, 'xticks': 10, 'yticks': 10})
@@ -608,7 +623,7 @@ def plot_echo_c_cr(dataframe, run_id_list, core_type, output_path, comparison_pa
             alpha=0.5)
         echo_cs.append(echo_c_res)
     echo_c_res_plot = (reduce((lambda x, y: x*y), echo_cs)).opts(
-                        width=590, 
+                        width=600, 
                         height=360,
                         legend_position='top_left',
                         fontsize={'title': 9.5, 'labels': 10, 'legend': 9, 'xticks': 10, 'yticks': 10})
@@ -648,7 +663,7 @@ def plot_msg_lookup_1_cr(dataframe, run_id_list, output_path, comparison_paramet
             alpha=0.5)
         msg_lookups.append(msg_lookup)
     msg_lookup_plot = reduce((lambda x, y: x*y), msg_lookups).opts(
-                        width=590, 
+                        width=600, 
                         height=360, 
                         logx=True, 
                         logy=True, 
@@ -690,7 +705,7 @@ def plot_msg_lookup_2_cr(dataframe, run_id_list, output_path, comparison_paramet
             alpha=0.5)
         msg_lookups.append(msg_lookup)
     msg_lookup_plot = reduce((lambda x, y: x*y), msg_lookups).opts(
-                        width=590, 
+                        width=600, 
                         height=360, 
                         logx=True, 
                         logy=True, 
@@ -732,7 +747,7 @@ def plot_msg_lookup_3_cr(dataframe, run_id_list, output_path, comparison_paramet
             alpha=0.5)
         msg_lookups.append(msg_lookup)
     msg_lookup_plot = reduce((lambda x, y: x*y), msg_lookups).opts(
-                        width=590, 
+                        width=600, 
                         height=360, 
                         logx=True, 
                         logy=True, 
@@ -774,7 +789,7 @@ def plot_msg_send_1_cr(dataframe, run_id_list, output_path, comparison_parameter
             alpha=0.5)
         msg_sends.append(msg_send)
     msg_send_plot = (reduce((lambda x, y: x*y), msg_sends)).opts(
-                        width=590, 
+                        width=600, 
                         height=360, 
                         logx=True, 
                         logy=True, 
@@ -817,7 +832,7 @@ def plot_msg_send_2_cr(dataframe, run_id_list, core_type, output_path, compariso
             alpha=0.5)
         msg_cts.append(msg_count)
     msg_count_plot = (reduce((lambda x, y: x*y), msg_cts)).opts(
-                        width=590, 
+                        width=600, 
                         height=360, 
                         logx=True, 
                         logy=True, 
@@ -860,7 +875,7 @@ def plot_msg_send_3_cr(dataframe, run_id_list, core_type, output_path, compariso
             alpha=0.5)
         msg_sizes.append(msg_size)
     msg_size_plot = (reduce((lambda x, y: x*y), msg_sizes)).opts(
-                        width=590, 
+                        width=600, 
                         height=360, 
                         logx=True, 
                         logy=True, 
@@ -903,7 +918,7 @@ def plot_phold_cr(dataframe, run_id_list, core_type, output_path, comparison_par
             alpha=0.5)
         pholds.append(phold)
     phold_plot = (reduce((lambda x, y: x*y), pholds)).opts(
-                        width=590, 
+                        width=600, 
                         height=360, 
                         logx=True, 
                         logy=True, 
@@ -947,7 +962,7 @@ def plot_ring_cr(dataframe, run_id_list, core_type, output_path, comparison_para
                 alpha=0.5)
             rings.append(ring)
         ring_plot = (reduce((lambda x, y: x*y), rings)).opts(
-                            width=590, 
+                            width=600, 
                             height=360, 
                             legend_position='top_left',
                             fontsize={'title': 9.5, 'labels': 10, 'legend': 9, 'xticks': 10, 'yticks': 10})
@@ -965,7 +980,7 @@ def plot_ring_cr(dataframe, run_id_list, core_type, output_path, comparison_para
                 alpha=0.5)
             rings.append(ring)
         ring_plot = (reduce((lambda x, y: x*y), rings)).opts(
-                            width=590, 
+                            width=600, 
                             height=360,
                             logx=True,
                             logy=True,
@@ -1008,7 +1023,7 @@ def plot_filter_cr(dataframe, run_id_list, output_path, comparison_parameter):
             alpha=0.5)
         filters.append(filtr)
     filter_plot = (reduce((lambda x, y: x*y), filters)).opts(
-                        width=590, 
+                        width=600, 
                         height=360,
                         legend_position='top_left',
                         fontsize={'title': 9.5, 'labels': 10, 'legend': 9, 'xticks': 10, 'yticks': 10})
@@ -1050,7 +1065,7 @@ def plot_src_cr(dataframe, run_id_list, core_type, output_path, comparison_param
             alpha=0.5)
         sources.append(source)
     source_plot = (reduce((lambda x, y: x*y), sources)).opts(
-                        width=590, 
+                        width=600, 
                         height=360, 
                         logx=True, 
                         logy=True, 
@@ -1095,7 +1110,7 @@ def plot_dest_cr(dataframe, run_id_list, core_type, output_path, comparison_para
             alpha=0.5)
         dests.append(dest)
     dest_plot = (reduce((lambda x, y: x*y), dests)).opts(
-                        width=590, 
+                        width=600, 
                         height=360, 
                         logx=True, 
                         logy=True, 
@@ -1138,7 +1153,7 @@ def plot_timing_cr(dataframe, run_id_list, core_type, output_path, comparison_pa
                 alpha=0.5)
         times.append(time)
     timing_plot = (reduce((lambda x, y: x*y), times)).opts(
-                        width=590, 
+                        width=600, 
                         height=360, 
                         logx=True, 
                         logy=True, 
@@ -1192,7 +1207,7 @@ def plot_echo_vs_timing(dataframe1, dataframe2, run_id, core_type_list, output_p
                 alpha=0.5)
             evts.append(evt1*evt2)
     echo_v_timing = (reduce((lambda x, y: x*y), evts)).opts(
-                            width=590, 
+                            width=600, 
                             height=360,
                             logx=True,
                             logy=True,
@@ -1244,7 +1259,7 @@ def plot_echo_vs_echo_c(dataframe1, dataframe2, run_id, core_type_list, output_p
                 alpha=0.5)
             evcs.append(evc1*evc2)
     echo_vs_echo_c = (reduce((lambda x, y: x*y), evcs)).opts(
-                            width=590, 
+                            width=600, 
                             height=360,
                             logx=True,
                             logy=True,
