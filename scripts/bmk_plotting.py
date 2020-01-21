@@ -139,17 +139,35 @@ def plot_msg_lookup_1(dataframe, run_id, output_path):
     inproc_df = dataframe[(dataframe.core_type == 'inproc') & (dataframe.benchmark_type == 'full')]
     inproc_df = inproc_df[inproc_df.run_id == '{}'.format(run_id)]
     inproc_df = inproc_df[inproc_df.federate_count == 2]
-    msg_lookup = inproc_df.sort_values('interface_count').hvplot.line(
-        'interface_count',
-        'real_time',
-        ylabel='real_time (ns)',
-        title='run_id {} messageLookupBenchmark: interface_count vs real_time'.format(run_id),
-        alpha=0.5).opts(
-        width=600,
-        height=360,
-        fontsize={'title': 9, 'labels': 10, 'xticks': 10, 'yticks': 10})
+    if inproc_df.interface_count.min() != 0:
+        msg_lookup = inproc_df.sort_values('interface_count').hvplot.line(
+            'interface_count',
+            'real_time',
+            ylabel='real_time (ns)',
+            title='run_id {} messageLookupBenchmark: interface_count vs real_time'.format(run_id),
+            alpha=0.5).opts(
+            width=600,
+            height=360,
+            logx=True,
+            logy=True,
+            fontsize={'title': 9, 'labels': 10, 'xticks': 10, 'yticks': 10})
+    else:
+        msg_lookup = inproc_df.sort_values('interface_count').hvplot.line(
+            'interface_count',
+            'real_time',
+            ylabel='real_time (ns)',
+            title='run_id {} messageLookupBenchmark: interface_count vs real_time'.format(run_id),
+            alpha=0.5).opts(
+            width=600,
+            height=360,
+            logx=True,
+            logy=True,
+            xlim=(2, inproc_df.interface_count.max()),
+            ylim=(2, inproc_df.real_time.max()),
+            fontsize={'title': 9, 'labels': 10, 'xticks': 10, 'yticks': 10})
     save_path = os.path.join(output_path, '{}_messageLookup.png'.format(run_id))
     hvplot.save(msg_lookup, save_path)
+        
     return msg_lookup
 
 def plot_msg_lookup_2(dataframe, run_id, output_path):
@@ -167,15 +185,33 @@ def plot_msg_lookup_2(dataframe, run_id, output_path):
     inproc_df = dataframe[(dataframe.core_type == 'inproc') & (dataframe.benchmark_type == 'full')]
     inproc_df = inproc_df[inproc_df.run_id == '{}'.format(run_id)]
     inproc_df = inproc_df[inproc_df.federate_count == 8]
-    msg_lookup = inproc_df.sort_values('interface_count').hvplot.line(
-        'interface_count',
-        'real_time',
-        ylabel='real_time (ns)',
-        title='run_id {} messageLookupBenchmark: interface_count vs real_time'.format(run_id),
-        alpha=0.5).opts(
-        width=600,
-        height=360,
-        fontsize={'title': 9, 'labels': 10, 'xticks': 10, 'yticks': 10})
+    if inproc_df.interface_count.min() != 0:
+        msg_lookup = inproc_df.sort_values('interface_count').hvplot.line(
+            'interface_count',
+            'real_time',
+            ylabel='real_time (ns)',
+            title='run_id {} messageLookupBenchmark: interface_count vs real_time'.format(run_id),
+            alpha=0.5).opts(
+            width=600,
+            height=360,
+            logx=True,
+            logy=True,
+            fontsize={'title': 9, 'labels': 10, 'xticks': 10, 'yticks': 10})
+    else:
+        msg_lookup = inproc_df.sort_values('interface_count').hvplot.line(
+            'interface_count',
+            'real_time',
+            ylabel='real_time (ns)',
+            title='run_id {} messageLookupBenchmark: interface_count vs real_time'.format(run_id),
+            alpha=0.5).opts(
+            width=600,
+            height=360,
+            logx=True,
+            logy=True,
+            xlim=(2, inproc_df.interface_count.max()),
+            ylim=(2, inproc_df.real_time.max()),
+            fontsize={'title': 9, 'labels': 10, 'xticks': 10, 'yticks': 10})
+        
     save_path = os.path.join(output_path, '{}_messageLookup.png'.format(run_id))
     hvplot.save(msg_lookup, save_path)
     return msg_lookup
@@ -195,15 +231,32 @@ def plot_msg_lookup_3(dataframe, run_id, output_path):
     inproc_df = dataframe[(dataframe.core_type == 'inproc') & (dataframe.benchmark_type == 'full')]
     inproc_df = inproc_df[inproc_df.run_id == '{}'.format(run_id)]
     inproc_df = inproc_df[inproc_df.federate_count == 64]
-    msg_lookup = inproc_df.sort_values('interface_count').hvplot.line(
-        'interface_count',
-        'real_time',
-        ylabel='real_time (ns)',
-        title='run_id {} messageLookupBenchmark: interface_count vs real_time'.format(run_id),
-        alpha=0.5).opts(
-        width=600,
-        height=360,
-        fontsize={'title': 9, 'labels': 10, 'xticks': 10, 'yticks': 10})
+    if inproc_df.interface_count.min() != 0:
+        msg_lookup = inproc_df.sort_values('interface_count').hvplot.line(
+            'interface_count',
+            'real_time',
+            ylabel='real_time (ns)',
+            title='run_id {} messageLookupBenchmark: interface_count vs real_time'.format(run_id),
+            alpha=0.5).opts(
+            width=600,
+            height=360,
+            logx=True,
+            logy=True,
+            fontsize={'title': 9, 'labels': 10, 'xticks': 10, 'yticks': 10})
+    else:
+        msg_lookup = inproc_df.sort_values('interface_count').hvplot.line(
+            'interface_count',
+            'real_time',
+            ylabel='real_time (ns)',
+            title='run_id {} messageLookupBenchmark: interface_count vs real_time'.format(run_id),
+            alpha=0.5).opts(
+            width=600,
+            height=360,
+            logx=True,
+            logy=True,
+            xlim=(2, inproc_df.interface_count.max()),
+            ylim=(2, inproc_df.real_time.max()),
+            fontsize={'title': 9, 'labels': 10, 'xticks': 10, 'yticks': 10})
     save_path = os.path.join(output_path, '{}_messageLookup.png'.format(run_id))
     hvplot.save(msg_lookup, save_path)
     return msg_lookup
@@ -223,15 +276,32 @@ def plot_msg_send_1(dataframe, run_id, output_path):
     """
     msg_snd_df = dataframe[(dataframe.core_type == 'singleCore') & (dataframe.benchmark_type == 'full')]
     msg_snd_df = msg_snd_df[msg_snd_df.run_id == '{}'.format(run_id)]
-    msg_send = msg_snd_df.sort_values('message_size').hvplot.line(
-        'message_size',
-        'real_time',
-        ylabel='real_time (ns)',
-        title='run_id {} messageSendBenchmark, core_type {}: message_size vs real_time'.format(run_id, 'singleCore'),
-        alpha=0.5).opts(
-        width=600,
-        height=360,
-        fontsize={'title': 9, 'labels': 10, 'xticks': 10, 'yticks': 10})
+    if msg_snd_df.message_size.min() != 0:
+        msg_send = msg_snd_df.sort_values('message_size').hvplot.line(
+            'message_size',
+            'real_time',
+            ylabel='real_time (ns)',
+            title='run_id {} messageSendBenchmark, core_type {}: message_size vs real_time'.format(run_id, 'singleCore'),
+            alpha=0.5).opts(
+            width=600,
+            height=360,
+            logx=True,
+            logy=True,
+            fontsize={'title': 9, 'labels': 10, 'xticks': 10, 'yticks': 10})
+    else:
+        msg_send = msg_snd_df.sort_values('message_size').hvplot.line(
+            'message_size',
+            'real_time',
+            ylabel='real_time (ns)',
+            title='run_id {} messageSendBenchmark, core_type {}: message_size vs real_time'.format(run_id, 'singleCore'),
+            alpha=0.5).opts(
+            width=600,
+            height=360,
+            logx=True,
+            logy=True,
+            xlim=(2, msg_snd_df.interface_count.max()),
+            ylim=(2, msg_snd_df.real_time.max()),
+            fontsize={'title': 9, 'labels': 10, 'xticks': 10, 'yticks': 10})
     save_path = os.path.join(output_path, '{}_messageSend1.png'.format(run_id))
     hvplot.save(msg_send, save_path)
     return msg_send
@@ -251,16 +321,34 @@ def plot_msg_send_2(dataframe, run_id, output_path):
     """
     msg_ct_df = dataframe[(dataframe.run_id == '{}'.format(run_id)) & (dataframe.benchmark_type == 'full')]
     msg_ct_df = msg_ct_df[msg_ct_df.message_count == 1]
-    msg_count = msg_ct_df.sort_values('message_size').hvplot.line(
-        'message_size',
-        'real_time',
-        ylabel='real_time (ns)',
-        title='run_id {} messageSendBenchmark, message_count = 1: message_size vs real_time'.format(run_id),
-        by='core_type',
-        alpha=0.5).opts(
-        width=600,
-        height=360,
-        fontsize={'title': 9, 'labels': 10, 'xticks': 10, 'yticks': 10})
+    if msg_ct_df.message_size.min() != 0:
+        msg_count = msg_ct_df.sort_values('message_size').hvplot.line(
+            'message_size',
+            'real_time',
+            ylabel='real_time (ns)',
+            title='run_id {} messageSendBenchmark, message_count = 1: message_size vs real_time'.format(run_id),
+            by='core_type',
+            alpha=0.5).opts(
+            width=600,
+            height=360,
+            logx=True,
+            logy=True,
+            fontsize={'title': 9, 'labels': 10, 'xticks': 10, 'yticks': 10})
+    else:
+        msg_count = msg_ct_df.sort_values('message_size').hvplot.line(
+            'message_size',
+            'real_time',
+            ylabel='real_time (ns)',
+            title='run_id {} messageSendBenchmark, message_count = 1: message_size vs real_time'.format(run_id),
+            by='core_type',
+            alpha=0.5).opts(
+            width=600,
+            height=360,
+            logx=True,
+            logy=True,
+            xlim=(2, msg_ct_df.message_size.max()),
+            ylim=(2, msg_ct_df.real_time.max()),
+            fontsize={'title': 9, 'labels': 10, 'xticks': 10, 'yticks': 10})
     save_path = os.path.join(output_path, '{}_messageSend2.png'.format(run_id))
     hvplot.save(msg_count, save_path)
     return msg_count
@@ -280,16 +368,34 @@ def plot_msg_send_3(dataframe, run_id, output_path):
     """
     msg_sz_df = dataframe[dataframe.message_size == 1]
     msg_sz_df = msg_sz_df[(msg_sz_df.run_id == '{}'.format(run_id)) & (msg_sz_df.benchmark_type == 'full')]
-    msg_size = msg_sz_df.sort_values('message_count').hvplot.line(
-        'message_count',
-        'real_time',
-        ylabel='real_time (ns)',
-        title='run_id {} messageSendBenchmark, message_size = 1: message_count vs real_time'.format(run_id),
-        by='core_type',
-        alpha=0.5).opts(
-        width=600,
-        height=360,
-        fontsize={'title': 9, 'labels': 10, 'xticks': 10, 'yticks': 10})
+    if msg_sz_df.message_count.min() != 0:
+        msg_size = msg_sz_df.sort_values('message_count').hvplot.line(
+            'message_count',
+            'real_time',
+            ylabel='real_time (ns)',
+            title='run_id {} messageSendBenchmark, message_size = 1: message_count vs real_time'.format(run_id),
+            by='core_type',
+            alpha=0.5).opts(
+            width=600,
+            height=360,
+            logx=True,
+            logy=True,
+            fontsize={'title': 9, 'labels': 10, 'xticks': 10, 'yticks': 10})
+    else:
+        msg_size = msg_sz_df.sort_values('message_count').hvplot.line(
+            'message_count',
+            'real_time',
+            ylabel='real_time (ns)',
+            title='run_id {} messageSendBenchmark, message_size = 1: message_count vs real_time'.format(run_id),
+            by='core_type',
+            alpha=0.5).opts(
+            width=600,
+            height=360,
+            logx=True,
+            logy=True,
+            xlim=(2, msg_sz_df.message_count.max()),
+            ylim=(2, msg_sz_df.message_count.max()),
+            fontsize={'title': 9, 'labels': 10, 'xticks': 10, 'yticks': 10})
     save_path = os.path.join(output_path, '{}_messageSend3.png'.format(run_id))
     hvplot.save(msg_size, save_path)
     return msg_size
@@ -450,7 +556,7 @@ def plot_dest(dataframe, run_id, output_path):
         height=360,
         logx=True,
         logy=True,
-        legend_position='bottom_right',
+        legen_position='bottom_right',
         fontsize={'title': 9.5, 'labels': 10, 'legend': 9, 'xticks': 10, 'yticks': 10})
     save_path = os.path.join(output_path, '{}_destination.png'.format(run_id))
     hvplot.save(dest, save_path)
@@ -1267,7 +1373,8 @@ if __name__ == '__main__':
     # meta_bmk_df = meta_bmk_df[meta_bmk_df.benchmark == 'echoMessageBenchmark']
     # echo_message = plot_echo_msg(meta_bmk_df, 'Zu60n', os.path.join(os.getcwd()))
     # echo_result = plot_echo_result(meta_bmk_df, 'r1Nr5')
-    # message_lookup = plot_msg_lookup(meta_bmk_df, 'r1Nr5')
+    # message_lookup = plot_msg_lookup_1(meta_bmk_df, 'Zu60n', os.path.join(os.getcwd()))
+    # message_lookup
     # message_send_1 = plot_msg_send_1(meta_bmk_df, 'Md3vp')
     # output_path = os.path.join(os.getcwd(), 'bmk_plotting test images')
     # message_send_3 = plot_msg_send_3_cr(meta_bmk_df, ['aUZF6', 'Zu60n'], 'inproc', output_path, 'mhz_per_cpu')
