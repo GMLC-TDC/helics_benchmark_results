@@ -44,20 +44,37 @@ def plot_echo_msg(dataframe, run_id, output_path):
     Returns:
         echo_msg (obj): IPython holoviews plot of the data.
     """
-    echo_df = dataframe[dataframe.run_id == '{}'.format(run_id)]
-    echo_msg = echo_df.sort_values('federate_count').hvplot.line(
-        'federate_count',
-        'real_time',
-        ylabel='real_time (ns)',
-        #(range(0, (int(float(echo_df.federate_count.max()))+1), 4)),
-        title='run_id {} echoMessageBenchmark: federate_count vs real_time'.format(run_id),
-        by='core_type',
-        alpha=0.5).opts(
-        width=600,
-        height=360,
-        logx=True,
-        logy=True,
-        fontsize={'title': 9.5, 'labels': 10, 'legend': 9, 'xticks': 10, 'yticks': 10})
+    echo_df = dataframe[(dataframe.run_id == '{}'.format(run_id)) & (dataframe.benchmark_type == 'full')]
+    if echo_df.federate_count.min() != 0:
+        echo_msg = echo_df.sort_values('federate_count').hvplot.line(
+            'federate_count',
+            'real_time',
+            ylabel='real_time (ns)',
+            #(range(0, (int(float(echo_df.federate_count.max()))+1), 4)),
+            title='run_id {} echoMessageBenchmark: federate_count vs real_time'.format(run_id),
+            by='core_type',
+            alpha=0.5).opts(
+            width=600,
+            height=360,
+            logx=True,
+            logy=True,
+            fontsize={'title': 9.5, 'labels': 10, 'legend': 9, 'xticks': 10, 'yticks': 10})
+    else:
+        echo_msg = echo_df.sort_values('federate_count').hvplot.line(
+            'federate_count',
+            'real_time',
+            ylabel='real_time (ns)',
+            #(range(0, (int(float(echo_df.federate_count.max()))+1), 4)),
+            title='run_id {} echoMessageBenchmark: federate_count vs real_time'.format(run_id),
+            by='core_type',
+            alpha=0.5).opts(
+            width=600,
+            height=360,
+            logx=True,
+            logy=True,
+            xlim=(2, echo_df.federate_count.max()),
+            ylim=(2, echo_df.real_time),
+            fontsize={'title': 9.5, 'labels': 10, 'legend': 9, 'xticks': 10, 'yticks': 10})
     save_path = os.path.join(output_path, '{}_echoMessage.png'.format(run_id))
     hvplot.save(echo_msg, save_path)
     return echo_msg
@@ -75,18 +92,37 @@ def plot_echo_result(dataframe, run_id, output_path):
     Returns:
         echo_res (obj): IPython holoviews plot of the data.
     """
-    echo_df = dataframe[dataframe.run_id == '{}'.format(run_id)]
-    echo_res = echo_df.sort_values('federate_count').hvplot.line(
-        'federate_count',
-        'real_time',
-        ylabel='real_time (ns)',
-        #(range(0, (int(float(echo_df.federate_count.max()))+1), 1)),
-        title='run_id {} echoBenchmark: federate_count vs real_time'.format(run_id),
-        by='core_type',
-        alpha=0.5).opts(
-        width=600,
-        height=360,
-        fontsize={'title': 9.5, 'labels': 10, 'legend': 9, 'xticks': 10, 'yticks': 10})
+    echo_df = dataframe[(dataframe.run_id == '{}'.format(run_id)) & (dataframe.benchmark_type == 'full')]
+    if echo_df.federate_count.min() != 0:
+        echo_res = echo_df.sort_values('federate_count').hvplot.line(
+            'federate_count',
+            'real_time',
+            ylabel='real_time (ns)',
+            #(range(0, (int(float(echo_df.federate_count.max()))+1), 1)),
+            title='run_id {} echoBenchmark: federate_count vs real_time'.format(run_id),
+            by='core_type',
+            alpha=0.5).opts(
+            width=600,
+            height=360,
+            logx=True,
+            logy=True,
+            fontsize={'title': 9.5, 'labels': 10, 'legend': 9, 'xticks': 10, 'yticks': 10})
+    else:
+        echo_res = echo_df.sort_values('federate_count').hvplot.line(
+            'federate_count',
+            'real_time',
+            ylabel='real_time (ns)',
+            #(range(0, (int(float(echo_df.federate_count.max()))+1), 1)),
+            title='run_id {} echoBenchmark: federate_count vs real_time'.format(run_id),
+            by='core_type',
+            alpha=0.5).opts(
+            width=600,
+            height=360,
+            logx=True,
+            logy=True,
+            xlim=(2, echo_df.federate_count.max()),
+            ylim=(2, echo_df.real_time.max()),
+            fontsize={'title': 9.5, 'labels': 10, 'legend': 9, 'xticks': 10, 'yticks': 10})
     save_path = os.path.join(output_path, '{}_echoResult.png'.format(run_id))
     hvplot.save(echo_res, save_path)
     return echo_res
@@ -104,18 +140,37 @@ def plot_echo_c(dataframe, run_id, output_path):
     Returns:
         echo_c_res (obj): IPython holoviews plot of the data.
     """
-    echo_c = dataframe[dataframe.run_id == '{}'.format(run_id)]
-    echo_c_res = echo_c.sort_values('federate_count').hvplot.line(
-        'federate_count',
-        'real_time',
-        ylabel='real_time (ns)',
-        #(range(0, (int(float(echo_df.federate_count.max()))+1), 1)),
-        title='run_id {} cEchoBenchmark: federate_count vs real_time'.format(run_id),
-        by='core_type',
-        alpha=0.5).opts(
-        width=600,
-        height=360,
-        fontsize={'title': 9.5, 'labels': 10, 'legend': 9, 'xticks': 10, 'yticks': 10})
+    echo_c = dataframe[(dataframe.run_id == '{}'.format(run_id)) & (dataframe.benchmark_type == 'full')]
+    if echo_c.federate_count.min() != 0:
+        echo_c_res = echo_c.sort_values('federate_count').hvplot.line(
+            'federate_count',
+            'real_time',
+            ylabel='real_time (ns)',
+            #(range(0, (int(float(echo_df.federate_count.max()))+1), 1)),
+            title='run_id {} cEchoBenchmark: federate_count vs real_time'.format(run_id),
+            by='core_type',
+            alpha=0.5).opts(
+            width=600,
+            height=360,
+            logx=True,
+            logy=True,
+            fontsize={'title': 9.5, 'labels': 10, 'legend': 9, 'xticks': 10, 'yticks': 10})
+    else:
+        echo_c_res = echo_c.sort_values('federate_count').hvplot.line(
+            'federate_count',
+            'real_time',
+            ylabel='real_time (ns)',
+            #(range(0, (int(float(echo_df.federate_count.max()))+1), 1)),
+            title='run_id {} cEchoBenchmark: federate_count vs real_time'.format(run_id),
+            by='core_type',
+            alpha=0.5).opts(
+            width=600,
+            height=360,
+            logx=True,
+            logy=True,
+            xlim=(2, echo_c.federate_count.max()),
+            ylim=(2, echo_c.real_time.max()),
+            fontsize={'title': 9.5, 'labels': 10, 'legend': 9, 'xticks': 10, 'yticks': 10})
     save_path = os.path.join(output_path, '{}_echo_cResult.png'.format(run_id))
     hvplot.save(echo_c_res, save_path)
     return echo_c_res
@@ -134,19 +189,34 @@ def plot_msg_lookup_1(dataframe, run_id, output_path):
         msg_lookup (obj): IPython holoviews plot of the data.
     """
     inproc_df = dataframe[dataframe.core_type == 'inproc']
-    inproc_df = inproc_df[inproc_df.run_id == '{}'.format(run_id)]
+    inproc_df = inproc_df[(inproc_df.run_id == '{}'.format(run_id)) & (inproc_df.benchmark_type == 'full')]
     inproc_df = inproc_df[inproc_df.federate_count == 2]
-    msg_lookup = inproc_df.sort_values('interface_count').hvplot.line(
-        'interface_count',
-        'real_time',
-        ylabel='real_time (ns)',
-        title='run_id {} messageLookupBenchmark: interface_count vs real_time'.format(run_id),
-        alpha=0.5).opts(
-        width=590,
-        height=360,
-        logx=True,
-        logy=True,
-        fontsize={'title': 9, 'labels': 10, 'legend': 9, 'xticks': 10, 'yticks': 10})
+    if inproc_df.interface_count.min() != 0:
+        msg_lookup = inproc_df.sort_values('interface_count').hvplot.line(
+            'interface_count',
+            'real_time',
+            ylabel='real_time (ns)',
+            title='run_id {} messageLookupBenchmark: interface_count vs real_time'.format(run_id),
+            alpha=0.5).opts(
+            width=600,
+            height=360,
+            logx=True,
+            logy=True,
+            fontsize={'title': 9, 'labels': 10, 'legend': 9, 'xticks': 10, 'yticks': 10})
+    else:
+        msg_lookup = inproc_df.sort_values('interface_count').hvplot.line(
+            'interface_count',
+            'real_time',
+            ylabel='real_time (ns)',
+            title='run_id {} messageLookupBenchmark: interface_count vs real_time'.format(run_id),
+            alpha=0.5).opts(
+            width=600,
+            height=360,
+            logx=True,
+            logy=True,
+            xlim=(2, inproc_df.interface_count.max()),
+            ylim=(2, inproc_df.real_time.max()),
+            fontsize={'title': 9, 'labels': 10, 'legend': 9, 'xticks': 10, 'yticks': 10})
     save_path = os.path.join(output_path, '{}_messageLookup.png'.format(run_id))
     hvplot.save(msg_lookup, save_path)
     return msg_lookup
@@ -164,19 +234,34 @@ def plot_msg_lookup_2(dataframe, run_id, output_path):
         msg_lookup (obj): IPython holoviews plot of the data.
     """
     inproc_df = dataframe[dataframe.core_type == 'inproc']
-    inproc_df = inproc_df[inproc_df.run_id == '{}'.format(run_id)]
+    inproc_df = inproc_df[(inproc_df.run_id == '{}'.format(run_id)) & (inproc_df.benchmark_type == 'full')]
     inproc_df = inproc_df[inproc_df.federate_count == 8]
-    msg_lookup = inproc_df.sort_values('interface_count').hvplot.line(
-        'interface_count',
-        'real_time',
-        ylabel='real_time (ns)',
-        title='run_id {} messageLookupBenchmark: interface_count vs real_time'.format(run_id),
-        alpha=0.5).opts(
-        width=590,
-        height=360,
-        logx=True,
-        logy=True,
-        fontsize={'title': 9, 'labels': 10, 'legend': 9, 'xticks': 10, 'yticks': 10})
+    if inproc_df.interface_count.min() != 0:
+        msg_lookup = inproc_df.sort_values('interface_count').hvplot.line(
+            'interface_count',
+            'real_time',
+            ylabel='real_time (ns)',
+            title='run_id {} messageLookupBenchmark: interface_count vs real_time'.format(run_id),
+            alpha=0.5).opts(
+            width=600,
+            height=360,
+            logx=True,
+            logy=True,
+            fontsize={'title': 9, 'labels': 10, 'legend': 9, 'xticks': 10, 'yticks': 10})
+    else:
+        msg_lookup = inproc_df.sort_values('interface_count').hvplot.line(
+            'interface_count',
+            'real_time',
+            ylabel='real_time (ns)',
+            title='run_id {} messageLookupBenchmark: interface_count vs real_time'.format(run_id),
+            alpha=0.5).opts(
+            width=600,
+            height=360,
+            logx=True,
+            logy=True,
+            xlim=(2, inproc_df.interface_count.max()),
+            ylim=(2, inproc_df.real_time.max()),
+            fontsize={'title': 9, 'labels': 10, 'legend': 9, 'xticks': 10, 'yticks': 10})
     save_path = os.path.join(output_path, '{}_messageLookup.png'.format(run_id))
     hvplot.save(msg_lookup, save_path)
     return msg_lookup
@@ -194,19 +279,34 @@ def plot_msg_lookup_3(dataframe, run_id, output_path):
         msg_lookup (obj): IPython holoviews plot of the data.
     """
     inproc_df = dataframe[dataframe.core_type == 'inproc']
-    inproc_df = inproc_df[inproc_df.run_id == '{}'.format(run_id)]
+    inproc_df = inproc_df[(inproc_df.run_id == '{}'.format(run_id)) & (inproc_df.benchmark_type == 'full')]
     inproc_df = inproc_df[inproc_df.federate_count == 64]
-    msg_lookup = inproc_df.sort_values('interface_count').hvplot.line(
-        'interface_count',
-        'real_time',
-        ylabel='real_time (ns)',
-        title='run_id {} messageLookupBenchmark: interface_count vs real_time'.format(run_id),
-        alpha=0.5).opts(
-        width=590,
-        height=360,
-        logx=True,
-        logy=True,
-        fontsize={'title': 9, 'labels': 10, 'legend': 9, 'xticks': 10, 'yticks': 10})
+    if inproc_df.interface_count.min() != 0:
+        msg_lookup = inproc_df.sort_values('interface_count').hvplot.line(
+            'interface_count',
+            'real_time',
+            ylabel='real_time (ns)',
+            title='run_id {} messageLookupBenchmark: interface_count vs real_time'.format(run_id),
+            alpha=0.5).opts(
+            width=600,
+            height=360,
+            logx=True,
+            logy=True,
+            fontsize={'title': 9, 'labels': 10, 'legend': 9, 'xticks': 10, 'yticks': 10})
+    else:
+        msg_lookup = inproc_df.sort_values('interface_count').hvplot.line(
+            'interface_count',
+            'real_time',
+            ylabel='real_time (ns)',
+            title='run_id {} messageLookupBenchmark: interface_count vs real_time'.format(run_id),
+            alpha=0.5).opts(
+            width=590,
+            height=360,
+            logx=True,
+            logy=True,
+            xlim=(2, inproc_df.interface_count.max()),
+            ylim=(2, inproc_df.real_time.max()),
+            fontsize={'title': 9, 'labels': 10, 'legend': 9, 'xticks': 10, 'yticks': 10})
     save_path = os.path.join(output_path, '{}_messageLookup.png'.format(run_id))
     hvplot.save(msg_lookup, save_path)
     return msg_lookup
@@ -225,18 +325,33 @@ def plot_msg_send_1(dataframe, run_id, output_path):
         msg_send (obj): IPython holoviews plot of the data.
     """
     msg_snd_df = dataframe[dataframe.core_type == 'singleCore']
-    msg_snd_df = msg_snd_df[msg_snd_df.run_id == '{}'.format(run_id)]
-    msg_send = msg_snd_df.sort_values('message_size').hvplot.line(
-        'message_size',
-        'real_time',
-        ylabel='real_time (ns)',
-        title='run_id {} messageSendBenchmark, core_type {}: message_size vs real_time'.format(run_id, 'singleCore'),
-        alpha=0.5).opts(
-        width=580,
-        height=360,
-        logx=True,
-        logy=True,
-        fontsize={'title': 9, 'labels': 10, 'legend': 9, 'xticks': 10, 'yticks': 10})
+    msg_snd_df = msg_snd_df[(msg_snd_df.run_id == '{}'.format(run_id)) & (msg_snd_df.benchmark_type == 'full')]
+    if msg_snd_df.message_size.min() != 0:
+        msg_send = msg_snd_df.sort_values('message_size').hvplot.line(
+            'message_size',
+            'real_time',
+            ylabel='real_time (ns)',
+            title='run_id {} messageSendBenchmark, core_type {}: message_size vs real_time'.format(run_id, 'singleCore'),
+            alpha=0.5).opts(
+            width=600,
+            height=360,
+            logx=True,
+            logy=True,
+            fontsize={'title': 9, 'labels': 10, 'legend': 9, 'xticks': 10, 'yticks': 10})
+    else:
+        msg_send = msg_snd_df.sort_values('message_size').hvplot.line(
+            'message_size',
+            'real_time',
+            ylabel='real_time (ns)',
+            title='run_id {} messageSendBenchmark, core_type {}: message_size vs real_time'.format(run_id, 'singleCore'),
+            alpha=0.5).opts(
+            width=580,
+            height=360,
+            logx=True,
+            logy=True,
+            xlim=(2, msg_snd_df.message_size.max()),
+            ylim=(2, msg_snd_df.real_time.max()),
+            fontsize={'title': 9, 'labels': 10, 'legend': 9, 'xticks': 10, 'yticks': 10})
     save_path = os.path.join(output_path, '{}_messageSend1.png'.format(run_id))
     hvplot.save(msg_send, save_path)
     return msg_send
@@ -254,20 +369,36 @@ def plot_msg_send_2(dataframe, run_id, output_path):
     Returns:
         msg_count (obj): IPython holoviews plot of the data.
     """
-    msg_ct_df = dataframe[dataframe.run_id == '{}'.format(run_id)]
+    msg_ct_df = dataframe[(dataframe.run_id == '{}'.format(run_id)) & (dataframe.benchmark_type == 'full')]
     msg_ct_df = msg_ct_df[msg_ct_df.message_count == 1]
-    msg_count = msg_ct_df.sort_values('message_size').hvplot.line(
-        'message_size',
-        'real_time',
-        ylabel='real_time (ns)',
-        title='run_id {} messageSendBenchmark, message_count = 1: message_size vs real_time'.format(run_id),
-        by='core_type',
-        alpha=0.5).opts(
-        width=600,
-        height=360,
-        logx=True,
-        logy=True,
-        fontsize={'title': 9, 'labels': 10, 'legend': 9, 'xticks': 10, 'yticks': 10})
+    if msg_ct_df.message_size.min() != 0:
+        msg_count = msg_ct_df.sort_values('message_size').hvplot.line(
+            'message_size',
+            'real_time',
+            ylabel='real_time (ns)',
+            title='run_id {} messageSendBenchmark, message_count = 1: message_size vs real_time'.format(run_id),
+            by='core_type',
+            alpha=0.5).opts(
+            width=600,
+            height=360,
+            logx=True,
+            logy=True,
+            fontsize={'title': 9, 'labels': 10, 'legend': 9, 'xticks': 10, 'yticks': 10})
+    else:
+        msg_count = msg_ct_df.sort_values('message_size').hvplot.line(
+            'message_size',
+            'real_time',
+            ylabel='real_time (ns)',
+            title='run_id {} messageSendBenchmark, message_count = 1: message_size vs real_time'.format(run_id),
+            by='core_type',
+            alpha=0.5).opts(
+            width=600,
+            height=360,
+            logx=True,
+            logy=True,
+            xlim=(2, msg_ct_df.message_size.max()),
+            ylim=(2, msg_ct_df.real_time.max()),
+            fontsize={'title': 9, 'labels': 10, 'legend': 9, 'xticks': 10, 'yticks': 10})
     save_path = os.path.join(output_path, '{}_messageSend2.png'.format(run_id))
     hvplot.save(msg_count, save_path)
     return msg_count
@@ -286,19 +417,35 @@ def plot_msg_send_3(dataframe, run_id, output_path):
         msg_size (obj): IPython holoviews plot of the data.
     """
     msg_sz_df = dataframe[dataframe.message_size == 1]
-    msg_sz_df = msg_sz_df[msg_sz_df.run_id == '{}'.format(run_id)]
-    msg_size = msg_sz_df.sort_values('message_count').hvplot.line(
-        'message_count',
-        'real_time',
-        ylabel='real_time (ns)',
-        title='run_id {} messageSendBenchmark, message_size = 1: message_count vs real_time'.format(run_id),
-        by='core_type',
-        alpha=0.5).opts(
-        width=600,
-        height=360,
-        logx=True,
-        logy=True,
-        fontsize={'title': 9, 'labels': 10, 'legend': 9, 'xticks': 10, 'yticks': 10})
+    msg_sz_df = msg_sz_df[(msg_sz_df.run_id == '{}'.format(run_id)) & (msg_sz_df.benchmark_type == 'full')]
+    if msg_sz_df.message_count.min() != 0:
+        msg_size = msg_sz_df.sort_values('message_count').hvplot.line(
+            'message_count',
+            'real_time',
+            ylabel='real_time (ns)',
+            title='run_id {} messageSendBenchmark, message_size = 1: message_count vs real_time'.format(run_id),
+            by='core_type',
+            alpha=0.5).opts(
+            width=600,
+            height=360,
+            logx=True,
+            logy=True,
+            fontsize={'title': 9, 'labels': 10, 'legend': 9, 'xticks': 10, 'yticks': 10})
+    else:
+        msg_size = msg_sz_df.sort_values('message_count').hvplot.line(
+            'message_count',
+            'real_time',
+            ylabel='real_time (ns)',
+            title='run_id {} messageSendBenchmark, message_size = 1: message_count vs real_time'.format(run_id),
+            by='core_type',
+            alpha=0.5).opts(
+            width=600,
+            height=360,
+            logx=True,
+            logy=True,
+            xlim=(2, msg_sz_df.message_count.max()),
+            ylim=(2, msg_sz_df.real_time.max()),
+            fontsize={'title': 9, 'labels': 10, 'legend': 9, 'xticks': 10, 'yticks': 10})
     save_path = os.path.join(output_path, '{}_messageSend3.png'.format(run_id))
     hvplot.save(msg_size, save_path)
     return msg_size
@@ -316,20 +463,37 @@ def plot_phold(dataframe, run_id, output_path):
     Returns:
         phold (obj): IPython holoviews plot of the data.
     """
-    phold_df = dataframe[dataframe.run_id == '{}'.format(run_id)]
-    phold = phold_df.sort_values('federate_count').hvplot.line(
-        'federate_count',
-        'real_time',
-        ylabel='real_time (ns)',
-        #(range(0, (int(float(phold_df.federate_count.max()))+1), 5)),
-        title='run_id {} pholdBenchmark: federate_count vs real_time'.format(run_id),
-        by='core_type',
-        alpha=0.5).opts(
-        width=600,
-        height=360,
-        logx=True,
-        logy=True,
-        fontsize={'title': 9.5, 'labels': 10, 'legend': 9, 'xticks': 10, 'yticks': 10})
+    phold_df = dataframe[(dataframe.run_id == '{}'.format(run_id)) & (dataframe.benchmark_type == 'full')]
+    if phold_df.federate_count.min() != 0:
+        phold = phold_df.sort_values('federate_count').hvplot.line(
+            'federate_count',
+            'real_time',
+            ylabel='real_time (ns)',
+            #(range(0, (int(float(phold_df.federate_count.max()))+1), 5)),
+            title='run_id {} pholdBenchmark: federate_count vs real_time'.format(run_id),
+            by='core_type',
+            alpha=0.5).opts(
+            width=600,
+            height=360,
+            logx=True,
+            logy=True,
+            fontsize={'title': 9.5, 'labels': 10, 'legend': 9, 'xticks': 10, 'yticks': 10})
+    else:
+        phold = phold_df.sort_values('federate_count').hvplot.line(
+            'federate_count',
+            'real_time',
+            ylabel='real_time (ns)',
+            #(range(0, (int(float(phold_df.federate_count.max()))+1), 5)),
+            title='run_id {} pholdBenchmark: federate_count vs real_time'.format(run_id),
+            by='core_type',
+            alpha=0.5).opts(
+            width=600,
+            height=360,
+            logx=True,
+            logy=True,
+            xlim=(2, phold_df.federate_count.max()),
+            ylim=(2, phold_df.real_time.max()),
+            fontsize={'title': 9.5, 'labels': 10, 'legend': 9, 'xticks': 10, 'yticks': 10})
     save_path = os.path.join(output_path, '{}_pHold.png'.format(run_id))
     hvplot.save(phold, save_path)
     return phold
@@ -347,20 +511,37 @@ def plot_ring(dataframe, run_id, output_path):
     Returns:
         ring (obj): IPython holoviews plot of the data.
     """
-    ring_df = dataframe[dataframe.run_id == '{}'.format(run_id)]
-    ring = ring_df.sort_values('federate_count').hvplot.line(
-        'federate_count',
-        'real_time',
-        ylabel='real_time (ns)',
-        #(range(0, (int(float(ring_df.federate_count.max()))+2), 1)),
-        title='run_id {} ringBenchmark: federate_count vs real_time'.format(run_id),
-        by='core_type',
-        alpha=0.5).opts(
-        width=600,
-        height=360,
-        logx=True,
-        logy=True,
-        fontsize={'title': 9.5, 'labels': 10, 'legend': 9, 'xticks': 10, 'yticks': 10})
+    ring_df = dataframe[(dataframe.run_id == '{}'.format(run_id)) & (dataframe.benchmark_type == 'full')]
+    if ring_df.federate_count.min() != 0:
+        ring = ring_df.sort_values('federate_count').hvplot.line(
+            'federate_count',
+            'real_time',
+            ylabel='real_time (ns)',
+            #(range(0, (int(float(ring_df.federate_count.max()))+2), 1)),
+            title='run_id {} ringBenchmark: federate_count vs real_time'.format(run_id),
+            by='core_type',
+            alpha=0.5).opts(
+            width=600,
+            height=360,
+            logx=True,
+            logy=True,
+            fontsize={'title': 9.5, 'labels': 10, 'legend': 9, 'xticks': 10, 'yticks': 10})
+    else:
+        ring = ring_df.sort_values('federate_count').hvplot.line(
+            'federate_count',
+            'real_time',
+            ylabel='real_time (ns)',
+            #(range(0, (int(float(ring_df.federate_count.max()))+2), 1)),
+            title='run_id {} ringBenchmark: federate_count vs real_time'.format(run_id),
+            by='core_type',
+            alpha=0.5).opts(
+            width=600,
+            height=360,
+            logx=True,
+            logy=True,
+            xlim=(2, ring_df.federate_count.max()),
+            ylim=(2, ring_df.real_time.max()),
+            fontsize={'title': 9.5, 'labels': 10, 'legend': 9, 'xticks': 10, 'yticks': 10})
     save_path = os.path.join(output_path, '{}_ring.png'.format(run_id))
     hvplot.save(ring, save_path)
     return ring
@@ -379,18 +560,37 @@ def plot_filter(dataframe, run_id, output_path):
         filtr (obj): IPython holoviews plot of the data.
     """
     filter_df = dataframe[dataframe.core_type == 'singleCore']
-    filter_df = filter_df[filter_df.run_id == '{}'.format(run_id)]
-    filtr = filter_df.sort_values('federate_count').hvplot.line(
-        'federate_count',
-        'real_time',
-        ylabel='real_time (ns)',
-        #(range(0, (int(float(filter_df.federate_count.max()))+1), 2)),
-        title='run_id {} filterBenchmark, core_type {}: federate_count vs real_time'.format(run_id, 'singleCore'),
-        by='filter_location',
-        alpha=0.5).opts(
-        width=600,
-        height=360,
-        fontsize={'title': 9.5, 'labels': 10, 'legend': 9, 'xticks': 10, 'yticks': 10})
+    filter_df = filter_df[(filter_df.run_id == '{}'.format(run_id)) & (filter_df.benchmark_type == 'full')]
+    if filter_df.federate_count.min() != 0:
+        filtr = filter_df.sort_values('federate_count').hvplot.line(
+            'federate_count',
+            'real_time',
+            ylabel='real_time (ns)',
+            #(range(0, (int(float(filter_df.federate_count.max()))+1), 2)),
+            title='run_id {} filterBenchmark, core_type {}: federate_count vs real_time'.format(run_id, 'singleCore'),
+            by='filter_location',
+            alpha=0.5).opts(
+            width=600,
+            height=360,
+            logx=True,
+            logy=True,
+            fontsize={'title': 9.5, 'labels': 10, 'legend': 9, 'xticks': 10, 'yticks': 10})
+    else:
+        filtr = filter_df.sort_values('federate_count').hvplot.line(
+            'federate_count',
+            'real_time',
+            ylabel='real_time (ns)',
+            #(range(0, (int(float(filter_df.federate_count.max()))+1), 2)),
+            title='run_id {} filterBenchmark, core_type {}: federate_count vs real_time'.format(run_id, 'singleCore'),
+            by='filter_location',
+            alpha=0.5).opts(
+            width=600,
+            height=360,
+            logx=True,
+            logy=True,
+            xlim=(2, filter_df.federate_count.max()),
+            ylim=(2, filter_df.real_time.max()),
+            fontsize={'title': 9.5, 'labels': 10, 'legend': 9, 'xticks': 10, 'yticks': 10})
     save_path = os.path.join(output_path, '{}_filter.png'.format(run_id))
     hvplot.save(filtr, save_path)
     return filtr
@@ -409,20 +609,37 @@ def plot_src(dataframe, run_id, output_path):
         source (obj): IPython holoviews plot of the data.
     """
     filter_df = dataframe[dataframe.filter_location == 'source']
-    filter_df = filter_df[filter_df.run_id == '{}'.format(run_id)]
-    source = filter_df.sort_values('federate_count').hvplot.line(
-        'federate_count',
-        'real_time',
-        ylabel='real_time (ns)',
-        #(range(0, (int(float(filter_df.federate_count.max()))+4), 4)),
-        title='run_id {} filterBenchmark, filter_location {}: federate_count vs real_time'.format(run_id, 'source'),
-        by='core_type',
-        alpha=0.5).opts(
-        width=600,
-        height=360,
-        logx=True,
-        logy=True,
-        fontsize={'title': 9.5, 'labels': 10, 'legend': 9, 'xticks': 10, 'yticks': 10})
+    filter_df = filter_df[(filter_df.run_id == '{}'.format(run_id)) & (filter_df.benchmark_type == 'full')]
+    if filter_df.federate_count.min() != 0:
+        source = filter_df.sort_values('federate_count').hvplot.line(
+            'federate_count',
+            'real_time',
+            ylabel='real_time (ns)',
+            #(range(0, (int(float(filter_df.federate_count.max()))+4), 4)),
+            title='run_id {} filterBenchmark, filter_location {}: federate_count vs real_time'.format(run_id, 'source'),
+            by='core_type',
+            alpha=0.5).opts(
+            width=600,
+            height=360,
+            logx=True,
+            logy=True,
+            fontsize={'title': 9.5, 'labels': 10, 'legend': 9, 'xticks': 10, 'yticks': 10})
+    else:
+        source = filter_df.sort_values('federate_count').hvplot.line(
+            'federate_count',
+            'real_time',
+            ylabel='real_time (ns)',
+            #(range(0, (int(float(filter_df.federate_count.max()))+4), 4)),
+            title='run_id {} filterBenchmark, filter_location {}: federate_count vs real_time'.format(run_id, 'source'),
+            by='core_type',
+            alpha=0.5).opts(
+            width=600,
+            height=360,
+            logx=True,
+            logy=True,
+            xlim=(2, filter_df.federate_count.max()),
+            ylim=(2, filter_df.real_time.max()),
+            fontsize={'title': 9.5, 'labels': 10, 'legend': 9, 'xticks': 10, 'yticks': 10})
     save_path = os.path.join(output_path, '{}_source.png'.format(run_id))
     hvplot.save(source, save_path)
     return source
@@ -441,21 +658,39 @@ def plot_dest(dataframe, run_id, output_path):
         dest (obj): IPython holoviews plot of the data.
     """
     filter_df = dataframe[dataframe.filter_location == 'destination']
-    filter_df = filter_df[filter_df.run_id == '{}'.format(run_id)]
-    dest = filter_df.sort_values('federate_count').hvplot.line(
-        'federate_count',
-        'real_time',
-        ylabel='real_time (ns)',
-        #(range(0, (int(float(filter_df.federate_count.max()))+1), 4)),
-        title='run_id {} filterBenchmark, filter_location {}: federate_count vs real_time'.format(run_id,
-                                                                                                  'destination'),
-        by='core_type',
-        alpha=0.5).opts(
-        width=600,
-        height=360,
-        logx=True,
-        logy=True,
-        fontsize={'title': 9.5, 'labels': 10, 'legend': 9, 'xticks': 10, 'yticks': 10})
+    filter_df = filter_df[(filter_df.run_id == '{}'.format(run_id)) & (filter_df.benchmark_type == 'full')]
+    if filter_df.federate_count.min() != 0:
+        dest = filter_df.sort_values('federate_count').hvplot.line(
+            'federate_count',
+            'real_time',
+            ylabel='real_time (ns)',
+            #(range(0, (int(float(filter_df.federate_count.max()))+1), 4)),
+            title='run_id {} filterBenchmark, filter_location {}: federate_count vs real_time'.format(run_id,
+                                                                                                      'destination'),
+            by='core_type',
+            alpha=0.5).opts(
+            width=600,
+            height=360,
+            logx=True,
+            logy=True,
+            fontsize={'title': 9.5, 'labels': 10, 'legend': 9, 'xticks': 10, 'yticks': 10})
+    else:
+        dest = filter_df.sort_values('federate_count').hvplot.line(
+            'federate_count',
+            'real_time',
+            ylabel='real_time (ns)',
+            #(range(0, (int(float(filter_df.federate_count.max()))+1), 4)),
+            title='run_id {} filterBenchmark, filter_location {}: federate_count vs real_time'.format(run_id,
+                                                                                                      'destination'),
+            by='core_type',
+            alpha=0.5).opts(
+            width=600,
+            height=360,
+            logx=True,
+            logy=True,
+            xlim=(2, filter_df.federate_count.max()),
+            ylim=(2, filter_df.real_time.max()),
+            fontsize={'title': 9.5, 'labels': 10, 'legend': 9, 'xticks': 10, 'yticks': 10})
     save_path = os.path.join(output_path, '{}_destination.png'.format(run_id))
     hvplot.save(dest, save_path)
     return dest
@@ -473,20 +708,37 @@ def plot_timing(dataframe, run_id, output_path):
     Returns:
         timing (obj): IPython holoviews plot of the data.
     """
-    time_df = dataframe[dataframe.run_id == '{}'.format(run_id)]
-    timing = time_df.sort_values('federate_count').hvplot.line(
-        'federate_count',
-        'real_time',
-        ylabel='real_time (ns)',
-        #(range(0, (int(float(echo_df.federate_count.max()))+1), 4)),
-        title='run_id {} timingBenchmark: federate_count vs real_time'.format(run_id),
-        by='core_type',
-        alpha=0.5).opts(
-        width=600,
-        height=360,
-        logx=True,
-        logy=True,
-        fontsize={'title': 9.5, 'labels': 10, 'legend': 9, 'xticks': 10, 'yticks': 10})
+    time_df = dataframe[(dataframe.run_id == '{}'.format(run_id)) & (dataframe.benchmark_type == 'full')]
+    if time_df.federate_count.min() != 0:
+        timing = time_df.sort_values('federate_count').hvplot.line(
+            'federate_count',
+            'real_time',
+            ylabel='real_time (ns)',
+            #(range(0, (int(float(echo_df.federate_count.max()))+1), 4)),
+            title='run_id {} timingBenchmark: federate_count vs real_time'.format(run_id),
+            by='core_type',
+            alpha=0.5).opts(
+            width=600,
+            height=360,
+            logx=True,
+            logy=True,
+            fontsize={'title': 9.5, 'labels': 10, 'legend': 9, 'xticks': 10, 'yticks': 10})
+    else:
+        timing = time_df.sort_values('federate_count').hvplot.line(
+            'federate_count',
+            'real_time',
+            ylabel='real_time (ns)',
+            #(range(0, (int(float(echo_df.federate_count.max()))+1), 4)),
+            title='run_id {} timingBenchmark: federate_count vs real_time'.format(run_id),
+            by='core_type',
+            alpha=0.5).opts(
+            width=600,
+            height=360,
+            logx=True,
+            logy=True,
+            xlim=(2, time_df.federate_count.max()),
+            ylim=(2, time_df.real_time.max()),
+            fontsize={'title': 9.5, 'labels': 10, 'legend': 9, 'xticks': 10, 'yticks': 10})
     save_path = os.path.join(output_path, '{}_timing.png'.format(run_id))
     hvplot.save(timing, save_path)
     return timing
@@ -511,8 +763,8 @@ def plot_echo_msg_cr(dataframe, run_id_list, core_type, output_path, comparison_
     run_id_list = run_id_list
     echo_msgs = []
     for run_id in run_id_list:
-        echo_df = dataframe[(dataframe.core_type == '{}'.format(core_type)) & (
-                        dataframe.run_id == '{}'.format(run_id))]
+        echo_df = dataframe[(dataframe.core_type == '{}'.format(core_type)) & 
+                        (dataframe.run_id == '{}'.format(run_id)) & (dataframe.benchmark_type == 'full')]
         echo_msg = echo_df.sort_values('federate_count').hvplot.line(
                 'federate_count', 
                 'real_time', 
@@ -553,8 +805,8 @@ def plot_echo_result_cr(dataframe, run_id_list, core_type, output_path, comparis
     run_id_list = run_id_list
     echo_ress = []
     for run_id in run_id_list:
-        echo_df = dataframe[(dataframe.core_type == '{}'.format(core_type)) & (
-                    dataframe.run_id == '{}'.format(run_id))]
+        echo_df = dataframe[(dataframe.core_type == '{}'.format(core_type)) & 
+                    (dataframe.run_id == '{}'.format(run_id)) & (dataframe.benchmark_type == 'full')]
         echo_res = echo_df.sort_values('federate_count').hvplot.line(
             'federate_count',
             'real_time',
@@ -593,8 +845,8 @@ def plot_echo_c_cr(dataframe, run_id_list, core_type, output_path, comparison_pa
     run_id_list = run_id_list
     echo_cs = []
     for run_id in run_id_list:
-        echo_df = dataframe[(dataframe.core_type == '{}'.format(core_type)) & (
-                    dataframe.run_id == '{}'.format(run_id))]
+        echo_df = dataframe[(dataframe.core_type == '{}'.format(core_type)) & 
+                    (dataframe.run_id == '{}'.format(run_id)) & (dataframe.benchmark_type == 'full')]
         echo_c_res = echo_df.sort_values('federate_count').hvplot.line(
             'federate_count',
             'real_time',
@@ -633,8 +885,8 @@ def plot_msg_lookup_1_cr(dataframe, run_id_list, output_path, comparison_paramet
     run_id_list = run_id_list
     msg_lookups = []
     for run_id in run_id_list:
-        msg_lkp_df = dataframe[(dataframe.core_type == 'inproc') & (
-                    dataframe.run_id == '{}'.format(run_id)) & (dataframe.federate_count == 2)]
+        msg_lkp_df = dataframe[(dataframe.core_type == 'inproc') & 
+                    (dataframe.run_id == '{}'.format(run_id)) & (dataframe.benchmark_type == 'full') & (dataframe.federate_count == 2)]
         msg_lookup = msg_lkp_df.sort_values('interface_count').hvplot.line(
             'interface_count',
             'real_time',
@@ -674,8 +926,8 @@ def plot_msg_lookup_2_cr(dataframe, run_id_list, output_path, comparison_paramet
     run_id_list = run_id_list
     msg_lookups = []
     for run_id in run_id_list:
-        msg_lkp_df = dataframe[(dataframe.core_type == 'inproc') & (
-                    dataframe.run_id == '{}'.format(run_id)) & (dataframe.federate_count == 8)]
+        msg_lkp_df = dataframe[(dataframe.core_type == 'inproc') & 
+                    (dataframe.run_id == '{}'.format(run_id)) & (dataframe.benchmark_type == 'full') & (dataframe.federate_count == 8)]
         msg_lookup = msg_lkp_df.sort_values('interface_count').hvplot.line(
             'interface_count',
             'real_time',
@@ -715,8 +967,8 @@ def plot_msg_lookup_3_cr(dataframe, run_id_list, output_path, comparison_paramet
     run_id_list = run_id_list
     msg_lookups = []
     for run_id in run_id_list:
-        msg_lkp_df = dataframe[(dataframe.core_type == 'inproc') & (
-                    dataframe.run_id == '{}'.format(run_id)) & (dataframe.federate_count == 64)]
+        msg_lkp_df = dataframe[(dataframe.core_type == 'inproc') & 
+                    (dataframe.run_id == '{}'.format(run_id)) & (dataframe.benchmark_type == 'full') & (dataframe.federate_count == 64)]
         msg_lookup = msg_lkp_df.sort_values('interface_count').hvplot.line(
             'interface_count',
             'real_time',
@@ -756,8 +1008,8 @@ def plot_msg_send_1_cr(dataframe, run_id_list, output_path, comparison_parameter
     run_id_list = run_id_list
     msg_sends = []
     for run_id in run_id_list:
-        msg_snd_df = dataframe[(dataframe.core_type == 'singleCore') & (
-                        dataframe.run_id == '{}'.format(run_id))]
+        msg_snd_df = dataframe[(dataframe.core_type == 'singleCore') & 
+                        (dataframe.run_id == '{}'.format(run_id)) & (dataframe.benchmark_type == 'full')]
         msg_send = msg_snd_df.sort_values('message_size').hvplot.line(
             'message_size',
             'real_time',
@@ -798,8 +1050,8 @@ def plot_msg_send_2_cr(dataframe, run_id_list, core_type, output_path, compariso
     run_id_list = run_id_list
     msg_cts = []
     for run_id in run_id_list:
-        msg_ct_df = dataframe[(dataframe.core_type == 'singleCore') & (
-                dataframe.run_id == '{}'.format(run_id)) & (dataframe.message_count == 1)]
+        msg_ct_df = dataframe[(dataframe.core_type == 'singleCore') & 
+                (dataframe.run_id == '{}'.format(run_id)) & (dataframe.benchmark_type == 'full') & (dataframe.message_count == 1)]
         msg_count = msg_ct_df.sort_values('message_size').hvplot.line(
             'message_size',
             'real_time',
@@ -840,8 +1092,8 @@ def plot_msg_send_3_cr(dataframe, run_id_list, core_type, output_path, compariso
     run_id_list = run_id_list
     msg_sizes = []
     for run_id in run_id_list:
-        msg_sz_df = dataframe[(dataframe.core_type == 'singleCore') & (
-                dataframe.run_id == '{}'.format(run_id)) & (dataframe.message_size == 1)]
+        msg_sz_df = dataframe[(dataframe.core_type == 'singleCore') & 
+                (dataframe.run_id == '{}'.format(run_id)) & (dataframe.benchmark_type == 'full') & (dataframe.message_size == 1)]
         msg_size = msg_sz_df.sort_values('message_count').hvplot.line(
             'message_count',
             'real_time',
@@ -881,8 +1133,8 @@ def plot_phold_cr(dataframe, run_id_list, core_type, output_path, comparison_par
     run_id_list = run_id_list
     pholds = []
     for run_id in run_id_list:
-        phold_df = dataframe[(dataframe.core_type == '{}'.format(core_type)) & (
-                    dataframe.run_id == '{}'.format(run_id))]
+        phold_df = dataframe[(dataframe.core_type == '{}'.format(core_type)) & 
+                    (dataframe.run_id == '{}'.format(run_id)) & (dataframe.benchmark_type == 'full')]
         phold = phold_df.sort_values('federate_count').hvplot.line(
             'federate_count',
             'real_time',
@@ -924,8 +1176,8 @@ def plot_ring_cr(dataframe, run_id_list, core_type, output_path, comparison_para
     rings = []
     if core_type == 'singleCore':
         for run_id in run_id_list:
-            ring_df = dataframe[(dataframe.core_type == '{}'.format(core_type)) & (
-                        dataframe.run_id == '{}'.format(run_id))]
+            ring_df = dataframe[(dataframe.core_type == '{}'.format(core_type)) & 
+                        (dataframe.run_id == '{}'.format(run_id)) & (dataframe.benchmark_type == 'full')]
             ring = ring_df.hvplot.bar(
                 'run_id',
                 'real_time',
@@ -943,7 +1195,7 @@ def plot_ring_cr(dataframe, run_id_list, core_type, output_path, comparison_para
     else:
         for run_id in run_id_list:
             ring_df = dataframe[(dataframe.core_type == '{}'.format(core_type)) & (
-                        dataframe.run_id == '{}'.format(run_id))]
+                        (dataframe.run_id == '{}'.format(run_id)) & (dataframe.benchmark_type == 'full'))]
             ring = ring_df.sort_values('federate_count').hvplot.line(
                 'federate_count',
                 'real_time',
@@ -984,8 +1236,8 @@ def plot_filter_cr(dataframe, run_id_list, output_path, comparison_parameter):
     run_id_list = run_id_list
     filters = []
     for run_id in run_id_list:
-        filter_df = dataframe[(dataframe.core_type == 'singleCore') & (
-                dataframe.run_id == '{}'.format(run_id))]
+        filter_df = dataframe[(dataframe.core_type == 'singleCore') & 
+                (dataframe.run_id == '{}'.format(run_id)) & (dataframe.benchmark_type == 'full')]
         filtr = filter_df.sort_values('federate_count').hvplot.line(
             'federate_count',
             'real_time',
@@ -1025,8 +1277,8 @@ def plot_src_cr(dataframe, run_id_list, core_type, output_path, comparison_param
     run_id_list = run_id_list
     sources = []
     for run_id in run_id_list:
-        filter_df = dataframe[(dataframe.core_type == '{}'.format(core_type)) & (
-                    dataframe.run_id == '{}'.format(run_id)) & (dataframe.filter_location == 'source')]
+        filter_df = dataframe[(dataframe.core_type == '{}'.format(core_type)) & 
+                    (dataframe.run_id == '{}'.format(run_id)) & (dataframe.benchmark_type == 'full') & (dataframe.filter_location == 'source')]
         source = filter_df.sort_values('federate_count').hvplot.line(
             'federate_count',
             'real_time',
@@ -1068,8 +1320,8 @@ def plot_dest_cr(dataframe, run_id_list, core_type, output_path, comparison_para
     run_id_list = run_id_list
     dests = []
     for run_id in run_id_list:
-        filter_df = dataframe[(dataframe.core_type == '{}'.format(core_type)) & (
-                    dataframe.run_id == '{}'.format(run_id)) & (dataframe.filter_location == 'destination')]
+        filter_df = dataframe[(dataframe.core_type == '{}'.format(core_type)) & 
+                    (dataframe.run_id == '{}'.format(run_id)) & (dataframe.benchmark_type == 'full') & (dataframe.filter_location == 'destination')]
         filter_df = filter_df[filter_df.run_id == '{}'.format(run_id)]
         dest = filter_df.sort_values('federate_count').hvplot.line(
             'federate_count',
@@ -1112,7 +1364,7 @@ def plot_timing_cr(dataframe, run_id_list, core_type, output_path, comparison_pa
     times = []
     for run_id in run_id_list:
         time_df = dataframe[(dataframe.core_type == '{}'.format(core_type)) & (
-                        dataframe.run_id == '{}'.format(run_id))]
+                        (dataframe.run_id == '{}'.format(run_id)) & (dataframe.benchmark_type == 'full'))]
         time = time_df.sort_values('federate_count').hvplot.line(
                 'federate_count', 
                 'real_time', 
@@ -1156,7 +1408,8 @@ def plot_echo_vs_timing(dataframe1, dataframe2, run_id, core_type_list, output_p
     evts = []
     for core_type in core_type_list:
             df1 = dataframe1[(dataframe1.core_type == '{}'.format(core_type)) & (
-                        dataframe1.run_id == '{}'.format(run_id))]
+                        dataframe1.run_id == '{}'.format(run_id)) & (
+                                dataframe1.benchmark_type == 'full')]
             evt1 = df1.sort_values('federate_count').hvplot.line(
                 'federate_count',
                 'real_time',
@@ -1166,7 +1419,8 @@ def plot_echo_vs_timing(dataframe1, dataframe2, run_id, core_type_list, output_p
                 label='{}, run_id: {}, core_type: {}'.format(df1.benchmark.unique(), run_id, core_type),
                 alpha=0.5)
             df2 = dataframe2[(dataframe2.core_type == '{}'.format(core_type)) & (
-                        dataframe2.run_id == '{}'.format(run_id))]
+                        dataframe2.run_id == '{}'.format(run_id)) & (
+                                dataframe2.benchmark_type == 'full')]
             evt2 = df2.sort_values('federate_count').hvplot.line(
                 'federate_count',
                 'real_time',
@@ -1208,7 +1462,8 @@ def plot_echo_vs_echo_c(dataframe1, dataframe2, run_id, core_type_list, output_p
     evcs = []
     for core_type in core_type_list:
             df1 = dataframe1[(dataframe1.core_type == '{}'.format(core_type)) & (
-                        dataframe1.run_id == '{}'.format(run_id))]
+                        dataframe1.run_id == '{}'.format(run_id)) & (
+                                dataframe1.benchmark_type == 'full')]
             evc1 = df1.sort_values('federate_count').hvplot.line(
                 'federate_count',
                 'real_time',
@@ -1218,7 +1473,8 @@ def plot_echo_vs_echo_c(dataframe1, dataframe2, run_id, core_type_list, output_p
                 label='{}, run_id: {}, core_type: {}'.format(df1.benchmark.unique(), run_id, core_type),
                 alpha=0.5)
             df2 = dataframe2[(dataframe2.core_type == '{}'.format(core_type)) & (
-                        dataframe2.run_id == '{}'.format(run_id))]
+                        dataframe2.run_id == '{}'.format(run_id)) & (
+                                dataframe2.benchmark_type == 'full')]
             evc2 = df2.sort_values('federate_count').hvplot.line(
                 'federate_count',
                 'real_time',
@@ -1256,12 +1512,13 @@ if __name__ == '__main__':
     # echo_result = plot_echo_result(meta_bmk_df, 'r1Nr5')
     # message_lookup = plot_msg_lookup(meta_bmk_df, 'r1Nr5')
     # message_send_1 = plot_msg_send_1(meta_bmk_df, 'Md3vp')
-    # output_path = os.path.join(os.getcwd(), 'bmk_plotting test images')
+    output_path = os.path.join(os.getcwd())
     # message_send_3 = plot_msg_send_3_cr(meta_bmk_df, ['aUZF6', 'Zu60n'], 'inproc', output_path, 'mhz_per_cpu')
     # message_send_3
     # message_send_3 = plot_msg_send_3(meta_bmk_df, 'r1Nr5')
     # phold = plot_phold(meta_bmk_df, 'r1Nr5')
-    # ring = plot_ring(meta_bmk_df, 'r1Nr5')
+    meta_bmk_df = meta_bmk_df[meta_bmk_df.benchmark == 'ringBenchmark']
+    ring = plot_ring(meta_bmk_df, 'YidUg', output_path)
     # filtr = plot_filter(meta_bmk_df, 'r1Nr5')
     # source = plot_src(meta_bmk_df, 'r1Nr5')
     # destination = plot_dest(meta_bmk_df, 'r1Nr5')

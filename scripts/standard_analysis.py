@@ -201,21 +201,25 @@ def make_SA_graphs(meta_bmk_df, bm, run_id, output_path):
         (nothing)
     """
     if bm['bm_name'] == 'echoBenchmark':
+        meta_bmk_df = meta_bmk_df[meta_bmk_df.benchmark == 'echoBenchmark']
         if bm['bm_type'] == 'full':
             bmk_plotting.plot_echo_result(meta_bmk_df, run_id, output_path)
         else:
             pass
     if bm['bm_name'] == 'cEchoBenchmark':
+        meta_bmk_df = meta_bmk_df[meta_bmk_df.benchmark == 'cEchoBenchmark']
         if bm['bm_type'] == 'full':
             bmk_plotting.plot_echo_c(meta_bmk_df, run_id, output_path)
         else:
             pass
     if bm['bm_name'] == 'echoMessageBenchmark':
+        meta_bmk_df = meta_bmk_df[meta_bmk_df.benchmark == 'echoMessageBenchmark']
         if bm['bm_type'] == 'full':
             bmk_plotting.plot_echo_msg(meta_bmk_df, run_id, output_path)
         else:
             pass
     if bm['bm_name'] == 'messageLookupBenchmark':
+        meta_bmk_df = meta_bmk_df[meta_bmk_df.benchmark == 'messageLookupBenchmark']
         if bm['bm_type'] == 'full':
             bmk_plotting.plot_msg_lookup_1(meta_bmk_df, run_id, output_path)
             bmk_plotting.plot_msg_lookup_2(meta_bmk_df, run_id, output_path)
@@ -223,16 +227,19 @@ def make_SA_graphs(meta_bmk_df, bm, run_id, output_path):
         else:
             pass
     if bm['bm_name'] == 'ringBenchmark':
+        meta_bmk_df = meta_bmk_df[meta_bmk_df.benchmark == 'ringBenchmark']
         if bm['bm_type'] == 'full':
             bmk_plotting.plot_ring(meta_bmk_df, run_id, output_path)
         else:
             pass
     if bm['bm_name'] == 'pholdBenchmark':
+        meta_bmk_df = meta_bmk_df[meta_bmk_df.benchmark == 'pholdBenchmark']
         if bm['bm_type'] == 'full':
             bmk_plotting.plot_phold(meta_bmk_df, run_id, output_path)
         else:
             pass
     if bm['bm_name'] == 'messageSendBenchmark':
+        meta_bmk_df = meta_bmk_df[meta_bmk_df.benchmark == 'messageSendBenchmark']
         if bm['bm_type'] == 'full':
             bmk_plotting.plot_msg_send_1(meta_bmk_df, run_id, output_path)
             bmk_plotting.plot_msg_send_2(meta_bmk_df, run_id, output_path)
@@ -240,6 +247,7 @@ def make_SA_graphs(meta_bmk_df, bm, run_id, output_path):
         else:
             pass
     if bm['bm_name'] == 'filterBenchmark':
+        meta_bmk_df = meta_bmk_df[meta_bmk_df.benchmark == 'filterBenchmark']
         if bm['bm_type'] == 'full':
             bmk_plotting.plot_filter(meta_bmk_df, run_id, output_path)
             bmk_plotting.plot_src(meta_bmk_df, run_id, output_path)
@@ -247,6 +255,7 @@ def make_SA_graphs(meta_bmk_df, bm, run_id, output_path):
         else:
             pass
     if bm['bm_name'] == 'timingBenchmark':
+        meta_bmk_df = meta_bmk_df[meta_bmk_df.benchmark == 'timingBenchmark']
         if bm['bm_type'] == 'full':
             bmk_plotting.plot_timing(meta_bmk_df, run_id, output_path)
         else:

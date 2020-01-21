@@ -226,7 +226,7 @@ def add_benchmark_graphs(pdf, output_path):
                 # width = 0
                 # height = 0
                 # pdf.image(graph_file_path, w=width, h=height)
-                pdf.image(graph_file_path)
+                pdf.image(graph_file_path, x=15, w=175, h=100)
                 logging.info('Added graph file {} to PDF'.format(output_path))
     return pdf
 
