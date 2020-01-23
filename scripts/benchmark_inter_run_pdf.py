@@ -82,12 +82,12 @@ def grab_header_metadata(json_results, run_id):
     # CGR (2020-01-22): Since we will be making graphs for multiple benchmarks
     # for a single run_id at a time, we don't need to identify which benchmarks
     # here; will put that information elsewhere in the pdf.
-    # if 'benchmark' in json_results[key]:
-        # header_metadata_str = header_metadata_str + '{:<25}{}\n\n'.format(
-            # 'BENCHMARK:',
-            # json_results[key]['benchmark'])
-    # else:
-        # logging.warning('"benchmark" not found in metadata.')
+#    if 'benchmark' in json_results[key]:
+#        header_metadata_str = header_metadata_str + '{:<25}{}\n\n'.format(
+#             'BENCHMARK:',
+#             json_results[key]['benchmark'])
+#    else:
+#        logging.warning('"benchmark" not found in metadata.')
 
     if 'run_id' in json_results[key]:
         header_metadata_str = header_metadata_str + '{:<25}{}\n'.format(
@@ -246,7 +246,7 @@ def _auto_run(args):
     for run_id in run_id_list:
         output_path = os.path.join(
             args.benchmark_results_dir,
-            '{}inter_run_report'.format(run_id))
+            '{}_inter_run_report'.format(run_id))
 
         # TDH: Thorough attempt to safely create the results directory and
         # provide good error reporting if something went wrong.
@@ -256,8 +256,8 @@ def _auto_run(args):
             logging.error('Failed to create directory for report at {}'.format(
                 output_path))
         create_inter_run_id_report(output_path,
-                                        json_results,
-                                        run_id)
+                                   json_results,
+                                   run_id)
 
 
 

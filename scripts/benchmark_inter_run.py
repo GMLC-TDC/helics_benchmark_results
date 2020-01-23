@@ -121,7 +121,7 @@ def create_output_path(output_path, delete_existing_report):
 def make_inter_run_graphs(meta_bmk_df,
                           run_id,
                           bm_list,
-                          core_type_list,
+                          core_type,
                           output_path):
     """This function creates inter-run graphs of multiple benchmarks, for a
     given run_id.
@@ -141,22 +141,24 @@ def make_inter_run_graphs(meta_bmk_df,
         df1 = meta_bmk_df[meta_bmk_df.benchmark == 'echoBenchmark']
         df2 = meta_bmk_df[meta_bmk_df.benchmark == 'timingBenchmark']
         if run_id in list(df1.run_id.unique()) and run_id in list(df2.run_id.unique()):
-            bmk_plotting.plot_echo_vs_timing(df1, 
-                                             df2, 
-                                             run_id, 
-                                             core_type_list, 
-                                             output_path)
+            if core_type in list(df1.core_type.unique()) and core_type in list(df2.core_type.unique()):
+                bmk_plotting.plot_echo_vs_timing(df1, 
+                                                 df2, 
+                                                 run_id, 
+                                                 core_type, 
+                                                 output_path)
         else:
             pass
     if 'echoBenchmark' in bm_list and 'cEchoBenchmark' in bm_list:
         df1 = meta_bmk_df[meta_bmk_df.benchmark == 'echoBenchmark']
         df2 = meta_bmk_df[meta_bmk_df.benchmark == 'cEchoBenchmark']
         if run_id in list(df1.run_id.unique()) and run_id in list(df2.run_id.unique()):
-            bmk_plotting.plot_echo_vs_echo_c(df1, 
-                                             df2, 
-                                             run_id, 
-                                             core_type_list, 
-                                             output_path)
+            if core_type in list(df1.core_type.unique()) and core_type in list(df2.core_type.unique()):
+                bmk_plotting.plot_echo_vs_echo_c(df1, 
+                                                 df2, 
+                                                 run_id, 
+                                                 core_type, 
+                                                 output_path)
         else:
             pass
 
@@ -197,7 +199,8 @@ def _auto_run(args):
     json_results = bmpp.parse_files(file_list)
     json_results = bmpp.parse_and_add_benchmark_metadata(json_results)
     meta_bmk_df = md.make_dataframe(json_results)
-    for run_id in meta_bmk_df.run_id.unique():
+    for run_id in args.run_id_list:
+        print(run_id)
         for core_type in args.core_type_list:
             make_inter_run_graphs(meta_bmk_df,
                                   run_id,
@@ -232,7 +235,8 @@ if __name__ == '__main__':
     benchmark_results_dir = os.path.join(head,'benchmark_results')
     output_dir = os.path.join(head, 'inter_run_comparison')
     bm_list = ['echoBenchmark', 'cEchoBenchmark', 'timingBenchmark']
-    core_type_list = ['singleCore']
+    core_type_list = ['singleCore', 'inproc', 'zmq', 'zmqss', 'ipc',
+       'tcp', 'tcpss', 'udp']
     parser.add_argument('-r',
                         '--benchmark_results_dir',
                         nargs='?',
@@ -240,7 +244,7 @@ if __name__ == '__main__':
     parser.add_argument('-l',
                         '--run_id_list',
                         nargs='+',
-                        default=['bScQ6'])
+                        default=['bScQ6', 'Obg9g'])
     parser.add_argument('-b',
                         '--bm_list',
                         nargs='?',
@@ -250,10 +254,10 @@ if __name__ == '__main__':
                         nargs='?',
                         default=core_type_list)
     args = parser.parse_args()
-    dir_name = ''
-    for run_id in args.run_id_list:
-        dir_name = dir_name + str(run_id) + '_'
-    dir_name = dir_name + 'inter_run_report'
+    dir_name = 'inter_run_report'
+#    for run_id in args.run_id_list:
+#        dir_name = dir_name + str(run_id) + '_'
+#        dir_name = dir_name + 'inter_run_report'
 
     default_output_path = os.path.join(output_dir,dir_name)
     parser.add_argument('-o',
