@@ -230,7 +230,7 @@ if __name__ == '__main__':
     head, tail = os.path.split(script_path)
     benchmark_results_dir = os.path.join(head,'benchmark_results')
     output_dir = os.path.join(head, 'inter_run_comparison')
-    bm_list = ['echoBenchmark', 'timingBenchmark']
+    bm_list = ['echoBenchmark', 'cEchoBenchmark', 'timingBenchmark']
     core_type_list = ['singleCore']
     parser.add_argument('-r',
                         '--benchmark_results_dir',

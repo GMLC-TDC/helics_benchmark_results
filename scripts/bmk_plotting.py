@@ -1389,7 +1389,7 @@ def plot_timing_cr(dataframe, run_id_list, core_type, output_path, comparison_pa
 
 #-----------------------------------------------------------------------#
 #------------------  Cross-benchmark comparison plots ------------------#
-def plot_echo_vs_timing(dataframe1, dataframe2, run_id, core_type_list, output_path):
+def plot_echo_vs_timing(dataframe1, dataframe2, run_id, core_type, output_path):
     """This function creates a multi-line graph for the benchmarks,
     echoBenchmark and timingBenchmark, of 'federate_count' versus 'real_time' 
     and it is organized by a single 'run_id' and (potential) list of
@@ -1404,32 +1404,29 @@ def plot_echo_vs_timing(dataframe1, dataframe2, run_id, core_type_list, output_p
     Returns:
         echo_v_timing (obj): IPython holoviews plot of the data.
     """
-    core_type_list = core_type_list
-    evts = []
-    for core_type in core_type_list:
-            df1 = dataframe1[(dataframe1.core_type == '{}'.format(core_type)) & (
-                        dataframe1.run_id == '{}'.format(run_id)) & (
-                                dataframe1.benchmark_type == 'full')]
-            evt1 = df1.sort_values('federate_count').hvplot.line(
-                'federate_count',
-                'real_time',
-                ylabel='real_time (ns)',
-                #(range(0, (int(float(echo_df.federate_count.max()))+1), 1)),
-                title='timing vs echoBenchmark: federate_count vs real_time',
-                label='{}, run_id: {}, core_type: {}'.format(df1.benchmark.unique(), run_id, core_type),
-                alpha=0.5)
-            df2 = dataframe2[(dataframe2.core_type == '{}'.format(core_type)) & (
-                        dataframe2.run_id == '{}'.format(run_id)) & (
-                                dataframe2.benchmark_type == 'full')]
-            evt2 = df2.sort_values('federate_count').hvplot.line(
-                'federate_count',
-                'real_time',
-                ylabel='real_time (ns)',
-                #(range(0, (int(float(echo_df.federate_count.max()))+1), 1)),
-                title='timing vs echo: federate_count vs real_time',
-                label='{}, run_id: {}, core_type: {}'.format(df2.benchmark.unique(), run_id, core_type),
-                alpha=0.5)
-            evts.append(evt1*evt2)
+    df1 = dataframe1[(dataframe1.core_type == '{}'.format(core_type)) & (
+                dataframe1.run_id == '{}'.format(run_id)) & (
+                        dataframe1.benchmark_type == 'full')]
+    evt1 = df1.sort_values('federate_count').hvplot.line(
+        'federate_count',
+        'real_time',
+        ylabel='real_time (ns)',
+        #(range(0, (int(float(echo_df.federate_count.max()))+1), 1)),
+        title='timing vs echoBenchmark: federate_count vs real_time',
+        label='{}, run_id: {}, core_type: {}'.format(df1.benchmark.unique(), run_id, core_type),
+        alpha=0.5)
+    df2 = dataframe2[(dataframe2.core_type == '{}'.format(core_type)) & (
+                dataframe2.run_id == '{}'.format(run_id)) & (
+                        dataframe2.benchmark_type == 'full')]
+    evt2 = df2.sort_values('federate_count').hvplot.line(
+        'federate_count',
+        'real_time',
+        ylabel='real_time (ns)',
+        #(range(0, (int(float(echo_df.federate_count.max()))+1), 1)),
+        title='timing vs echo: federate_count vs real_time',
+        label='{}, run_id: {}, core_type: {}'.format(df2.benchmark.unique(), run_id, core_type),
+        alpha=0.5)
+    evts = [evt1, evt2]
     echo_v_timing = (reduce((lambda x, y: x*y), evts)).opts(
                             width=590, 
                             height=360,
@@ -1437,13 +1434,13 @@ def plot_echo_vs_timing(dataframe1, dataframe2, run_id, core_type_list, output_p
                             logy=True,
                             legend_position='top_left',
                             fontsize={'title': 9.5, 'labels': 10, 'legend': 9, 'xticks': 10, 'yticks': 10})
-    core_type_str = '_'.join(core_type_list)
+    core_type_str = ''.join(core_type)
     save_path = os.path.join(output_path, '{}_echo_vs_time_{}Core.png'.format(run_id, core_type_str))
     hvplot.save(echo_v_timing, save_path)
     return echo_v_timing
 
 
-def plot_echo_vs_echo_c(dataframe1, dataframe2, run_id, core_type_list, output_path):
+def plot_echo_vs_echo_c(dataframe1, dataframe2, run_id, core_type, output_path):
     """This function creates a multi-line graph for the benchmark,
     cEchoBenchmark and echoBenchmark, of 'federate_count' versus 'real_time' 
     and it is organized by a single 'run_id' and (potential) list of
@@ -1458,32 +1455,29 @@ def plot_echo_vs_echo_c(dataframe1, dataframe2, run_id, core_type_list, output_p
     Returns:
         echo_vs_echo_c (obj): IPython holoviews plot of the data.
     """
-    core_type_list = core_type_list
-    evcs = []
-    for core_type in core_type_list:
-            df1 = dataframe1[(dataframe1.core_type == '{}'.format(core_type)) & (
-                        dataframe1.run_id == '{}'.format(run_id)) & (
-                                dataframe1.benchmark_type == 'full')]
-            evc1 = df1.sort_values('federate_count').hvplot.line(
-                'federate_count',
-                'real_time',
-                ylabel='real_time (ns)',
-                #(range(0, (int(float(echo_df.federate_count.max()))+1), 1)),
-                title='timing vs echoBenchmark: federate_count vs real_time',
-                label='{}, run_id: {}, core_type: {}'.format(df1.benchmark.unique(), run_id, core_type),
-                alpha=0.5)
-            df2 = dataframe2[(dataframe2.core_type == '{}'.format(core_type)) & (
-                        dataframe2.run_id == '{}'.format(run_id)) & (
-                                dataframe2.benchmark_type == 'full')]
-            evc2 = df2.sort_values('federate_count').hvplot.line(
-                'federate_count',
-                'real_time',
-                ylabel='real_time (ns)',
-                #(range(0, (int(float(echo_df.federate_count.max()))+1), 1)),
-                title='timing vs echo: federate_count vs real_time',
-                label='{}, run_id: {}, core_type: {}'.format(df2.benchmark.unique(), run_id, core_type),
-                alpha=0.5)
-            evcs.append(evc1*evc2)
+    df1 = dataframe1[(dataframe1.core_type == '{}'.format(core_type)) & (
+                dataframe1.run_id == '{}'.format(run_id)) & (
+                        dataframe1.benchmark_type == 'full')]
+    evc1 = df1.sort_values('federate_count').hvplot.line(
+        'federate_count',
+        'real_time',
+        ylabel='real_time (ns)',
+        #(range(0, (int(float(echo_df.federate_count.max()))+1), 1)),
+        title='timing vs echoBenchmark: federate_count vs real_time',
+        label='{}, run_id: {}, core_type: {}'.format(df1.benchmark.unique(), run_id, core_type),
+        alpha=0.5)
+    df2 = dataframe2[(dataframe2.core_type == '{}'.format(core_type)) & (
+                dataframe2.run_id == '{}'.format(run_id)) & (
+                        dataframe2.benchmark_type == 'full')]
+    evc2 = df2.sort_values('federate_count').hvplot.line(
+        'federate_count',
+        'real_time',
+        ylabel='real_time (ns)',
+        #(range(0, (int(float(echo_df.federate_count.max()))+1), 1)),
+        title='timing vs echo: federate_count vs real_time',
+        label='{}, run_id: {}, core_type: {}'.format(df2.benchmark.unique(), run_id, core_type),
+        alpha=0.5)
+    evcs = [evc1, evc2]
     echo_vs_echo_c = (reduce((lambda x, y: x*y), evcs)).opts(
                             width=590, 
                             height=360,
@@ -1491,7 +1485,7 @@ def plot_echo_vs_echo_c(dataframe1, dataframe2, run_id, core_type_list, output_p
                             logy=True,
                             legend_position='top_left',
                             fontsize={'title': 9.5, 'labels': 10, 'legend': 9, 'xticks': 10, 'yticks': 10})
-    core_type_str = '_'.join(core_type_list)
+    core_type_str = ''.join(core_type)
     save_path = os.path.join(output_path, '{}_echo_vs_echoC_{}Core.png'.format(run_id, core_type_str))
     hvplot.save(echo_vs_echo_c, save_path)
     return echo_vs_echo_c
