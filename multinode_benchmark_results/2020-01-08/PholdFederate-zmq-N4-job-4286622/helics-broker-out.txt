@@ -1,0 +1,26 @@
+64540-xzBqK-VJEz7-iI81p-tFyBk (0)::connecting
+64540-xzBqK-VJEz7-iI81p-tFyBk (0)::||connected on tcp://127.0.0.1:23404
+64540-xzBqK-VJEz7-iI81p-tFyBk (1)::registering broker 64592-J3rwS-N2Qlh-9TFUw-6yJec(1879048192) on route 1
+64540-xzBqK-VJEz7-iI81p-tFyBk (1)::registering federate phold_3(131072) on route 1
+64540-xzBqK-VJEz7-iI81p-tFyBk (1)::registering broker 12303-1RxLL-P8kAo-fxa6G-Vnjjy(1879048193) on route 2
+64540-xzBqK-VJEz7-iI81p-tFyBk (1)::registering broker 54864-AY06m-GhhzT-7GUtd-9wO1e(1879048194) on route 3
+64540-xzBqK-VJEz7-iI81p-tFyBk (1)::registering broker 48438-sqcnt-qRWHb-vICdc-3L7NU(1879048195) on route 4
+64540-xzBqK-VJEz7-iI81p-tFyBk (1)::registering federate phold_0(131073) on route 2
+64540-xzBqK-VJEz7-iI81p-tFyBk (1)::registering federate phold_1(131074) on route 3
+64540-xzBqK-VJEz7-iI81p-tFyBk (1)::registering federate phold_2(131075) on route 4
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	4 federates [min 4]
+	0/4 brokers/cores [min 0]
+	0 publications
+	0 inputs
+	4 endpoints
+	0 filters
+<<<<<<<<<
+64540-xzBqK-VJEz7-iI81p-tFyBk (1)::entering Exec Mode
+64540-xzBqK-VJEz7-iI81p-tFyBk (0)::got disconnect from 12303-1RxLL-P8kAo-fxa6G-Vnjjy(1879048193)
+64540-xzBqK-VJEz7-iI81p-tFyBk (0)::got disconnect from 54864-AY06m-GhhzT-7GUtd-9wO1e(1879048194)
+64540-xzBqK-VJEz7-iI81p-tFyBk (0)::got disconnect from 48438-sqcnt-qRWHb-vICdc-3L7NU(1879048195)
+64540-xzBqK-VJEz7-iI81p-tFyBk (0)::got disconnect from 64592-J3rwS-N2Qlh-9TFUw-6yJec(1879048192)
+commWarning||64540-xzBqK-VJEz7-iI81p-tFyBk (1)::unknown route and no broker, dropping message send_message:From (phold_3/ept)(131072:0) To phold_1/ept size 2 at 1.0011000000000001e-05
+64540-xzBqK-VJEz7-iI81p-tFyBk (0)::||disconnecting
