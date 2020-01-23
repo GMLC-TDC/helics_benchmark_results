@@ -200,7 +200,6 @@ def _auto_run(args):
     json_results = bmpp.parse_and_add_benchmark_metadata(json_results)
     meta_bmk_df = md.make_dataframe(json_results)
     for run_id in args.run_id_list:
-        print(run_id)
         for core_type in args.core_type_list:
             make_inter_run_graphs(meta_bmk_df,
                                   run_id,
@@ -243,7 +242,7 @@ if __name__ == '__main__':
                         default=benchmark_results_dir)
     parser.add_argument('-l',
                         '--run_id_list',
-                        nargs='+',
+                        nargs='?',
                         default=['bScQ6', 'Obg9g'])
     parser.add_argument('-b',
                         '--bm_list',
@@ -259,7 +258,7 @@ if __name__ == '__main__':
 #        dir_name = dir_name + str(run_id) + '_'
 #        dir_name = dir_name + 'inter_run_report'
 
-    default_output_path = os.path.join(output_dir,dir_name)
+    default_output_path = os.path.join(output_dir, dir_name)
     parser.add_argument('-o',
                         '--output_path',
                         nargs='?',
