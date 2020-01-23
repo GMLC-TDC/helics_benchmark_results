@@ -378,7 +378,7 @@ def _auto_run(args):
         '-p' or '--comparison_parameter' - Particular parameter that we
         are interested in using for comparisons
 
-        'o' or '--output_path' - Path to location where output will be
+        '-o' or '--output_path' - Path to location where output will be
         written
 
         '-d' or '--delete_all_reports' - "True" or "False" to indicate
