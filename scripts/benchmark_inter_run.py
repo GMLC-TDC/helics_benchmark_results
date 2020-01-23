@@ -198,14 +198,15 @@ def _auto_run(args):
     json_results = bmpp.parse_and_add_benchmark_metadata(json_results)
     meta_bmk_df = md.make_dataframe(json_results)
     for run_id in meta_bmk_df.run_id.unique():
-        make_inter_run_graphs(meta_bmk_df,
-                              run_id,
-                              args.bm_list,
-                              args.core_type_list,
-                              args.output_path)
-        birp.create_inter_run_id_report(args.output_path,
-                                        json_results,
-                                        run_id)
+        for core_type in args.core_type_list:
+            make_inter_run_graphs(meta_bmk_df,
+                                  run_id,
+                                  args.bm_list,
+                                  core_type,
+                                  args.output_path)
+            birp.create_inter_run_id_report(args.output_path,
+                                            json_results,
+                                            run_id)
 
 
 if __name__ == '__main__':
