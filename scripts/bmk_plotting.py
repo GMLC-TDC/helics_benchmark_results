@@ -1506,13 +1506,23 @@ if __name__ == '__main__':
     # echo_result = plot_echo_result(meta_bmk_df, 'r1Nr5')
     # message_lookup = plot_msg_lookup(meta_bmk_df, 'r1Nr5')
     # message_send_1 = plot_msg_send_1(meta_bmk_df, 'Md3vp')
+<<<<<<< HEAD
     output_path = os.path.join(os.getcwd())
+=======
+    # output_path = os.path.join(os.getcwd())
+>>>>>>> master
     # message_send_3 = plot_msg_send_3_cr(meta_bmk_df, ['aUZF6', 'Zu60n'], 'inproc', output_path, 'mhz_per_cpu')
     # message_send_3
     # message_send_3 = plot_msg_send_3(meta_bmk_df, 'r1Nr5')
     # phold = plot_phold(meta_bmk_df, 'r1Nr5')
+<<<<<<< HEAD
     meta_bmk_df = meta_bmk_df[meta_bmk_df.benchmark == 'ringBenchmark']
     ring = plot_ring(meta_bmk_df, 'YidUg', output_path)
+=======
+    # df1 = meta_bmk_df[meta_bmk_df.benchmark == 'echoBenchmark']
+    # df2 = meta_bmk_df[meta_bmk_df.benchmark == 'timingBenchmark']
+    # plot = plot_echo_vs_timing(df1, df2, 'YidUg', 'singleCore', output_path)
+>>>>>>> master
     # filtr = plot_filter(meta_bmk_df, 'r1Nr5')
     # source = plot_src(meta_bmk_df, 'r1Nr5')
     # destination = plot_dest(meta_bmk_df, 'r1Nr5')
