@@ -6,6 +6,7 @@ Created on Thu Jan 23 14:51:42 2020
 """
 
 import argparse
+import glob
 import logging
 import pprint
 import os
@@ -14,6 +15,7 @@ import re
 # import uuid
 import sys
 import standard_analysis as sa
+import collections as co
 
 # Setting up logging
 logger = logging.getLogger(__name__)
@@ -23,7 +25,7 @@ logger = logging.getLogger(__name__)
 pp = pprint.PrettyPrinter(indent=4)
 
 
-def parse_files(file_list):
+def parse_files(file):
     """This function parses and formats all the data and metadata of
     interest for each of the files in file_list and puts it into a
     dictionary, keyed off the filename. Since the 5 character run ID
@@ -37,40 +39,39 @@ def parse_files(file_list):
         json_results (dict) -
     """
     json_results = {}
-    for file in file_list:
-        path, filename = os.path.split(file)
+    path, filename = os.path.split(file)
 
-        # TDH (2020-01-17)
-        # Check to make sure that file is valid and worth processing.
-        file_valid =_check_file_validity(path, filename)
-        if file_valid:
-            with open(file) as json_file:
+    # TDH (2020-01-17)
+    # Check to make sure that file is valid and worth processing.
+    file_valid =_check_file_validity(path, filename)
+    if file_valid:
+        with open(file) as json_file:
 
-                # TDH (2019-12-26): run IDs can now assumed to be unique
-                # so filenames should now be unique.
-                uuid_str = filename
-                if uuid_str in json_results.keys():
-                    if 'helics-broker-out' in uuid_str:
-                        continue
-                    else:
-                        err_str = '{} already exists in dictionary and ' \
-                                  'shouldn\'t (filenames should be unique)'
-                        err_str = err_str.format(uuid_str)
-                        logging.error(err_str)
-                        raise Exception(err_str)
-                json_results[uuid_str] = {}
-                json_results[uuid_str]['filename'] = filename
-                json_results[uuid_str]['path'] = path
+            # TDH (2019-12-26): run IDs can now assumed to be unique
+            # so filenames should now be unique.
+            uuid_str = filename
+            if uuid_str in json_results.keys():
+                if uuid_str != 'helics-broker-out':
+                    pass
+                else:
+                    err_str = '{} already exists in dictionary and ' \
+                              'shouldn\'t (filenames should be unique)'
+                    err_str = err_str.format(uuid_str)
+                    logging.error(err_str)
+                    raise Exception(err_str)
+            json_results[uuid_str] = {}
+            json_results[uuid_str]['filename'] = filename
+            json_results[uuid_str]['path'] = path
 
-                # The header lines in the results file contain metadata
-                # that is not JSON formatted and needs to be
-                # "hand-parsed". After these lines are parsed, the
-                # remainder of the file is correctly JSON formatted
-                # and is aggregated into a single string to be later
-                # used by Python's built-in JSON parser.
-                json_str, json_results = parse_header_lines(json_file,
-                                                            json_results,
-                                                            uuid_str)
+            # The header lines in the results file contain metadata
+            # that is not JSON formatted and needs to be
+            # "hand-parsed". After these lines are parsed, the
+            # remainder of the file is correctly JSON formatted
+            # and is aggregated into a single string to be later
+            # used by Python's built-in JSON parser.
+            json_str, json_results = parse_header_lines(json_file,
+                                                        json_results,
+                                                        uuid_str)
     return json_results
 
 
@@ -241,16 +242,20 @@ def _add_core(key, json_results):
         benchmark name are being added to.
     """
     path = json_results[key]['path']
-    
-    if 'tcp' in path:
+    match1 = re.search('-tcp-', path)
+    match2 = re.search('-tcpss-', path)
+    match3 = re.search('-udp-', path)
+    match4 = re.search('-zmq-', path)
+    match5 = re.search('-zmqss-', path)
+    if match1:
         json_results[key]['core_type'] = 'tcp'
-    elif 'tcpss' in path:
+    elif match2:
         json_results[key]['core_type'] = 'tcpss'
-    elif 'udp' in path:
+    elif match3:
         json_results[key]['core_type'] = 'udp'
-    elif 'zmq' in path:
+    elif match4:
         json_results[key]['core_type'] = 'zmq'
-    elif 'zmqss' in path:
+    elif match5:
         json_results[key]['core_type'] = 'zmqss'
     else:
         warn_str = 'Unable to find core type in {}; ' \
@@ -481,18 +486,29 @@ def _auto_run(args):
         (nothing)
     """
     json_results = {}
-    drs = []
+    file_list = []
     for root, dirs, files in os.walk(args.m_benchmark_results_dir):
-        for dr in dirs:
-            drs.append(os.path.join(os.sep, root, dr))
-    for d in drs:
-        file_list = create_file_list(d)
-#        print(file_list)
-        json_results.update(parse_files(file_list))
-        json_results.update(parse_and_add_benchmark_metadata(json_results))
+        for file in files:
+            if file != 'helics-broker-out.txt':
+                file_list.append(os.path.join(root, file))
+            else:
+                pass
+#    print(file_list)
+    d = co.defaultdict(dict)
+    for file in file_list:
+        json_results.update(parse_files(file))
+        json_results = (parse_and_add_benchmark_metadata(json_results))
+        d[file].update(json_results)
+#        jsons.append(json_results)
+        json_results = {}
+    
+#    for k, v in jsons:
+#        d[k].append(v)
+
+        
     if args.write_json_output:
         with open('multinode_bm_results.json', 'w') as outfile:
-            json.dump(json_results, outfile)
+            json.dump(d, outfile)
 
     # TDH (2019-12-19): Trouble-shooting function whose purpose you'll
     # never guess

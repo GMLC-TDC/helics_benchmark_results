@@ -17,7 +17,7 @@ import benchmark_postprocessing as bmpp
 ### into one meta-data frame.
 ### Creating benchmarks dataframe.
 
-def make_dataframe(json_results):
+def make_dataframe1(json_results):
     """This function creates a meta data frame to be used for 
     post-processing the Benchmark Results.
     
@@ -59,9 +59,8 @@ def make_dataframe(json_results):
     'EvCount', 
     'message_count', 
     'message_size'
-]
-    
-    indices1 = {c_i: i for i, c_i in enumerate(columns1)}
+    ]
+
     for f, f_dict in dct.items():
         for i, b_dict in enumerate(f_dict['benchmarks']):
             c_list1 = []
@@ -91,7 +90,6 @@ def make_dataframe(json_results):
         'num_sharing'
     ]
     
-    indices = {c_i: i for i, c_i in enumerate(columns2)}
     for f, f_dict in dct.items():
         for i, b_dict in enumerate(f_dict['caches']):
             ### If any of the caches dictionaries don't have a column in our columns list,
@@ -142,8 +140,8 @@ def make_dataframe(json_results):
     'load_avg', 
     'library_build_type',
     'run_id'
-]
-    indices3 = {c_i: i for i, c_i in enumerate(columns3)}
+    ]
+    
     for f, f_dict in dct.items():
         c_list3 = []
         for c in columns3:
@@ -174,15 +172,91 @@ def make_dataframe(json_results):
     return final_meta_bmk_df
 
 
+def make_dataframe2(json_results):
+    """This function creates a meta data frame to be used for 
+    post-processing the Benchmark Results.
+    
+    Args:
+        json_file (file): json file to be used for creating a dataframe
+        
+    Returns:
+        meta_df: a data frame of all benckmark information
+    """
+    #print(cache_df.head())
+    
+#    with open('bm_results.json', 'r') as f:
+#        dct3 = json.load(f)
+    # pprint(f_dict)
+    if isinstance(json_results, dict):
+        dct = json_results
+    else: 
+        with open(json_results, 'r') as f:
+            dct = json.load(f)
+    
+    ### Getting the general benchmark info and creating a data frame.
+    lists = []
+    columns = [
+    'filename', 
+    'path', 
+    'benchmark',
+    'helics_version_string', 
+    'helics_version', 
+    'zmq_version_string', 
+    'zmq_version', 
+    'compiler_info_string', 
+    'generator', 
+    'system', 
+    'system_version', 
+    'platform',
+    'core_type',
+    'cxx_compiler', 
+    'cxx_compiler_version',
+    'build_flags_string', 
+    'host_processor', 
+    'host_processor_string',
+    'run_id',
+    'elapsed_time',
+    'EvCount'
+    ]
+    
+    for f, f_dict in dct.items():
+        for d, d_dict in f_dict.items():
+            c_list = []
+            for c in columns:
+                ### If any of the identifier dictionaries don't have a column in our columns list,
+                ### then set the value to np.nan.
+                v = d_dict.get(c, np.nan)
+                ### Append to the list of np.nans.
+                c_list.append(v)
+            ### Append to lists with our list of np.nans, and columns with values
+            ### that belong to our columns list; in other words, if there IS a value
+            ### in 'date', append that to lists, along with c_list.
+            lists.append(np.concatenate([[f], c_list]))
+    info_df = pd.DataFrame(lists, columns=np.concatenate([['identifier_id'], columns]))
+    #print(info_df.columns)
+    #print(info_df.head())
+    
+    ### Concatenating all three data frames into one meta data frame
+    ### and sending to csv.
+    meta_bmk_df = reduce(lambda x, y: pd.merge(x, y, on='identifier_id', how='outer'), [info_df])
+    csv_path = os.path.join(os.getcwd(), 'multinode_bmk_meta_df.csv')
+    meta_bmk_df.to_csv(r'{}'.format(csv_path))
+    
+    ### Reading in the csv; seems unnecessary, but works due to
+    ### plotting difficulties.
+    final_meta_bmk_df = pd.read_csv(csv_path, index_col='Unnamed: 0', dtype={'platform': object})
+    #os.remove(csv_path)
+    
+    return final_meta_bmk_df
+
+
 ### Testing that my function works
-#def main():
-#    """THe main script that runs this package; mainly for testing 
-#    to make sure I created the above function like I wanted to.
-#    """
-#    json_file = 'bm_results.json'
-#    final_meta_bmk_df = make_dataframe(json_file)
-##    print(final_meta_bmk_df.columns)
-##    print(final_meta_bmk_df.head())
-##    print(final_meta_bmk_df.shape)
-#    
-#main()
+if __name__ == '__main__':
+    json_file1 = 'bm_results.json'
+    final_meta_bmk_df = make_dataframe1(json_file1)
+    
+    json_file2 = 'multinode_bm_results.json'
+    multi_bmk_df = make_dataframe2(json_file2)
+#    print(final_meta_bmk_df.columns)
+#    print(final_meta_bmk_df.head())
+#    print(final_meta_bmk_df.shape)
