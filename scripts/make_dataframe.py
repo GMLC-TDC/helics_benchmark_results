@@ -245,7 +245,7 @@ def make_dataframe2(json_results):
     ### Reading in the csv; seems unnecessary, but works due to
     ### plotting difficulties.
     final_meta_bmk_df = pd.read_csv(csv_path, index_col='Unnamed: 0', dtype={'platform': object})
-    #os.remove(csv_path)
+    os.remove(csv_path)
     
     return final_meta_bmk_df
 
