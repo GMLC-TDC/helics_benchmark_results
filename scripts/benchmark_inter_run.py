@@ -198,17 +198,20 @@ def _auto_run(args):
     file_list = bm_files
     json_results = bmpp.parse_files(file_list)
     json_results = bmpp.parse_and_add_benchmark_metadata(json_results)
-    meta_bmk_df = md.make_dataframe(json_results)
+    meta_bmk_df = md.make_dataframe1(json_results)
+    
     for run_id in args.run_id_list:
+        print('starting to make graphs for run_id: {}'.format(run_id))
         for core_type in args.core_type_list:
+            print('creating graph for core_type: {}'.format(core_type))
             make_inter_run_graphs(meta_bmk_df,
                                   run_id,
                                   args.bm_list,
                                   core_type,
                                   args.output_path)
-            birp.create_inter_run_id_report(args.output_path,
-                                            json_results,
-                                            run_id)
+        birp.create_inter_run_id_report(args.output_path,
+                                        json_results,
+                                        run_id)
 
 
 if __name__ == '__main__':
@@ -244,6 +247,7 @@ if __name__ == '__main__':
                         '--run_id_list',
                         nargs='?',
                         default=['bScQ6', 'Obg9g'])
+    args = parser.parse_args()
     parser.add_argument('-b',
                         '--bm_list',
                         nargs='?',
@@ -253,12 +257,15 @@ if __name__ == '__main__':
                         nargs='?',
                         default=core_type_list)
     args = parser.parse_args()
-    dir_name = 'inter_run_report'
+    
+#    dir_name_list = []
 #    for run_id in args.run_id_list:
-#        dir_name = dir_name + str(run_id) + '_'
-#        dir_name = dir_name + 'inter_run_report'
-
-    default_output_path = os.path.join(output_dir, dir_name)
+#        dir_name = '' + str(run_id) + '_report'
+#        dir_name_list.append(dir_name)
+#    default_output_path_list = [os.path.join(output_dir, d) for d in dir_name_list]
+#    print(default_output_path_list)
+#
+    default_output_path = os.path.join(output_dir, 'report')
     parser.add_argument('-o',
                         '--output_path',
                         nargs='?',
