@@ -400,12 +400,15 @@ def _auto_run(args):
     json_results = bmpp.parse_and_add_benchmark_metadata(json_results)
     meta_bmk_df = md.make_dataframe1(json_results)
     bm_list = find_common_bm_to_graph(json_results, run_id_dict)
-    for bm in bm_list:
-        make_cross_run_id_graphs(meta_bmk_df,
-                                 bm['bm_name'],
-                                 list(run_id_dict.keys()),
-                                 args.output_path,
-                                 args.comparison_parameter)
+    for p in parameter_list:
+        print('parameter: ', p)
+        for bm in bm_list:
+            print('making graphs for bm: ', bm)
+            make_cross_run_id_graphs(meta_bmk_df,
+                                     bm['bm_name'],
+                                     list(run_id_dict.keys()),
+                                     args.output_path,
+                                     p)
     criPDF.create_cross_run_id_report(json_results,
                                       list(run_id_dict.keys()),
                                       args.output_path,
@@ -445,10 +448,10 @@ if __name__ == '__main__':
                         '--run_id_list',
                         nargs='+',
                         default=['aUZF6', 'Zu60n'])
-    parser.add_argument('-p',
-                        '--comparison_parameter',
-                        nargs='?',
-                        default='mhz_per_cpu')
+#    parser.add_argument('-p',
+#                        '--comparison_parameter',
+#                        nargs='?',
+#                        default='mhz_per_cpu')
 
     # TDH (2019-12-27)
     # Building the output results directory name based on the run IDs
