@@ -371,8 +371,9 @@ def plot_msg_send_2(dataframe, run_id, output_path):
     """
     msg_ct_df = dataframe[(dataframe.run_id == '{}'.format(run_id)) & (dataframe.benchmark_type == 'full')]
     msg_ct_df = msg_ct_df[msg_ct_df.message_count == 1]
+    x_y_map = msg_ct_df.groupby('message_size')['real_time'].min().reset_index()
     if msg_ct_df.message_size.min() != 0:
-        msg_count = msg_ct_df.sort_values('message_size').hvplot.line(
+        msg_count = x_y_map.sort_values('message_size').hvplot.line(
             'message_size',
             'real_time',
             ylabel='real_time (ns)',
@@ -385,7 +386,7 @@ def plot_msg_send_2(dataframe, run_id, output_path):
             logy=True,
             fontsize={'title': 9, 'labels': 10, 'legend': 9, 'xticks': 10, 'yticks': 10})
     else:
-        msg_count = msg_ct_df.sort_values('message_size').hvplot.line(
+        msg_count = x_y_map.sort_values('message_size').hvplot.line(
             'message_size',
             'real_time',
             ylabel='real_time (ns)',
