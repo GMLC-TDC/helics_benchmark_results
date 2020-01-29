@@ -371,7 +371,7 @@ def plot_msg_send_2(dataframe, run_id, output_path):
     """
     msg_ct_df = dataframe[(dataframe.run_id == '{}'.format(run_id)) & (dataframe.benchmark_type == 'full')]
     msg_ct_df = msg_ct_df[msg_ct_df.message_count == 1]
-    x_y_map = msg_ct_df.groupby('message_size')['real_time'].min().reset_index()
+    x_y_map = msg_ct_df.groupby(['core_type', 'message_size'])['real_time'].min().reset_index()
     if msg_ct_df.message_size.min() != 0:
         msg_count = x_y_map.sort_values('message_size').hvplot.line(
             'message_size',
@@ -1497,7 +1497,7 @@ if __name__ == '__main__':
     # json_results = bmpp.parse_files(file_list)
     # json_results = bmpp.parse_and_add_benchmark_metadata(json_results)
     json_file = 'bm_results.json'
-    meta_bmk_df = md.make_dataframe(json_file)
+    meta_bmk_df = md.make_dataframe1(json_file)
     # print(meta_bmk_df.shape)
     meta_bmk_df.sort_values('federate_count').hvplot.line('federate_count', 'real_time')
 
