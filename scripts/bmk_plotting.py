@@ -1052,7 +1052,8 @@ def plot_msg_send_2_cr(dataframe, run_id_list, core_type, output_path, compariso
     for run_id in run_id_list:
         msg_ct_df = dataframe[(dataframe.core_type == '{}'.format(core_type)) & 
                 (dataframe.run_id == '{}'.format(run_id)) & (dataframe.benchmark_type == 'full') & (dataframe.message_count == 1)]
-        msg_count = msg_ct_df.sort_values('message_size').hvplot.line(
+        x_y_map = msg_ct_df.groupby('message_size')['real_time'].min().reset_index()
+        msg_count = x_y_map.sort_values('message_size').hvplot.line(
             'message_size',
             'real_time',
             ylabel='real_time (ns)',
@@ -1065,7 +1066,6 @@ def plot_msg_send_2_cr(dataframe, run_id_list, core_type, output_path, compariso
                         height=360, 
                         logx=True, 
                         logy=True, 
-                        legend_position='top_left',
                         fontsize={'title': 9.5, 'labels': 10, 'legend': 9, 'xticks': 10, 'yticks': 10})
     run_id_str = '_'.join(run_id_list)
     save_path = os.path.join(output_path, '{}_messageSend2_{}Core.png'.format(run_id_str, core_type))
