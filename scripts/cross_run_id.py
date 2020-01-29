@@ -398,7 +398,7 @@ def _auto_run(args):
     file_list = bm_files
     json_results = bmpp.parse_files(file_list)
     json_results = bmpp.parse_and_add_benchmark_metadata(json_results)
-    meta_bmk_df = md.make_dataframe(json_results)
+    meta_bmk_df = md.make_dataframe1(json_results)
     bm_list = find_common_bm_to_graph(json_results, run_id_dict)
     for bm in bm_list:
         make_cross_run_id_graphs(meta_bmk_df,

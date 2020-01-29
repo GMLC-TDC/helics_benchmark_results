@@ -1050,7 +1050,7 @@ def plot_msg_send_2_cr(dataframe, run_id_list, core_type, output_path, compariso
     run_id_list = run_id_list
     msg_cts = []
     for run_id in run_id_list:
-        msg_ct_df = dataframe[(dataframe.core_type == 'singleCore') & 
+        msg_ct_df = dataframe[(dataframe.core_type == '{}'.format(core_type)) & 
                 (dataframe.run_id == '{}'.format(run_id)) & (dataframe.benchmark_type == 'full') & (dataframe.message_count == 1)]
         msg_count = msg_ct_df.sort_values('message_size').hvplot.line(
             'message_size',
@@ -1092,7 +1092,7 @@ def plot_msg_send_3_cr(dataframe, run_id_list, core_type, output_path, compariso
     run_id_list = run_id_list
     msg_sizes = []
     for run_id in run_id_list:
-        msg_sz_df = dataframe[(dataframe.core_type == 'singleCore') & 
+        msg_sz_df = dataframe[(dataframe.core_type == '{}'.format(core_type)) & 
                 (dataframe.run_id == '{}'.format(run_id)) & (dataframe.benchmark_type == 'full') & (dataframe.message_size == 1)]
         msg_size = msg_sz_df.sort_values('message_count').hvplot.line(
             'message_count',
