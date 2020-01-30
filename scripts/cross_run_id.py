@@ -77,7 +77,7 @@ parameter_list = [
     'host_processor',
     'num_cpus',
     'mhz_per_cpu'
-]
+    ]
 
 
 def find_specific_run_id(benchmark_results_dir, run_id_list):
@@ -242,7 +242,7 @@ def make_cross_run_id_graphs(meta_bmk_df,
     we need to pass in the output path. Rather than having a legend
     that uses the run-ID for text (which would be technically correct
     but practically less useful), the user passes in the parameter
-    expected to be different across the run-IDs (comparison_parameter).
+    expected to be different across the run-IDs (comparison_parameter.
 
     It was found to be convenient to filter the full dataset prior to
     sending it to the graphing function to ensure only the intended data
@@ -288,12 +288,26 @@ def make_cross_run_id_graphs(meta_bmk_df,
         # TDH (2020-01-07): Extra work for this one as we want to iterate over only the federate_count values that are
         # in the messageLookupBenchmark
         meta_bmk_df = meta_bmk_df[meta_bmk_df.benchmark == 'messageLookupBenchmark']
-        fed_list = [i for i in meta_bmk_df.federate_count]
-        fed_list = [x for x in fed_list if not math.isnan(x)]
-        fed_list = list(set(fed_list))
-        for federate_count in fed_list:
+        # CGR (2020-01-30): Created separate plots that filter the data frame 
+        # for each of the federate_count in messageLookupBenchmark.
+        # fed_list = [i for i in meta_bmk_df.federate_count]
+        # fed_list = [x for x in fed_list if not math.isnan(x)]
+        # fed_list = list(set(fed_list))
+        # for federate_count in fed_list:
             #bmk_plotting.plot_msg_lookup_cr(meta_bmk_df, run_id_list, federate_count, output_path, comparison_parameter)
-            pass
+            # pass
+        bmk_plotting.plot_msg_lookup_1_cr(meta_bmk_df,
+                                          run_id_list,
+                                          output_path,
+                                          comparison_parameter)
+        bmk_plotting.plot_msg_lookup_2_cr(meta_bmk_df,
+                                          run_id_list,
+                                          output_path,
+                                          comparison_parameter)
+        bmk_plotting.plot_msg_lookup_3_cr(meta_bmk_df,
+                                          run_id_list,
+                                          output_path,
+                                          comparison_parameter)
     if bm == 'ringBenchmark':
         meta_bmk_df = meta_bmk_df[meta_bmk_df.benchmark == 'ringBenchmark']
         for core_type in meta_bmk_df.core_type.unique():
@@ -359,6 +373,12 @@ def make_cross_run_id_graphs(meta_bmk_df,
                                         comparison_parameter)
 
 
+#def gather_info(args):
+#    
+#    
+#    return run_id_dict, json_results, bm_list, meta_bmk_df
+
+
 def _auto_run(args):
     """This function executes when the script is called as a stand-alone
     executable. It is used both for development/testing as well as the
@@ -386,8 +406,6 @@ def _auto_run(args):
     Returns:
         (nothing)
     """
-
-
     run_id_dict = find_specific_run_id(args.benchmark_results_dir,
                                        args.run_id_list)
     create_output_path(args.output_path, args.delete_report)
@@ -400,15 +418,12 @@ def _auto_run(args):
     json_results = bmpp.parse_and_add_benchmark_metadata(json_results)
     meta_bmk_df = md.make_dataframe1(json_results)
     bm_list = find_common_bm_to_graph(json_results, run_id_dict)
-    for p in parameter_list:
-        print('parameter: ', p)
-        for bm in bm_list:
-            print('making graphs for bm: ', bm)
-            make_cross_run_id_graphs(meta_bmk_df,
-                                     bm['bm_name'],
-                                     list(run_id_dict.keys()),
-                                     args.output_path,
-                                     p)
+    for bm in bm_list:
+        make_cross_run_id_graphs(meta_bmk_df,
+                                 bm['bm_name'],
+                                 list(run_id_dict.keys()),
+                                 args.output_path,
+                                 args.comparison_parameter)
     criPDF.create_cross_run_id_report(json_results,
                                       list(run_id_dict.keys()),
                                       args.output_path,
@@ -448,21 +463,35 @@ if __name__ == '__main__':
                         '--run_id_list',
                         nargs='+',
                         default=['aUZF6', 'Zu60n'])
-#    parser.add_argument('-p',
-#                        '--comparison_parameter',
-#                        nargs='?',
-#                        default='mhz_per_cpu')
+    parameter_list = [
+    'date',
+    'helics_version',
+    'generator',
+    'system',
+    'system_version',
+    'platform',
+    'cxx_compiler',
+    'cxx_compiler_version',
+    'build_flags_string',
+    'host_name',
+    'host_processor',
+    'num_cpus',
+    'mhz_per_cpu'
+    ]
+    parser.add_argument('-p',
+                        '--comparison_parameter',
+                        nargs='?',
+                        default='host_name')
 
     # TDH (2019-12-27)
     # Building the output results directory name based on the run IDs
     # specified
     args = parser.parse_args()
-    dir_name = ''
+    d_name = ''
     for run_id in args.run_id_list:
-        dir_name = dir_name + str(run_id) + '_'
-    dir_name = dir_name + 'report'
-
-    default_output_path = os.path.join(output_dir,dir_name)
+        d_name = d_name + str(run_id) + '_'
+    dir_name = d_name + '{}_report'.format(args.comparison_parameter)
+    default_output_path = os.path.join(output_dir, dir_name)
     parser.add_argument('-o',
                         '--output_path',
                         nargs='?',
