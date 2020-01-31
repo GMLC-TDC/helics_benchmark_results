@@ -395,8 +395,8 @@ def _auto_run(args):
 
         '-l' or '--run_id_list' - Python list of run IDs to compare
 
-        '-p' or '--comparison_parameter' - Particular parameter that we
-        are interested in using for comparisons
+        '-p' or '--comparison_parameter_list' - Particular parameter list that 
+        we are interested in using for comparisons
 
         '-o' or '--output_path' - Path to location where output will be
         written
