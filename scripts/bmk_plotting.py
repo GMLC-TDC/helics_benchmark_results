@@ -371,8 +371,9 @@ def plot_msg_send_2(dataframe, run_id, output_path):
     """
     msg_ct_df = dataframe[(dataframe.run_id == '{}'.format(run_id)) & (dataframe.benchmark_type == 'full')]
     msg_ct_df = msg_ct_df[msg_ct_df.message_count == 1]
+    x_y_map = msg_ct_df.groupby(['core_type', 'message_size'])['real_time'].min().reset_index()
     if msg_ct_df.message_size.min() != 0:
-        msg_count = msg_ct_df.sort_values('message_size').hvplot.line(
+        msg_count = x_y_map.sort_values('message_size').hvplot.line(
             'message_size',
             'real_time',
             ylabel='real_time (ns)',
@@ -385,7 +386,7 @@ def plot_msg_send_2(dataframe, run_id, output_path):
             logy=True,
             fontsize={'title': 9, 'labels': 10, 'legend': 9, 'xticks': 10, 'yticks': 10})
     else:
-        msg_count = msg_ct_df.sort_values('message_size').hvplot.line(
+        msg_count = x_y_map.sort_values('message_size').hvplot.line(
             'message_size',
             'real_time',
             ylabel='real_time (ns)',
@@ -1050,9 +1051,10 @@ def plot_msg_send_2_cr(dataframe, run_id_list, core_type, output_path, compariso
     run_id_list = run_id_list
     msg_cts = []
     for run_id in run_id_list:
-        msg_ct_df = dataframe[(dataframe.core_type == 'singleCore') & 
+        msg_ct_df = dataframe[(dataframe.core_type == '{}'.format(core_type)) & 
                 (dataframe.run_id == '{}'.format(run_id)) & (dataframe.benchmark_type == 'full') & (dataframe.message_count == 1)]
-        msg_count = msg_ct_df.sort_values('message_size').hvplot.line(
+        x_y_map = msg_ct_df.groupby('message_size')['real_time'].min().reset_index()
+        msg_count = x_y_map.sort_values('message_size').hvplot.line(
             'message_size',
             'real_time',
             ylabel='real_time (ns)',
@@ -1065,7 +1067,6 @@ def plot_msg_send_2_cr(dataframe, run_id_list, core_type, output_path, compariso
                         height=360, 
                         logx=True, 
                         logy=True, 
-                        legend_position='top_left',
                         fontsize={'title': 9.5, 'labels': 10, 'legend': 9, 'xticks': 10, 'yticks': 10})
     run_id_str = '_'.join(run_id_list)
     save_path = os.path.join(output_path, '{}_messageSend2_{}Core.png'.format(run_id_str, core_type))
@@ -1092,7 +1093,7 @@ def plot_msg_send_3_cr(dataframe, run_id_list, core_type, output_path, compariso
     run_id_list = run_id_list
     msg_sizes = []
     for run_id in run_id_list:
-        msg_sz_df = dataframe[(dataframe.core_type == 'singleCore') & 
+        msg_sz_df = dataframe[(dataframe.core_type == '{}'.format(core_type)) & 
                 (dataframe.run_id == '{}'.format(run_id)) & (dataframe.benchmark_type == 'full') & (dataframe.message_size == 1)]
         msg_size = msg_sz_df.sort_values('message_count').hvplot.line(
             'message_count',
@@ -1463,7 +1464,7 @@ def plot_echo_vs_echo_c(dataframe1, dataframe2, run_id, core_type, output_path):
         'real_time',
         ylabel='real_time (ns)',
         #(range(0, (int(float(echo_df.federate_count.max()))+1), 1)),
-        title='timing vs echoBenchmark: federate_count vs real_time',
+        title='cEcho vs echoBenchmark: federate_count vs real_time',
         label='{}, run_id: {}, core_type: {}'.format(df1.benchmark.unique(), run_id, core_type),
         alpha=0.5)
     df2 = dataframe2[(dataframe2.core_type == '{}'.format(core_type)) & (
@@ -1496,7 +1497,7 @@ if __name__ == '__main__':
     # json_results = bmpp.parse_files(file_list)
     # json_results = bmpp.parse_and_add_benchmark_metadata(json_results)
     json_file = 'bm_results.json'
-    meta_bmk_df = md.make_dataframe(json_file)
+    meta_bmk_df = md.make_dataframe1(json_file)
     # print(meta_bmk_df.shape)
     meta_bmk_df.sort_values('federate_count').hvplot.line('federate_count', 'real_time')
 
@@ -1506,6 +1507,7 @@ if __name__ == '__main__':
     # echo_result = plot_echo_result(meta_bmk_df, 'r1Nr5')
     # message_lookup = plot_msg_lookup(meta_bmk_df, 'r1Nr5')
     # message_send_1 = plot_msg_send_1(meta_bmk_df, 'Md3vp')
+
     # output_path = os.path.join(os.getcwd())
     # message_send_3 = plot_msg_send_3_cr(meta_bmk_df, ['aUZF6', 'Zu60n'], 'inproc', output_path, 'mhz_per_cpu')
     # message_send_3

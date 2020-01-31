@@ -73,7 +73,7 @@ def find_specific_run_id(benchmark_results_dir, run_id_list):
     return run_id_dict
 
 
-def create_output_path(output_path, delete_existing_report):
+def create_output_path(output_path_list, delete_existing_report):
     """This function creates any output folders that are needed for
     storing the graphs and final PDF report. If specified, it will also
     delete the existing report folder
@@ -90,38 +90,39 @@ def create_output_path(output_path, delete_existing_report):
 
     # "head" will be the full path to and including "cross_case_comparison"
     # "tail" will be just the name of the report folder
-    head, tail = os.path.split(output_path)
-
-    # TDH (2020-01-14)
-    # If for some reason the parent folder that contains all the cross-
-    # run-ID comparisons does not exist it needs to be created. If it
-    # does exist we can just move on.
-    if os.path.exists(head):
-        pass
-    else:
-        try:
-            os.mkdir(head)
-        except OSError:
-            logging.error('Failed to create directory {}'.format(head))
-            print('Failed to create directory {}'.format(head))
-
-    # TDH (2020-01-14)
-    # Now working on creating the folder specific to the run IDs being
-    # compared.
-    if os.path.exists(output_path):
-        if delete_existing_report:
-            shutil.rmtree(output_path)
-    else:
-        try:
-            os.mkdir(output_path)
-        except OSError:
-            logging.error('Failed to create directory {}'.format(output_path))
+    for output in output_path_list:
+        head, tail = os.path.split(output)
+    
+        # TDH (2020-01-14)
+        # If for some reason the parent folder that contains all the cross-
+        # run-ID comparisons does not exist it needs to be created. If it
+        # does exist we can just move on.
+        if os.path.exists(head):
+            pass
+        else:
+            try:
+                os.mkdir(head)
+            except OSError:
+                logging.error('Failed to create directory {}'.format(head))
+                print('Failed to create directory {}'.format(head))
+    
+        # TDH (2020-01-14)
+        # Now working on creating the folder specific to the run IDs being
+        # compared.
+        if os.path.exists(output):
+            if delete_existing_report:
+                shutil.rmtree(output)
+        else:
+            try:
+                os.mkdir(output)
+            except OSError:
+                logging.error('Failed to create directory {}'.format(output))
 
 
 def make_inter_run_graphs(meta_bmk_df,
                           run_id,
                           bm_list,
-                          core_type_list,
+                          core_type,
                           output_path):
     """This function creates inter-run graphs of multiple benchmarks, for a
     given run_id.
@@ -141,22 +142,24 @@ def make_inter_run_graphs(meta_bmk_df,
         df1 = meta_bmk_df[meta_bmk_df.benchmark == 'echoBenchmark']
         df2 = meta_bmk_df[meta_bmk_df.benchmark == 'timingBenchmark']
         if run_id in list(df1.run_id.unique()) and run_id in list(df2.run_id.unique()):
-            bmk_plotting.plot_echo_vs_timing(df1, 
-                                             df2, 
-                                             run_id, 
-                                             core_type_list, 
-                                             output_path)
+            if core_type in list(df1.core_type.unique()) and core_type in list(df2.core_type.unique()):
+                bmk_plotting.plot_echo_vs_timing(df1, 
+                                                 df2, 
+                                                 run_id, 
+                                                 core_type, 
+                                                 output_path)
         else:
             pass
     if 'echoBenchmark' in bm_list and 'cEchoBenchmark' in bm_list:
         df1 = meta_bmk_df[meta_bmk_df.benchmark == 'echoBenchmark']
         df2 = meta_bmk_df[meta_bmk_df.benchmark == 'cEchoBenchmark']
         if run_id in list(df1.run_id.unique()) and run_id in list(df2.run_id.unique()):
-            bmk_plotting.plot_echo_vs_echo_c(df1, 
-                                             df2, 
-                                             run_id, 
-                                             core_type_list, 
-                                             output_path)
+            if core_type in list(df1.core_type.unique()) and core_type in list(df2.core_type.unique()):
+                bmk_plotting.plot_echo_vs_echo_c(df1, 
+                                                 df2, 
+                                                 run_id, 
+                                                 core_type, 
+                                                 output_path)
         else:
             pass
 
@@ -180,6 +183,9 @@ def _auto_run(args):
         plots.
         
         '-c' or '--core_type_list' - List of core_types for the graphs.
+        
+        '-o' or '--output_path_list' - List of output paths for each run_id to 
+        send the inter-run reports.
 
         '-d' or '--delete_all_reports' - "True" or "False" to indicate
         if existing reports should be over-written
@@ -188,7 +194,7 @@ def _auto_run(args):
     """
     run_id_dict = find_specific_run_id(args.benchmark_results_dir,
                                        args.run_id_list)
-    create_output_path(args.output_path, args.delete_report)
+    create_output_path(args.output_path_list, args.delete_report)
     file_list = []
     for run_id in run_id_dict:
         file_list.extend(run_id_dict[run_id]['files'])
@@ -196,17 +202,21 @@ def _auto_run(args):
     file_list = bm_files
     json_results = bmpp.parse_files(file_list)
     json_results = bmpp.parse_and_add_benchmark_metadata(json_results)
-    meta_bmk_df = md.make_dataframe(json_results)
-    for run_id in meta_bmk_df.run_id.unique():
+    meta_bmk_df = md.make_dataframe1(json_results)
+    counter = 0
+    for run_id in args.run_id_list:
+        print('starting to make graphs for run_id: {}'.format(run_id))
         for core_type in args.core_type_list:
+            print('creating graph for core_type: {}'.format(core_type))
             make_inter_run_graphs(meta_bmk_df,
                                   run_id,
                                   args.bm_list,
                                   core_type,
-                                  args.output_path)
-            birp.create_inter_run_id_report(args.output_path,
-                                            json_results,
-                                            run_id)
+                                  args.output_path_list[counter])
+        birp.create_inter_run_id_report(args.output_path_list[counter],
+                                        json_results,
+                                        run_id)
+        counter += 1
 
 
 if __name__ == '__main__':
@@ -232,15 +242,17 @@ if __name__ == '__main__':
     benchmark_results_dir = os.path.join(head,'benchmark_results')
     output_dir = os.path.join(head, 'inter_run_comparison')
     bm_list = ['echoBenchmark', 'cEchoBenchmark', 'timingBenchmark']
-    core_type_list = ['singleCore']
+    core_type_list = ['singleCore', 'inproc', 'zmq', 'zmqss', 'ipc',
+       'tcp', 'tcpss', 'udp']
     parser.add_argument('-r',
                         '--benchmark_results_dir',
                         nargs='?',
                         default=benchmark_results_dir)
     parser.add_argument('-l',
                         '--run_id_list',
-                        nargs='+',
-                        default=['bScQ6'])
+                        nargs='?',
+                        default=['bScQ6', 'Obg9g'])
+    args = parser.parse_args()
     parser.add_argument('-b',
                         '--bm_list',
                         nargs='?',
@@ -250,16 +262,16 @@ if __name__ == '__main__':
                         nargs='?',
                         default=core_type_list)
     args = parser.parse_args()
-    dir_name = ''
+    
+    dir_name_list = []
     for run_id in args.run_id_list:
-        dir_name = dir_name + str(run_id) + '_'
-    dir_name = dir_name + 'inter_run_report'
-
-    default_output_path = os.path.join(output_dir,dir_name)
+        dir_name = '' + str(run_id) + '_inter_run_report'
+        dir_name_list.append(dir_name)
+    default_output_path_list = [os.path.join(output_dir, d) for d in dir_name_list]
     parser.add_argument('-o',
-                        '--output_path',
+                        '--output_path_list',
                         nargs='?',
-                        default=default_output_path)
+                        default=default_output_path_list)
     parser.add_argument('-d',
                         '--delete_report',
                         nargs='?',
