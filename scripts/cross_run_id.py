@@ -408,7 +408,6 @@ def _auto_run(args):
     """
     run_id_dict = find_specific_run_id(args.benchmark_results_dir,
                                        args.run_id_list)
-    create_output_path(args.output_path, args.delete_report)
     file_list = []
     for run_id in run_id_dict:
         file_list.extend(run_id_dict[run_id]['files'])
@@ -418,16 +417,29 @@ def _auto_run(args):
     json_results = bmpp.parse_and_add_benchmark_metadata(json_results)
     meta_bmk_df = md.make_dataframe1(json_results)
     bm_list = find_common_bm_to_graph(json_results, run_id_dict)
-    for bm in bm_list:
-        make_cross_run_id_graphs(meta_bmk_df,
-                                 bm['bm_name'],
-                                 list(run_id_dict.keys()),
-                                 args.output_path,
-                                 args.comparison_parameter)
-    criPDF.create_cross_run_id_report(json_results,
-                                      list(run_id_dict.keys()),
-                                      args.output_path,
-                                      parameter_list)
+    valid_params = []
+    for p in args.comparison_parameter_list:
+        header, diff = criPDF.grab_header_metadata(json_results, 
+                                                   criPDF.get_run_id_keys(
+                                                           json_results, 
+                                                           args.run_id_list), 
+                                                   p)
+        if diff == True:
+            valid_params.append(p)
+    path = os.path.join(args.output_path)
+    for v in valid_params:
+        output_path = os.path.join(path, '{}'.format(v))
+        create_output_path(output_path, args.delete_report)
+        for bm in bm_list:
+            make_cross_run_id_graphs(meta_bmk_df,
+                                     bm['bm_name'],
+                                     list(run_id_dict.keys()),
+                                     output_path,
+                                     v)
+        criPDF.create_cross_run_id_report(json_results,
+                                          list(run_id_dict.keys()),
+                                          output_path,
+                                          parameter_list)
 
 
 
@@ -479,9 +491,9 @@ if __name__ == '__main__':
     'mhz_per_cpu'
     ]
     parser.add_argument('-p',
-                        '--comparison_parameter',
+                        '--comparison_parameter_list',
                         nargs='?',
-                        default='host_name')
+                        default=parameter_list)
 
     # TDH (2019-12-27)
     # Building the output results directory name based on the run IDs
@@ -490,7 +502,7 @@ if __name__ == '__main__':
     d_name = ''
     for run_id in args.run_id_list:
         d_name = d_name + str(run_id) + '_'
-    dir_name = d_name + '{}_report'.format(args.comparison_parameter)
+    dir_name = d_name + 'report'
     default_output_path = os.path.join(output_dir, dir_name)
     parser.add_argument('-o',
                         '--output_path',
