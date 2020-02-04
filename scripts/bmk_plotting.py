@@ -217,7 +217,7 @@ def plot_msg_lookup_1(dataframe, run_id, output_path):
             xlim=(2, inproc_df.interface_count.max()),
             ylim=(2, inproc_df.real_time.max()),
             fontsize={'title': 9, 'labels': 10, 'legend': 9, 'xticks': 10, 'yticks': 10})
-    save_path = os.path.join(output_path, '{}_messageLookup.png'.format(run_id))
+    save_path = os.path.join(output_path, '{}_messageLookup1.png'.format(run_id))
     hvplot.save(msg_lookup, save_path)
     return msg_lookup
 
@@ -262,7 +262,7 @@ def plot_msg_lookup_2(dataframe, run_id, output_path):
             xlim=(2, inproc_df.interface_count.max()),
             ylim=(2, inproc_df.real_time.max()),
             fontsize={'title': 9, 'labels': 10, 'legend': 9, 'xticks': 10, 'yticks': 10})
-    save_path = os.path.join(output_path, '{}_messageLookup.png'.format(run_id))
+    save_path = os.path.join(output_path, '{}_messageLookup2.png'.format(run_id))
     hvplot.save(msg_lookup, save_path)
     return msg_lookup
 
@@ -307,7 +307,7 @@ def plot_msg_lookup_3(dataframe, run_id, output_path):
             xlim=(2, inproc_df.interface_count.max()),
             ylim=(2, inproc_df.real_time.max()),
             fontsize={'title': 9, 'labels': 10, 'legend': 9, 'xticks': 10, 'yticks': 10})
-    save_path = os.path.join(output_path, '{}_messageLookup.png'.format(run_id))
+    save_path = os.path.join(output_path, '{}_messageLookup3.png'.format(run_id))
     hvplot.save(msg_lookup, save_path)
     return msg_lookup
 
@@ -904,7 +904,7 @@ def plot_msg_lookup_1_cr(dataframe, run_id_list, output_path, comparison_paramet
                         legend_position='top_left',
                         fontsize={'title': 9.5, 'labels': 10, 'legend': 9, 'xticks': 10, 'yticks': 10})
     run_id_str = '_'.join(run_id_list)
-    save_path = os.path.join(output_path, '{}_messageLookup.png'.format(run_id_str))
+    save_path = os.path.join(output_path, '{}_messageLookup1.png'.format(run_id_str))
     hvplot.save(msg_lookup_plot, save_path)
     return msg_lookup_plot
 
@@ -945,7 +945,7 @@ def plot_msg_lookup_2_cr(dataframe, run_id_list, output_path, comparison_paramet
                         legend_position='top_left',
                         fontsize={'title': 9.5, 'labels': 10, 'legend': 9, 'xticks': 10, 'yticks': 10})
     run_id_str = '_'.join(run_id_list)
-    save_path = os.path.join(output_path, '{}_messageLookup.png'.format(run_id_str))
+    save_path = os.path.join(output_path, '{}_messageLookup2.png'.format(run_id_str))
     hvplot.save(msg_lookup_plot, save_path)
     return msg_lookup_plot
 
@@ -986,7 +986,7 @@ def plot_msg_lookup_3_cr(dataframe, run_id_list, output_path, comparison_paramet
                         legend_position='bottom_right',
                         fontsize={'title': 9.5, 'labels': 10, 'legend': 9, 'xticks': 10, 'yticks': 10})
     run_id_str = '_'.join(run_id_list)
-    save_path = os.path.join(output_path, '{}__messageLookup.png'.format(run_id_str))
+    save_path = os.path.join(output_path, '{}__messageLookup3.png'.format(run_id_str))
     hvplot.save(msg_lookup_plot, save_path)
     return msg_lookup_plot
 
