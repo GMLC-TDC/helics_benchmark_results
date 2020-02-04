@@ -1492,6 +1492,64 @@ def plot_echo_vs_echo_c(dataframe1, dataframe2, run_id, core_type, output_path):
     return echo_vs_echo_c
 
 
+#-----------------------------------------------------------------------#
+#------------------  Multinode benchmark result plots ------------------#
+
+
+def plot_counts_per_second(multi_bmk_df, benchmark, output_path):
+    """This function creates a multi-line graph of EvCount counts per second
+    for each node_id, N1-N8.
+    
+    Args:
+        multi_bmk_df (obj): Pandas dataframe that containes all the data
+        for multinode_benchmark_results.
+        benchmark (str): Name of multinode benchmark.
+        output_path (path): Path to send the graphs.
+    
+    Returns:
+        cps (graph): A holoviews abject of the graphed data.
+    """ 
+    gpd = multi_bmk_df.groupby(['node_id', 'core_type'])['EvCount'].sum() / multi_bmk_df.groupby(['node_id', 'core_type'])['elapsed_time'].mean()
+    gpd.name = 'counts_per_second'
+    cps = gpd.reset_index().sort_values('node_id').hvplot.line('node_id', 
+                                                 'counts_per_second', 
+                                                 title='Multi-machine PholdFederate benchmark: counts/s vs node_id',
+                                                 by='core_type',
+                                                 alpha=0.5).opts(width=590,
+                                                                 height=360,
+                                                                 logy=True, 
+                                                                 fontsize={'title': 9.5, 'labels': 10, 'legend': 9, 'xticks': 10, 'yticks': 10})
+    save_path = os.path.join(output_path, '{}_counts_per_second.png'.format(benchmark))
+    hvplot.save(cps, save_path)
+    return cps
+    
+    
+def plot_total_seconds(multi_bmk_df, benchmark, output_path):
+    """This function creates a multi-line graph of EvCount counts per second
+    for each node_id, N1-N8.
+    
+    Args:
+        multi_bmk_df (obj): Pandas dataframe that containes all the data
+        for multinode_benchmark_results.
+        benchmark (str): Name of multinode benchmark.
+        output_path (path): Path to send the graphs.
+    
+    Returns:
+        time (graph): A holoviews abject of the graphed data.
+    """
+    gpd = multi_bmk_df.groupby(['node_id', 'core_type'])['elapsed_time'].sum()
+    time = gpd.reset_index().sort_values('node_id').hvplot.line('node_id', 
+                                                  'elapsed_time', 
+                                                  title='Multi-machine PholdFederate benchmark: total elapsed_time vs node_id',
+                                                  by='core_type',
+                                                  alpha=0.5).opts(width=590,
+                                                                  height=360,
+                                                                  logy=True, 
+                                                                  fontsize={'title': 9.5, 'labels': 10, 'legend': 9, 'xticks': 10, 'yticks': 10})
+    save_path = os.path.join(output_path, '{}_total_time.png'.format(benchmark))
+    hvplot.save(time, save_path)
+    return time  
+
 if __name__ == '__main__':
     # file_list = bmpp.get_benchmark_files('C:\Users\barn553\Documents\GitHub\helics_benchmark_results\benchmark_results\2019-11-28')
     # json_results = bmpp.parse_files(file_list)
@@ -1509,6 +1567,10 @@ if __name__ == '__main__':
     # message_send_1 = plot_msg_send_1(meta_bmk_df, 'Md3vp')
 
     # output_path = os.path.join(os.getcwd())
+    # multi_bmk_df = md.make_dataframe2('multinode_bm_results.json')
+    # benchmark = 'PholdFederate'
+    # plot = plot_counts_per_second(multi_bmk_df, benchmark, output_path)
+    # plot
     # message_send_3 = plot_msg_send_3_cr(meta_bmk_df, ['aUZF6', 'Zu60n'], 'inproc', output_path, 'mhz_per_cpu')
     # message_send_3
     # message_send_3 = plot_msg_send_3(meta_bmk_df, 'r1Nr5')

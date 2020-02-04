@@ -197,7 +197,8 @@ def make_dataframe2(json_results):
     lists = []
     columns = [
     'filename', 
-    'path', 
+    'path',
+    'node_id',
     'benchmark',
     'helics_version_string', 
     'helics_version', 

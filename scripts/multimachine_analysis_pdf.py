@@ -11,6 +11,10 @@ import pprint
 import os
 import sys
 from fpdf import FPDF
+import collections as co
+import bmk_plotting
+import multinode_postprocessing as mpp
+import make_dataframe as md
 
 # Installation of FPDF is: python -m pip install fpdf
 
@@ -71,88 +75,87 @@ def grab_header_metadata(json_results):
     # can grab the metadata I need from any of the results files
     # corresponding to the indicated run.
     key_list = list(json_results.keys())
-    for key in key_list:
-        pass
     header_metadata_str = ''
-    if 'benchmark' in json_results[key]:
-        header_metadata_str = header_metadata_str + '{:<25}{}\n\n'.format(
-            'BENCHMARK:',
-            json_results[key]['benchmark'])
-    else:
-        logging.warning('"benchmark" not found in metadata.')
-
-#    if 'run_id' in json_results[key]:
-#        header_metadata_str = header_metadata_str + '{:<25}{}\n'.format(
-#            'run ID:',
-#            json_results[key]['run_id'])
-#    else:
-#        logging.warning('"run_id" not found in metadata.')
-
-    if 'helics_version' in json_results[key]:
-        header_metadata_str = header_metadata_str + '{:<25}{}\n'.format(
-            'HELICS version:',
-            json_results[key]['helics_version'])
-    else:
-        logging.warning('"helics_version" not found in metadata.')
-
-    if 'generator' in json_results[key]:
-        header_metadata_str = header_metadata_str + '{:<25}{}\n'.format(
-            'generator:',
-            json_results[key]['generator'])
-    else:
-        logging.warning('"generator" not found in metadata.')
-
-    if 'system' in json_results[key]:
-        header_metadata_str = header_metadata_str + '{:<25}{}\n'.format(
-            'system:',
-            json_results[key]['system'])
-    else:
-        logging.warning('"system" not found in metadata.')
-
-    if 'system_version' in json_results[key]:
-        header_metadata_str = header_metadata_str + '{:<25}{}\n'.format(
-            'system version:',
-            json_results[key]['system_version'])
-    else:
-        logging.warning('"system_version" not found in metadata.')
-
-    if 'platform' in json_results[key]:
-        header_metadata_str = header_metadata_str + '{:<25}{}\n'.format(
-            'platform:',
-            json_results[key]['platform'])
-    else:
-        logging.warning('"platform" not found in metadata.')
-
-    if 'cxx_compiler' in json_results[key]:
-        header_metadata_str = header_metadata_str + '{:<25}{}\n'.format(
-            'C++ compiler:',
-            json_results[key]['cxx_compiler'])
-    else:
-        logging.warning('"cxx_compiler" not found in metadata.')
-
-    if 'cxx_compiler_version' in json_results[key]:
-        header_metadata_str = header_metadata_str + '{:<25}{}\n'.format(
-            'C++ compiler version:',
-            json_results[key]['cxx_compiler_version'])
-    else:
-        logging.warning('"cxx_compiler_version" not found in metadata.')
-
-    if 'build_flags_string' in json_results[key]:
-        header_metadata_str = header_metadata_str + '{:<25}{}\n'.format(
-            'compiler string:',
-            json_results[key]['build_flags_string'])
-    else:
-        logging.warning('"build_flags_string" not found in metadata.')
-
-    if 'host_processor' in json_results[key]:
-        header_metadata_str = header_metadata_str + '{:<25}{}\n'.format(
-            'host processor:',
-            json_results[key]['host_processor'])
-    else:
-        logging.warning('"host_processor" not found in metadata.')
-
-    header_metadata_str = header_metadata_str + '\n' + '\n'
-    logging.info('Final metadata header:\n{}'.format(header_metadata_str))
+    for key in key_list:
+        if 'benchmark' in json_results[key]:
+            header_metadata_str = header_metadata_str + '{:<25}{}\n\n'.format(
+                'BENCHMARK:',
+                json_results[key]['benchmark'])
+        else:
+            logging.warning('"benchmark" not found in metadata.')
+    
+    #    if 'run_id' in json_results[key]:
+    #        header_metadata_str = header_metadata_str + '{:<25}{}\n'.format(
+    #            'run ID:',
+    #            json_results[key]['run_id'])
+    #    else:
+    #        logging.warning('"run_id" not found in metadata.')
+    
+        if 'helics_version' in json_results[key]:
+            header_metadata_str = header_metadata_str + '{:<25}{}\n'.format(
+                'HELICS version:',
+                json_results[key]['helics_version'])
+        else:
+            logging.warning('"helics_version" not found in metadata.')
+    
+        if 'generator' in json_results[key]:
+            header_metadata_str = header_metadata_str + '{:<25}{}\n'.format(
+                'generator:',
+                json_results[key]['generator'])
+        else:
+            logging.warning('"generator" not found in metadata.')
+    
+        if 'system' in json_results[key]:
+            header_metadata_str = header_metadata_str + '{:<25}{}\n'.format(
+                'system:',
+                json_results[key]['system'])
+        else:
+            logging.warning('"system" not found in metadata.')
+    
+        if 'system_version' in json_results[key]:
+            header_metadata_str = header_metadata_str + '{:<25}{}\n'.format(
+                'system version:',
+                json_results[key]['system_version'])
+        else:
+            logging.warning('"system_version" not found in metadata.')
+    
+        if 'platform' in json_results[key]:
+            header_metadata_str = header_metadata_str + '{:<25}{}\n'.format(
+                'platform:',
+                json_results[key]['platform'])
+        else:
+            logging.warning('"platform" not found in metadata.')
+    
+        if 'cxx_compiler' in json_results[key]:
+            header_metadata_str = header_metadata_str + '{:<25}{}\n'.format(
+                'C++ compiler:',
+                json_results[key]['cxx_compiler'])
+        else:
+            logging.warning('"cxx_compiler" not found in metadata.')
+    
+        if 'cxx_compiler_version' in json_results[key]:
+            header_metadata_str = header_metadata_str + '{:<25}{}\n'.format(
+                'C++ compiler version:',
+                json_results[key]['cxx_compiler_version'])
+        else:
+            logging.warning('"cxx_compiler_version" not found in metadata.')
+    
+        if 'build_flags_string' in json_results[key]:
+            header_metadata_str = header_metadata_str + '{:<25}{}\n'.format(
+                'compiler string:',
+                json_results[key]['build_flags_string'])
+        else:
+            logging.warning('"build_flags_string" not found in metadata.')
+    
+        if 'host_processor' in json_results[key]:
+            header_metadata_str = header_metadata_str + '{:<25}{}\n'.format(
+                'host processor:',
+                json_results[key]['host_processor'])
+        else:
+            logging.warning('"host_processor" not found in metadata.')
+    
+        header_metadata_str = header_metadata_str + '\n' + '\n'
+        logging.info('Final metadata header:\n{}'.format(header_metadata_str))
     return header_metadata_str
 
 
@@ -185,6 +188,25 @@ def add_benchmark_graphs(pdf, output_path):
     return pdf
 
 
+def make_multinode_graphs(multi_bmk_df, output_path):
+    """This function creates the graphs for multinode_benchmark
+    _results data and sends them to the output_path
+    
+    Args:
+        multi_bmk_df (obj): Pandas dataframe that contains all multinode
+        benchmark results data.
+        output_path (path: Path to send graphs.
+    Returns:
+        (null)
+    """
+    if 'PholdFederate' in list(multi_bmk_df.benchmark.unique()):
+        benchmark = 'PholdFederate'
+        bmk_plotting.plot_counts_per_second(multi_bmk_df, benchmark, output_path)
+        bmk_plotting.plot_total_seconds(multi_bmk_df, benchmark, output_path)
+    else:
+        pass
+
+
 def _auto_run(args):
     """This function executes when the script is called as a stand-alone
     executable. It is used both for development/testing as well as the
@@ -209,27 +231,21 @@ def _auto_run(args):
     # replicates the functionality of "standard_analysis.py" so that
     # json_results can be created and used to create the graph image
     # files.
-    import multinode_postprocessing as mpp
-    json_results = mpp.parse_files(file)
-    json_results = mpp.parse_and_add_benchmark_metadata(json_results)
-    # TDH (2020-01-13) - Create unqiue reports for each run ID found.
-    # Even a single results directory can contain results from multiple
-    # run IDs.
-    for run_id in run_id_list:
-        output_path = os.path.join(
-            args.benchmark_results_dir,
-            '{}_report'.format(run_id))
-
-        # TDH: Thorough attempt to safely create the results directory and
-        # provide good error reporting if something went wrong.
-        try:
-            os.mkdir(output_path)
-        except OSError:
-            logging.error('Failed to create directory for report at {}'.format(
-                output_path))
-        create_standard_analysis_report(output_path,
-                                        json_results,
-                                        run_id)
+    
+    
+    json_results = {}
+    d = co.defaultdict(dict)
+    file = args.default_file
+    json_results.update(mpp.parse_files(file))
+    json_results = (mpp.parse_and_add_benchmark_metadata(json_results))
+    d[file].update(json_results)
+#        jsons.append(json_results)
+#        json_results = {}
+    multi_bmk_df = md.make_dataframe2(args.json_file)
+    output_path = os.path.join(args.multinode_benchmark_results_dir)
+    make_multinode_graphs(multi_bmk_df, output_path)
+    create_multimachine_report(output_path,
+                               json_results)
 
 
 
@@ -239,7 +255,7 @@ if __name__ == '__main__':
     # be sent to the console as well. Thus, when bad things happen
     # the user will get an error message in both places which,
     # hopefully, will aid in trouble-shooting.
-    fileHandle = logging.FileHandler("standard_analysis_PDF.log", mode='w')
+    fileHandle = logging.FileHandler("multinode_analysis_PDF.log", mode='w')
     fileHandle.setLevel(logging.DEBUG)
     streamHandle = logging.StreamHandler(sys.stdout)
     streamHandle.setLevel(logging.ERROR)
@@ -248,10 +264,22 @@ if __name__ == '__main__':
 
     # TDH (2020-01-13): Standard argument parsing
     parser = argparse.ArgumentParser(description='Generate PDF report.')
-    parser.add_argument('-r',
-                        '--benchmark_results_dir',
+    parser.add_argument('-m',
+                        '--multinode_benchmark_results_dir',
                         nargs='?',
-                        default='../benchmark_results/2019-11-27')
+                        default='../multinode_benchmark_results/2020-01-08')
+    parser.add_argument('-j',
+                        '--json_file',
+                        nargs='?',
+                        default='multinode_bm_results.json')
+    args = parser.parse_args()
+    default_dir = os.path.join(args.multinode_benchmark_results_dir,
+                               'PholdFederate-tcp-N1-job-4286628')
+    default_file = os.path.join(default_dir, 'PholdFederate-0-out.txt')
+    parser.add_argument('-f', 
+                        '--default_file',
+                        nargs='?',
+                        default=default_file)
     args = parser.parse_args()
     # TDH (2020-01-13) - Create the PDF for a standard analysis
     _auto_run(args)
