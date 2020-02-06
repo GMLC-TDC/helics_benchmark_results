@@ -143,11 +143,39 @@ def make_inter_run_graphs(meta_bmk_df,
         df2 = meta_bmk_df[meta_bmk_df.benchmark == 'timingBenchmark']
         if run_id in list(df1.run_id.unique()) and run_id in list(df2.run_id.unique()):
             if core_type in list(df1.core_type.unique()) and core_type in list(df2.core_type.unique()):
-                bmk_plotting.plot_echo_vs_timing(df1, 
-                                                 df2, 
-                                                 run_id, 
-                                                 core_type, 
-                                                 output_path)
+                x_axis = 'federate_count'
+                y_axis = 'real_time'
+                bm_name1 = 'echo'
+                bm_name2 = 'timing'
+                metric_bool1 = False
+                metric_bool2 = True
+                metric_type = 'seconds_per_count'
+                title_part = ''
+                bmk_plotting.ir_plot(df1,
+                                     df2, 
+                                     x_axis,
+                                     y_axis,
+                                     bm_name1,
+                                     bm_name2,
+                                     metric_bool1,
+                                     metric_type,
+                                     title_part,
+                                     run_id,
+                                     core_type,
+                                     output_path)
+                bmk_plotting.ir_plot(df1,
+                                     df2, 
+                                     x_axis,
+                                     y_axis,
+                                     bm_name1,
+                                     bm_name2,
+                                     metric_bool2,
+                                     metric_type,
+                                     title_part,
+                                     run_id,
+                                     core_type,
+                                     output_path)
+
         else:
             pass
     if 'echoBenchmark' in bm_list and 'cEchoBenchmark' in bm_list:
@@ -155,11 +183,39 @@ def make_inter_run_graphs(meta_bmk_df,
         df2 = meta_bmk_df[meta_bmk_df.benchmark == 'cEchoBenchmark']
         if run_id in list(df1.run_id.unique()) and run_id in list(df2.run_id.unique()):
             if core_type in list(df1.core_type.unique()) and core_type in list(df2.core_type.unique()):
-                bmk_plotting.plot_echo_vs_echo_c(df1, 
-                                                 df2, 
-                                                 run_id, 
-                                                 core_type, 
-                                                 output_path)
+                x_axis = 'federate_count'
+                y_axis = 'real_time'
+                bm_name1 = 'echo'
+                bm_name2 = 'cEcho'
+                metric_bool1 = False
+                metric_bool2 = True
+                metric_type = 'seconds_per_count'
+                title_part = ''
+                bmk_plotting.ir_plot(df1,
+                                     df2, 
+                                     x_axis,
+                                     y_axis,
+                                     bm_name1,
+                                     bm_name2,
+                                     metric_bool1,
+                                     metric_type,
+                                     title_part,
+                                     run_id,
+                                     core_type,
+                                     output_path)
+                bmk_plotting.ir_plot(df1,
+                                     df2, 
+                                     x_axis,
+                                     y_axis,
+                                     bm_name1,
+                                     bm_name2,
+                                     metric_bool2,
+                                     metric_type,
+                                     title_part,
+                                     run_id,
+                                     core_type,
+                                     output_path)
+
         else:
             pass
 
@@ -205,9 +261,9 @@ def _auto_run(args):
     meta_bmk_df = md.make_dataframe1(json_results)
     counter = 0
     for run_id in args.run_id_list:
-        print('starting to make graphs for run_id: {}'.format(run_id))
+#        print('starting to make graphs for run_id: {}'.format(run_id))
         for core_type in args.core_type_list:
-            print('creating graph for core_type: {}'.format(core_type))
+#            print('creating graph for core_type: {}'.format(core_type))
             make_inter_run_graphs(meta_bmk_df,
                                   run_id,
                                   args.bm_list,

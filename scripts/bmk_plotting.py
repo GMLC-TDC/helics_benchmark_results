@@ -753,6 +753,152 @@ def plot_timing_cr(dataframe, run_id_list, core_type, output_path, comparison_pa
 
 #-----------------------------------------------------------------------#
 #------------------  Cross-benchmark comparison plots ------------------#
+def ir_plot(dataframe1, dataframe2, x_axis, y_axis, bm_name1, bm_name2, metric_bool, metric_type, title_part, run_id, core_type, output_path):
+    """This function creates a graph that compares different benchmark results
+    data for a single run_id and core_type.
+    
+    Args:
+        dataframe1 (obj): First dataframe filtered to a specific benchmark.
+        dataframe2 (obj): Second dataframe filtered to another benchmark; the 
+        graph will compare both dataframes' data.
+        x_axis (str): x-axis data from the dataframe object that should be 
+        given to the hvplot.line() function.
+        y_axis (str): y-axis data from the dataframe object that should be
+        given to the hvplot.line() function.
+        bm_name1 (str): Specific benchmark's name to be added to the 
+        title of the graph.
+        bm_name2 (str): Specific benchmark's name to be added to the 
+        title of the graph.
+        metric_bool (bool):  If a metric plot is needed (such as counts per
+        second), then this is True, and it will have a corresponding
+        metric_type; otherwise, it will be False.
+        metric_type (str): A type of metric (if it exists) to make a plot for
+        bm_name (str): Specific benchmark's name to be added to the 
+        title of the graph.
+        title_part (str): Part of the title that has specified information
+        in it and will be added to the 'title' keyword argument. 
+        run_id (str): 5 character unique identifier for the run-ID.
+        core_type (str): Specific core_type to plot.
+        output_path (path): Path to send the graphs.
+    """
+    if metric_bool == True:
+        if metric_type == 'seconds_per_count' or metric_type == 'spc':
+            df1 = dataframe1[(dataframe1.run_id == '{}'.format(run_id)) &
+                             (dataframe1.core_type == '{}'.format(core_type))]
+            df2 = dataframe2[(dataframe2.run_id == '{}'.format(run_id)) &
+                             (dataframe2.core_type == '{}'.format(core_type))]
+            
+            gpd1 = df1.groupby('{}'.format(x_axis))['{}'.format(y_axis)].sum()\
+                / df1.groupby('{}'.format(x_axis))['{}'.format(x_axis)].sum()
+            gpd1.name = 'seconds_per_count'
+            gpd2 = df2.groupby('{}'.format(x_axis))['{}'.format(y_axis)].sum()\
+                / df2.groupby('{}'.format(x_axis))['{}'.format(x_axis)].sum()
+            gpd2.name = 'seconds_per_count'
+            
+            plot1 = gpd1.reset_index().sort_values('{}'.format(x_axis)).hvplot.line(
+                    '{}'.format(x_axis), 
+                    'seconds_per_count', 
+                    title='{} v {} {}: {} vs {}'.format(
+                            bm_name1,
+                            bm_name2,
+                            title_part,
+                            x_axis,
+                            'seconds_per_count'),
+                    label='{}, run_id: {}, core_type: {}'.format(
+                            df1.benchmark.unique(),
+                            run_id,
+                            core_type),
+                    alpha=0.5)
+            plot2 = gpd2.reset_index().sort_values('{}'.format(x_axis)).hvplot.line(
+                    '{}'.format(x_axis), 
+                    'seconds_per_count', 
+                    title='{} v {} {}: {} vs {}'.format(
+                            bm_name1,
+                            bm_name2,
+                            title_part,
+                            x_axis,
+                            'seconds_per_count'),
+                    label='{}, run_id: {}, core_type: {}'.format(
+                            df2.benchmark.unique(),
+                            run_id,
+                            core_type),
+                    alpha=0.5)
+            core_type_str = ''.join(core_type)
+            save_path = os.path.join(output_path, '{}_{}_vs_{}_{}Core{}.png'.format(
+                    run_id, 
+                    bm_name1, 
+                    bm_name2, 
+                    core_type_str,
+                    metric_type))
+                    
+        elif metric_type == 'average':
+            pass
+        elif metric_type == 'total':
+            pass
+        elif metric_type == 'max':
+            pass
+        elif metric_type == 'min':
+            pass
+        else:
+            pass
+    else:
+        df1 = dataframe1[(dataframe1.run_id == '{}'.format(run_id)) &
+                         (dataframe1.core_type == '{}'.format(core_type))]
+        df2 = dataframe2[(dataframe2.run_id == '{}'.format(run_id)) &
+                         (dataframe2.core_type == '{}'.format(core_type))]
+        plot1 = df1.sort_values('{}'.format(x_axis)).hvplot.line(
+                '{}'.format(x_axis), 
+                '{}'.format(y_axis),
+                ylabel='{} (s)'.format(y_axis),
+                title='{} v {} {}: {} vs {}'.format(
+                        bm_name1,
+                        bm_name2,
+                        title_part,
+                        x_axis,
+                        y_axis),
+                label='{}, run_id: {}, core_type: {}'.format(
+                        df1.benchmark.unique(),
+                        run_id,
+                        core_type),
+                alpha=0.5)
+        plot2 = df2.sort_values('{}'.format(x_axis)).hvplot.line(
+                '{}'.format(x_axis), 
+                '{}'.format(y_axis),
+                ylabel='{} (s)'.format(y_axis),
+                title='{} v {} {}: {} vs {}'.format(
+                        bm_name1,
+                        bm_name2,
+                        title_part,
+                        x_axis,
+                        y_axis),
+                label='{}, run_id: {}, core_type: {}'.format(
+                        df2.benchmark.unique(),
+                        run_id,
+                        core_type),
+                alpha=0.5)
+        core_type_str = ''.join(core_type)
+        save_path = os.path.join(output_path, '{}_{}_vs_{}_{}Core.png'.format(
+                run_id, 
+                bm_name1, 
+                bm_name2, 
+                core_type_str))
+    plots = [plot1, plot2]
+    plot = (reduce((lambda x, y: x*y), plots)).opts(
+                            width=590, 
+                            height=360,
+                            logx=True,
+                            logy=True,
+                            legend_position='top_left',
+                            fontsize={'title': 9.5, 
+                                      'labels': 10, 
+                                      'legend': 9, 
+                                      'xticks': 10, 
+                                      'yticks': 10})
+    
+    hvplot.save(plot, save_path)
+    return plot
+
+
 def plot_echo_vs_timing(dataframe1, dataframe2, run_id, core_type, output_path):
     """This function creates a multi-line graph for the benchmarks,
     echoBenchmark and timingBenchmark, of 'federate_count' versus 'real_time' 
