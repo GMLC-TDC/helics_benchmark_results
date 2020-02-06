@@ -203,7 +203,21 @@ def make_SA_graphs(meta_bmk_df, bm, run_id, output_path):
     if bm['bm_name'] == 'echoBenchmark':
         meta_bmk_df = meta_bmk_df[meta_bmk_df.benchmark == 'echoBenchmark']
         if bm['bm_type'] == 'full':
-            bmk_plotting.plot_echo_result(meta_bmk_df, run_id, output_path)
+            meta_bmk_df = meta_bmk_df[(meta_bmk_df.benchmark_type == 'full') &
+                                      (meta_bmk_df.run_id == '{}'.format(run_id))]
+            x_axis = 'federate_count'
+            y_axis = 'real_time'
+            bm_name = 'echoBenchmark'
+            by_bool = True
+            by_name = 'core_type'
+            bmk_plotting.sa_plot(meta_bmk_df, 
+                                 x_axis,
+                                 y_axis,
+                                 bm_name,
+                                 by_bool,
+                                 by_name,
+                                 run_id, 
+                                 output_path)
         else:
             pass
     if bm['bm_name'] == 'cEchoBenchmark':
