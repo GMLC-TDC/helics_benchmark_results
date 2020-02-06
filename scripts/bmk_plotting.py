@@ -31,718 +31,81 @@ hv.extension('bokeh', 'matplotlib', width=100)
 # print(meta_bmk_df.shape)
 # meta_bmk_df.sort_values('federate_count').hvplot.line('federate_count', 'real_time')
 
-
-def plot_echo_msg(dataframe, run_id, output_path):
-    """This function creates a multi-line graph for the benchmark,
-    echoMessageBenchmark, of 'federate_count' versus 'real_time' and
-    it is organized by 'core_type'.
-
+def sa_plot(dataframe, x_axis, y_axis, bm_name, by_bool, by_name, run_id, output_path):
+    """This function creates a plot of the specified data and sends it
+    to the output_path.
+    
     Args:
-        dataframe (obj): A data frame created by make_dataframe.
-        run_id (str): Specific run_id used to create this plot.
-        output_path (path): Location to send the graph.
+        dataframe (obj): Pandas dataframe object of specified data to be
+        plotted.
+        x_axis (str): x-axis data from the dataframe object that should be 
+        given to the hvplot.line() function.
+        y_axis (str): y-axis data from the dataframe object that should be
+        given to the hvplot.line() function.
+        bm_name (str): Specific benchmark's name to be added to the 
+        title of the graph.
+        by_bool (bool): If True, the keyword argument 'by' will be added
+        to the hvplot.line() function along with the by_name parameter; 
+        otherwise, 'by' will not be added.
+        by_name (str): Parameter for the 'by' keyword argument in the
+        hvplot.line() function; only add if by_bool equals True.
+        run_id (str): 5 character unique identifier for the run-ID.
+        output_path (path): Path where graphs should be saved.
+    
     Returns:
-        echo_msg (obj): IPython holoviews plot of the data.
+        plot (obj): Holoviews object of the graphed data
+        
     """
-    echo_df = dataframe[(dataframe.run_id == '{}'.format(run_id)) & (dataframe.benchmark_type == 'full')]
-    if echo_df.federate_count.min() != 0:
-        echo_msg = echo_df.sort_values('federate_count').hvplot.line(
-            'federate_count',
-            'real_time',
-            ylabel='real_time (ns)',
-            #(range(0, (int(float(echo_df.federate_count.max()))+1), 4)),
-            title='run_id {} echoMessageBenchmark: federate_count vs real_time'.format(run_id),
-            by='core_type',
-            alpha=0.5).opts(
-            width=600,
-            height=360,
-            logx=True,
-            logy=True,
-            fontsize={'title': 9.5, 'labels': 10, 'legend': 9, 'xticks': 10, 'yticks': 10})
+    if by_bool == True:
+        dataframe = dataframe.groupby(
+                ['{}'.format(by_name), 
+                 '{}'.format(x_axis)])['{}'.format(y_axis)].min().reset_index()
+        plot = dataframe.sort_values('{}'.format(x_axis)).hvplot.line(
+                '{}'.format(x_axis), 
+                '{}'.format(y_axis),
+                ylabel='{} (s)'.format(y_axis),
+                title='run_id {} {}: {} vs {}'.format(
+                        run_id,
+                        bm_name, 
+                        x_axis, 
+                        y_axis),
+                by='{}'.format(by_name),
+                alpha=0.5).opts(
+                        width=590,
+                        height=360,
+                        logx=True,
+                        logy=True,
+                        fontsize={'title': 9.5, 
+                                  'labels': 10, 
+                                  'legend': 9, 
+                                  'xticks': 10, 
+                                  'yticks': 10})
     else:
-        echo_msg = echo_df.sort_values('federate_count').hvplot.line(
-            'federate_count',
-            'real_time',
-            ylabel='real_time (ns)',
-            #(range(0, (int(float(echo_df.federate_count.max()))+1), 4)),
-            title='run_id {} echoMessageBenchmark: federate_count vs real_time'.format(run_id),
-            by='core_type',
-            alpha=0.5).opts(
-            width=600,
-            height=360,
-            logx=True,
-            logy=True,
-            xlim=(2, echo_df.federate_count.max()),
-            ylim=(2, echo_df.real_time),
-            fontsize={'title': 9.5, 'labels': 10, 'legend': 9, 'xticks': 10, 'yticks': 10})
-    save_path = os.path.join(output_path, '{}_echoMessage.png'.format(run_id))
-    hvplot.save(echo_msg, save_path)
-    return echo_msg
+        dataframe = dataframe.groupby(
+                '{}'.format(x_axis))['{}'.format(y_axis)].min().reset_index()
+        plot = dataframe.sort_values('{}'.format(x_axis)).hvplot.line(
+                '{}'.format(x_axis), 
+                '{}'.format(y_axis),
+                ylabel='{} (s)'.format(y_axis),
+                title='run_id {} {}: {} vs {}'.format(
+                        run_id,
+                        bm_name, 
+                        x_axis, 
+                        y_axis),
+                alpha=0.5).opts(
+                        width=590,
+                        height=360,
+                        logx=True,
+                        logy=True,
+                        fontsize={'title': 9.5, 
+                                  'labels': 10, 
+                                  'legend': 9, 
+                                  'xticks': 10, 
+                                  'yticks': 10})
+    save_path = os.path.join(output_path, '{}_{}.png'.format(run_id, bm_name))
+    hvplot.save(plot, save_path)
+    return plot
 
-
-def plot_echo_result(dataframe, run_id, output_path):
-    """This function creates a multi-line graph for the benchmark,
-    echoBenchmark, of 'federate_count' versus 'real_time' and
-    it is organized by 'core_type'.
-
-    Args:
-        dataframe (obj): A data frame created by make_dataframe.
-        run_id (str): Specific run_id used to create this plot.
-        output_path (path): Location to send the graph.
-    Returns:
-        echo_res (obj): IPython holoviews plot of the data.
-    """
-    echo_df = dataframe[(dataframe.run_id == '{}'.format(run_id)) & (dataframe.benchmark_type == 'full')]
-    if echo_df.federate_count.min() != 0:
-        echo_res = echo_df.sort_values('federate_count').hvplot.line(
-            'federate_count',
-            'real_time',
-            ylabel='real_time (ns)',
-            #(range(0, (int(float(echo_df.federate_count.max()))+1), 1)),
-            title='run_id {} echoBenchmark: federate_count vs real_time'.format(run_id),
-            by='core_type',
-            alpha=0.5).opts(
-            width=600,
-            height=360,
-            logx=True,
-            logy=True,
-            fontsize={'title': 9.5, 'labels': 10, 'legend': 9, 'xticks': 10, 'yticks': 10})
-    else:
-        echo_res = echo_df.sort_values('federate_count').hvplot.line(
-            'federate_count',
-            'real_time',
-            ylabel='real_time (ns)',
-            #(range(0, (int(float(echo_df.federate_count.max()))+1), 1)),
-            title='run_id {} echoBenchmark: federate_count vs real_time'.format(run_id),
-            by='core_type',
-            alpha=0.5).opts(
-            width=600,
-            height=360,
-            logx=True,
-            logy=True,
-            xlim=(2, echo_df.federate_count.max()),
-            ylim=(2, echo_df.real_time.max()),
-            fontsize={'title': 9.5, 'labels': 10, 'legend': 9, 'xticks': 10, 'yticks': 10})
-    save_path = os.path.join(output_path, '{}_echoResult.png'.format(run_id))
-    hvplot.save(echo_res, save_path)
-    return echo_res
-
-
-def plot_echo_c(dataframe, run_id, output_path):
-    """This function creates a multi-line graph for the benchmark,
-    cEchoBenchmark, of 'federate_count' versus 'real_time' and
-    it is organized by 'core_type'.
-
-    Args:
-        dataframe (obj): A data frame created by make_dataframe.
-        run_id (str): Specific run_id used to create this plot.
-        output_path (path): Location to send the graph.
-    Returns:
-        echo_c_res (obj): IPython holoviews plot of the data.
-    """
-    echo_c = dataframe[(dataframe.run_id == '{}'.format(run_id)) & (dataframe.benchmark_type == 'full')]
-    if echo_c.federate_count.min() != 0:
-        echo_c_res = echo_c.sort_values('federate_count').hvplot.line(
-            'federate_count',
-            'real_time',
-            ylabel='real_time (ns)',
-            #(range(0, (int(float(echo_df.federate_count.max()))+1), 1)),
-            title='run_id {} cEchoBenchmark: federate_count vs real_time'.format(run_id),
-            by='core_type',
-            alpha=0.5).opts(
-            width=600,
-            height=360,
-            logx=True,
-            logy=True,
-            fontsize={'title': 9.5, 'labels': 10, 'legend': 9, 'xticks': 10, 'yticks': 10})
-    else:
-        echo_c_res = echo_c.sort_values('federate_count').hvplot.line(
-            'federate_count',
-            'real_time',
-            ylabel='real_time (ns)',
-            #(range(0, (int(float(echo_df.federate_count.max()))+1), 1)),
-            title='run_id {} cEchoBenchmark: federate_count vs real_time'.format(run_id),
-            by='core_type',
-            alpha=0.5).opts(
-            width=600,
-            height=360,
-            logx=True,
-            logy=True,
-            xlim=(2, echo_c.federate_count.max()),
-            ylim=(2, echo_c.real_time.max()),
-            fontsize={'title': 9.5, 'labels': 10, 'legend': 9, 'xticks': 10, 'yticks': 10})
-    save_path = os.path.join(output_path, '{}_echo_cResult.png'.format(run_id))
-    hvplot.save(echo_c_res, save_path)
-    return echo_c_res
-
-
-def plot_msg_lookup_1(dataframe, run_id, output_path):
-    """This function creates a multi-line graph for the benchmark,
-    messageLookupBenchmark, of 'federate_count' versus 'real_time' and
-    it is organized by a single 'core_type': 'inproc'.
-
-    Args:
-        dataframe (obj): A data frame created by make_dataframe.
-        run_id (str): Specific run_id used to create this plot.
-        output_path (path): Location to send the graph.
-    Returns:
-        msg_lookup (obj): IPython holoviews plot of the data.
-    """
-    inproc_df = dataframe[dataframe.core_type == 'inproc']
-    inproc_df = inproc_df[(inproc_df.run_id == '{}'.format(run_id)) & (inproc_df.benchmark_type == 'full')]
-    inproc_df = inproc_df[inproc_df.federate_count == 2]
-    if inproc_df.interface_count.min() != 0:
-        msg_lookup = inproc_df.sort_values('interface_count').hvplot.line(
-            'interface_count',
-            'real_time',
-            ylabel='real_time (ns)',
-            title='run_id {} messageLookupBenchmark: interface_count vs real_time'.format(run_id),
-            alpha=0.5).opts(
-            width=600,
-            height=360,
-            logx=True,
-            logy=True,
-            fontsize={'title': 9, 'labels': 10, 'legend': 9, 'xticks': 10, 'yticks': 10})
-    else:
-        msg_lookup = inproc_df.sort_values('interface_count').hvplot.line(
-            'interface_count',
-            'real_time',
-            ylabel='real_time (ns)',
-            title='run_id {} messageLookupBenchmark: interface_count vs real_time'.format(run_id),
-            alpha=0.5).opts(
-            width=600,
-            height=360,
-            logx=True,
-            logy=True,
-            xlim=(2, inproc_df.interface_count.max()),
-            ylim=(2, inproc_df.real_time.max()),
-            fontsize={'title': 9, 'labels': 10, 'legend': 9, 'xticks': 10, 'yticks': 10})
-    save_path = os.path.join(output_path, '{}_messageLookup1.png'.format(run_id))
-    hvplot.save(msg_lookup, save_path)
-    return msg_lookup
-
-def plot_msg_lookup_2(dataframe, run_id, output_path):
-    """This function creates a multi-line graph for the benchmark,
-    messageLookupBenchmark, of 'federate_count' versus 'real_time' and
-    it is organized by a single 'core_type': 'inproc'.
-
-    Args:
-        dataframe (obj): A data frame created by make_dataframe.
-        run_id (str): Specific run_id used to create this plot.
-        output_path (path): Location to send the graph.
-    Returns:
-        msg_lookup (obj): IPython holoviews plot of the data.
-    """
-    inproc_df = dataframe[dataframe.core_type == 'inproc']
-    inproc_df = inproc_df[(inproc_df.run_id == '{}'.format(run_id)) & (inproc_df.benchmark_type == 'full')]
-    inproc_df = inproc_df[inproc_df.federate_count == 8]
-    if inproc_df.interface_count.min() != 0:
-        msg_lookup = inproc_df.sort_values('interface_count').hvplot.line(
-            'interface_count',
-            'real_time',
-            ylabel='real_time (ns)',
-            title='run_id {} messageLookupBenchmark: interface_count vs real_time'.format(run_id),
-            alpha=0.5).opts(
-            width=600,
-            height=360,
-            logx=True,
-            logy=True,
-            fontsize={'title': 9, 'labels': 10, 'legend': 9, 'xticks': 10, 'yticks': 10})
-    else:
-        msg_lookup = inproc_df.sort_values('interface_count').hvplot.line(
-            'interface_count',
-            'real_time',
-            ylabel='real_time (ns)',
-            title='run_id {} messageLookupBenchmark: interface_count vs real_time'.format(run_id),
-            alpha=0.5).opts(
-            width=600,
-            height=360,
-            logx=True,
-            logy=True,
-            xlim=(2, inproc_df.interface_count.max()),
-            ylim=(2, inproc_df.real_time.max()),
-            fontsize={'title': 9, 'labels': 10, 'legend': 9, 'xticks': 10, 'yticks': 10})
-    save_path = os.path.join(output_path, '{}_messageLookup2.png'.format(run_id))
-    hvplot.save(msg_lookup, save_path)
-    return msg_lookup
-
-def plot_msg_lookup_3(dataframe, run_id, output_path):
-    """This function creates a multi-line graph for the benchmark,
-    messageLookupBenchmark, of 'federate_count' versus 'real_time' and
-    it is organized by a single 'core_type': 'inproc'.
-
-    Args:
-        dataframe (obj): A data frame created by make_dataframe.
-        run_id (str): Specific run_id used to create this plot.
-        output_path (path): Location to send the graph.
-    Returns:
-        msg_lookup (obj): IPython holoviews plot of the data.
-    """
-    inproc_df = dataframe[dataframe.core_type == 'inproc']
-    inproc_df = inproc_df[(inproc_df.run_id == '{}'.format(run_id)) & (inproc_df.benchmark_type == 'full')]
-    inproc_df = inproc_df[inproc_df.federate_count == 64]
-    if inproc_df.interface_count.min() != 0:
-        msg_lookup = inproc_df.sort_values('interface_count').hvplot.line(
-            'interface_count',
-            'real_time',
-            ylabel='real_time (ns)',
-            title='run_id {} messageLookupBenchmark: interface_count vs real_time'.format(run_id),
-            alpha=0.5).opts(
-            width=600,
-            height=360,
-            logx=True,
-            logy=True,
-            fontsize={'title': 9, 'labels': 10, 'legend': 9, 'xticks': 10, 'yticks': 10})
-    else:
-        msg_lookup = inproc_df.sort_values('interface_count').hvplot.line(
-            'interface_count',
-            'real_time',
-            ylabel='real_time (ns)',
-            title='run_id {} messageLookupBenchmark: interface_count vs real_time'.format(run_id),
-            alpha=0.5).opts(
-            width=590,
-            height=360,
-            logx=True,
-            logy=True,
-            xlim=(2, inproc_df.interface_count.max()),
-            ylim=(2, inproc_df.real_time.max()),
-            fontsize={'title': 9, 'labels': 10, 'legend': 9, 'xticks': 10, 'yticks': 10})
-    save_path = os.path.join(output_path, '{}_messageLookup3.png'.format(run_id))
-    hvplot.save(msg_lookup, save_path)
-    return msg_lookup
-
-
-def plot_msg_send_1(dataframe, run_id, output_path):
-    """This function creates a multi-line graph for the benchmark,
-    messageSendBenchmark, of 'message_size' versus 'real_time' and
-    it is organized by a single 'core_type': 'singleCore'.
-
-    Args:
-        dataframe (obj): A data frame created by make_dataframe.
-        run_id (str): Specific run_id used to create this plot.
-        output_path (path): Location to send the graph.
-    Returns:
-        msg_send (obj): IPython holoviews plot of the data.
-    """
-    msg_snd_df = dataframe[dataframe.core_type == 'singleCore']
-    msg_snd_df = msg_snd_df[(msg_snd_df.run_id == '{}'.format(run_id)) & (msg_snd_df.benchmark_type == 'full')]
-    if msg_snd_df.message_size.min() != 0:
-        msg_send = msg_snd_df.sort_values('message_size').hvplot.line(
-            'message_size',
-            'real_time',
-            ylabel='real_time (ns)',
-            title='run_id {} messageSendBenchmark, core_type {}: message_size vs real_time'.format(run_id, 'singleCore'),
-            alpha=0.5).opts(
-            width=600,
-            height=360,
-            logx=True,
-            logy=True,
-            fontsize={'title': 9, 'labels': 10, 'legend': 9, 'xticks': 10, 'yticks': 10})
-    else:
-        msg_send = msg_snd_df.sort_values('message_size').hvplot.line(
-            'message_size',
-            'real_time',
-            ylabel='real_time (ns)',
-            title='run_id {} messageSendBenchmark, core_type {}: message_size vs real_time'.format(run_id, 'singleCore'),
-            alpha=0.5).opts(
-            width=580,
-            height=360,
-            logx=True,
-            logy=True,
-            xlim=(2, msg_snd_df.message_size.max()),
-            ylim=(2, msg_snd_df.real_time.max()),
-            fontsize={'title': 9, 'labels': 10, 'legend': 9, 'xticks': 10, 'yticks': 10})
-    save_path = os.path.join(output_path, '{}_messageSend1.png'.format(run_id))
-    hvplot.save(msg_send, save_path)
-    return msg_send
-
-
-def plot_msg_send_2(dataframe, run_id, output_path):
-    """This function creates a multi-line graph for the benchmark,
-    messageSendBenchmark, of 'message_size' versus 'real_time' and
-    it is organized by 'core_type' and 'message_count'= 1.
-
-    Args:
-        dataframe (obj): A data frame created by make_dataframe.
-        run_id (str): Specific run_id used to create this plot.
-        output_path (path): Location to send the graph.
-    Returns:
-        msg_count (obj): IPython holoviews plot of the data.
-    """
-    msg_ct_df = dataframe[(dataframe.run_id == '{}'.format(run_id)) & (dataframe.benchmark_type == 'full')]
-    msg_ct_df = msg_ct_df[msg_ct_df.message_count == 1]
-    x_y_map = msg_ct_df.groupby(['core_type', 'message_size'])['real_time'].min().reset_index()
-    if msg_ct_df.message_size.min() != 0:
-        msg_count = x_y_map.sort_values('message_size').hvplot.line(
-            'message_size',
-            'real_time',
-            ylabel='real_time (ns)',
-            title='run_id {} messageSendBenchmark, message_count = 1: message_size vs real_time'.format(run_id),
-            by='core_type',
-            alpha=0.5).opts(
-            width=600,
-            height=360,
-            logx=True,
-            logy=True,
-            fontsize={'title': 9, 'labels': 10, 'legend': 9, 'xticks': 10, 'yticks': 10})
-    else:
-        msg_count = x_y_map.sort_values('message_size').hvplot.line(
-            'message_size',
-            'real_time',
-            ylabel='real_time (ns)',
-            title='run_id {} messageSendBenchmark, message_count = 1: message_size vs real_time'.format(run_id),
-            by='core_type',
-            alpha=0.5).opts(
-            width=600,
-            height=360,
-            logx=True,
-            logy=True,
-            xlim=(2, msg_ct_df.message_size.max()),
-            ylim=(2, msg_ct_df.real_time.max()),
-            fontsize={'title': 9, 'labels': 10, 'legend': 9, 'xticks': 10, 'yticks': 10})
-    save_path = os.path.join(output_path, '{}_messageSend2.png'.format(run_id))
-    hvplot.save(msg_count, save_path)
-    return msg_count
-
-
-def plot_msg_send_3(dataframe, run_id, output_path):
-    """This function creates a multi-line graph for the benchmark,
-    messageSendBenchmark, of 'message_count' versus 'real_time' and
-    it is organized by 'core_type' and 'message_size'= 1.
-
-    Args:
-        dataframe (obj): A data frame created by make_dataframe.
-        run_id (str): Specific run_id used to create this plot.
-        output_path (path): Location to send the graph.
-    Returns:
-        msg_size (obj): IPython holoviews plot of the data.
-    """
-    msg_sz_df = dataframe[dataframe.message_size == 1]
-    msg_sz_df = msg_sz_df[(msg_sz_df.run_id == '{}'.format(run_id)) & (msg_sz_df.benchmark_type == 'full')]
-    if msg_sz_df.message_count.min() != 0:
-        msg_size = msg_sz_df.sort_values('message_count').hvplot.line(
-            'message_count',
-            'real_time',
-            ylabel='real_time (ns)',
-            title='run_id {} messageSendBenchmark, message_size = 1: message_count vs real_time'.format(run_id),
-            by='core_type',
-            alpha=0.5).opts(
-            width=600,
-            height=360,
-            logx=True,
-            logy=True,
-            fontsize={'title': 9, 'labels': 10, 'legend': 9, 'xticks': 10, 'yticks': 10})
-    else:
-        msg_size = msg_sz_df.sort_values('message_count').hvplot.line(
-            'message_count',
-            'real_time',
-            ylabel='real_time (ns)',
-            title='run_id {} messageSendBenchmark, message_size = 1: message_count vs real_time'.format(run_id),
-            by='core_type',
-            alpha=0.5).opts(
-            width=600,
-            height=360,
-            logx=True,
-            logy=True,
-            xlim=(2, msg_sz_df.message_count.max()),
-            ylim=(2, msg_sz_df.real_time.max()),
-            fontsize={'title': 9, 'labels': 10, 'legend': 9, 'xticks': 10, 'yticks': 10})
-    save_path = os.path.join(output_path, '{}_messageSend3.png'.format(run_id))
-    hvplot.save(msg_size, save_path)
-    return msg_size
-
-
-def plot_phold(dataframe, run_id, output_path):
-    """This function creates a multi-line graph for the benchmark,
-    pholdBenchmark, of 'federate_count' versus 'real_time' and
-    it is organized by 'core_type'.
-
-    Args:
-        dataframe (obj): A data frame created by make_dataframe.
-        run_id (str): Specific run_id used to create this plot.
-        output_path (path): Location to send the graph.
-    Returns:
-        phold (obj): IPython holoviews plot of the data.
-    """
-    phold_df = dataframe[(dataframe.run_id == '{}'.format(run_id)) & (dataframe.benchmark_type == 'full')]
-    if phold_df.federate_count.min() != 0:
-        phold = phold_df.sort_values('federate_count').hvplot.line(
-            'federate_count',
-            'real_time',
-            ylabel='real_time (ns)',
-            #(range(0, (int(float(phold_df.federate_count.max()))+1), 5)),
-            title='run_id {} pholdBenchmark: federate_count vs real_time'.format(run_id),
-            by='core_type',
-            alpha=0.5).opts(
-            width=600,
-            height=360,
-            logx=True,
-            logy=True,
-            fontsize={'title': 9.5, 'labels': 10, 'legend': 9, 'xticks': 10, 'yticks': 10})
-    else:
-        phold = phold_df.sort_values('federate_count').hvplot.line(
-            'federate_count',
-            'real_time',
-            ylabel='real_time (ns)',
-            #(range(0, (int(float(phold_df.federate_count.max()))+1), 5)),
-            title='run_id {} pholdBenchmark: federate_count vs real_time'.format(run_id),
-            by='core_type',
-            alpha=0.5).opts(
-            width=600,
-            height=360,
-            logx=True,
-            logy=True,
-            xlim=(2, phold_df.federate_count.max()),
-            ylim=(2, phold_df.real_time.max()),
-            fontsize={'title': 9.5, 'labels': 10, 'legend': 9, 'xticks': 10, 'yticks': 10})
-    save_path = os.path.join(output_path, '{}_pHold.png'.format(run_id))
-    hvplot.save(phold, save_path)
-    return phold
-
-
-def plot_ring(dataframe, run_id, output_path):
-    """This function creates a multi-line graph for the benchmark,
-    ringBenchmark, of 'federate_count' versus 'real_time' and
-    it is organized by 'core_type'.
-
-    Args:
-        dataframe (obj): A data frame created by make_dataframe.
-        run_id (str): Specific run_id used to create this plot.
-        output_path (path): Location to send the graph.
-    Returns:
-        ring (obj): IPython holoviews plot of the data.
-    """
-    ring_df = dataframe[(dataframe.run_id == '{}'.format(run_id)) & (dataframe.benchmark_type == 'full')]
-    if ring_df.federate_count.min() != 0:
-        ring = ring_df.sort_values('federate_count').hvplot.line(
-            'federate_count',
-            'real_time',
-            ylabel='real_time (ns)',
-            #(range(0, (int(float(ring_df.federate_count.max()))+2), 1)),
-            title='run_id {} ringBenchmark: federate_count vs real_time'.format(run_id),
-            by='core_type',
-            alpha=0.5).opts(
-            width=600,
-            height=360,
-            logx=True,
-            logy=True,
-            fontsize={'title': 9.5, 'labels': 10, 'legend': 9, 'xticks': 10, 'yticks': 10})
-    else:
-        ring = ring_df.sort_values('federate_count').hvplot.line(
-            'federate_count',
-            'real_time',
-            ylabel='real_time (ns)',
-            #(range(0, (int(float(ring_df.federate_count.max()))+2), 1)),
-            title='run_id {} ringBenchmark: federate_count vs real_time'.format(run_id),
-            by='core_type',
-            alpha=0.5).opts(
-            width=600,
-            height=360,
-            logx=True,
-            logy=True,
-            xlim=(2, ring_df.federate_count.max()),
-            ylim=(2, ring_df.real_time.max()),
-            fontsize={'title': 9.5, 'labels': 10, 'legend': 9, 'xticks': 10, 'yticks': 10})
-    save_path = os.path.join(output_path, '{}_ring.png'.format(run_id))
-    hvplot.save(ring, save_path)
-    return ring
-
-
-def plot_filter(dataframe, run_id, output_path):
-    """This function creates a multi-line graph for the benchmark,
-    filterBenchmark, of 'federate_count' versus 'real_time' and
-    it is organized by 'core_type': 'singleCore'.
-
-    Args:
-        dataframe (obj): A data frame created by make_dataframe.
-        run_id (str): Specific run_id used to create this plot.
-        output_path (path): Location to send the graph.
-    Returns:
-        filtr (obj): IPython holoviews plot of the data.
-    """
-    filter_df = dataframe[dataframe.core_type == 'singleCore']
-    filter_df = filter_df[(filter_df.run_id == '{}'.format(run_id)) & (filter_df.benchmark_type == 'full')]
-    if filter_df.federate_count.min() != 0:
-        filtr = filter_df.sort_values('federate_count').hvplot.line(
-            'federate_count',
-            'real_time',
-            ylabel='real_time (ns)',
-            #(range(0, (int(float(filter_df.federate_count.max()))+1), 2)),
-            title='run_id {} filterBenchmark, core_type {}: federate_count vs real_time'.format(run_id, 'singleCore'),
-            by='filter_location',
-            alpha=0.5).opts(
-            width=600,
-            height=360,
-            logx=True,
-            logy=True,
-            fontsize={'title': 9.5, 'labels': 10, 'legend': 9, 'xticks': 10, 'yticks': 10})
-    else:
-        filtr = filter_df.sort_values('federate_count').hvplot.line(
-            'federate_count',
-            'real_time',
-            ylabel='real_time (ns)',
-            #(range(0, (int(float(filter_df.federate_count.max()))+1), 2)),
-            title='run_id {} filterBenchmark, core_type {}: federate_count vs real_time'.format(run_id, 'singleCore'),
-            by='filter_location',
-            alpha=0.5).opts(
-            width=600,
-            height=360,
-            logx=True,
-            logy=True,
-            xlim=(2, filter_df.federate_count.max()),
-            ylim=(2, filter_df.real_time.max()),
-            fontsize={'title': 9.5, 'labels': 10, 'legend': 9, 'xticks': 10, 'yticks': 10})
-    save_path = os.path.join(output_path, '{}_filter.png'.format(run_id))
-    hvplot.save(filtr, save_path)
-    return filtr
-
-
-def plot_src(dataframe, run_id, output_path):
-    """This function creates a multi-line graph for the benchmark,
-    filterBenchmark, of 'federate_count' versus 'real_time' and
-    it is organized by 'core_type' and 'filter_location' = 'source'.
-
-    Args:
-        dataframe (obj): A data frame created by make_dataframe.
-        run_id (str): Specific run_id used to create this plot.
-        output_path (path): Location to send the graph.
-    Returns:
-        source (obj): IPython holoviews plot of the data.
-    """
-    filter_df = dataframe[dataframe.filter_location == 'source']
-    filter_df = filter_df[(filter_df.run_id == '{}'.format(run_id)) & (filter_df.benchmark_type == 'full')]
-    if filter_df.federate_count.min() != 0:
-        source = filter_df.sort_values('federate_count').hvplot.line(
-            'federate_count',
-            'real_time',
-            ylabel='real_time (ns)',
-            #(range(0, (int(float(filter_df.federate_count.max()))+4), 4)),
-            title='run_id {} filterBenchmark, filter_location {}: federate_count vs real_time'.format(run_id, 'source'),
-            by='core_type',
-            alpha=0.5).opts(
-            width=600,
-            height=360,
-            logx=True,
-            logy=True,
-            fontsize={'title': 9.5, 'labels': 10, 'legend': 9, 'xticks': 10, 'yticks': 10})
-    else:
-        source = filter_df.sort_values('federate_count').hvplot.line(
-            'federate_count',
-            'real_time',
-            ylabel='real_time (ns)',
-            #(range(0, (int(float(filter_df.federate_count.max()))+4), 4)),
-            title='run_id {} filterBenchmark, filter_location {}: federate_count vs real_time'.format(run_id, 'source'),
-            by='core_type',
-            alpha=0.5).opts(
-            width=600,
-            height=360,
-            logx=True,
-            logy=True,
-            xlim=(2, filter_df.federate_count.max()),
-            ylim=(2, filter_df.real_time.max()),
-            fontsize={'title': 9.5, 'labels': 10, 'legend': 9, 'xticks': 10, 'yticks': 10})
-    save_path = os.path.join(output_path, '{}_source.png'.format(run_id))
-    hvplot.save(source, save_path)
-    return source
-
-
-def plot_dest(dataframe, run_id, output_path):
-    """This function creates a multi-line graph for the benchmark,
-    filterBenchmark, of 'federate_count' versus 'real_time' and
-    it is organized by 'core_type' and 'filter_location' = 'destination'.
-
-    Args:
-        dataframe (obj): A data frame created by make_dataframe.
-        run_id (str): Specific run_id used to create this plot.
-        output_path (path): Location to send the graph.
-    Returns:
-        dest (obj): IPython holoviews plot of the data.
-    """
-    filter_df = dataframe[dataframe.filter_location == 'destination']
-    filter_df = filter_df[(filter_df.run_id == '{}'.format(run_id)) & (filter_df.benchmark_type == 'full')]
-    if filter_df.federate_count.min() != 0:
-        dest = filter_df.sort_values('federate_count').hvplot.line(
-            'federate_count',
-            'real_time',
-            ylabel='real_time (ns)',
-            #(range(0, (int(float(filter_df.federate_count.max()))+1), 4)),
-            title='run_id {} filterBenchmark, filter_location {}: federate_count vs real_time'.format(run_id,
-                                                                                                      'destination'),
-            by='core_type',
-            alpha=0.5).opts(
-            width=600,
-            height=360,
-            logx=True,
-            logy=True,
-            fontsize={'title': 9.5, 'labels': 10, 'legend': 9, 'xticks': 10, 'yticks': 10})
-    else:
-        dest = filter_df.sort_values('federate_count').hvplot.line(
-            'federate_count',
-            'real_time',
-            ylabel='real_time (ns)',
-            #(range(0, (int(float(filter_df.federate_count.max()))+1), 4)),
-            title='run_id {} filterBenchmark, filter_location {}: federate_count vs real_time'.format(run_id,
-                                                                                                      'destination'),
-            by='core_type',
-            alpha=0.5).opts(
-            width=600,
-            height=360,
-            logx=True,
-            logy=True,
-            xlim=(2, filter_df.federate_count.max()),
-            ylim=(2, filter_df.real_time.max()),
-            fontsize={'title': 9.5, 'labels': 10, 'legend': 9, 'xticks': 10, 'yticks': 10})
-    save_path = os.path.join(output_path, '{}_destination.png'.format(run_id))
-    hvplot.save(dest, save_path)
-    return dest
-
-
-def plot_timing(dataframe, run_id, output_path):
-    """This function creates a multi-line graph for the benchmark,
-    timingBenchmark, of 'federate_count' versus 'real_time' and
-    it is organized by 'core_type'.
-
-    Args:
-        dataframe (obj): A data frame created by make_dataframe.
-        run_id (str): Specific run_id used to create this plot.
-        output_path (path): Location to send the graph.
-    Returns:
-        timing (obj): IPython holoviews plot of the data.
-    """
-    time_df = dataframe[(dataframe.run_id == '{}'.format(run_id)) & (dataframe.benchmark_type == 'full')]
-    if time_df.federate_count.min() != 0:
-        timing = time_df.sort_values('federate_count').hvplot.line(
-            'federate_count',
-            'real_time',
-            ylabel='real_time (ns)',
-            #(range(0, (int(float(echo_df.federate_count.max()))+1), 4)),
-            title='run_id {} timingBenchmark: federate_count vs real_time'.format(run_id),
-            by='core_type',
-            alpha=0.5).opts(
-            width=600,
-            height=360,
-            logx=True,
-            logy=True,
-            fontsize={'title': 9.5, 'labels': 10, 'legend': 9, 'xticks': 10, 'yticks': 10})
-    else:
-        timing = time_df.sort_values('federate_count').hvplot.line(
-            'federate_count',
-            'real_time',
-            ylabel='real_time (ns)',
-            #(range(0, (int(float(echo_df.federate_count.max()))+1), 4)),
-            title='run_id {} timingBenchmark: federate_count vs real_time'.format(run_id),
-            by='core_type',
-            alpha=0.5).opts(
-            width=600,
-            height=360,
-            logx=True,
-            logy=True,
-            xlim=(2, time_df.federate_count.max()),
-            ylim=(2, time_df.real_time.max()),
-            fontsize={'title': 9.5, 'labels': 10, 'legend': 9, 'xticks': 10, 'yticks': 10})
-    save_path = os.path.join(output_path, '{}_timing.png'.format(run_id))
-    hvplot.save(timing, save_path)
-    return timing
 
 #-----------------------------------------------------------------------#
 #------------------  Cross-run_id comparison plots ---------------------#

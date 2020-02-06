@@ -173,6 +173,12 @@ def parse_header_lines(json_file, json_results, uuid_str):
             json_results[uuid_str]['host_processor_string'] = line[10:].strip()
         elif 'ELAPSED TIME' in line:
             json_results[uuid_str]['elapsed_time'] = line[19:]
+            match = re.search('ns', line)
+            if match:
+                json_results[uuid_str]['time_unit'] = match.group(0)[1:-2]
+            else:
+                logging.error('{}: Failed to parse ELAPSED TIME line.'.format(
+                        json_file['name']))
         elif 'EVENT COUNT' in line:
             json_results[uuid_str]['EvCount'] = line[13:]
         elif ('-------------------------------------------' in line and
@@ -212,7 +218,8 @@ def parse_and_add_benchmark_metadata(json_results):
         filename = json_results[key]['filename']
         json_results = _add_run_id(key, json_results)
         json_results = _add_core(key, json_results)
-        json_results = _add_node_id(key, json_results)
+        json_results = _add_number_of_nodes(key, json_results)
+        json_results = _add_federate_count(key, json_results)
         if 'PholdFederate' in filename:
             json_results[key]['benchmark'] = 'PholdFederate'
     return json_results
@@ -286,7 +293,8 @@ def _add_run_id(key, json_results):
         json_results[key]['run_id'] = ''
     return json_results
 
-def _add_node_id(key, json_results):
+
+def _add_number_of_nodes(key, json_results):
     """This function creates a name for each .txt and adds it
     to json_results.
        
@@ -301,10 +309,34 @@ def _add_node_id(key, json_results):
     """
     match = re.search('N\d\-job-\d*', json_results[key]['path'])
     if match:
-        node_id = match.group(0)[0:-12]
-        json_results[key]['node_id'] = node_id
+        number_of_nodes = match.group(0)[1:-12]
+        json_results[key]['number_of_nodes'] = number_of_nodes
     else:
-        json_results[key]['node_id'] = ''
+        json_results[key]['number_of_nodes'] = ''
+    return json_results
+
+
+def _add_federate_count(key, json_results):
+    """This function creates a name for each .txt and adds it
+    to json_results.
+       
+    Args:
+        json_results (dict) - Dictionary of all benchmark results
+        (keyed by benchmark results filename) that the data and
+        metadata from json_file are being added to.
+
+    Returns:
+        json_results (dict) - json_results with run_id added for
+        the indicated results file.
+    """
+    ### TO-DO: Modify this function once data with more federates
+    ### is added to the multinode_benchmark_results folder.
+    match = re.search('N\d\-job-\d*', json_results[key]['path'])
+    if match:
+        number_of_nodes = match.group(0)[1:-12]
+        json_results[key]['federate_count'] = float(number_of_nodes * 1)
+    else:
+        json_results[key]['federate_count'] = ''
     return json_results
     
 
