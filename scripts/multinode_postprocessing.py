@@ -212,7 +212,7 @@ def parse_and_add_benchmark_metadata(json_results):
         filename = json_results[key]['filename']
         json_results = _add_run_id(key, json_results)
         json_results = _add_core(key, json_results)
-        json_results = _add_name(key, json_results)
+        json_results = _add_node_id(key, json_results)
         if 'PholdFederate' in filename:
             json_results[key]['benchmark'] = 'PholdFederate'
     return json_results
@@ -286,7 +286,7 @@ def _add_run_id(key, json_results):
         json_results[key]['run_id'] = ''
     return json_results
 
-def _add_name(key, json_results):
+def _add_node_id(key, json_results):
     """This function creates a name for each .txt and adds it
     to json_results.
        
@@ -301,10 +301,10 @@ def _add_name(key, json_results):
     """
     match = re.search('N\d\-job-\d*', json_results[key]['path'])
     if match:
-        name = match.group(0)
-        json_results[key]['name'] = name
+        node_id = match.group(0)[0:-12]
+        json_results[key]['node_id'] = node_id
     else:
-        json_results[key]['name'] = ''
+        json_results[key]['node_id'] = ''
     return json_results
     
 
