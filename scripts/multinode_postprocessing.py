@@ -220,6 +220,7 @@ def parse_and_add_benchmark_metadata(json_results):
         json_results = _add_core(key, json_results)
         json_results = _add_number_of_nodes(key, json_results)
         json_results = _add_federate_count(key, json_results)
+        json_results = _add_date(key, json_results)
         if 'PholdFederate' in filename:
             json_results[key]['benchmark'] = 'PholdFederate'
     return json_results
@@ -338,8 +339,18 @@ def _add_federate_count(key, json_results):
     else:
         json_results[key]['federate_count'] = ''
     return json_results
-    
 
+
+def _add_date(key, json_results):
+    """TODO: update doc-string"""
+    match = re.search('\(\d\)', json_results[key]['path'])
+    if match:
+        date = match.group(0)[1:-2]
+        json_results[key]['date'] = date
+        print(date)
+    else:
+        json_results[key]['date'] = ''
+    return json_results
 
 def _parse_compiler_string(uuid, json_results):
     """This function parses the compiler string in the metadata header
