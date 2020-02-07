@@ -343,11 +343,10 @@ def _add_federate_count(key, json_results):
 
 def _add_date(key, json_results):
     """TODO: update doc-string"""
-    match = re.search('\(\d\)', json_results[key]['path'])
+    match = re.search('\d+\-\d+\-\d+', json_results[key]['path'])
     if match:
-        date = match.group(0)[1:-2]
+        date = match.group(0)[0:]
         json_results[key]['date'] = date
-        print(date)
     else:
         json_results[key]['date'] = ''
     return json_results

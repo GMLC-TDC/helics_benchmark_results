@@ -200,9 +200,37 @@ def make_multinode_graphs(multi_bmk_df, output_path):
         (null)
     """
     if 'PholdFederate' in list(multi_bmk_df.benchmark.unique()):
-        benchmark = 'PholdFederate'
-        bmk_plotting.plot_counts_per_second(multi_bmk_df, benchmark, output_path)
-        bmk_plotting.plot_total_seconds(multi_bmk_df, benchmark, output_path)
+        bm_name = 'PholdFederate'
+        x_axis = 'federate_count'
+        y_axis = 'elapsed_time'
+        param1 = 'core_type'
+        param2 = 'EvCount'
+        metric_bool = True
+        metric_type1 = 'sum'
+        metric_type2 = 'cps'
+        title_part = 'Multinode'
+        bmk_plotting.mm_plot(multi_bmk_df,
+                             x_axis,
+                             y_axis,
+                             param1,
+                             param2,
+                             metric_bool,
+                             metric_type1,
+                             bm_name,
+                             title_part,
+                             output_path)
+        bmk_plotting.mm_plot(multi_bmk_df,
+                             x_axis,
+                             y_axis,
+                             param1,
+                             param2,
+                             metric_bool,
+                             metric_type2,
+                             bm_name,
+                             title_part,
+                             output_path)
+#        bmk_plotting.plot_counts_per_second(multi_bmk_df, benchmark, output_path)
+#        bmk_plotting.plot_total_seconds(multi_bmk_df, benchmark, output_path)
     else:
         pass
 

@@ -109,6 +109,71 @@ def sa_plot(dataframe, x_axis, y_axis, bm_name, by_bool, by_name, run_id, output
 
 #-----------------------------------------------------------------------#
 #------------------  Cross-run_id comparison plots ---------------------#
+def cr_plot(dataframe, x_axis, y_axis, bm_name, run_id_list, core_type, comparison_parameter, output_path):
+    """This function creates a plot for 2 or more run_ids to compare their
+    benchmark and the differences in their comparison_parameters.
+    
+    Args:
+        dataframe (obj): Pandas dataframe object of specified data to be
+        plotted.
+        x_axis (str): x-axis data from the dataframe object that should be 
+        given to the hvplot.line() function.
+        y_axis (str): y-axis data from the dataframe object that should be
+        given to the hvplot.line() function.
+        bm_name (str): Specific benchmark's name to be added to the 
+        title of the graph.
+        title_part (str): Part of the title that has specified information
+        in it and will be added to the 'title' keyword argument.
+        run_id_list (list): List of run_ids for which to make the plots.
+        core_type (str): Specific core_type to plot.
+        comparison_parameter (str): Specific paramter to compare between
+        run_ids.
+        output_path (path): Path to send the graphs.
+    
+    Returns:
+        plot (obj): Holoviews object of the graphed data.
+        
+    """
+    my_plots = []
+    for run_id in run_id_list:
+        plots = dataframe[(dataframe.run_id == '{}'.format(run_id)) & 
+                          (dataframe.core_type == '{}'.format(core_type))]
+        x_y_map = plots.groupby(
+                '{}'.format(x_axis))['{}'.format(y_axis)].min().reset_index()
+        plots = x_y_map.sort_values('{}'.format(x_axis)).hvplot.line(
+                '{}'.format(x_axis), 
+                '{}'.format(y_axis), 
+                title='{}: {} vs {}'.format(
+                        bm_name, 
+                        x_axis,
+                        y_axis),
+                label='run_id: {}, core_type: {}, {}: {}'.format(
+                        run_id,
+                        core_type,
+                        comparison_parameter,
+                        plots['{}'.format(comparison_parameter)].unique()), 
+                alpha=0.5)
+        my_plots.append(plots)
+    plot = (reduce((lambda x, y: x*y), my_plots)).opts(
+                            width=590, 
+                            height=360,
+                            logx=True,
+                            logy=True,
+                            legend_position='top_left',
+                            fontsize={'title': 9.5, 
+                                      'labels': 10, 
+                                      'legend': 9, 
+                                      'xticks': 10, 
+                                      'yticks': 10})
+    run_id_str = '_'.join(run_id_list)
+    save_path = os.path.join(output_path, '{}_{}_{}Core.png'.format(
+            run_id_str, 
+            bm_name,
+            core_type))
+    hvplot.save(plot, save_path)
+    return plot
+
+
 def plot_echo_msg_cr(dataframe, run_id_list, core_type, output_path, comparison_parameter):
     """This function creates a multi-line graph for the benchmark,
     echoMessageBenchmark, of 'federate_count' versus 'real_time', and
@@ -899,165 +964,169 @@ def ir_plot(dataframe1, dataframe2, x_axis, y_axis, bm_name1, bm_name2, metric_b
     return plot
 
 
-def plot_echo_vs_timing(dataframe1, dataframe2, run_id, core_type, output_path):
-    """This function creates a multi-line graph for the benchmarks,
-    echoBenchmark and timingBenchmark, of 'federate_count' versus 'real_time' 
-    and it is organized by a single 'run_id' and (potential) list of
-    core_types.
-
-    Args:
-        dataframe1 (obj): A data frame created by make_dataframe filtered by a specific benchmark.
-        dataframe2 (obj): A data frame created by make_dataframe filtered by a specific benchmark.
-        run_id (str): Specific run_id used to create this plot.
-        core_type_list: Specific core_types used to create this plot.
-        output_path (path): Location to send the graph.
-    Returns:
-        echo_v_timing (obj): IPython holoviews plot of the data.
-    """
-    df1 = dataframe1[(dataframe1.core_type == '{}'.format(core_type)) & (
-                dataframe1.run_id == '{}'.format(run_id)) & (
-                        dataframe1.benchmark_type == 'full')]
-    evt1 = df1.sort_values('federate_count').hvplot.line(
-        'federate_count',
-        'real_time',
-        ylabel='real_time (ns)',
-        #(range(0, (int(float(echo_df.federate_count.max()))+1), 1)),
-        title='timing vs echoBenchmark: federate_count vs real_time',
-        label='{}, run_id: {}, core_type: {}'.format(df1.benchmark.unique(), run_id, core_type),
-        alpha=0.5)
-    df2 = dataframe2[(dataframe2.core_type == '{}'.format(core_type)) & (
-                dataframe2.run_id == '{}'.format(run_id)) & (
-                        dataframe2.benchmark_type == 'full')]
-    evt2 = df2.sort_values('federate_count').hvplot.line(
-        'federate_count',
-        'real_time',
-        ylabel='real_time (ns)',
-        #(range(0, (int(float(echo_df.federate_count.max()))+1), 1)),
-        title='timing vs echo: federate_count vs real_time',
-        label='{}, run_id: {}, core_type: {}'.format(df2.benchmark.unique(), run_id, core_type),
-        alpha=0.5)
-    evts = [evt1, evt2]
-    echo_v_timing = (reduce((lambda x, y: x*y), evts)).opts(
-                            width=590, 
-                            height=360,
-                            logx=True,
-                            logy=True,
-                            legend_position='top_left',
-                            fontsize={'title': 9.5, 'labels': 10, 'legend': 9, 'xticks': 10, 'yticks': 10})
-    core_type_str = ''.join(core_type)
-    save_path = os.path.join(output_path, '{}_echo_vs_time_{}Core.png'.format(run_id, core_type_str))
-    hvplot.save(echo_v_timing, save_path)
-    return echo_v_timing
-
-
-def plot_echo_vs_echo_c(dataframe1, dataframe2, run_id, core_type, output_path):
-    """This function creates a multi-line graph for the benchmark,
-    cEchoBenchmark and echoBenchmark, of 'federate_count' versus 'real_time' 
-    and it is organized by a single 'run_id' and (potential) list of
-    core_types.
-
-    Args:
-        dataframe1 (obj): A data frame created by make_dataframe filtered by a specific benchmark.
-        dataframe2 (obj): A data frame created by make_dataframe filtered by a specific benchmark.
-        run_id (str): Specific run_id used to create this plot.
-        core_type_list: Specific core_types used to create this plot.
-        output_path (path): Location to send the graph.
-    Returns:
-        echo_vs_echo_c (obj): IPython holoviews plot of the data.
-    """
-    df1 = dataframe1[(dataframe1.core_type == '{}'.format(core_type)) & (
-                dataframe1.run_id == '{}'.format(run_id)) & (
-                        dataframe1.benchmark_type == 'full')]
-    evc1 = df1.sort_values('federate_count').hvplot.line(
-        'federate_count',
-        'real_time',
-        ylabel='real_time (ns)',
-        #(range(0, (int(float(echo_df.federate_count.max()))+1), 1)),
-        title='cEcho vs echoBenchmark: federate_count vs real_time',
-        label='{}, run_id: {}, core_type: {}'.format(df1.benchmark.unique(), run_id, core_type),
-        alpha=0.5)
-    df2 = dataframe2[(dataframe2.core_type == '{}'.format(core_type)) & (
-                dataframe2.run_id == '{}'.format(run_id)) & (
-                        dataframe2.benchmark_type == 'full')]
-    evc2 = df2.sort_values('federate_count').hvplot.line(
-        'federate_count',
-        'real_time',
-        ylabel='real_time (ns)',
-        #(range(0, (int(float(echo_df.federate_count.max()))+1), 1)),
-        title='timing vs echo: federate_count vs real_time',
-        label='{}, run_id: {}, core_type: {}'.format(df2.benchmark.unique(), run_id, core_type),
-        alpha=0.5)
-    evcs = [evc1, evc2]
-    echo_vs_echo_c = (reduce((lambda x, y: x*y), evcs)).opts(
-                            width=590, 
-                            height=360,
-                            logx=True,
-                            logy=True,
-                            legend_position='top_left',
-                            fontsize={'title': 9.5, 'labels': 10, 'legend': 9, 'xticks': 10, 'yticks': 10})
-    core_type_str = ''.join(core_type)
-    save_path = os.path.join(output_path, '{}_echo_vs_echoC_{}Core.png'.format(run_id, core_type_str))
-    hvplot.save(echo_vs_echo_c, save_path)
-    return echo_vs_echo_c
-
-
 #-----------------------------------------------------------------------#
 #------------------  Multinode benchmark result plots ------------------#
-
-
-def plot_counts_per_second(multi_bmk_df, benchmark, output_path):
-    """This function creates a multi-line graph of EvCount counts per second
-    for each node_id, N1-N8.
+def mm_plot(dataframe, x_axis, y_axis, param1, param2, metric_bool, metric_type, bm_name, title_part, output_path):
+    """This function creates a multi-line graph for multinode benchmark 
+    results. For example, it compares N1-N8 versus total elapsed time.
     
     Args:
-        multi_bmk_df (obj): Pandas dataframe that containes all the data
-        for multinode_benchmark_results.
-        benchmark (str): Name of multinode benchmark.
+        dataframe (obj): Pandas dataframe object that contains all the
+        multinode benchmark results data.
+        x_axis (str): x-axis data from the dataframe object that should be 
+        given to the hvplot.line() function.
+        y_axis (str): y-axis data from the dataframe object that should be
+        given to the hvplot.line() function.
+        param1 (str): Used to filter dataframe within the .groupby() function.
+        param2 (str): Used to filter dataframe within the .groupby() function.
+        metric_bool (bool):  If a metric plot is needed (such as counts per
+        second), then this is True, and it will have a corresponding
+        metric_type; otherwise, it will be False.
+        metric_type (str): A type of metric (if it exists) to make a plot for
+        bm_name (str): Specific benchmark's name to be added to the 
+        title of the graph.
+        title_part (str): Part of the title that has specified information
+        in it and will be added to the 'title' keyword argument. 
+        image_name (str): Name to call the graph.
         output_path (path): Path to send the graphs.
-    
-    Returns:
-        cps (graph): A holoviews abject of the graphed data.
-    """ 
-    gpd = multi_bmk_df.groupby(['node_id', 'core_type'])['EvCount'].sum() / multi_bmk_df.groupby(['node_id', 'core_type'])['elapsed_time'].mean()
-    gpd.name = 'counts_per_second'
-    cps = gpd.reset_index().sort_values('node_id').hvplot.line('node_id', 
-                                                 'counts_per_second', 
-                                                 title='Multi-machine PholdFederate benchmark: counts/s vs node_id',
-                                                 by='core_type',
-                                                 alpha=0.5).opts(width=590,
-                                                                 height=360,
-                                                                 logy=True, 
-                                                                 fontsize={'title': 9.5, 'labels': 10, 'legend': 9, 'xticks': 10, 'yticks': 10})
-    save_path = os.path.join(output_path, '{}_counts_per_second.png'.format(benchmark))
-    hvplot.save(cps, save_path)
-    return cps
-    
-    
-def plot_total_seconds(multi_bmk_df, benchmark, output_path):
-    """This function creates a multi-line graph of EvCount counts per second
-    for each node_id, N1-N8.
-    
-    Args:
-        multi_bmk_df (obj): Pandas dataframe that containes all the data
-        for multinode_benchmark_results.
-        benchmark (str): Name of multinode benchmark.
-        output_path (path): Path to send the graphs.
-    
-    Returns:
-        time (graph): A holoviews abject of the graphed data.
     """
-    gpd = multi_bmk_df.groupby(['node_id', 'core_type'])['elapsed_time'].sum()
-    time = gpd.reset_index().sort_values('node_id').hvplot.line('node_id', 
-                                                  'elapsed_time', 
-                                                  title='Multi-machine PholdFederate benchmark: total elapsed_time vs node_id',
-                                                  by='core_type',
-                                                  alpha=0.5).opts(width=590,
-                                                                  height=360,
-                                                                  logy=True, 
-                                                                  fontsize={'title': 9.5, 'labels': 10, 'legend': 9, 'xticks': 10, 'yticks': 10})
-    save_path = os.path.join(output_path, '{}_total_time.png'.format(benchmark))
-    hvplot.save(time, save_path)
-    return time  
+    if metric_bool == True:
+        if metric_type == 'counts_per_second' or metric_type == 'cps':
+            gpd = dataframe.groupby(['{}'.format(x_axis), 
+                                     '{}'.format(param1)])['{}'.format(param2)].sum()\
+                    /dataframe.groupby(['{}'.format(x_axis), 
+                                       '{}'.format(param1)])['{}'.format(y_axis)].mean()
+            gpd.name = 'counts_per_second'
+            plot = gpd.reset_index().sort_values('{}'.format(x_axis)).hvplot.line(
+                    '{}'.format(x_axis), 
+                    'counts_per_second', 
+                    title='{} {}: counts/s vs {}'.format(
+                            title_part,
+                            bm_name,
+                            x_axis),
+                    by='{}'.format(param1),
+                    alpha=0.5).opts(
+                            width=590,
+                            height=360,
+                            logy=True,
+                            fontsize={'title': 9.5, 
+                                      'labels': 10, 
+                                      'legend': 9, 
+                                      'xticks': 10, 
+                                      'yticks': 10})
+            save_path = os.path.join(output_path, 
+                                     '{}_{}.png'.format(bm_name, 
+                                                        metric_type))
+        if metric_type == 'sum':
+            gpd = dataframe.groupby(['{}'.format(x_axis), 
+                                     '{}'.format(param1)])['{}'.format(y_axis)].sum()
+            plot = gpd.reset_index().sort_values('{}'.format(x_axis)).hvplot.line(
+                    '{}'.format(x_axis), 
+                    '{}'.format(y_axis), 
+                    title='{} {}: {} {} vs {}'.format(
+                            title_part,
+                            bm_name,
+                            y_axis,
+                            metric_type,
+                            x_axis),
+                    by='{}'.format(param1),
+                    alpha=0.5).opts(
+                            width=590,
+                            height=360,
+                            logy=True,
+                            fontsize={'title': 9.5, 
+                                      'labels': 10, 
+                                      'legend': 9, 
+                                      'xticks': 10, 
+                                      'yticks': 10})
+            save_path = os.path.join(output_path, 
+                                     '{}_{}_{}.png'.format(bm_name,
+                                                           y_axis,
+                                                           metric_type))
+        if metric_type == 'average' or metric_type == 'mean':
+            gpd = dataframe.groupby(['{}'.format(x_axis), 
+                                     '{}'.format(param1)])['{}'.format(y_axis)].mean()
+            plot = gpd.reset_index().sort_values('{}'.format(x_axis)).hvplot.line(
+                    '{}'.format(x_axis), 
+                    '{}'.format(y_axis), 
+                    title='{} {}: {} {} vs {}'.format(
+                            title_part,
+                            bm_name,
+                            y_axis,
+                            metric_type,
+                            x_axis),
+                    by='{}'.format(param1),
+                    alpha=0.5).opts(
+                            width=590,
+                            height=360,
+                            logy=True,
+                            fontsize={'title': 9.5, 
+                                      'labels': 10, 
+                                      'legend': 9, 
+                                      'xticks': 10, 
+                                      'yticks': 10})
+            save_path = os.path.join(output_path, 
+                                     '{}_{}_{}.png'.format(bm_name,
+                                                           y_axis,
+                                                           metric_type))
+        if metric_type == 'max':
+            gpd = dataframe.groupby(['{}'.format(x_axis), 
+                                     '{}'.format(param1)])['{}'.format(y_axis)].max()
+            plot = gpd.reset_index().sort_values('{}'.format(x_axis)).hvplot.line(
+                    '{}'.format(x_axis), 
+                    '{}'.format(y_axis), 
+                    title='{} {}: {} {} vs {}'.format(
+                            title_part,
+                            bm_name,
+                            y_axis,
+                            metric_type,
+                            x_axis),
+                    by='{}'.format(param1),
+                    alpha=0.5).opts(
+                            width=590,
+                            height=360,
+                            logy=True,
+                            fontsize={'title': 9.5, 
+                                      'labels': 10, 
+                                      'legend': 9, 
+                                      'xticks': 10, 
+                                      'yticks': 10})
+            save_path = os.path.join(output_path, 
+                                     '{}_{}_{}.png'.format(bm_name,
+                                                           y_axis,
+                                                           metric_type))
+        if metric_type == 'min':
+            gpd = dataframe.groupby(['{}'.format(x_axis), 
+                                     '{}'.format(param1)])['{}'.format(y_axis)].min()
+            plot = gpd.reset_index().sort_values('{}'.format(x_axis)).hvplot.line(
+                    '{}'.format(x_axis), 
+                    '{}'.format(y_axis), 
+                    title='{} {}: {} {} vs {}'.format(
+                            title_part,
+                            bm_name,
+                            y_axis,
+                            metric_type,
+                            x_axis),
+                    by='{}'.format(param1),
+                    alpha=0.5).opts(
+                            width=590,
+                            height=360,
+                            logy=True,
+                            fontsize={'title': 9.5, 
+                                      'labels': 10, 
+                                      'legend': 9, 
+                                      'xticks': 10, 
+                                      'yticks': 10})
+            save_path = os.path.join(output_path, 
+                                     '{}_{}_{}.png'.format(bm_name,
+                                                           y_axis,
+                                                           metric_type))
+    else:
+        pass
+    
+    hvplot.save(plot, save_path)
+    return plot
+ 
 
 if __name__ == '__main__':
     # file_list = bmpp.get_benchmark_files('C:\Users\barn553\Documents\GitHub\helics_benchmark_results\benchmark_results\2019-11-28')

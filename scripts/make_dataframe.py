@@ -210,6 +210,7 @@ def make_dataframe2(json_results):
     columns = [
     'filename', 
     'path',
+    'date',
     'number_of_nodes',
     'federate_count',
     'benchmark',
