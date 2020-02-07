@@ -275,11 +275,6 @@ def make_cross_run_id_graphs(meta_bmk_df,
                                  core_type,
                                  comparison_parameter,
                                  output_path)
-#            bmk_plotting.plot_echo_result_cr(meta_bmk_df,
-#                                             run_id_list,
-#                                             core_type,
-#                                             output_path,
-#                                             comparison_parameter)
     if bm == 'cEchoBenchmark':
         meta_bmk_df = meta_bmk_df[(meta_bmk_df.benchmark == 'cEchoBenchmark') & 
                                   (meta_bmk_df.benchmark_type == 'full')]
@@ -295,11 +290,6 @@ def make_cross_run_id_graphs(meta_bmk_df,
                                  core_type,
                                  comparison_parameter,
                                  output_path)
-#            bmk_plotting.plot_echo_c_cr(meta_bmk_df,
-#                                        run_id_list,
-#                                        core_type,
-#                                        output_path,
-#                                        comparison_parameter)
     if bm == 'echoMessageBenchmark':
         meta_bmk_df = meta_bmk_df[(meta_bmk_df.benchmark == 'echoMessageBenchmark') & 
                                   (meta_bmk_df.benchmark_type == 'full')]
@@ -315,23 +305,8 @@ def make_cross_run_id_graphs(meta_bmk_df,
                                  core_type,
                                  comparison_parameter,
                                  output_path)
-#            bmk_plotting.plot_echo_msg_cr(meta_bmk_df,
-#                                          run_id_list,
-#                                          core_type,
-#                                          output_path,
-#                                          comparison_parameter)
     if bm == 'messageLookupBenchmark':
-        # TDH (2020-01-07): Extra work for this one as we want to iterate over only the federate_count values that are
-        # in the messageLookupBenchmark
         meta_bmk_df = meta_bmk_df[meta_bmk_df.benchmark == 'messageLookupBenchmark']
-        # CGR (2020-01-30): Created separate plots that filter the data frame 
-        # for each of the federate_count in messageLookupBenchmark.
-        # fed_list = [i for i in meta_bmk_df.federate_count]
-        # fed_list = [x for x in fed_list if not math.isnan(x)]
-        # fed_list = list(set(fed_list))
-        # for federate_count in fed_list:
-            #bmk_plotting.plot_msg_lookup_cr(meta_bmk_df, run_id_list, federate_count, output_path, comparison_parameter)
-            # pass
         ml1 = meta_bmk_df[(meta_bmk_df.benchmark_type == 'full') & 
                           (meta_bmk_df.federate_count == 2)]
         ml2 = meta_bmk_df[(meta_bmk_df.benchmark_type == 'full') & 
@@ -364,18 +339,6 @@ def make_cross_run_id_graphs(meta_bmk_df,
                              'inproc',
                              comparison_parameter,
                              output_path)
-#        bmk_plotting.plot_msg_lookup_1_cr(meta_bmk_df,
-#                                          run_id_list,
-#                                          output_path,
-#                                          comparison_parameter)
-#        bmk_plotting.plot_msg_lookup_2_cr(meta_bmk_df,
-#                                          run_id_list,
-#                                          output_path,
-#                                          comparison_parameter)
-#        bmk_plotting.plot_msg_lookup_3_cr(meta_bmk_df,
-#                                          run_id_list,
-#                                          output_path,
-#                                          comparison_parameter)
     if bm == 'ringBenchmark':
         meta_bmk_df = meta_bmk_df[(meta_bmk_df.benchmark == 'ringBenchmark') &
                                   (meta_bmk_df.benchmark_type == 'full')]
@@ -396,11 +359,6 @@ def make_cross_run_id_graphs(meta_bmk_df,
                                      core_type,
                                      comparison_parameter,
                                      output_path)
-#                bmk_plotting.plot_ring_cr(meta_bmk_df,
-#                                          run_id_list,
-#                                          core_type,
-#                                          output_path,
-#                                          comparison_parameter)
     if bm == 'pholdBenchmark':
         meta_bmk_df = meta_bmk_df[(meta_bmk_df.benchmark == 'pholdBenchmark') &
                                   (meta_bmk_df.benchmark_type == 'full')]
@@ -416,11 +374,6 @@ def make_cross_run_id_graphs(meta_bmk_df,
                                  core_type,
                                  comparison_parameter,
                                  output_path)
-#            bmk_plotting.plot_phold_cr(meta_bmk_df,
-#                                       run_id_list,
-#                                       core_type,
-#                                       output_path,
-#                                       comparison_parameter)
     if bm == 'messageSendBenchmark':
         meta_bmk_df = meta_bmk_df[(meta_bmk_df.benchmark == 'messageSendBenchmark') & 
                                   (meta_bmk_df.benchmark_type == 'full')]
@@ -432,10 +385,6 @@ def make_cross_run_id_graphs(meta_bmk_df,
                              'singleCore',
                              comparison_parameter,
                              output_path)
-#        bmk_plotting.plot_msg_send_1_cr(meta_bmk_df,
-#                                        run_id_list,
-#                                        output_path,
-#                                        comparison_parameter)
         for core_type in meta_bmk_df.core_type.unique():
             ms1 = meta_bmk_df[meta_bmk_df.message_count == 1]
             ms2 = meta_bmk_df[meta_bmk_df.message_size == 1]
@@ -455,16 +404,6 @@ def make_cross_run_id_graphs(meta_bmk_df,
                                  core_type,
                                  comparison_parameter,
                                  output_path)
-#            bmk_plotting.plot_msg_send_2_cr(meta_bmk_df,
-#                                            run_id_list,
-#                                            core_type,
-#                                            output_path,
-#                                            comparison_parameter)
-#            bmk_plotting.plot_msg_send_3_cr(meta_bmk_df,
-#                                            run_id_list,
-#                                            core_type,
-#                                            output_path,
-#                                            comparison_parameter)
     if bm == 'filterBenchmark':
         meta_bmk_df = meta_bmk_df[(meta_bmk_df.benchmark == 'filterBenchmark') & 
                                   (meta_bmk_df.benchmark_type == 'full')]
@@ -476,10 +415,6 @@ def make_cross_run_id_graphs(meta_bmk_df,
                              'singleCore',
                              comparison_parameter,
                              output_path)
-#        bmk_plotting.plot_filter_cr(meta_bmk_df,
-#                                    run_id_list,
-#                                    output_path,
-#                                    comparison_parameter)
         for core_type in meta_bmk_df.core_type.unique():
             src = [meta_bmk_df.filter_location == 'source']
             bmk_plotting.cr_plot(src,
@@ -499,16 +434,6 @@ def make_cross_run_id_graphs(meta_bmk_df,
                                  core_type,
                                  comparison_parameter,
                                  output_path)
-#            bmk_plotting.plot_src_cr(meta_bmk_df,
-#                                     run_id_list,
-#                                     core_type,
-#                                     output_path,
-#                                     comparison_parameter)
-#            bmk_plotting.plot_dest_cr(meta_bmk_df,
-#                                      run_id_list,
-#                                      core_type,
-#                                      output_path,
-#                                      comparison_parameter)
     if bm == 'timingBenchmark':
         meta_bmk_df = meta_bmk_df[(meta_bmk_df.benchmark == 'timingBenchmark') & 
                                   (meta_bmk_df.benchmark_type == 'full')]
@@ -524,11 +449,6 @@ def make_cross_run_id_graphs(meta_bmk_df,
                                  core_type,
                                  comparison_parameter,
                                  output_path)
-#            bmk_plotting.plot_timing_cr(meta_bmk_df,
-#                                        run_id_list,
-#                                        core_type,
-#                                        output_path,
-#                                        comparison_parameter)
 
 
 def _auto_run(args):
