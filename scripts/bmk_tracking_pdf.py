@@ -12,6 +12,7 @@ import os
 import sys
 from fpdf import FPDF
 import collections as co
+import standard_analysis as sa
 import bmk_plotting
 import benchmark_postprocessing as bmpp
 import make_dataframe as md
@@ -58,7 +59,7 @@ def create_benchmark_tracking_report(output_path, json_results):
     pdf.output(report_path)
     
 
-def grab_header_metadata(json_results, run_id):
+def grab_header_metadata(json_results):
     """This function creates the header metadata as a string
 
     Args:
@@ -74,117 +75,115 @@ def grab_header_metadata(json_results, run_id):
     # can grab the metadata I need from any of the results files
     # corresponding to the indicated run.
     key_list = list(json_results.keys())
-    for key in key_list:
-        if json_results[key]['run_id'] == run_id:
-            break
     header_metadata_str = ''
-    if 'benchmark' in json_results[key]:
-        header_metadata_str = header_metadata_str + '{:<25}{}\n\n'.format(
-            'BENCHMARK:',
-            json_results[key]['benchmark'])
-    else:
-        logging.warning('"benchmark" not found in metadata.')
+    for key in key_list:
+#        if 'benchmark' in json_results[key]:
+#            header_metadata_str = header_metadata_str + '{:<25}{}\n\n'.format(
+#                'BENCHMARK:',
+#                json_results[key]['benchmark'])
+#        else:
+#            logging.warning('"benchmark" not found in metadata.')
+    
+#        if 'run_id' in json_results[key]:
+#            header_metadata_str = header_metadata_str + '{:<25}{}\n'.format(
+#                'run ID:',
+#                json_results[key]['run_id'])
+#        else:
+#            logging.warning('"run_id" not found in metadata.')
+    
+        if 'date' in json_results[key]:
+            header_metadata_str = header_metadata_str + '{:<25}{}\n'.format(
+                'Timestamp:',
+                json_results[key]['date'])
+        else:
+            logging.warning('"run_id" not found in metadata.')
+    
+    #    if 'helics_version' in json_results[key]:
+    #        header_metadata_str = header_metadata_str + '{:<25}{}\n'.format(
+    #            'HELICS version:',
+    #            json_results[key]['helics_version'])
+    #    else:
+    #        logging.warning('"helics_version" not found in metadata.')
+    
+        if 'generator' in json_results[key]:
+            header_metadata_str = header_metadata_str + '{:<25}{}\n'.format(
+                'generator:',
+                json_results[key]['generator'])
+        else:
+            logging.warning('"generator" not found in metadata.')
+    
+        if 'system' in json_results[key]:
+            header_metadata_str = header_metadata_str + '{:<25}{}\n'.format(
+                'system:',
+                json_results[key]['system'])
+        else:
+            logging.warning('"system" not found in metadata.')
+    
+        if 'system_version' in json_results[key]:
+            header_metadata_str = header_metadata_str + '{:<25}{}\n'.format(
+                'system version:',
+                json_results[key]['system_version'])
+        else:
+            logging.warning('"system_version" not found in metadata.')
+    
+        if 'platform' in json_results[key]:
+            header_metadata_str = header_metadata_str + '{:<25}{}\n'.format(
+                'platform:',
+                json_results[key]['platform'])
+        else:
+            logging.warning('"platform" not found in metadata.')
+    
+        if 'cxx_compiler' in json_results[key]:
+            header_metadata_str = header_metadata_str + '{:<25}{}\n'.format(
+                'C++ compiler:',
+                json_results[key]['cxx_compiler'])
+        else:
+            logging.warning('"cxx_compiler" not found in metadata.')
+    
+        if 'cxx_compiler_version' in json_results[key]:
+            header_metadata_str = header_metadata_str + '{:<25}{}\n'.format(
+                'C++ compiler version:',
+                json_results[key]['cxx_compiler_version'])
+        else:
+            logging.warning('"cxx_compiler_version" not found in metadata.')
+    
+        if 'build_flags_string' in json_results[key]:
+            header_metadata_str = header_metadata_str + '{:<25}{}\n'.format(
+                'compiler string:',
+                json_results[key]['build_flags_string'])
+        else:
+            logging.warning('"build_flags_string" not found in metadata.')
+    
+        if 'host_name' in json_results[key]:
+            header_metadata_str = header_metadata_str + '{:<25}{}\n'.format(
+                'host name:',
+                json_results[key]['host_name'])
+        else:
+            logging.warning('"host_name" not found in metadata.')
+    
+        if 'host_processor' in json_results[key]:
+            header_metadata_str = header_metadata_str + '{:<25}{}\n'.format(
+                'host processor:',
+                json_results[key]['host_processor'])
+        else:
+            logging.warning('"host_processor" not found in metadata.')
+    
+        if 'num_cpus' in json_results[key]:
+            header_metadata_str = header_metadata_str + '{:<25}{}\n'.format(
+                'CPU core count:',
+                json_results[key]['num_cpus'])
+        else:
+            logging.warning('"num_cpus" not found in metadata.')
+    
+        if 'mhz_per_cpu' in json_results[key]:
+            header_metadata_str = header_metadata_str + '{:<25}{}\n'.format(
+                'processor speed (MHz):',
+                json_results[key]['mhz_per_cpu'])
+        else:
+            logging.warning('"mhz_per_cpu" not found in metadata.')
 
-    if 'run_id' in json_results[key]:
-        header_metadata_str = header_metadata_str + '{:<25}{}\n'.format(
-            'run ID:',
-            json_results[key]['run_id'])
-    else:
-        logging.warning('"run_id" not found in metadata.')
-
-    if 'date' in json_results[key]:
-        header_metadata_str = header_metadata_str + '{:<25}{}\n'.format(
-            'Timestamp:',
-            json_results[key]['date'])
-    else:
-        logging.warning('"run_id" not found in metadata.')
-
-#    if 'helics_version' in json_results[key]:
-#        header_metadata_str = header_metadata_str + '{:<25}{}\n'.format(
-#            'HELICS version:',
-#            json_results[key]['helics_version'])
-#    else:
-#        logging.warning('"helics_version" not found in metadata.')
-
-    if 'generator' in json_results[key]:
-        header_metadata_str = header_metadata_str + '{:<25}{}\n'.format(
-            'generator:',
-            json_results[key]['generator'])
-    else:
-        logging.warning('"generator" not found in metadata.')
-
-    if 'system' in json_results[key]:
-        header_metadata_str = header_metadata_str + '{:<25}{}\n'.format(
-            'system:',
-            json_results[key]['system'])
-    else:
-        logging.warning('"system" not found in metadata.')
-
-    if 'system_version' in json_results[key]:
-        header_metadata_str = header_metadata_str + '{:<25}{}\n'.format(
-            'system version:',
-            json_results[key]['system_version'])
-    else:
-        logging.warning('"system_version" not found in metadata.')
-
-    if 'platform' in json_results[key]:
-        header_metadata_str = header_metadata_str + '{:<25}{}\n'.format(
-            'platform:',
-            json_results[key]['platform'])
-    else:
-        logging.warning('"platform" not found in metadata.')
-
-    if 'cxx_compiler' in json_results[key]:
-        header_metadata_str = header_metadata_str + '{:<25}{}\n'.format(
-            'C++ compiler:',
-            json_results[key]['cxx_compiler'])
-    else:
-        logging.warning('"cxx_compiler" not found in metadata.')
-
-    if 'cxx_compiler_version' in json_results[key]:
-        header_metadata_str = header_metadata_str + '{:<25}{}\n'.format(
-            'C++ compiler version:',
-            json_results[key]['cxx_compiler_version'])
-    else:
-        logging.warning('"cxx_compiler_version" not found in metadata.')
-
-    if 'build_flags_string' in json_results[key]:
-        header_metadata_str = header_metadata_str + '{:<25}{}\n'.format(
-            'compiler string:',
-            json_results[key]['build_flags_string'])
-    else:
-        logging.warning('"build_flags_string" not found in metadata.')
-
-    if 'host_name' in json_results[key]:
-        header_metadata_str = header_metadata_str + '{:<25}{}\n'.format(
-            'host name:',
-            json_results[key]['host_name'])
-    else:
-        logging.warning('"host_name" not found in metadata.')
-
-    if 'host_processor' in json_results[key]:
-        header_metadata_str = header_metadata_str + '{:<25}{}\n'.format(
-            'host processor:',
-            json_results[key]['host_processor'])
-    else:
-        logging.warning('"host_processor" not found in metadata.')
-
-    if 'num_cpus' in json_results[key]:
-        header_metadata_str = header_metadata_str + '{:<25}{}\n'.format(
-            'CPU core count:',
-            json_results[key]['num_cpus'])
-    else:
-        logging.warning('"num_cpus" not found in metadata.')
-
-    if 'mhz_per_cpu' in json_results[key]:
-        header_metadata_str = header_metadata_str + '{:<25}{}\n'.format(
-            'processor speed (MHz):',
-            json_results[key]['mhz_per_cpu'])
-    else:
-        logging.warning('"mhz_per_cpu" not found in metadata.')
-
-    header_metadata_str = header_metadata_str + '\n' + '\n'
-    logging.info('Final metadata header:\n{}'.format(header_metadata_str))
+        header_metadata_str = header_metadata_str + '\n' + '\n'
+        logging.info('Final metadata header:\n{}'.format(header_metadata_str))
     return header_metadata_str
 
 
@@ -231,10 +230,11 @@ def make_benchmark_track_graphs(meta_bmk_df, output_path):
                              'date',
                              'real_time', 
                              'echoMessage', 
+                             'key',
                              by_bool=True, 
-                             by_name='core_type', 
+                             by_name='core_type',
                              run_id='', 
-                             output_path)
+                             output_path=output_path)
     if 'echoBenchmark' in list(meta_bmk_df.benchmark.unique()):
         track = meta_bmk_df[(meta_bmk_df.benchmark == 'echoBenchmark') & 
                             (meta_bmk_df.benchmark_type == 'key')]
@@ -242,10 +242,11 @@ def make_benchmark_track_graphs(meta_bmk_df, output_path):
                              'date',
                              'real_time', 
                              'echo', 
+                             'key',
                              by_bool=True, 
                              by_name='core_type', 
                              run_id='', 
-                             output_path)
+                             output_path=output_path)
     if 'messageLookupBenchmark' in list(meta_bmk_df.benchmark.unique()):
         track = meta_bmk_df[(meta_bmk_df.benchmark == 'messageLookupBenchmark') & 
                             (meta_bmk_df.benchmark_type == 'key')]
@@ -253,10 +254,11 @@ def make_benchmark_track_graphs(meta_bmk_df, output_path):
                              'date',
                              'real_time', 
                              'messageLookup', 
+                             'key',
                              by_bool=True, 
                              by_name='core_type', 
                              run_id='', 
-                             output_path)
+                             output_path=output_path)
     if 'timingBenchmark' in list(meta_bmk_df.benchmark.unique()):
         track = meta_bmk_df[(meta_bmk_df.benchmark == 'timingBenchmark') & 
                             (meta_bmk_df.benchmark_type == 'key')]
@@ -264,10 +266,11 @@ def make_benchmark_track_graphs(meta_bmk_df, output_path):
                              'date',
                              'real_time', 
                              'timing', 
+                             'key',
                              by_bool=True, 
                              by_name='core_type', 
                              run_id='', 
-                             output_path)
+                             output_path=output_path)
         
 
 def _auto_run(args):
@@ -289,9 +292,19 @@ def _auto_run(args):
     Returns:
         (nothing)
     """
-    file_list = bmpp.get_benchmark_files(args.benchmark_results_dir)
-    json_results = bmpp.parse_files(file_list)
-    json_results = bmpp.parse_and_add_benchmark_metadata(json_results)
+    run_id_dict = sa.find_runs(args.benchmark_results_dir)
+    run_id_dict = sa.add_report_path(run_id_dict)
+    if args.delete_all_reports:
+        run_id_dict = sa.remove_all_reports(run_id_dict)
+    for run_id in run_id_dict:
+        if run_id_dict[run_id]['report_exists'] == False:
+            # TDH: For the standard analysis we only need to process the
+            # "full" benchmark results files.
+            bm_files, bmk_files = sa.sort_results_files(
+                run_id_dict[run_id]['files'])
+            file_list = bm_files
+            json_results = bmpp.parse_files(file_list)
+            json_results = bmpp.parse_and_add_benchmark_metadata(json_results)
     
     ### CGR (2020-02-10) Add a json_file argument to the parser so that
     ### we can just grab the bm_results.json file for the dataframe
@@ -313,6 +326,9 @@ if __name__ == '__main__':
 
     # TDH (2020-01-13): Standard argument parsing
     parser = argparse.ArgumentParser(description='Generate PDF report.')
+    script_path = os.path.dirname(os.path.realpath(__file__))
+    head, tail = os.path.split(script_path)
+    benchmark_results_dir = os.path.join(head, 'benchmark_results')
     parser.add_argument('-r',
                         '--benchmark_results_dir',
                         nargs='?',
@@ -321,8 +337,12 @@ if __name__ == '__main__':
                         '--json_file',
                         nargs='?',
                         default='bm_results.json')
+    parser.add_argument('-d',
+                        '--delete_all_reports',
+                        nargs='?',
+                        default=True)
     args = parser.parse_args()
-    default_output_path == os.path.join(args.benchmark_results_dir, 'benchmark_tracking')
+    default_output_path = os.path.join(head, 'benchmark_tracking')
     parser.add_argument('-o', 
                         '--output_path', 
                         nargs='?',
