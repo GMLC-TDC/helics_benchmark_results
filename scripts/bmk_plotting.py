@@ -23,7 +23,7 @@ from holoviews.operation.datashader import datashade, dynspread
 hv.extension('bokeh', 'matplotlib', width=100)
 
 
-def sa_plot(dataframe, x_axis, y_axis, bm_name, by_bool, by_name, run_id, output_path):
+def sa_plot(dataframe, x_axis, y_axis, bm_name, bm_type, by_bool, by_name, run_id, output_path):
     """This function creates a plot of the specified data and sends it
     to the output_path.
     
@@ -36,6 +36,7 @@ def sa_plot(dataframe, x_axis, y_axis, bm_name, by_bool, by_name, run_id, output
         given to the hvplot.line() function.
         bm_name (str): Specific benchmark's name to be added to the 
         title of the graph.
+        bm_type (str): Benchmark_type = 'full' or 'key'.
         by_bool (bool): If True, the keyword argument 'by' will be added
         to the hvplot.line() function along with the by_name parameter; 
         otherwise, 'by' will not be added.
@@ -48,21 +49,70 @@ def sa_plot(dataframe, x_axis, y_axis, bm_name, by_bool, by_name, run_id, output
         plot (obj): Holoviews object of the graphed data
         
     """
-    if by_bool == True:
+    if bm_type == 'full':
+        if by_bool == True:
+            dataframe = dataframe.groupby(
+                    ['{}'.format(by_name), 
+                     '{}'.format(x_axis)])['{}'.format(y_axis)].min().reset_index()
+            plot = dataframe.sort_values('{}'.format(x_axis)).hvplot.line(
+                    '{}'.format(x_axis), 
+                    '{}'.format(y_axis),
+                    ylabel='{} (s)'.format(y_axis),
+                    title='run_id {} {}: {} vs {}'.format(
+                            run_id,
+                            bm_name, 
+                            x_axis, 
+                            y_axis),
+                    by='{}'.format(by_name),
+                    alpha=0.5).opts(
+                            width=590,
+                            height=360,
+                            logx=True,
+                            logy=True,
+                            fontsize={'title': 9.5, 
+                                      'labels': 10, 
+                                      'legend': 9, 
+                                      'xticks': 10, 
+                                      'yticks': 10})
+            save_path = os.path.join(output_path, '{}_{}.png'.format(run_id, bm_name))
+        else:
+            dataframe = dataframe.groupby(
+                    '{}'.format(x_axis))['{}'.format(y_axis)].min().reset_index()
+            plot = dataframe.sort_values('{}'.format(x_axis)).hvplot.line(
+                    '{}'.format(x_axis), 
+                    '{}'.format(y_axis),
+                    ylabel='{} (s)'.format(y_axis),
+                    title='run_id {} {}: {} vs {}'.format(
+                            run_id,
+                            bm_name, 
+                            x_axis, 
+                            y_axis),
+                    alpha=0.5).opts(
+                            width=590,
+                            height=360,
+                            logx=True,
+                            logy=True,
+                            fontsize={'title': 9.5, 
+                                      'labels': 10, 
+                                      'legend': 9, 
+                                      'xticks': 10, 
+                                      'yticks': 10})
+            save_path = os.path.join(output_path, '{}_{}.png'.format(run_id, bm_name))
+    elif bm_type == 'key':
         dataframe = dataframe.groupby(
-                ['{}'.format(by_name), 
-                 '{}'.format(x_axis)])['{}'.format(y_axis)].min().reset_index()
+                    ['{}'.format(by_name), 
+                     '{}'.format(x_axis)])['{}'.format(y_axis)].min().reset_index()
         plot = dataframe.sort_values('{}'.format(x_axis)).hvplot.line(
                 '{}'.format(x_axis), 
                 '{}'.format(y_axis),
                 ylabel='{} (s)'.format(y_axis),
-                title='run_id {} {}: {} vs {}'.format(
-                        run_id,
+                title='{} tracking: {} vs {}'.format(
                         bm_name, 
                         x_axis, 
                         y_axis),
                 by='{}'.format(by_name),
-                alpha=0.5).opts(
+                alpha=0.5, 
+                rot=90).opts(
                         width=590,
                         height=360,
                         logx=True,
@@ -72,29 +122,8 @@ def sa_plot(dataframe, x_axis, y_axis, bm_name, by_bool, by_name, run_id, output
                                   'legend': 9, 
                                   'xticks': 10, 
                                   'yticks': 10})
-    else:
-        dataframe = dataframe.groupby(
-                '{}'.format(x_axis))['{}'.format(y_axis)].min().reset_index()
-        plot = dataframe.sort_values('{}'.format(x_axis)).hvplot.line(
-                '{}'.format(x_axis), 
-                '{}'.format(y_axis),
-                ylabel='{} (s)'.format(y_axis),
-                title='run_id {} {}: {} vs {}'.format(
-                        run_id,
-                        bm_name, 
-                        x_axis, 
-                        y_axis),
-                alpha=0.5).opts(
-                        width=590,
-                        height=360,
-                        logx=True,
-                        logy=True,
-                        fontsize={'title': 9.5, 
-                                  'labels': 10, 
-                                  'legend': 9, 
-                                  'xticks': 10, 
-                                  'yticks': 10})
-    save_path = os.path.join(output_path, '{}_{}.png'.format(run_id, bm_name))
+        save_path = os.path.join(output_path, '{}_tracking.png'.format(bm_name))
+    
     hvplot.save(plot, save_path)
     return plot
 

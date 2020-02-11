@@ -317,6 +317,10 @@ if __name__ == '__main__':
                         '--benchmark_results_dir',
                         nargs='?',
                         default='../benchmark_results/2019-11-27')
+    parser.add_argument('-j',
+                        '--json_file',
+                        nargs='?',
+                        default='bm_results.json')
     args = parser.parse_args()
     default_output_path == os.path.join(args.benchmark_results_dir, 'benchmark_tracking')
     parser.add_argument('-o', 
