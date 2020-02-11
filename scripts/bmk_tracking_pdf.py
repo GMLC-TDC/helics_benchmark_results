@@ -74,6 +74,9 @@ def grab_header_metadata(json_results):
     # TDH (2019-12-20): Since all the metadata is common for each run, I
     # can grab the metadata I need from any of the results files
     # corresponding to the indicated run.
+    # CGR (2020-02-11): Find a way to append to lists of metadata values
+    # so that I can collect, for example, all different generators for
+    # the page of the report.
     key_list = list(json_results.keys())
     header_metadata_str = ''
     for key in key_list:
