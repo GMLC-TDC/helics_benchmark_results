@@ -77,15 +77,29 @@ def grab_header_metadata(json_results):
     # CGR (2020-02-11): Find a way to append to lists of metadata values
     # so that I can collect, for example, all different generators for
     # the page of the report.
+    # CGR (2020-02-12): Move appending elsewhere, and have the header
+    # be an argument for creating the PDF to help "grab" all the 
+    # metadata
     key_list = list(json_results.keys())
+    benchmarks = []
+    generators = []
+    systems = []
+    system_versions = []
+    platforms = []
+    cxx_compilers = []
+    cxx_compiler_versions = []
+    compiler_strings = []
+    host_names = []
+    host_processors = []
+    num_cpus = []
+    mhz_per_cpus = []
+    
     header_metadata_str = ''
     for key in key_list:
-#        if 'benchmark' in json_results[key]:
-#            header_metadata_str = header_metadata_str + '{:<25}{}\n\n'.format(
-#                'BENCHMARK:',
-#                json_results[key]['benchmark'])
-#        else:
-#            logging.warning('"benchmark" not found in metadata.')
+        if 'benchmark' in json_results[key]:
+            benchmarks.append(json_results[key]['benchmark'])
+        else:
+            logging.warning('"benchmark" not found in metadata.')
     
 #        if 'run_id' in json_results[key]:
 #            header_metadata_str = header_metadata_str + '{:<25}{}\n'.format(
@@ -94,12 +108,12 @@ def grab_header_metadata(json_results):
 #        else:
 #            logging.warning('"run_id" not found in metadata.')
     
-        if 'date' in json_results[key]:
-            header_metadata_str = header_metadata_str + '{:<25}{}\n'.format(
-                'Timestamp:',
-                json_results[key]['date'])
-        else:
-            logging.warning('"run_id" not found in metadata.')
+#        if 'date' in json_results[key]:
+#            header_metadata_str = header_metadata_str + '{:<25}{}\n'.format(
+#                'Timestamp:',
+#                json_results[key]['date'])
+#        else:
+#            logging.warning('"run_id" not found in metadata.')
     
     #    if 'helics_version' in json_results[key]:
     #        header_metadata_str = header_metadata_str + '{:<25}{}\n'.format(
@@ -107,86 +121,88 @@ def grab_header_metadata(json_results):
     #            json_results[key]['helics_version'])
     #    else:
     #        logging.warning('"helics_version" not found in metadata.')
-    
         if 'generator' in json_results[key]:
-            header_metadata_str = header_metadata_str + '{:<25}{}\n'.format(
-                'generator:',
-                json_results[key]['generator'])
+            generators.append(json_results[key]['generator'])
         else:
             logging.warning('"generator" not found in metadata.')
     
         if 'system' in json_results[key]:
-            header_metadata_str = header_metadata_str + '{:<25}{}\n'.format(
-                'system:',
-                json_results[key]['system'])
+            systems.append(json_results[key]['system'])
         else:
             logging.warning('"system" not found in metadata.')
     
         if 'system_version' in json_results[key]:
-            header_metadata_str = header_metadata_str + '{:<25}{}\n'.format(
-                'system version:',
-                json_results[key]['system_version'])
+            system_versions.append(json_results[key]['system_version'])
         else:
             logging.warning('"system_version" not found in metadata.')
     
         if 'platform' in json_results[key]:
-            header_metadata_str = header_metadata_str + '{:<25}{}\n'.format(
-                'platform:',
-                json_results[key]['platform'])
+            platforms.append(json_results[key]['platform'])
         else:
             logging.warning('"platform" not found in metadata.')
     
         if 'cxx_compiler' in json_results[key]:
-            header_metadata_str = header_metadata_str + '{:<25}{}\n'.format(
-                'C++ compiler:',
-                json_results[key]['cxx_compiler'])
+            cxx_compilers.append(json_results[key]['cxx_compiler'])
         else:
             logging.warning('"cxx_compiler" not found in metadata.')
     
         if 'cxx_compiler_version' in json_results[key]:
-            header_metadata_str = header_metadata_str + '{:<25}{}\n'.format(
-                'C++ compiler version:',
-                json_results[key]['cxx_compiler_version'])
+            cxx_compiler_versions.append(json_results[key]['cxx_compiler_version'])
         else:
             logging.warning('"cxx_compiler_version" not found in metadata.')
     
         if 'build_flags_string' in json_results[key]:
-            header_metadata_str = header_metadata_str + '{:<25}{}\n'.format(
-                'compiler string:',
-                json_results[key]['build_flags_string'])
+            compiler_strings.append(json_results[key]['build_flags_string'])
         else:
             logging.warning('"build_flags_string" not found in metadata.')
     
         if 'host_name' in json_results[key]:
-            header_metadata_str = header_metadata_str + '{:<25}{}\n'.format(
-                'host name:',
-                json_results[key]['host_name'])
+            host_names.append(json_results[key]['host_name'])
         else:
             logging.warning('"host_name" not found in metadata.')
     
         if 'host_processor' in json_results[key]:
-            header_metadata_str = header_metadata_str + '{:<25}{}\n'.format(
-                'host processor:',
-                json_results[key]['host_processor'])
+            host_processors.append(json_results[key]['host_processor'])
         else:
             logging.warning('"host_processor" not found in metadata.')
     
         if 'num_cpus' in json_results[key]:
-            header_metadata_str = header_metadata_str + '{:<25}{}\n'.format(
-                'CPU core count:',
-                json_results[key]['num_cpus'])
+            num_cpus.append(json_results[key]['num_cpus'])
         else:
             logging.warning('"num_cpus" not found in metadata.')
     
         if 'mhz_per_cpu' in json_results[key]:
-            header_metadata_str = header_metadata_str + '{:<25}{}\n'.format(
-                'processor speed (MHz):',
-                json_results[key]['mhz_per_cpu'])
+            mhz_per_cpus.append(json_results[key]['mhz_per_cpu'])
         else:
             logging.warning('"mhz_per_cpu" not found in metadata.')
+    header_metadata_str = header_metadata_str + '{:<25}{}\n'.format(
+                'BENCHMARKS:', benchmarks)        
+    header_metadata_str = header_metadata_str + '{:<25}{}\n'.format(
+                'generator:', generators[0])
+    header_metadata_str = header_metadata_str + '{:<25}{}\n'.format(
+                'system:', systems[0])
+    header_metadata_str = header_metadata_str + '{:<25}{}\n'.format(
+                'system version:', system_versions[0])
+    header_metadata_str = header_metadata_str + '{:<25}{}\n'.format(
+                'platform:', platforms[0])
+    header_metadata_str = header_metadata_str + '{:<25}{}\n'.format(
+                'C++ compiler:', cxx_compilers[0])
+    header_metadata_str = header_metadata_str + '{:<25}{}\n'.format(
+                'C++ compiler version:', cxx_compiler_versions[0])
+    header_metadata_str = header_metadata_str + '{:<25}{}\n'.format(
+                'Build flag string:', compiler_strings[0])
+    header_metadata_str = header_metadata_str + '{:<25}{}\n'.format(
+                'host name:', host_names[0])
+    header_metadata_str = header_metadata_str + '{:<25}{}\n'.format(
+                'host processor:', host_processors[0])
+    header_metadata_str = header_metadata_str + '{:<25}{}\n'.format(
+                'CPU core count:', num_cpus[0])
+    header_metadata_str = header_metadata_str + '{:<25}{}\n'.format(
+                'processor speed (MHz):', mhz_per_cpus[0])
 
-        header_metadata_str = header_metadata_str + '\n' + '\n'
-        logging.info('Final metadata header:\n{}'.format(header_metadata_str))
+    header_metadata_str = header_metadata_str + '\n' + '\n'
+    logging.info('Final metadata header:\n{}'.format(header_metadata_str))
+    
     return header_metadata_str
 
 

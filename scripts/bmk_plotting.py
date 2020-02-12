@@ -72,7 +72,7 @@ def sa_plot(dataframe, x_axis, y_axis, bm_name, bm_type, by_bool, by_name, run_i
                             fontsize={'title': 9.5, 
                                       'labels': 10, 
                                       'legend': 9, 
-                                      'xticks': 10, 
+                                      'xticks': 8, 
                                       'yticks': 10})
             save_path = os.path.join(output_path, '{}_{}.png'.format(run_id, bm_name))
         else:
@@ -95,7 +95,7 @@ def sa_plot(dataframe, x_axis, y_axis, bm_name, bm_type, by_bool, by_name, run_i
                             fontsize={'title': 9.5, 
                                       'labels': 10, 
                                       'legend': 9, 
-                                      'xticks': 10, 
+                                      'xticks': 8, 
                                       'yticks': 10})
             save_path = os.path.join(output_path, '{}_{}.png'.format(run_id, bm_name))
     elif bm_type == 'key':
@@ -120,7 +120,7 @@ def sa_plot(dataframe, x_axis, y_axis, bm_name, bm_type, by_bool, by_name, run_i
                         fontsize={'title': 9.5, 
                                   'labels': 10, 
                                   'legend': 9, 
-                                  'xticks': 10, 
+                                  'xticks': 8, 
                                   'yticks': 10})
         save_path = os.path.join(output_path, '{}_tracking.png'.format(bm_name))
     
@@ -184,7 +184,7 @@ def cr_plot(dataframe, x_axis, y_axis, bm_name, run_id_list, core_type, comparis
                             fontsize={'title': 9.5, 
                                       'labels': 10, 
                                       'legend': 9, 
-                                      'xticks': 10, 
+                                      'xticks': 8, 
                                       'yticks': 10})
     run_id_str = '_'.join(run_id_list)
     save_path = os.path.join(output_path, '{}_{}_{}Core.png'.format(
@@ -337,7 +337,7 @@ def ir_plot(dataframe1, dataframe2, x_axis, y_axis, bm_name1, bm_name2, metric_b
                             fontsize={'title': 9.5, 
                                       'labels': 10, 
                                       'legend': 9, 
-                                      'xticks': 10, 
+                                      'xticks': 8, 
                                       'yticks': 10})
     
     hvplot.save(plot, save_path)
@@ -392,7 +392,7 @@ def mm_plot(dataframe, x_axis, y_axis, param1, param2, metric_bool, metric_type,
                             fontsize={'title': 9.5, 
                                       'labels': 10, 
                                       'legend': 9, 
-                                      'xticks': 10, 
+                                      'xticks': 8, 
                                       'yticks': 10})
             save_path = os.path.join(output_path, 
                                      '{}_{}.png'.format(bm_name, 
@@ -417,7 +417,7 @@ def mm_plot(dataframe, x_axis, y_axis, param1, param2, metric_bool, metric_type,
                             fontsize={'title': 9.5, 
                                       'labels': 10, 
                                       'legend': 9, 
-                                      'xticks': 10, 
+                                      'xticks': 8, 
                                       'yticks': 10})
             save_path = os.path.join(output_path, 
                                      '{}_{}_{}.png'.format(bm_name,
@@ -443,7 +443,7 @@ def mm_plot(dataframe, x_axis, y_axis, param1, param2, metric_bool, metric_type,
                             fontsize={'title': 9.5, 
                                       'labels': 10, 
                                       'legend': 9, 
-                                      'xticks': 10, 
+                                      'xticks': 8, 
                                       'yticks': 10})
             save_path = os.path.join(output_path, 
                                      '{}_{}_{}.png'.format(bm_name,
@@ -469,7 +469,7 @@ def mm_plot(dataframe, x_axis, y_axis, param1, param2, metric_bool, metric_type,
                             fontsize={'title': 9.5, 
                                       'labels': 10, 
                                       'legend': 9, 
-                                      'xticks': 10, 
+                                      'xticks': 8, 
                                       'yticks': 10})
             save_path = os.path.join(output_path, 
                                      '{}_{}_{}.png'.format(bm_name,
@@ -495,7 +495,7 @@ def mm_plot(dataframe, x_axis, y_axis, param1, param2, metric_bool, metric_type,
                             fontsize={'title': 9.5, 
                                       'labels': 10, 
                                       'legend': 9, 
-                                      'xticks': 10, 
+                                      'xticks': 8, 
                                       'yticks': 10})
             save_path = os.path.join(output_path, 
                                      '{}_{}_{}.png'.format(bm_name,
