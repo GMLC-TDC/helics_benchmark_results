@@ -2,6 +2,9 @@
 """
 Created on Mon Feb 10 11:29:43 2020
 
+This script creates a PDF report for tracking the bmk_results
+files.
+
 @author: barn553
 """
 
@@ -18,7 +21,6 @@ import benchmark_postprocessing as bmpp
 import make_dataframe as md
 
 # Installation of FPDF is: python -m pip install fpdf
-
 
 # Setting up logging
 logger = logging.getLogger(__name__)
@@ -37,7 +39,7 @@ def create_benchmark_tracking_report(output_path, meta_bmk_df):
     Returns:
         (null)
     """
-        # Create the PDF object
+    # Create the PDF object
     pdf = FPDF()
     pdf.add_page()
     pdf.set_font("Courier", size=8)
