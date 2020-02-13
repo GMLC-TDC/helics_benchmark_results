@@ -26,7 +26,7 @@ logger = logging.getLogger(__name__)
 # Setting up pretty printing, mostly for debugging.
 pp = pprint.PrettyPrinter(indent=4)
 
-def create_benchmark_tracking_report(output_path, json_results):
+def create_benchmark_tracking_report(output_path, meta_bmk_df):
     """This function creates the multinode report.
     
     Args:
@@ -48,7 +48,7 @@ def create_benchmark_tracking_report(output_path, json_results):
 
     # Create the header metadata from the metadata in the JSON results
     # and write out to PDF
-    header_metadata_str = grab_header_metadata(json_results)
+    header_metadata_str = grab_header_metadata(meta_bmk_df)
     line_height = 3
     pdf.write(line_height, header_metadata_str)
 
@@ -59,7 +59,7 @@ def create_benchmark_tracking_report(output_path, json_results):
     pdf.output(report_path)
     
 
-def grab_header_metadata(json_results):
+def grab_header_metadata(meta_bmk_df):
     """This function creates the header metadata as a string
 
     Args:
@@ -80,125 +80,40 @@ def grab_header_metadata(json_results):
     # CGR (2020-02-12): Move appending elsewhere, and have the header
     # be an argument for creating the PDF to help "grab" all the 
     # metadata
-    key_list = list(json_results.keys())
-    benchmarks = []
-    generators = []
-    systems = []
-    system_versions = []
-    platforms = []
-    cxx_compilers = []
-    cxx_compiler_versions = []
-    compiler_strings = []
-    host_names = []
-    host_processors = []
-    num_cpus = []
-    mhz_per_cpus = []
+#    key_list = list(json_results.keys())
+    
     
     header_metadata_str = ''
-    for key in key_list:
-        if 'benchmark' in json_results[key]:
-            benchmarks.append(json_results[key]['benchmark'])
-        else:
-            logging.warning('"benchmark" not found in metadata.')
+    meta_bmk_df = meta_bmk_df[(meta_bmk_df.benchmark_type == 'key') & 
+                              (meta_bmk_df.benchmark != 'conversionBenchmark')]
     
-#        if 'run_id' in json_results[key]:
-#            header_metadata_str = header_metadata_str + '{:<25}{}\n'.format(
-#                'run ID:',
-#                json_results[key]['run_id'])
-#        else:
-#            logging.warning('"run_id" not found in metadata.')
+    benchmarks = [i for i in meta_bmk_df.benchmark.unique()]
+    generators = [i for i in meta_bmk_df.generator.unique()]
+    systems = [i for i in meta_bmk_df.system.unique()]
+    system_versions = [i for i in meta_bmk_df.system_version.unique()]
+    platforms = [i for i in meta_bmk_df.platform.unique()]
+    cxx_compilers = [i for i in meta_bmk_df.cxx_compiler.unique()]
+    cxx_compiler_versions = [i for i in meta_bmk_df.cxx_compiler_version.unique()]
+    compiler_strings = [i for i in meta_bmk_df.build_flags_string.unique()]
+    host_names = [i for i in meta_bmk_df.host_name.unique()]
+    host_processors = [i for i in meta_bmk_df.host_processor.unique()]
+    num_cpus = sorted([i for i in meta_bmk_df.num_cpus.unique()])
+    mhz_per_cpus =sorted( [i for i in meta_bmk_df.mhz_per_cpu.unique()])
     
-#        if 'date' in json_results[key]:
-#            header_metadata_str = header_metadata_str + '{:<25}{}\n'.format(
-#                'Timestamp:',
-#                json_results[key]['date'])
-#        else:
-#            logging.warning('"run_id" not found in metadata.')
     
-    #    if 'helics_version' in json_results[key]:
-    #        header_metadata_str = header_metadata_str + '{:<25}{}\n'.format(
-    #            'HELICS version:',
-    #            json_results[key]['helics_version'])
-    #    else:
-    #        logging.warning('"helics_version" not found in metadata.')
-        if 'generator' in json_results[key]:
-            generators.append(json_results[key]['generator'])
-        else:
-            logging.warning('"generator" not found in metadata.')
     
-        if 'system' in json_results[key]:
-            systems.append(json_results[key]['system'])
-        else:
-            logging.warning('"system" not found in metadata.')
-    
-        if 'system_version' in json_results[key]:
-            system_versions.append(json_results[key]['system_version'])
-        else:
-            logging.warning('"system_version" not found in metadata.')
-    
-        if 'platform' in json_results[key]:
-            platforms.append(json_results[key]['platform'])
-        else:
-            logging.warning('"platform" not found in metadata.')
-    
-        if 'cxx_compiler' in json_results[key]:
-            cxx_compilers.append(json_results[key]['cxx_compiler'])
-        else:
-            logging.warning('"cxx_compiler" not found in metadata.')
-    
-        if 'cxx_compiler_version' in json_results[key]:
-            cxx_compiler_versions.append(json_results[key]['cxx_compiler_version'])
-        else:
-            logging.warning('"cxx_compiler_version" not found in metadata.')
-    
-        if 'build_flags_string' in json_results[key]:
-            compiler_strings.append(json_results[key]['build_flags_string'])
-        else:
-            logging.warning('"build_flags_string" not found in metadata.')
-    
-        if 'host_name' in json_results[key]:
-            host_names.append(json_results[key]['host_name'])
-        else:
-            logging.warning('"host_name" not found in metadata.')
-    
-        if 'host_processor' in json_results[key]:
-            host_processors.append(json_results[key]['host_processor'])
-        else:
-            logging.warning('"host_processor" not found in metadata.')
-    
-        if 'num_cpus' in json_results[key]:
-            num_cpus.append(json_results[key]['num_cpus'])
-        else:
-            logging.warning('"num_cpus" not found in metadata.')
-    
-        if 'mhz_per_cpu' in json_results[key]:
-            mhz_per_cpus.append(json_results[key]['mhz_per_cpu'])
-        else:
-            logging.warning('"mhz_per_cpu" not found in metadata.')
-    header_metadata_str = header_metadata_str + '{:<25}{}\n'.format(
-                'BENCHMARKS:', benchmarks)        
-    header_metadata_str = header_metadata_str + '{:<25}{}\n'.format(
-                'generator:', generators[0])
-    header_metadata_str = header_metadata_str + '{:<25}{}\n'.format(
-                'system:', systems[0])
-    header_metadata_str = header_metadata_str + '{:<25}{}\n'.format(
-                'system version:', system_versions[0])
-    header_metadata_str = header_metadata_str + '{:<25}{}\n'.format(
-                'platform:', platforms[0])
-    header_metadata_str = header_metadata_str + '{:<25}{}\n'.format(
-                'C++ compiler:', cxx_compilers[0])
-    header_metadata_str = header_metadata_str + '{:<25}{}\n'.format(
-                'C++ compiler version:', cxx_compiler_versions[0])
-    header_metadata_str = header_metadata_str + '{:<25}{}\n'.format(
-                'Build flag string:', compiler_strings[0])
-    header_metadata_str = header_metadata_str + '{:<25}{}\n'.format(
-                'host name:', host_names[0])
-    header_metadata_str = header_metadata_str + '{:<25}{}\n'.format(
-                'host processor:', host_processors[0])
-    header_metadata_str = header_metadata_str + '{:<25}{}\n'.format(
-                'CPU core count:', num_cpus[0])
-    header_metadata_str = header_metadata_str + '{:<25}{}\n'.format(
-                'processor speed (MHz):', mhz_per_cpus[0])
+    header_metadata_str += '{:<25}{}\n\n'.format('BENCHMARKS:', benchmarks)        
+    header_metadata_str += '{:<25}{}\n\n'.format('generator:', generators)
+    header_metadata_str += '{:<25}{}\n\n'.format('system:', systems)
+    header_metadata_str += '{:<25}{}\n\n'.format('system version:', system_versions)
+    header_metadata_str += '{:<25}{}\n\n'.format('platform:', platforms)
+    header_metadata_str += '{:<25}{}\n\n'.format('C++ compiler:', cxx_compilers)
+    header_metadata_str += '{:<25}{}\n\n'.format('C++ compiler version:', cxx_compiler_versions)
+    header_metadata_str += '{:<25}{}\n\n'.format('Build flag string:', compiler_strings)
+    header_metadata_str += '{:<25}{}\n\n'.format('host name:', host_names)
+    header_metadata_str += '{:<25}{}\n\n'.format('host processor:', host_processors)
+    header_metadata_str += '{:<25}{}\n\n'.format('CPU core count:', num_cpus)
+    header_metadata_str += '{:<25}{}\n\n'.format('processor speed (MHz):', mhz_per_cpus)
 
     header_metadata_str = header_metadata_str + '\n' + '\n'
     logging.info('Final metadata header:\n{}'.format(header_metadata_str))
@@ -332,7 +247,7 @@ def _auto_run(args):
     output_path = os.path.join(args.output_path)
     make_benchmark_track_graphs(meta_bmk_df, output_path)
     create_benchmark_tracking_report(output_path,
-                                     json_results)
+                                     meta_bmk_df)
 
 
 if __name__ == '__main__':
