@@ -2,6 +2,18 @@
 """
 Created on Mon Feb  3 12:46:52 2020
 
+Given the results for a test and a path for that test,
+this script creates a report for the multinode benchmark
+results files.  This allows the user to visualize the
+performance of the multi-machine tests.
+
+This script can be run as a standalone script to generate the 
+multinode benchmark report PDF for every run in the user-provided path. 
+
+The command line arguments for the function can be found in the code
+following the lines following the "if __name__ == '__main__':" line
+at the end of this file.
+
 @author: barn553
 """
 
@@ -60,12 +72,10 @@ def create_multimachine_report(output_path, json_results):
 
 
 def grab_header_metadata(json_results):
-    """This function creates the header metadata as a string
+    """This function creates the header metadata as a string.
 
     Args:
         json_results (dict) - benchmark results
-        run_id (str) - five character unique identifier for a particular
-        benchmark run
 
     Returns:
         header_metadata_str (str) - Formatted header metadata for report
@@ -83,13 +93,6 @@ def grab_header_metadata(json_results):
                 json_results[key]['benchmark'])
         else:
             logging.warning('"benchmark" not found in metadata.')
-    
-    #    if 'run_id' in json_results[key]:
-    #        header_metadata_str = header_metadata_str + '{:<25}{}\n'.format(
-    #            'run ID:',
-    #            json_results[key]['run_id'])
-    #    else:
-    #        logging.warning('"run_id" not found in metadata.')
     
         if 'helics_version' in json_results[key]:
             header_metadata_str = header_metadata_str + '{:<25}{}\n'.format(
@@ -160,7 +163,7 @@ def grab_header_metadata(json_results):
 
 
 def add_benchmark_graphs(pdf, output_path):
-    """This function adds the graphs to the PDF object
+    """This function adds the graphs to the PDF object.
 
     Args:
         pdf (PDF obj) - PDF report object
@@ -180,9 +183,6 @@ def add_benchmark_graphs(pdf, output_path):
                 graph_file_path = os.path.join(output_path, file)
                 # TDH (2020-01-13) Resize graph images when adding them
                 # to the PDF.
-                # width = 0
-                # height = 0
-                # pdf.image(graph_file_path, w=width, h=height)
                 pdf.image(graph_file_path, x=15, w=175, h=100)
                 logging.info('Added graph file {} to PDF'.format(output_path))
     return pdf
@@ -193,16 +193,34 @@ def make_multinode_graphs(multi_bmk_df, output_path):
     _results data and sends them to the output_path
     
     Args:
-        multi_bmk_df (obj): Pandas dataframe that contains all multinode
+        multi_bmk_df (pandas dataframe) - Contains all multinode
         benchmark results data.
-        output_path (path: Path to send graphs.
+        output_path (str) - Path to send graphs.
+        
     Returns:
         (null)
     """
     if 'PholdFederate' in list(multi_bmk_df.benchmark.unique()):
-        benchmark = 'PholdFederate'
-        bmk_plotting.plot_counts_per_second(multi_bmk_df, benchmark, output_path)
-        bmk_plotting.plot_total_seconds(multi_bmk_df, benchmark, output_path)
+        bmk_plotting.mm_plot(multi_bmk_df,
+                             'federate_count',
+                             'elapsed_time',
+                             'core_type',
+                             'EvCount',
+                             True,
+                             'sum',
+                             'PholdFederate',
+                             'Multinode',
+                             output_path)
+        bmk_plotting.mm_plot(multi_bmk_df,
+                             'federate_count',
+                             'elapsed_time',
+                             'core_type',
+                             'EvCount',
+                             True,
+                             'cps',
+                             'PholdFederate',
+                             'Multinode',
+                             output_path)
     else:
         pass
 
@@ -219,34 +237,33 @@ def _auto_run(args):
     docstring at the beginning of this file.
 
     Args:
-        '-r' or '--benchmark_results_dir' - Path of top-level folder
-        that contains the benchmark results folders/files to be
-        processed.
+        '-m' or '--m_benchmark_results_dir' - Path of top-level folder
+        that contains the multinode benchmark results folders/files 
+        to be processed.
+        
+        '-j' or '--json_file' - JSON file of all the multinode
+        benchmark results data.
+        
+        '-f' or '--default_file' - Default file to use for creating
+        a report.
 
     Returns:
         (nothing)
     """
-
-    # TDH (2020-01-13) For developement testing the following section
-    # replicates the functionality of "standard_analysis.py" so that
-    # json_results can be created and used to create the graph image
-    # files.
-    
-    
+    # Grabbing the data and adding it to the JSON
     json_results = {}
     d = co.defaultdict(dict)
     file = args.default_file
     json_results.update(mpp.parse_files(file))
     json_results = (mpp.parse_and_add_benchmark_metadata(json_results))
     d[file].update(json_results)
-#        jsons.append(json_results)
-#        json_results = {}
+    
+    # Creating the multinode report.
     multi_bmk_df = md.make_dataframe2(args.json_file)
     output_path = os.path.join(args.multinode_benchmark_results_dir)
     make_multinode_graphs(multi_bmk_df, output_path)
     create_multimachine_report(output_path,
                                json_results)
-
 
 
 if __name__ == '__main__':

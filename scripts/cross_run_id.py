@@ -261,122 +261,194 @@ def make_cross_run_id_graphs(meta_bmk_df,
         null
     """
     if bm == 'echoBenchmark':
-        meta_bmk_df = meta_bmk_df[meta_bmk_df.benchmark == 'echoBenchmark']
+        meta_bmk_df = meta_bmk_df[(meta_bmk_df.benchmark == 'echoBenchmark') & 
+                                  (meta_bmk_df.benchmark_type == 'full')]
         for core_type in meta_bmk_df.core_type.unique():
-            bmk_plotting.plot_echo_result_cr(meta_bmk_df,
-                                             run_id_list,
-                                             core_type,
-                                             output_path,
-                                             comparison_parameter)
+            x_axis = 'federate_count'
+            y_axis = 'real_time'
+            bm_name = 'echoBenchmark'
+            bmk_plotting.cr_plot(meta_bmk_df,
+                                 x_axis,
+                                 y_axis,
+                                 bm_name,
+                                 run_id_list,
+                                 core_type,
+                                 comparison_parameter,
+                                 output_path)
     if bm == 'cEchoBenchmark':
-        meta_bmk_df = meta_bmk_df[meta_bmk_df.benchmark == 'cEchoBenchmark']
+        meta_bmk_df = meta_bmk_df[(meta_bmk_df.benchmark == 'cEchoBenchmark') & 
+                                  (meta_bmk_df.benchmark_type == 'full')]
         for core_type in meta_bmk_df.core_type.unique():
-            bmk_plotting.plot_echo_c_cr(meta_bmk_df,
-                                        run_id_list,
-                                        core_type,
-                                        output_path,
-                                        comparison_parameter)
+            x_axis = 'federate_count'
+            y_axis = 'real_time'
+            bm_name = 'cEchoBenchmark'
+            bmk_plotting.cr_plot(meta_bmk_df,
+                                 x_axis,
+                                 y_axis,
+                                 bm_name,
+                                 run_id_list,
+                                 core_type,
+                                 comparison_parameter,
+                                 output_path)
     if bm == 'echoMessageBenchmark':
-        meta_bmk_df = meta_bmk_df[meta_bmk_df.benchmark == 'echoMessageBenchmark']
+        meta_bmk_df = meta_bmk_df[(meta_bmk_df.benchmark == 'echoMessageBenchmark') & 
+                                  (meta_bmk_df.benchmark_type == 'full')]
         for core_type in meta_bmk_df.core_type.unique():
-            bmk_plotting.plot_echo_msg_cr(meta_bmk_df,
-                                          run_id_list,
-                                          core_type,
-                                          output_path,
-                                          comparison_parameter)
+            x_axis = 'federate_count'
+            y_axis = 'real_time'
+            bm_name = 'echoMessageBenchmark'
+            bmk_plotting.cr_plot(meta_bmk_df,
+                                 x_axis,
+                                 y_axis,
+                                 bm_name,
+                                 run_id_list,
+                                 core_type,
+                                 comparison_parameter,
+                                 output_path)
     if bm == 'messageLookupBenchmark':
-        # TDH (2020-01-07): Extra work for this one as we want to iterate over only the federate_count values that are
-        # in the messageLookupBenchmark
         meta_bmk_df = meta_bmk_df[meta_bmk_df.benchmark == 'messageLookupBenchmark']
-        # CGR (2020-01-30): Created separate plots that filter the data frame 
-        # for each of the federate_count in messageLookupBenchmark.
-        # fed_list = [i for i in meta_bmk_df.federate_count]
-        # fed_list = [x for x in fed_list if not math.isnan(x)]
-        # fed_list = list(set(fed_list))
-        # for federate_count in fed_list:
-            #bmk_plotting.plot_msg_lookup_cr(meta_bmk_df, run_id_list, federate_count, output_path, comparison_parameter)
-            # pass
-        bmk_plotting.plot_msg_lookup_1_cr(meta_bmk_df,
-                                          run_id_list,
-                                          output_path,
-                                          comparison_parameter)
-        bmk_plotting.plot_msg_lookup_2_cr(meta_bmk_df,
-                                          run_id_list,
-                                          output_path,
-                                          comparison_parameter)
-        bmk_plotting.plot_msg_lookup_3_cr(meta_bmk_df,
-                                          run_id_list,
-                                          output_path,
-                                          comparison_parameter)
+        ml1 = meta_bmk_df[(meta_bmk_df.benchmark_type == 'full') & 
+                          (meta_bmk_df.federate_count == 2)]
+        ml2 = meta_bmk_df[(meta_bmk_df.benchmark_type == 'full') & 
+                          (meta_bmk_df.federate_count == 8)]
+        ml3 = meta_bmk_df[(meta_bmk_df.benchmark_type == 'full') & 
+                          (meta_bmk_df.federate_count == 64)]
+        x_axis = 'interface_count'
+        y_axis = 'real_time'
+        bmk_plotting.cr_plot(ml1, 
+                             x_axis,
+                             y_axis,
+                             'messageLookup, federate_ct=2, singleCore',
+                             run_id_list,
+                             'inproc',
+                             comparison_parameter,
+                             output_path)
+        bmk_plotting.cr_plot(ml2, 
+                             x_axis,
+                             y_axis,
+                             'messageLookup, federate_ct=8, singleCore',
+                             run_id_list,
+                             'inproc',
+                             comparison_parameter,
+                             output_path)
+        bmk_plotting.cr_plot(ml3, 
+                             x_axis,
+                             y_axis,
+                             'messageLookup, federate_ct=64, singleCore',
+                             run_id_list,
+                             'inproc',
+                             comparison_parameter,
+                             output_path)
     if bm == 'ringBenchmark':
-        meta_bmk_df = meta_bmk_df[meta_bmk_df.benchmark == 'ringBenchmark']
+        meta_bmk_df = meta_bmk_df[(meta_bmk_df.benchmark == 'ringBenchmark') &
+                                  (meta_bmk_df.benchmark_type == 'full')]
         for core_type in meta_bmk_df.core_type.unique():
             # TDH (2020-01-09) - Special case because only a single data
             # point is run for the singleCore data. All the others have
             # multiple data points and can actually be used to form a
             # graph.
             if core_type != 'singleCore':
-                bmk_plotting.plot_ring_cr(meta_bmk_df,
-                                          run_id_list,
-                                          core_type,
-                                          output_path,
-                                          comparison_parameter)
-    if bm == 'pholdBenchmark':
-        meta_bmk_df = meta_bmk_df[meta_bmk_df.benchmark == 'pholdBenchmark']
-        for core_type in meta_bmk_df.core_type.unique():
-            bmk_plotting.plot_phold_cr(meta_bmk_df,
-                                       run_id_list,
-                                       core_type,
-                                       output_path,
-                                       comparison_parameter)
-    if bm == 'messageSendBenchmark':
-        meta_bmk_df = meta_bmk_df[meta_bmk_df.benchmark == 'messageSendBenchmark']
-        bmk_plotting.plot_msg_send_1_cr(meta_bmk_df,
-                                        run_id_list,
-                                        output_path,
-                                        comparison_parameter)
-        for core_type in meta_bmk_df.core_type.unique():
-            bmk_plotting.plot_msg_send_2_cr(meta_bmk_df,
-                                            run_id_list,
-                                            core_type,
-                                            output_path,
-                                            comparison_parameter)
-            bmk_plotting.plot_msg_send_3_cr(meta_bmk_df,
-                                            run_id_list,
-                                            core_type,
-                                            output_path,
-                                            comparison_parameter)
-    if bm == 'filterBenchmark':
-        meta_bmk_df = meta_bmk_df[meta_bmk_df.benchmark == 'filterBenchmark']
-        bmk_plotting.plot_filter_cr(meta_bmk_df,
-                                    run_id_list,
-                                    output_path,
-                                    comparison_parameter)
-        for core_type in meta_bmk_df.core_type.unique():
-            bmk_plotting.plot_src_cr(meta_bmk_df,
+                x_axis = 'federate_count'
+                y_axis = 'real_time'
+                bm_name = 'ringBenchmark'
+                bmk_plotting.cr_plot(meta_bmk_df,
+                                     x_axis,
+                                     y_axis,
+                                     bm_name,
                                      run_id_list,
                                      core_type,
-                                     output_path,
-                                     comparison_parameter)
-            bmk_plotting.plot_dest_cr(meta_bmk_df,
-                                      run_id_list,
-                                      core_type,
-                                      output_path,
-                                      comparison_parameter)
-    if bm == 'timingBenchmark':
-        meta_bmk_df = meta_bmk_df[meta_bmk_df.benchmark == 'timingBenchmark']
+                                     comparison_parameter,
+                                     output_path)
+    if bm == 'pholdBenchmark':
+        meta_bmk_df = meta_bmk_df[(meta_bmk_df.benchmark == 'pholdBenchmark') &
+                                  (meta_bmk_df.benchmark_type == 'full')]
         for core_type in meta_bmk_df.core_type.unique():
-            bmk_plotting.plot_timing_cr(meta_bmk_df,
-                                        run_id_list,
-                                        core_type,
-                                        output_path,
-                                        comparison_parameter)
-
-
-#def gather_info(args):
-#    
-#    
-#    return run_id_dict, json_results, bm_list, meta_bmk_df
+            x_axis = 'federate_count'
+            y_axis = 'real_time'
+            bm_name = 'pholdBenchmark'
+            bmk_plotting.cr_plot(meta_bmk_df,
+                                 x_axis,
+                                 y_axis,
+                                 bm_name,
+                                 run_id_list,
+                                 core_type,
+                                 comparison_parameter,
+                                 output_path)
+    if bm == 'messageSendBenchmark':
+        meta_bmk_df = meta_bmk_df[(meta_bmk_df.benchmark == 'messageSendBenchmark') & 
+                                  (meta_bmk_df.benchmark_type == 'full')]
+        bmk_plotting.cr_plot(meta_bmk_df,
+                             'message_size',
+                             'real_time',
+                             'messageSend, singleCore',
+                             run_id_list,
+                             'singleCore',
+                             comparison_parameter,
+                             output_path)
+        for core_type in meta_bmk_df.core_type.unique():
+            ms1 = meta_bmk_df[meta_bmk_df.message_count == 1]
+            ms2 = meta_bmk_df[meta_bmk_df.message_size == 1]
+            bmk_plotting.cr_plot(ms1,
+                                 'message_size',
+                                 'real_time',
+                                 'messageSend, message_ct=1',
+                                 run_id_list,
+                                 core_type,
+                                 comparison_parameter,
+                                 output_path)
+            bmk_plotting.cr_plot(ms2,
+                                 'message_count',
+                                 'real_time',
+                                 'messageSend, message_sz=1',
+                                 run_id_list,
+                                 core_type,
+                                 comparison_parameter,
+                                 output_path)
+    if bm == 'filterBenchmark':
+        meta_bmk_df = meta_bmk_df[(meta_bmk_df.benchmark == 'filterBenchmark') & 
+                                  (meta_bmk_df.benchmark_type == 'full')]
+        bmk_plotting.cr_plot(meta_bmk_df,
+                             'federate_count',
+                             'real_time',
+                             'filter, singleCore',
+                             run_id_list,
+                             'singleCore',
+                             comparison_parameter,
+                             output_path)
+        for core_type in meta_bmk_df.core_type.unique():
+            src = [meta_bmk_df.filter_location == 'source']
+            bmk_plotting.cr_plot(src,
+                                 'federate_count',
+                                 'real_time',
+                                 'filter, filter_loc=source',
+                                 run_id_list,
+                                 core_type,
+                                 comparison_parameter,
+                                 output_path)
+            dest = [meta_bmk_df.filter_location == 'destination']
+            bmk_plotting.cr_plot(dest,
+                                 'federate_count',
+                                 'real_time',
+                                 'filter, filter_loc=destination',
+                                 run_id_list,
+                                 core_type,
+                                 comparison_parameter,
+                                 output_path)
+    if bm == 'timingBenchmark':
+        meta_bmk_df = meta_bmk_df[(meta_bmk_df.benchmark == 'timingBenchmark') & 
+                                  (meta_bmk_df.benchmark_type == 'full')]
+        for core_type in meta_bmk_df.core_type.unique():
+            x_axis = 'federate_count'
+            y_axis = 'real_time'
+            bm_name = 'timingBenchmark'
+            bmk_plotting.cr_plot(meta_bmk_df,
+                                 x_axis,
+                                 y_axis,
+                                 bm_name,
+                                 run_id_list,
+                                 core_type,
+                                 comparison_parameter,
+                                 output_path)
 
 
 def _auto_run(args):

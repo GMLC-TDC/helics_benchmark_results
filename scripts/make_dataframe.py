@@ -161,6 +161,18 @@ def make_dataframe1(json_results):
     ### Concatenating all three data frames into one meta data frame
     ### and sending to csv.
     meta_bmk_df = reduce(lambda x, y: pd.merge(x, y, on='identifier_id', how='outer'), [info_df, cache_df, bmk_df])
+    real_time = []
+    ### CGR (2020-02-06): Converting 'real_time' from nanoseconds or 
+    ### milliseconds to seconds.
+    for t in meta_bmk_df.real_time:
+        t_idx = meta_bmk_df[meta_bmk_df.real_time == t].index[0]
+        if meta_bmk_df.at[t_idx, 'time_unit'] == 'ns':
+            time = float(t) * (float(10) ** (float(-9)))
+            real_time.append(t)
+        elif meta_bmk_df.at[t_idx, 'time_unit'] == 'ms':
+            time = float(t) * (float(10) ** (float(-3)))
+            real_time.append(time)
+    meta_bmk_df['real_time'] = real_time
     csv_path = os.path.join(os.getcwd(), 'bmk_meta_df.csv')
     meta_bmk_df.to_csv(r'{}'.format(csv_path))
     
@@ -198,7 +210,9 @@ def make_dataframe2(json_results):
     columns = [
     'filename', 
     'path',
-    'node_id',
+    'date',
+    'number_of_nodes',
+    'federate_count',
     'benchmark',
     'helics_version_string', 
     'helics_version', 
@@ -217,6 +231,7 @@ def make_dataframe2(json_results):
     'host_processor_string',
     'run_id',
     'elapsed_time',
+    'time_unit',
     'EvCount'
     ]
     
@@ -240,6 +255,10 @@ def make_dataframe2(json_results):
     ### Concatenating all three data frames into one meta data frame
     ### and sending to csv.
     meta_bmk_df = reduce(lambda x, y: pd.merge(x, y, on='identifier_id', how='outer'), [info_df])
+    ### CGR (2020-02-06): Converting 'elapsed_time' from nanoseconds  
+    ### to seconds.
+    elapsed_time = [(float(e) * float(10) ** float(-9)) for e in meta_bmk_df.elapsed_time]
+    meta_bmk_df['elapsed_time'] = elapsed_time
     csv_path = os.path.join(os.getcwd(), 'multinode_bmk_meta_df.csv')
     meta_bmk_df.to_csv(r'{}'.format(csv_path))
     
@@ -253,8 +272,8 @@ def make_dataframe2(json_results):
 
 ### Testing that my function works
 if __name__ == '__main__':
-    json_file1 = 'bm_results.json'
-    final_meta_bmk_df = make_dataframe1(json_file1)
+#    json_file1 = 'bm_results.json'
+#    final_meta_bmk_df = make_dataframe1(json_file1)
     
     json_file2 = 'multinode_bm_results.json'
     multi_bmk_df = make_dataframe2(json_file2)
