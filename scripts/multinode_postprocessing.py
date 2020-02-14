@@ -28,15 +28,15 @@ pp = pprint.PrettyPrinter(indent=4)
 def parse_files(file):
     """This function parses and formats all the data and metadata of
     interest for each of the files in file_list and puts it into a
-    dictionary, keyed off the filename. Since the 5 character run ID
-    is assumed (guaranteed?) to be unique (for our purposes) all results
-    file paths will be unique strings.
+    dictionary, keyed off the filename. All results file paths 
+    will be unique strings.
 
     Args:
-        file_list (list) - List of paths to files to parse and process
+        file_list (list) - List of paths to files to parse and process.
 
     Returns:
-        json_results (dict) -
+        json_results (dict) - Dictionary of all the data within
+        the files.
     """
     json_results = {}
     path, filename = os.path.split(file)
@@ -76,14 +76,14 @@ def parse_files(file):
 
 
 def _check_file_validity(path, filename):
-    """This function evaluates whether a the passed-in file should be
+    """This function evaluates whether the passed-in file should be
     processed. The function largely evaluates the file extension but
-    also filters out other system files
+    also filters out other system files.
 
     Args:
         path (str) - Path to (but not including) the file to be
-        evaluated
-        filename (str) - Name of file being evaluated
+        evaluated.
+        filename (str) - Name of file being evaluated.
 
     Returns:
         file_valid (bool) - Flag indicating whether this file should be
@@ -111,10 +111,8 @@ def _check_file_validity(path, filename):
 
 def parse_header_lines(json_file, json_results, uuid_str):
     """This function parses the non-JSON metadata header lines in the
-    results files and loads them into the dictionary. After the header
-    lines, the remainder of the file is JSON so teh function sucks up
-    those lines into a single JSON-formatted string and passes it back.
-
+    results files and loads them into the dictionary.
+    
     Args:
         json_file (file obj) - Current benchmark results file being
         processed.
@@ -122,13 +120,13 @@ def parse_header_lines(json_file, json_results, uuid_str):
         (keyed by benchmark results filename) that the data and
         metadata from json_file are being added to.
         uuid_str (str) - Key for dictionary for this benchmark results
-        file (json_file)
+        file (json_file).
 
     Returns:
         json_str (str) - JSON-formatted string containing some metadata
-        and all benchmark results found in json_file
+        and all benchmark results found in json_file.
         json_results (dict) - Dictionary with new entry containing
-        header-line metadata for json_file
+        header-line metadata for json_file.
     """
 
     json_str = ''
@@ -203,7 +201,7 @@ def parse_header_lines(json_file, json_results, uuid_str):
 def parse_and_add_benchmark_metadata(json_results):
     """This function parses the name of the test to extract metadata
     related to the test conditions (e.g. number of federates, which
-    HELICS core was used)
+    HELICS core was used).
 
     Args:
         json_results (dict) - Dictionary of all benchmark results
@@ -231,18 +229,10 @@ def _add_core(key, json_results):
     benchmark metadata.
 
     Args:
-
-        bm_name (str) - Benchmark name string which contains the core
-        type information
-        filename (str) - Path and name of file in which the benchmark
-        information is contained. Only used for error reporting.
+        key (str) - Key for dictionary for this benchmark results.
         json_results (dict) - Dictionary of all benchmark results
         (keyed by benchmark results filename) that the data and
         metadata from json_file are being added to.
-        key (str) - Key for dictionary for this benchmark results
-        idx (str) - Index of the current benchmark being processed.
-        needed so core type information can be written into the correct
-        location in the json_results dictionary.
 
     Returns:
         json_results (dict) - Dictionary of all benchmark results
@@ -278,6 +268,7 @@ def _add_run_id(key, json_results):
     run ID for a given file and adds it to the json_results dictionary
 
     Args:
+        key (str) - Key for dictionary for this benchmark results.
         json_results (dict) - Dictionary of all benchmark results
         (keyed by benchmark results filename) that the data and
         metadata from json_file are being added to.
@@ -296,10 +287,11 @@ def _add_run_id(key, json_results):
 
 
 def _add_number_of_nodes(key, json_results):
-    """This function creates a name for each .txt and adds it
+    """This function adds number_of_nodes for each .txt 
     to json_results.
        
     Args:
+        key (str) - Key for dictionary for this benchmark results.
         json_results (dict) - Dictionary of all benchmark results
         (keyed by benchmark results filename) that the data and
         metadata from json_file are being added to.
@@ -318,10 +310,11 @@ def _add_number_of_nodes(key, json_results):
 
 
 def _add_federate_count(key, json_results):
-    """This function creates a name for each .txt and adds it
+    """This function adds federate_count for each .txt 
     to json_results.
        
     Args:
+        key (str) - Key for dictionary for this benchmark results.
         json_results (dict) - Dictionary of all benchmark results
         (keyed by benchmark results filename) that the data and
         metadata from json_file are being added to.
@@ -330,7 +323,7 @@ def _add_federate_count(key, json_results):
         json_results (dict) - json_results with run_id added for
         the indicated results file.
     """
-    ### TO-DO: Modify this function once data with more federates
+    ### TODO: Modify this function once data with more federates
     ### is added to the multinode_benchmark_results folder.
     match = re.search('N\d\-job-\d*', json_results[key]['path'])
     if match:
@@ -342,7 +335,18 @@ def _add_federate_count(key, json_results):
 
 
 def _add_date(key, json_results):
-    """TODO: update doc-string"""
+    """This function adds the date of the run to json_results.
+    
+    Args:
+        key (str) - Key for dictionary for this benchmark results.
+        json_results (dict) - Dictionary of all benchmark results
+        (keyed by benchmark results filename) that the data and
+        metadata from json_file are being added to.
+
+    Returns:
+        json_results (dict) - json_results with run_id added for
+        the indicated results file.
+    """
     match = re.search('\d+\-\d+\-\d+', json_results[key]['path'])
     if match:
         date = match.group(0)[0:]
@@ -355,16 +359,16 @@ def _parse_compiler_string(uuid, json_results):
     """This function parses the compiler string in the metadata header
     line and adds it to the json_results metadata for the benchmark
 
-        Args:
-            json_results (dict) - Dictionary of all benchmark results
-            (keyed by benchmark results filename) that the data and
-            metadata from json_file are being added to.
+    Args:
+        json_results (dict) - Dictionary of all benchmark results
+        (keyed by benchmark results filename) that the data and
+        metadata from json_file are being added to.
 
-        Returns:
-            json_results (dict) - json_results with compiler metadata
-            extracted and added to the results for a given
-            benchmark.
-        """
+    Returns:
+        json_results (dict) - json_results with compiler metadata
+        extracted and added to the results for a given
+        benchmark.
+    """
     # Since I'm going to be using it alot...
     compiler_str = json_results[uuid]['compiler_info_string']
 

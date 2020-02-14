@@ -5,6 +5,20 @@ Created on Mon Feb 10 11:29:43 2020
 This script creates a PDF report for tracking the bmk_results
 files.
 
+The purpose of this script is to monitor the overall
+performance as more runs are done throughout time.  This
+allows users to idenitfy potential issues and errors 
+created in the runs.
+
+This script can be run as a standalone script.  By default it will not
+overwrite any existing report. A "run" is specified by the 5 character
+unique ID in the filename for every results file associated with that
+run.
+
+The command line arguments for the function can be found in the code
+following the lines following the "if __name__ == '__main__':" line
+at the end of this file.
+
 @author: barn553
 """
 
@@ -72,23 +86,12 @@ def grab_header_metadata(meta_bmk_df):
     Returns:
         header_metadata_str (str) - Formatted header metadata for report
     """
-
-    # TDH (2019-12-20): Since all the metadata is common for each run, I
-    # can grab the metadata I need from any of the results files
-    # corresponding to the indicated run.
-    # CGR (2020-02-11): Find a way to append to lists of metadata values
-    # so that I can collect, for example, all different generators for
-    # the page of the report.
-    # CGR (2020-02-12): Move appending elsewhere, and have the header
-    # be an argument for creating the PDF to help "grab" all the 
-    # metadata
-#    key_list = list(json_results.keys())
-    
-    
+    # Setting up the header string
     header_metadata_str = ''
     meta_bmk_df = meta_bmk_df[(meta_bmk_df.benchmark_type == 'key') & 
                               (meta_bmk_df.benchmark != 'conversionBenchmark')]
     
+    # Adding metadata information to lists for the header
     benchmarks = [i for i in meta_bmk_df.benchmark.unique()]
     generators = [i for i in meta_bmk_df.generator.unique()]
     systems = [i for i in meta_bmk_df.system.unique()]
@@ -102,8 +105,7 @@ def grab_header_metadata(meta_bmk_df):
     num_cpus = sorted([i for i in meta_bmk_df.num_cpus.unique()])
     mhz_per_cpus =sorted( [i for i in meta_bmk_df.mhz_per_cpu.unique()])
     
-    
-    
+    # Adding all necessary metadata to the header
     header_metadata_str += '{:<25}{}\n\n'.format('BENCHMARKS:', benchmarks)        
     header_metadata_str += '{:<25}{}\n\n'.format('generator:', generators)
     header_metadata_str += '{:<25}{}\n\n'.format('system:', systems)
@@ -152,9 +154,9 @@ def make_benchmark_track_graphs(meta_bmk_df, output_path):
     data.
     
     Args:
-        meta_bmk_df (obj):  Pandas dataframe of the 'tracking'
+        meta_bmk_df (pandas dataframe) - Contains all of the 'tracking'
         benchmarks' data.
-        output_path (path): Path to send the graphs.
+        output_path (str) - Path to send the graphs.
         
     Returns:
         (null)
@@ -212,10 +214,7 @@ def make_benchmark_track_graphs(meta_bmk_df, output_path):
 def _auto_run(args):
     """This function executes when the script is called as a stand-alone
     executable. It is used both for development/testing as well as the
-    primary executable for generating the standard analysis PDF report.
-    To use as a stand-alone script (primarily for development purspoes)
-    the script has to replicate some of the functionality in
-    "standard_analysis.py" to generate json_results for use here.
+    primary executable for generating the benchmark tracking PDF report.
 
     A more complete description of this code can be found in the
     docstring at the beginning of this file.
@@ -224,27 +223,26 @@ def _auto_run(args):
         '-r' or '--benchmark_results_dir' - Path of top-level folder
         that contains the benchmark results folders/files to be
         processed.
-
+        
+        '-j' or '--json_file' - JSON file that contains all the
+        benchmark results data to be processed.
+        
+        '-d' or '--delete_all_reports' - "True" or "False" to indicate
+        if existing reports should be over-written.
+        
+        '-o' or '--output_path' - Path to send the images and the
+        benchmark tracking report.
+        
     Returns:
         (nothing)
     """
+    # Checking whether to delete all reports
     run_id_dict = sa.find_runs(args.benchmark_results_dir)
     run_id_dict = sa.add_report_path(run_id_dict)
     if args.delete_all_reports:
         run_id_dict = sa.remove_all_reports(run_id_dict)
-    for run_id in run_id_dict:
-        if run_id_dict[run_id]['report_exists'] == False:
-            # TDH: For the standard analysis we only need to process the
-            # "full" benchmark results files.
-            bm_files, bmk_files = sa.sort_results_files(
-                run_id_dict[run_id]['files'])
-            file_list = bm_files
-            json_results = bmpp.parse_files(file_list)
-            json_results = bmpp.parse_and_add_benchmark_metadata(json_results)
     
-    ### CGR (2020-02-10) Add a json_file argument to the parser so that
-    ### we can just grab the bm_results.json file for the dataframe
-    ### function
+    # Creating the report PDF
     meta_bmk_df = md.make_dataframe1(args.json_file)
     output_path = os.path.join(args.output_path)
     make_benchmark_track_graphs(meta_bmk_df, output_path)

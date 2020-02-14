@@ -422,6 +422,9 @@ def mm_plot(dataframe, x_axis, y_axis, param1, param2, metric_bool, metric_type,
         title_part (str) - Part of the title that has specified information
         in it and will be added to the 'title' keyword argument.
         output_path (str) - Path to send the graphs.
+    
+    Returns:
+        plot (obj) - Holoviews object of the graphed data.
     """
     # Checking to see if a metric is desired.
     if metric_bool == True:
