@@ -2,6 +2,21 @@
 """
 Created on Wed Jan 22 08:24:59 2020
 
+Performs inter-run analysis that compares multiple
+benchmarks' data for a single run.  This allows the user
+to visualize the performance across multiple benchmarks
+for a single run.
+
+This script can be run as a standalone script to generate the inter-run
+analysis for every run in the user-provided path. By default it will not
+overwrite any existing report. A "run" is specified by the 5 character
+unique ID in the filename for every results file associated with that
+run.
+
+The command line arguments for the function can be found in the code
+following the lines following the "if __name__ == '__main__':" line
+at the end of this file.
+
 @author: barn553
 """
 
@@ -76,7 +91,7 @@ def find_specific_run_id(benchmark_results_dir, run_id_list):
 def create_output_path(output_path_list, delete_existing_report):
     """This function creates any output folders that are needed for
     storing the graphs and final PDF report. If specified, it will also
-    delete the existing report folder
+    delete the existing report folder.
 
     Args:
         output_path (str) - Path to the results folder for the comparison
@@ -128,94 +143,76 @@ def make_inter_run_graphs(meta_bmk_df,
     given run_id.
     
     Args:
-        meta_bmk_df (pandas dataframe): Full dataset.
-        run_id (str): Specific run_id used to create this plot.
-        bm_list (list): List of benchmarks to create inter-run graphs.
-        core_type_list: Specific core_types used to create this plot.
-        output_path (path): Location to send the graph.
+        meta_bmk_df (pandas dataframe) - Full dataset.
+        run_id (str) - Specific run_id used to create this plot.
+        bm_list (list) - List of benchmarks to create inter-run graphs.
+        core_type_list - Specific core_types used to create this plot.
+        output_path (str) - Location to send the graph.
     
     Returns:
         null
     """
-    
     if 'echoBenchmark' in bm_list and 'timingBenchmark' in bm_list:
         df1 = meta_bmk_df[meta_bmk_df.benchmark == 'echoBenchmark']
         df2 = meta_bmk_df[meta_bmk_df.benchmark == 'timingBenchmark']
         if run_id in list(df1.run_id.unique()) and run_id in list(df2.run_id.unique()):
             if core_type in list(df1.core_type.unique()) and core_type in list(df2.core_type.unique()):
-                x_axis = 'federate_count'
-                y_axis = 'real_time'
-                bm_name1 = 'echo'
-                bm_name2 = 'timing'
-                metric_bool1 = False
-                metric_bool2 = True
-                metric_type = 'seconds_per_count'
-                title_part = ''
                 bmk_plotting.ir_plot(df1,
                                      df2, 
-                                     x_axis,
-                                     y_axis,
-                                     bm_name1,
-                                     bm_name2,
-                                     metric_bool1,
-                                     metric_type,
-                                     title_part,
+                                     'federate_count',
+                                     'real_time',
+                                     'echo',
+                                     'timing',
+                                     False,
+                                     'seconds_per_count',
+                                     '',
                                      run_id,
                                      core_type,
                                      output_path)
                 bmk_plotting.ir_plot(df1,
                                      df2, 
-                                     x_axis,
-                                     y_axis,
-                                     bm_name1,
-                                     bm_name2,
-                                     metric_bool2,
-                                     metric_type,
-                                     title_part,
+                                     'federate_count',
+                                     'real_time',
+                                     'echo',
+                                     'timing',
+                                     True,
+                                     'seconds_per_count',
+                                     '',
                                      run_id,
                                      core_type,
                                      output_path)
-
         else:
             pass
+        
     if 'echoBenchmark' in bm_list and 'cEchoBenchmark' in bm_list:
         df1 = meta_bmk_df[meta_bmk_df.benchmark == 'echoBenchmark']
         df2 = meta_bmk_df[meta_bmk_df.benchmark == 'cEchoBenchmark']
         if run_id in list(df1.run_id.unique()) and run_id in list(df2.run_id.unique()):
             if core_type in list(df1.core_type.unique()) and core_type in list(df2.core_type.unique()):
-                x_axis = 'federate_count'
-                y_axis = 'real_time'
-                bm_name1 = 'echo'
-                bm_name2 = 'cEcho'
-                metric_bool1 = False
-                metric_bool2 = True
-                metric_type = 'seconds_per_count'
-                title_part = ''
                 bmk_plotting.ir_plot(df1,
                                      df2, 
-                                     x_axis,
-                                     y_axis,
-                                     bm_name1,
-                                     bm_name2,
-                                     metric_bool1,
-                                     metric_type,
-                                     title_part,
+                                     'federate_count',
+                                     'real_time',
+                                     'echo',
+                                     'cEcho',
+                                     False,
+                                     'seconds_per_count',
+                                     '',
                                      run_id,
                                      core_type,
                                      output_path)
                 bmk_plotting.ir_plot(df1,
                                      df2, 
-                                     x_axis,
-                                     y_axis,
-                                     bm_name1,
-                                     bm_name2,
-                                     metric_bool2,
-                                     metric_type,
-                                     title_part,
+                                     'federate_count',
+                                     'real_time',
+                                     'echo',
+                                     'cEcho',
+                                     True,
+                                     'seconds_per_count',
+                                     '',
                                      run_id,
                                      core_type,
                                      output_path)
-
         else:
             pass
 
@@ -223,7 +220,7 @@ def make_inter_run_graphs(meta_bmk_df,
 def _auto_run(args):
     """This function executes when the script is called as a stand-alone
     executable. It is used both for development/testing as well as the
-    primary executable for generating the standard analysis PDF report.
+    primary executable for generating the inter-run analysis PDF report.
 
     A more complete description of this code can be found in the
     docstring at the beginning of this file.
@@ -245,6 +242,7 @@ def _auto_run(args):
 
         '-d' or '--delete_all_reports' - "True" or "False" to indicate
         if existing reports should be over-written
+        
     Returns:
         (nothing)
     """
@@ -261,9 +259,7 @@ def _auto_run(args):
     meta_bmk_df = md.make_dataframe1(json_results)
     counter = 0
     for run_id in args.run_id_list:
-#        print('starting to make graphs for run_id: {}'.format(run_id))
         for core_type in args.core_type_list:
-#            print('creating graph for core_type: {}'.format(core_type))
             make_inter_run_graphs(meta_bmk_df,
                                   run_id,
                                   args.bm_list,

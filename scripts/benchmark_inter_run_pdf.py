@@ -2,6 +2,18 @@
 """
 Created on Wed Jan 22 07:49:57 2020
 
+Given the results and paths to the results, create an inter-run
+analysis report PDF.
+
+This script creates an inter-run analysis report for comparing
+benchmarks' data for a single run.  A "run" is specified by 
+the 5 character unique ID in the filename for every results
+file associated with that run.
+
+The command line arguments for the function can be found in the code
+following the lines following the "if __name__ == '__main__':" line
+at the end of this file.
+
 @author: barn553
 """
 
@@ -60,7 +72,7 @@ def create_inter_run_id_report(output_path, json_results, run_id):
 
 
 def grab_header_metadata(json_results, run_id):
-    """This function creates the header metadata as a string
+    """This function creates the header metadata as a string.
 
     Args:
         json_results (dict) - benchmark results
@@ -79,16 +91,6 @@ def grab_header_metadata(json_results, run_id):
         if json_results[key]['run_id'] == run_id:
             break
     header_metadata_str = ''
-    # CGR (2020-01-22): Since we will be making graphs for multiple benchmarks
-    # for a single run_id at a time, we don't need to identify which benchmarks
-    # here; will put that information elsewhere in the pdf.
-#    if 'benchmark' in json_results[key]:
-#        header_metadata_str = header_metadata_str + '{:<25}{}\n\n'.format(
-#             'BENCHMARK:',
-#             json_results[key]['benchmark'])
-#    else:
-#        logging.warning('"benchmark" not found in metadata.')
-
     if 'run_id' in json_results[key]:
         header_metadata_str = header_metadata_str + '{:<25}{}\n'.format(
             'run ID:',
@@ -194,7 +196,7 @@ def grab_header_metadata(json_results, run_id):
 
 def get_unique_run_ids(json_results):
     """This function finds the unique run IDs for the provided results
-    dictionary
+    dictionary.
 
     Args:
         json_results (dict) - benchmark results
@@ -213,7 +215,7 @@ def _auto_run(args):
     """This function executes when the script is called as a stand-alone
     executable. It is used both for development/testing as well as the
     primary executable for generating the benchmark inter-run PDF report.
-    To use as a stand-alone script (primarily for development purspoes)
+    To use as a stand-alone script (primarily for development purposes)
     the script has to replicate some of the functionality in
     "benchmark_inter_run.py" to generate json_results for use here.
 

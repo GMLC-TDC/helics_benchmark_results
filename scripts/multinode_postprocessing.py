@@ -2,6 +2,13 @@
 """
 Created on Thu Jan 23 14:51:42 2020
 
+Processes all HELICS benchmark results files in user-indicated
+directories and provides summarized results.
+
+Assumes all files in indicated directory are results files. Supports
+results files in arbitrary directory structure beneath the user-provided
+directory
+
 @author: barn553
 """
 
@@ -65,10 +72,7 @@ def parse_files(file):
 
             # The header lines in the results file contain metadata
             # that is not JSON formatted and needs to be
-            # "hand-parsed". After these lines are parsed, the
-            # remainder of the file is correctly JSON formatted
-            # and is aggregated into a single string to be later
-            # used by Python's built-in JSON parser.
+            # "hand-parsed". 
             json_str, json_results = parse_header_lines(json_file,
                                                         json_results,
                                                         uuid_str)
@@ -264,8 +268,8 @@ def _add_core(key, json_results):
 
 
 def _add_run_id(key, json_results):
-    """This function parses the filename to extract the 5 character
-    run ID for a given file and adds it to the json_results dictionary
+    """This function parses the filename to extract run ID 
+    for a given file and adds it to the json_results dictionary.
 
     Args:
         key (str) - Key for dictionary for this benchmark results.
@@ -497,6 +501,9 @@ def create_file_list(directory):
     
     Args:
         directory (directory) - Path of where files are located.
+    
+    Returns:
+        file_list (list) - List of files for post-processing.
     """
     file_list = []
     for root, dirs, files in os.walk(directory):
@@ -512,21 +519,16 @@ def create_file_list(directory):
 def _auto_run(args):
     """This function executes when the script is called as a stand-alone
     executable.
-    To use as a stand-alone script (primarily for development purspoes)
-    the script must run part of the standard_analysis.py to create the
-    file list it will parse.
-
-    Optionally, can write out the results to a json file for offline
-    evaluation.
 
     A more complete description of this code can be found in the
     docstring at the beginning of this file.
 
     Args:
-        '-r' or '--benchmark_results_dir' - Path of top-level folder
-        that contains the benchmark results folders/files to be
-        processed. For the purposes of testing a folder with at least
-        two run IDs must be indicated.
+        '-m' or '--m_benchmark_results_dir' - Path of top-level folder
+        that contains the multinode benchmark results folders/files 
+        to be processed.
+        
+        '-o' or '--write_json_output' - Boolean; creates final JSON file.
 
     Returns:
         (nothing)
@@ -539,26 +541,15 @@ def _auto_run(args):
                 file_list.append(os.path.join(root, file))
             else:
                 pass
-#    print(file_list)
     d = co.defaultdict(dict)
     for file in file_list:
         json_results.update(parse_files(file))
         json_results = (parse_and_add_benchmark_metadata(json_results))
         d[file].update(json_results)
-#        jsons.append(json_results)
-        json_results = {}
-    
-#    for k, v in jsons:
-#        d[k].append(v)
-
-        
+        json_results = {}       
     if args.write_json_output:
         with open('multinode_bm_results.json', 'w') as outfile:
             json.dump(d, outfile)
-
-    # TDH (2019-12-19): Trouble-shooting function whose purpose you'll
-    # never guess
-    #_check_missing_core_type(json_results)
 
 
 if __name__ == '__main__':
