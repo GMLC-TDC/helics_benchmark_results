@@ -162,6 +162,7 @@ def make_dataframe1(json_results):
     ### and sending to csv.
     meta_bmk_df = reduce(lambda x, y: pd.merge(x, y, on='identifier_id', how='outer'), [info_df, cache_df, bmk_df])
     real_time = []
+    cpu_time = []
     ### CGR (2020-02-06): Converting 'real_time' from nanoseconds or 
     ### milliseconds to seconds.
     for t in meta_bmk_df.real_time:
@@ -172,7 +173,16 @@ def make_dataframe1(json_results):
         elif meta_bmk_df.at[t_idx, 'time_unit'] == 'ms':
             time = float(t) * (float(10) ** (float(-3)))
             real_time.append(time)
+    for c in meta_bmk_df.cpu_time:
+        c_idx = meta_bmk_df[meta_bmk_df.cpu_time == c].index[0]
+        if meta_bmk_df.at[c_idx, 'time_unit'] == 'ns':
+            c_time = float(c) * (float(10) ** (float(-9)))
+            cpu_time.append(c_time)
+        elif meta_bmk_df.at[c_idx, 'time_unit'] == 'ms':
+            c_time = float(c) * (float(10) ** (float(-3)))
+            cpu_time.append(c_time)        
     meta_bmk_df['real_time'] = real_time
+    meta_bmk_df['cpu_time'] = cpu_time
     csv_path = os.path.join(os.getcwd(), 'bmk_meta_df.csv')
     meta_bmk_df.to_csv(r'{}'.format(csv_path))
     
