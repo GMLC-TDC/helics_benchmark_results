@@ -107,17 +107,17 @@ def grab_header_metadata(meta_bmk_df):
     
     # Adding all necessary metadata to the header
     header_metadata_str += '{:<25}{}\n\n'.format('BENCHMARKS:', benchmarks)        
-    header_metadata_str += '{:<25}{}\n\n'.format('generator:', generators)
-    header_metadata_str += '{:<25}{}\n\n'.format('system:', systems)
-    header_metadata_str += '{:<25}{}\n\n'.format('system version:', system_versions)
+    header_metadata_str += '{:<25}{}\n\n'.format('generator:', 'Unix Makefiles')
+    header_metadata_str += '{:<25}{}\n\n'.format('system:', 'Linux')
+    header_metadata_str += '{:<25}{}\n\n'.format('system version:', '4.15.0-1052-aws:')
     header_metadata_str += '{:<25}{}\n\n'.format('platform:', platforms)
-    header_metadata_str += '{:<25}{}\n\n'.format('C++ compiler:', cxx_compilers)
-    header_metadata_str += '{:<25}{}\n\n'.format('C++ compiler version:', cxx_compiler_versions)
-    header_metadata_str += '{:<25}{}\n\n'.format('Build flag string:', compiler_strings)
-    header_metadata_str += '{:<25}{}\n\n'.format('host name:', host_names)
-    header_metadata_str += '{:<25}{}\n\n'.format('host processor:', host_processors)
-    header_metadata_str += '{:<25}{}\n\n'.format('CPU core count:', num_cpus)
-    header_metadata_str += '{:<25}{}\n\n'.format('processor speed (MHz):', mhz_per_cpus)
+    header_metadata_str += '{:<25}{}\n\n'.format('C++ compiler:', 'GNU')
+    header_metadata_str += '{:<25}{}\n\n'.format('C++ compiler version:', '9.2.1')
+#    header_metadata_str += '{:<25}{}\n\n'.format('Build flag string:', compiler_strings)
+#    header_metadata_str += '{:<25}{}\n\n'.format('host name:', host_names)
+    header_metadata_str += '{:<25}{}\n\n'.format('host processor:', 'x86_64')
+    header_metadata_str += '{:<25}{}\n\n'.format('CPU core count:', 36)
+    header_metadata_str += '{:<25}{}\n\n'.format('processor speed (MHz):', 3400)
 
     header_metadata_str = header_metadata_str + '\n' + '\n'
     logging.info('Final metadata header:\n{}'.format(header_metadata_str))
@@ -163,7 +163,15 @@ def make_benchmark_track_graphs(meta_bmk_df, output_path):
     """
     if 'echoMessageBenchmark' in list(meta_bmk_df.benchmark.unique()):
         track = meta_bmk_df[(meta_bmk_df.benchmark == 'echoMessageBenchmark') & 
-                            (meta_bmk_df.benchmark_type == 'key')]
+                            (meta_bmk_df.benchmark_type == 'key') & 
+                            (meta_bmk_df.host_processor == 'x86_64') & 
+                            (meta_bmk_df.system == 'Linux') & 
+                            (meta_bmk_df.cxx_compiler == 'GNU') & 
+                            (meta_bmk_df.generator == 'Unix Makefiles') & 
+                            (meta_bmk_df.system_version == '4.15.0-1052-aws:') & 
+                            (meta_bmk_df.num_cpus == 36) & 
+                            (meta_bmk_df.cxx_compiler_version == '9.2.1') & 
+                            (meta_bmk_df.mhz_per_cpu == 3400)]
         bmk_plotting.sa_plot(track,
                              'date',
                              'real_time', 
@@ -175,7 +183,15 @@ def make_benchmark_track_graphs(meta_bmk_df, output_path):
                              output_path=output_path)
     if 'echoBenchmark' in list(meta_bmk_df.benchmark.unique()):
         track = meta_bmk_df[(meta_bmk_df.benchmark == 'echoBenchmark') & 
-                            (meta_bmk_df.benchmark_type == 'key')]
+                            (meta_bmk_df.benchmark_type == 'key') & 
+                            (meta_bmk_df.host_processor == 'x86_64') & 
+                            (meta_bmk_df.system == 'Linux') & 
+                            (meta_bmk_df.cxx_compiler == 'GNU') & 
+                            (meta_bmk_df.generator == 'Unix Makefiles') & 
+                            (meta_bmk_df.system_version == '4.15.0-1052-aws:') & 
+                            (meta_bmk_df.num_cpus == 36) & 
+                            (meta_bmk_df.cxx_compiler_version == '9.2.1') & 
+                            (meta_bmk_df.mhz_per_cpu == 3400)]
         bmk_plotting.sa_plot(track,
                              'date',
                              'real_time', 
@@ -187,7 +203,15 @@ def make_benchmark_track_graphs(meta_bmk_df, output_path):
                              output_path=output_path)
     if 'messageLookupBenchmark' in list(meta_bmk_df.benchmark.unique()):
         track = meta_bmk_df[(meta_bmk_df.benchmark == 'messageLookupBenchmark') & 
-                            (meta_bmk_df.benchmark_type == 'key')]
+                            (meta_bmk_df.benchmark_type == 'key') & 
+                            (meta_bmk_df.host_processor == 'x86_64') & 
+                            (meta_bmk_df.system == 'Linux') & 
+                            (meta_bmk_df.cxx_compiler == 'GNU') & 
+                            (meta_bmk_df.generator == 'Unix Makefiles') & 
+                            (meta_bmk_df.system_version == '4.15.0-1052-aws:') & 
+                            (meta_bmk_df.num_cpus == 36) & 
+                            (meta_bmk_df.cxx_compiler_version == '9.2.1') & 
+                            (meta_bmk_df.mhz_per_cpu == 3400)]
         bmk_plotting.sa_plot(track,
                              'date',
                              'real_time', 
@@ -199,7 +223,15 @@ def make_benchmark_track_graphs(meta_bmk_df, output_path):
                              output_path=output_path)
     if 'timingBenchmark' in list(meta_bmk_df.benchmark.unique()):
         track = meta_bmk_df[(meta_bmk_df.benchmark == 'timingBenchmark') & 
-                            (meta_bmk_df.benchmark_type == 'key')]
+                            (meta_bmk_df.benchmark_type == 'key') & 
+                            (meta_bmk_df.host_processor == 'x86_64') & 
+                            (meta_bmk_df.system == 'Linux') & 
+                            (meta_bmk_df.cxx_compiler == 'GNU') & 
+                            (meta_bmk_df.generator == 'Unix Makefiles') & 
+                            (meta_bmk_df.system_version == '4.15.0-1052-aws:') & 
+                            (meta_bmk_df.num_cpus == 36) & 
+                            (meta_bmk_df.cxx_compiler_version == '9.2.1') & 
+                            (meta_bmk_df.mhz_per_cpu == 3400)]
         bmk_plotting.sa_plot(track,
                              'date',
                              'real_time', 
