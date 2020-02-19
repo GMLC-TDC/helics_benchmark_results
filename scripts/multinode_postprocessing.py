@@ -173,6 +173,7 @@ def parse_header_lines(json_file, json_results, uuid_str):
             json_results[uuid_str]['host_processor'] = line[21:]
         elif 'CPU MODEL:' in line:
             json_results[uuid_str]['host_processor_string'] = line[10:].strip()
+            json_results[uuid_str]['mhz_per_cpu'] = int(float(line[-7:-4]) * 1000)
         elif 'ELAPSED TIME' in line:
             json_results[uuid_str]['elapsed_time'] = line[19:]
             match = re.search('ns', line)
