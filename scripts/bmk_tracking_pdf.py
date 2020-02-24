@@ -89,7 +89,9 @@ def grab_header_metadata(meta_bmk_df):
     # Setting up the header string
     header_metadata_str = ''
     meta_bmk_df = meta_bmk_df[(meta_bmk_df.benchmark_type == 'key') & 
-                              (meta_bmk_df.benchmark != 'conversionBenchmark')]
+                              (meta_bmk_df.benchmark != 'conversionBenchmark') & 
+                              (meta_bmk_df.mhz_per_cpu >= 3300) &
+                              (meta_bmk_df.mhz_per_cpu <= 3450)]
     
     # Adding metadata information to lists for the header
     benchmarks = [i for i in meta_bmk_df.benchmark.unique()]
@@ -103,7 +105,7 @@ def grab_header_metadata(meta_bmk_df):
     host_names = [i for i in meta_bmk_df.host_name.unique()]
     host_processors = [i for i in meta_bmk_df.host_processor.unique()]
     num_cpus = sorted([i for i in meta_bmk_df.num_cpus.unique()])
-    mhz_per_cpus =sorted( [i for i in meta_bmk_df.mhz_per_cpu.unique()])
+    mhz_per_cpus = sorted([i for i in meta_bmk_df.mhz_per_cpu.unique()])
     
     # Adding all necessary metadata to the header
     header_metadata_str += '{:<25}{}\n\n'.format('BENCHMARKS:', benchmarks)        
@@ -117,7 +119,7 @@ def grab_header_metadata(meta_bmk_df):
 #    header_metadata_str += '{:<25}{}\n\n'.format('host name:', host_names)
     header_metadata_str += '{:<25}{}\n\n'.format('host processor:', 'x86_64')
     header_metadata_str += '{:<25}{}\n\n'.format('CPU core count:', 36)
-    header_metadata_str += '{:<25}{}\n\n'.format('processor speed (MHz):', 3400)
+    header_metadata_str += '{:<25}{}\n\n'.format('processor speed (MHz):', mhz_per_cpus)
 
     header_metadata_str = header_metadata_str + '\n' + '\n'
     logging.info('Final metadata header:\n{}'.format(header_metadata_str))
@@ -171,7 +173,8 @@ def make_benchmark_track_graphs(meta_bmk_df, output_path):
                             (meta_bmk_df.system_version == '4.15.0-1052-aws:') & 
                             (meta_bmk_df.num_cpus == 36) & 
                             (meta_bmk_df.cxx_compiler_version == '9.2.1') & 
-                            (meta_bmk_df.mhz_per_cpu == 3400)]
+                            (meta_bmk_df.mhz_per_cpu >= 3300) &
+                            (meta_bmk_df.mhz_per_cpu <= 3450)]
         bmk_plotting.sa_plot(track,
                              'date',
                              'real_time', 
@@ -191,7 +194,8 @@ def make_benchmark_track_graphs(meta_bmk_df, output_path):
                             (meta_bmk_df.system_version == '4.15.0-1052-aws:') & 
                             (meta_bmk_df.num_cpus == 36) & 
                             (meta_bmk_df.cxx_compiler_version == '9.2.1') & 
-                            (meta_bmk_df.mhz_per_cpu == 3400)]
+                            (meta_bmk_df.mhz_per_cpu >= 3300) &
+                            (meta_bmk_df.mhz_per_cpu <= 3450)]
         bmk_plotting.sa_plot(track,
                              'date',
                              'real_time', 
@@ -211,7 +215,8 @@ def make_benchmark_track_graphs(meta_bmk_df, output_path):
                             (meta_bmk_df.system_version == '4.15.0-1052-aws:') & 
                             (meta_bmk_df.num_cpus == 36) & 
                             (meta_bmk_df.cxx_compiler_version == '9.2.1') & 
-                            (meta_bmk_df.mhz_per_cpu == 3400)]
+                            (meta_bmk_df.mhz_per_cpu >= 3300) &
+                            (meta_bmk_df.mhz_per_cpu <= 3450)]
         bmk_plotting.sa_plot(track,
                              'date',
                              'real_time', 
@@ -231,7 +236,8 @@ def make_benchmark_track_graphs(meta_bmk_df, output_path):
                             (meta_bmk_df.system_version == '4.15.0-1052-aws:') & 
                             (meta_bmk_df.num_cpus == 36) & 
                             (meta_bmk_df.cxx_compiler_version == '9.2.1') & 
-                            (meta_bmk_df.mhz_per_cpu == 3400)]
+                            (meta_bmk_df.mhz_per_cpu >= 3300) &
+                            (meta_bmk_df.mhz_per_cpu <= 3450)]
         bmk_plotting.sa_plot(track,
                              'date',
                              'real_time', 
