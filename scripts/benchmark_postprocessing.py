@@ -399,8 +399,12 @@ def parse_and_add_benchmark_metadata(json_results):
                                          json_results,
                                          key,
                                          idx)
-            info_str = ('Test type = ring\n'
-                        '          Added benchmark metadata to {} ')
+            if 'ringResults' in filename:
+                info_str = ('Test type = ringResults\n'
+                            '          Added benchmark metadata to {} ')
+            if 'ringMessage' in filename:
+                info_str = ('Test type = ringMessage\n'
+                            '          Added benchmark metadata to {} ')
             info_str = info_str.format(filename)
             logging.info(info_str)
         elif 'phold' in filename:

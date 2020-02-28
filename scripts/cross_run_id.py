@@ -359,6 +359,26 @@ def make_cross_run_id_graphs(meta_bmk_df,
                                      core_type,
                                      comparison_parameter,
                                      output_path)
+    if bm == 'ringMessageBenchmark':
+        meta_bmk_df = meta_bmk_df[(meta_bmk_df.benchmark == 'ringMessageBenchmark') &
+                                  (meta_bmk_df.benchmark_type == 'full')]
+        for core_type in meta_bmk_df.core_type.unique():
+            # TDH (2020-01-09) - Special case because only a single data
+            # point is run for the singleCore data. All the others have
+            # multiple data points and can actually be used to form a
+            # graph.
+            if core_type != 'singleCore':
+                x_axis = 'federate_count'
+                y_axis = 'real_time'
+                bm_name = 'ringMessageBenchmark'
+                bmk_plotting.cr_plot(meta_bmk_df,
+                                     x_axis,
+                                     y_axis,
+                                     bm_name,
+                                     run_id_list,
+                                     core_type,
+                                     comparison_parameter,
+                                     output_path)
     if bm == 'pholdBenchmark':
         meta_bmk_df = meta_bmk_df[(meta_bmk_df.benchmark == 'pholdBenchmark') &
                                   (meta_bmk_df.benchmark_type == 'full')]

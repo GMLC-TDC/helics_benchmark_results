@@ -343,6 +343,27 @@ def make_SA_graphs(meta_bmk_df, bm, run_id, output_path):
                                  output_path)
         else:
             pass
+    if bm['bm_name'] == 'ringMessageBenchmark':
+        meta_bmk_df = meta_bmk_df[meta_bmk_df.benchmark == 'ringMessageBenchmark']
+        if bm['bm_type'] == 'full':
+            meta_bmk_df = meta_bmk_df[(meta_bmk_df.benchmark_type == 'full') &
+                                      (meta_bmk_df.run_id == '{}'.format(run_id))]
+            x_axis = 'federate_count'
+            y_axis = 'real_time'
+            bm_name = 'ringMessageBenchmark'
+            by_bool = True
+            by_name = 'core_type'
+            bmk_plotting.sa_plot(meta_bmk_df, 
+                                 x_axis,
+                                 y_axis,
+                                 bm_name,
+                                 'full',
+                                 by_bool,
+                                 by_name,
+                                 run_id, 
+                                 output_path)
+        else:
+            pass
     if bm['bm_name'] == 'pholdBenchmark':
         meta_bmk_df = meta_bmk_df[meta_bmk_df.benchmark == 'pholdBenchmark']
         if bm['bm_type'] == 'full':
