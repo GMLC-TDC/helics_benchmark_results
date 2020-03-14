@@ -1,0 +1,21 @@
+71506-sfplY-DCRJp-UV7r6-SI6C5 (0)::connecting
+71506-sfplY-DCRJp-UV7r6-SI6C5 (0)::||connected on 127.0.0.1:33133
+71506-sfplY-DCRJp-UV7r6-SI6C5 (1)::registering broker 71517-x3d2S-EbCKj-y8YsS-m5I8s(1879048192) on route 1
+71506-sfplY-DCRJp-UV7r6-SI6C5 (1)::registering federate echohub(131072) on route 1
+71506-sfplY-DCRJp-UV7r6-SI6C5 (1)::registering broker 71548-DN1qg-XtGGm-hwB4a-fhhdr(1879048193) on route 2
+71506-sfplY-DCRJp-UV7r6-SI6C5 (1)::registering federate echoleaf_1(131073) on route 2
+71506-sfplY-DCRJp-UV7r6-SI6C5 (1)::registering broker 7365-DqHfi-SCuCN-IVF9r-WOR0U(1879048194) on route 3
+71506-sfplY-DCRJp-UV7r6-SI6C5 (1)::registering federate echoleaf_0(131074) on route 3
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	3 federates [min 3]
+	0/3 brokers/cores [min 0]
+	4 publications
+	0 inputs
+	0 endpoints
+	0 filters
+<<<<<<<<<
+71506-sfplY-DCRJp-UV7r6-SI6C5 (0)::got disconnect from 71548-DN1qg-XtGGm-hwB4a-fhhdr(1879048193)
+71506-sfplY-DCRJp-UV7r6-SI6C5 (0)::got disconnect from 7365-DqHfi-SCuCN-IVF9r-WOR0U(1879048194)
+71506-sfplY-DCRJp-UV7r6-SI6C5 (0)::got disconnect from 71517-x3d2S-EbCKj-y8YsS-m5I8s(1879048192)
+71506-sfplY-DCRJp-UV7r6-SI6C5 (0)::||disconnecting

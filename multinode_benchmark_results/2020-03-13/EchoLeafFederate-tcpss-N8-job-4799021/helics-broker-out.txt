@@ -1,0 +1,42 @@
+22492-2ff4a-cmmKY-z8Dcr-uMhMm (0)::connecting
+22492-2ff4a-cmmKY-z8Dcr-uMhMm (0)::||connected on 127.0.0.1:33133
+22492-2ff4a-cmmKY-z8Dcr-uMhMm (1)::registering broker 22503-RvxQT-4yZRL-zYMeR-lpcHc(1879048192) on route 1
+22492-2ff4a-cmmKY-z8Dcr-uMhMm (1)::registering federate echohub(131072) on route 1
+22492-2ff4a-cmmKY-z8Dcr-uMhMm (1)::registering broker 22582-vGCbu-pQlrx-7UYgQ-fXNr4(1879048193) on route 2
+22492-2ff4a-cmmKY-z8Dcr-uMhMm (1)::registering federate echoleaf_3(131073) on route 2
+22492-2ff4a-cmmKY-z8Dcr-uMhMm (1)::registering broker 39995-Tyfo5-qnKC8-8cH8O-krWX1(1879048194) on route 3
+22492-2ff4a-cmmKY-z8Dcr-uMhMm (1)::registering broker 55849-E9x15-cr9Lt-plDFS-UVPEw(1879048195) on route 4
+22492-2ff4a-cmmKY-z8Dcr-uMhMm (1)::registering broker 23316-TxgQa-aNAOE-sZR4Q-mTi9A(1879048196) on route 5
+22492-2ff4a-cmmKY-z8Dcr-uMhMm (1)::registering broker 26296-0zH6G-dfPnf-QKmMA-qTfai(1879048197) on route 6
+22492-2ff4a-cmmKY-z8Dcr-uMhMm (1)::registering broker 53640-sPa2e-toaNB-92fxG-v88VM(1879048198) on route 7
+22492-2ff4a-cmmKY-z8Dcr-uMhMm (1)::registering federate echoleaf_7(131074) on route 3
+22492-2ff4a-cmmKY-z8Dcr-uMhMm (1)::registering federate echoleaf_5(131075) on route 4
+22492-2ff4a-cmmKY-z8Dcr-uMhMm (1)::registering federate echoleaf_0(131076) on route 5
+22492-2ff4a-cmmKY-z8Dcr-uMhMm (1)::registering federate echoleaf_4(131077) on route 6
+22492-2ff4a-cmmKY-z8Dcr-uMhMm (1)::registering broker 72781-KgnSE-t4w2f-o6U5z-jYkkB(1879048199) on route 8
+22492-2ff4a-cmmKY-z8Dcr-uMhMm (1)::registering federate echoleaf_6(131078) on route 7
+22492-2ff4a-cmmKY-z8Dcr-uMhMm (1)::registering federate echoleaf_2(131079) on route 8
+22492-2ff4a-cmmKY-z8Dcr-uMhMm (1)::registering broker 33186-RKoG5-26IhZ-YiYQO-TuMho(1879048200) on route 9
+22492-2ff4a-cmmKY-z8Dcr-uMhMm (1)::registering federate echoleaf_1(131080) on route 9
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	9 federates [min 9]
+	0/9 brokers/cores [min 0]
+	16 publications
+	0 inputs
+	0 endpoints
+	0 filters
+<<<<<<<<<
+22492-2ff4a-cmmKY-z8Dcr-uMhMm (0)::got disconnect from 22582-vGCbu-pQlrx-7UYgQ-fXNr4(1879048193)
+22492-2ff4a-cmmKY-z8Dcr-uMhMm (0)::got disconnect from 26296-0zH6G-dfPnf-QKmMA-qTfai(1879048197)
+22492-2ff4a-cmmKY-z8Dcr-uMhMm (0)::got disconnect from 23316-TxgQa-aNAOE-sZR4Q-mTi9A(1879048196)
+22492-2ff4a-cmmKY-z8Dcr-uMhMm (0)::got disconnect from 55849-E9x15-cr9Lt-plDFS-UVPEw(1879048195)
+22492-2ff4a-cmmKY-z8Dcr-uMhMm (0)::got disconnect from 33186-RKoG5-26IhZ-YiYQO-TuMho(1879048200)
+22492-2ff4a-cmmKY-z8Dcr-uMhMm (0)::got disconnect from 39995-Tyfo5-qnKC8-8cH8O-krWX1(1879048194)
+commWarning||22492-2ff4a-cmmKY-z8Dcr-uMhMm (1)::(tcpss) unknown message destination message dropped time_request:From (131072) Time(5.0020000000000006e-06, 0.15000000000000002, 5.0020000000000006e-06) to (131074)
+22492-2ff4a-cmmKY-z8Dcr-uMhMm (0)::got disconnect from 72781-KgnSE-t4w2f-o6U5z-jYkkB(1879048199)
+22492-2ff4a-cmmKY-z8Dcr-uMhMm (0)::got disconnect from 53640-sPa2e-toaNB-92fxG-v88VM(1879048198)
+commWarning||22492-2ff4a-cmmKY-z8Dcr-uMhMm (1)::(tcpss) unknown message destination message dropped time_request:From (131072) Time(5.0020000000000006e-06, 0.15000000000000002, 5.0020000000000006e-06) to (131078)
+commWarning||22492-2ff4a-cmmKY-z8Dcr-uMhMm (1)::(tcpss) unknown message destination message dropped time_request:From (131072) Time(5.0020000000000006e-06, 0.15000000000000002, 5.0020000000000006e-06) to (131079)
+22492-2ff4a-cmmKY-z8Dcr-uMhMm (0)::got disconnect from 22503-RvxQT-4yZRL-zYMeR-lpcHc(1879048192)
+22492-2ff4a-cmmKY-z8Dcr-uMhMm (0)::||disconnecting

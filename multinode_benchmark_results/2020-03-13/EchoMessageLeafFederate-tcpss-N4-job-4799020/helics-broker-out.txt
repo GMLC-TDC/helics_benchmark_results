@@ -1,0 +1,30 @@
+53504-jbkIg-zbR7x-XCIKc-1HRpm (0)::connecting
+53504-jbkIg-zbR7x-XCIKc-1HRpm (0)::||connected on 127.0.0.1:33133
+53504-jbkIg-zbR7x-XCIKc-1HRpm (1)::registering broker 53516-jDyz2-gjHAy-osas3-uJKVC(1879048192) on route 1
+53504-jbkIg-zbR7x-XCIKc-1HRpm (1)::registering federate echohub(131072) on route 1
+53504-jbkIg-zbR7x-XCIKc-1HRpm (1)::registering broker 53563-fkB5t-CwZ4u-iQY7b-X51wb(1879048193) on route 2
+commWarning||53504-jbkIg-zbR7x-XCIKc-1HRpm (1)::(tcpss) unknown message destination message dropped broker_ack:From 1
+53504-jbkIg-zbR7x-XCIKc-1HRpm (1)::registering broker 14571-cqzRJ-zjRH3-XF6e8-oQd7V(1879048194) on route 3
+53504-jbkIg-zbR7x-XCIKc-1HRpm (1)::registering broker 44328-5Ld3v-Ts67e-UuS1A-sQXTf(1879048195) on route 4
+53504-jbkIg-zbR7x-XCIKc-1HRpm (1)::registering federate echoleaf_1(131073) on route 3
+53504-jbkIg-zbR7x-XCIKc-1HRpm (1)::registering federate echoleaf_2(131074) on route 4
+53504-jbkIg-zbR7x-XCIKc-1HRpm (1)::registering broker 54979-09EAG-OlOCd-o91VO-avlUY(1879048196) on route 5
+53504-jbkIg-zbR7x-XCIKc-1HRpm (1)::registering federate echoleaf_0(131075) on route 5
+53504-jbkIg-zbR7x-XCIKc-1HRpm (1)::registering federate echoleaf_3(131076) on route 6
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	5 federates [min 5]
+	0/5 brokers/cores [min 0]
+	0 publications
+	0 inputs
+	5 endpoints
+	0 filters
+<<<<<<<<<
+53504-jbkIg-zbR7x-XCIKc-1HRpm (1)::entering Exec Mode
+53504-jbkIg-zbR7x-XCIKc-1HRpm (0)::got disconnect from 54979-09EAG-OlOCd-o91VO-avlUY(1879048196)
+53504-jbkIg-zbR7x-XCIKc-1HRpm (0)::got disconnect from 53563-fkB5t-CwZ4u-iQY7b-X51wb(1879048193)
+53504-jbkIg-zbR7x-XCIKc-1HRpm (0)::got disconnect from 44328-5Ld3v-Ts67e-UuS1A-sQXTf(1879048195)
+53504-jbkIg-zbR7x-XCIKc-1HRpm (0)::got disconnect from 14571-cqzRJ-zjRH3-XF6e8-oQd7V(1879048194)
+53504-jbkIg-zbR7x-XCIKc-1HRpm (0)::got disconnect from 53516-jDyz2-gjHAy-osas3-uJKVC(1879048192)
+53504-jbkIg-zbR7x-XCIKc-1HRpm (0)::||disconnecting
+commWarning||53504-jbkIg-zbR7x-XCIKc-1HRpm (1)::(tcpss) unknown message destination message dropped time_grant:From (1) Granted Time(0.15000000000000002) to (131072)

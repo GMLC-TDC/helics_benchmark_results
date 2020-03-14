@@ -1,0 +1,19 @@
+8135-OxCdr-Wzc4g-w7EyR-f9jmA (0)::connecting
+8135-OxCdr-Wzc4g-w7EyR-f9jmA (0)::||connected on 127.0.0.1:33133
+8135-OxCdr-Wzc4g-w7EyR-f9jmA (1)::registering broker 8171-adKHF-W6gW2-Yzc8c-F3zNM(1879048192) on route 1
+8135-OxCdr-Wzc4g-w7EyR-f9jmA (1)::registering federate msgExchange_1(131072) on route 1
+8135-OxCdr-Wzc4g-w7EyR-f9jmA (1)::registering broker 66837-4CBBd-HQI2m-UbDKY-irlYI(1879048193) on route 2
+8135-OxCdr-Wzc4g-w7EyR-f9jmA (1)::registering federate msgExchange_0(131073) on route 2
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	2 federates [min 2]
+	0/2 brokers/cores [min 0]
+	0 publications
+	0 inputs
+	2 endpoints
+	0 filters
+<<<<<<<<<
+8135-OxCdr-Wzc4g-w7EyR-f9jmA (1)::entering Exec Mode
+8135-OxCdr-Wzc4g-w7EyR-f9jmA (0)::got disconnect from 8171-adKHF-W6gW2-Yzc8c-F3zNM(1879048192)
+8135-OxCdr-Wzc4g-w7EyR-f9jmA (0)::got disconnect from 66837-4CBBd-HQI2m-UbDKY-irlYI(1879048193)
+8135-OxCdr-Wzc4g-w7EyR-f9jmA (0)::||disconnecting

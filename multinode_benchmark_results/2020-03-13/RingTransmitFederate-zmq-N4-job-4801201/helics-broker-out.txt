@@ -1,0 +1,25 @@
+53245-KAR17-GGIGc-TbMLt-bFuM6 (0)::connecting
+53245-KAR17-GGIGc-TbMLt-bFuM6 (0)::||connected on tcp://127.0.0.1:23404
+53245-KAR17-GGIGc-TbMLt-bFuM6 (1)::registering broker 53302-JZGS0-smzWA-LflwI-fXBCC(1879048192) on route 1
+53245-KAR17-GGIGc-TbMLt-bFuM6 (1)::registering federate ringlink_2(131072) on route 1
+53245-KAR17-GGIGc-TbMLt-bFuM6 (1)::registering broker 1018-jn2aY-FzDI5-DUMUi-VpVS7(1879048193) on route 2
+53245-KAR17-GGIGc-TbMLt-bFuM6 (1)::registering broker 27740-Zo3hP-NrBDt-dATx6-Ew1tk(1879048194) on route 3
+53245-KAR17-GGIGc-TbMLt-bFuM6 (1)::registering broker 29224-mepVv-QFd8I-RUPYk-csrhc(1879048195) on route 4
+53245-KAR17-GGIGc-TbMLt-bFuM6 (1)::registering federate ringlink_0(131073) on route 2
+53245-KAR17-GGIGc-TbMLt-bFuM6 (1)::registering federate ringlink_1(131074) on route 3
+53245-KAR17-GGIGc-TbMLt-bFuM6 (1)::registering federate ringlink_3(131075) on route 4
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	4 federates [min 4]
+	0/4 brokers/cores [min 0]
+	4 publications
+	0 inputs
+	0 endpoints
+	0 filters
+<<<<<<<<<
+53245-KAR17-GGIGc-TbMLt-bFuM6 (0)::got disconnect from 53302-JZGS0-smzWA-LflwI-fXBCC(1879048192)
+53245-KAR17-GGIGc-TbMLt-bFuM6 (0)::got disconnect from 29224-mepVv-QFd8I-RUPYk-csrhc(1879048195)
+53245-KAR17-GGIGc-TbMLt-bFuM6 (0)::got disconnect from 1018-jn2aY-FzDI5-DUMUi-VpVS7(1879048193)
+53245-KAR17-GGIGc-TbMLt-bFuM6 (0)::got disconnect from 27740-Zo3hP-NrBDt-dATx6-Ew1tk(1879048194)
+commWarning||53245-KAR17-GGIGc-TbMLt-bFuM6 (1)::unknown route and no broker, dropping message pub:From (131074) handle(1) size 100 at 5e-06 to 131072
+53245-KAR17-GGIGc-TbMLt-bFuM6 (0)::||disconnecting

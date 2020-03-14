@@ -1,0 +1,21 @@
+71538-uk5le-Wg85k-MsFGt-xs54o (0)::connecting
+71538-uk5le-Wg85k-MsFGt-xs54o (0)::||connected on 127.0.0.1:23901
+71538-uk5le-Wg85k-MsFGt-xs54o (1)::registering broker 71550-9EgjX-9kwFt-VAFT8-wikDd(1879048192) on route 1
+71538-uk5le-Wg85k-MsFGt-xs54o (1)::registering federate echohub(131072) on route 1
+71538-uk5le-Wg85k-MsFGt-xs54o (1)::registering broker 71582-LcmOO-VFf3T-xsq3P-jBCOX(1879048193) on route 2
+71538-uk5le-Wg85k-MsFGt-xs54o (1)::registering federate echoleaf_0(131073) on route 2
+71538-uk5le-Wg85k-MsFGt-xs54o (1)::registering broker 1213-e5qeg-4QSHB-JKZtJ-31qcy(1879048194) on route 3
+71538-uk5le-Wg85k-MsFGt-xs54o (1)::registering federate echoleaf_1(131074) on route 3
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	3 federates [min 3]
+	0/3 brokers/cores [min 0]
+	4 publications
+	0 inputs
+	0 endpoints
+	0 filters
+<<<<<<<<<
+71538-uk5le-Wg85k-MsFGt-xs54o (0)::got disconnect from 71582-LcmOO-VFf3T-xsq3P-jBCOX(1879048193)
+71538-uk5le-Wg85k-MsFGt-xs54o (0)::got disconnect from 1213-e5qeg-4QSHB-JKZtJ-31qcy(1879048194)
+71538-uk5le-Wg85k-MsFGt-xs54o (0)::got disconnect from 71550-9EgjX-9kwFt-VAFT8-wikDd(1879048192)
+71538-uk5le-Wg85k-MsFGt-xs54o (0)::||disconnecting

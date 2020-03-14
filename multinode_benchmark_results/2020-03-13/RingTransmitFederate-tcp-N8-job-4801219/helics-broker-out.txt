@@ -1,0 +1,37 @@
+12323-EAdld-kmxNQ-YEOQ1-qqkRd (0)::connecting
+12323-EAdld-kmxNQ-YEOQ1-qqkRd (0)::||connected on 127.0.0.1:24160
+12323-EAdld-kmxNQ-YEOQ1-qqkRd (1)::registering broker 12409-K55Tq-KZf6m-aPtdb-dOLO8(1879048192) on route 1
+12323-EAdld-kmxNQ-YEOQ1-qqkRd (1)::registering federate ringlink_1(131072) on route 1
+12323-EAdld-kmxNQ-YEOQ1-qqkRd (1)::registering broker 34213-ATBMC-1AR5f-Mori3-dMdAu(1879048193) on route 2
+12323-EAdld-kmxNQ-YEOQ1-qqkRd (1)::registering broker 31825-mlda4-iHRp0-S6cVF-MnVRZ(1879048194) on route 3
+12323-EAdld-kmxNQ-YEOQ1-qqkRd (1)::registering broker 58415-DgfyY-VlIwh-BqtrI-s3oWn(1879048195) on route 4
+12323-EAdld-kmxNQ-YEOQ1-qqkRd (1)::registering broker 30020-w5IDD-Riu0m-lyebB-YZrhQ(1879048196) on route 5
+12323-EAdld-kmxNQ-YEOQ1-qqkRd (1)::registering federate ringlink_4(131073) on route 2
+12323-EAdld-kmxNQ-YEOQ1-qqkRd (1)::registering broker 47230-hToqg-l914R-kZ2hX-U854p(1879048197) on route 6
+12323-EAdld-kmxNQ-YEOQ1-qqkRd (1)::registering broker 61877-hOuMp-3chVk-rAIlY-cgDUK(1879048198) on route 7
+12323-EAdld-kmxNQ-YEOQ1-qqkRd (1)::registering broker 22225-k52zJ-iZzuo-ZY6mp-VdiNK(1879048199) on route 8
+12323-EAdld-kmxNQ-YEOQ1-qqkRd (1)::registering federate ringlink_7(131074) on route 3
+12323-EAdld-kmxNQ-YEOQ1-qqkRd (1)::registering federate ringlink_2(131075) on route 4
+12323-EAdld-kmxNQ-YEOQ1-qqkRd (1)::registering federate ringlink_0(131076) on route 5
+12323-EAdld-kmxNQ-YEOQ1-qqkRd (1)::registering federate ringlink_5(131077) on route 6
+12323-EAdld-kmxNQ-YEOQ1-qqkRd (1)::registering federate ringlink_3(131078) on route 7
+12323-EAdld-kmxNQ-YEOQ1-qqkRd (1)::registering federate ringlink_6(131079) on route 8
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	8 federates [min 8]
+	0/8 brokers/cores [min 0]
+	8 publications
+	0 inputs
+	0 endpoints
+	0 filters
+<<<<<<<<<
+12323-EAdld-kmxNQ-YEOQ1-qqkRd (0)::got disconnect from 58415-DgfyY-VlIwh-BqtrI-s3oWn(1879048195)
+12323-EAdld-kmxNQ-YEOQ1-qqkRd (0)::got disconnect from 61877-hOuMp-3chVk-rAIlY-cgDUK(1879048198)
+12323-EAdld-kmxNQ-YEOQ1-qqkRd (0)::got disconnect from 34213-ATBMC-1AR5f-Mori3-dMdAu(1879048193)
+12323-EAdld-kmxNQ-YEOQ1-qqkRd (0)::got disconnect from 47230-hToqg-l914R-kZ2hX-U854p(1879048197)
+12323-EAdld-kmxNQ-YEOQ1-qqkRd (0)::got disconnect from 22225-k52zJ-iZzuo-ZY6mp-VdiNK(1879048199)
+12323-EAdld-kmxNQ-YEOQ1-qqkRd (0)::got disconnect from 31825-mlda4-iHRp0-S6cVF-MnVRZ(1879048194)
+12323-EAdld-kmxNQ-YEOQ1-qqkRd (0)::got disconnect from 30020-w5IDD-Riu0m-lyebB-YZrhQ(1879048196)
+12323-EAdld-kmxNQ-YEOQ1-qqkRd (0)::got disconnect from 12409-K55Tq-KZf6m-aPtdb-dOLO8(1879048192)
+commWarning||12323-EAdld-kmxNQ-YEOQ1-qqkRd (1)::(tcp) unknown message destination message dropped pub:From (131072) handle(1) size 100 at 5e-06 to 131075
+12323-EAdld-kmxNQ-YEOQ1-qqkRd (0)::||disconnecting

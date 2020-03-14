@@ -1,0 +1,19 @@
+25223-V0EIT-6fNkh-g8NgE-a7Lwn (0)::connecting
+25223-V0EIT-6fNkh-g8NgE-a7Lwn (0)::||connected on 127.0.0.1:23901
+25223-V0EIT-6fNkh-g8NgE-a7Lwn (1)::registering broker 25260-S9kxe-8MIXl-XzRHP-lNSug(1879048192) on route 1
+25223-V0EIT-6fNkh-g8NgE-a7Lwn (1)::registering federate msgExchange_0(131072) on route 1
+25223-V0EIT-6fNkh-g8NgE-a7Lwn (1)::registering broker 57244-u9nCb-LViCn-4Lj7a-SIcsQ(1879048193) on route 2
+25223-V0EIT-6fNkh-g8NgE-a7Lwn (1)::registering federate msgExchange_1(131073) on route 2
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	2 federates [min 2]
+	0/2 brokers/cores [min 0]
+	0 publications
+	0 inputs
+	2 endpoints
+	0 filters
+<<<<<<<<<
+25223-V0EIT-6fNkh-g8NgE-a7Lwn (1)::entering Exec Mode
+25223-V0EIT-6fNkh-g8NgE-a7Lwn (0)::got disconnect from 57244-u9nCb-LViCn-4Lj7a-SIcsQ(1879048193)
+25223-V0EIT-6fNkh-g8NgE-a7Lwn (0)::got disconnect from 25260-S9kxe-8MIXl-XzRHP-lNSug(1879048192)
+25223-V0EIT-6fNkh-g8NgE-a7Lwn (0)::||disconnecting

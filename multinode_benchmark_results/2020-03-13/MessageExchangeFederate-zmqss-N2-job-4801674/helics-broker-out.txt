@@ -1,0 +1,21 @@
+33466-KmMaH-4OAo3-3FwfZ-q4Eke (0)::connecting
+33466-KmMaH-4OAo3-3FwfZ-q4Eke (0)::||connected on tcp://127.0.0.1:23404
+33466-KmMaH-4OAo3-3FwfZ-q4Eke (1)::registering broker 33506-hk51p-OW0mT-BjjU8-G96rV(1879048192) on route 1
+33466-KmMaH-4OAo3-3FwfZ-q4Eke (1)::registering federate msgExchange_0(131072) on route 1
+33466-KmMaH-4OAo3-3FwfZ-q4Eke (1)::registering broker 61250-ZqNhV-jc4jd-v8MwS-6Y2dk(1879048193) on route 2
+33466-KmMaH-4OAo3-3FwfZ-q4Eke (1)::registering federate msgExchange_1(131073) on route 2
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	2 federates [min 2]
+	0/2 brokers/cores [min 0]
+	0 publications
+	0 inputs
+	2 endpoints
+	0 filters
+<<<<<<<<<
+33466-KmMaH-4OAo3-3FwfZ-q4Eke (1)::entering Exec Mode
+33466-KmMaH-4OAo3-3FwfZ-q4Eke (0)::got disconnect from 61250-ZqNhV-jc4jd-v8MwS-6Y2dk(1879048193)
+33466-KmMaH-4OAo3-3FwfZ-q4Eke (0)::got disconnect from 33506-hk51p-OW0mT-BjjU8-G96rV(1879048192)
+commWarning||33466-KmMaH-4OAo3-3FwfZ-q4Eke (1)::unknown route and no broker, dropping message time_grant:From (1) Granted Time(1e-08) to (131073)
+commWarning||33466-KmMaH-4OAo3-3FwfZ-q4Eke (1)::unknown route and no broker, dropping message time_grant:From (1) Granted Time(1e-08) to (131072)
+33466-KmMaH-4OAo3-3FwfZ-q4Eke (0)::||disconnecting

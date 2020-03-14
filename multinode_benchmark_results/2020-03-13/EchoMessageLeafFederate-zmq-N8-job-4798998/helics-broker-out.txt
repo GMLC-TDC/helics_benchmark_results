@@ -1,0 +1,40 @@
+9567-wpkyF-C9zIl-dGV56-tmFSW (0)::connecting
+9567-wpkyF-C9zIl-dGV56-tmFSW (0)::||connected on tcp://127.0.0.1:23404
+9567-wpkyF-C9zIl-dGV56-tmFSW (1)::registering broker 9580-gZlyR-rFysg-xRPwL-TPaWc(1879048192) on route 1
+9567-wpkyF-C9zIl-dGV56-tmFSW (1)::registering federate echohub(131072) on route 1
+9567-wpkyF-C9zIl-dGV56-tmFSW (1)::registering broker 9663-WsSug-nLvjR-s5ucy-F5yVq(1879048193) on route 2
+9567-wpkyF-C9zIl-dGV56-tmFSW (1)::registering federate echoleaf_5(131073) on route 2
+9567-wpkyF-C9zIl-dGV56-tmFSW (1)::registering broker 41829-8Iuhk-chCy2-LNb4p-t342f(1879048194) on route 3
+9567-wpkyF-C9zIl-dGV56-tmFSW (1)::registering broker 17672-coqDL-3m6ef-VlbHo-HhTkU(1879048195) on route 4
+9567-wpkyF-C9zIl-dGV56-tmFSW (1)::registering broker 28005-1IOGm-VdkOP-dLL4v-TdIpJ(1879048196) on route 5
+9567-wpkyF-C9zIl-dGV56-tmFSW (1)::registering broker 64370-s6RHg-EyKEp-Tp3Qi-1GA7e(1879048197) on route 6
+9567-wpkyF-C9zIl-dGV56-tmFSW (1)::registering federate echoleaf_0(131074) on route 3
+9567-wpkyF-C9zIl-dGV56-tmFSW (1)::registering broker 53159-zw7Yn-34r3u-pwa7L-wlFeG(1879048198) on route 7
+9567-wpkyF-C9zIl-dGV56-tmFSW (1)::registering broker 60584-UZz2W-5OkjG-TMGq9-tFEYT(1879048199) on route 8
+9567-wpkyF-C9zIl-dGV56-tmFSW (1)::registering federate echoleaf_6(131075) on route 4
+9567-wpkyF-C9zIl-dGV56-tmFSW (1)::registering federate echoleaf_2(131076) on route 5
+9567-wpkyF-C9zIl-dGV56-tmFSW (1)::registering federate echoleaf_1(131077) on route 6
+9567-wpkyF-C9zIl-dGV56-tmFSW (1)::registering federate echoleaf_4(131078) on route 7
+9567-wpkyF-C9zIl-dGV56-tmFSW (1)::registering federate echoleaf_7(131079) on route 8
+9567-wpkyF-C9zIl-dGV56-tmFSW (1)::registering broker 13597-FQa8J-sQAek-PzXVv-VbLvp(1879048200) on route 9
+9567-wpkyF-C9zIl-dGV56-tmFSW (1)::registering federate echoleaf_3(131080) on route 9
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	9 federates [min 9]
+	0/9 brokers/cores [min 0]
+	0 publications
+	0 inputs
+	9 endpoints
+	0 filters
+<<<<<<<<<
+9567-wpkyF-C9zIl-dGV56-tmFSW (1)::entering Exec Mode
+9567-wpkyF-C9zIl-dGV56-tmFSW (0)::got disconnect from 9663-WsSug-nLvjR-s5ucy-F5yVq(1879048193)
+9567-wpkyF-C9zIl-dGV56-tmFSW (0)::got disconnect from 28005-1IOGm-VdkOP-dLL4v-TdIpJ(1879048196)
+9567-wpkyF-C9zIl-dGV56-tmFSW (0)::got disconnect from 13597-FQa8J-sQAek-PzXVv-VbLvp(1879048200)
+9567-wpkyF-C9zIl-dGV56-tmFSW (0)::got disconnect from 41829-8Iuhk-chCy2-LNb4p-t342f(1879048194)
+9567-wpkyF-C9zIl-dGV56-tmFSW (0)::got disconnect from 17672-coqDL-3m6ef-VlbHo-HhTkU(1879048195)
+9567-wpkyF-C9zIl-dGV56-tmFSW (0)::got disconnect from 60584-UZz2W-5OkjG-TMGq9-tFEYT(1879048199)
+9567-wpkyF-C9zIl-dGV56-tmFSW (0)::got disconnect from 64370-s6RHg-EyKEp-Tp3Qi-1GA7e(1879048197)
+9567-wpkyF-C9zIl-dGV56-tmFSW (0)::got disconnect from 53159-zw7Yn-34r3u-pwa7L-wlFeG(1879048198)
+9567-wpkyF-C9zIl-dGV56-tmFSW (0)::got disconnect from 9580-gZlyR-rFysg-xRPwL-TPaWc(1879048192)
+9567-wpkyF-C9zIl-dGV56-tmFSW (0)::||disconnecting

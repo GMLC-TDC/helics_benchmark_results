@@ -1,0 +1,19 @@
+45395-WlaDh-1qBMM-LNpuT-l1R1h (0)::connecting
+45395-WlaDh-1qBMM-LNpuT-l1R1h (0)::||connected on tcp://127.0.0.1:23404
+45395-WlaDh-1qBMM-LNpuT-l1R1h (1)::registering broker 45434-8nkh8-3H3la-090er-YOPBS(1879048192) on route 1
+45395-WlaDh-1qBMM-LNpuT-l1R1h (1)::registering federate msgExchange_0(131072) on route 1
+45395-WlaDh-1qBMM-LNpuT-l1R1h (1)::registering broker 37009-3c9z3-GB5V5-2vIeQ-SmcCo(1879048193) on route 2
+45395-WlaDh-1qBMM-LNpuT-l1R1h (1)::registering federate msgExchange_1(131073) on route 2
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	2 federates [min 2]
+	0/2 brokers/cores [min 0]
+	0 publications
+	0 inputs
+	2 endpoints
+	0 filters
+<<<<<<<<<
+45395-WlaDh-1qBMM-LNpuT-l1R1h (1)::entering Exec Mode
+45395-WlaDh-1qBMM-LNpuT-l1R1h (0)::got disconnect from 45434-8nkh8-3H3la-090er-YOPBS(1879048192)
+45395-WlaDh-1qBMM-LNpuT-l1R1h (0)::got disconnect from 37009-3c9z3-GB5V5-2vIeQ-SmcCo(1879048193)
+45395-WlaDh-1qBMM-LNpuT-l1R1h (0)::||disconnecting

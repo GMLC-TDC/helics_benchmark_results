@@ -1,0 +1,37 @@
+10391-y5jlk-ZGGm4-FKQDL-DAkID (0)::connecting
+10391-y5jlk-ZGGm4-FKQDL-DAkID (0)::||connected on tcp://127.0.0.1:23404
+10391-y5jlk-ZGGm4-FKQDL-DAkID (1)::registering broker 10481-X3yXg-YJkSA-w07um-U6eAL(1879048192) on route 1
+10391-y5jlk-ZGGm4-FKQDL-DAkID (1)::registering federate ringlink_0(131072) on route 1
+10391-y5jlk-ZGGm4-FKQDL-DAkID (1)::registering broker 29649-orICH-Ruyfc-k9E6g-q6AyD(1879048193) on route 2
+10391-y5jlk-ZGGm4-FKQDL-DAkID (1)::registering broker 3131-PIhNh-eenGY-W7CLh-THxWz(1879048194) on route 3
+10391-y5jlk-ZGGm4-FKQDL-DAkID (1)::registering broker 30359-DYGFq-Fywli-Zegn1-vvYIZ(1879048195) on route 4
+10391-y5jlk-ZGGm4-FKQDL-DAkID (1)::registering broker 36747-Up3po-fh2Fn-FOfXl-msQr9(1879048196) on route 5
+10391-y5jlk-ZGGm4-FKQDL-DAkID (1)::registering federate ringlink_1(131073) on route 2
+10391-y5jlk-ZGGm4-FKQDL-DAkID (1)::registering federate ringlink_7(131074) on route 3
+10391-y5jlk-ZGGm4-FKQDL-DAkID (1)::registering broker 56887-pp1Tp-gQ2bs-a3mvj-wagkC(1879048197) on route 6
+10391-y5jlk-ZGGm4-FKQDL-DAkID (1)::registering broker 31126-rDue9-ycXcH-kDkkZ-1CTUS(1879048198) on route 7
+10391-y5jlk-ZGGm4-FKQDL-DAkID (1)::registering federate ringlink_6(131075) on route 4
+10391-y5jlk-ZGGm4-FKQDL-DAkID (1)::registering federate ringlink_3(131076) on route 5
+10391-y5jlk-ZGGm4-FKQDL-DAkID (1)::registering broker 55386-sYZV5-OmLOy-2EVLU-YTcpy(1879048199) on route 8
+10391-y5jlk-ZGGm4-FKQDL-DAkID (1)::registering federate ringlink_5(131077) on route 6
+10391-y5jlk-ZGGm4-FKQDL-DAkID (1)::registering federate ringlink_2(131078) on route 7
+10391-y5jlk-ZGGm4-FKQDL-DAkID (1)::registering federate ringlink_4(131079) on route 8
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	8 federates [min 8]
+	0/8 brokers/cores [min 0]
+	8 publications
+	0 inputs
+	0 endpoints
+	0 filters
+<<<<<<<<<
+10391-y5jlk-ZGGm4-FKQDL-DAkID (0)::got disconnect from 31126-rDue9-ycXcH-kDkkZ-1CTUS(1879048198)
+10391-y5jlk-ZGGm4-FKQDL-DAkID (0)::got disconnect from 36747-Up3po-fh2Fn-FOfXl-msQr9(1879048196)
+10391-y5jlk-ZGGm4-FKQDL-DAkID (0)::got disconnect from 55386-sYZV5-OmLOy-2EVLU-YTcpy(1879048199)
+10391-y5jlk-ZGGm4-FKQDL-DAkID (0)::got disconnect from 56887-pp1Tp-gQ2bs-a3mvj-wagkC(1879048197)
+10391-y5jlk-ZGGm4-FKQDL-DAkID (0)::got disconnect from 30359-DYGFq-Fywli-Zegn1-vvYIZ(1879048195)
+10391-y5jlk-ZGGm4-FKQDL-DAkID (0)::got disconnect from 3131-PIhNh-eenGY-W7CLh-THxWz(1879048194)
+10391-y5jlk-ZGGm4-FKQDL-DAkID (0)::got disconnect from 10481-X3yXg-YJkSA-w07um-U6eAL(1879048192)
+10391-y5jlk-ZGGm4-FKQDL-DAkID (0)::got disconnect from 29649-orICH-Ruyfc-k9E6g-q6AyD(1879048193)
+commWarning||10391-y5jlk-ZGGm4-FKQDL-DAkID (1)::unknown route and no broker, dropping message pub:From (131073) handle(1) size 100 at 5e-06 to 131078
+10391-y5jlk-ZGGm4-FKQDL-DAkID (0)::||disconnecting

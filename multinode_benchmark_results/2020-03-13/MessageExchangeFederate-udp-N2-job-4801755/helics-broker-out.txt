@@ -1,0 +1,19 @@
+33113-R1dgi-tAQQ7-nNlzc-IQ3UK (0)::connecting
+33113-R1dgi-tAQQ7-nNlzc-IQ3UK (0)::||connected on 127.0.0.1:23901
+33113-R1dgi-tAQQ7-nNlzc-IQ3UK (1)::registering broker 33150-xZIKu-JWvV3-oQ9r1-3qk2j(1879048192) on route 1
+33113-R1dgi-tAQQ7-nNlzc-IQ3UK (1)::registering federate msgExchange_0(131072) on route 1
+33113-R1dgi-tAQQ7-nNlzc-IQ3UK (1)::registering broker 70336-KT3gU-FRWrS-earKc-EIOiv(1879048193) on route 2
+33113-R1dgi-tAQQ7-nNlzc-IQ3UK (1)::registering federate msgExchange_1(131073) on route 2
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	2 federates [min 2]
+	0/2 brokers/cores [min 0]
+	0 publications
+	0 inputs
+	2 endpoints
+	0 filters
+<<<<<<<<<
+33113-R1dgi-tAQQ7-nNlzc-IQ3UK (1)::entering Exec Mode
+33113-R1dgi-tAQQ7-nNlzc-IQ3UK (0)::got disconnect from 33150-xZIKu-JWvV3-oQ9r1-3qk2j(1879048192)
+33113-R1dgi-tAQQ7-nNlzc-IQ3UK (0)::got disconnect from 70336-KT3gU-FRWrS-earKc-EIOiv(1879048193)
+33113-R1dgi-tAQQ7-nNlzc-IQ3UK (0)::||disconnecting

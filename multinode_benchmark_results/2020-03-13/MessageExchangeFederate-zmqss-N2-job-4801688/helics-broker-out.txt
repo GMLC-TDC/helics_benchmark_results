@@ -1,0 +1,19 @@
+39591-9kUN3-EZuvm-Ypl6s-SFmVz (0)::connecting
+39591-9kUN3-EZuvm-Ypl6s-SFmVz (0)::||connected on tcp://127.0.0.1:23404
+39591-9kUN3-EZuvm-Ypl6s-SFmVz (1)::registering broker 39632-A2kKM-BvOga-FDyN3-TYHdz(1879048192) on route 1
+39591-9kUN3-EZuvm-Ypl6s-SFmVz (1)::registering federate msgExchange_0(131072) on route 1
+39591-9kUN3-EZuvm-Ypl6s-SFmVz (1)::registering broker 41734-1Xngq-IxUzD-pc6as-DPwfY(1879048193) on route 2
+39591-9kUN3-EZuvm-Ypl6s-SFmVz (1)::registering federate msgExchange_1(131073) on route 2
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	2 federates [min 2]
+	0/2 brokers/cores [min 0]
+	0 publications
+	0 inputs
+	2 endpoints
+	0 filters
+<<<<<<<<<
+39591-9kUN3-EZuvm-Ypl6s-SFmVz (1)::entering Exec Mode
+39591-9kUN3-EZuvm-Ypl6s-SFmVz (0)::got disconnect from 41734-1Xngq-IxUzD-pc6as-DPwfY(1879048193)
+39591-9kUN3-EZuvm-Ypl6s-SFmVz (0)::got disconnect from 39632-A2kKM-BvOga-FDyN3-TYHdz(1879048192)
+39591-9kUN3-EZuvm-Ypl6s-SFmVz (0)::||disconnecting

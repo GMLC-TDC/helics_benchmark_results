@@ -1,0 +1,21 @@
+10071-JFIx8-SAMLr-gWHoE-YFUxl (0)::connecting
+10071-JFIx8-SAMLr-gWHoE-YFUxl (0)::||connected on 127.0.0.1:23901
+10071-JFIx8-SAMLr-gWHoE-YFUxl (1)::registering broker 10110-FmuMX-FDNIW-oRSli-B1TUS(1879048192) on route 1
+10071-JFIx8-SAMLr-gWHoE-YFUxl (1)::registering federate ringlink_0(131072) on route 1
+10071-JFIx8-SAMLr-gWHoE-YFUxl (1)::registering broker 39900-l5O33-9ZwYD-UaIZn-25SR3(1879048193) on route 2
+10071-JFIx8-SAMLr-gWHoE-YFUxl (1)::registering federate ringlink_1(131073) on route 2
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	2 federates [min 2]
+	0/2 brokers/cores [min 0]
+	2 publications
+	0 inputs
+	0 endpoints
+	0 filters
+<<<<<<<<<
+10071-JFIx8-SAMLr-gWHoE-YFUxl (0)::got disconnect from 10110-FmuMX-FDNIW-oRSli-B1TUS(1879048192)
+10071-JFIx8-SAMLr-gWHoE-YFUxl (0)::got disconnect from 39900-l5O33-9ZwYD-UaIZn-25SR3(1879048193)
+commWarning||10071-JFIx8-SAMLr-gWHoE-YFUxl (1)::(udp) unknown route, message dropped time_request:From (131073) Time(5e-06, 5e-06, 5e-06) to (131072)
+commWarning||10071-JFIx8-SAMLr-gWHoE-YFUxl (1)::(udp) unknown route, message dropped time_grant:From (131073) Granted Time(5e-06) to (131072)
+commWarning||10071-JFIx8-SAMLr-gWHoE-YFUxl (1)::(udp) unknown route, message dropped pub:From (131073) handle(1) size 100 at 5e-06 to 131072
+10071-JFIx8-SAMLr-gWHoE-YFUxl (0)::||disconnecting

@@ -1,0 +1,27 @@
+39683-Ef8Kx-tJQLy-yaWVH-toxAp (0)::connecting
+39683-Ef8Kx-tJQLy-yaWVH-toxAp (0)::||connected on 127.0.0.1:33133
+39683-Ef8Kx-tJQLy-yaWVH-toxAp (1)::registering broker 39693-3fQIP-GtKrB-TV0be-2UBFW(1879048192) on route 1
+39683-Ef8Kx-tJQLy-yaWVH-toxAp (1)::registering federate echohub(131072) on route 1
+39683-Ef8Kx-tJQLy-yaWVH-toxAp (1)::registering broker 39742-7ctib-xv4mE-ayUym-ygso7(1879048193) on route 2
+39683-Ef8Kx-tJQLy-yaWVH-toxAp (1)::registering federate echoleaf_3(131073) on route 2
+39683-Ef8Kx-tJQLy-yaWVH-toxAp (1)::registering broker 29920-JnXSX-pV6Kg-57QjQ-mUenI(1879048194) on route 3
+39683-Ef8Kx-tJQLy-yaWVH-toxAp (1)::registering broker 20623-pGn57-QFrta-NeIY7-Zg4Nf(1879048195) on route 4
+39683-Ef8Kx-tJQLy-yaWVH-toxAp (1)::registering broker 65231-SsL2L-RB4fs-1fJio-edEi4(1879048196) on route 5
+39683-Ef8Kx-tJQLy-yaWVH-toxAp (1)::registering federate echoleaf_2(131074) on route 3
+39683-Ef8Kx-tJQLy-yaWVH-toxAp (1)::registering federate echoleaf_0(131075) on route 4
+39683-Ef8Kx-tJQLy-yaWVH-toxAp (1)::registering federate echoleaf_1(131076) on route 5
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	5 federates [min 5]
+	0/5 brokers/cores [min 0]
+	8 publications
+	0 inputs
+	0 endpoints
+	0 filters
+<<<<<<<<<
+39683-Ef8Kx-tJQLy-yaWVH-toxAp (0)::got disconnect from 39742-7ctib-xv4mE-ayUym-ygso7(1879048193)
+39683-Ef8Kx-tJQLy-yaWVH-toxAp (0)::got disconnect from 20623-pGn57-QFrta-NeIY7-Zg4Nf(1879048195)
+39683-Ef8Kx-tJQLy-yaWVH-toxAp (0)::got disconnect from 29920-JnXSX-pV6Kg-57QjQ-mUenI(1879048194)
+39683-Ef8Kx-tJQLy-yaWVH-toxAp (0)::got disconnect from 65231-SsL2L-RB4fs-1fJio-edEi4(1879048196)
+39683-Ef8Kx-tJQLy-yaWVH-toxAp (0)::got disconnect from 39693-3fQIP-GtKrB-TV0be-2UBFW(1879048192)
+39683-Ef8Kx-tJQLy-yaWVH-toxAp (0)::||disconnecting

@@ -1,0 +1,19 @@
+38770-cSkQQ-UsgGt-w0BRf-Ovskn (0)::connecting
+38770-cSkQQ-UsgGt-w0BRf-Ovskn (0)::||connected on tcp://127.0.0.1:23404
+38770-cSkQQ-UsgGt-w0BRf-Ovskn (1)::registering broker 38809-CX3jb-2GP1M-zjIOl-nFlt8(1879048192) on route 1
+38770-cSkQQ-UsgGt-w0BRf-Ovskn (1)::registering federate msgExchange_1(131072) on route 1
+38770-cSkQQ-UsgGt-w0BRf-Ovskn (1)::registering broker 71581-s1P8E-xqEsV-tdnWH-oaDsX(1879048193) on route 2
+38770-cSkQQ-UsgGt-w0BRf-Ovskn (1)::registering federate msgExchange_0(131073) on route 2
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	2 federates [min 2]
+	0/2 brokers/cores [min 0]
+	0 publications
+	0 inputs
+	2 endpoints
+	0 filters
+<<<<<<<<<
+38770-cSkQQ-UsgGt-w0BRf-Ovskn (1)::entering Exec Mode
+38770-cSkQQ-UsgGt-w0BRf-Ovskn (0)::got disconnect from 71581-s1P8E-xqEsV-tdnWH-oaDsX(1879048193)
+38770-cSkQQ-UsgGt-w0BRf-Ovskn (0)::got disconnect from 38809-CX3jb-2GP1M-zjIOl-nFlt8(1879048192)
+38770-cSkQQ-UsgGt-w0BRf-Ovskn (0)::||disconnecting

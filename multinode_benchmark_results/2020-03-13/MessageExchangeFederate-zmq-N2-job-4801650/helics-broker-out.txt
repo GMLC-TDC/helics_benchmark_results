@@ -1,0 +1,19 @@
+10971-ccc65-6PPQe-IuEI4-j6RuC (0)::connecting
+10971-ccc65-6PPQe-IuEI4-j6RuC (0)::||connected on tcp://127.0.0.1:23404
+10971-ccc65-6PPQe-IuEI4-j6RuC (1)::registering broker 11010-KdpMv-rpsak-hzg3C-EutFX(1879048192) on route 1
+10971-ccc65-6PPQe-IuEI4-j6RuC (1)::registering federate msgExchange_0(131072) on route 1
+10971-ccc65-6PPQe-IuEI4-j6RuC (1)::registering broker 30492-vgpxy-ZR5k3-00Ay2-t2Zaw(1879048193) on route 2
+10971-ccc65-6PPQe-IuEI4-j6RuC (1)::registering federate msgExchange_1(131073) on route 2
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	2 federates [min 2]
+	0/2 brokers/cores [min 0]
+	0 publications
+	0 inputs
+	2 endpoints
+	0 filters
+<<<<<<<<<
+10971-ccc65-6PPQe-IuEI4-j6RuC (1)::entering Exec Mode
+10971-ccc65-6PPQe-IuEI4-j6RuC (0)::got disconnect from 11010-KdpMv-rpsak-hzg3C-EutFX(1879048192)
+10971-ccc65-6PPQe-IuEI4-j6RuC (0)::got disconnect from 30492-vgpxy-ZR5k3-00Ay2-t2Zaw(1879048193)
+10971-ccc65-6PPQe-IuEI4-j6RuC (0)::||disconnecting

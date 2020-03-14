@@ -1,0 +1,20 @@
+35402-ReHeC-gdvK7-Rpd6t-7w5Mr (0)::connecting
+35402-ReHeC-gdvK7-Rpd6t-7w5Mr (0)::||connected on 127.0.0.1:24160
+35402-ReHeC-gdvK7-Rpd6t-7w5Mr (1)::registering broker 35439-Q4Tt6-X9xi6-vv8zT-A5BPG(1879048192) on route 1
+35402-ReHeC-gdvK7-Rpd6t-7w5Mr (1)::registering federate msgExchange_1(131072) on route 1
+35402-ReHeC-gdvK7-Rpd6t-7w5Mr (1)::registering broker 62176-wTZYI-9Bhji-AkIeF-54F7g(1879048193) on route 2
+35402-ReHeC-gdvK7-Rpd6t-7w5Mr (1)::registering federate msgExchange_0(131073) on route 2
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	2 federates [min 2]
+	0/2 brokers/cores [min 0]
+	0 publications
+	0 inputs
+	2 endpoints
+	0 filters
+<<<<<<<<<
+35402-ReHeC-gdvK7-Rpd6t-7w5Mr (1)::entering Exec Mode
+35402-ReHeC-gdvK7-Rpd6t-7w5Mr (0)::got disconnect from 35439-Q4Tt6-X9xi6-vv8zT-A5BPG(1879048192)
+35402-ReHeC-gdvK7-Rpd6t-7w5Mr (0)::got disconnect from 62176-wTZYI-9Bhji-AkIeF-54F7g(1879048193)
+35402-ReHeC-gdvK7-Rpd6t-7w5Mr (0)::||disconnecting
+commWarning||35402-ReHeC-gdvK7-Rpd6t-7w5Mr (1)::(tcp) unknown message destination message dropped time_grant:From (1) Granted Time(1e-08) to (131073)

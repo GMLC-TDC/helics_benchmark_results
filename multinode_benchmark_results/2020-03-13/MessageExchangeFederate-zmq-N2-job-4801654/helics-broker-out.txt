@@ -1,0 +1,20 @@
+34405-usggC-5JkCQ-WJYWh-9zc2W (0)::connecting
+34405-usggC-5JkCQ-WJYWh-9zc2W (0)::||connected on tcp://127.0.0.1:23404
+34405-usggC-5JkCQ-WJYWh-9zc2W (1)::registering broker 34446-OSrlM-B44Gv-iHZGN-z6OsD(1879048192) on route 1
+34405-usggC-5JkCQ-WJYWh-9zc2W (1)::registering federate msgExchange_0(131072) on route 1
+34405-usggC-5JkCQ-WJYWh-9zc2W (1)::registering broker 49703-uE6c8-enN4t-znCIw-gMGS2(1879048193) on route 2
+34405-usggC-5JkCQ-WJYWh-9zc2W (1)::registering federate msgExchange_1(131073) on route 2
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	2 federates [min 2]
+	0/2 brokers/cores [min 0]
+	0 publications
+	0 inputs
+	2 endpoints
+	0 filters
+<<<<<<<<<
+34405-usggC-5JkCQ-WJYWh-9zc2W (1)::entering Exec Mode
+34405-usggC-5JkCQ-WJYWh-9zc2W (0)::got disconnect from 34446-OSrlM-B44Gv-iHZGN-z6OsD(1879048192)
+34405-usggC-5JkCQ-WJYWh-9zc2W (0)::got disconnect from 49703-uE6c8-enN4t-znCIw-gMGS2(1879048193)
+commWarning||34405-usggC-5JkCQ-WJYWh-9zc2W (1)::unknown route and no broker, dropping message time_grant:From (1) Granted Time(1e-08) to (131073)
+34405-usggC-5JkCQ-WJYWh-9zc2W (0)::||disconnecting

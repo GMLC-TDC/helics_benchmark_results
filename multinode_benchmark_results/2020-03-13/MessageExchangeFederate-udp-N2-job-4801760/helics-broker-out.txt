@@ -1,0 +1,19 @@
+50224-j3fBS-S6vvG-5B0V7-wFXFM (0)::connecting
+50224-j3fBS-S6vvG-5B0V7-wFXFM (0)::||connected on 127.0.0.1:23901
+50224-j3fBS-S6vvG-5B0V7-wFXFM (1)::registering broker 50262-TwN90-BWYnP-QZYo9-nVKmL(1879048192) on route 1
+50224-j3fBS-S6vvG-5B0V7-wFXFM (1)::registering federate msgExchange_0(131072) on route 1
+50224-j3fBS-S6vvG-5B0V7-wFXFM (1)::registering broker 9504-Qee42-BbSWI-xkusY-aMk3a(1879048193) on route 2
+50224-j3fBS-S6vvG-5B0V7-wFXFM (1)::registering federate msgExchange_1(131073) on route 2
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	2 federates [min 2]
+	0/2 brokers/cores [min 0]
+	0 publications
+	0 inputs
+	2 endpoints
+	0 filters
+<<<<<<<<<
+50224-j3fBS-S6vvG-5B0V7-wFXFM (1)::entering Exec Mode
+50224-j3fBS-S6vvG-5B0V7-wFXFM (0)::got disconnect from 50262-TwN90-BWYnP-QZYo9-nVKmL(1879048192)
+50224-j3fBS-S6vvG-5B0V7-wFXFM (0)::got disconnect from 9504-Qee42-BbSWI-xkusY-aMk3a(1879048193)
+50224-j3fBS-S6vvG-5B0V7-wFXFM (0)::||disconnecting

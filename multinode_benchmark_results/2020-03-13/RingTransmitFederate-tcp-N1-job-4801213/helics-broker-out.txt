@@ -1,0 +1,15 @@
+21343-7X4HQ-1uBpG-DqNwA-vdxlg (0)::connecting
+21343-7X4HQ-1uBpG-DqNwA-vdxlg (0)::||connected on 127.0.0.1:24160
+21343-7X4HQ-1uBpG-DqNwA-vdxlg (1)::registering broker 21372-soqoQ-esLgL-KSUnR-FZgv0(1879048192) on route 1
+21343-7X4HQ-1uBpG-DqNwA-vdxlg (1)::registering federate ringlink_0(131072) on route 1
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	1 federates [min 1]
+	0/1 brokers/cores [min 0]
+	1 publications
+	0 inputs
+	0 endpoints
+	0 filters
+<<<<<<<<<
+21343-7X4HQ-1uBpG-DqNwA-vdxlg (0)::got disconnect from 21372-soqoQ-esLgL-KSUnR-FZgv0(1879048192)
+21343-7X4HQ-1uBpG-DqNwA-vdxlg (0)::||disconnecting

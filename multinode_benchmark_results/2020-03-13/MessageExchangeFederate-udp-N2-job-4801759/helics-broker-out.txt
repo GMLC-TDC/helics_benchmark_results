@@ -1,0 +1,19 @@
+26297-8SvU3-ACcS4-mMycM-Hp6og (0)::connecting
+26297-8SvU3-ACcS4-mMycM-Hp6og (0)::||connected on 127.0.0.1:23901
+26297-8SvU3-ACcS4-mMycM-Hp6og (1)::registering broker 26334-QYqTD-vpUXw-03U82-tzVzt(1879048192) on route 1
+26297-8SvU3-ACcS4-mMycM-Hp6og (1)::registering federate msgExchange_1(131072) on route 1
+26297-8SvU3-ACcS4-mMycM-Hp6og (1)::registering broker 58180-VasWZ-BKOng-tETir-0BjmA(1879048193) on route 2
+26297-8SvU3-ACcS4-mMycM-Hp6og (1)::registering federate msgExchange_0(131073) on route 2
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	2 federates [min 2]
+	0/2 brokers/cores [min 0]
+	0 publications
+	0 inputs
+	2 endpoints
+	0 filters
+<<<<<<<<<
+26297-8SvU3-ACcS4-mMycM-Hp6og (1)::entering Exec Mode
+26297-8SvU3-ACcS4-mMycM-Hp6og (0)::got disconnect from 26334-QYqTD-vpUXw-03U82-tzVzt(1879048192)
+26297-8SvU3-ACcS4-mMycM-Hp6og (0)::got disconnect from 58180-VasWZ-BKOng-tETir-0BjmA(1879048193)
+26297-8SvU3-ACcS4-mMycM-Hp6og (0)::||disconnecting

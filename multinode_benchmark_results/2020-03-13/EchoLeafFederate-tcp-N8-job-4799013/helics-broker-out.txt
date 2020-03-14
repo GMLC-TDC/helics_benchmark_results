@@ -1,0 +1,39 @@
+50243-qKV6p-FzinI-F1VIA-kaaaS (0)::connecting
+50243-qKV6p-FzinI-F1VIA-kaaaS (0)::||connected on 127.0.0.1:24160
+50243-qKV6p-FzinI-F1VIA-kaaaS (1)::registering broker 50255-t3quA-UlqlR-RxzbS-ApH4E(1879048192) on route 1
+50243-qKV6p-FzinI-F1VIA-kaaaS (1)::registering federate echohub(131072) on route 1
+50243-qKV6p-FzinI-F1VIA-kaaaS (1)::registering broker 50337-lFviQ-EvNec-3mWOc-eIz5K(1879048193) on route 2
+50243-qKV6p-FzinI-F1VIA-kaaaS (1)::registering federate echoleaf_3(131073) on route 2
+50243-qKV6p-FzinI-F1VIA-kaaaS (1)::registering broker 19460-SE88I-obXJO-LLWcd-QmIgg(1879048194) on route 3
+50243-qKV6p-FzinI-F1VIA-kaaaS (1)::registering broker 70062-3npxO-gLdJA-M60aT-Ng47m(1879048195) on route 4
+50243-qKV6p-FzinI-F1VIA-kaaaS (1)::registering broker 26843-1TZ5D-41YST-u0ZxU-fM1pH(1879048196) on route 5
+50243-qKV6p-FzinI-F1VIA-kaaaS (1)::registering broker 29037-mNHBP-220zu-qADWp-04IOl(1879048197) on route 6
+50243-qKV6p-FzinI-F1VIA-kaaaS (1)::registering broker 37099-oiP0M-4aTZA-YsDYW-hTKOU(1879048198) on route 7
+50243-qKV6p-FzinI-F1VIA-kaaaS (1)::registering broker 55824-NMywc-mYr9G-P4D6r-zGKot(1879048199) on route 8
+50243-qKV6p-FzinI-F1VIA-kaaaS (1)::registering broker 8723-CoOKE-TTQ1k-CDYqP-9g2tW(1879048200) on route 9
+50243-qKV6p-FzinI-F1VIA-kaaaS (1)::registering federate echoleaf_1(131074) on route 3
+50243-qKV6p-FzinI-F1VIA-kaaaS (1)::registering federate echoleaf_5(131075) on route 4
+50243-qKV6p-FzinI-F1VIA-kaaaS (1)::registering federate echoleaf_7(131076) on route 5
+50243-qKV6p-FzinI-F1VIA-kaaaS (1)::registering federate echoleaf_0(131077) on route 6
+50243-qKV6p-FzinI-F1VIA-kaaaS (1)::registering federate echoleaf_6(131078) on route 7
+50243-qKV6p-FzinI-F1VIA-kaaaS (1)::registering federate echoleaf_2(131079) on route 8
+50243-qKV6p-FzinI-F1VIA-kaaaS (1)::registering federate echoleaf_4(131080) on route 9
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	9 federates [min 9]
+	0/9 brokers/cores [min 0]
+	16 publications
+	0 inputs
+	0 endpoints
+	0 filters
+<<<<<<<<<
+50243-qKV6p-FzinI-F1VIA-kaaaS (0)::got disconnect from 50337-lFviQ-EvNec-3mWOc-eIz5K(1879048193)
+50243-qKV6p-FzinI-F1VIA-kaaaS (0)::got disconnect from 37099-oiP0M-4aTZA-YsDYW-hTKOU(1879048198)
+50243-qKV6p-FzinI-F1VIA-kaaaS (0)::got disconnect from 29037-mNHBP-220zu-qADWp-04IOl(1879048197)
+50243-qKV6p-FzinI-F1VIA-kaaaS (0)::got disconnect from 26843-1TZ5D-41YST-u0ZxU-fM1pH(1879048196)
+50243-qKV6p-FzinI-F1VIA-kaaaS (0)::got disconnect from 8723-CoOKE-TTQ1k-CDYqP-9g2tW(1879048200)
+50243-qKV6p-FzinI-F1VIA-kaaaS (0)::got disconnect from 19460-SE88I-obXJO-LLWcd-QmIgg(1879048194)
+50243-qKV6p-FzinI-F1VIA-kaaaS (0)::got disconnect from 55824-NMywc-mYr9G-P4D6r-zGKot(1879048199)
+50243-qKV6p-FzinI-F1VIA-kaaaS (0)::got disconnect from 70062-3npxO-gLdJA-M60aT-Ng47m(1879048195)
+50243-qKV6p-FzinI-F1VIA-kaaaS (0)::got disconnect from 50255-t3quA-UlqlR-RxzbS-ApH4E(1879048192)
+50243-qKV6p-FzinI-F1VIA-kaaaS (0)::||disconnecting

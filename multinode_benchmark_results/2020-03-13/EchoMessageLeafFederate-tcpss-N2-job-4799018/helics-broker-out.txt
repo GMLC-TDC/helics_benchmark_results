@@ -1,0 +1,24 @@
+63602-80y8F-cQjS1-G9r4V-3Yaio (0)::connecting
+63602-80y8F-cQjS1-G9r4V-3Yaio (0)::||connected on 127.0.0.1:33133
+63602-80y8F-cQjS1-G9r4V-3Yaio (1)::registering broker 63613-kydx4-Roquk-tm6mW-bvVGs(1879048192) on route 1
+63602-80y8F-cQjS1-G9r4V-3Yaio (1)::registering federate echohub(131072) on route 1
+63602-80y8F-cQjS1-G9r4V-3Yaio (1)::registering broker 63645-mbZJu-fKRiN-iESJj-Bl9tE(1879048193) on route 2
+commWarning||63602-80y8F-cQjS1-G9r4V-3Yaio (1)::(tcpss) unknown message destination message dropped broker_ack:From 1
+63602-80y8F-cQjS1-G9r4V-3Yaio (1)::registering broker 44569-Wf69K-DVW43-6EpSd-v5cN1(1879048194) on route 3
+63602-80y8F-cQjS1-G9r4V-3Yaio (1)::registering federate echoleaf_0(131073) on route 3
+63602-80y8F-cQjS1-G9r4V-3Yaio (1)::registering federate echoleaf_1(131074) on route 4
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	3 federates [min 3]
+	0/3 brokers/cores [min 0]
+	0 publications
+	0 inputs
+	3 endpoints
+	0 filters
+<<<<<<<<<
+63602-80y8F-cQjS1-G9r4V-3Yaio (1)::entering Exec Mode
+63602-80y8F-cQjS1-G9r4V-3Yaio (0)::got disconnect from 44569-Wf69K-DVW43-6EpSd-v5cN1(1879048194)
+63602-80y8F-cQjS1-G9r4V-3Yaio (0)::got disconnect from 63645-mbZJu-fKRiN-iESJj-Bl9tE(1879048193)
+63602-80y8F-cQjS1-G9r4V-3Yaio (0)::got disconnect from 63613-kydx4-Roquk-tm6mW-bvVGs(1879048192)
+63602-80y8F-cQjS1-G9r4V-3Yaio (0)::||disconnecting
+commWarning||63602-80y8F-cQjS1-G9r4V-3Yaio (1)::(tcpss) unknown message destination message dropped time_grant:From (1) Granted Time(0.15000000000000002) to (131072)

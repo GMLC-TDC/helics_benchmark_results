@@ -1,0 +1,19 @@
+21874-nYGHL-Bjkvv-4GtAJ-JsIg6 (0)::connecting
+21874-nYGHL-Bjkvv-4GtAJ-JsIg6 (0)::||connected on 127.0.0.1:23901
+21874-nYGHL-Bjkvv-4GtAJ-JsIg6 (1)::registering broker 21912-K6BOL-LD5TG-sTnMN-f1SaZ(1879048192) on route 1
+21874-nYGHL-Bjkvv-4GtAJ-JsIg6 (1)::registering federate msgExchange_1(131072) on route 1
+21874-nYGHL-Bjkvv-4GtAJ-JsIg6 (1)::registering broker 41405-jMyBL-ln86T-qXOmP-ZSj6u(1879048193) on route 2
+21874-nYGHL-Bjkvv-4GtAJ-JsIg6 (1)::registering federate msgExchange_0(131073) on route 2
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	2 federates [min 2]
+	0/2 brokers/cores [min 0]
+	0 publications
+	0 inputs
+	2 endpoints
+	0 filters
+<<<<<<<<<
+21874-nYGHL-Bjkvv-4GtAJ-JsIg6 (1)::entering Exec Mode
+21874-nYGHL-Bjkvv-4GtAJ-JsIg6 (0)::got disconnect from 21912-K6BOL-LD5TG-sTnMN-f1SaZ(1879048192)
+21874-nYGHL-Bjkvv-4GtAJ-JsIg6 (0)::got disconnect from 41405-jMyBL-ln86T-qXOmP-ZSj6u(1879048193)
+21874-nYGHL-Bjkvv-4GtAJ-JsIg6 (0)::||disconnecting

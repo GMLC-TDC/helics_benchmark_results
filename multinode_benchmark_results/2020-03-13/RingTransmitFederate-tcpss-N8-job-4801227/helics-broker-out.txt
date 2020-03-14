@@ -1,0 +1,37 @@
+17734-YOnWb-nXwVP-d0zgN-MiM2D (0)::connecting
+17734-YOnWb-nXwVP-d0zgN-MiM2D (0)::||connected on 127.0.0.1:33133
+17734-YOnWb-nXwVP-d0zgN-MiM2D (1)::registering broker 17819-17GSO-xhAsF-qO1vH-BrP3S(1879048192) on route 1
+17734-YOnWb-nXwVP-d0zgN-MiM2D (1)::registering federate ringlink_5(131072) on route 1
+17734-YOnWb-nXwVP-d0zgN-MiM2D (1)::registering broker 46191-R9OqS-OUBC7-U4Rae-CD4Gi(1879048193) on route 2
+17734-YOnWb-nXwVP-d0zgN-MiM2D (1)::registering broker 61932-DThgo-DMyZE-Xoh6w-w4oXg(1879048194) on route 3
+17734-YOnWb-nXwVP-d0zgN-MiM2D (1)::registering broker 36855-JieQa-iqsVc-3oueT-XGJWn(1879048195) on route 4
+17734-YOnWb-nXwVP-d0zgN-MiM2D (1)::registering broker 63439-iO4qv-488Ns-z4ZJW-8z3Oo(1879048196) on route 5
+17734-YOnWb-nXwVP-d0zgN-MiM2D (1)::registering broker 8908-wIIXS-XafQQ-ab1mk-YjXG9(1879048197) on route 6
+17734-YOnWb-nXwVP-d0zgN-MiM2D (1)::registering broker 35345-6r75V-IEJEI-mFFWT-5Xijk(1879048198) on route 7
+17734-YOnWb-nXwVP-d0zgN-MiM2D (1)::registering federate ringlink_7(131073) on route 2
+17734-YOnWb-nXwVP-d0zgN-MiM2D (1)::registering federate ringlink_4(131074) on route 3
+17734-YOnWb-nXwVP-d0zgN-MiM2D (1)::registering federate ringlink_2(131075) on route 4
+17734-YOnWb-nXwVP-d0zgN-MiM2D (1)::registering federate ringlink_1(131076) on route 5
+17734-YOnWb-nXwVP-d0zgN-MiM2D (1)::registering federate ringlink_6(131077) on route 6
+17734-YOnWb-nXwVP-d0zgN-MiM2D (1)::registering federate ringlink_3(131078) on route 7
+17734-YOnWb-nXwVP-d0zgN-MiM2D (1)::registering broker 37804-JKI9E-vYoZK-QNJac-KSm7W(1879048199) on route 8
+17734-YOnWb-nXwVP-d0zgN-MiM2D (1)::registering federate ringlink_0(131079) on route 8
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	8 federates [min 8]
+	0/8 brokers/cores [min 0]
+	8 publications
+	0 inputs
+	0 endpoints
+	0 filters
+<<<<<<<<<
+17734-YOnWb-nXwVP-d0zgN-MiM2D (0)::got disconnect from 36855-JieQa-iqsVc-3oueT-XGJWn(1879048195)
+17734-YOnWb-nXwVP-d0zgN-MiM2D (0)::got disconnect from 35345-6r75V-IEJEI-mFFWT-5Xijk(1879048198)
+17734-YOnWb-nXwVP-d0zgN-MiM2D (0)::got disconnect from 61932-DThgo-DMyZE-Xoh6w-w4oXg(1879048194)
+17734-YOnWb-nXwVP-d0zgN-MiM2D (0)::got disconnect from 17819-17GSO-xhAsF-qO1vH-BrP3S(1879048192)
+17734-YOnWb-nXwVP-d0zgN-MiM2D (0)::got disconnect from 8908-wIIXS-XafQQ-ab1mk-YjXG9(1879048197)
+17734-YOnWb-nXwVP-d0zgN-MiM2D (0)::got disconnect from 46191-R9OqS-OUBC7-U4Rae-CD4Gi(1879048193)
+17734-YOnWb-nXwVP-d0zgN-MiM2D (0)::got disconnect from 37804-JKI9E-vYoZK-QNJac-KSm7W(1879048199)
+17734-YOnWb-nXwVP-d0zgN-MiM2D (0)::got disconnect from 63439-iO4qv-488Ns-z4ZJW-8z3Oo(1879048196)
+commWarning||17734-YOnWb-nXwVP-d0zgN-MiM2D (1)::(tcpss) unknown message destination message dropped pub:From (131076) handle(1) size 100 at 5e-06 to 131075
+17734-YOnWb-nXwVP-d0zgN-MiM2D (0)::||disconnecting

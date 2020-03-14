@@ -1,0 +1,21 @@
+65390-fVzgR-dZiSc-35Dll-EhSFe (0)::connecting
+65390-fVzgR-dZiSc-35Dll-EhSFe (0)::||connected on 127.0.0.1:24160
+65390-fVzgR-dZiSc-35Dll-EhSFe (1)::registering broker 65402-4fIHn-NZ8UG-6TsI0-L3gGI(1879048192) on route 1
+65390-fVzgR-dZiSc-35Dll-EhSFe (1)::registering federate echohub(131072) on route 1
+65390-fVzgR-dZiSc-35Dll-EhSFe (1)::registering broker 65435-1BdCL-F5LdL-KSo26-NriKv(1879048193) on route 2
+65390-fVzgR-dZiSc-35Dll-EhSFe (1)::registering federate echoleaf_0(131073) on route 2
+65390-fVzgR-dZiSc-35Dll-EhSFe (1)::registering broker 18571-rTK9g-KitDA-yJuyg-ozZyy(1879048194) on route 3
+65390-fVzgR-dZiSc-35Dll-EhSFe (1)::registering federate echoleaf_1(131074) on route 3
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	3 federates [min 3]
+	0/3 brokers/cores [min 0]
+	4 publications
+	0 inputs
+	0 endpoints
+	0 filters
+<<<<<<<<<
+65390-fVzgR-dZiSc-35Dll-EhSFe (0)::got disconnect from 65435-1BdCL-F5LdL-KSo26-NriKv(1879048193)
+65390-fVzgR-dZiSc-35Dll-EhSFe (0)::got disconnect from 18571-rTK9g-KitDA-yJuyg-ozZyy(1879048194)
+65390-fVzgR-dZiSc-35Dll-EhSFe (0)::got disconnect from 65402-4fIHn-NZ8UG-6TsI0-L3gGI(1879048192)
+65390-fVzgR-dZiSc-35Dll-EhSFe (0)::||disconnecting

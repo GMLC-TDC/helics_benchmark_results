@@ -1,0 +1,19 @@
+65542-LqktC-B9bQO-tprLG-MS5FF (0)::connecting
+65542-LqktC-B9bQO-tprLG-MS5FF (0)::||connected on tcp://127.0.0.1:23404
+65542-LqktC-B9bQO-tprLG-MS5FF (1)::registering broker 65581-9QzUh-qFzMO-BWDp1-E2FYb(1879048192) on route 1
+65542-LqktC-B9bQO-tprLG-MS5FF (1)::registering federate msgExchange_1(131072) on route 1
+65542-LqktC-B9bQO-tprLG-MS5FF (1)::registering broker 25642-M4jar-V8dKa-U8Cep-TzlAW(1879048193) on route 2
+65542-LqktC-B9bQO-tprLG-MS5FF (1)::registering federate msgExchange_0(131073) on route 2
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	2 federates [min 2]
+	0/2 brokers/cores [min 0]
+	0 publications
+	0 inputs
+	2 endpoints
+	0 filters
+<<<<<<<<<
+65542-LqktC-B9bQO-tprLG-MS5FF (1)::entering Exec Mode
+65542-LqktC-B9bQO-tprLG-MS5FF (0)::got disconnect from 65581-9QzUh-qFzMO-BWDp1-E2FYb(1879048192)
+65542-LqktC-B9bQO-tprLG-MS5FF (0)::got disconnect from 25642-M4jar-V8dKa-U8Cep-TzlAW(1879048193)
+65542-LqktC-B9bQO-tprLG-MS5FF (0)::||disconnecting

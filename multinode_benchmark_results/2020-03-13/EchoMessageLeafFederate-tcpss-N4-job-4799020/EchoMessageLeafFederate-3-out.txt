@@ -1,0 +1,20 @@
+53563-fkB5t-CwZ4u-iQY7b-X51wb (0)::now waiting for the core to finish registration before proceeding
+53563-fkB5t-CwZ4u-iQY7b-X51wb (0)::broker state=-2, broker id=0, sleepcnt=7
+53563-fkB5t-CwZ4u-iQY7b-X51wb (0)::broker state=-2, broker id=0, sleepcnt=8
+53563-fkB5t-CwZ4u-iQY7b-X51wb (0)::broker state=-2, broker id=0, sleepcnt=9
+53563-fkB5t-CwZ4u-iQY7b-X51wb (0)::broker state=-2, broker id=0, sleepcnt=10
+53563-fkB5t-CwZ4u-iQY7b-X51wb (0)::broker state=-2, broker id=0, sleepcnt=11
+53563-fkB5t-CwZ4u-iQY7b-X51wb (0)::broker state=-2, broker id=0, sleepcnt=12
+53563-fkB5t-CwZ4u-iQY7b-X51wb (0)::broker state=-2, broker id=0, sleepcnt=13
+53563-fkB5t-CwZ4u-iQY7b-X51wb (0)::broker state=-2, broker id=0, sleepcnt=14
+53563-fkB5t-CwZ4u-iQY7b-X51wb (0)::broker state=-2, broker id=0, sleepcnt=15
+53563-fkB5t-CwZ4u-iQY7b-X51wb (0)::broker state=-2, broker id=0, sleepcnt=16
+53563-fkB5t-CwZ4u-iQY7b-X51wb (0)::broker state=-2, broker id=0, sleepcnt=17
+53563-fkB5t-CwZ4u-iQY7b-X51wb (0)::broker state=-2, broker id=0, sleepcnt=18
+53563-fkB5t-CwZ4u-iQY7b-X51wb (0)::broker state=-2, broker id=0, sleepcnt=19
+53563-fkB5t-CwZ4u-iQY7b-X51wb (0)::broker state=-2, broker id=0, sleepcnt=20
+53563-fkB5t-CwZ4u-iQY7b-X51wb (0)::resending reg message
+53563-fkB5t-CwZ4u-iQY7b-X51wb (0)::got resend
+53563-fkB5t-CwZ4u-iQY7b-X51wb (0)::resending broker reg
+BENCHMARK FEDERATE TYPE: EchoMessageLeaf
+ELAPSED TIME (ns): 239422803062

@@ -1,0 +1,19 @@
+13990-9ivhR-8uXIf-egqnL-AK60v (0)::connecting
+13990-9ivhR-8uXIf-egqnL-AK60v (0)::||connected on tcp://127.0.0.1:23404
+13990-9ivhR-8uXIf-egqnL-AK60v (1)::registering broker 14029-s477Q-2QkT7-evSYQ-bZtgI(1879048192) on route 1
+13990-9ivhR-8uXIf-egqnL-AK60v (1)::registering federate msgExchange_0(131072) on route 1
+13990-9ivhR-8uXIf-egqnL-AK60v (1)::registering broker 34381-1wl4C-CCPnC-NXQEM-beU7J(1879048193) on route 2
+13990-9ivhR-8uXIf-egqnL-AK60v (1)::registering federate msgExchange_1(131073) on route 2
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	2 federates [min 2]
+	0/2 brokers/cores [min 0]
+	0 publications
+	0 inputs
+	2 endpoints
+	0 filters
+<<<<<<<<<
+13990-9ivhR-8uXIf-egqnL-AK60v (1)::entering Exec Mode
+13990-9ivhR-8uXIf-egqnL-AK60v (0)::got disconnect from 14029-s477Q-2QkT7-evSYQ-bZtgI(1879048192)
+13990-9ivhR-8uXIf-egqnL-AK60v (0)::got disconnect from 34381-1wl4C-CCPnC-NXQEM-beU7J(1879048193)
+13990-9ivhR-8uXIf-egqnL-AK60v (0)::||disconnecting

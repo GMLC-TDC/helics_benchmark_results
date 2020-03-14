@@ -1,0 +1,5 @@
+DATE: 2020-03-13 23:31:30
+CLUSTER: quartz
+NUM NODES: 4
+FEDS PER NODE: 1
+TOPOLOGY:  single_broker

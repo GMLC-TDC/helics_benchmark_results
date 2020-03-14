@@ -1,0 +1,19 @@
+62596-VOBZK-T7CcV-S3iP1-7B6vJ (0)::connecting
+62596-VOBZK-T7CcV-S3iP1-7B6vJ (0)::||connected on tcp://127.0.0.1:23404
+62596-VOBZK-T7CcV-S3iP1-7B6vJ (1)::registering broker 62635-Joi0b-qu6tM-dohP8-GrOAE(1879048192) on route 1
+62596-VOBZK-T7CcV-S3iP1-7B6vJ (1)::registering federate msgExchange_1(131072) on route 1
+62596-VOBZK-T7CcV-S3iP1-7B6vJ (1)::registering broker 6367-PKu3R-ZPT9A-tZ9RW-vJO6d(1879048193) on route 2
+62596-VOBZK-T7CcV-S3iP1-7B6vJ (1)::registering federate msgExchange_0(131073) on route 2
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	2 federates [min 2]
+	0/2 brokers/cores [min 0]
+	0 publications
+	0 inputs
+	2 endpoints
+	0 filters
+<<<<<<<<<
+62596-VOBZK-T7CcV-S3iP1-7B6vJ (1)::entering Exec Mode
+62596-VOBZK-T7CcV-S3iP1-7B6vJ (0)::got disconnect from 62635-Joi0b-qu6tM-dohP8-GrOAE(1879048192)
+62596-VOBZK-T7CcV-S3iP1-7B6vJ (0)::got disconnect from 6367-PKu3R-ZPT9A-tZ9RW-vJO6d(1879048193)
+62596-VOBZK-T7CcV-S3iP1-7B6vJ (0)::||disconnecting
