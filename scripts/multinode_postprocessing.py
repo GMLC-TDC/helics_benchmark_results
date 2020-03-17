@@ -137,7 +137,8 @@ def parse_header_lines(json_file, json_results, uuid_str):
     json_body = 0
     for line in json_file:
         line = line.strip()
-
+#        num_match = re.search('[(]\0[)]\:',line)
+#        print(num_match)
         # Generally, an attempt is made to pull out relevant information
         # from the raw header line string and save it as its own entity
         # in the dictionary (for ease of use later). The raw header line
@@ -177,11 +178,31 @@ def parse_header_lines(json_file, json_results, uuid_str):
         elif 'ELAPSED TIME' in line:
             json_results[uuid_str]['elapsed_time'] = line[19:]
             match = re.search('ns', line)
+            print(match)
             if match:
                 json_results[uuid_str]['time_unit'] = match.group(0)[1:-2]
+                print(json_results[uuid_str]['time_unit'])
             else:
                 logging.error('{}: Failed to parse ELAPSED TIME line.'.format(
                         json_file['name']))
+        elif 'BENCHMARK FEDERATE TYPE:' in line:
+            json_results[uuid_str]['benchmark_type'] = line[25:]
+        elif 'DATE:' in line:
+            json_results[uuid_str]['date'] = line[6:]
+        elif 'CLUSTER:' in line:
+            json_results[uuid_str]['cluster'] = line[9:]
+        elif 'NUM NODES:' in line:
+            json_results[uuid_str]['number_of_nodes'] = line[11:]
+        elif 'FEDS PER NODE:' in line:
+            json_results[uuid_str]['federate_count'] = line[15:]
+        elif 'TOPOLOGY:' in line:
+            json_results[uuid_str]['topology'] = line[11:]
+        elif 'NUM LEAFS:' in line:
+            json_results[uuid_str]['number_of_leafs'] = line[11:]
+        elif 'MESSAGE SIZE:' in line:
+            json_results[uuid_str]['message_size'] = line[14:]
+        elif 'MESSAGE COUNT:' in line:
+            json_results[uuid_str]['message_count'] = line[15:]
         elif 'EVENT COUNT' in line:
             json_results[uuid_str]['EvCount'] = line[13:]
         elif ('-------------------------------------------' in line and
@@ -218,14 +239,52 @@ def parse_and_add_benchmark_metadata(json_results):
     """
     for key, value in json_results.items():
         # Convenience and/or performance assignments
-        filename = json_results[key]['filename']
-        json_results = _add_run_id(key, json_results)
-        json_results = _add_core(key, json_results)
-        json_results = _add_number_of_nodes(key, json_results)
-        json_results = _add_federate_count(key, json_results)
-        json_results = _add_date(key, json_results)
-        if 'PholdFederate' in filename:
+        if 'run_id' in json_results.values():
+            pass
+        else:
+            json_results = _add_run_id(key, json_results)
+            
+        if 'core_type' in json_results.values():
+            pass
+        else:
+            json_results = _add_core(key, json_results)
+            
+        if 'number_of_nodes' in json_results.values():
+            pass
+        else:
+            json_results = _add_number_of_nodes(key, json_results)
+            
+        if 'federate_count' in json_results.values():
+            pass
+        else:
+            json_results = _add_federate_count(key, json_results)
+            
+        if 'date' in json_results.values():
+            pass
+        else:
+            json_results = _add_date(key, json_results)
+        
+        # Adding benchmark to json_results
+        path = json_results[key]['path']
+#        filename = json_results[key]['filename']
+        if 'PholdFederate' in path:
             json_results[key]['benchmark'] = 'PholdFederate'
+            
+        elif 'EchoLeafFederate' in path:
+            json_results[key]['benchmark'] = 'EchoLeafFederate'
+        
+        elif 'EchoMessageLeafFederate' in path:
+            json_results[key]['benchmark'] = 'EchoMessageLeafFederate'
+        
+        elif 'MessageExchangeFederate' in path:
+            json_results[key]['benchmark'] = 'MessageExchangeFederate'
+            
+        elif 'RingTransmitFederate' in path:
+            json_results[key]['benchmark'] = 'RingTransmitFederate'
+            
+        elif 'TimingLeafFederate' in path:
+            json_results[key]['benchmark'] = 'TimingLeafFederate'
+            
     return json_results
 
 
@@ -534,8 +593,11 @@ def _auto_run(args):
     Returns:
         (nothing)
     """
+    
+    print('Starting post-processing...')
     json_results = {}
     file_list = []
+    print('creating a list of files')
     for root, dirs, files in os.walk(args.m_benchmark_results_dir):
         for file in files:
             if file != 'helics-broker-out.txt':
@@ -544,13 +606,23 @@ def _auto_run(args):
                 pass
     d = co.defaultdict(dict)
     for file in file_list:
+#        print('Current file: ', file)
+#        print('')
+        print('parsing the file')
+        print('')
         json_results.update(parse_files(file))
+        print('adding file metadata to JSON')
+        print('')
         json_results = (parse_and_add_benchmark_metadata(json_results))
         d[file].update(json_results)
-        json_results = {}       
+        json_results = {}
     if args.write_json_output:
-        with open('multinode_bm_results.json', 'w') as outfile:
+        with open('multinode_bm_results_test.json', 'w') as outfile:
             json.dump(d, outfile)
+    ### CGR (2020-03-17): Commenting out for now for testing purposes:
+#    if args.write_json_output:
+#        with open('multinode_bm_results.json', 'w') as outfile:
+#            json.dump(d, outfile)
 
 
 if __name__ == '__main__':
@@ -575,7 +647,7 @@ if __name__ == '__main__':
     head, tail = os.path.split(script_path)
     m_benchmark_results_dir = os.path.join(head, 
                                            'multinode_benchmark_results',
-                                           '2020-01-08')
+                                           '2020-03-13')
     parser.add_argument('-m',
                         '--m_benchmark_results_dir',
                         nargs='?',
