@@ -221,9 +221,15 @@ def make_dataframe2(json_results):
     'filename', 
     'path',
     'date',
+    'cluster',
+    'topology',
+    'number_of_leafs',
     'number_of_nodes',
     'federate_count',
+    'message_size', 
+    'message_count',
     'benchmark',
+    'benchmark_type',
     'helics_version_string', 
     'helics_version', 
     'zmq_version_string', 
@@ -269,6 +275,7 @@ def make_dataframe2(json_results):
     ### to seconds.
     elapsed_time = [(float(e) * float(10) ** float(-9)) for e in meta_bmk_df.elapsed_time]
     meta_bmk_df['elapsed_time'] = elapsed_time
+    meta_bmk_df['time_unit'] = 's'
     csv_path = os.path.join(os.getcwd(), 'multinode_bmk_meta_df.csv')
     meta_bmk_df.to_csv(r'{}'.format(csv_path))
     
@@ -284,9 +291,12 @@ def make_dataframe2(json_results):
 if __name__ == '__main__':
 #    json_file1 = 'bm_results.json'
 #    final_meta_bmk_df = make_dataframe1(json_file1)
+#    
+#    json_file2 = 'multinode_bm_results.json'
+#    multi_bmk_df = make_dataframe2(json_file2)
     
-    json_file2 = 'multinode_bm_results.json'
-    multi_bmk_df = make_dataframe2(json_file2)
+    json_file3 = 'multinode_bm_results_test.json'
+    multi_bmk_df = make_dataframe2(json_file3)
 #    print(final_meta_bmk_df.columns)
 #    print(final_meta_bmk_df.head())
 #    print(final_meta_bmk_df.shape)

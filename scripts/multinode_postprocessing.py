@@ -178,10 +178,10 @@ def parse_header_lines(json_file, json_results, uuid_str):
         elif 'ELAPSED TIME' in line:
             json_results[uuid_str]['elapsed_time'] = line[19:]
             match = re.search('ns', line)
-            print(match)
+#            print(match)
             if match:
                 json_results[uuid_str]['time_unit'] = match.group(0)[1:-2]
-                print(json_results[uuid_str]['time_unit'])
+#                print(json_results[uuid_str]['time_unit'])
             else:
                 logging.error('{}: Failed to parse ELAPSED TIME line.'.format(
                         json_file['name']))
@@ -555,25 +555,6 @@ def _parse_compiler_string(uuid, json_results):
         json_results[uuid]['cxx_compiler_version'] = ''
 
     return json_results
-
-def create_file_list(directory):
-    """This function creates a file_list for post-processing.
-    
-    Args:
-        directory (directory) - Path of where files are located.
-    
-    Returns:
-        file_list (list) - List of files for post-processing.
-    """
-    file_list = []
-    for root, dirs, files in os.walk(directory):
-        for file in files:
-            if file != 'helics-broker-out.txt':
-                file_list.append(os.path.join(root, file))
-            else:
-                pass
-    
-    return file_list
             
             
 def _auto_run(args):
@@ -598,6 +579,7 @@ def _auto_run(args):
     json_results = {}
     file_list = []
     print('creating a list of files')
+    print(args.m_benchmark_results_dir)
     for root, dirs, files in os.walk(args.m_benchmark_results_dir):
         for file in files:
             if file != 'helics-broker-out.txt':
@@ -646,8 +628,7 @@ if __name__ == '__main__':
 #    print(script_path)
     head, tail = os.path.split(script_path)
     m_benchmark_results_dir = os.path.join(head, 
-                                           'multinode_benchmark_results',
-                                           '2020-03-13')
+                                           'multinode_benchmark_results')
     parser.add_argument('-m',
                         '--m_benchmark_results_dir',
                         nargs='?',
