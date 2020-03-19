@@ -223,7 +223,7 @@ def make_dataframe2(json_results):
     'date',
     'cluster',
     'topology',
-    'number_of_leafs',
+    'number_of_leaves',
     'number_of_nodes',
     'federate_count',
     'message_size', 

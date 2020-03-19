@@ -198,7 +198,7 @@ def parse_header_lines(json_file, json_results, uuid_str):
         elif 'TOPOLOGY:' in line:
             json_results[uuid_str]['topology'] = line[11:]
         elif 'NUM LEAFS:' in line:
-            json_results[uuid_str]['number_of_leafs'] = line[11:]
+            json_results[uuid_str]['number_of_leaves'] = line[11:]
         elif 'MESSAGE SIZE:' in line:
             json_results[uuid_str]['message_size'] = line[14:]
         elif 'MESSAGE COUNT:' in line:
