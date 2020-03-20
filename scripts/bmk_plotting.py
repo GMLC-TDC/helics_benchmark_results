@@ -576,8 +576,33 @@ def mm_plot(dataframe, x_axis, y_axis, param1, param2, metric_bool, metric_type,
                                      '{}_{}_{}.png'.format(bm_name,
                                                            y_axis,
                                                            metric_type))
-    else:
-        pass
+    elif metric_bool == False:
+        gpd = dataframe.groupby(['{}'.format(x_axis), 
+                                 '{}'.format(param1)])['{}'.format(y_axis)].min()
+        # Creating the plot.
+        plot = gpd.reset_index().sort_values('{}'.format(x_axis)).hvplot.line(
+                '{}'.format(x_axis), 
+                '{}'.format(y_axis), 
+                ylabel='{} (s)'.format(y_axis),
+                title='{} {}: {} vs {}'.format(
+                        title_part,
+                        bm_name,
+                        x_axis, 
+                        y_axis),
+                by='{}'.format(param1),
+                alpha=0.5).opts(
+                        width=590,
+                        height=360,
+                        logx=True,
+                        logy=True,
+                        fontsize={'title': 9.5, 
+                                  'labels': 10, 
+                                  'legend': 9, 
+                                  'xticks': 8, 
+                                  'yticks': 10})
+        save_path = os.path.join(output_path, 
+                                 '{}_{}.png'.format(title_part,
+                                                    bm_name))
     
     hvplot.save(plot, save_path)
     logging.info('Created graph file {}'.format(output_path))
@@ -585,7 +610,19 @@ def mm_plot(dataframe, x_axis, y_axis, param1, param2, metric_bool, metric_type,
  
 ### Testing:
 #if __name__ == '__main__':
-#    json_file = 'bm_results.json'
-#    meta_bmk_df = md.make_dataframe1(json_file)
+#    json_file = 'multinode_bm_results_test.json'
+#    meta_bmk_df = md.make_dataframe2(json_file)
+#    phold_df = meta_bmk_df[meta_bmk_df.benchmark == 'PholdFederate']
+#    plot = mm_plot(phold_df, 
+#                   'federate_count', 
+#                   'elapsed_time', 
+#                   'core_type', 
+#                   '', 
+#                   False, 
+#                   '', 
+#                   'PholdFederate', 
+#                   'Multinode', 
+#                   os.path.join(os.getcwd()))
+#    plot
 #    # print(meta_bmk_df.shape)
-#    meta_bmk_df.sort_values('federate_count').hvplot.line('federate_count', 'real_time')
+##    meta_bmk_df.sort_values('federate_count').hvplot.line('federate_count', 'real_time')
