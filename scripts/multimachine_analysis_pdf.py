@@ -37,7 +37,7 @@ logger = logging.getLogger(__name__)
 # Setting up pretty printing, mostly for debugging.
 pp = pprint.PrettyPrinter(indent=4)
 
-def create_multimachine_report(output_path, json_results):
+def create_multimachine_report(output_path, dataframe):
     """This function creates the multinode report.
     
     Args:
@@ -59,7 +59,7 @@ def create_multimachine_report(output_path, json_results):
 
     # Create the header metadata from the metadata in the JSON results
     # and write out to PDF
-    header_metadata_str = grab_header_metadata(json_results)
+    header_metadata_str = grab_header_metadata(dataframe)
     line_height = 3
     pdf.write(line_height, header_metadata_str)
 
@@ -71,7 +71,7 @@ def create_multimachine_report(output_path, json_results):
 
 
 
-def grab_header_metadata(json_results):
+def grab_header_metadata(dataframe):
     """This function creates the header metadata as a string.
 
     Args:
@@ -84,95 +84,54 @@ def grab_header_metadata(json_results):
     # TDH (2019-12-20): Since all the metadata is common for each run, I
     # can grab the metadata I need from any of the results files
     # corresponding to the indicated run.
-    key_list = list(json_results.keys())
     header_metadata_str = ''
-    for key in key_list:
-        if 'benchmark' in json_results[key]:
-            header_metadata_str = header_metadata_str + '{:<25}{}\n\n'.format(
-                'BENCHMARK:',
-                json_results[key]['benchmark'])
-        else:
-            logging.warning('"benchmark" not found in metadata.')
-    
-        if 'helics_version' in json_results[key]:
-            header_metadata_str = header_metadata_str + '{:<25}{}\n'.format(
-                'HELICS version:',
-                json_results[key]['helics_version'])
-        else:
-            logging.warning('"helics_version" not found in metadata.')
-    
-        if 'generator' in json_results[key]:
-            header_metadata_str = header_metadata_str + '{:<25}{}\n'.format(
-                'generator:',
-                json_results[key]['generator'])
-        else:
-            logging.warning('"generator" not found in metadata.')
-    
-        if 'system' in json_results[key]:
-            header_metadata_str = header_metadata_str + '{:<25}{}\n'.format(
-                'system:',
-                json_results[key]['system'])
-        else:
-            logging.warning('"system" not found in metadata.')
-    
-        if 'system_version' in json_results[key]:
-            header_metadata_str = header_metadata_str + '{:<25}{}\n'.format(
-                'system version:',
-                json_results[key]['system_version'])
-        else:
-            logging.warning('"system_version" not found in metadata.')
-    
-        if 'platform' in json_results[key]:
-            header_metadata_str = header_metadata_str + '{:<25}{}\n'.format(
-                'platform:',
-                json_results[key]['platform'])
-        else:
-            logging.warning('"platform" not found in metadata.')
-    
-        if 'cxx_compiler' in json_results[key]:
-            header_metadata_str = header_metadata_str + '{:<25}{}\n'.format(
-                'C++ compiler:',
-                json_results[key]['cxx_compiler'])
-        else:
-            logging.warning('"cxx_compiler" not found in metadata.')
-    
-        if 'cxx_compiler_version' in json_results[key]:
-            header_metadata_str = header_metadata_str + '{:<25}{}\n'.format(
-                'C++ compiler version:',
-                json_results[key]['cxx_compiler_version'])
-        else:
-            logging.warning('"cxx_compiler_version" not found in metadata.')
-    
-        if 'build_flags_string' in json_results[key]:
-            header_metadata_str = header_metadata_str + '{:<25}{}\n'.format(
-                'compiler string:',
-                json_results[key]['build_flags_string'])
-        else:
-            logging.warning('"build_flags_string" not found in metadata.')
-    
-        if 'host_processor' in json_results[key]:
-            header_metadata_str = header_metadata_str + '{:<25}{}\n'.format(
-                'host processor:',
-                json_results[key]['host_processor'])
-        else:
-            logging.warning('"host_processor" not found in metadata.')
-        
-        if 'host_processor_string' in json_results[key]:
-            header_metadata_str = header_metadata_str + '{:<25}{}\n'.format(
-                'CPU Model:',
-                json_results[key]['host_processor_string'])
-        else:
-            logging.warning('"host_processor_string" not found in metadata.')
-        
-        if 'mhz_per_cpu' in json_results[key]:
-            header_metadata_str = header_metadata_str + '{:<25}{}\n'.format(
-                'processor speed (MHz):',
-                json_results[key]['mhz_per_cpu'])
-        else:
-            logging.warning('"mhz_per_cpu" not found in metadata.')
-    
-        header_metadata_str = header_metadata_str + '\n' + '\n'
-        logging.info('Final metadata header:\n{}'.format(header_metadata_str))
+    header_metadata_str += '{:<25}{}\n'.format(
+            'date:',
+            dataframe.date.values[0])
+    header_metadata_str += '{:<25}{}\n\n'.format(
+            'BENCHMARK:',
+            dataframe.benchmark.values[0])
+    header_metadata_str += '{:<25}{}\n'.format(
+            'HELICS version:',
+            dataframe.helics_version.values[0])
+    header_metadata_str += '{:<25}{}\n'.format(
+            'generator:',
+            dataframe.generator.values[0])
+    header_metadata_str += '{:<25}{}\n'.format(
+            'system:',
+            dataframe.system.values[0])
+    header_metadata_str += '{:<25}{}\n'.format(
+            'system version:',
+            dataframe.system_version.values[0])
+    header_metadata_str += '{:<25}{}\n'.format(
+            'platform:',
+            dataframe.platform.values[0])
+    header_metadata_str += '{:<25}{}\n'.format(
+            'C++ compiler:',
+            dataframe.cxx_compiler.values[0])
+    header_metadata_str += '{:<25}{}\n'.format(
+            'C++ compiler version:',
+            dataframe.cxx_compiler_version.values[0])
+    header_metadata_str += '{:<25}{}\n'.format(
+            'compiler string:',
+            dataframe.build_flags_string.values[0])
+    header_metadata_str += '{:<25}{}\n'.format(
+            'host processor:',
+            dataframe.host_processor.values[0])
+    header_metadata_str += '{:<25}{}\n'.format(
+            'CPU Model:',
+            dataframe.host_processor_string.values[0])
+    header_metadata_str += '{:<25}{}\n'.format(
+            'processor speed (MHz):',
+            dataframe.mhz_per_cpu.values[0])
+    header_metadata_str += '{:<25}{}\n'.format(
+            'cluster:',
+            dataframe.cluster.values[0])
+    header_metadata_str += '{:<25}{}\n'.format(
+            'topology:',
+            dataframe.topology.values[0])
+    header_metadata_str = header_metadata_str + '\n' + '\n'
+    logging.info('Final metadata header:\n{}'.format(header_metadata_str))
     return header_metadata_str
 
 
@@ -202,30 +161,31 @@ def add_benchmark_graphs(pdf, output_path):
     return pdf
 
 
-def make_multinode_graphs(multi_bmk_df, output_path):
+def make_multinode_graphs(dataframe, output_path):
     """This function creates the graphs for multinode_benchmark
     _results data and sends them to the output_path
     
     Args:
-        multi_bmk_df (pandas dataframe) - Contains all multinode
+        dataframe (pandas dataframe) - Contains all multinode
         benchmark results data.
         output_path (str) - Path to send graphs.
         
     Returns:
         (null)
     """
-    if 'PholdFederate' in list(multi_bmk_df.benchmark.unique()):
-        bmk_plotting.mm_plot(multi_bmk_df,
-                             'federate_count',
-                             'elapsed_time',
-                             'core_type',
-                             'EvCount',
-                             True,
-                             'sum',
-                             'PholdFederate',
+    if 'PholdFederate' in list(dataframe.benchmark.unique()):
+        df = dataframe[dataframe.benchmark == 'PholdFederate']
+        bmk_plotting.mm_plot(df, 
+                             'federate_count', 
+                             'elapsed_time', 
+                             'core_type', 
+                             '', 
+                             False, 
+                             '', 
+                             'PholdFederate', 
                              'Multinode',
                              output_path)
-        bmk_plotting.mm_plot(multi_bmk_df,
+        bmk_plotting.mm_plot(df,
                              'federate_count',
                              'elapsed_time',
                              'core_type',
@@ -235,8 +195,79 @@ def make_multinode_graphs(multi_bmk_df, output_path):
                              'PholdFederate',
                              'Multinode',
                              output_path)
+    elif 'EchoLeafFederate' in list(dataframe.benchmark.unique()):
+        df = dataframe[dataframe.benchmark == 'EchoLeafFederate']
+        bmk_plotting.mm_plot(df, 
+                             'federate_count', 
+                             'elapsed_time', 
+                             'core_type', 
+                             '', 
+                             False, 
+                             '', 
+                             'EchoLeafFederate', 
+                             'Multinode',
+                             output_path)
+    elif 'EchoMessageLeafFederate' in list(dataframe.benchmark.unique()):
+        df = dataframe[dataframe.benchmark == 'EchoMessageLeafFederate']
+        bmk_plotting.mm_plot(df, 
+                             'federate_count', 
+                             'elapsed_time', 
+                             'core_type', 
+                             '', 
+                             False, 
+                             '', 
+                             'EchoMessageLeafFederate', 
+                             'Multinode',
+                             output_path)
+    elif 'MessageExchangeFederate' in list(dataframe.benchmark.unique()):
+        df = dataframe[dataframe.benchmark == 'MessageExchangeFederate']
+        bmk_plotting.mm_plot(df, 
+                             'message_count', 
+                             'elapsed_time', 
+                             'core_type', 
+                             '', 
+                             False, 
+                             '', 
+                             'MessageExchangeFederate', 
+                             'Multinode',
+                             output_path)
+        bmk_plotting.mm_plot(df, 
+                             'message_size', 
+                             'elapsed_time', 
+                             'core_type', 
+                             '', 
+                             False, 
+                             '', 
+                             'MessageExchangeFederate', 
+                             'Multinode',
+                             output_path)
+    elif 'RingTransmitFederate' in list(dataframe.benchmark.unique()):
+        df = dataframe[dataframe.benchmark == 'RingTransmitFederate']
+        bmk_plotting.mm_plot(df, 
+                             'federate_count', 
+                             'elapsed_time', 
+                             'core_type', 
+                             '', 
+                             False, 
+                             '', 
+                             'RingTransmitFederate', 
+                             'Multinode',
+                             output_path)
+    elif 'TimingLeafFederate' in list(dataframe.benchmark.unique()):
+        df = dataframe[dataframe.benchmark == 'TimingLeafFederate']
+        bmk_plotting.mm_plot(df, 
+                             'federate_count', 
+                             'elapsed_time', 
+                             'core_type', 
+                             '', 
+                             False, 
+                             '', 
+                             'TimingLeafFederate', 
+                             'Multinode',
+                             output_path)
+    
     else:
-        pass
+        logging.error('Failed to create graphs')
 
 
 def _auto_run(args):
@@ -264,20 +295,47 @@ def _auto_run(args):
     Returns:
         (nothing)
     """
-    # Grabbing the data and adding it to the JSON
-    json_results = {}
-    d = co.defaultdict(dict)
-    file = args.default_file
-    json_results.update(mpp.parse_files(file))
-    json_results = (mpp.parse_and_add_benchmark_metadata(json_results))
-    d[file].update(json_results)
+#    # Grabbing the data and adding it to the JSON
+#    json_results = {}
+#    d = co.defaultdict(dict)
+#    file = args.default_file
+#    json_results.update(mpp.parse_files(file))
+#    json_results = (mpp.parse_and_add_benchmark_metadata(json_results))
+#    d[file].update(json_results)
+    
+#    json_results = {}
+#    file_list = []
+#    for root, dirs, files in os.walk(args.multinode_benchmark_results_dir):
+#        for file in files:
+#            if file != 'helics-broker-out.txt':
+#                file_list.append(os.path.join(root, file))
+#            else:
+#                pass
+#    d = co.defaultdict(dict)
+#    for file in file_list:
+#        json_results.update(mpp.parse_files(file))
+#        json_results = (mpp.parse_and_add_benchmark_metadata(json_results))
+#        d[file].update(json_results)
+#        json_results = {}
     
     # Creating the multinode report.
     multi_bmk_df = md.make_dataframe2(args.json_file)
-    output_path = os.path.join(args.multinode_benchmark_results_dir)
-    make_multinode_graphs(multi_bmk_df, output_path)
-    create_multimachine_report(output_path,
-                               json_results)
+#    output_path = os.path.join(args.multinode_benchmark_results_dir)
+    for benchmark in multi_bmk_df.benchmark.unique():
+        if benchmark == 'PholdFederate':
+            output_path = os.path.join(args.multinode_benchmark_results_dir, 
+                                       '2020-01-08')
+            df = multi_bmk_df[multi_bmk_df.benchmark == benchmark]
+            make_multinode_graphs(df, output_path)
+            create_multimachine_report(output_path,
+                                       df)
+        else:
+            output_path = os.path.join(args.multinode_benchmark_results_dir, 
+                                       '2020-03-13')
+            df = multi_bmk_df[multi_bmk_df.benchmark == benchmark]
+            make_multinode_graphs(df, output_path)
+            create_multimachine_report(output_path,
+                                       df)
 
 
 if __name__ == '__main__':
@@ -298,11 +356,15 @@ if __name__ == '__main__':
     parser.add_argument('-m',
                         '--multinode_benchmark_results_dir',
                         nargs='?',
-                        default='../multinode_benchmark_results/2020-01-08')
+                        default='../multinode_benchmark_results')
     parser.add_argument('-j',
                         '--json_file',
                         nargs='?',
                         default='multinode_bm_results.json')
+#    parser.add_argument('-o', 
+#                        '--output_path', 
+#                        nargs='?', 
+#                        default='../multinode_benchmark_results/2020-01-08')
     args = parser.parse_args()
     default_dir = os.path.join(args.multinode_benchmark_results_dir,
                                'PholdFederate-tcp-N1-job-4286628')
