@@ -18,6 +18,7 @@ at the end of this file.
 """
 
 import argparse
+import numpy as np
 import logging
 import pprint
 import os
@@ -85,51 +86,141 @@ def grab_header_metadata(dataframe):
     # can grab the metadata I need from any of the results files
     # corresponding to the indicated run.
     header_metadata_str = ''
-    header_metadata_str += '{:<25}{}\n'.format(
-            'date:',
-            dataframe.date.values[0])
-    header_metadata_str += '{:<25}{}\n\n'.format(
-            'BENCHMARK:',
-            dataframe.benchmark.values[0])
-    header_metadata_str += '{:<25}{}\n'.format(
-            'HELICS version:',
-            dataframe.helics_version.values[0])
-    header_metadata_str += '{:<25}{}\n'.format(
-            'generator:',
-            dataframe.generator.values[0])
-    header_metadata_str += '{:<25}{}\n'.format(
-            'system:',
-            dataframe.system.values[0])
-    header_metadata_str += '{:<25}{}\n'.format(
-            'system version:',
-            dataframe.system_version.values[0])
-    header_metadata_str += '{:<25}{}\n'.format(
-            'platform:',
-            dataframe.platform.values[0])
-    header_metadata_str += '{:<25}{}\n'.format(
-            'C++ compiler:',
-            dataframe.cxx_compiler.values[0])
-    header_metadata_str += '{:<25}{}\n'.format(
-            'C++ compiler version:',
-            dataframe.cxx_compiler_version.values[0])
-    header_metadata_str += '{:<25}{}\n'.format(
-            'compiler string:',
-            dataframe.build_flags_string.values[0])
-    header_metadata_str += '{:<25}{}\n'.format(
-            'host processor:',
-            dataframe.host_processor.values[0])
-    header_metadata_str += '{:<25}{}\n'.format(
-            'CPU Model:',
-            dataframe.host_processor_string.values[0])
-    header_metadata_str += '{:<25}{}\n'.format(
-            'processor speed (MHz):',
-            dataframe.mhz_per_cpu.values[0])
-    header_metadata_str += '{:<25}{}\n'.format(
-            'cluster:',
-            dataframe.cluster.values[0])
-    header_metadata_str += '{:<25}{}\n'.format(
-            'topology:',
-            dataframe.topology.values[0])
+    if 'date' in dataframe.columns.unique():
+        header_metadata_str += '{:<25}{}\n'.format(
+                'date:',
+                dataframe.date.values[0])
+    else:
+        header_metadata_str += '{:<25}{}\n'.format(
+                'date:',
+                ' ')
+        logging.error('"date" is not a column in dataframe')
+#    if 'benchmark' in dataframe.columns.unique():
+#        header_metadata_str += '{:<25}{}\n\n'.format(
+#                'BENCHMARK:',
+#                dataframe.benchmark.unique())
+#    else:
+#        header_metadata_str += '{:<25}{}\n'.format(
+#                'BENCHMARK:',
+#                ' ')
+#        logging.error('"benchmark" is not a column in dataframe')
+    if 'helics_version' in dataframe.columns.unique():
+        header_metadata_str += '{:<25}{}\n'.format(
+                'HELICS version:',
+                dataframe.helics_version.values[0])
+    else:
+        header_metadata_str += '{:<25}{}\n'.format(
+                'HELICS version:',
+                ' ')
+        logging.error('"helics_version" is not a column in dataframe')
+    if 'generator' in dataframe.columns.unique():
+        header_metadata_str += '{:<25}{}\n'.format(
+                'generator:',
+                dataframe.generator.values[0])
+    else:
+        header_metadata_str += '{:<25}{}\n'.format(
+                'generator:',
+                ' ')
+        logging.error('"generator" is not a column in dataframe.')
+    if 'system' in dataframe.columns.unique():
+        header_metadata_str += '{:<25}{}\n'.format(
+                'system:',
+                dataframe.system.values[0])
+    else:
+        header_metadata_str += '{:<25}{}\n'.format(
+                'system:',
+                ' ')
+        logging.error('"system" is not a column in dataframe.')
+    if 'system_version' in dataframe.columns.unique():
+        header_metadata_str += '{:<25}{}\n'.format(
+                'system version:',
+                dataframe.system_version.values[0])
+    else:
+        header_metadata_str += '{:<25}{}\n'.format(
+                'system version:',
+                ' ')
+        logging.error('"system_version" is not a column in dataframe')
+    if 'platform' in dataframe.columns.unique():
+        header_metadata_str += '{:<25}{}\n'.format(
+                'platform:',
+                dataframe.platform.values[0])
+    else:
+        header_metadata_str += '{:<25}{}\n'.format(
+                'platform:',
+                ' ')
+        logging.error('"platform" is not a column in dataframe')
+    if 'cxx_compiler' in dataframe.columns.unique():
+        header_metadata_str += '{:<25}{}\n'.format(
+                'C++ compiler:',
+                dataframe.cxx_compiler.values[0])
+    else:
+        header_metadata_str += '{:<25}{}\n'.format(
+                'cxx_compiler:',
+                ' ')
+        logging.error('"cxx_compiler" is not a column in dataframe')
+    if 'cxx_compiler_version' in dataframe.columns.unique():
+        header_metadata_str += '{:<25}{}\n'.format(
+                'C++ compiler version:',
+                dataframe.cxx_compiler_version.values[0])
+    else:
+        header_metadata_str += '{:<25}{}\n'.format(
+                'cxx_compiler_version:',
+                ' ')
+        logging.error('"cxx_compiler_version" is not a column in dataframe')
+    if 'build_flags_string' in dataframe.columns.unique():
+        header_metadata_str += '{:<25}{}\n'.format(
+                'compiler string:',
+                dataframe.build_flags_string.values[0])
+    else:
+        header_metadata_str += '{:<25}{}\n'.format(
+                'compiler string:',
+                ' ')
+        logging.error('"build_flags_string" is not a column in dataframe')
+    if 'host_processor' in dataframe.columns.unique():
+        header_metadata_str += '{:<25}{}\n'.format(
+                'host processor:',
+                dataframe.host_processor.values[0])
+    else:
+        header_metadata_str += '{:<25}{}\n'.format(
+                'host processor:',
+                ' ')
+        logging.error('"host_processor" is not a column in dataframe')
+    if 'host_processor_string' in dataframe.columns.unique():
+        header_metadata_str += '{:<25}{}\n'.format(
+                'CPU Model:',
+                dataframe.host_processor_string.values[0])
+    else:
+        header_metadata_str += '{:<25}{}\n'.format(
+                'CPU Model:',
+                ' ')
+        logging.error('"host_processor_string" is not a column in dataframe')
+    if 'mhz_per_cpu' in dataframe.columns.unique():
+        header_metadata_str += '{:<25}{}\n'.format(
+                'processor speed (MHz):',
+                dataframe.mhz_per_cpu.values[0])
+    else:
+        header_metadata_str += '{:<25}{}\n'.format(
+                'mhz_per_cpu:',
+                ' ')
+        logging.error('"mhz_per_cpu" is not a column in dataframe')
+    if 'cluster' in dataframe.columns.unique():
+        header_metadata_str += '{:<25}{}\n'.format(
+                'cluster:',
+                dataframe.cluster.values[0])
+    else:
+        header_metadata_str += '{:<25}{}\n'.format(
+                'cluster:',
+                ' ')
+        logging.error('"cluster" is not a column in dataframe')
+    if 'topology' in dataframe.columns.unique():
+        header_metadata_str += '{:<25}{}\n'.format(
+                'topology:',
+                dataframe.topology.values[0])
+    else:
+        header_metadata_str += '{:<25}{}\n'.format(
+                'topology:',
+                ' ')
+        logging.error('"topology" is not a column in dataframe')
     header_metadata_str = header_metadata_str + '\n' + '\n'
     logging.info('Final metadata header:\n{}'.format(header_metadata_str))
     return header_metadata_str
@@ -220,27 +311,31 @@ def make_multinode_graphs(dataframe, output_path):
                              'Multinode',
                              output_path)
     elif 'MessageExchangeFederate' in list(dataframe.benchmark.unique()):
-        df = dataframe[dataframe.benchmark == 'MessageExchangeFederate']
-        bmk_plotting.mm_plot(df, 
-                             'message_count', 
-                             'elapsed_time', 
-                             'core_type', 
-                             '', 
-                             False, 
-                             '', 
-                             'MessageExchangeFederate', 
-                             'Multinode',
-                             output_path)
-        bmk_plotting.mm_plot(df, 
-                             'message_size', 
-                             'elapsed_time', 
-                             'core_type', 
-                             '', 
-                             False, 
-                             '', 
-                             'MessageExchangeFederate', 
-                             'Multinode',
-                             output_path)
+        pass
+#        df = dataframe[(dataframe.benchmark == 'MessageExchangeFederate') & 
+#                       (dataframe.federate_count == 2)]
+#        df.message_count = np.nan_to_num(df.message_count)
+#        df.message_size = np.nan_to_num(df.message_size)
+#        bmk_plotting.mm_plot(df, 
+#                             'message_count', 
+#                             'elapsed_time', 
+#                             'core_type', 
+#                             '', 
+#                             False, 
+#                             '', 
+#                             'MessageExchange_2', 
+#                             'Multinode',
+#                             output_path)
+#        bmk_plotting.mm_plot(df, 
+#                             'message_size', 
+#                             'elapsed_time', 
+#                             'core_type', 
+#                             '', 
+#                             False, 
+#                             '', 
+#                             'MessageExchange_1', 
+#                             'Multinode',
+#                             output_path)
     elif 'RingTransmitFederate' in list(dataframe.benchmark.unique()):
         df = dataframe[dataframe.benchmark == 'RingTransmitFederate']
         bmk_plotting.mm_plot(df, 
@@ -322,6 +417,7 @@ def _auto_run(args):
     multi_bmk_df = md.make_dataframe2(args.json_file)
 #    output_path = os.path.join(args.multinode_benchmark_results_dir)
     for benchmark in multi_bmk_df.benchmark.unique():
+        print('BENCHMARK: ', benchmark)
         if benchmark == 'PholdFederate':
             output_path = os.path.join(args.multinode_benchmark_results_dir, 
                                        '2020-01-08')
@@ -360,7 +456,7 @@ if __name__ == '__main__':
     parser.add_argument('-j',
                         '--json_file',
                         nargs='?',
-                        default='multinode_bm_results.json')
+                        default='multinode_bm_results_test.json')
 #    parser.add_argument('-o', 
 #                        '--output_path', 
 #                        nargs='?', 

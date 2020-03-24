@@ -13,6 +13,7 @@ directory
 """
 
 import argparse
+import numpy as np
 import glob
 import logging
 import pprint
@@ -158,7 +159,7 @@ def parse_header_lines(json_file, json_results, uuid_str):
                     '{}: Failed to parse HELICS VERSION line.'.format(
                         json_file['name']))
         elif 'ZMQ VERSION:' in line:
-            json_results[uuid_str]['zmq_version_string']  = line[12:]
+            json_results[uuid_str]['zmq_version_string'] = line[12:]
             match = re.search('v\d+\..*',line)
             if match:
                 json_results[uuid_str]['zmq_version'] = match.group(0)[1:]
@@ -173,8 +174,17 @@ def parse_header_lines(json_file, json_results, uuid_str):
         elif 'HOST PROCESSOR TYPE:' in line:
             json_results[uuid_str]['host_processor'] = line[21:]
         elif 'CPU MODEL:' in line:
-            json_results[uuid_str]['host_processor_string'] = line[10:].strip()
-            json_results[uuid_str]['mhz_per_cpu'] = int(float(line[-7:-4]) * 1000)
+            json_results[uuid_str]['host_processor_string'] = line[10:]
+            match = re.search('\d+.\d+GHz',line)
+            if match:
+                speed = float(match.group(0)[-7:-4])*1000
+                print('SPEED: ', speed)
+                json_results[uuid_str]['mhz_per_cpu'] = speed
+            else:
+                speed = np.nan
+                json_results[uuid_str]['mhz_per_cpu'] = speed
+                logging.error('{}: Failed to parse CPU MODEL line'.format(
+                        json_file['name']))
         elif 'ELAPSED TIME' in line:
             json_results[uuid_str]['elapsed_time'] = line[19:]
             match = re.search('ns', line)
@@ -217,6 +227,7 @@ def parse_header_lines(json_file, json_results, uuid_str):
             # Headers lines we don't need to parse and can just skip
             pass
         else:
+            json_results[uuid_str]['mhz_per_cpu'] = np.nan
             logging.error('Failed to parse line in {}.'.format(
                 os.path.join(json_results[uuid_str]['path'],
                              json_results[uuid_str]['filename'])))
@@ -419,6 +430,31 @@ def _add_date(key, json_results):
         json_results[key]['date'] = ''
     return json_results
 
+
+def _add_mhz_per_cpu(key, json_results):
+    """This function adds the processor speed (if it exists) of the run
+    to json_results.
+    
+    Args:
+        key (str) - Key for dictionary for this benchmark results.
+        json_results (dict) - Dictionary of all benchmark results
+        (keyed by benchmark results filename) that the data and
+        metadata from json_file are being added to.
+
+    Returns:
+        json_results (dict) - json_results with run_id added for
+        the indicated results file.
+    """
+    match = re.search('\d+.\d+GHz', json_results[key]['host_processor_string'])
+    if match:
+        speed = match.group(0)[-8:-4]
+        print(speed)
+        speed = int(float(speed)*1000)
+        json_results[key]['mhz_per_cpu'] = speed
+    else:
+        json_results[key]['mhz_per_cpu'] = np.nan
+
+
 def _parse_compiler_string(uuid, json_results):
     """This function parses the compiler string in the metadata header
     line and adds it to the json_results metadata for the benchmark
@@ -575,11 +611,11 @@ def _auto_run(args):
         (nothing)
     """
     
-    print('Starting post-processing...')
+#    print('Starting post-processing...')
     json_results = {}
     file_list = []
-    print('creating a list of files')
-    print(args.m_benchmark_results_dir)
+#    print('creating a list of files')
+#    print(args.m_benchmark_results_dir)
     for root, dirs, files in os.walk(args.m_benchmark_results_dir):
         for file in files:
             if file != 'helics-broker-out.txt':
@@ -590,11 +626,11 @@ def _auto_run(args):
     for file in file_list:
 #        print('Current file: ', file)
 #        print('')
-        print('parsing the file')
-        print('')
+#        print('parsing the file')
+#        print('')
         json_results.update(parse_files(file))
-        print('adding file metadata to JSON')
-        print('')
+#        print('adding file metadata to JSON')
+#        print('')
         json_results = (parse_and_add_benchmark_metadata(json_results))
         d[file].update(json_results)
         json_results = {}

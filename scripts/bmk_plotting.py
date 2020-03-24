@@ -579,8 +579,9 @@ def mm_plot(dataframe, x_axis, y_axis, param1, param2, metric_bool, metric_type,
     elif metric_bool == False:
         gpd = dataframe.groupby(['{}'.format(x_axis), 
                                  '{}'.format(param1)])['{}'.format(y_axis)].min()
+        gpd = gpd.reset_index()
         # Creating the plot.
-        plot = gpd.reset_index().sort_values('{}'.format(x_axis)).hvplot.line(
+        plot = gpd.sort_values('{}'.format(x_axis)).hvplot.line(
                 '{}'.format(x_axis), 
                 '{}'.format(y_axis), 
                 ylabel='{} (s)'.format(y_axis),
