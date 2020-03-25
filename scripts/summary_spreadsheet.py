@@ -50,27 +50,19 @@ def get_all_ratios(dataframe):
                     a_df = a_df[a_df.federate_count == f]
                     a_df = a_df.set_index('core_type')
                     try:
-                        a_df['real_time_ratio'] = a_df['real_time'].values / float(a_df.loc['inproc', 'real_time'])
-                        a_df['spf_ratio'] = a_df['spf'].values / float(a_df.loc['inproc', 'spf'])
-                        a_df['sec_per_cpu_ratio'] = a_df['sec_per_cpu'].values / float(a_df.loc['inproc', 'sec_per_cpu'])
-                        a_df['new_mhz_per_cpu_ratio'] = a_df['new_mhz_per_cpu'].values / float(a_df.loc['inproc', 'new_mhz_per_cpu'])
-                        a_df['cpf_ratio'] = a_df['cpf'].values / float(a_df.loc['inproc', 'cpf'])
+                        a_df['spf_ratio'] = a_df['spf']/float(a_df.loc['inproc', 'spf'])
+                        a_df['cpf_ratio'] = a_df['cpf']/float(a_df.loc['inproc', 'cpf'])
                     except Exception as e:
                         logging.error('core type "inproc" does not exist', e)
                         value = np.nan
-                        a_df['real_time_ratio'] = value
                         a_df['spf_ratio'] = value
-                        a_df['sec_per_cpu_ratio'] = value
-                        a_df['new_mhz_per_cpu_ratio'] = value
                         a_df['cpf_ratio'] = value
                     a_df = a_df.reset_index()
                     a_df = a_df[[
                             'benchmark', 'run_id', 'num_cpus', 
                             'mhz_per_cpu', 'federate_count', 'core_type', 
-                            'real_time', 'real_time_ratio', 'spf', 
-                            'spf_ratio', 'sec_per_cpu', 'sec_per_cpu_ratio', 
-                            'new_mhz_per_cpu', 'new_mhz_per_cpu_ratio', 'cpf', 
-                            'cpf_ratio'
+                            'real_time', 'spf', 'spf_ratio', 
+                            'new_mhz_per_cpu', 'cpf', 'cpf_ratio'
                             ]]
                     echo_lst.append(a_df)
             echo_df = pd.concat(echo_lst).set_index([
@@ -92,27 +84,19 @@ def get_all_ratios(dataframe):
                     a_df = a_df[a_df.federate_count == f]
                     a_df = a_df.set_index('core_type')
                     try:
-                        a_df['real_time_ratio'] = a_df['real_time'].values / float(a_df.loc['inproc', 'real_time'])
-                        a_df['spf_ratio'] = a_df['spf'].values / float(a_df.loc['inproc', 'spf'])
-                        a_df['sec_per_cpu_ratio'] = a_df['sec_per_cpu'].values / float(a_df.loc['inproc', 'sec_per_cpu'])
-                        a_df['new_mhz_per_cpu_ratio'] = a_df['new_mhz_per_cpu'].values/ float(a_df.loc['inproc', 'new_mhz_per_cpu'])
-                        a_df['cpf_ratio'] = a_df['cpf'].values / float(a_df.loc['inproc', 'cpf'])
+                        a_df['spf_ratio'] = a_df['spf']/float(a_df.loc['inproc', 'spf'])
+                        a_df['cpf_ratio'] = a_df['cpf']/float(a_df.loc['inproc', 'cpf'])
                     except Exception as e:
-#                        print('core type "{}" does not exist; setting ratio to NaN'.format(e))
+                        logging.error('core type "inproc" does not exist', e)
                         value = np.nan
-                        a_df['real_time_ratio'] = value
                         a_df['spf_ratio'] = value
-                        a_df['sec_per_cpu_ratio'] = value
-                        a_df['new_mhz_per_cpu_ratio'] = value
                         a_df['cpf_ratio'] = value
                     a_df = a_df.reset_index()
                     a_df = a_df[[
                             'benchmark', 'run_id', 'num_cpus', 
                             'mhz_per_cpu', 'federate_count', 'core_type', 
-                            'real_time', 'real_time_ratio', 'spf', 
-                            'spf_ratio', 'sec_per_cpu', 'sec_per_cpu_ratio', 
-                            'new_mhz_per_cpu', 'new_mhz_per_cpu_ratio', 'cpf', 
-                            'cpf_ratio'
+                            'real_time', 'spf', 'spf_ratio', 
+                            'new_mhz_per_cpu', 'cpf', 'cpf_ratio'
                             ]]
                     echo_msg_lst.append(a_df)
             echo_msg_df = pd.concat(echo_msg_lst).set_index([
@@ -134,27 +118,19 @@ def get_all_ratios(dataframe):
                     a_df = a_df[a_df.federate_count == f]
                     a_df = a_df.set_index('core_type')
                     try:
-                        a_df['real_time_ratio'] = a_df['real_time'].values / float(a_df.loc['inproc', 'real_time'])
-                        a_df['spf_ratio'] = a_df['spf'].values / float(a_df.loc['inproc', 'spf'])
-                        a_df['sec_per_cpu_ratio'] = a_df['sec_per_cpu'].values / float(a_df.loc['inproc', 'sec_per_cpu'])
-                        a_df['new_mhz_per_cpu_ratio'] = a_df['new_mhz_per_cpu'].values / float(a_df.loc['inproc', 'new_mhz_per_cpu'])
-                        a_df['cpf_ratio'] = a_df['cpf'].values / float(a_df.loc['inproc', 'cpf'])
+                        a_df['spf_ratio'] = a_df['spf']/float(a_df.loc['inproc', 'spf'])
+                        a_df['cpf_ratio'] = a_df['cpf']/float(a_df.loc['inproc', 'cpf'])
                     except Exception as e:
-#                        print('core type "{}" does not exist; setting ratio to NaN'.format(e))
+                        logging.error('core type "inproc" does not exist', e)
                         value = np.nan
-                        a_df['real_time_ratio'] = value
                         a_df['spf_ratio'] = value
-                        a_df['sec_per_cpu_ratio'] = value
-                        a_df['new_mhz_per_cpu_ratio'] = value
                         a_df['cpf_ratio'] = value
                     a_df = a_df.reset_index()
                     a_df = a_df[[
                             'benchmark', 'run_id', 'num_cpus', 
                             'mhz_per_cpu', 'federate_count', 'core_type', 
-                            'real_time', 'real_time_ratio', 'spf', 
-                            'spf_ratio', 'sec_per_cpu', 'sec_per_cpu_ratio', 
-                            'new_mhz_per_cpu', 'new_mhz_per_cpu_ratio', 'cpf', 
-                            'cpf_ratio'
+                            'real_time', 'spf', 'spf_ratio', 
+                            'new_mhz_per_cpu', 'cpf', 'cpf_ratio'
                             ]]
                     c_echo_lst.append(a_df)
             c_echo_df = pd.concat(c_echo_lst).set_index([
@@ -176,27 +152,19 @@ def get_all_ratios(dataframe):
                     a_df = a_df[a_df.federate_count == f]
                     a_df = a_df.set_index('core_type')
                     try:
-                        a_df['real_time_ratio'] = a_df['real_time'].values / float(a_df.loc['inproc', 'real_time'])
-                        a_df['spf_ratio'] = a_df['spf'].values / float(a_df.loc['inproc', 'spf'])
-                        a_df['sec_per_cpu_ratio'] = a_df['sec_per_cpu'].values / float(a_df.loc['inproc', 'sec_per_cpu'])
-                        a_df['new_mhz_per_cpu_ratio'] = a_df['new_mhz_per_cpu'].values / float(a_df.loc['inproc', 'new_mhz_per_cpu'])
-                        a_df['cpf_ratio'] = a_df['cpf'].values / float(a_df.loc['inproc', 'cpf'])
+                        a_df['spf_ratio'] = a_df['spf']/float(a_df.loc['inproc', 'spf'])
+                        a_df['cpf_ratio'] = a_df['cpf']/float(a_df.loc['inproc', 'cpf'])
                     except Exception as e:
-#                        print('core type "{}" does not exist; setting ratio to NaN'.format(e))
+                        logging.error('core type "inproc" does not exist', e)
                         value = np.nan
-                        a_df['real_time_ratio'] = value
                         a_df['spf_ratio'] = value
-                        a_df['sec_per_cpu_ratio'] = value
-                        a_df['new_mhz_per_cpu_ratio'] = value
                         a_df['cpf_ratio'] = value
                     a_df = a_df.reset_index()
                     a_df = a_df[[
                             'benchmark', 'run_id', 'num_cpus', 
                             'mhz_per_cpu', 'federate_count', 'core_type', 
-                            'real_time', 'real_time_ratio', 'spf', 
-                            'spf_ratio', 'sec_per_cpu', 'sec_per_cpu_ratio', 
-                            'new_mhz_per_cpu', 'new_mhz_per_cpu_ratio', 'cpf', 
-                            'cpf_ratio'
+                            'real_time', 'spf', 'spf_ratio', 
+                            'new_mhz_per_cpu', 'cpf', 'cpf_ratio'
                             ]]
                     ring_lst.append(a_df)
             ring_df = pd.concat(ring_lst).set_index([
@@ -218,27 +186,19 @@ def get_all_ratios(dataframe):
                     a_df = a_df[a_df.federate_count == f]
                     a_df = a_df.set_index('core_type')
                     try:
-                        a_df['real_time_ratio'] = a_df['real_time'].values / float(a_df.loc['inproc', 'real_time'])
-                        a_df['spf_ratio'] = a_df['spf'].values / float(a_df.loc['inproc', 'spf'])
-                        a_df['sec_per_cpu_ratio'] = a_df['sec_per_cpu'].values / float(a_df.loc['inproc', 'sec_per_cpu'])
-                        a_df['new_mhz_per_cpu_ratio'] = a_df['new_mhz_per_cpu'].values / float(a_df.loc['inproc', 'new_mhz_per_cpu'])
-                        a_df['cpf_ratio'] = a_df['cpf'].values / float(a_df.loc['inproc', 'cpf'])
+                        a_df['spf_ratio'] = a_df['spf']/float(a_df.loc['inproc', 'spf'])
+                        a_df['cpf_ratio'] = a_df['cpf']/float(a_df.loc['inproc', 'cpf'])
                     except Exception as e:
-#                        print('core type "{}" does not exist; setting ratio to NaN'.format(e))
+                        logging.error('core type "inproc" does not exist', e)
                         value = np.nan
-                        a_df['real_time_ratio'] = value
                         a_df['spf_ratio'] = value
-                        a_df['sec_per_cpu_ratio'] = value
-                        a_df['new_mhz_per_cpu_ratio'] = value
                         a_df['cpf_ratio'] = value
                     a_df = a_df.reset_index()
                     a_df = a_df[[
                             'benchmark', 'run_id', 'num_cpus', 
                             'mhz_per_cpu', 'federate_count', 'core_type', 
-                            'real_time', 'real_time_ratio', 'spf', 
-                            'spf_ratio', 'sec_per_cpu', 'sec_per_cpu_ratio', 
-                            'new_mhz_per_cpu', 'new_mhz_per_cpu_ratio', 'cpf', 
-                            'cpf_ratio'
+                            'real_time', 'spf', 'spf_ratio', 
+                            'new_mhz_per_cpu', 'cpf', 'cpf_ratio'
                             ]]
                     ring_msg_lst.append(a_df)
             ring_msg_df = pd.concat(ring_msg_lst).set_index([
@@ -260,27 +220,19 @@ def get_all_ratios(dataframe):
                     a_df = a_df[a_df.federate_count == f]
                     a_df = a_df.set_index('core_type')
                     try:
-                        a_df['real_time_ratio'] = a_df['real_time'].values / float(a_df.loc['inproc', 'real_time'])
-                        a_df['spf_ratio'] = a_df['spf'].values / float(a_df.loc['inproc', 'spf'])
-                        a_df['sec_per_cpu_ratio'] = a_df['sec_per_cpu'].values / float(a_df.loc['inproc', 'sec_per_cpu'])
-                        a_df['new_mhz_per_cpu_ratio'] = a_df['new_mhz_per_cpu'].values / float(a_df.loc['inproc', 'new_mhz_per_cpu'])
-                        a_df['cpf_ratio'] = a_df['cpf'].values / float(a_df.loc['inproc', 'cpf'])
+                        a_df['spf_ratio'] = a_df['spf']/float(a_df.loc['inproc', 'spf'])
+                        a_df['cpf_ratio'] = a_df['cpf']/float(a_df.loc['inproc', 'cpf'])
                     except Exception as e:
-#                        print('core type "{}" does not exist; setting ratio to NaN'.format(e))
+                        logging.error('core type "inproc" does not exist', e)
                         value = np.nan
-                        a_df['real_time_ratio'] = value
                         a_df['spf_ratio'] = value
-                        a_df['sec_per_cpu_ratio'] = value
-                        a_df['new_mhz_per_cpu_ratio'] = value
                         a_df['cpf_ratio'] = value
                     a_df = a_df.reset_index()
                     a_df = a_df[[
                             'benchmark', 'run_id', 'num_cpus', 
                             'mhz_per_cpu', 'federate_count', 'core_type', 
-                            'real_time', 'real_time_ratio', 'spf', 
-                            'spf_ratio', 'sec_per_cpu', 'sec_per_cpu_ratio', 
-                            'new_mhz_per_cpu', 'new_mhz_per_cpu_ratio', 'cpf', 
-                            'cpf_ratio'
+                            'real_time', 'spf', 'spf_ratio', 
+                            'new_mhz_per_cpu', 'cpf', 'cpf_ratio'
                             ]]
                     phold_lst.append(a_df)
             phold_df = pd.concat(phold_lst).set_index([
@@ -302,27 +254,20 @@ def get_all_ratios(dataframe):
                     a_df = a_df[a_df.federate_count == f]
                     a_df = a_df.set_index('core_type')
                     try:
-                        a_df['real_time_ratio'] = a_df['real_time'].values / float(a_df.loc['inproc', 'real_time'])
-                        a_df['spf_ratio'] = a_df['spf'].values / float(a_df.loc['inproc', 'spf'])
-                        a_df['sec_per_cpu_ratio'] = a_df['sec_per_cpu'].values / float(a_df.loc['inproc', 'sec_per_cpu'])
-                        a_df['new_mhz_per_cpu_ratio'] = a_df['new_mhz_per_cpu'].values / float(a_df.loc['inproc', 'new_mhz_per_cpu'])
-                        a_df['cpf_ratio'] = a_df['cpf'].values / float(a_df.loc['inproc', 'cpf'])
+                        a_df['spf_ratio'] = a_df['spf']/float(a_df.loc['inproc', 'spf'])
+                        a_df['cpf_ratio'] = a_df['cpf']/float(a_df.loc['inproc', 'cpf'])
                     except Exception as e:
-#                        print('core type "{}" does not exist; setting ratio to NaN'.format(e))
+                        logging.error('core type "{}" does not exist'.format(e))
                         value = np.nan
-                        a_df['real_time_ratio'] = value
                         a_df['spf_ratio'] = value
-                        a_df['sec_per_cpu_ratio'] = value
-                        a_df['new_mhz_per_cpu_ratio'] = value
                         a_df['cpf_ratio'] = value
                     a_df = a_df.reset_index()
                     a_df = a_df[[
                             'benchmark', 'run_id', 'num_cpus', 
                             'mhz_per_cpu', 'filter_location', 'federate_count', 
-                            'core_type', 'real_time', 'real_time_ratio', 
-                            'spf', 'spf_ratio', 'sec_per_cpu', 
-                            'sec_per_cpu_ratio', 'new_mhz_per_cpu', 'new_mhz_per_cpu_ratio', 
-                            'cpf', 'cpf_ratio'
+                            'core_type', 'real_time', 'spf', 
+                            'spf_ratio', 'new_mhz_per_cpu', 'cpf', 
+                            'cpf_ratio'
                             ]]
                     filter_lst.append(a_df)
             filt_df = pd.concat(filter_lst).set_index([
@@ -344,27 +289,19 @@ def get_all_ratios(dataframe):
                     a_df = a_df[a_df.federate_count == f]
                     a_df = a_df.set_index('core_type')
                     try:
-                        a_df['real_time_ratio'] = a_df['real_time'].values / float(a_df.loc['inproc', 'real_time'])
-                        a_df['spf_ratio'] = a_df['spf'].values / float(a_df.loc['inproc', 'spf'])
-                        a_df['sec_per_cpu_ratio'] = a_df['sec_per_cpu'].values / float(a_df.loc['inproc', 'sec_per_cpu'])
-                        a_df['new_mhz_per_cpu_ratio'] = a_df['new_mhz_per_cpu'].values / float(a_df.loc['inproc', 'new_mhz_per_cpu'])
-                        a_df['cpf_ratio'] = a_df['cpf'].values / float(a_df.loc['inproc', 'cpf'])
+                        a_df['spf_ratio'] = a_df['spf']/float(a_df.loc['inproc', 'spf'])
+                        a_df['cpf_ratio'] = a_df['cpf']/float(a_df.loc['inproc', 'cpf'])
                     except Exception as e:
-#                        print('core type "{}" does not exist; setting ratio to NaN'.format(e))
+                        logging.error('core type "inproc" does not exist', e)
                         value = np.nan
-                        a_df['real_time_ratio'] = value
                         a_df['spf_ratio'] = value
-                        a_df['sec_per_cpu_ratio'] = value
-                        a_df['new_mhz_per_cpu_ratio'] = value
                         a_df['cpf_ratio'] = value
                     a_df = a_df.reset_index()
                     a_df = a_df[[
                             'benchmark', 'run_id', 'num_cpus', 
                             'mhz_per_cpu', 'federate_count', 'core_type', 
-                            'real_time', 'real_time_ratio', 'spf', 
-                            'spf_ratio', 'sec_per_cpu', 'sec_per_cpu_ratio', 
-                            'new_mhz_per_cpu', 'new_mhz_per_cpu_ratio', 'cpf', 
-                            'cpf_ratio'
+                            'real_time', 'spf', 'spf_ratio', 
+                            'new_mhz_per_cpu', 'cpf', 'cpf_ratio'
                             ]]
                     time_lst.append(a_df)
             time_df = pd.concat(time_lst).set_index([
@@ -386,32 +323,25 @@ def get_all_ratios(dataframe):
                     a_df = a_df[a_df.interface_count == a]
                     a_df = a_df.set_index('core_type')
                     try:
-                        a_df['real_time_ratio'] = a_df['real_time'].values / float(a_df.loc['inproc', 'real_time'])
-                        a_df['spf_ratio'] = a_df['spf'].values / float(a_df.loc['inproc', 'spf'])
-                        a_df['spi_ratio'] = a_df['spi'].values / float(a_df.loc['inproc', 'spi'])
-                        a_df['sec_per_cpu_ratio'] = a_df['sec_per_cpu'].values / float(a_df.loc['inproc', 'sec_per_cpu'])
-                        a_df['new_mhz_per_cpu_ratio'] = a_df['new_mhz_per_cpu'].values / float(a_df.loc['inproc', 'new_mhz_per_cpu'])
-                        a_df['cpf_ratio'] = a_df['cpf'].values / float(a_df.loc['inproc', 'cpf'])
-                        a_df['cpi_ratio'] = a_df['cpi'].values / float(a_df.loc['inproc', 'cpi'])
+                        a_df['spf_ratio'] = a_df['spf']/float(a_df.loc['inproc', 'spf'])
+                        a_df['spi_ratio'] = a_df['spi']/float(a_df.loc['inproc', 'spi'])
+                        a_df['cpf_ratio'] = a_df['cpf']/float(a_df.loc['inproc', 'cpf'])
+                        a_df['cpi_ratio'] = a_df['cpi']/float(a_df.loc['inproc', 'cpi'])
                     except Exception as e:
 #                        print('core type "{}" does not exist; setting ratio to NaN'.format(e))
                         value = np.nan
-                        a_df['real_time_ratio'] = value
                         a_df['spf_ratio'] = value
                         a_df['spi_ratio'] = value
-                        a_df['sec_per_cpu_ratio'] = value
-                        a_df['new_mhz_per_cpu_ratio'] = value
                         a_df['cpf_ratio'] = value
                         a_df['cpi_ratio'] = value
                     a_df = a_df.reset_index()
                     a_df = a_df[[
                             'benchmark', 'run_id', 'num_cpus', 
                             'mhz_per_cpu', 'federate_count', 'interface_count', 
-                            'core_type', 'real_time', 'real_time_ratio', 
-                            'spf', 'spf_ratio', 'spi', 
-                            'spi_ratio', 'sec_per_cpu', 'sec_per_cpu_ratio', 
-                            'new_mhz_per_cpu', 'new_mhz_per_cpu_ratio', 'cpf', 
-                            'cpf_ratio', 'cpi', 'cpi_ratio'
+                            'core_type', 'real_time', 'spf', 
+                            'spf_ratio', 'spi', 'spi_ratio', 
+                            'new_mhz_per_cpu', 'cpf', 'cpf_ratio', 
+                            'cpi', 'cpi_ratio'
                             ]]
                     msg_lkp_lst.append(a_df)
             msg_lkp_df = pd.concat(msg_lkp_lst).set_index([
@@ -433,32 +363,25 @@ def get_all_ratios(dataframe):
                     a_df = a_df[a_df.message_count == a]
                     a_df = a_df.set_index('core_type')
                     try:
-                        a_df['real_time_ratio'] = a_df['real_time'].values / float(a_df.loc['inproc', 'real_time'])
-                        a_df['spms_ratio'] = a_df['spms'].values / float(a_df.loc['inproc', 'spms'])
-                        a_df['spmc_ratio'] = a_df['spmc'].values / float(a_df.loc['inproc', 'spmc'])
-                        a_df['sec_per_cpu_ratio'] = a_df['sec_per_cpu'].values / float(a_df.loc['inproc', 'sec_per_cpu'])
-                        a_df['new_mhz_per_cpu_ratio'] = a_df['new_mhz_per_cpu'].values / float(a_df.loc['inproc', 'new_mhz_per_cpu'])
-                        a_df['cpms_ratio'] = a_df['cpms'].values / float(a_df.loc['inproc', 'cpms'])
-                        a_df['cpmc_ratio'] = a_df['cpmc'].values / float(a_df.loc['inproc', 'cpmc'])
+                        a_df['spms_ratio'] = a_df['spms']/float(a_df.loc['inproc', 'spms'])
+                        a_df['spmc_ratio'] = a_df['spmc']/float(a_df.loc['inproc', 'spmc'])
+                        a_df['cpms_ratio'] = a_df['cpms']/float(a_df.loc['inproc', 'cpms'])
+                        a_df['cpmc_ratio'] = a_df['cpmc']/float(a_df.loc['inproc', 'cpmc'])
                     except Exception as e:
 #                        print('core type "{}" does not exist; setting ratio to NaN'.format(e))
                         value = np.nan
-                        a_df['real_time_ratio'] = value
                         a_df['spms_ratio'] = value
                         a_df['spmc_ratio'] = value
-                        a_df['sec_per_cpu_ratio'] = value
-                        a_df['new_mhz_per_cpu_ratio'] = value
                         a_df['cpms_ratio'] = value
                         a_df['cpmc_ratio'] = value
                     a_df = a_df.reset_index()
                     a_df = a_df[[
                             'benchmark', 'run_id', 'num_cpus', 
                             'mhz_per_cpu', 'message_size', 'message_count', 
-                            'core_type', 'real_time', 'real_time_ratio', 
-                            'spms', 'spmc', 'spms_ratio', 
-                            'spmc_ratio', 'sec_per_cpu', 'sec_per_cpu_ratio', 
-                            'new_mhz_per_cpu', 'new_mhz_per_cpu_ratio', 'cpms', 
-                            'cpmc', 'cpms_ratio', 'cpmc_ratio'
+                            'core_type', 'real_time', 'spms', 
+                            'spmc', 'spms_ratio', 'spmc_ratio', 
+                            'new_mhz_per_cpu', 'cpms', 'cpmc', 
+                            'cpms_ratio', 'cpmc_ratio'
                             ]]
                     msg_send_lst.append(a_df)
             msg_send_df = pd.concat(msg_send_lst).set_index([
@@ -497,15 +420,14 @@ def get_slopes(dataframe):
     df_list = []
     for benchmark in dataframe.benchmark.unique():
         print('calculating slopes for benchmark: ', benchmark)
-        rt_slopes = []
         tf_slopes = []
         ti_slopes = []
         cf_slopes = []
         ci_slopes = []
         tms_ratio_slopes = []
         tmc_ratio_slopes = []
-        ms_v_t_ratio_slopes = []
-        mc_v_t_ratio_slopes = []
+        ms_v_cpms_ratio_slopes = []
+        mc_v_cpmc_ratio_slopes = []
         benchmarks = []
         run_ids = []
         core_types = []

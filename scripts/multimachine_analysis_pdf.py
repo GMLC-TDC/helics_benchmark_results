@@ -401,60 +401,21 @@ def _auto_run(args):
         
         '-j' or '--json_file' - JSON file of all the multinode
         benchmark results data.
-        
-        '-f' or '--default_file' - Default file to use for creating
-        a report.
 
     Returns:
         (nothing)
-    """
-#    # Grabbing the data and adding it to the JSON
-#    json_results = {}
-#    d = co.defaultdict(dict)
-#    file = args.default_file
-#    json_results.update(mpp.parse_files(file))
-#    json_results = (mpp.parse_and_add_benchmark_metadata(json_results))
-#    d[file].update(json_results)
-    
-#    json_results = {}
-#    file_list = []
-#    for root, dirs, files in os.walk(args.multinode_benchmark_results_dir):
-#        for file in files:
-#            if file != 'helics-broker-out.txt':
-#                file_list.append(os.path.join(root, file))
-#            else:
-#                pass
-#    d = co.defaultdict(dict)
-#    for file in file_list:
-#        json_results.update(mpp.parse_files(file))
-#        json_results = (mpp.parse_and_add_benchmark_metadata(json_results))
-#        d[file].update(json_results)
-#        json_results = {}
-    
+    """    
     # Creating the multinode report.
     print('Creating the report...')
     multi_bmk_df = md.make_dataframe2(args.json_file)
-    print('COLUMNS:', multi_bmk_df.columns.unique())
-#    output_path = os.path.join(args.multinode_benchmark_results_dir)
-    for benchmark in multi_bmk_df.benchmark.unique():
-        print('BENCHMARK: ', benchmark)
-        if benchmark == 'PholdFederate':
-            output_path = os.path.join(args.multinode_benchmark_results_dir, 
-                                       '2020-01-08')
-            df = multi_bmk_df[multi_bmk_df.benchmark == benchmark]
-            print('SPEED:', df.mhz_per_cpu.unique())
-            make_multinode_graphs(df, output_path)
-            create_multimachine_report(output_path,
-                                       df)
-        else:
-            output_path = os.path.join(args.multinode_benchmark_results_dir, 
-                                       '2020-03-13')
-            df = multi_bmk_df[multi_bmk_df.benchmark == benchmark]
-            print('SPEED:', df.mhz_per_cpu.unique())
-            make_multinode_graphs(df, output_path)
-            create_multimachine_report(output_path,
-                                       df)
-
+    for date in multi_bmk_df.date.unique():
+        print('DATE:', date)
+        output_path = os.path.join(args.multinode_benchmark_results_dir, 
+                                   date)
+        df = multi_bmk_df[multi_bmk_df.date == date]
+        make_multinode_graphs(df, output_path)
+        create_multimachine_report(output_path,
+                                   df)
 
 if __name__ == '__main__':
     # TDH: This slightly complex mess allows lower importance messages
@@ -479,18 +440,6 @@ if __name__ == '__main__':
                         '--json_file',
                         nargs='?',
                         default='multinode_bm_results_test.json')
-#    parser.add_argument('-o', 
-#                        '--output_path', 
-#                        nargs='?', 
-#                        default='../multinode_benchmark_results/2020-01-08')
     args = parser.parse_args()
-    default_dir = os.path.join(args.multinode_benchmark_results_dir,
-                               'PholdFederate-tcp-N1-job-4286628')
-    default_file = os.path.join(default_dir, 'PholdFederate-0-out.txt')
-    parser.add_argument('-f', 
-                        '--default_file',
-                        nargs='?',
-                        default=default_file)
-    args = parser.parse_args()
-    # TDH (2020-01-13) - Create the PDF for a standard analysis
+    # CGR (2020-03-25) - Create the PDF for multinode analysis
     _auto_run(args)

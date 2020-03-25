@@ -295,7 +295,7 @@ def make_dataframe2(json_results):
                       'number_of_leaves': float(a_df.loc['summary.txt', 'number_of_leaves'])}
             a_df = a_df.fillna(value=values)
         except Exception as e:
-            print('summary.txt does not exist', e)
+            print('{} does not exist for {} benchmark'.format(e, a_df.benchmark.values[0]))
         a_df = a_df.reset_index()
         my_list.append(a_df)
     main_df = pd.concat(my_list, axis=0, ignore_index=True)
