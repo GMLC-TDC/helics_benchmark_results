@@ -431,30 +431,6 @@ def _add_date(key, json_results):
     return json_results
 
 
-def _add_mhz_per_cpu(key, json_results):
-    """This function adds the processor speed (if it exists) of the run
-    to json_results.
-    
-    Args:
-        key (str) - Key for dictionary for this benchmark results.
-        json_results (dict) - Dictionary of all benchmark results
-        (keyed by benchmark results filename) that the data and
-        metadata from json_file are being added to.
-
-    Returns:
-        json_results (dict) - json_results with run_id added for
-        the indicated results file.
-    """
-    match = re.search('\d+.\d+GHz', json_results[key]['host_processor_string'])
-    if match:
-        speed = match.group(0)[-8:-4]
-        print(speed)
-        speed = int(float(speed)*1000)
-        json_results[key]['mhz_per_cpu'] = speed
-    else:
-        json_results[key]['mhz_per_cpu'] = np.nan
-
-
 def _parse_compiler_string(uuid, json_results):
     """This function parses the compiler string in the metadata header
     line and adds it to the json_results metadata for the benchmark

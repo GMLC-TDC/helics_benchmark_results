@@ -245,6 +245,7 @@ def make_dataframe2(json_results):
     'build_flags_string', 
     'host_processor', 
     'host_processor_string',
+    'mhz_per_cpu',
     'run_id',
     'elapsed_time',
     'time_unit',
@@ -282,9 +283,25 @@ def make_dataframe2(json_results):
     ### Reading in the csv; seems unnecessary, but works due to
     ### plotting difficulties.
     final_meta_bmk_df = pd.read_csv(csv_path, index_col='Unnamed: 0', dtype={'platform': object})
+    my_list = []
+    for g, df in final_meta_bmk_df.groupby(['path', 'benchmark', 'core_type']):
+        a_df = df
+        a_df = a_df.set_index('filename')
+        try: 
+            values = {'message_size': float(a_df.loc['summary.txt', 'message_size']), 
+                      'message_count': float(a_df.loc['summary.txt', 'message_count']), 
+                      'cluster': str(a_df.loc['summary.txt', 'cluster']), 
+                      'topology': str(a_df.loc['summary.txt', 'topology']), 
+                      'number_of_leaves': float(a_df.loc['summary.txt', 'number_of_leaves'])}
+            a_df = a_df.fillna(value=values)
+        except Exception as e:
+            print('summary.txt does not exist', e)
+        a_df = a_df.reset_index()
+        my_list.append(a_df)
+    main_df = pd.concat(my_list, axis=0, ignore_index=True)
     os.remove(csv_path)
     
-    return final_meta_bmk_df
+    return main_df
 
 
 ### Testing that my function works
@@ -297,6 +314,7 @@ if __name__ == '__main__':
     
     json_file3 = 'multinode_bm_results_test.json'
     multi_bmk_df = make_dataframe2(json_file3)
+    print('COLUMNS:', multi_bmk_df.columns.unique())
 #    print(final_meta_bmk_df.columns)
 #    print(final_meta_bmk_df.head())
 #    print(final_meta_bmk_df.shape)
