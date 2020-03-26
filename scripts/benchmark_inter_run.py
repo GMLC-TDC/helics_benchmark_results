@@ -327,7 +327,7 @@ if __name__ == '__main__':
     parser.add_argument('-d',
                         '--delete_report',
                         nargs='?',
-                        default=True)
+                        default=False)
     args = parser.parse_args()
 
     # TDH: Run the standard analysis

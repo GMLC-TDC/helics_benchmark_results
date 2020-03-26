@@ -312,7 +312,7 @@ if __name__ == '__main__':
     parser.add_argument('-d',
                         '--delete_all_reports',
                         nargs='?',
-                        default=True)
+                        default=False)
     args = parser.parse_args()
     default_output_path = os.path.join(head, 'benchmark_tracking')
     parser.add_argument('-o', 
