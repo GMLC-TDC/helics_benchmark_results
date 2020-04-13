@@ -8,13 +8,10 @@ Created on Thu Mar 12 07:40:00 2020
 import argparse
 import pandas as pd
 import numpy as np
-import scipy
 from scipy.stats import linregress as lr
 import logging
 import pprint
 import os
-import shutil
-import benchmark_postprocessing as bmpp
 import make_dataframe as md
 import sys
 
@@ -28,12 +25,22 @@ def get_ratio(dataframe, groupby_columns, index_columns, filter_columns, value_c
     """This function gets all the metrics' ratios for the entire dataframe.
     
     Args:
-        dataframe (str) - Pandas dataframe object that contains the 
-        desired information for calculating metrics' ratios.
+        dataframe (pandas dataframe) - Contains the desired information 
+        for calculating metrics' ratios.
+        groupby_columns (list) - List of columns for organizing the data
+        into a certain format using pandas "groupby()".
+        index_columns (list) - List of columns to use as the index for
+        concatenating the data into one dataframe.
+        filter_columns (list) - List of columns for filtering the
+        dataframe for calculating the ratios.
+        value_columns (list) - List of indices to locate a specific value
+        to use in calculating the ratio.
+        metric_columns (list) - List of desired metrics for ratio
+        calculations.
     
     Returns:
-        final_df (str) - Pandas dataframe that contains the original
-        information plus the mterics' ratios' results.
+        ratio_df (pandas dataframe) - Contains some metadate plus the 
+        metrics' ratios' results.
     """
     
     lst = []
@@ -62,14 +69,20 @@ def get_slopes(dataframe, benchmark, xdatas, ydatas):
     and the core_types.
     
     Args:
-        dataframe (str) - Pandas dataframe that contains all the 
-        desired information along with the results of the
-        metrics' ratios' calculations.
+        dataframe (pandas dataframe) - Contains all the desired 
+        information along with the results of the metrics' ratios' 
+        calculations.
+        benchmark (str) - Specific benchmark to be used for calculating
+        the slopes of desired values.
+        xdatas (list) - List of desired x-values for calculating
+        the slope.
+        ydatas (list) - List of desired y-values for calculating 
+        the slope.
     
     Returns:
-        slope_df (str) - Pandas dataframe with the original
-        desired information, the mterics' ratios' results, and the
-        calculated slopes for the metrics' ratios.
+        slope_df (pandas dataframe) - Contains the original desired 
+        information, the mterics' ratios' results, and the calculated 
+        slopes for the metrics' ratios.
     """
     df_list = []
     for xs, ys in zip(xdatas, ydatas):
@@ -105,13 +118,25 @@ def create_metrics(dataframe, filter_columns, groupby_columns, metric_names, col
     """This function creates/calculates the desired metrics for analysis.
     
     Args:
-        dataframe (str) - Pandas dataframe that contains all the 
+        dataframe (pandas dataframe) - Contains all the 
         desired information for analysis.
+        filter_columns (list) - List of columns to create a subset of
+        the dataframe.
+        groupby_columns (list) - List of columns to organize the 
+        subset for creating/caluclating metrics.
+        metric_names (list) - List of names of new metrics to create.
+        columns (list) - List of columns to be used for calculating
+        the metrics.
+        operations (list) - List of mathematical operations to use for
+        calculating the metrics.
+        time (str) - Either 'real_time' or 'elapsed_time'; used for 
+        asserting there is a one-to-one relationship between the 'time' 
+        value and the columns' values.
         
     Returns:
-        main_df (str) - Pandas dataframe that contains the original
-        desired information and the new created/calculated metrics to
-        be used for analysis.
+        main_df (pandas dataframe) - Contains the original desired 
+        information and the new created/calculated metrics to be used 
+        for analysis.
     """
     ### Making sure there is a one-to-one relationship between real_time
     ### and federate_count, etc.
@@ -129,9 +154,9 @@ def create_metrics(dataframe, filter_columns, groupby_columns, metric_names, col
         else:
             logging.error('Invalid operation; should be "/" or "*".')
     
-    slope_df = df
+    main_df = df
     
-    return slope_df
+    return main_df
 
 
 def relative_standard_deviation(x):
@@ -151,17 +176,20 @@ def relative_standard_deviation(x):
     return np.std(x) / np.mean(x)
 
 
-def create_pivot_tables(dataframe, benchmark, index_columns, value_columns):
+def create_pivot_tables(dataframe, index_columns, value_columns):
     """This function creates all the pivot tables to send to an Excel
     spreadsheet.
     
     Args:
-        dataframe (str) - Final formatted dataframe that contains
-        all the information, results/calculations for analysis.
-        output_path (str) - Path to send the Excel spreadsheet.
+        dataframe (pandas dataframe) - Contains all the information 
+        and results/calculations for analysis.
+        index_columns (list) - List of columns to be used as the
+        index of the pivot table.
+        value_columns (list) - List of columns to be used as the 
+        calculated columns of the pivot table.
     
     Returns:
-        (null)
+        p (pandas pivot table) - Pivot table of the desired results.
     """    
     # Creating pivot_tables:
     p = pd.pivot_table(
@@ -198,12 +226,10 @@ def create_spreadsheet1(dataframe, filename, output_path):
     met_fed_cols_tuples = [('real_time', 'federate_count'), ('real_time', 'mhz_per_cpu'), ('spf', 'new_mhz_per_cpu')] 
     met_fed_ops = ['/', '*', '*']
     r_fed_groupby_columns = ['benchmark', 'run_id', 'num_cpus', 'mhz_per_cpu', 'federate_count']
-    r_fed_index_columns = met_fed_cols
-    r_fed_filter_columns = ['federate_count']*2
-    r_fed_value_columns = ['inproc']*2
-    r_fed_metric_columns = ['spf', 'cpf']
-#    s_fed_xdatas = ['federate_count']*2
-#    s_fed_ydatas = ['spf_ratio', 'cpf_ratio']
+    r_fed_index_columns = met_fed_groupby_cols
+    r_fed_filter_columns = ['federate_count']*3
+    r_fed_value_columns = ['inproc']*3
+    r_fed_metric_columns = ['spf', 'cpf', 'real_time']
     
     met_filt_cols = ['benchmark', 'run_id', 'core_type', 'num_cpus', 'mhz_per_cpu', 'federate_count', 'filter_location', 'real_time']
     met_filt_groupby_cols = ['benchmark', 'run_id', 'core_type', 'num_cpus', 'mhz_per_cpu', 'federate_count', 'filter_location']
@@ -211,12 +237,10 @@ def create_spreadsheet1(dataframe, filename, output_path):
     met_filt_cols_tuples = met_fed_cols_tuples
     met_filt_ops = met_fed_ops
     r_filt_groupby_columns = ['benchmark', 'run_id', 'num_cpus', 'mhz_per_cpu', 'filter_location', 'federate_count']
-    r_filt_index_columns = met_filt_cols
+    r_filt_index_columns = met_filt_groupby_cols
     r_filt_filter_columns = r_fed_filter_columns
     r_filt_value_columns = r_fed_value_columns
-    r_filt_metric_columns = r_fed_metric_columns
-#    s_filt_xdatas = s_fed_xdatas
-#    s_filt_ydatas = s_fed_ydatas        
+    r_filt_metric_columns = r_fed_metric_columns  
     
     met_int_cols = ['benchmark', 'run_id', 'core_type', 'num_cpus', 'mhz_per_cpu', 'federate_count', 'interface_count', 'real_time']
     met_int_groupby_cols = ['benchmark', 'run_id', 'core_type', 'num_cpus', 'mhz_per_cpu', 'federate_count', 'interface_count']
@@ -224,12 +248,10 @@ def create_spreadsheet1(dataframe, filename, output_path):
     met_int_cols_tuples = [('real_time', 'federate_count'), ('real_time', 'interface_count'), ('real_time', 'mhz_per_cpu'), ('spf', 'new_mhz_per_cpu'), ('spi', 'new_mhz_per_cpu')]
     met_int_ops = ['/', '/', '*', '*', '*']
     r_int_groupby_columns = ['benchmark', 'run_id', 'num_cpus', 'mhz_per_cpu', 'federate_count', 'interface_count']
-    r_int_index_columns = met_int_cols
-    r_int_filter_columns = ['interface_count']*4
-    r_int_value_columns = ['inproc']*4
-    r_int_metric_columns = ['spf', 'spi', 'cpf', 'cpi']
-#    s_int_xdatas = ['federate_count', 'federate_count', 'interface_count', 'interface_count']
-#    s_int_ydatas = ['spf_ratio', 'cpf_ratio', 'spi_ratio', 'cpi_ratio']
+    r_int_index_columns = met_int_groupby_cols
+    r_int_filter_columns = ['interface_count']*5
+    r_int_value_columns = ['inproc']*5
+    r_int_metric_columns = ['spf', 'spi', 'cpf', 'cpi', 'real_time']
     
     met_msg_cols = ['benchmark', 'run_id', 'core_type', 'num_cpus', 'mhz_per_cpu', 'message_count', 'message_size', 'real_time']
     met_msg_groupby_cols = ['benchmark', 'run_id', 'core_type', 'num_cpus', 'mhz_per_cpu', 'message_count', 'message_size']
@@ -237,12 +259,10 @@ def create_spreadsheet1(dataframe, filename, output_path):
     met_msg_cols_tuples = [('real_time', 'message_size'), ('real_time', 'message_count'), ('real_time', 'mhz_per_cpu'), ('spms', 'new_mhz_per_cpu'), ('spmc', 'new_mhz_per_cpu')]
     met_msg_ops = ['/', '/', '*', '*', '*']
     r_msg_groupby_columns = ['benchmark', 'run_id', 'num_cpus', 'mhz_per_cpu', 'message_size', 'message_count']
-    r_msg_index_columns = met_msg_cols
-    r_msg_filter_columns = ['message_count']*4
-    r_msg_value_columns = ['inproc']*4
-    r_msg_metric_columns = ['spms', 'spmc', 'cpms', 'cpmc']
-#    s_msg_xdatas = ['message_size', 'message_size', 'message_count', 'message_count']
-#    s_msg_ydatas = ['spms_ratio', 'cpms_ratio', 'spmc_ratio', 'cpmc_ratio']
+    r_msg_index_columns = met_msg_groupby_cols
+    r_msg_filter_columns = ['message_count']*5
+    r_msg_value_columns = ['inproc']*5
+    r_msg_metric_columns = ['spms', 'spmc', 'cpms', 'cpmc', 'real_time']
     
     
     # Applying the functions
@@ -259,18 +279,6 @@ def create_spreadsheet1(dataframe, filename, output_path):
                              r_fed_filter_columns, 
                              r_fed_value_columns, 
                              r_fed_metric_columns)
-    # CGR (2020-04-06): NOT calculating the slopes for now; will
-    # implement them if deemed important to summary spreadsheet
-    # analysis.
-    print('Getting the slopes...')
-#        c_echo_slope = get_slopes(c_echo_ratio, 
-#                                  'cEchoBenchmark', 
-#                                  s_fed_xdatas, 
-#                                  s_fed_ydatas)
-#        new_c_echo_df = pd.merge(c_echo_ratio, 
-#                                 c_echo_slope, 
-#                                 how='outer', 
-#                                 on=['benchmark', 'run_id', 'core_type'])
     echo_ratio = get_ratio(create_metrics(echo_res_df, 
                                             met_fed_cols, 
                                             met_fed_groupby_cols, 
@@ -283,14 +291,6 @@ def create_spreadsheet1(dataframe, filename, output_path):
                              r_fed_filter_columns, 
                              r_fed_value_columns, 
                              r_fed_metric_columns)
-#        echo_slope = get_slopes(echo_ratio, 
-#                                  'echoBenchmark', 
-#                                  s_fed_xdatas, 
-#                                  s_fed_ydatas)
-#        new_echo_df = pd.merge(echo_ratio, 
-#                                 echo_slope, 
-#                                 how='outer', 
-#                                 on=['benchmark', 'run_id', 'core_type'])
     echo_msg_ratio = get_ratio(create_metrics(echo_msg_df, 
                                             met_fed_cols, 
                                             met_fed_groupby_cols, 
@@ -303,14 +303,6 @@ def create_spreadsheet1(dataframe, filename, output_path):
                              r_fed_filter_columns, 
                              r_fed_value_columns, 
                              r_fed_metric_columns)
-#        echo_msg_slope = get_slopes(echo_msg_ratio, 
-#                                  'echoMessageBenchmark', 
-#                                  s_fed_xdatas, 
-#                                  s_fed_ydatas)
-#        new_echo_msg_df = pd.merge(echo_msg_ratio, 
-#                                 echo_msg_slope, 
-#                                 how='outer', 
-#                                 on=['benchmark', 'run_id', 'core_type'])
     ring_ratio = get_ratio(create_metrics(ring_df, 
                                             met_fed_cols, 
                                             met_fed_groupby_cols, 
@@ -323,14 +315,6 @@ def create_spreadsheet1(dataframe, filename, output_path):
                              r_fed_filter_columns, 
                              r_fed_value_columns, 
                              r_fed_metric_columns)
-#        ring_slope = get_slopes(ring_ratio, 
-#                                  'ringBenchmark', 
-#                                  s_fed_xdatas, 
-#                                  s_fed_ydatas)
-#        new_ring_df = pd.merge(ring_ratio, 
-#                                 ring_slope, 
-#                                 how='outer', 
-#                                 on=['benchmark', 'run_id', 'core_type'])
     ring_msg_ratio = get_ratio(create_metrics(ring_msg_df, 
                                             met_fed_cols, 
                                             met_fed_groupby_cols, 
@@ -343,14 +327,6 @@ def create_spreadsheet1(dataframe, filename, output_path):
                              r_fed_filter_columns, 
                              r_fed_value_columns, 
                              r_fed_metric_columns)
-#        ring_msg_slope = get_slopes(ring_msg_ratio, 
-#                                  'ringMessageBenchmark', 
-#                                  s_fed_xdatas, 
-#                                  s_fed_ydatas)
-#        new_ring_msg_df = pd.merge(ring_msg_ratio, 
-#                                 ring_msg_slope, 
-#                                 how='outer', 
-#                                 on=['benchmark', 'run_id', 'core_type'])
     phold_ratio = get_ratio(create_metrics(phold_df, 
                                             met_fed_cols, 
                                             met_fed_groupby_cols, 
@@ -363,14 +339,6 @@ def create_spreadsheet1(dataframe, filename, output_path):
                              r_fed_filter_columns, 
                              r_fed_value_columns, 
                              r_fed_metric_columns)
-#        phold_slope = get_slopes(phold_ratio, 
-#                                  'pholdBenchmark', 
-#                                  s_fed_xdatas, 
-#                                  s_fed_ydatas)
-#        new_phold_df = pd.merge(phold_ratio, 
-#                                 phold_slope, 
-#                                 how='outer', 
-#                                 on=['benchmark', 'run_id', 'core_type'])
     filter_ratio = get_ratio(create_metrics(filter_df, 
                                             met_filt_cols, 
                                             met_filt_groupby_cols, 
@@ -383,14 +351,6 @@ def create_spreadsheet1(dataframe, filename, output_path):
                              r_filt_filter_columns, 
                              r_filt_value_columns, 
                              r_filt_metric_columns)
-#        filter_slope = get_slopes(filter_ratio, 
-#                                  'filterBenchmark', 
-#                                  s_filt_xdatas, 
-#                                  s_filt_ydatas)
-#        new_filter_df = pd.merge(filter_ratio, 
-#                                 filter_slope, 
-#                                 how='outer', 
-#                                 on=['benchmark', 'run_id', 'core_type'])
     timing_ratio = get_ratio(create_metrics(timing_df, 
                                             met_fed_cols, 
                                             met_fed_groupby_cols, 
@@ -403,14 +363,6 @@ def create_spreadsheet1(dataframe, filename, output_path):
                              r_fed_filter_columns, 
                              r_fed_value_columns, 
                              r_fed_metric_columns)
-#        timing_slope = get_slopes(timing_ratio, 
-#                                  'timingBenchmark', 
-#                                  s_fed_xdatas, 
-#                                  s_fed_ydatas)
-#        new_timing_df = pd.merge(timing_ratio, 
-#                                 timing_slope, 
-#                                 how='outer', 
-#                                 on=['benchmark', 'run_id', 'core_type'])
     msg_lkp_ratio = get_ratio(create_metrics(msg_lkp_df, 
                                             met_int_cols, 
                                             met_int_groupby_cols, 
@@ -423,14 +375,6 @@ def create_spreadsheet1(dataframe, filename, output_path):
                              r_int_filter_columns, 
                              r_int_value_columns, 
                              r_int_metric_columns)
-#        msg_lkp_slope = get_slopes(msg_lkp_ratio, 
-#                                  'messageLookupBenchmark', 
-#                                  s_int_xdatas, 
-#                                  s_int_ydatas)
-#        new_msg_lkp_df = pd.merge(msg_lkp_ratio, 
-#                                 msg_lkp_slope, 
-#                                 how='outer', 
-#                                 on=['benchmark', 'run_id', 'core_type'])
     msg_send_ratio = get_ratio(create_metrics(msg_send_df, 
                                             met_msg_cols, 
                                             met_msg_groupby_cols, 
@@ -443,55 +387,37 @@ def create_spreadsheet1(dataframe, filename, output_path):
                              r_msg_filter_columns, 
                              r_msg_value_columns, 
                              r_msg_metric_columns)
-#        msg_send_slope = get_slopes(msg_send_ratio, 
-#                                  'messageSendBenchmark', 
-#                                  s_msg_xdatas, 
-#                                  s_msg_ydatas)
-#        new_msg_send_df = pd.merge(msg_send_ratio, 
-#                                 msg_send_slope, 
-#                                 how='outer', 
-#                                 on=['benchmark', 'run_id', 'core_type'])
     print('Creating the pivot table and saving to excel...')
     c_echo_p = create_pivot_tables(c_echo_ratio, 
-                        'cEchoBenchmark', 
                         ['benchmark', 'run_id', 'num_cpus', 'mhz_per_cpu', 'federate_count', 'core_type'], 
-                        ['spf_ratio', 'cpf_ratio'])
+                        ['spf_ratio', 'cpf_ratio', 'real_time_ratio'])
     echo_p = create_pivot_tables(echo_ratio, 
-                        'echoBenchmark', 
                         ['benchmark', 'run_id', 'num_cpus', 'mhz_per_cpu', 'federate_count', 'core_type'], 
-                        ['spf_ratio', 'cpf_ratio'])
+                        ['spf_ratio', 'cpf_ratio', 'real_time_ratio'])
     echo_msg_p = create_pivot_tables(echo_msg_ratio, 
-                        'echoMessageBenchmark', 
                         ['benchmark', 'run_id', 'num_cpus', 'mhz_per_cpu', 'federate_count', 'core_type'], 
-                        ['spf_ratio', 'cpf_ratio'])
+                        ['spf_ratio', 'cpf_ratio', 'real_time_ratio'])
     ring_p = create_pivot_tables(ring_ratio, 
-                        'ringBenchmark', 
                         ['benchmark', 'run_id', 'num_cpus', 'mhz_per_cpu', 'federate_count', 'core_type'], 
-                        ['spf_ratio', 'cpf_ratio'])
+                        ['spf_ratio', 'cpf_ratio', 'real_time_ratio'])
     ring_msg_p = create_pivot_tables(ring_msg_ratio, 
-                        'ringMessageBenchmark', 
                         ['benchmark', 'run_id', 'num_cpus', 'mhz_per_cpu', 'federate_count', 'core_type'], 
-                        ['spf_ratio', 'cpf_ratio'])
+                        ['spf_ratio', 'cpf_ratio', 'real_time_ratio'])
     phold_p = create_pivot_tables(phold_ratio, 
-                        'pholdBenchmark', 
                         ['benchmark', 'run_id', 'num_cpus', 'mhz_per_cpu', 'federate_count', 'core_type'], 
-                        ['spf_ratio', 'cpf_ratio'])
+                        ['spf_ratio', 'cpf_ratio', 'real_time_ratio'])
     timing_p = create_pivot_tables(timing_ratio, 
-                        'timingBenchmark', 
                         ['benchmark', 'run_id', 'num_cpus', 'mhz_per_cpu', 'federate_count', 'core_type'], 
-                        ['spf_ratio', 'cpf_ratio'])
+                        ['spf_ratio', 'cpf_ratio', 'real_time_ratio'])
     filter_p = create_pivot_tables(filter_ratio, 
-                        'filterBenchmark', 
                         ['benchmark', 'run_id', 'num_cpus', 'mhz_per_cpu', 'federate_count', 'core_type'], 
-                        ['spf_ratio', 'cpf_ratio'])
+                        ['spf_ratio', 'cpf_ratio', 'real_time_ratio'])
     msg_lkp_p = create_pivot_tables(msg_lkp_ratio, 
-                        'messageLookupBenchmark', 
                         ['benchmark', 'run_id', 'num_cpus', 'mhz_per_cpu', 'federate_count', 'core_type'], 
-                        ['spf_ratio', 'spi_ratio', 'cpi_ratio', 'cpf_ratio'])
+                        ['spf_ratio', 'spi_ratio', 'cpi_ratio', 'cpf_ratio', 'real_time_ratio'])
     msg_send_p = create_pivot_tables(msg_send_ratio, 
-                        'messageSendBenchmark', 
                         ['benchmark', 'run_id', 'num_cpus', 'mhz_per_cpu', 'message_size', 'message_count', 'core_type'], 
-                        ['spms_ratio', 'spmc_ratio', 'cpms_ratio', 'cpmc_ratio'])
+                        ['spms_ratio', 'spmc_ratio', 'cpms_ratio', 'cpmc_ratio', 'real_time_ratio'])
     with pd.ExcelWriter(os.path.join(output_path, '{}.xlsx'.format(filename))) as writer:
         c_echo_p.to_excel(writer, sheet_name='{}'.format('cEchoBenchmark'))
         echo_p.to_excel(writer, sheet_name='{}'.format('echoBenchmark'))
@@ -505,6 +431,14 @@ def create_spreadsheet1(dataframe, filename, output_path):
         msg_send_p.to_excel(writer, sheet_name='{}'.format('messageSendBenchmark'))
             
     print('Successfully saved the data to excel.')
+    
+    print('Saving as .csv file.')
+    main_ratio_df = pd.concat([c_echo_ratio, echo_msg_ratio, echo_ratio, 
+                               filter_ratio, msg_lkp_ratio, msg_send_ratio,
+                               ring_msg_ratio, ring_ratio, phold_ratio,
+                               timing_ratio], axis=0, ignore_index=True)
+    main_ratio_df.to_csv(r'{}\{}.csv'.format(os.path.join(output_path), filename))
+    print('Successfully saved as .csv file.')
         
 
 def create_spreadsheet2(dataframe, filename, output_path):
@@ -526,10 +460,10 @@ def create_spreadsheet2(dataframe, filename, output_path):
     met_fed_cols_tuples = [('real_time', 'federate_count'), ('real_time', 'mhz_per_cpu'), ('spf', 'new_mhz_per_cpu')] 
     met_fed_ops = ['/', '*', '*']
     r_fed_groupby_columns = ['benchmark', 'run_id', 'num_cpus', 'mhz_per_cpu', 'federate_count']
-    r_fed_index_columns = met_fed_cols
-    r_fed_filter_columns = ['federate_count']*2
-    r_fed_value_columns = ['inproc']*2
-    r_fed_metric_columns = ['spf', 'cpf']
+    r_fed_index_columns = met_fed_groupby_cols
+    r_fed_filter_columns = ['federate_count']*3
+    r_fed_value_columns = ['inproc']*3
+    r_fed_metric_columns = ['spf', 'cpf', 'real_time']
     
     met_int_cols = ['benchmark', 'run_id', 'core_type', 'num_cpus', 'mhz_per_cpu', 'federate_count', 'interface_count', 'real_time']
     met_int_groupby_cols = ['benchmark', 'run_id', 'core_type', 'num_cpus', 'mhz_per_cpu', 'federate_count', 'interface_count']
@@ -537,10 +471,10 @@ def create_spreadsheet2(dataframe, filename, output_path):
     met_int_cols_tuples = [('real_time', 'federate_count'), ('real_time', 'interface_count'), ('real_time', 'mhz_per_cpu'), ('spf', 'new_mhz_per_cpu'), ('spi', 'new_mhz_per_cpu')]
     met_int_ops = ['/', '/', '*', '*', '*']
     r_int_groupby_columns = ['benchmark', 'run_id', 'num_cpus', 'mhz_per_cpu', 'federate_count', 'interface_count']
-    r_int_index_columns = met_int_cols
-    r_int_filter_columns = ['interface_count']*4
-    r_int_value_columns = ['inproc']*4
-    r_int_metric_columns = ['spf', 'spi', 'cpf', 'cpi']
+    r_int_index_columns = met_int_groupby_cols
+    r_int_filter_columns = ['interface_count']*5
+    r_int_value_columns = ['inproc']*5
+    r_int_metric_columns = ['spf', 'spi', 'cpf', 'cpi', 'real_time']
     
     # Applying the functions
     print('Creating the desired metrics and getting the ratios...')
@@ -594,21 +528,17 @@ def create_spreadsheet2(dataframe, filename, output_path):
                              r_int_metric_columns)
     print('Creating the pivot table and saving to excel...')
     echo_p = create_pivot_tables(echo_ratio, 
-                        'echoBenchmark', 
                         ['benchmark', 'run_id', 'num_cpus', 'mhz_per_cpu', 'federate_count', 'core_type'], 
-                        ['spf_ratio', 'cpf_ratio'])
+                        ['spf_ratio', 'cpf_ratio', 'real_time_ratio'])
     echo_msg_p = create_pivot_tables(echo_msg_ratio, 
-                        'echoMessageBenchmark', 
                         ['benchmark', 'run_id', 'num_cpus', 'mhz_per_cpu', 'federate_count', 'core_type'], 
-                        ['spf_ratio', 'cpf_ratio'])
+                        ['spf_ratio', 'cpf_ratio', 'real_time_ratio'])
     timing_p = create_pivot_tables(timing_ratio, 
-                        'timingBenchmark', 
                         ['benchmark', 'run_id', 'num_cpus', 'mhz_per_cpu', 'federate_count', 'core_type'], 
-                        ['spf_ratio', 'cpf_ratio'])
+                        ['spf_ratio', 'cpf_ratio', 'real_time_ratio'])
     msg_lkp_p = create_pivot_tables(msg_lkp_ratio, 
-                        'messageLookupBenchmark', 
                         ['benchmark', 'run_id', 'num_cpus', 'mhz_per_cpu', 'federate_count', 'core_type'], 
-                        ['spf_ratio', 'spi_ratio', 'cpi_ratio', 'cpf_ratio'])
+                        ['spf_ratio', 'spi_ratio', 'cpi_ratio', 'cpf_ratio', 'real_time_ratio'])
     with pd.ExcelWriter(os.path.join(output_path, '{}.xlsx'.format(filename))) as writer:
         echo_p.to_excel(writer, sheet_name='{}'.format('echoBenchmark'))
         echo_msg_p.to_excel(writer, sheet_name='{}'.format('echoMessageBenchmark'))
@@ -616,6 +546,12 @@ def create_spreadsheet2(dataframe, filename, output_path):
         msg_lkp_p.to_excel(writer, sheet_name='{}'.format('messageLookupBenchmark'))
             
     print('Successfully saved the data to excel.')
+    
+    main_ratio_df = pd.concat([echo_ratio, echo_msg_ratio, 
+                               timing_ratio, msg_lkp_ratio], 
+                              axis=0, 
+                              ignore_index=True)
+    main_ratio_df.to_csv(r'{}\{}.csv'.format(os.path.join(output_path), filename))
     
     
 def create_spreadsheet3(dataframe, filename, output_path):
@@ -637,10 +573,10 @@ def create_spreadsheet3(dataframe, filename, output_path):
     met_fed_cols_tuples = [('elapsed_time', 'federate_count')] 
     met_fed_ops = ['/']
     r_fed_groupby_columns = ['benchmark', 'federate_count']
-    r_fed_index_columns = met_fed_cols
-    r_fed_filter_columns = ['federate_count']
-    r_fed_value_columns = ['tcp']
-    r_fed_metric_columns = ['spf']
+    r_fed_index_columns = met_fed_groupby_cols
+    r_fed_filter_columns = ['federate_count']*2
+    r_fed_value_columns = ['tcp']*2
+    r_fed_metric_columns = ['spf', 'elapsed_time']
     
     met_p_cols = ['benchmark', 'core_type', 'mhz_per_cpu', 'federate_count', 'EvCount', 'elapsed_time']
     met_p_groupby_cols = ['benchmark', 'core_type', 'mhz_per_cpu', 'federate_count', 'EvCount']
@@ -648,10 +584,10 @@ def create_spreadsheet3(dataframe, filename, output_path):
     met_p_cols_tuples = [('elapsed_time', 'federate_count'), ('elapsed_time', 'EvCount'), ('elapsed_time', 'mhz_per_cpu'), ('new_mhz_per_cpu', 'spf'), ('new_mhz_per_cpu', 'spe')] 
     met_p_ops = ['/', '/', '*', '*', '*']
     r_p_groupby_columns = ['benchmark', 'mhz_per_cpu', 'federate_count', 'EvCount']
-    r_p_index_columns = met_fed_cols
-    r_p_filter_columns = ['federate_count']*4
-    r_p_value_columns = ['tcp']*4
-    r_p_metric_columns = ['spf', 'spe', 'cpf', 'cpe']
+    r_p_index_columns = met_p_groupby_cols
+    r_p_filter_columns = ['federate_count']*5
+    r_p_value_columns = ['tcp']*5
+    r_p_metric_columns = ['spf', 'spe', 'cpf', 'cpe', 'elapsed_time']
     
     met_msg_cols = ['benchmark', 'core_type', 'message_count', 'message_size', 'elapsed_time']
     met_msg_groupby_cols = ['benchmark', 'core_type', 'message_count', 'message_size']
@@ -659,10 +595,10 @@ def create_spreadsheet3(dataframe, filename, output_path):
     met_msg_cols_tuples = [('elapsed_time', 'message_size'), ('elapsed_time', 'message_count')]
     met_msg_ops = ['/', '/']
     r_msg_groupby_columns = ['benchmark', 'message_size', 'message_count']
-    r_msg_index_columns = met_msg_cols
-    r_msg_filter_columns = ['message_count']*2
-    r_msg_value_columns = ['tcp']*2
-    r_msg_metric_columns = ['spms', 'spmc']
+    r_msg_index_columns = met_msg_groupby_cols
+    r_msg_filter_columns = ['message_count']*3
+    r_msg_value_columns = ['tcp']*3
+    r_msg_metric_columns = ['spms', 'spmc', 'elapsed_time']
     
     # Applying the functions
     print('Creating the desired metrics and getting the ratios...')
@@ -740,29 +676,23 @@ def create_spreadsheet3(dataframe, filename, output_path):
                          r_p_metric_columns)
     print('Creating the pivot table and saving to excel...')
     echo_p = create_pivot_tables(echo_ratio, 
-                        'echoBenchmark', 
                         ['benchmark', 'federate_count', 'core_type'], 
-                        ['spf_ratio'])
+                        ['spf_ratio', 'elapsed_time_ratio'])
     echo_msg_p = create_pivot_tables(echo_msg_ratio, 
-                        'echoMessageBenchmark', 
                         ['benchmark', 'federate_count', 'core_type'], 
-                        ['spf_ratio'])
+                        ['spf_ratio', 'elapsed_time_ratio'])
     timing_p = create_pivot_tables(timing_ratio, 
-                        'timingBenchmark', 
                         ['benchmark', 'federate_count', 'core_type'], 
-                        ['spf_ratio'])
+                        ['spf_ratio', 'elapsed_time_ratio'])
     ring_p = create_pivot_tables(ring_ratio, 
-                        'RingTransmitFederate', 
                         ['benchmark', 'federate_count', 'core_type'], 
-                        ['spf_ratio'])
+                        ['spf_ratio', 'elapsed_time_ratio'])
     phold_p = create_pivot_tables(phold_ratio, 
-                        'PholdFederate', 
                         ['benchmark', 'federate_count', 'core_type'], 
-                        ['spf_ratio', 'spe_ratio', 'cpf_ratio', 'cpe_ratio'])
+                        ['spf_ratio', 'spe_ratio', 'cpf_ratio', 'cpe_ratio', 'elapsed_time_ratio'])
     msg_p = create_pivot_tables(msg_ratio, 
-                        'MessageExchangeFederate', 
                         ['benchmark', 'message_size', 'message_count', 'core_type'], 
-                        ['spms_ratio', 'spmc_ratio'])
+                        ['spms_ratio', 'spmc_ratio', 'elapsed_time_ratio'])
     with pd.ExcelWriter(os.path.join(output_path, '{}.xlsx'.format(filename))) as writer:
         echo_p.to_excel(writer, sheet_name='{}'.format('EchoLeafFederate'))
         echo_msg_p.to_excel(writer, sheet_name='{}'.format('EchoMessageLeafFederate'))
@@ -772,8 +702,17 @@ def create_spreadsheet3(dataframe, filename, output_path):
         msg_p.to_excel(writer, sheet_name='{}'.format('MessageExchangeFederate'))
             
     print('Successfully saved the data to excel.')
-
-
+    
+    print('Saving as .csv file...')
+    main_ratio_df = pd.concat([echo_msg_ratio, echo_ratio, msg_ratio,
+                               phold_ratio, ring_ratio, timing_ratio], 
+                              axis=0, 
+                              sort=True, 
+                              ignore_index=True)
+    main_ratio_df.to_csv(r'{}\{}.csv'.format(os.path.join(output_path), filename))
+    print('Successfully saved as .csv file.')
+    
+    
 def _auto_run(args):
     """This function executes when the script is called as a stand-alone
     executable.
@@ -824,11 +763,11 @@ if __name__ == '__main__':
     parser.add_argument('-j', 
                         '--json_file', 
                         nargs='?', 
-                        default='bm_results.json')
+                        default='multinode_bm_results.json')
     parser.add_argument('-b', 
                         '--bmk_type', 
                         nargs='?', 
-                        default='key')
+                        default='multinode')
     parser.add_argument('-o', 
                         '--output_path', 
                         nargs='?', 

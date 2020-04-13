@@ -184,7 +184,7 @@ def find_bm_to_graph(json_results, run_id):
     return bm_list_to_graph
 
 
-def make_SA_graphs(meta_bmk_df, bm, run_id, output_path):
+def make_SA_graphs(meta_bmk_df, bm_list, run_id, output_path):
     """This function determines which graphing function to call (based
     on the name of the benchmark passed in "bm") and whether it should
     be graphed (based on the benchmark type, "full" or "key").
@@ -192,228 +192,229 @@ def make_SA_graphs(meta_bmk_df, bm, run_id, output_path):
     Args:
         meta_bmk_df (pandas dataframe) - Contains all benchmark results
         and associated metadata.
-        bm (dict) - small dictionary storing the benchmark name and type
-        ("full" or "key")
+        bm_list (list) - list of small dictionaries storing the benchmark 
+        name and type ("full" or "key")
         run_id (str) - 5 character unique identifier for the run-ID
         output_path (str) - Path where graphs should be saved
 
     Returns:
         (nothing)
     """
-    if bm['bm_name'] == 'echoBenchmark' and bm['bm_type'] == 'full':
-        df = meta_bmk_df[(meta_bmk_df.benchmark == 'echoBenchmark') &
-                         (meta_bmk_df.benchmark_type == 'full') &
-                         (meta_bmk_df.run_id == '{}'.format(run_id))]
-        bmk_plotting.sa_plot(df, 
-                             'federate_count',
-                             'real_time',
-                             'echoBenchmark',
-                             'full',
-                             True,
-                             'core_type',
-                             run_id, 
-                             output_path)
-    if bm['bm_name'] == 'cEchoBenchmark' and bm['bm_type'] == 'full':
-        df = meta_bmk_df[(meta_bmk_df.benchmark == 'cEchoBenchmark') & 
-                         (meta_bmk_df.benchmark_type == 'full') &
-                         (meta_bmk_df.run_id == '{}'.format(run_id))]
-        bmk_plotting.sa_plot(df, 
-                             'federate_count',
-                             'real_time',
-                             'cEchoBenchmark',
-                             'full',
-                             True,
-                             'core_type',
-                             run_id, 
-                             output_path)
-    if bm['bm_name'] == 'echoMessageBenchmark' and bm['bm_type'] == 'full':
-        df = meta_bmk_df[(meta_bmk_df.benchmark == 'echoMessageBenchmark') & 
-                         (meta_bmk_df.benchmark_type == 'full') &
-                         (meta_bmk_df.run_id == '{}'.format(run_id))]
-        bmk_plotting.sa_plot(df, 
-                             'federate_count',
-                             'real_time',
-                             'echoMessageBenchmark',
-                             'full',
-                             True,
-                             'core_type',
-                             run_id, 
-                             output_path)
-    if bm['bm_name'] == 'messageLookupBenchmark' and bm['bm_type'] == 'full':
-        df1 = meta_bmk_df[(meta_bmk_df.benchmark == 'messageLookupBenchmark') & 
-                          (meta_bmk_df.core_type == 'inproc') &
-                          (meta_bmk_df.benchmark_type == 'full') & 
-                          (meta_bmk_df.run_id == '{}'.format(run_id)) &
-                          (meta_bmk_df.federate_count == 2)]
-        bmk_plotting.sa_plot(df1, 
-                             'interface_count',
-                             'real_time',
-                             'messageLookup, core_type=inproc, fed_ct=2',
-                             'full',
-                             False,
-                             '',
-                             run_id, 
-                             output_path)
-        df2 = meta_bmk_df[(meta_bmk_df.benchmark == 'messageLookupBenchmark') & 
-                          (meta_bmk_df.core_type == 'inproc') &
-                          (meta_bmk_df.benchmark_type == 'full') & 
-                          (meta_bmk_df.run_id == '{}'.format(run_id)) &
-                          (meta_bmk_df.federate_count == 8)]
-        bmk_plotting.sa_plot(df2, 
-                             'interface_count',
-                             'real_time',
-                             'messageLookup, core_type=inproc, fed_ct=8',
-                             'full',
-                             False,
-                             '',
-                             run_id, 
-                             output_path)
-        df3 = meta_bmk_df[(meta_bmk_df.benchmark == 'messageLookupBenchmark') & 
-                          (meta_bmk_df.core_type == 'inproc') &
-                          (meta_bmk_df.benchmark_type == 'full') & 
-                          (meta_bmk_df.run_id == '{}'.format(run_id)) &
-                          (meta_bmk_df.federate_count == 64)]
-        bmk_plotting.sa_plot(df3, 
-                             'interface_count',
-                             'real_time',
-                             'messageLookup, core_type=inproc, fed_ct=64',
-                             'full',
-                             False,
-                             '',
-                             run_id, 
-                             output_path)
-    if bm['bm_name'] == 'ringBenchmark' and bm['bm_type'] == 'full':
-        df = meta_bmk_df[(meta_bmk_df.benchmark == 'ringBenchmark') & 
-                         (meta_bmk_df.benchmark_type == 'full') &
-                         (meta_bmk_df.run_id == '{}'.format(run_id))]
-        bmk_plotting.sa_plot(df, 
-                             'federate_count',
-                             'real_time',
-                             'ringBenchmark',
-                             'full',
-                             True,
-                             'core_type',
-                             run_id, 
-                             output_path)
-    if bm['bm_name'] == 'ringMessageBenchmark' and bm['bm_type'] == 'full':
-        df = meta_bmk_df[(meta_bmk_df.benchmark == 'ringMessageBenchmark') & 
-                         (meta_bmk_df.benchmark_type == 'full') &
-                         (meta_bmk_df.run_id == '{}'.format(run_id))]
-        bmk_plotting.sa_plot(df, 
-                             'federate_count',
-                             'real_time',
-                             'ringMessageBenchmark',
-                             'full',
-                             True,
-                             'core_type',
-                             run_id, 
-                             output_path)
-    if bm['bm_name'] == 'pholdBenchmark' and bm['bm_type'] == 'full':
-        df = meta_bmk_df[(meta_bmk_df.benchmark == 'pholdBenchmark') & 
-                         (meta_bmk_df.benchmark_type == 'full') &
-                         (meta_bmk_df.run_id == '{}'.format(run_id))]
-        bmk_plotting.sa_plot(df, 
-                             'federate_count',
-                             'real_time',
-                             'pholdBenchmark',
-                             'full',
-                             True,
-                             'core_type',
-                             run_id, 
-                             output_path)
-    if bm['bm_name'] == 'messageSendBenchmark' and bm['bm_type'] == 'full':
-        df1 = meta_bmk_df[(meta_bmk_df.benchmark == 'messageSendBenchmark') & 
-                          (meta_bmk_df.core_type == 'singleCore') &
-                          (meta_bmk_df.benchmark_type == 'full') &
-                          (meta_bmk_df.run_id == '{}'.format(run_id))]
-        bmk_plotting.sa_plot(df1, 
-                             'message_size',
-                             'real_time',
-                             'messageSend, core_type=singleCore',
-                             'full',
-                             False,
-                             '',
-                             run_id, 
-                             output_path)
-        df2 = meta_bmk_df[(meta_bmk_df.benchmark == 'messageSendBenchmark') & 
-                          (meta_bmk_df.benchmark_type == 'full') &
-                          (meta_bmk_df.run_id == '{}'.format(run_id)) & 
-                          (meta_bmk_df.message_count == 1)]
-        bmk_plotting.sa_plot(df2, 
-                             'message_size',
-                             'real_time',
-                             'messageSend, msg_ct=1',
-                             'full',
-                             True,
-                             'core_type',
-                             run_id, 
-                             output_path)
-        df3 = meta_bmk_df[(meta_bmk_df.benchmark == 'messageSendBenchmark') &
-                          (meta_bmk_df.benchmark_type == 'full') &
-                          (meta_bmk_df.run_id == '{}'.format(run_id)) & 
-                          (meta_bmk_df.message_size == 1)]
-        bmk_plotting.sa_plot(df3, 
-                             'message_count',
-                             'real_time',
-                             'messageSend, msg_sz=1',
-                             'full',
-                             True,
-                             'core_type',
-                             run_id, 
-                             output_path)
-    if bm['bm_name'] == 'filterBenchmark' and bm['bm_type']== 'full':
-        df1 = meta_bmk_df[(meta_bmk_df.benchmark == 'filterBenchmark') & 
-                          (meta_bmk_df.core_type == 'singleCore') &
-                          (meta_bmk_df.benchmark_type == 'full') &
-                          (meta_bmk_df.run_id == '{}'.format(run_id))]
-        bmk_plotting.sa_plot(df1, 
-                             'federate_count',
-                             'real_time',
-                             'filterBenchmark, core_type=singleCore',
-                             'full',
-                             True,
-                             'filter_location',
-                             run_id, 
-                             output_path)
-        df2 = meta_bmk_df[(meta_bmk_df.benchmark == 'filterBenchmark') & 
-                          (meta_bmk_df.filter_location == 'source') &
-                          (meta_bmk_df.benchmark_type == 'full') &
-                          (meta_bmk_df.run_id == '{}'.format(run_id))]
-        bmk_plotting.sa_plot(df2, 
-                             'federate_count',
-                             'real_time',
-                             'filterBenchmark, filter_loc=source',
-                             'full',
-                             True,
-                             'core_type',
-                             run_id, 
-                             output_path)
-        df3 = meta_bmk_df[(meta_bmk_df.benchmark == 'filterBenchmark') & 
-                          (meta_bmk_df.filter_location == 'destination') &
-                          (meta_bmk_df.benchmark_type == 'full') &
-                          (meta_bmk_df.run_id == '{}'.format(run_id))]
-        bmk_plotting.sa_plot(df3, 
-                             'federate_count',
-                             'real_time',
-                             'filterBenchmark, filter_loc=destination',
-                             'full',
-                             True,
-                             'core_type',
-                             run_id, 
-                             output_path)
-    if bm['bm_name'] == 'timingBenchmark' and bm['bm_type'] == 'full':
-        df = meta_bmk_df[(meta_bmk_df.benchmark == 'timingBenchmark') & 
-                         (meta_bmk_df.benchmark_type == 'full') & 
-                         (meta_bmk_df.run_id == '{}'.format(run_id))]
-        bmk_plotting.sa_plot(meta_bmk_df, 
-                             'federate_count',
-                             'real_time',
-                             'timingBenchmark',
-                             'full',
-                             True,
-                             'core_type',
-                             run_id, 
-                             output_path)
+    for bm in bm_list:
+        if bm['bm_name'] == 'echoBenchmark' and bm['bm_type'] == 'full':
+            df = meta_bmk_df[(meta_bmk_df.benchmark == 'echoBenchmark') &
+                             (meta_bmk_df.benchmark_type == 'full') &
+                             (meta_bmk_df.run_id == '{}'.format(run_id))]
+            bmk_plotting.sa_plot(df, 
+                                 'federate_count',
+                                 'real_time',
+                                 'echoBenchmark',
+                                 'full',
+                                 True,
+                                 'core_type',
+                                 run_id, 
+                                 output_path)
+        if bm['bm_name'] == 'cEchoBenchmark' and bm['bm_type'] == 'full':
+            df = meta_bmk_df[(meta_bmk_df.benchmark == 'cEchoBenchmark') & 
+                             (meta_bmk_df.benchmark_type == 'full') &
+                             (meta_bmk_df.run_id == '{}'.format(run_id))]
+            bmk_plotting.sa_plot(df, 
+                                 'federate_count',
+                                 'real_time',
+                                 'cEchoBenchmark',
+                                 'full',
+                                 True,
+                                 'core_type',
+                                 run_id, 
+                                 output_path)
+        if bm['bm_name'] == 'echoMessageBenchmark' and bm['bm_type'] == 'full':
+            df = meta_bmk_df[(meta_bmk_df.benchmark == 'echoMessageBenchmark') & 
+                             (meta_bmk_df.benchmark_type == 'full') &
+                             (meta_bmk_df.run_id == '{}'.format(run_id))]
+            bmk_plotting.sa_plot(df, 
+                                 'federate_count',
+                                 'real_time',
+                                 'echoMessageBenchmark',
+                                 'full',
+                                 True,
+                                 'core_type',
+                                 run_id, 
+                                 output_path)
+        if bm['bm_name'] == 'messageLookupBenchmark' and bm['bm_type'] == 'full':
+            df1 = meta_bmk_df[(meta_bmk_df.benchmark == 'messageLookupBenchmark') & 
+                              (meta_bmk_df.core_type == 'inproc') &
+                              (meta_bmk_df.benchmark_type == 'full') & 
+                              (meta_bmk_df.run_id == '{}'.format(run_id)) &
+                              (meta_bmk_df.federate_count == 2)]
+            bmk_plotting.sa_plot(df1, 
+                                 'interface_count',
+                                 'real_time',
+                                 'messageLookup, core_type=inproc, fed_ct=2',
+                                 'full',
+                                 False,
+                                 '',
+                                 run_id, 
+                                 output_path)
+            df2 = meta_bmk_df[(meta_bmk_df.benchmark == 'messageLookupBenchmark') & 
+                              (meta_bmk_df.core_type == 'inproc') &
+                              (meta_bmk_df.benchmark_type == 'full') & 
+                              (meta_bmk_df.run_id == '{}'.format(run_id)) &
+                              (meta_bmk_df.federate_count == 8)]
+            bmk_plotting.sa_plot(df2, 
+                                 'interface_count',
+                                 'real_time',
+                                 'messageLookup, core_type=inproc, fed_ct=8',
+                                 'full',
+                                 False,
+                                 '',
+                                 run_id, 
+                                 output_path)
+            df3 = meta_bmk_df[(meta_bmk_df.benchmark == 'messageLookupBenchmark') & 
+                              (meta_bmk_df.core_type == 'inproc') &
+                              (meta_bmk_df.benchmark_type == 'full') & 
+                              (meta_bmk_df.run_id == '{}'.format(run_id)) &
+                              (meta_bmk_df.federate_count == 64)]
+            bmk_plotting.sa_plot(df3, 
+                                 'interface_count',
+                                 'real_time',
+                                 'messageLookup, core_type=inproc, fed_ct=64',
+                                 'full',
+                                 False,
+                                 '',
+                                 run_id, 
+                                 output_path)
+        if bm['bm_name'] == 'ringBenchmark' and bm['bm_type'] == 'full':
+            df = meta_bmk_df[(meta_bmk_df.benchmark == 'ringBenchmark') & 
+                             (meta_bmk_df.benchmark_type == 'full') &
+                             (meta_bmk_df.run_id == '{}'.format(run_id))]
+            bmk_plotting.sa_plot(df, 
+                                 'federate_count',
+                                 'real_time',
+                                 'ringBenchmark',
+                                 'full',
+                                 True,
+                                 'core_type',
+                                 run_id, 
+                                 output_path)
+        if bm['bm_name'] == 'ringMessageBenchmark' and bm['bm_type'] == 'full':
+            df = meta_bmk_df[(meta_bmk_df.benchmark == 'ringMessageBenchmark') & 
+                             (meta_bmk_df.benchmark_type == 'full') &
+                             (meta_bmk_df.run_id == '{}'.format(run_id))]
+            bmk_plotting.sa_plot(df, 
+                                 'federate_count',
+                                 'real_time',
+                                 'ringMessageBenchmark',
+                                 'full',
+                                 True,
+                                 'core_type',
+                                 run_id, 
+                                 output_path)
+        if bm['bm_name'] == 'pholdBenchmark' and bm['bm_type'] == 'full':
+            df = meta_bmk_df[(meta_bmk_df.benchmark == 'pholdBenchmark') & 
+                             (meta_bmk_df.benchmark_type == 'full') &
+                             (meta_bmk_df.run_id == '{}'.format(run_id))]
+            bmk_plotting.sa_plot(df, 
+                                 'federate_count',
+                                 'real_time',
+                                 'pholdBenchmark',
+                                 'full',
+                                 True,
+                                 'core_type',
+                                 run_id, 
+                                 output_path)
+        if bm['bm_name'] == 'messageSendBenchmark' and bm['bm_type'] == 'full':
+            df1 = meta_bmk_df[(meta_bmk_df.benchmark == 'messageSendBenchmark') & 
+                              (meta_bmk_df.core_type == 'singleCore') &
+                              (meta_bmk_df.benchmark_type == 'full') &
+                              (meta_bmk_df.run_id == '{}'.format(run_id))]
+            bmk_plotting.sa_plot(df1, 
+                                 'message_size',
+                                 'real_time',
+                                 'messageSend, core_type=singleCore',
+                                 'full',
+                                 False,
+                                 '',
+                                 run_id, 
+                                 output_path)
+            df2 = meta_bmk_df[(meta_bmk_df.benchmark == 'messageSendBenchmark') & 
+                              (meta_bmk_df.benchmark_type == 'full') &
+                              (meta_bmk_df.run_id == '{}'.format(run_id)) & 
+                              (meta_bmk_df.message_count == 1)]
+            bmk_plotting.sa_plot(df2, 
+                                 'message_size',
+                                 'real_time',
+                                 'messageSend, msg_ct=1',
+                                 'full',
+                                 True,
+                                 'core_type',
+                                 run_id, 
+                                 output_path)
+            df3 = meta_bmk_df[(meta_bmk_df.benchmark == 'messageSendBenchmark') &
+                              (meta_bmk_df.benchmark_type == 'full') &
+                              (meta_bmk_df.run_id == '{}'.format(run_id)) & 
+                              (meta_bmk_df.message_size == 1)]
+            bmk_plotting.sa_plot(df3, 
+                                 'message_count',
+                                 'real_time',
+                                 'messageSend, msg_sz=1',
+                                 'full',
+                                 True,
+                                 'core_type',
+                                 run_id, 
+                                 output_path)
+        if bm['bm_name'] == 'filterBenchmark' and bm['bm_type']== 'full':
+            df1 = meta_bmk_df[(meta_bmk_df.benchmark == 'filterBenchmark') & 
+                              (meta_bmk_df.core_type == 'singleCore') &
+                              (meta_bmk_df.benchmark_type == 'full') &
+                              (meta_bmk_df.run_id == '{}'.format(run_id))]
+            bmk_plotting.sa_plot(df1, 
+                                 'federate_count',
+                                 'real_time',
+                                 'filterBenchmark, core_type=singleCore',
+                                 'full',
+                                 True,
+                                 'filter_location',
+                                 run_id, 
+                                 output_path)
+            df2 = meta_bmk_df[(meta_bmk_df.benchmark == 'filterBenchmark') & 
+                              (meta_bmk_df.filter_location == 'source') &
+                              (meta_bmk_df.benchmark_type == 'full') &
+                              (meta_bmk_df.run_id == '{}'.format(run_id))]
+            bmk_plotting.sa_plot(df2, 
+                                 'federate_count',
+                                 'real_time',
+                                 'filterBenchmark, filter_loc=source',
+                                 'full',
+                                 True,
+                                 'core_type',
+                                 run_id, 
+                                 output_path)
+            df3 = meta_bmk_df[(meta_bmk_df.benchmark == 'filterBenchmark') & 
+                              (meta_bmk_df.filter_location == 'destination') &
+                              (meta_bmk_df.benchmark_type == 'full') &
+                              (meta_bmk_df.run_id == '{}'.format(run_id))]
+            bmk_plotting.sa_plot(df3, 
+                                 'federate_count',
+                                 'real_time',
+                                 'filterBenchmark, filter_loc=destination',
+                                 'full',
+                                 True,
+                                 'core_type',
+                                 run_id, 
+                                 output_path)
+        if bm['bm_name'] == 'timingBenchmark' and bm['bm_type'] == 'full':
+            df = meta_bmk_df[(meta_bmk_df.benchmark == 'timingBenchmark') & 
+                             (meta_bmk_df.benchmark_type == 'full') & 
+                             (meta_bmk_df.run_id == '{}'.format(run_id))]
+            bmk_plotting.sa_plot(meta_bmk_df, 
+                                 'federate_count',
+                                 'real_time',
+                                 'timingBenchmark',
+                                 'full',
+                                 True,
+                                 'core_type',
+                                 run_id, 
+                                 output_path)
 
 
 def sort_results_files(file_list):
@@ -497,12 +498,11 @@ def _auto_run(args):
                     logging.error(
                         'Failed to create directory for report at {}'.format(
                             run_id_dict[run_id]['report_path']))
-                for bm in bm_list:
-                    print('making graphs...\n')
-                    make_SA_graphs(meta_bmk_df,
-                                   bm,
-                                   run_id,
-                                   run_id_dict[run_id]['report_path'])
+                print('making graphs...\n')
+                make_SA_graphs(meta_bmk_df,
+                               bm_list,
+                               run_id,
+                               run_id_dict[run_id]['report_path'])
                 print('making the analysis report...\n')
                 saPDF.create_standard_analysis_report(
                     run_id_dict[run_id]['report_path'],
