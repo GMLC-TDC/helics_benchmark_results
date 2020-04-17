@@ -32,6 +32,7 @@ def make_dataframe1(json_results):
     #   passed in a json dictionary (in which case we really need to do little
     #   else) or something else. I assume "something else" is a path as a string
     #   to a JSON file that contains the results.
+#    print('Checking what type "json_results" is...')
     if isinstance(json_results, dict):
         dct = json_results
     else: 
@@ -60,7 +61,7 @@ def make_dataframe1(json_results):
     'message_count', 
     'message_size'
     ]
-
+#    print('going through the "benchmarks" portion of the JSON...')
     for f, f_dict in dct.items():
         for i, b_dict in enumerate(f_dict['benchmarks']):
             c_list1 = []
@@ -74,12 +75,8 @@ def make_dataframe1(json_results):
             ### that belong to our columns list; in other words, if there IS a value
             ### in 'federate_count', append that to lists, along with c_list.
             lists1.append(np.concatenate([[f, i], c_list1]))
+#    print('turning the "benchmarks" data into a dataframe...')
     bmk_df = pd.DataFrame(lists1, columns=np.concatenate([['identifier_id', 'benchmark_id'], columns1]))
-#    print(bmk_df.columns)
-    
-#    with open('bm_results.json', 'r') as f:
-#        dct2 = json.load(f)
-    # pprint(f_dict)
     
     ### Getting the cache data and creating a data frame.
     lists2 = []
@@ -89,7 +86,7 @@ def make_dataframe1(json_results):
         'size', 
         'num_sharing'
     ]
-    
+#    print('going through the "caches" portion of the JSON...')
     for f, f_dict in dct.items():
         for i, b_dict in enumerate(f_dict['caches']):
             ### If any of the caches dictionaries don't have a column in our columns list,
@@ -103,12 +100,8 @@ def make_dataframe1(json_results):
             ### that belong to our columns list; in other words, if there IS a value
             ### in 'type', append that to lists, along with c_list.
             lists2.append(np.concatenate([[f, i], c_list2]))
+#    print('turning the "caches" data into a dataframe...')
     cache_df = pd.DataFrame(lists2, columns=np.concatenate([['identifier_id', 'cache_id'], columns2]))
-    #print(cache_df.head())
-    
-#    with open('bm_results.json', 'r') as f:
-#        dct3 = json.load(f)
-    # pprint(f_dict)
     
     ### Getting the general benchmark info and creating a data frame.
     lists3 = []
@@ -141,7 +134,7 @@ def make_dataframe1(json_results):
     'library_build_type',
     'run_id'
     ]
-    
+#    print('going through the "info" portion of the JSON...')
     for f, f_dict in dct.items():
         c_list3 = []
         for c in columns3:
@@ -154,40 +147,36 @@ def make_dataframe1(json_results):
         ### that belong to our columns list; in other words, if there IS a value
         ### in 'date', append that to lists, along with c_list.
         lists3.append(np.concatenate([[f, i], c_list3]))
+#    print('turning the "info" data into a dataframe...')
     info_df = pd.DataFrame(lists3, columns=np.concatenate([['identifier_id', 'info_id'], columns3]))
-    #print(info_df.columns)
-    #print(info_df.head())
     
     ### Concatenating all three data frames into one meta data frame
     ### and sending to csv.
+#    print('combining all dataframes into one dataframe...')
     meta_bmk_df = reduce(lambda x, y: pd.merge(x, y, on='identifier_id', how='outer'), [info_df, cache_df, bmk_df])
-    real_time = []
-    cpu_time = []
     ### CGR (2020-02-06): Converting 'real_time' from nanoseconds or 
     ### milliseconds to seconds.
-    for t in meta_bmk_df.real_time:
-        t_idx = meta_bmk_df[meta_bmk_df.real_time == t].index[0]
-        if meta_bmk_df.at[t_idx, 'time_unit'] == 'ns':
-            time = float(t) * (float(10) ** (float(-9)))
-            real_time.append(t)
-        elif meta_bmk_df.at[t_idx, 'time_unit'] == 'ms':
-            time = float(t) * (float(10) ** (float(-3)))
-            real_time.append(time)
-    for c in meta_bmk_df.cpu_time:
-        c_idx = meta_bmk_df[meta_bmk_df.cpu_time == c].index[0]
-        if meta_bmk_df.at[c_idx, 'time_unit'] == 'ns':
-            c_time = float(c) * (float(10) ** (float(-9)))
-            cpu_time.append(c_time)
-        elif meta_bmk_df.at[c_idx, 'time_unit'] == 'ms':
-            c_time = float(c) * (float(10) ** (float(-3)))
-            cpu_time.append(c_time)        
-    meta_bmk_df['real_time'] = real_time
-    meta_bmk_df['cpu_time'] = cpu_time
+    df1 = meta_bmk_df[meta_bmk_df.time_unit == 'ns']
+    df2 = meta_bmk_df[meta_bmk_df.time_unit == 'ms']
+#    print('changing "real_time" from ms or ns to s...')
+    rt1 = [float(t)*10.0**(-9.0) for t in df1.real_time]
+    rt2 = [float(t)*10.0**(-3.0) for t in df2.real_time]
+#    print('changing "cpu_time" from ms or ns to s...')
+    ct1 = [float(t)*10.0**(-9.0) for t in df1.cpu_time]
+    ct2 = [float(t)*10.0**(-3.0) for t in df2.cpu_time]
+    df1['real_time'] = rt1
+    df1['cpu_time'] = ct1
+    df2['real_time'] = rt2
+    df2['cpu_time'] = ct2
+    meta_bmk_df = pd.concat([df1, df2], join='outer', ignore_index=False)
+    meta_bmk_df['time_unit'] = 's'
+#    print('saving the meta-dataframe to .csv...')
     csv_path = os.path.join(os.getcwd(), 'bmk_meta_df.csv')
     meta_bmk_df.to_csv(r'{}'.format(csv_path))
     
     ### Reading in the csv; seems unnecessary, but works due to
     ### plotting difficulties.
+#    print('reading the dataframe back in for analysis purposes.')
     final_meta_bmk_df = pd.read_csv(csv_path, index_col='Unnamed: 0', dtype={'platform': object, 'filter_location': object})
     os.remove(csv_path)
     
@@ -274,7 +263,7 @@ def make_dataframe2(json_results):
     meta_bmk_df = reduce(lambda x, y: pd.merge(x, y, on='identifier_id', how='outer'), [info_df])
     ### CGR (2020-02-06): Converting 'elapsed_time' from nanoseconds  
     ### to seconds.
-    elapsed_time = [(float(e) * float(10) ** float(-9)) for e in meta_bmk_df.elapsed_time]
+    elapsed_time = [(float(e)*float(10)** float(-9)) for e in meta_bmk_df.elapsed_time]
     meta_bmk_df['elapsed_time'] = elapsed_time
     meta_bmk_df['time_unit'] = 's'
     csv_path = os.path.join(os.getcwd(), 'multinode_bmk_meta_df.csv')
@@ -305,16 +294,16 @@ def make_dataframe2(json_results):
 
 
 ### Testing that my function works
-if __name__ == '__main__':
+#if __name__ == '__main__':
 #    json_file1 = 'bm_results.json'
 #    final_meta_bmk_df = make_dataframe1(json_file1)
 #    
 #    json_file2 = 'multinode_bm_results.json'
 #    multi_bmk_df = make_dataframe2(json_file2)
     
-    json_file3 = 'multinode_bm_results_test.json'
-    multi_bmk_df = make_dataframe2(json_file3)
-    print('COLUMNS:', multi_bmk_df.columns.unique())
+#    json_file3 = 'multinode_bm_results_test.json'
+#    multi_bmk_df = make_dataframe2(json_file3)
+#    print('COLUMNS:', multi_bmk_df.columns.unique())
 #    print(final_meta_bmk_df.columns)
 #    print(final_meta_bmk_df.head())
 #    print(final_meta_bmk_df.shape)

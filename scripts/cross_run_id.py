@@ -63,23 +63,6 @@ pp = pprint.PrettyPrinter(indent=4)
 # names in the results dictionarey (json_results) and dataframe. The
 # header of the results PDF shows the values of each of these pieces of
 # metdata associated with each run-ID.
-parameter_list = [
-    'date',
-    'helics_version',
-    'generator',
-    'system',
-    'system_version',
-    'platform',
-    'cxx_compiler',
-    'cxx_compiler_version',
-    'build_flags_string',
-    'host_name',
-    'host_processor',
-    'num_cpus',
-    'mhz_per_cpu'
-    ]
-
-
 def find_specific_run_id(benchmark_results_dir, run_id_list):
     """This function traverses the directory structure starting at the
     root folder of benchmark_results_dir looking for the folders that
@@ -120,8 +103,10 @@ def find_specific_run_id(benchmark_results_dir, run_id_list):
                         if 'bm_data_path' not in run_id_dict[run_id].keys():
                             run_id_dict[run_id]['bm_data_path'] = root
                         if file not in run_id_dict[run_id]['files']:
-                            run_id_dict[run_id]['files'].append(os.path.join(root, file))
-                            logging.info('Added file to process {}'.format(file))
+                            run_id_dict[run_id]['files'].append(
+                                os.path.join(root, file))
+                            logging.info(
+                                'Added file to process {}'.format(file))
     return run_id_dict
 
 
@@ -193,7 +178,6 @@ def find_common_bm_to_graph(json_results, run_id_dict):
         bm_dict[run_id] = []
     for bm in json_results:
         bm_name = json_results[bm]['benchmark']
-
         # TDH (2020-01-14)
         # Don't need to look for comparisons between benchmarks that we
         # don't generate graphs
@@ -231,10 +215,7 @@ def find_common_bm_to_graph(json_results, run_id_dict):
 
     return bm_list_to_graph
 
-def make_cross_run_id_graphs(meta_bmk_df,
-                             bm,
-                             run_id_list,
-                             output_path,
+def make_cross_run_id_graphs(meta_bmk_df, bm_list, run_id_list, output_path,
                              comparison_parameter):
 
     """Based on the specified benchmark (bm), the appropriate graphing
@@ -260,215 +241,110 @@ def make_cross_run_id_graphs(meta_bmk_df,
     Returns:
         null
     """
-    if bm == 'echoBenchmark':
-        meta_bmk_df = meta_bmk_df[(meta_bmk_df.benchmark == 'echoBenchmark') & 
-                                  (meta_bmk_df.benchmark_type == 'full')]
-        for core_type in meta_bmk_df.core_type.unique():
-            x_axis = 'federate_count'
-            y_axis = 'real_time'
-            bm_name = 'echoBenchmark'
-            bmk_plotting.cr_plot(meta_bmk_df,
-                                 x_axis,
-                                 y_axis,
-                                 bm_name,
-                                 run_id_list,
-                                 core_type,
-                                 comparison_parameter,
-                                 output_path)
-    if bm == 'cEchoBenchmark':
-        meta_bmk_df = meta_bmk_df[(meta_bmk_df.benchmark == 'cEchoBenchmark') & 
-                                  (meta_bmk_df.benchmark_type == 'full')]
-        for core_type in meta_bmk_df.core_type.unique():
-            x_axis = 'federate_count'
-            y_axis = 'real_time'
-            bm_name = 'cEchoBenchmark'
-            bmk_plotting.cr_plot(meta_bmk_df,
-                                 x_axis,
-                                 y_axis,
-                                 bm_name,
-                                 run_id_list,
-                                 core_type,
-                                 comparison_parameter,
-                                 output_path)
-    if bm == 'echoMessageBenchmark':
-        meta_bmk_df = meta_bmk_df[(meta_bmk_df.benchmark == 'echoMessageBenchmark') & 
-                                  (meta_bmk_df.benchmark_type == 'full')]
-        for core_type in meta_bmk_df.core_type.unique():
-            x_axis = 'federate_count'
-            y_axis = 'real_time'
-            bm_name = 'echoMessageBenchmark'
-            bmk_plotting.cr_plot(meta_bmk_df,
-                                 x_axis,
-                                 y_axis,
-                                 bm_name,
-                                 run_id_list,
-                                 core_type,
-                                 comparison_parameter,
-                                 output_path)
-    if bm == 'messageLookupBenchmark':
-        meta_bmk_df = meta_bmk_df[meta_bmk_df.benchmark == 'messageLookupBenchmark']
-        ml1 = meta_bmk_df[(meta_bmk_df.benchmark_type == 'full') & 
-                          (meta_bmk_df.federate_count == 2)]
-        ml2 = meta_bmk_df[(meta_bmk_df.benchmark_type == 'full') & 
-                          (meta_bmk_df.federate_count == 8)]
-        ml3 = meta_bmk_df[(meta_bmk_df.benchmark_type == 'full') & 
-                          (meta_bmk_df.federate_count == 64)]
-        x_axis = 'interface_count'
-        y_axis = 'real_time'
-        bmk_plotting.cr_plot(ml1, 
-                             x_axis,
-                             y_axis,
-                             'messageLookup, federate_ct=2, singleCore',
-                             run_id_list,
-                             'inproc',
-                             comparison_parameter,
-                             output_path)
-        bmk_plotting.cr_plot(ml2, 
-                             x_axis,
-                             y_axis,
-                             'messageLookup, federate_ct=8, singleCore',
-                             run_id_list,
-                             'inproc',
-                             comparison_parameter,
-                             output_path)
-        bmk_plotting.cr_plot(ml3, 
-                             x_axis,
-                             y_axis,
-                             'messageLookup, federate_ct=64, singleCore',
-                             run_id_list,
-                             'inproc',
-                             comparison_parameter,
-                             output_path)
-    if bm == 'ringBenchmark':
-        meta_bmk_df = meta_bmk_df[(meta_bmk_df.benchmark == 'ringBenchmark') &
-                                  (meta_bmk_df.benchmark_type == 'full')]
-        for core_type in meta_bmk_df.core_type.unique():
-            # TDH (2020-01-09) - Special case because only a single data
-            # point is run for the singleCore data. All the others have
-            # multiple data points and can actually be used to form a
-            # graph.
-            if core_type != 'singleCore':
-                x_axis = 'federate_count'
-                y_axis = 'real_time'
-                bm_name = 'ringBenchmark'
-                bmk_plotting.cr_plot(meta_bmk_df,
-                                     x_axis,
-                                     y_axis,
-                                     bm_name,
-                                     run_id_list,
-                                     core_type,
-                                     comparison_parameter,
-                                     output_path)
-    if bm == 'ringMessageBenchmark':
-        meta_bmk_df = meta_bmk_df[(meta_bmk_df.benchmark == 'ringMessageBenchmark') &
-                                  (meta_bmk_df.benchmark_type == 'full')]
-        for core_type in meta_bmk_df.core_type.unique():
-            # TDH (2020-01-09) - Special case because only a single data
-            # point is run for the singleCore data. All the others have
-            # multiple data points and can actually be used to form a
-            # graph.
-            if core_type != 'singleCore':
-                x_axis = 'federate_count'
-                y_axis = 'real_time'
-                bm_name = 'ringMessageBenchmark'
-                bmk_plotting.cr_plot(meta_bmk_df,
-                                     x_axis,
-                                     y_axis,
-                                     bm_name,
-                                     run_id_list,
-                                     core_type,
-                                     comparison_parameter,
-                                     output_path)
-    if bm == 'pholdBenchmark':
-        meta_bmk_df = meta_bmk_df[(meta_bmk_df.benchmark == 'pholdBenchmark') &
-                                  (meta_bmk_df.benchmark_type == 'full')]
-        for core_type in meta_bmk_df.core_type.unique():
-            x_axis = 'federate_count'
-            y_axis = 'real_time'
-            bm_name = 'pholdBenchmark'
-            bmk_plotting.cr_plot(meta_bmk_df,
-                                 x_axis,
-                                 y_axis,
-                                 bm_name,
-                                 run_id_list,
-                                 core_type,
-                                 comparison_parameter,
-                                 output_path)
-    if bm == 'messageSendBenchmark':
-        meta_bmk_df = meta_bmk_df[(meta_bmk_df.benchmark == 'messageSendBenchmark') & 
-                                  (meta_bmk_df.benchmark_type == 'full')]
-        bmk_plotting.cr_plot(meta_bmk_df,
-                             'message_size',
-                             'real_time',
-                             'messageSend, singleCore',
-                             run_id_list,
-                             'singleCore',
-                             comparison_parameter,
-                             output_path)
-        for core_type in meta_bmk_df.core_type.unique():
-            ms1 = meta_bmk_df[meta_bmk_df.message_count == 1]
-            ms2 = meta_bmk_df[meta_bmk_df.message_size == 1]
-            bmk_plotting.cr_plot(ms1,
-                                 'message_size',
-                                 'real_time',
-                                 'messageSend, message_ct=1',
-                                 run_id_list,
-                                 core_type,
-                                 comparison_parameter,
-                                 output_path)
-            bmk_plotting.cr_plot(ms2,
-                                 'message_count',
-                                 'real_time',
-                                 'messageSend, message_sz=1',
-                                 run_id_list,
-                                 core_type,
-                                 comparison_parameter,
-                                 output_path)
-    if bm == 'filterBenchmark':
-        meta_bmk_df = meta_bmk_df[(meta_bmk_df.benchmark == 'filterBenchmark') & 
-                                  (meta_bmk_df.benchmark_type == 'full')]
-        bmk_plotting.cr_plot(meta_bmk_df,
-                             'federate_count',
-                             'real_time',
-                             'filter, singleCore',
-                             run_id_list,
-                             'singleCore',
-                             comparison_parameter,
-                             output_path)
-        for core_type in meta_bmk_df.core_type.unique():
-            src = [meta_bmk_df.filter_location == 'source']
-            bmk_plotting.cr_plot(src,
-                                 'federate_count',
-                                 'real_time',
-                                 'filter, filter_loc=source',
-                                 run_id_list,
-                                 core_type,
-                                 comparison_parameter,
-                                 output_path)
-            dest = [meta_bmk_df.filter_location == 'destination']
-            bmk_plotting.cr_plot(dest,
-                                 'federate_count',
-                                 'real_time',
-                                 'filter, filter_loc=destination',
-                                 run_id_list,
-                                 core_type,
-                                 comparison_parameter,
-                                 output_path)
-    if bm == 'timingBenchmark':
-        meta_bmk_df = meta_bmk_df[(meta_bmk_df.benchmark == 'timingBenchmark') & 
-                                  (meta_bmk_df.benchmark_type == 'full')]
-        for core_type in meta_bmk_df.core_type.unique():
-            x_axis = 'federate_count'
-            y_axis = 'real_time'
-            bm_name = 'timingBenchmark'
-            bmk_plotting.cr_plot(meta_bmk_df,
-                                 x_axis,
-                                 y_axis,
-                                 bm_name,
-                                 run_id_list,
-                                 core_type,
-                                 comparison_parameter,
-                                 output_path)
+    for bm in bm_list:
+        if bm['bm_name'] == 'echoBenchmark':
+            df = meta_bmk_df[(meta_bmk_df.benchmark == 'echoBenchmark') & 
+                             (meta_bmk_df.benchmark_type == 'full')]
+            for core_type in df.core_type.unique():
+                bmk_plotting.cr_plot(
+                    df, 'federate_count', 'real_time', 'echoBenchmark',
+                    run_id_list, core_type, comparison_parameter, output_path)
+        if bm['bm_name'] == 'cEchoBenchmark':
+            df = meta_bmk_df[(meta_bmk_df.benchmark == 'cEchoBenchmark') & 
+                             (meta_bmk_df.benchmark_type == 'full')]
+            for core_type in df.core_type.unique():
+                bmk_plotting.cr_plot(
+                    df, 'federate_count', 'real_time', 'cEchoBenchmark',
+                    run_id_list, core_type, comparison_parameter, output_path)
+        if bm['bm_name'] == 'echoMessageBenchmark':
+            df = meta_bmk_df[(meta_bmk_df.benchmark == 'echoMessageBenchmark') & 
+                             (meta_bmk_df.benchmark_type == 'full')]
+            for core_type in df.core_type.unique():
+                bmk_plotting.cr_plot(
+                    df, 'federate_count', 'real_time', 'echoMessageBenchmark',
+                    run_id_list, core_type, comparison_parameter, output_path)
+        if bm['bm_name'] == 'messageLookupBenchmark':
+            df = meta_bmk_df[meta_bmk_df.benchmark == 'messageLookupBenchmark']
+            ml1 = df[(df.benchmark_type == 'full') & (df.federate_count == 2)]
+            ml2 = df[(df.benchmark_type == 'full') & (df.federate_count == 8)]
+            ml3 = df[(df.benchmark_type == 'full') & (df.federate_count == 64)]
+            bmk_plotting.cr_plot(
+                ml1, 'interface_count', 'real_time', 'messageLookup, fed_ct=2', 
+                run_id_list,'inproc', comparison_parameter, output_path)
+            bmk_plotting.cr_plot(
+                ml2, 'interface_count', 'real_time', 'messageLookup, fed_ct=8',
+                run_id_list, 'inproc', comparison_parameter, output_path)
+            bmk_plotting.cr_plot(
+                ml3, 'interface_count', 'real_time', 'messageLookup, fed_ct=64',
+                run_id_list, 'inproc', comparison_parameter, output_path)
+        if bm['bm_name'] == 'ringBenchmark':
+            df = meta_bmk_df[(meta_bmk_df.benchmark == 'ringBenchmark') &
+                             (meta_bmk_df.benchmark_type == 'full') & 
+                             (meta_bmk_df.core_type != 'singleCore')]
+            for core_type in df.core_type.unique():
+                # TDH (2020-01-09) - Special case because only a single data
+                # point is run for the singleCore data. All the others have
+                # multiple data points and can actually be used to form a
+                # graph.
+                bmk_plotting.cr_plot(
+                    df, 'federate_count', 'real_time', 'ringBenchmark',
+                    run_id_list, core_type, comparison_parameter, output_path)
+        if bm['bm_name'] == 'ringMessageBenchmark':
+            df = meta_bmk_df[(meta_bmk_df.benchmark == 'ringMessageBenchmark') &
+                             (meta_bmk_df.benchmark_type == 'full') & 
+                             (meta_bmk_df.core_type != 'singleCore')]
+            for core_type in df.core_type.unique():
+                # TDH (2020-01-09) - Special case because only a single data
+                # point is run for the singleCore data. All the others have
+                # multiple data points and can actually be used to form a
+                # graph.
+                bmk_plotting.cr_plot(
+                    df, 'federate_count', 'real_time', 'ringMessageBenchmark',
+                    run_id_list, core_type, comparison_parameter, output_path)
+        if bm['bm_name'] == 'pholdBenchmark':
+            df = meta_bmk_df[(meta_bmk_df.benchmark == 'pholdBenchmark') &
+                             (meta_bmk_df.benchmark_type == 'full')]
+            for core_type in df.core_type.unique():
+                bmk_plotting.cr_plot(
+                    meta_bmk_df, 'federate_count', 'real_time', 'pholdBenchmark',
+                    run_id_list, core_type, comparison_parameter, output_path)
+        if bm['bm_name'] == 'messageSendBenchmark':
+            df = meta_bmk_df[(meta_bmk_df.benchmark == 'messageSendBenchmark') & 
+                             (meta_bmk_df.benchmark_type == 'full')]
+            bmk_plotting.cr_plot(
+                df, 'message_size', 'real_time', 'messageSend, singleCore', 
+                run_id_list, 'singleCore', comparison_parameter, output_path)
+            for core_type in df.core_type.unique():
+                ms1 = df[df.message_count == 1]
+                ms2 = df[df.message_size == 1]
+                bmk_plotting.cr_plot(
+                    ms1, 'message_size', 'real_time', 'messageSend, msg_ct=1',
+                    run_id_list, core_type, comparison_parameter, output_path)
+                bmk_plotting.cr_plot(
+                    ms2, 'message_count', 'real_time', 'messageSend, msg_sz=1',
+                    run_id_list, core_type, comparison_parameter, output_path)
+        if bm['bm_name'] == 'filterBenchmark':
+            df = meta_bmk_df[(meta_bmk_df.benchmark == 'filterBenchmark') & 
+                             (meta_bmk_df.benchmark_type == 'full')]
+            bmk_plotting.cr_plot(
+                df, 'federate_count', 'real_time', 'filter, singleCore',
+                run_id_list, 'singleCore', comparison_parameter, output_path)
+            for core_type in df.core_type.unique():
+                dest = df[df.filter_location == 'destination']
+                src = df[df.filter_location == 'source']
+                bmk_plotting.cr_plot(
+                    src, 'federate_count', 'real_time', 'filter, fltr_loc=source',
+                    run_id_list, core_type, comparison_parameter, output_path)
+                bmk_plotting.cr_plot(
+                    dest, 'federate_count', 'real_time', 'filter, fltr_loc=dest',
+                    run_id_list, core_type, comparison_parameter, output_path)
+        if bm['bm_name'] == 'timingBenchmark':
+            df = meta_bmk_df[(meta_bmk_df.benchmark == 'timingBenchmark') & 
+                             (meta_bmk_df.benchmark_type == 'full')]
+            for core_type in df.core_type.unique():
+                bmk_plotting.cr_plot(
+                    meta_bmk_df, 'federate_count', 'real_time', 'timingBenchmark',
+                    run_id_list, core_type, comparison_parameter, output_path)
 
 
 def _auto_run(args):
@@ -498,41 +374,46 @@ def _auto_run(args):
     Returns:
         (nothing)
     """
-    run_id_dict = find_specific_run_id(args.benchmark_results_dir,
-                                       args.run_id_list)
+    print('starting cross-run_id analysis...\n')
+    print('finding the specific run_id...\n')
+    run_id_dict = find_specific_run_id(
+        args.benchmark_results_dir, args.run_id_list)
     file_list = []
+    print('getting a list of files...\n')
     for run_id in run_id_dict:
         file_list.extend(run_id_dict[run_id]['files'])
+    print('sorting the files...\n')
     bm_files, bmk_files = sa.sort_results_files(file_list)
     file_list = bm_files
+    print('parsing the files...\n')
     json_results = bmpp.parse_files(file_list)
+    print('adding metadata...\n')
     json_results = bmpp.parse_and_add_benchmark_metadata(json_results)
+    print('creating a meta dataframe...\n')
     meta_bmk_df = md.make_dataframe1(json_results)
+    print('finding a benchmark in common...\n')
     bm_list = find_common_bm_to_graph(json_results, run_id_dict)
     valid_params = []
+    print('checking to see which parameters are valid...\n')
     for p in args.comparison_parameter_list:
-        header, diff = criPDF.grab_header_metadata(json_results, 
-                                                   criPDF.get_run_id_keys(
-                                                           json_results, 
-                                                           args.run_id_list), 
-                                                   p)
+        header, diff = criPDF.grab_header_metadata(
+            json_results, 
+            criPDF.get_run_id_keys(json_results, args.run_id_list), 
+            p)
         if diff == True:
             valid_params.append(p)
     path = os.path.join(args.output_path)
     for v in valid_params:
         output_path = os.path.join(path, '{}'.format(v))
+        print('creating a path...\n')
         create_output_path(output_path, args.delete_report)
-        for bm in bm_list:
-            make_cross_run_id_graphs(meta_bmk_df,
-                                     bm['bm_name'],
-                                     list(run_id_dict.keys()),
-                                     output_path,
-                                     v)
-        criPDF.create_cross_run_id_report(json_results,
-                                          list(run_id_dict.keys()),
-                                          output_path,
-                                          parameter_list)
-
+        print('making graphs...\n')
+        make_cross_run_id_graphs(
+            meta_bmk_df, bm_list, list(run_id_dict.keys()), output_path, v)
+        print('creating the cross-run_id analysis report...\n')
+        criPDF.create_cross_run_id_report(
+            json_results, list(run_id_dict.keys()), output_path, parameter_list)
+    print('Finished the cross-run_id analysis.')
 
 
 
@@ -568,20 +449,9 @@ if __name__ == '__main__':
                         nargs='+',
                         default=['aUZF6', 'Zu60n'])
     parameter_list = [
-    'date',
-    'helics_version',
-    'generator',
-    'system',
-    'system_version',
-    'platform',
-    'cxx_compiler',
-    'cxx_compiler_version',
-    'build_flags_string',
-    'host_name',
-    'host_processor',
-    'num_cpus',
-    'mhz_per_cpu'
-    ]
+    'mhz_per_cpu', 'helics_version', 'generator', 'system', 
+    'system_version', 'platform', 'cxx_compiler', 'cxx_compiler_version', 
+    'build_flags_string', 'host_name', 'host_processor', 'num_cpus', 'date']
     parser.add_argument('-p',
                         '--comparison_parameter_list',
                         nargs='?',

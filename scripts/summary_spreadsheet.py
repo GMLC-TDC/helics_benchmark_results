@@ -2,19 +2,30 @@
 """
 Created on Thu Mar 12 07:40:00 2020
 
+Creates metrics and calculates ratios for analysis
+of HELICS performance for a given benchmark.  For each
+benchmark, a spreadsheet that summarizes the calculated
+metrics and ratios is generated.  A spreadsheet for all 
+the benchmarks is created and saved as a single Excel 
+spreadsheet.
+
+This script can be run as a standalone script to generate the summary
+spreadsheet for all the benchmarks results.
+
+The command line arguments for the function can be found in the code
+following the lines following the "if __name__ == '__main__':" line
+at the end of this file.
+
 @author: barn553
 """
 
 import argparse
 import pandas as pd
 import numpy as np
-import scipy
 from scipy.stats import linregress as lr
 import logging
 import pprint
 import os
-import shutil
-import benchmark_postprocessing as bmpp
 import make_dataframe as md
 import sys
 
@@ -24,7 +35,8 @@ logger = logging.getLogger(__name__)
 # Setting up pretty printing, mostly for debugging.
 pp = pprint.PrettyPrinter(indent=4)
 
-def get_all_ratios(dataframe):
+def get_ratio(dataframe, groupby_columns, index_columns, filter_columns,
+              value_columns, metric_columns, time):
     """This function gets all the metrics' ratios for the entire dataframe.
     
     Args:
@@ -36,387 +48,40 @@ def get_all_ratios(dataframe):
         information plus the mterics' ratios' results.
     """
     
-    df_list = []
-    for benchmark in dataframe.benchmark.unique():
-        print('getting ratios for benchmark: ', benchmark)
-        if benchmark == 'echoBenchmark':
-            echo_df = dataframe[dataframe.benchmark == benchmark]
-            echo_lst = []
-            for g, df in echo_df.groupby(['benchmark', 'run_id', 
-                                          'num_cpus', 'mhz_per_cpu', 
-                                          'federate_count']):
-                a_df = df
-                for f in a_df.federate_count.unique():
-                    a_df = a_df[a_df.federate_count == f]
-                    a_df = a_df.set_index('core_type')
-                    try:
-                        a_df['spf_ratio'] = np.ma.array(a_df.spf, mask=np.isnan(a_df.spf))\
-                        /float(a_df.loc['inproc', 'spf'])
-                        a_df['cpf_ratio'] = np.ma.array(a_df.cpf, mask=np.isnan(a_df.cpf))\
-                        /float(a_df.loc['inproc', 'cpf'])
-                    except Exception as e:
-                        logging.error('core type "{}" does not exist'.format(e))
-                        value = np.nan
-                        a_df['spf_ratio'] = value
-                        a_df['cpf_ratio'] = value
-                    a_df = a_df.reset_index()
-                    a_df = a_df[[
-                            'benchmark', 'run_id', 'num_cpus', 
-                            'mhz_per_cpu', 'federate_count', 'core_type', 
-                            'real_time', 'spf', 'spf_ratio', 
-                            'new_mhz_per_cpu', 'cpf', 'cpf_ratio'
-                            ]]
-                    echo_lst.append(a_df)
-            echo_df = pd.concat(echo_lst).set_index([
-                    'benchmark', 'run_id', 
-                    'num_cpus', 'mhz_per_cpu',
-                    'federate_count', 'core_type', 
-                    'real_time'
-                    ])
-            echo_df = echo_df.reset_index()
-            df_list.append(echo_df)
-        elif benchmark == 'echoMessageBenchmark':
-            echo_msg_df = dataframe[dataframe.benchmark == benchmark]
-            echo_msg_lst = []
-            for g, df in echo_msg_df.groupby(['benchmark', 'run_id', 
-                                              'num_cpus', 'mhz_per_cpu', 
-                                              'federate_count']):
-                a_df = df
-                for f in a_df.federate_count.unique():
-                    a_df = a_df[a_df.federate_count == f]
-                    a_df = a_df.set_index('core_type')
-                    try:
-                        a_df['spf_ratio'] = np.ma.array(a_df.spf, mask=np.isnan(a_df.spf))\
-                        /float(a_df.loc['inproc', 'spf'])
-                        a_df['cpf_ratio'] = np.ma.array(a_df.cpf, mask=np.isnan(a_df.cpf))\
-                        /float(a_df.loc['inproc', 'cpf'])
-                    except Exception as e:
-                        logging.error('core type "{}" does not exist'.format(e))
-                        value = np.nan
-                        a_df['spf_ratio'] = value
-                        a_df['cpf_ratio'] = value
-                    a_df = a_df.reset_index()
-                    a_df = a_df[[
-                            'benchmark', 'run_id', 'num_cpus', 
-                            'mhz_per_cpu', 'federate_count', 'core_type', 
-                            'real_time', 'spf', 'spf_ratio', 
-                            'new_mhz_per_cpu', 'cpf', 'cpf_ratio'
-                            ]]
-                    echo_msg_lst.append(a_df)
-            echo_msg_df = pd.concat(echo_msg_lst).set_index([
-                    'benchmark', 'run_id', 
-                    'num_cpus', 'mhz_per_cpu',
-                    'federate_count', 'core_type', 
-                    'real_time'
-                    ])
-            echo_msg_df = echo_msg_df.reset_index()
-            df_list.append(echo_msg_df)
-        elif benchmark == 'cEchoBenchmark':
-            c_echo_df = dataframe[dataframe.benchmark == benchmark]
-            c_echo_lst = []
-            for g, df in c_echo_df.groupby(['benchmark', 'run_id', 
-                                            'num_cpus', 'mhz_per_cpu', 
-                                            'federate_count']):
-                a_df = df
-                for f in a_df.federate_count.unique():
-                    a_df = a_df[a_df.federate_count == f]
-                    a_df = a_df.set_index('core_type')
-                    try:
-                        a_df['spf_ratio'] = np.ma.array(a_df.spf, mask=np.isnan(a_df.spf))\
-                        /float(a_df.loc['inproc', 'spf'])
-                        a_df['cpf_ratio'] = np.ma.array(a_df.cpf, mask=np.isnan(a_df.cpf))\
-                        /float(a_df.loc['inproc', 'cpf'])
-                    except Exception as e:
-                        logging.error('core type "{}" does not exist'.format(e))
-                        value = np.nan
-                        a_df['spf_ratio'] = value
-                        a_df['cpf_ratio'] = value
-                    a_df = a_df.reset_index()
-                    a_df = a_df[[
-                            'benchmark', 'run_id', 'num_cpus', 
-                            'mhz_per_cpu', 'federate_count', 'core_type', 
-                            'real_time', 'spf', 'spf_ratio', 
-                            'new_mhz_per_cpu', 'cpf', 'cpf_ratio'
-                            ]]
-                    c_echo_lst.append(a_df)
-            c_echo_df = pd.concat(c_echo_lst).set_index([
-                    'benchmark', 'run_id', 
-                    'num_cpus', 'mhz_per_cpu',
-                    'federate_count', 'core_type', 
-                    'real_time'
-                    ])
-            c_echo_df = c_echo_df.reset_index()
-            df_list.append(c_echo_df)
-        elif benchmark == 'ringBenchmark':
-            ring_df = dataframe[dataframe.benchmark == benchmark]
-            ring_lst = []
-            for g, df in ring_df.groupby(['benchmark', 'run_id', 
-                                          'num_cpus', 'mhz_per_cpu', 
-                                          'federate_count']):
-                a_df = df
-                for f in a_df.federate_count.unique():
-                    a_df = a_df[a_df.federate_count == f]
-                    a_df = a_df.set_index('core_type')
-                    try:
-                        a_df['spf_ratio'] = np.ma.array(a_df.spf, mask=np.isnan(a_df.spf))\
-                        /float(a_df.loc['inproc', 'spf'])
-                        a_df['cpf_ratio'] = np.ma.array(a_df.cpf, mask=np.isnan(a_df.cpf))\
-                        /float(a_df.loc['inproc', 'cpf'])
-                    except Exception as e:
-                        logging.error('core type "{}" does not exist'.format(e))
-                        value = np.nan
-                        a_df['spf_ratio'] = value
-                        a_df['cpf_ratio'] = value
-                    a_df = a_df.reset_index()
-                    a_df = a_df[[
-                            'benchmark', 'run_id', 'num_cpus', 
-                            'mhz_per_cpu', 'federate_count', 'core_type', 
-                            'real_time', 'spf', 'spf_ratio', 
-                            'new_mhz_per_cpu', 'cpf', 'cpf_ratio'
-                            ]]
-                    ring_lst.append(a_df)
-            ring_df = pd.concat(ring_lst).set_index([
-                    'benchmark', 'run_id', 
-                    'num_cpus', 'mhz_per_cpu',
-                    'federate_count', 'core_type', 
-                    'real_time'
-                    ])
-            ring_df = ring_df.reset_index()
-            df_list.append(ring_df)
-        elif benchmark == 'ringMessageBenchmark':
-            ring_msg_df = dataframe[dataframe.benchmark == benchmark]
-            ring_msg_lst = []
-            for g, df in ring_msg_df.groupby(['benchmark', 'run_id', 
-                                              'num_cpus', 'mhz_per_cpu', 
-                                              'federate_count']):
-                a_df = df
-                for f in a_df.federate_count.unique():
-                    a_df = a_df[a_df.federate_count == f]
-                    a_df = a_df.set_index('core_type')
-                    try:
-                        a_df['spf_ratio'] = np.ma.array(a_df.spf, mask=np.isnan(a_df.spf))\
-                        /float(a_df.loc['inproc', 'spf'])
-                        a_df['cpf_ratio'] = np.ma.array(a_df.cpf, mask=np.isnan(a_df.cpf))\
-                        /float(a_df.loc['inproc', 'cpf'])
-                    except Exception as e:
-                        logging.error('core type "{}" does not exist'.format(e))
-                        value = np.nan
-                        a_df['spf_ratio'] = value
-                        a_df['cpf_ratio'] = value
-                    a_df = a_df.reset_index()
-                    a_df = a_df[[
-                            'benchmark', 'run_id', 'num_cpus', 
-                            'mhz_per_cpu', 'federate_count', 'core_type', 
-                            'real_time', 'spf', 'spf_ratio', 
-                            'new_mhz_per_cpu', 'cpf', 'cpf_ratio'
-                            ]]
-                    ring_msg_lst.append(a_df)
-            ring_msg_df = pd.concat(ring_msg_lst).set_index([
-                    'benchmark', 'run_id', 
-                    'num_cpus', 'mhz_per_cpu',
-                    'federate_count', 'core_type', 
-                    'real_time'
-                    ])
-            ring_msg_df = ring_msg_df.reset_index()
-            df_list.append(ring_msg_df)
-        elif benchmark == 'pholdBenchmark':
-            phold_df = dataframe[dataframe.benchmark == benchmark]
-            phold_lst = []
-            for g, df in phold_df.groupby(['benchmark', 'run_id', 
-                                           'num_cpus', 'mhz_per_cpu', 
-                                           'federate_count']):
-                a_df = df
-                for f in a_df.federate_count.unique():
-                    a_df = a_df[a_df.federate_count == f]
-                    a_df = a_df.set_index('core_type')
-                    try:
-                        a_df['spf_ratio'] = np.ma.array(a_df.spf, mask=np.isnan(a_df.spf))\
-                        /float(a_df.loc['inproc', 'spf'])
-                        a_df['cpf_ratio'] = np.ma.array(a_df.cpf, mask=np.isnan(a_df.cpf))\
-                        /float(a_df.loc['inproc', 'cpf'])
-                    except Exception as e:
-                        logging.error('core type "{}" does not exist'.format(e))
-                        value = np.nan
-                        a_df['spf_ratio'] = value
-                        a_df['cpf_ratio'] = value
-                    a_df = a_df.reset_index()
-                    a_df = a_df[[
-                            'benchmark', 'run_id', 'num_cpus', 
-                            'mhz_per_cpu', 'federate_count', 'core_type', 
-                            'real_time', 'spf', 'spf_ratio', 
-                            'new_mhz_per_cpu', 'cpf', 'cpf_ratio'
-                            ]]
-                    phold_lst.append(a_df)
-            phold_df = pd.concat(phold_lst).set_index([
-                    'benchmark', 'run_id', 
-                    'num_cpus', 'mhz_per_cpu',
-                    'federate_count', 'core_type', 
-                    'real_time'
-                    ])
-            phold_df = phold_df.reset_index()
-            df_list.append(phold_df)
-        elif benchmark == 'filterBenchmark':
-            filter_df = dataframe[dataframe.benchmark == benchmark]
-            filter_lst = []
-            for g, df in filter_df.groupby(['benchmark', 'run_id', 
-                                            'num_cpus', 'mhz_per_cpu', 
-                                            'filter_location', 'federate_count']):
-                a_df = df
-                for f in a_df.federate_count.unique():
-                    a_df = a_df[a_df.federate_count == f]
-                    a_df = a_df.set_index('core_type')
-                    try:
-                        a_df['spf_ratio'] = np.ma.array(a_df.spf, mask=np.isnan(a_df.spf))\
-                        /float(a_df.loc['inproc', 'spf'])
-                        a_df['cpf_ratio'] = np.ma.array(a_df.cpf, mask=np.isnan(a_df.cpf))\
-                        /float(a_df.loc['inproc', 'cpf'])
-                    except Exception as e:
-                        logging.error('core type "{}" does not exist'.format(e))
-                        value = np.nan
-                        a_df['spf_ratio'] = value
-                        a_df['cpf_ratio'] = value
-                    a_df = a_df.reset_index()
-                    a_df = a_df[[
-                            'benchmark', 'run_id', 'num_cpus', 
-                            'mhz_per_cpu', 'filter_location', 'federate_count', 
-                            'core_type', 'real_time', 'spf', 
-                            'spf_ratio', 'new_mhz_per_cpu', 'cpf', 
-                            'cpf_ratio'
-                            ]]
-                    filter_lst.append(a_df)
-            filt_df = pd.concat(filter_lst).set_index([
-                    'benchmark', 'run_id', 
-                    'num_cpus', 'mhz_per_cpu',
-                    'federate_count', 'filter_location', 
-                    'core_type', 'real_time'
-                    ])
-            filt_df = filt_df.reset_index()
-            df_list.append(filt_df)
-        elif benchmark == 'timingBenchmark':
-            time_df = dataframe[dataframe.benchmark == benchmark]
-            time_lst = []
-            for g, df in time_df.groupby(['benchmark', 'run_id', 
-                                          'num_cpus', 'mhz_per_cpu', 
-                                          'federate_count']):
-                a_df = df
-                for f in a_df.federate_count.unique():
-                    a_df = a_df[a_df.federate_count == f]
-                    a_df = a_df.set_index('core_type')
-                    try:
-                        a_df['spf_ratio'] = np.ma.array(a_df.spf, mask=np.isnan(a_df.spf))\
-                        /float(a_df.loc['inproc', 'spf'])
-                        a_df['cpf_ratio'] = np.ma.array(a_df.cpf, mask=np.isnan(a_df.cpf))\
-                        /float(a_df.loc['inproc', 'cpf'])
-                    except Exception as e:
-                        logging.error('core type "{}" does not exist'.format(e))
-                        value = np.nan
-                        a_df['spf_ratio'] = value
-                        a_df['cpf_ratio'] = value
-                    a_df = a_df.reset_index()
-                    a_df = a_df[[
-                            'benchmark', 'run_id', 'num_cpus', 
-                            'mhz_per_cpu', 'federate_count', 'core_type', 
-                            'real_time', 'spf', 'spf_ratio', 
-                            'new_mhz_per_cpu', 'cpf', 'cpf_ratio'
-                            ]]
-                    time_lst.append(a_df)
-            time_df = pd.concat(time_lst).set_index([
-                    'benchmark', 'run_id', 
-                    'num_cpus', 'mhz_per_cpu',
-                    'federate_count', 'core_type', 
-                    'real_time'
-                    ])
-            time_df = time_df.reset_index()
-            df_list.append(time_df)
-        elif benchmark == 'messageLookupBenchmark':
-            msg_lkp_df = dataframe[dataframe.benchmark == 'messageLookupBenchmark']
-            msg_lkp_lst = []
-            for g, df in msg_lkp_df.groupby(['benchmark', 'run_id', 
-                                             'num_cpus', 'mhz_per_cpu', 
-                                             'federate_count', 'interface_count']):
-                a_df = df
-                for a in a_df.interface_count.unique():
-                    a_df = a_df[a_df.interface_count == a]
-                    a_df = a_df.set_index('core_type')
-                    try:
-                        a_df['spf_ratio'] = np.ma.array(a_df.spf, mask=np.isnan(a_df.spf))\
-                        /float(a_df.loc['inproc', 'spf'])
-                        a_df['spi_ratio'] = np.ma.array(a_df.spi, mask=np.isnan(a_df.spi))\
-                        /float(a_df.loc['inproc', 'spi'])
-                        a_df['cpf_ratio'] = np.ma.array(a_df.cpf, mask=np.isnan(a_df.cpf))\
-                        /float(a_df.loc['inproc', 'cpf'])
-                        a_df['cpi_ratio'] = np.ma.array(a_df.cpi, mask=np.isnan(a_df.cpi))\
-                        /float(a_df.loc['inproc', 'cpi'])
-                    except Exception as e:
-                        logging.error('core type "{}" does not exist'.format(e))
-                        value = np.nan
-                        a_df['spf_ratio'] = value
-                        a_df['spi_ratio'] = value
-                        a_df['cpf_ratio'] = value
-                        a_df['cpi_ratio'] = value
-                    a_df = a_df.reset_index()
-                    a_df = a_df[[
-                            'benchmark', 'run_id', 'num_cpus', 
-                            'mhz_per_cpu', 'federate_count', 'interface_count', 
-                            'core_type', 'real_time', 'spf', 
-                            'spf_ratio', 'spi', 'spi_ratio', 
-                            'new_mhz_per_cpu', 'cpf', 'cpf_ratio', 
-                            'cpi', 'cpi_ratio'
-                            ]]
-                    msg_lkp_lst.append(a_df)
-            msg_lkp_df = pd.concat(msg_lkp_lst).set_index([
-                    'benchmark', 'run_id', 
-                    'num_cpus', 'mhz_per_cpu',
-                    'federate_count', 'interface_count', 
-                    'core_type', 'real_time'
-                    ])
-            msg_lkp_df = msg_lkp_df.reset_index()
-            df_list.append(msg_lkp_df)
-        elif benchmark == 'messageSendBenchmark':
-            msg_send_df = dataframe[dataframe.benchmark == 'messageSendBenchmark']
-            msg_send_lst = []
-            for g, df in msg_send_df.groupby(['benchmark', 'run_id', 
-                                              'num_cpus', 'mhz_per_cpu', 
-                                              'message_size', 'message_count']):
-                a_df = df
-                for a in a_df.message_count.unique():
-                    a_df = a_df[a_df.message_count == a]
-                    a_df = a_df.set_index('core_type')
-                    try:
-                        a_df['spms_ratio'] = a_df.spms.values/float(a_df.loc['inproc', 'spms'])
-                        a_df['spmc_ratio'] = a_df.spmc.values/float(a_df.loc['inproc', 'spmc'])
-                        a_df['cpms_ratio'] = a_df.cpms.values/float(a_df.loc['inproc', 'cpms'])
-                        a_df['cpmc_ratio'] = a_df.cpmc.values/float(a_df.loc['inproc', 'cpmc'])
-                    except Exception as e:
-                        logging.error('core type "{}" does not exist'.format(e))
-                        value = np.nan
-                        a_df['spms_ratio'] = value
-                        a_df['spmc_ratio'] = value
-                        a_df['cpms_ratio'] = value
-                        a_df['cpmc_ratio'] = value
-                    a_df = a_df.reset_index()
-                    a_df = a_df[[
-                            'benchmark', 'run_id', 'num_cpus', 
-                            'mhz_per_cpu', 'message_size', 'message_count', 
-                            'core_type', 'real_time', 'spms', 
-                            'spmc', 'spms_ratio', 'spmc_ratio', 
-                            'new_mhz_per_cpu', 'cpms', 'cpmc', 
-                            'cpms_ratio', 'cpmc_ratio'
-                            ]]
-                    msg_send_lst.append(a_df)
-            msg_send_df = pd.concat(msg_send_lst).set_index([
-                    'benchmark', 'run_id', 
-                    'num_cpus', 'mhz_per_cpu',
-                    'message_size', 'message_count', 
-                    'core_type', 'real_time'
-                    ])
-            msg_send_df = msg_send_df.reset_index()
-            df_list.append(msg_send_df)
-    final_df = pd.concat(df_list, axis=0, ignore_index=True)
-    return final_df
+    lst = []
+    for fs, vs, ms in zip(filter_columns, value_columns, metric_columns):
+        for g, df in dataframe.groupby(groupby_columns):
+            a_df = df
+            for f in a_df['{}'.format(fs)].unique():
+                a_df = a_df[a_df['{}'.format(fs)] == f]
+                a_df = a_df.set_index('core_type')
+                try:
+                    a_df['{}_ratio'.format(ms)] = np.ma.array(
+                        a_df['{}'.format(ms)], 
+                        mask=np.isnan(a_df['{}'.format(ms)]))/float(
+                            a_df.loc['{}'.format(vs), 
+                                     '{}'.format(ms)])
+                    a_df['{}_ratio'.format(time)] = np.ma.array(
+                        a_df['{}'.format(time)], 
+                        mask=np.isnan(a_df['{}'.format(time)]))/float(
+                            a_df.loc['{}'.format(vs), 
+                                     '{}'.format(time)])
+                except Exception as e:
+                    logging.error('core type "{}" does not exist'.format(e))
+                    a_df['{}_ratio'.format(ms)] = np.nan
+                    a_df['{}_ratio'.format(time)] = np.nan
+                a_df = a_df.reset_index()
+                cols = index_columns+['{}'.format(ms), 
+                                      '{}_ratio'.format(ms), 
+                                      '{}_ratio'.format(time)]
+                a_df = a_df[cols]
+                lst.append(a_df)
+    ratio_df = pd.concat(lst).set_index(index_columns).reset_index()
+            
+    return ratio_df
 
 
-def get_slopes(dataframe):
+def get_slopes(dataframe, benchmark, xdatas, ydatas):
     """This function gets all the slopes for the benchmarks
     and the core_types.
     
@@ -430,157 +95,38 @@ def get_slopes(dataframe):
         desired information, the mterics' ratios' results, and the
         calculated slopes for the metrics' ratios.
     """
-    
-    fed_bmks = [
-            'echoBenchmark', 'ringBenchmark', 
-            'echoMessageBenchmark', 'pholdBenchmark', 
-            'filterBenchmark', 'cEchoBenchmark', 
-            'timingBenchmark', 'ringMessageBenchmark'
-            ]
     df_list = []
-    for benchmark in dataframe.benchmark.unique():
-        print('calculating slopes for benchmark: ', benchmark)
-        tf_slopes = []
-        ti_slopes = []
-        cf_slopes = []
-        ci_slopes = []
-        tms_ratio_slopes = []
-        tmc_ratio_slopes = []
-        ms_v_cpms_ratio_slopes = []
-        mc_v_cpmc_ratio_slopes = []
+    for xs, ys in zip(xdatas, ydatas):
         benchmarks = []
         run_ids = []
         core_types = []
-        if benchmark in fed_bmks:
-            for run_id in dataframe.run_id.unique():
-                for core_type in dataframe.core_type.unique():
-                    df = dataframe[(dataframe.benchmark == benchmark) &
-                                   (dataframe.run_id == run_id) & 
-                                   (dataframe.core_type == core_type)]
-                    x = np.nan_to_num(np.asarray(df.federate_count))
-                    y1 = np.nan_to_num(np.asarray(df.spf_ratio))
-                    y2 = np.nan_to_num(np.asarray(df.cpf_ratio))
-                    if (len(x) == 0 or 
-                        len(y1) == 0 or 
-                        len(y2) == 0):
-                        continue
-                    m1, intercept1, r_value1, p_value1, std_err1 = lr(x, y1)
-                    m2, intercept2, r_value2, p_value2, std_err2 = lr(x, y2)
-                    tf_slopes.append(m1)
-                    cf_slopes.append(m2)
-                    benchmarks.append(benchmark)
-                    run_ids.append(run_id)
-                    core_types.append(core_type)
-            an_array = np.empty((1, len(benchmarks)))
-            an_array[:] = np.nan
-            data = {'benchmark': benchmarks, 
-                    'run_id': run_ids, 
-                    'core_type': core_types, 
-                    'fed_ct_vs_spf_ratio_slope': tf_slopes, 
-                    'int_ct_vs_spi_ratio_slope': an_array[0], 
-                    'fed_ct_vs_cpf_ratio_slope': cf_slopes, 
-                    'int_ct_vs_cpi_ratio_slope': an_array[0], 
-                    'msg_size_vs_cpms_ratio_slope': an_array[0],
-                    'msg_count_vs_cpmc_ratio_slope': an_array[0],
-                    'msg_size_vs_spms_ratio_slope': an_array[0], 
-                    'msg_count_vs_spmc_ratio_slope': an_array[0]}
-            slope_df = pd.DataFrame(data)
-            df_list.append(slope_df)
-        elif benchmark not in fed_bmks and benchmark == 'messageLookupBenchmark':
-            for run_id in dataframe.run_id.unique():
-                for core_type in dataframe.core_type.unique():
-                    df = dataframe[(dataframe.benchmark == benchmark) &
-                                   (dataframe.run_id == run_id) & 
-                                   (dataframe.core_type == core_type)]
-                    x1 = np.nan_to_num(np.asarray(df.federate_count))
-                    x2 = np.nan_to_num(np.asarray(df.interface_count))
-                    y1 = np.nan_to_num(np.asarray(df.spi_ratio))
-                    y2 = np.nan_to_num(np.asarray(df.cpi_ratio))
-                    y3 = np.nan_to_num(np.asarray(df.spf_ratio))
-                    y4 = np.nan_to_num(np.asarray(df.cpf_ratio))
-                    if (len(x1) == 0 or 
-                        len(x2) == 0 or
-                        len(y1) == 0 or 
-                        len(y2) == 0 or 
-                        len(y3) == 0 or
-                        len(y4) == 0):
-                        continue
-                    m1, intercept1, r_value1, p_value1, std_err1 = lr(x1, y3)
-                    m2, intercept2, r_value2, p_value2, std_err2 = lr(x1, y4)
-                    m3, intercept3, r_value3, p_value3, std_err3 = lr(x2, y1)
-                    m4, intercept4, r_value4, p_value4, std_err4 = lr(x2, y2)
-                    tf_slopes.append(m1)
-                    cf_slopes.append(m2)
-                    ti_slopes.append(m3)
-                    ci_slopes.append(m4)
-                    benchmarks.append(benchmark)
-                    run_ids.append(run_id)
-                    core_types.append(core_type)
-            an_array = np.empty((1, len(benchmarks)))
-            an_array[:] = np.nan
-            data = {'benchmark': benchmarks, 
-                    'run_id': run_ids, 
-                    'core_type': core_types, 
-                    'fed_ct_vs_spf_ratio_slope': tf_slopes,
-                    'int_ct_vs_spi_ratio_slope': ti_slopes, 
-                    'fed_ct_vs_cpf_ratio_slope': cf_slopes, 
-                    'int_ct_vs_cpi_ratio_slope': ci_slopes, 
-                    'msg_size_vs_real_time_ratio_slope': an_array[0],
-                    'msg_count_vs_real_time_ratio_slope': an_array[0],
-                    'msg_size_vs_spms_ratio_slope': an_array[0], 
-                    'msg_count_vs_spmc_ratio_slope': an_array[0]}
-            slope_df = pd.DataFrame(data)
-            df_list.append(slope_df)
-        elif benchmark not in fed_bmks and benchmark == 'messageSendBenchmark':
-            for run_id in dataframe.run_id.unique():
-                for core_type in dataframe.core_type.unique():
-                    df = dataframe[(dataframe.benchmark == benchmark) &
-                                   (dataframe.run_id == run_id) & 
-                                   (dataframe.core_type == core_type)]
-                    x1 = np.nan_to_num(np.asarray(df.message_size))
-                    x2 = np.nan_to_num(np.asarray(df.message_count))
-                    y1 = np.nan_to_num(np.asarray(df.spms_ratio))
-                    y2 = np.nan_to_num(np.asarray(df.spmc_ratio))
-                    y3 = np.nan_to_num(np.asarray(df.cpms_ratio))
-                    y4 = np.nan_to_num(np.asarray(df.cpmc_ratio))
-                    if (len(x1) == 0 or 
-                        len(x2) == 0 or 
-                        len(y1) == 0 or 
-                        len(y2) == 0 or 
-                        len(y3) == 0 or
-                        len(y4) == 0):
-                        continue
-                    m1, intercept1, r_value1, p_value1, std_err1 = lr(x1, y1)
-                    m2, intercept2, r_value2, p_value2, std_err2 = lr(x1, y3)
-                    m3, intercept3, r_value3, p_value3, std_err3 = lr(x2, y2)
-                    m4, intercept4, r_value4, p_value4, std_err4 = lr(x2, y4)
-                    tms_ratio_slopes.append(m1)
-                    tmc_ratio_slopes.append(m3)
-                    ms_v_cpms_ratio_slopes.append(m2)
-                    mc_v_cpmc_ratio_slopes.append(m4)
-                    benchmarks.append(benchmark)
-                    run_ids.append(run_id)
-                    core_types.append(core_type)
-            an_array = np.empty((1, len(benchmarks)))
-            an_array[:] = np.nan
-            data = {'benchmark': benchmarks, 
-                    'run_id': run_ids, 
-                    'core_type': core_types, 
-                    'fed_ct_vs_spf_ratio_slope': an_array[0],
-                    'int_ct_vs_spi_ratio_slope': an_array[0],
-                    'fed_ct_vs_cpf_ratio_slope': an_array[0], 
-                    'int_ct_vs_cpi_ratio_slope': an_array[0], 
-                    'msg_size_vs_cpms_ratio_slope': ms_v_cpms_ratio_slopes,
-                    'msg_count_vs_cpmc_ratio_slope': mc_v_cpmc_ratio_slopes,
-                    'msg_size_vs_spms_ratio_slope': tms_ratio_slopes, 
-                    'msg_count_vs_spmc_ratio_slope': tmc_ratio_slopes}
-            slope_df = pd.DataFrame(data)
-            df_list.append(slope_df)
+        slopes = []
+        for run_id in dataframe.run_id.unique():
+            for core_type in dataframe.core_type.unique():
+                df = dataframe[(dataframe.run_id == run_id) & 
+                               (dataframe.core_type == core_type)]
+                x = np.nan_to_num(np.asarray(df['{}'.format(xs)]))
+                y = np.nan_to_num(np.asarray(df['{}'.format(ys)]))
+                if len(x) == 0 or len(y) == 0:
+                    continue
+                m, intercept, r_value, p_value, std_err = lr(x, y)
+                slopes.append(m)
+                benchmarks.append(benchmark)
+                run_ids.append(run_id)
+                core_types.append(core_type)
+        data = {'benchmark': benchmarks, 
+                'run_id': run_ids, 
+                'core_type': core_types, 
+                '{}_vs_{}_slope'.format(xs, ys): slopes}
+        df = pd.DataFrame(data, index=[s for s in range(len(slopes))])
+        df_list.append(df)
     slope_df = pd.concat(df_list, axis=0, ignore_index=True)
+        
     return slope_df
 
 
-def create_metrics(dataframe):
+def create_metrics(dataframe, filter_columns, groupby_columns, metric_names, 
+                   columns, operations, time):
     """This function creates/calculates the desired metrics for analysis.
     
     Args:
@@ -592,147 +138,24 @@ def create_metrics(dataframe):
         desired information and the new created/calculated metrics to
         be used for analysis.
     """
-    
-    # Filtering:
-    dataframe = dataframe[(dataframe.benchmark_type == 'full') & 
-                          (dataframe.benchmark != 'actionMessageBenchmark') & 
-                          (dataframe.benchmark != 'conversionBenchmark')]
     ### Making sure there is a one-to-one relationship between real_time
     ### and federate_count, etc.
-    fed_cols = [
-            'benchmark', 'run_id', 
-            'core_type', 'num_cpus', 
-            'mhz_per_cpu', 'federate_count', 
-            'real_time'
-            ]
-    fed_groupby_cols = [
-            'benchmark', 'run_id', 
-            'core_type', 'num_cpus', 
-            'mhz_per_cpu', 'federate_count'
-            ]
-    filt_cols = [
-            'benchmark', 'run_id', 
-            'core_type', 'num_cpus', 
-            'mhz_per_cpu', 'federate_count', 
-            'filter_location', 'real_time'
-            ]
-    filt_groupby_cols = [
-            'benchmark', 'run_id', 
-            'core_type', 'num_cpus', 
-            'mhz_per_cpu', 'federate_count', 
-            'filter_location'
-            ]
-    int_cols = [
-            'benchmark', 'run_id', 
-            'core_type', 'num_cpus', 
-            'mhz_per_cpu', 'federate_count', 
-            'interface_count', 'real_time'
-            ]
-    int_groupby_cols = [
-            'benchmark', 'run_id', 
-            'core_type', 'num_cpus', 
-            'mhz_per_cpu', 'federate_count', 
-            'interface_count'
-            ]
-    msg_cols = [
-            'benchmark', 'run_id', 
-            'core_type', 'num_cpus', 
-            'mhz_per_cpu', 'message_count', 
-            'message_size', 'real_time'
-            ]
-    msg_groupby_cols = [
-            'benchmark', 'run_id', 
-            'core_type', 'num_cpus', 
-            'mhz_per_cpu', 'message_count', 
-            'message_size'
-            ]
-    fed_df = dataframe[fed_cols].groupby(fed_groupby_cols)['real_time'].min()
-    fed_df.name = 'real_time'
-    fed_df = fed_df.reset_index()
-    filt_df = dataframe[filt_cols].groupby(filt_groupby_cols)['real_time'].min()
-    filt_df.name = 'real_time'
-    filt_df = filt_df.reset_index()
-    int_df = dataframe[int_cols].groupby(int_groupby_cols)['real_time'].min()
-    int_df.name = 'real_time'
-    int_df = int_df.reset_index()
-    msg_df = dataframe[msg_cols].groupby(msg_groupby_cols)['real_time'].min()
-    msg_df.name = 'real_time'
-    msg_df = msg_df.reset_index()
     
-    # Calculating metrics:
-    fed_df['spf'] = np.ma.array(fed_df.real_time, mask=np.isnan(fed_df.real_time))\
-    /np.ma.array(fed_df.federate_count, mask=np.isnan(fed_df.federate_count))
-    fed_df['new_mhz_per_cpu'] = np.ma.array(fed_df.mhz_per_cpu, mask=np.isnan(fed_df.mhz_per_cpu))\
-    *np.ma.array(fed_df.real_time, mask=np.isnan(fed_df.real_time))
-    fed_df['cpf'] = np.ma.array(fed_df.new_mhz_per_cpu, mask=np.isnan(fed_df.new_mhz_per_cpu))\
-    *np.ma.array(fed_df.spf, mask=np.isnan(fed_df.spf))
+    df = dataframe[filter_columns].groupby(
+        groupby_columns)['{}'.format(time)].min()
+    df.name = '{}'.format(time)
+    df = df.reset_index()
+    for m, c, o in zip(metric_names, columns, operations):
+        if o == '/':
+            df['{}'.format(m)] = np.array(df['{}'.format(c[0])])\
+                /np.array(df['{}'.format(c[1])]).astype(float)
+        elif o == '*':
+            df['{}'.format(m)] = np.array(df['{}'.format(c[0])])\
+                *np.array(df['{}'.format(c[1])]).astype(float)
+        else:
+            logging.error('Invalid operation; should be "/" or "*".')
     
-    filt_df['spf'] = np.ma.array(filt_df.real_time, mask=np.isnan(filt_df.real_time))\
-    /np.ma.array(filt_df.federate_count, mask=np.isnan(filt_df.federate_count))
-    filt_df['new_mhz_per_cpu'] = np.ma.array(filt_df.mhz_per_cpu, mask=np.isnan(filt_df.mhz_per_cpu))\
-    *np.ma.array(filt_df.real_time, mask=np.isnan(filt_df.real_time))
-    filt_df['cpf'] = np.ma.array(filt_df.new_mhz_per_cpu, mask=np.isnan(filt_df.new_mhz_per_cpu))\
-    *np.ma.array(filt_df.spf, mask=np.isnan(filt_df.spf))
-    
-    int_df['spi'] = np.ma.array(int_df.real_time, mask=np.isnan(int_df.real_time))\
-    /np.ma.array(int_df.interface_count, mask=np.isnan(int_df.interface_count))
-    int_df['spf'] = np.ma.array(int_df.real_time, mask=np.isnan(int_df.real_time))\
-    /np.ma.array(int_df.federate_count, mask=np.isnan(int_df.federate_count))
-    int_df['new_mhz_per_cpu'] = np.ma.array(int_df.mhz_per_cpu, mask=np.isnan(int_df.mhz_per_cpu))\
-    *np.ma.array(int_df.real_time, mask=np.isnan(int_df.real_time))
-    int_df['cpi'] = np.ma.array(int_df.new_mhz_per_cpu, mask=np.isnan(int_df.new_mhz_per_cpu))\
-    *np.ma.array(int_df.spi, mask=np.isnan(int_df.spi))
-    int_df['cpf'] = np.ma.array(int_df.new_mhz_per_cpu, mask=np.isnan(int_df.new_mhz_per_cpu))\
-    *np.ma.array(int_df.spf, mask=np.isnan(int_df.spf))
-        
-    msg_df['spms'] = np.ma.array(msg_df.real_time, mask=np.isnan(msg_df.real_time))\
-    /np.ma.array(msg_df.message_size, mask=np.isnan(msg_df.message_size))
-    msg_df['spmc'] = np.ma.array(msg_df.real_time, mask=np.isnan(msg_df.real_time))\
-    /np.ma.array(msg_df.message_count, mask=np.isnan(msg_df.message_count))
-    msg_df['new_mhz_per_cpu'] = np.ma.array(msg_df.mhz_per_cpu, mask=np.isnan(msg_df.mhz_per_cpu))\
-    *np.ma.array(msg_df.real_time, mask=np.isnan(msg_df.real_time))
-    msg_df['cpms'] = np.ma.array(msg_df.new_mhz_per_cpu, mask=np.isnan(msg_df.new_mhz_per_cpu))\
-    *np.ma.array(msg_df.spms, mask=np.isnan(msg_df.spms))
-    msg_df['cpmc'] = np.ma.array(msg_df.new_mhz_per_cpu, mask=np.isnan(msg_df.new_mhz_per_cpu))\
-    *np.ma.array(msg_df.spmc, mask=np.isnan(msg_df.spmc))
-    
-    # Combining dataframes into one dataframe
-    df1 = pd.merge(
-            fed_df, 
-            filt_df, 
-            how='outer', 
-            on=['benchmark', 'run_id', 
-                'core_type', 'num_cpus', 
-                'mhz_per_cpu', 'real_time', 
-                'new_mhz_per_cpu', 'federate_count', 
-                'spf', 'cpf'
-                ])
-    df2 = pd.merge(
-            int_df, 
-            msg_df, 
-            how='outer', 
-            on=['benchmark', 'run_id', 
-                'core_type', 'num_cpus', 
-                'mhz_per_cpu', 'real_time', 
-                'new_mhz_per_cpu'
-                ])
-    df_combo = pd.merge(
-            df1, 
-            df2, 
-            how='outer', 
-            on=['benchmark', 'run_id', 
-                'core_type', 'num_cpus', 
-                'mhz_per_cpu', 'real_time', 
-                'new_mhz_per_cpu', 'federate_count', 
-                'spf', 'cpf'
-                ])
-    ratio_df = get_all_ratios(df_combo)
-    slope_df = get_slopes(ratio_df)
-    print('combining dataframes for creating pivot tables')
-    main_df = pd.merge(ratio_df, 
-                       slope_df, 
-                       how='outer', 
-                       on=['benchmark', 'run_id', 'core_type']).fillna(np.nan)
+    main_df = df
     
     return main_df
 
@@ -754,7 +177,7 @@ def relative_standard_deviation(x):
     return np.std(x) / np.mean(x)
 
 
-def create_pivot_tables(dataframe, output_path):
+def create_pivot_tables(dataframe, index_columns, value_columns):
     """This function creates all the pivot tables to send to an Excel
     spreadsheet.
     
@@ -765,9 +188,24 @@ def create_pivot_tables(dataframe, output_path):
     
     Returns:
         (null)
+    """    
+    # Creating pivot_tables:
+    p = pd.pivot_table(
+            dataframe, 
+            index=index_columns, 
+            values=value_columns, 
+            fill_value='null')
+    return p
+
+
+def create_spreadsheet1(dataframe, filename, output_path):
+    """This function combines all the above functions and
+    creates a spreadsheet for 'benchmark_type' = 'full'.
     """
-    # Filtering dataframe to a specific benchmark; helping to prepare
-    # for making pivot tables.
+    print('Filtering it to just bmk_type = "full"...')
+    dataframe = dataframe[(dataframe.benchmark_type == 'full') & 
+                          (dataframe.benchmark != 'actionMessageBenchmark') &
+                          (dataframe.benchmark != 'conversionBenchmark')]
     c_echo_df = dataframe[dataframe.benchmark == 'cEchoBenchmark']
     echo_res_df = dataframe[dataframe.benchmark == 'echoBenchmark']
     echo_msg_df = dataframe[dataframe.benchmark == 'echoMessageBenchmark']
@@ -778,166 +216,484 @@ def create_pivot_tables(dataframe, output_path):
     phold_df = dataframe[dataframe.benchmark == 'pholdBenchmark']
     filter_df = dataframe[dataframe.benchmark == 'filterBenchmark']
     timing_df = dataframe[dataframe.benchmark == 'timingBenchmark']
+    # Getting all necessary info for the functions
+    print('Saving the necessary information to memory...')
+    met_fed_cols = ['benchmark', 'run_id', 'core_type', 'num_cpus', 
+                    'mhz_per_cpu', 'federate_count', 'real_time']
+    met_fed_groupby_cols = ['benchmark', 'run_id', 'core_type', 
+                            'num_cpus', 'mhz_per_cpu', 'federate_count']
+    met_fed_metrics = ['spf', 'new_mhz_per_cpu', 'cpf']
+    met_fed_cols_tuples = [('real_time', 'federate_count'), 
+                           ('real_time', 'mhz_per_cpu'), 
+                           ('spf', 'new_mhz_per_cpu')] 
+    met_fed_ops = ['/', '*', '*']
+    r_fed_groupby_columns = ['benchmark', 'run_id', 'num_cpus', 
+                             'mhz_per_cpu', 'federate_count']
+    r_fed_index_columns = met_fed_cols
+    r_fed_filter_columns = ['federate_count']*2
+    r_fed_value_columns = ['inproc']*2
+    r_fed_metric_columns = ['spf', 'cpf']
     
-    # Creating pivot_tables:
-    p1 = pd.pivot_table(
-            c_echo_df, 
-            index=['benchmark', 'run_id', 
-                   'num_cpus', 'mhz_per_cpu', 
-                   'core_type'], 
-            values=['spf_ratio', 'cpf_ratio',
-                    'fed_ct_vs_cpf_ratio_slope', 'fed_ct_vs_spf_ratio_slope'], 
-            aggfunc={'spf_ratio': [np.mean, 
-                                   relative_standard_deviation], 
-                     'cpf_ratio': [np.mean, 
-                                   relative_standard_deviation], 
-                     'fed_ct_vs_spf_ratio_slope': [np.mean], 
-                     'fed_ct_vs_cpf_ratio_slope': [np.mean]})
-    p2 = pd.pivot_table(
-            echo_res_df, 
-            index=['benchmark', 'run_id', 
-                   'num_cpus', 'mhz_per_cpu', 
-                   'core_type'], 
-            values=['spf_ratio', 'cpf_ratio',
-                    'fed_ct_vs_cpf_ratio_slope', 'fed_ct_vs_spf_ratio_slope'], 
-            aggfunc={'spf_ratio': [np.mean, 
-                                   relative_standard_deviation], 
-                     'cpf_ratio': [np.mean, 
-                                   relative_standard_deviation], 
-                     'fed_ct_vs_spf_ratio_slope': [np.mean], 
-                     'fed_ct_vs_cpf_ratio_slope': [np.mean]})
-    p3 = pd.pivot_table(
-            echo_msg_df, 
-            index=['benchmark', 'run_id', 
-                   'num_cpus', 'mhz_per_cpu', 
-                   'core_type'], 
-            values=['spf_ratio', 'cpf_ratio',
-                    'fed_ct_vs_cpf_ratio_slope', 'fed_ct_vs_spf_ratio_slope'], 
-            aggfunc={'spf_ratio': [np.mean, 
-                                   relative_standard_deviation], 
-                     'cpf_ratio': [np.mean, 
-                                   relative_standard_deviation], 
-                     'fed_ct_vs_spf_ratio_slope': [np.mean], 
-                     'fed_ct_vs_cpf_ratio_slope': [np.mean]})
-    p4 = pd.pivot_table(
-            ring_df, 
-            index=['benchmark', 'run_id', 
-                   'num_cpus', 'mhz_per_cpu', 
-                   'core_type'], 
-            values=['spf_ratio', 'cpf_ratio',
-                    'fed_ct_vs_cpf_ratio_slope', 'fed_ct_vs_spf_ratio_slope'], 
-            aggfunc={'spf_ratio': [np.mean, 
-                                   relative_standard_deviation], 
-                     'cpf_ratio': [np.mean, 
-                                   relative_standard_deviation], 
-                     'fed_ct_vs_spf_ratio_slope': [np.mean], 
-                     'fed_ct_vs_cpf_ratio_slope': [np.mean]})
-    p5 = pd.pivot_table(
-            ring_msg_df, 
-            index=['benchmark', 'run_id', 
-                   'num_cpus', 'mhz_per_cpu', 
-                   'core_type'], 
-            values=['spf_ratio', 'cpf_ratio',
-                    'fed_ct_vs_cpf_ratio_slope', 'fed_ct_vs_spf_ratio_slope'], 
-            aggfunc={'spf_ratio': [np.mean, 
-                                   relative_standard_deviation], 
-                     'cpf_ratio': [np.mean, 
-                                   relative_standard_deviation], 
-                     'fed_ct_vs_spf_ratio_slope': [np.mean], 
-                     'fed_ct_vs_cpf_ratio_slope': [np.mean]})
-    p6 = pd.pivot_table(
-            phold_df, 
-            index=['benchmark', 'run_id', 
-                   'num_cpus', 'mhz_per_cpu', 
-                   'core_type'], 
-            values=['spf_ratio', 'cpf_ratio',
-                    'fed_ct_vs_cpf_ratio_slope', 'fed_ct_vs_spf_ratio_slope'], 
-            aggfunc={'spf_ratio': [np.mean, 
-                                   relative_standard_deviation], 
-                     'cpf_ratio': [np.mean, 
-                                   relative_standard_deviation], 
-                     'fed_ct_vs_spf_ratio_slope': [np.mean], 
-                     'fed_ct_vs_cpf_ratio_slope': [np.mean]})
-    p7 = pd.pivot_table(
-            filter_df, 
-            index=['benchmark', 'run_id', 
-                   'num_cpus', 'mhz_per_cpu', 
-                   'filter_location', 'core_type'], 
-            values=['spf_ratio', 'cpf_ratio',
-                    'fed_ct_vs_cpf_ratio_slope', 'fed_ct_vs_spf_ratio_slope'], 
-            aggfunc={'spf_ratio': [np.mean, 
-                                   relative_standard_deviation], 
-                     'cpf_ratio': [np.mean, 
-                                   relative_standard_deviation], 
-                     'fed_ct_vs_spf_ratio_slope': [np.mean], 
-                     'fed_ct_vs_cpf_ratio_slope': [np.mean]})
-    p8 = pd.pivot_table(
-            timing_df, 
-            index=['benchmark', 'run_id', 
-                   'num_cpus', 'mhz_per_cpu', 
-                   'core_type'], 
-            values=['spf_ratio', 'cpf_ratio',
-                    'fed_ct_vs_cpf_ratio_slope', 'fed_ct_vs_spf_ratio_slope'], 
-            aggfunc={'spf_ratio': [np.mean, 
-                                   relative_standard_deviation], 
-                     'cpf_ratio': [np.mean, 
-                                   relative_standard_deviation], 
-                     'fed_ct_vs_spf_ratio_slope': [np.mean], 
-                     'fed_ct_vs_cpf_ratio_slope': [np.mean]})
-    p9 = pd.pivot_table(
-            msg_lkp_df, 
-            index=['benchmark', 'run_id', 
-                   'num_cpus', 'mhz_per_cpu', 
-                   'federate_count','core_type'], 
-            values=['spf_ratio', 'spi_ratio', 
-                    'cpf_ratio', 'cpi_ratio',
-                    'fed_ct_vs_spf_ratio_slope', 'int_ct_vs_spi_ratio_slope', 
-                    'fed_ct_vs_cpf_ratio_slope', 'int_ct_vs_cpi_ratio_slope'], 
-            aggfunc={'spf_ratio': [np.mean, 
-                                   relative_standard_deviation],
-                     'spi_ratio': [np.mean, 
-                                   relative_standard_deviation],
-                     'cpf_ratio': [np.mean, 
-                                   relative_standard_deviation], 
-                     'cpi_ratio': [np.mean, 
-                                   relative_standard_deviation],
-                     'fed_ct_vs_spf_ratio_slope': [np.mean], 
-                     'int_ct_vs_spi_ratio_slope': [np.mean], 
-                     'fed_ct_vs_cpf_ratio_slope': [np.mean], 
-                     'int_ct_vs_cpi_ratio_slope': [np.mean]})
-    p10 = pd.pivot_table(
-            msg_send_df, 
-            index=['benchmark', 'run_id', 
-                   'num_cpus', 'mhz_per_cpu', 
-                   'core_type'], 
-            values=['spms_ratio', 'spmc_ratio',
-                    'cpms_ratio', 'cpmc_ratio', 
-                    'msg_size_vs_cpms_ratio_slope', 'msg_count_vs_cpmc_ratio_slope',
-                    'msg_size_vs_spms_ratio_slope',  'msg_count_vs_spmc_ratio_slope'], 
-            aggfunc={'spms_ratio': [np.mean, 
-                                    relative_standard_deviation], 
-                     'spmc_ratio': [np.mean, 
-                                    relative_standard_deviation],
-                     'cpms_ratio': [np.mean, 
-                                    relative_standard_deviation], 
-                     'cpmc_ratio': [np.mean, 
-                                    relative_standard_deviation],  
-                     'msg_size_vs_cpms_ratio_slope': [np.mean], 
-                     'msg_count_vs_cpmc_ratio_slope': [np.mean], 
-                     'msg_size_vs_spms_ratio_slope': [np.mean], 
-                     'msg_count_vs_spmc_ratio_slope': [np.mean]})
-    print('sending pivot tables to excel spreadsheet')
-    with pd.ExcelWriter(os.path.join(output_path, 'benchmark_results_summary.xlsx')) as writer:
-        p1.to_excel(writer, sheet_name='cEchoBenchmark')
-        p2.to_excel(writer, sheet_name='echoBenchmark')
-        p3.to_excel(writer, sheet_name='echoMessageBenchmark')
-        p4.to_excel(writer, sheet_name='ringBenchmark')
-        p5.to_excel(writer, sheet_name='ringMessageBenchmark')
-        p6.to_excel(writer, sheet_name='pholdBenchmark')
-        p7.to_excel(writer, sheet_name='filterBenchmark')
-        p8.to_excel(writer, sheet_name='timingMessageBenchmark')
-        p9.to_excel(writer, sheet_name='messageLookupBenchmark')
-        p10.to_excel(writer, sheet_name='messageSendBenchmark')
+    met_filt_cols = ['benchmark', 'run_id', 'core_type', 'num_cpus', 
+                     'mhz_per_cpu', 'federate_count', 'filter_location', 'real_time']
+    met_filt_groupby_cols = ['benchmark', 'run_id', 'core_type', 
+                             'num_cpus', 'mhz_per_cpu', 'federate_count', 
+                             'filter_location']
+    met_filt_metrics = met_fed_metrics
+    met_filt_cols_tuples = met_fed_cols_tuples
+    met_filt_ops = met_fed_ops
+    r_filt_groupby_columns = ['benchmark', 'run_id', 'num_cpus', 
+                              'mhz_per_cpu', 'filter_location', 'federate_count']
+    r_filt_index_columns = met_filt_cols
+    r_filt_filter_columns = r_fed_filter_columns
+    r_filt_value_columns = r_fed_value_columns
+    r_filt_metric_columns = r_fed_metric_columns
+    
+    met_int_cols = ['benchmark', 'run_id', 'core_type', 'num_cpus', 
+                    'mhz_per_cpu', 'federate_count', 'interface_count', 'real_time']
+    met_int_groupby_cols = ['benchmark', 'run_id', 'core_type', 'num_cpus', 
+                            'mhz_per_cpu', 'federate_count', 'interface_count']
+    met_int_metrics = ['spf', 'spi', 'new_mhz_per_cpu', 'cpf', 'cpi']
+    met_int_cols_tuples = [('real_time', 'federate_count'), 
+                           ('real_time', 'interface_count'), 
+                           ('real_time', 'mhz_per_cpu'), 
+                           ('spf', 'new_mhz_per_cpu'), 
+                           ('spi', 'new_mhz_per_cpu')]
+    met_int_ops = ['/', '/', '*', '*', '*']
+    r_int_groupby_columns = ['benchmark', 'run_id', 'num_cpus', 
+                             'mhz_per_cpu', 'federate_count', 'interface_count']
+    r_int_index_columns = met_int_cols
+    r_int_filter_columns = ['interface_count']*4
+    r_int_value_columns = ['inproc']*4
+    r_int_metric_columns = ['spf', 'spi', 'cpf', 'cpi']
+    
+    met_msg_cols = ['benchmark', 'run_id', 'core_type', 'num_cpus', 
+                    'mhz_per_cpu', 'message_count', 'message_size', 'real_time']
+    met_msg_groupby_cols = ['benchmark', 'run_id', 'core_type', 'num_cpus', 
+                            'mhz_per_cpu', 'message_count', 'message_size']
+    met_msg_metrics = ['spms', 'spmc', 'new_mhz_per_cpu', 'cpms', 'cpmc']
+    met_msg_cols_tuples = [('real_time', 'message_size'), 
+                           ('real_time', 'message_count'), 
+                           ('real_time', 'mhz_per_cpu'), 
+                           ('spms', 'new_mhz_per_cpu'), 
+                           ('spmc', 'new_mhz_per_cpu')]
+    met_msg_ops = ['/', '/', '*', '*', '*']
+    r_msg_groupby_columns = ['benchmark', 'run_id', 'num_cpus', 
+                             'mhz_per_cpu', 'message_size', 'message_count']
+    r_msg_index_columns = met_msg_cols
+    r_msg_filter_columns = ['message_count']*4
+    r_msg_value_columns = ['inproc']*4
+    r_msg_metric_columns = ['spms', 'spmc', 'cpms', 'cpmc']
+    
+    
+    # Applying the functions
+    print('Creating the desired metrics and getting the ratios...')
+    c_echo_ratio = get_ratio(
+        create_metrics(c_echo_df, met_fed_cols, met_fed_groupby_cols, 
+                       met_fed_metrics, met_fed_cols_tuples, met_fed_ops, 
+                        'real_time'),
+        r_fed_groupby_columns, r_fed_index_columns, r_fed_filter_columns, 
+        r_fed_value_columns, r_fed_metric_columns, 'real_time')
+    echo_ratio = get_ratio(
+        create_metrics(echo_res_df, met_fed_cols, met_fed_groupby_cols, 
+                       met_fed_metrics, met_fed_cols_tuples, met_fed_ops, 
+                       'real_time'),
+        r_fed_groupby_columns, r_fed_index_columns, r_fed_filter_columns, 
+        r_fed_value_columns, r_fed_metric_columns, 'real_time')
+    echo_msg_ratio = get_ratio(
+        create_metrics(echo_msg_df, met_fed_cols, met_fed_groupby_cols, 
+                       met_fed_metrics, met_fed_cols_tuples, met_fed_ops, 
+                       'real_time'),
+        r_fed_groupby_columns, r_fed_index_columns, r_fed_filter_columns, 
+        r_fed_value_columns, r_fed_metric_columns, 'real_time')
+    ring_ratio = get_ratio(
+        create_metrics(ring_df, met_fed_cols, met_fed_groupby_cols, 
+                       met_fed_metrics, met_fed_cols_tuples, met_fed_ops, 
+                       'real_time'),
+        r_fed_groupby_columns, r_fed_index_columns, r_fed_filter_columns, 
+        r_fed_value_columns, r_fed_metric_columns, 'real_time')
+    ring_msg_ratio = get_ratio(
+        create_metrics(ring_msg_df, met_fed_cols, met_fed_groupby_cols, 
+                       met_fed_metrics, met_fed_cols_tuples, met_fed_ops, 
+                       'real_time'),
+        r_fed_groupby_columns, r_fed_index_columns, r_fed_filter_columns, 
+        r_fed_value_columns, r_fed_metric_columns, 'real_time')
+    phold_ratio = get_ratio(
+        create_metrics(phold_df, met_fed_cols, met_fed_groupby_cols, 
+                       met_fed_metrics, met_fed_cols_tuples, met_fed_ops, 
+                       'real_time'),
+        r_fed_groupby_columns, r_fed_index_columns, r_fed_filter_columns, 
+        r_fed_value_columns, r_fed_metric_columns, 'real_time')
+    filter_ratio = get_ratio(
+        create_metrics(filter_df, met_filt_cols, met_filt_groupby_cols, 
+                       met_filt_metrics, met_filt_cols_tuples,  met_filt_ops, 
+                       'real_time'),
+        r_filt_groupby_columns, r_filt_index_columns, r_filt_filter_columns, 
+        r_filt_value_columns, r_filt_metric_columns, 'real_time')
+    timing_ratio = get_ratio(
+        create_metrics(timing_df, met_fed_cols, met_fed_groupby_cols, 
+                       met_fed_metrics, met_fed_cols_tuples, met_fed_ops, 
+                       'real_time'),
+        r_fed_groupby_columns, r_fed_index_columns, r_fed_filter_columns, 
+        r_fed_value_columns, r_fed_metric_columns, 'real_time')
+    msg_lkp_ratio = get_ratio(
+        create_metrics(msg_lkp_df, met_int_cols, met_int_groupby_cols, 
+                       met_int_metrics, met_int_cols_tuples, met_int_ops, 
+                       'real_time'),
+        r_int_groupby_columns, r_int_index_columns, r_int_filter_columns, 
+        r_int_value_columns, r_int_metric_columns, 'real_time')
+    msg_send_ratio = get_ratio(
+        create_metrics(msg_send_df, met_msg_cols, met_msg_groupby_cols, 
+                       met_msg_metrics, met_msg_cols_tuples, met_msg_ops, 
+                       'real_time'),
+        r_msg_groupby_columns, r_msg_index_columns, r_msg_filter_columns, 
+        r_msg_value_columns, r_msg_metric_columns, 'real_time')
+    print('Creating the pivot table and saving to excel...')
+    c_echo_p = create_pivot_tables(
+        c_echo_ratio, 
+        ['benchmark', 'run_id', 'num_cpus', 'mhz_per_cpu', 'federate_count', 
+         'core_type'], 
+        ['spf_ratio', 'cpf_ratio', 'real_time_ratio'])
+    echo_p = create_pivot_tables(
+        echo_ratio, 
+        ['benchmark', 'run_id', 'num_cpus', 'mhz_per_cpu', 'federate_count', 
+         'core_type'], 
+        ['spf_ratio', 'cpf_ratio', 'real_time_ratio'])
+    echo_msg_p = create_pivot_tables(
+        echo_msg_ratio, 
+        ['benchmark', 'run_id', 'num_cpus', 'mhz_per_cpu', 'federate_count', 
+         'core_type'], 
+        ['spf_ratio', 'cpf_ratio', 'real_time_ratio'])
+    ring_p = create_pivot_tables(
+        ring_ratio, 
+        ['benchmark', 'run_id', 'num_cpus', 'mhz_per_cpu', 'federate_count', 
+         'core_type'], 
+        ['spf_ratio', 'cpf_ratio', 'real_time_ratio'])
+    ring_msg_p = create_pivot_tables(
+        ring_msg_ratio, 
+        ['benchmark', 'run_id', 'num_cpus', 'mhz_per_cpu', 'federate_count', 
+         'core_type'], 
+        ['spf_ratio', 'cpf_ratio', 'real_time_ratio'])
+    phold_p = create_pivot_tables(
+        phold_ratio, 
+        ['benchmark', 'run_id', 'num_cpus', 'mhz_per_cpu', 'federate_count', 
+         'core_type'], 
+        ['spf_ratio', 'cpf_ratio', 'real_time_ratio'])
+    timing_p = create_pivot_tables(
+        timing_ratio, 
+        ['benchmark', 'run_id', 'num_cpus', 'mhz_per_cpu', 'federate_count', 
+         'core_type'], 
+        ['spf_ratio', 'cpf_ratio', 'real_time_ratio'])
+    filter_p = create_pivot_tables(
+        filter_ratio, 
+        ['benchmark', 'run_id', 'num_cpus', 'mhz_per_cpu', 'federate_count', 
+         'core_type'], 
+        ['spf_ratio', 'cpf_ratio', 'real_time_ratio'])
+    msg_lkp_p = create_pivot_tables(
+        msg_lkp_ratio, 
+        ['benchmark', 'run_id', 'num_cpus', 'mhz_per_cpu', 'federate_count', 
+         'core_type'], 
+        ['spf_ratio', 'spi_ratio', 'cpi_ratio', 'cpf_ratio', 
+         'real_time_ratio'])
+    msg_send_p = create_pivot_tables(
+        msg_send_ratio, 
+        ['benchmark', 'run_id', 'num_cpus', 'mhz_per_cpu', 'message_size', 
+         'message_count', 'core_type'], 
+        ['spms_ratio', 'spmc_ratio', 'cpms_ratio', 'cpmc_ratio', 
+         'real_time_ratio'])
+    file_path = os.path.join(output_path, '{}.xlsx'.format(filename))
+    with pd.ExcelWriter(file_path) as writer:
+        c_echo_p.to_excel(writer, 
+                          sheet_name='{}'.format('cEchoBenchmark'))
+        echo_p.to_excel(writer, 
+                        sheet_name='{}'.format('echoBenchmark'))
+        echo_msg_p.to_excel(writer, 
+                            sheet_name='{}'.format('echoMessageBenchmark'))
+        ring_p.to_excel(writer, 
+                        sheet_name='{}'.format('ringBenchmark'))
+        ring_msg_p.to_excel(writer, 
+                            sheet_name='{}'.format('ringMessageBenchmark'))
+        phold_p.to_excel(writer, 
+                         sheet_name='{}'.format('pholdBenchmark'))
+        timing_p.to_excel(writer, 
+                          sheet_name='{}'.format('timingBenchmark'))
+        filter_p.to_excel(writer, 
+                          sheet_name='{}'.format('filterBenchmark'))
+        msg_lkp_p.to_excel(writer, 
+                           sheet_name='{}'.format('messageLookupBenchmark'))
+        msg_send_p.to_excel(writer, 
+                            sheet_name='{}'.format('messageSendBenchmark'))
+    print('Successfully saved the data to excel.')
+    
+    print('Saving data as .csv file...')
+    main_df = pd.concat(
+        [c_echo_ratio, echo_msg_ratio, echo_ratio, filter_ratio,
+         msg_lkp_ratio, msg_send_ratio, phold_ratio, ring_msg_ratio,
+         ring_ratio, timing_ratio], 
+        axis=0, 
+        ignore_index=True)
+    main_df.to_csv(r'{}\{}.csv'.format(os.path.join(output_path), filename))
+
+def create_spreadsheet2(dataframe, filename, output_path):
+    """This function combines all the above functions and
+    creates a spreadsheet for 'benchmark_type' = 'key'.
+    """
+    print('Filtering it to just bmk_type = "key"...')
+    dataframe = dataframe[(dataframe.benchmark_type == 'key') &
+                          (dataframe.benchmark != 'conversionBenchmark')]
+    echo_res_df = dataframe[dataframe.benchmark == 'echoBenchmark']
+    echo_msg_df = dataframe[dataframe.benchmark == 'echoMessageBenchmark']
+    msg_lkp_df = dataframe[dataframe.benchmark == 'messageLookupBenchmark']
+    timing_df = dataframe[dataframe.benchmark == 'timingBenchmark']
+    # Getting all necessary info for the functions
+    print('Saving the necessary information to memory...')
+    met_fed_cols = ['benchmark', 'run_id', 'core_type', 'num_cpus', 
+                    'mhz_per_cpu', 'federate_count', 'real_time']
+    met_fed_groupby_cols = ['benchmark', 'run_id', 'core_type', 
+                            'num_cpus', 'mhz_per_cpu', 'federate_count']
+    met_fed_metrics = ['spf', 'new_mhz_per_cpu', 'cpf']
+    met_fed_cols_tuples = [('real_time', 'federate_count'), 
+                           ('real_time', 'mhz_per_cpu'), 
+                           ('spf', 'new_mhz_per_cpu')] 
+    met_fed_ops = ['/', '*', '*']
+    r_fed_groupby_columns = ['benchmark', 'run_id', 'num_cpus', 
+                             'mhz_per_cpu', 'federate_count']
+    r_fed_index_columns = met_fed_cols
+    r_fed_filter_columns = ['federate_count']*2
+    r_fed_value_columns = ['inproc']*2
+    r_fed_metric_columns = ['spf', 'cpf']
+    
+    met_int_cols = ['benchmark', 'run_id', 'core_type', 'num_cpus', 
+                    'mhz_per_cpu', 'federate_count', 'interface_count', 'real_time']
+    met_int_groupby_cols = ['benchmark', 'run_id', 'core_type', 'num_cpus', 
+                            'mhz_per_cpu', 'federate_count', 'interface_count']
+    met_int_metrics = ['spf', 'spi', 'new_mhz_per_cpu', 'cpf', 'cpi']
+    met_int_cols_tuples = [('real_time', 'federate_count'), 
+                           ('real_time', 'interface_count'), 
+                           ('real_time', 'mhz_per_cpu'), 
+                           ('spf', 'new_mhz_per_cpu'), 
+                           ('spi', 'new_mhz_per_cpu')]
+    met_int_ops = ['/', '/', '*', '*', '*']
+    r_int_groupby_columns = ['benchmark', 'run_id', 'num_cpus', 
+                             'mhz_per_cpu', 'federate_count', 'interface_count']
+    r_int_index_columns = met_int_cols
+    r_int_filter_columns = ['interface_count']*4
+    r_int_value_columns = ['inproc']*4
+    r_int_metric_columns = ['spf', 'spi', 'cpf', 'cpi']
+    
+    # Applying the functions
+    print('Creating the desired metrics and getting the ratios...')
+    echo_ratio = get_ratio(
+        create_metrics(echo_res_df, met_fed_cols, met_fed_groupby_cols, 
+                       met_fed_metrics, met_fed_cols_tuples, met_fed_ops, 
+                       'real_time'),
+        r_fed_groupby_columns, r_fed_index_columns, r_fed_filter_columns, 
+        r_fed_value_columns, r_fed_metric_columns, 'real_time')
+    echo_msg_ratio = get_ratio(
+        create_metrics(echo_msg_df, met_fed_cols, met_fed_groupby_cols, 
+                       met_fed_metrics, met_fed_cols_tuples, met_fed_ops, 
+                       'real_time'),
+        r_fed_groupby_columns, r_fed_index_columns, r_fed_filter_columns, 
+        r_fed_value_columns, r_fed_metric_columns, 'real_time')
+    timing_ratio = get_ratio(
+        create_metrics(timing_df, met_fed_cols, met_fed_groupby_cols, 
+                       met_fed_metrics, met_fed_cols_tuples, met_fed_ops, 
+                       'real_time'),
+        r_fed_groupby_columns, r_fed_index_columns, r_fed_filter_columns, 
+        r_fed_value_columns, r_fed_metric_columns, 'real_time')
+    msg_lkp_ratio = get_ratio(
+        create_metrics(msg_lkp_df, met_int_cols, met_int_groupby_cols, 
+                       met_int_metrics, met_int_cols_tuples, met_int_ops, 
+                       'real_time'),
+        r_int_groupby_columns, r_int_index_columns, r_int_filter_columns, 
+        r_int_value_columns, r_int_metric_columns, 'real_time')
+    print('Creating the pivot table and saving to excel...')
+    echo_p = create_pivot_tables(
+        echo_ratio, 
+        ['benchmark', 'run_id', 'num_cpus', 'mhz_per_cpu', 'federate_count', 
+         'core_type'], 
+        ['spf_ratio', 'cpf_ratio', 'real_time_ratio'])
+    echo_msg_p = create_pivot_tables(
+        echo_msg_ratio, 
+        ['benchmark', 'run_id', 'num_cpus', 'mhz_per_cpu', 'federate_count', 
+         'core_type'], 
+        ['spf_ratio', 'cpf_ratio', 'real_time_ratio'])
+    timing_p = create_pivot_tables(
+        timing_ratio, 
+        ['benchmark', 'run_id', 'num_cpus', 'mhz_per_cpu', 'federate_count', 
+         'core_type'], 
+        ['spf_ratio', 'cpf_ratio', 'real_time_ratio'])
+    msg_lkp_p = create_pivot_tables(
+        msg_lkp_ratio, 
+        ['benchmark', 'run_id', 'num_cpus', 'mhz_per_cpu', 'federate_count', 
+         'core_type'], 
+        ['spf_ratio', 'spi_ratio', 'cpi_ratio', 'cpf_ratio', 
+         'real_time_ratio'])
+    file_path = os.path.join(output_path, '{}.xlsx'.format(filename))
+    with pd.ExcelWriter(file_path) as writer:
+        echo_p.to_excel(writer, 
+                        sheet_name='{}'.format('echoBenchmark'))
+        echo_msg_p.to_excel(writer, 
+                            sheet_name='{}'.format('echoMessageBenchmark'))
+        timing_p.to_excel(writer, 
+                          sheet_name='{}'.format('timingBenchmark'))
+        msg_lkp_p.to_excel(writer, 
+                           sheet_name='{}'.format('messageLookupBenchmark'))
+    print('Successfully saved the data to excel.')
+    
+    print('Saving the data as a .csv file...')
+    main_df = pd.concat(
+        [echo_msg_ratio, echo_ratio, msg_lkp_ratio, timing_ratio], 
+        axis=0, 
+        ignore_index=True)
+    main_df.to_csv(r'{}\{}.csv'.format(os.path.join(output_path), filename))
+    print('Successfully saved data as .csv file.')
+        
+def create_spreadsheet3(dataframe, filename, output_path):
+    """This function combines all the above functions and
+    creates a spreadhsheet for multinode benchmark results.
+    """
+    print('Processing data for multinode benchmark results...')
+    echo_df = dataframe[dataframe.benchmark == 'EchoLeafFederate']
+    echo_msg_df = dataframe[dataframe.benchmark == 'EchoMessageLeafFederate']
+    msg_df = dataframe[dataframe.benchmark == 'MessageExchangeFederate']
+    phold_df = dataframe[dataframe.benchmark == 'PholdFederate']
+    ring_df = dataframe[dataframe.benchmark == 'RingTransmitFederate']
+    timing_df = dataframe[dataframe.benchmark == 'TimingLeafFederate']
+    # Getting all necessary info for the functions
+    print('Saving the necessary information to memory...')
+    met_fed_cols = ['benchmark', 'core_type', 'federate_count', 'elapsed_time']
+    met_fed_groupby_cols = ['benchmark', 'core_type', 'federate_count']
+    met_fed_metrics = ['spf']
+    met_fed_cols_tuples = [('elapsed_time', 'federate_count')] 
+    met_fed_ops = ['/']
+    r_fed_groupby_columns = ['benchmark', 'federate_count']
+    r_fed_index_columns = met_fed_cols
+    r_fed_filter_columns = ['federate_count']
+    r_fed_value_columns = ['tcp']
+    r_fed_metric_columns = ['spf']
+    
+    met_p_cols = ['benchmark', 'core_type', 'mhz_per_cpu', 
+                  'federate_count', 'EvCount', 'elapsed_time']
+    met_p_groupby_cols = ['benchmark', 'core_type', 'mhz_per_cpu', 
+                          'federate_count', 'EvCount']
+    met_p_metrics = ['spf', 'spe', 'new_mhz_per_cpu', 'cpf', 'cpe']
+    met_p_cols_tuples = [('elapsed_time', 'federate_count'), 
+                         ('elapsed_time', 'EvCount'), 
+                         ('elapsed_time', 'mhz_per_cpu'), 
+                         ('new_mhz_per_cpu', 'spf'), 
+                         ('new_mhz_per_cpu', 'spe')] 
+    met_p_ops = ['/', '/', '*', '*', '*']
+    r_p_groupby_columns = ['benchmark', 'mhz_per_cpu', 
+                           'federate_count', 'EvCount']
+    r_p_index_columns = met_fed_cols
+    r_p_filter_columns = ['federate_count']*4
+    r_p_value_columns = ['tcp']*4
+    r_p_metric_columns = ['spf', 'spe', 'cpf', 'cpe']
+    
+    met_msg_cols = ['benchmark', 'core_type', 'message_count', 
+                    'message_size', 'elapsed_time']
+    met_msg_groupby_cols = ['benchmark', 'core_type', 
+                            'message_count', 'message_size']
+    met_msg_metrics = ['spms', 'spmc']
+    met_msg_cols_tuples = [('elapsed_time', 'message_size'), 
+                           ('elapsed_time', 'message_count')]
+    met_msg_ops = ['/', '/']
+    r_msg_groupby_columns = ['benchmark', 'message_size', 'message_count']
+    r_msg_index_columns = met_msg_cols
+    r_msg_filter_columns = ['message_count']*2
+    r_msg_value_columns = ['tcp']*2
+    r_msg_metric_columns = ['spms', 'spmc']
+    
+    # Applying the functions
+    print('Creating the desired metrics and getting the ratios...')
+    echo_ratio = get_ratio(
+        create_metrics(echo_df, met_fed_cols, met_fed_groupby_cols, 
+                       met_fed_metrics, met_fed_cols_tuples, met_fed_ops, 
+                       'elapsed_time'),
+        r_fed_groupby_columns, r_fed_index_columns, r_fed_filter_columns, 
+        r_fed_value_columns, r_fed_metric_columns, 'elapsed_time')
+    echo_msg_ratio = get_ratio(
+        create_metrics(echo_msg_df, met_fed_cols, met_fed_groupby_cols, 
+                       met_fed_metrics, met_fed_cols_tuples, met_fed_ops, 
+                       'elapsed_time'),
+        r_fed_groupby_columns, r_fed_index_columns, r_fed_filter_columns, 
+        r_fed_value_columns, r_fed_metric_columns, 'elapsed_time')
+    timing_ratio = get_ratio(
+        create_metrics(timing_df, met_fed_cols, met_fed_groupby_cols, 
+                       met_fed_metrics, met_fed_cols_tuples, met_fed_ops, 
+                       'elapsed_time'),
+        r_fed_groupby_columns, r_fed_index_columns, r_fed_filter_columns, 
+        r_fed_value_columns, r_fed_metric_columns, 'elapsed_time')
+    ring_ratio = timing_ratio = get_ratio(
+        create_metrics(ring_df, met_fed_cols,  met_fed_groupby_cols, 
+                       met_fed_metrics, met_fed_cols_tuples, met_fed_ops, 
+                       'elapsed_time'),
+        r_fed_groupby_columns, r_fed_index_columns, r_fed_filter_columns, 
+        r_fed_value_columns, r_fed_metric_columns, 'elapsed_time')
+    msg_ratio = get_ratio(
+        create_metrics(msg_df, met_msg_cols, met_msg_groupby_cols, 
+                       met_msg_metrics, met_msg_cols_tuples, met_msg_ops, 
+                       'elapsed_time'),
+        r_msg_groupby_columns, r_msg_index_columns, r_msg_filter_columns, 
+        r_msg_value_columns, r_msg_metric_columns, 'elapsed_time')
+    phold_ratio = get_ratio(
+        create_metrics(phold_df, met_p_cols, met_p_groupby_cols, 
+                       met_p_metrics, met_p_cols_tuples, met_p_ops, 
+                       'elapsed_time'),
+        r_p_groupby_columns, r_p_index_columns, r_p_filter_columns, 
+        r_p_value_columns, r_p_metric_columns, 'elapsed_time')
+    print('Creating the pivot table and saving to excel...')
+    echo_p = create_pivot_tables(
+        echo_ratio, 
+        ['benchmark', 'federate_count', 'core_type'], 
+        ['spf_ratio', 'elapsed_time_ratio'])
+    echo_msg_p = create_pivot_tables(
+        echo_msg_ratio, 
+        ['benchmark', 'federate_count', 'core_type'], 
+        ['spf_ratio', 'elapsed_time_ratio'])
+    timing_p = create_pivot_tables(
+        timing_ratio, 
+        ['benchmark', 'federate_count', 'core_type'], 
+        ['spf_ratio', 'elapsed_time_ratio'])
+    ring_p = create_pivot_tables(
+        ring_ratio, 
+        ['benchmark', 'federate_count', 'core_type'], 
+        ['spf_ratio', 'elapsed_time_ratio'])
+    phold_p = create_pivot_tables(
+        phold_ratio, 
+        ['benchmark', 'federate_count', 'core_type'], 
+        ['spf_ratio', 'spe_ratio', 'cpf_ratio', 'cpe_ratio', 
+         'elapsed_time_ratio'])
+    msg_p = create_pivot_tables(
+        msg_ratio, 
+        ['benchmark', 'message_size', 'message_count', 'core_type'], 
+        ['spms_ratio', 'spmc_ratio', 'elapsed_time_ratio'])
+    file_path = os.path.join(output_path, '{}.xlsx'.format(filename))
+    with pd.ExcelWriter(file_path) as writer:
+        echo_p.to_excel(writer, 
+                        sheet_name='{}'.format('EchoLeafFederate'))
+        echo_msg_p.to_excel(writer, 
+                            sheet_name='{}'.format('EchoMessageLeafFederate'))
+        ring_p.to_excel(writer, 
+                        sheet_name='{}'.format('RingTransmitFederate'))
+        timing_p.to_excel(writer, 
+                          sheet_name='{}'.format('TimingLeafFederate'))
+        phold_p.to_excel(writer, 
+                         sheet_name='{}'.format('PholdFederate'))
+        msg_p.to_excel(writer, 
+                       sheet_name='{}'.format('MessageExchangeFederate'))
+            
+    print('Successfully saved the data to excel.')
+    
+    print('Saving data as .csv file.')
+    main_df = pd.concat(
+        [echo_ratio, echo_msg_ratio, msg_ratio,
+         phold_ratio, ring_ratio, timing_ratio],
+        axis=0, 
+        ignore_index=True)
+    main_df.to_csv(r'{}\{}.csv'.format(os.path.join(output_path), filename))
+
 
 def _auto_run(args):
     """This function executes when the script is called as a stand-alone
@@ -952,10 +708,27 @@ def _auto_run(args):
         (null)
         
     """
-    print('creating the initial dataframe...')
-    df = md.make_dataframe1(args.json_file)
-    df = create_metrics(df)
-    create_pivot_tables(df, args.output_path)
+    if args.bmk_type == 'full':
+        print('Creating the meta benchmark dataframe...')
+        dataframe = md.make_dataframe1(args.json_file)
+        create_spreadsheet1(dataframe, 
+                            'full_benchmark_results_summary', 
+                            args.output_path)
+    elif args.bmk_type == 'key':
+        print('Creating the meta benchmark dataframe...')
+        dataframe = md.make_dataframe1(args.json_file)
+        create_spreadsheet2(dataframe, 
+                            'key_benchmark_results_summary', 
+                            args.output_path)
+    elif args.bmk_type == 'multinode':
+        print('Creating the meta benchmark dataframe...')
+        dataframe = md.make_dataframe2(args.json_file)
+        create_spreadsheet3(dataframe, 
+                            'multinode_benchmark_results_summary', 
+                            args.output_path)
+    else:
+        logging.error('Invalid string; bmk_type should be "full", "key", or\
+                      "multinode".')
     
 
 if __name__ == '__main__':
@@ -980,10 +753,15 @@ if __name__ == '__main__':
                         '--json_file', 
                         nargs='?', 
                         default='bm_results.json')
+    parser.add_argument('-b', 
+                        '--bmk_type', 
+                        nargs='?', 
+                        default='full')
     parser.add_argument('-o', 
                         '--output_path', 
                         nargs='?', 
-                        default=os.path.join(os.getcwd()))
+                        default=os.path.join(head, 
+                                             'summary_spreadsheets'))
     args = parser.parse_args()
     
     _auto_run(args)
