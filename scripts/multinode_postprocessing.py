@@ -283,20 +283,45 @@ def parse_and_add_benchmark_metadata(json_results):
             
         elif 'EchoLeafFederate' in path:
             json_results[key]['benchmark'] = 'EchoLeafFederate'
+            json_results[key]['helics_version_string'] =\
+                '2.4.0-base-benchmark-federate-g1e9ac3ab-dirty (2020-02-24)'
+            json_results[key]['helics_version'] = '2.4.0'
+            json_results[key]['zmq_version_string'] = 'ZMQ v4.1.5'
+            json_results[key]['zmq_version'] = '4.1.5'
         
         elif 'EchoMessageLeafFederate' in path:
             json_results[key]['benchmark'] = 'EchoMessageLeafFederate'
+            json_results[key]['helics_version_string'] =\
+                '2.4.0-base-benchmark-federate-g1e9ac3ab-dirty (2020-02-24)'
+            json_results[key]['helics_version'] = '2.4.0'
+            json_results[key]['zmq_version_string'] = 'ZMQ v4.1.5'
+            json_results[key]['zmq_version'] = '4.1.5'
+            
         
         elif 'MessageExchangeFederate' in path:
             json_results[key]['benchmark'] = 'MessageExchangeFederate'
+            json_results[key]['helics_version_string'] =\
+                '2.4.0-base-benchmark-federate-g1e9ac3ab-dirty (2020-02-24)'
+            json_results[key]['helics_version'] = '2.4.0'
+            json_results[key]['zmq_version_string'] = 'ZMQ v4.1.5'
+            json_results[key]['zmq_version'] = '4.1.5'
             
         elif 'RingTransmitFederate' in path:
             json_results[key]['benchmark'] = 'RingTransmitFederate'
+            json_results[key]['helics_version_string'] =\
+                '2.4.0-base-benchmark-federate-g1e9ac3ab-dirty (2020-02-24)'
+            json_results[key]['helics_version'] = '2.4.0'
+            json_results[key]['zmq_version_string'] = 'ZMQ v4.1.5'
+            json_results[key]['zmq_version'] = '4.1.5'
             
         elif 'TimingLeafFederate' in path:
             json_results[key]['benchmark'] = 'TimingLeafFederate'
-            
-    return json_results
+            json_results[key]['helics_version_string'] =\
+                '2.4.0-base-benchmark-federate-g1e9ac3ab-dirty (2020-02-24)'
+            json_results[key]['helics_version'] = '2.4.0'
+            json_results[key]['zmq_version_string'] = 'ZMQ v4.1.5'
+            json_results[key]['zmq_version'] = '4.1.5'
+   return json_results
 
 
 def _add_core(key, json_results):
@@ -334,7 +359,6 @@ def _add_core(key, json_results):
         warn_str = 'Unable to find core type in {}; ' \
                         'setting to "unspecified"'.format(path)
         logging.warning(warn_str)
-        
     return json_results
 
 
@@ -565,7 +589,6 @@ def _parse_compiler_string(uuid, json_results):
     else:
         json_results[uuid]['cxx_compiler'] = ''
         json_results[uuid]['cxx_compiler_version'] = ''
-
     return json_results
             
             
@@ -611,7 +634,7 @@ def _auto_run(args):
         d[file].update(json_results)
         json_results = {}
     if args.write_json_output:
-        with open('multinode_bm_results.json', 'w') as outfile:
+        with open('multinode_bm_results_test.json', 'w') as outfile:
             json.dump(d, outfile)
     ### CGR (2020-03-17): Commenting out for now for testing purposes:
 #    if args.write_json_output:
