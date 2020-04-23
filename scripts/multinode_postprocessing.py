@@ -178,7 +178,7 @@ def parse_header_lines(json_file, json_results, uuid_str):
             match = re.search('\d+.\d+GHz',line)
             if match:
                 speed = float(match.group(0)[-7:-4])*1000
-                print('SPEED: ', speed)
+                # print('SPEED: ', speed)
                 json_results[uuid_str]['mhz_per_cpu'] = speed
             else:
                 speed = np.nan
@@ -186,7 +186,7 @@ def parse_header_lines(json_file, json_results, uuid_str):
                 logging.error('{}: Failed to parse CPU MODEL line'.format(
                         json_file['name']))
         elif 'NUM CPU' in line:
-            print(line[-2:])
+            # print(line[-2:])
             json_results[uuid_str]['num_cpus'] = line[-2:]
         elif 'ELAPSED TIME' in line:
             json_results[uuid_str]['elapsed_time'] = line[19:]
