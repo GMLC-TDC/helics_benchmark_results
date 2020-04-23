@@ -167,7 +167,7 @@ def parse_header_lines(json_file, json_results, uuid_str):
                 logging.error('{}: Failed to parse ZMQ VERSION line.'.format(
                     json_file['name']))
         elif 'COMPILER INFO:' in line:
-            json_results[uuid_str]['compiler_info_string']  = line[15:]
+            json_results[uuid_str]['compiler_info_string'] = line[15:]
             json_results = _parse_compiler_string(uuid_str, json_results)
         elif 'BUILD FLAGS:' in line:
             json_results[uuid_str]['build_flags_string'] = line[12:]
@@ -228,6 +228,7 @@ def parse_header_lines(json_file, json_results, uuid_str):
             pass
         else:
             json_results[uuid_str]['mhz_per_cpu'] = np.nan
+                
             logging.error('Failed to parse line in {}.'.format(
                 os.path.join(json_results[uuid_str]['path'],
                              json_results[uuid_str]['filename'])))
@@ -275,6 +276,14 @@ def parse_and_add_benchmark_metadata(json_results):
         else:
             json_results = _add_date(key, json_results)
         
+        # if 'helics_version_string' not in json_results.values():
+        #     json_results[key]['helics_version_string'] =\
+        #         '2.4.0-base-benchmark-federate-g1e9ac3ab-dirty (2020-02-24)'
+        # else:
+        #     print('"helics_version_string" is in json_results.')
+        #     # json_results[key]['helics_version_string'] =\
+        #     #     '2.4.0-base-benchmark-federate-g1e9ac3ab-dirty (2020-02-24)'
+        
         # Adding benchmark to json_results
         path = json_results[key]['path']
 #        filename = json_results[key]['filename']
@@ -283,45 +292,45 @@ def parse_and_add_benchmark_metadata(json_results):
             
         elif 'EchoLeafFederate' in path:
             json_results[key]['benchmark'] = 'EchoLeafFederate'
-            json_results[key]['helics_version_string'] =\
-                '2.4.0-base-benchmark-federate-g1e9ac3ab-dirty (2020-02-24)'
-            json_results[key]['helics_version'] = '2.4.0'
-            json_results[key]['zmq_version_string'] = 'ZMQ v4.1.5'
-            json_results[key]['zmq_version'] = '4.1.5'
+            # json_results[key]['helics_version_string'] =\
+            #     '2.4.0-base-benchmark-federate-g1e9ac3ab-dirty (2020-02-24)'
+            # json_results[key]['helics_version'] = '2.4.0'
+            # json_results[key]['zmq_version_string'] = 'ZMQ v4.1.5'
+            # json_results[key]['zmq_version'] = '4.1.5'
         
         elif 'EchoMessageLeafFederate' in path:
             json_results[key]['benchmark'] = 'EchoMessageLeafFederate'
-            json_results[key]['helics_version_string'] =\
-                '2.4.0-base-benchmark-federate-g1e9ac3ab-dirty (2020-02-24)'
-            json_results[key]['helics_version'] = '2.4.0'
-            json_results[key]['zmq_version_string'] = 'ZMQ v4.1.5'
-            json_results[key]['zmq_version'] = '4.1.5'
+            # json_results[key]['helics_version_string'] =\
+            #     '2.4.0-base-benchmark-federate-g1e9ac3ab-dirty (2020-02-24)'
+            # json_results[key]['helics_version'] = '2.4.0'
+            # json_results[key]['zmq_version_string'] = 'ZMQ v4.1.5'
+            # json_results[key]['zmq_version'] = '4.1.5'
             
         
         elif 'MessageExchangeFederate' in path:
             json_results[key]['benchmark'] = 'MessageExchangeFederate'
-            json_results[key]['helics_version_string'] =\
-                '2.4.0-base-benchmark-federate-g1e9ac3ab-dirty (2020-02-24)'
-            json_results[key]['helics_version'] = '2.4.0'
-            json_results[key]['zmq_version_string'] = 'ZMQ v4.1.5'
-            json_results[key]['zmq_version'] = '4.1.5'
+            # json_results[key]['helics_version_string'] =\
+            #     '2.4.0-base-benchmark-federate-g1e9ac3ab-dirty (2020-02-24)'
+            # json_results[key]['helics_version'] = '2.4.0'
+            # json_results[key]['zmq_version_string'] = 'ZMQ v4.1.5'
+            # json_results[key]['zmq_version'] = '4.1.5'
             
         elif 'RingTransmitFederate' in path:
             json_results[key]['benchmark'] = 'RingTransmitFederate'
-            json_results[key]['helics_version_string'] =\
-                '2.4.0-base-benchmark-federate-g1e9ac3ab-dirty (2020-02-24)'
-            json_results[key]['helics_version'] = '2.4.0'
-            json_results[key]['zmq_version_string'] = 'ZMQ v4.1.5'
-            json_results[key]['zmq_version'] = '4.1.5'
+            # json_results[key]['helics_version_string'] =\
+            #     '2.4.0-base-benchmark-federate-g1e9ac3ab-dirty (2020-02-24)'
+            # json_results[key]['helics_version'] = '2.4.0'
+            # json_results[key]['zmq_version_string'] = 'ZMQ v4.1.5'
+            # json_results[key]['zmq_version'] = '4.1.5'
             
         elif 'TimingLeafFederate' in path:
             json_results[key]['benchmark'] = 'TimingLeafFederate'
-            json_results[key]['helics_version_string'] =\
-                '2.4.0-base-benchmark-federate-g1e9ac3ab-dirty (2020-02-24)'
-            json_results[key]['helics_version'] = '2.4.0'
-            json_results[key]['zmq_version_string'] = 'ZMQ v4.1.5'
-            json_results[key]['zmq_version'] = '4.1.5'
-   return json_results
+            # json_results[key]['helics_version_string'] =\
+            #     '2.4.0-base-benchmark-federate-g1e9ac3ab-dirty (2020-02-24)'
+            # json_results[key]['helics_version'] = '2.4.0'
+            # json_results[key]['zmq_version_string'] = 'ZMQ v4.1.5'
+            # json_results[key]['zmq_version'] = '4.1.5'
+    return json_results
 
 
 def _add_core(key, json_results):
