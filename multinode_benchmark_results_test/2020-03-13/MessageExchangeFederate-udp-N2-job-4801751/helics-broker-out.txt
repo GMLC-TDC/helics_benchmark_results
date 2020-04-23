@@ -1,0 +1,19 @@
+71126-5B9Sd-oDuRK-AdDXy-sHSmn (0)::connecting
+71126-5B9Sd-oDuRK-AdDXy-sHSmn (0)::||connected on 127.0.0.1:23901
+71126-5B9Sd-oDuRK-AdDXy-sHSmn (1)::registering broker 71163-pPIFN-QlFb7-ns2R8-7qhHX(1879048192) on route 1
+71126-5B9Sd-oDuRK-AdDXy-sHSmn (1)::registering federate msgExchange_1(131072) on route 1
+71126-5B9Sd-oDuRK-AdDXy-sHSmn (1)::registering broker 24826-xyjnV-A4mri-n7BPp-3CP6m(1879048193) on route 2
+71126-5B9Sd-oDuRK-AdDXy-sHSmn (1)::registering federate msgExchange_0(131073) on route 2
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	2 federates [min 2]
+	0/2 brokers/cores [min 0]
+	0 publications
+	0 inputs
+	2 endpoints
+	0 filters
+<<<<<<<<<
+71126-5B9Sd-oDuRK-AdDXy-sHSmn (1)::entering Exec Mode
+71126-5B9Sd-oDuRK-AdDXy-sHSmn (0)::got disconnect from 71163-pPIFN-QlFb7-ns2R8-7qhHX(1879048192)
+71126-5B9Sd-oDuRK-AdDXy-sHSmn (0)::got disconnect from 24826-xyjnV-A4mri-n7BPp-3CP6m(1879048193)
+71126-5B9Sd-oDuRK-AdDXy-sHSmn (0)::||disconnecting

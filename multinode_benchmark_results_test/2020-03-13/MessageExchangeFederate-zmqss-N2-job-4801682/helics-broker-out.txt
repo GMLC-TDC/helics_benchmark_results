@@ -1,0 +1,20 @@
+66284-dE0gQ-CDjVa-U52bU-kYZ8w (0)::connecting
+66284-dE0gQ-CDjVa-U52bU-kYZ8w (0)::||connected on tcp://127.0.0.1:23404
+66284-dE0gQ-CDjVa-U52bU-kYZ8w (1)::registering broker 66324-NriAe-5h5WC-OzYaF-901fZ(1879048192) on route 1
+66284-dE0gQ-CDjVa-U52bU-kYZ8w (1)::registering federate msgExchange_1(131072) on route 1
+66284-dE0gQ-CDjVa-U52bU-kYZ8w (1)::registering broker 44478-2NtgN-yS3Yq-Wowvl-Nau87(1879048193) on route 2
+66284-dE0gQ-CDjVa-U52bU-kYZ8w (1)::registering federate msgExchange_0(131073) on route 2
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	2 federates [min 2]
+	0/2 brokers/cores [min 0]
+	0 publications
+	0 inputs
+	2 endpoints
+	0 filters
+<<<<<<<<<
+66284-dE0gQ-CDjVa-U52bU-kYZ8w (1)::entering Exec Mode
+66284-dE0gQ-CDjVa-U52bU-kYZ8w (0)::got disconnect from 66324-NriAe-5h5WC-OzYaF-901fZ(1879048192)
+66284-dE0gQ-CDjVa-U52bU-kYZ8w (0)::got disconnect from 44478-2NtgN-yS3Yq-Wowvl-Nau87(1879048193)
+commWarning||66284-dE0gQ-CDjVa-U52bU-kYZ8w (1)::unknown route and no broker, dropping message time_grant:From (1) Granted Time(1e-08) to (131073)
+66284-dE0gQ-CDjVa-U52bU-kYZ8w (0)::||disconnecting

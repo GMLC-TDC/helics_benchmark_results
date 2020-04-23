@@ -1,0 +1,39 @@
+29784-izqcr-VKdCM-cD6D3-knQS7 (0)::connecting
+29784-izqcr-VKdCM-cD6D3-knQS7 (0)::||connected on tcp://127.0.0.1:23404
+29784-izqcr-VKdCM-cD6D3-knQS7 (1)::registering broker 29797-UcIF8-1SXQh-E2qJc-gqxNY(1879048192) on route 1
+29784-izqcr-VKdCM-cD6D3-knQS7 (1)::registering federate echohub(131072) on route 1
+29784-izqcr-VKdCM-cD6D3-knQS7 (1)::registering broker 29881-22uXn-Z6GJc-d2DHK-My6Xb(1879048193) on route 2
+29784-izqcr-VKdCM-cD6D3-knQS7 (1)::registering federate echoleaf_7(131073) on route 2
+29784-izqcr-VKdCM-cD6D3-knQS7 (1)::registering broker 61775-GsQfA-4YM2F-SbvVA-FgDyu(1879048194) on route 3
+29784-izqcr-VKdCM-cD6D3-knQS7 (1)::registering federate echoleaf_4(131074) on route 3
+29784-izqcr-VKdCM-cD6D3-knQS7 (1)::registering broker 2291-F2YbK-Ps1Vq-9tGbI-AqvGg(1879048195) on route 4
+29784-izqcr-VKdCM-cD6D3-knQS7 (1)::registering broker 7209-WPxtT-YYK6n-kjjhH-f0RiP(1879048196) on route 5
+29784-izqcr-VKdCM-cD6D3-knQS7 (1)::registering federate echoleaf_1(131075) on route 4
+29784-izqcr-VKdCM-cD6D3-knQS7 (1)::registering broker 23426-LqHMQ-s1dqV-2qb8h-B1lQc(1879048197) on route 6
+29784-izqcr-VKdCM-cD6D3-knQS7 (1)::registering federate echoleaf_0(131076) on route 5
+29784-izqcr-VKdCM-cD6D3-knQS7 (1)::registering broker 37683-kp081-fffVq-YrUlt-CFIDE(1879048198) on route 7
+29784-izqcr-VKdCM-cD6D3-knQS7 (1)::registering broker 5767-X3qyI-6wEYv-4RHkE-SzFjp(1879048199) on route 8
+29784-izqcr-VKdCM-cD6D3-knQS7 (1)::registering broker 47571-evLsL-tLOBs-8BI5K-TMoVB(1879048200) on route 9
+29784-izqcr-VKdCM-cD6D3-knQS7 (1)::registering federate echoleaf_2(131077) on route 6
+29784-izqcr-VKdCM-cD6D3-knQS7 (1)::registering federate echoleaf_3(131078) on route 7
+29784-izqcr-VKdCM-cD6D3-knQS7 (1)::registering federate echoleaf_6(131079) on route 8
+29784-izqcr-VKdCM-cD6D3-knQS7 (1)::registering federate echoleaf_5(131080) on route 9
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	9 federates [min 9]
+	0/9 brokers/cores [min 0]
+	16 publications
+	0 inputs
+	0 endpoints
+	0 filters
+<<<<<<<<<
+29784-izqcr-VKdCM-cD6D3-knQS7 (0)::got disconnect from 29881-22uXn-Z6GJc-d2DHK-My6Xb(1879048193)
+29784-izqcr-VKdCM-cD6D3-knQS7 (0)::got disconnect from 61775-GsQfA-4YM2F-SbvVA-FgDyu(1879048194)
+29784-izqcr-VKdCM-cD6D3-knQS7 (0)::got disconnect from 7209-WPxtT-YYK6n-kjjhH-f0RiP(1879048196)
+29784-izqcr-VKdCM-cD6D3-knQS7 (0)::got disconnect from 37683-kp081-fffVq-YrUlt-CFIDE(1879048198)
+29784-izqcr-VKdCM-cD6D3-knQS7 (0)::got disconnect from 5767-X3qyI-6wEYv-4RHkE-SzFjp(1879048199)
+29784-izqcr-VKdCM-cD6D3-knQS7 (0)::got disconnect from 23426-LqHMQ-s1dqV-2qb8h-B1lQc(1879048197)
+29784-izqcr-VKdCM-cD6D3-knQS7 (0)::got disconnect from 2291-F2YbK-Ps1Vq-9tGbI-AqvGg(1879048195)
+29784-izqcr-VKdCM-cD6D3-knQS7 (0)::got disconnect from 47571-evLsL-tLOBs-8BI5K-TMoVB(1879048200)
+29784-izqcr-VKdCM-cD6D3-knQS7 (0)::got disconnect from 29797-UcIF8-1SXQh-E2qJc-gqxNY(1879048192)
+29784-izqcr-VKdCM-cD6D3-knQS7 (0)::||disconnecting

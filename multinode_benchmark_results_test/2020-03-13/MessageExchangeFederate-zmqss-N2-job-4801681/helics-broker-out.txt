@@ -1,0 +1,20 @@
+37955-2ZIAw-w69mU-hYz19-WsEqL (0)::connecting
+37955-2ZIAw-w69mU-hYz19-WsEqL (0)::||connected on tcp://127.0.0.1:23404
+37955-2ZIAw-w69mU-hYz19-WsEqL (1)::registering broker 37995-umoa6-uXtPY-IPtp2-4UavT(1879048192) on route 1
+37955-2ZIAw-w69mU-hYz19-WsEqL (1)::registering federate msgExchange_1(131072) on route 1
+37955-2ZIAw-w69mU-hYz19-WsEqL (1)::registering broker 47837-JKC1z-IR1FZ-0kuev-u5KXH(1879048193) on route 2
+37955-2ZIAw-w69mU-hYz19-WsEqL (1)::registering federate msgExchange_0(131073) on route 2
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	2 federates [min 2]
+	0/2 brokers/cores [min 0]
+	0 publications
+	0 inputs
+	2 endpoints
+	0 filters
+<<<<<<<<<
+37955-2ZIAw-w69mU-hYz19-WsEqL (1)::entering Exec Mode
+37955-2ZIAw-w69mU-hYz19-WsEqL (0)::got disconnect from 37995-umoa6-uXtPY-IPtp2-4UavT(1879048192)
+37955-2ZIAw-w69mU-hYz19-WsEqL (0)::got disconnect from 47837-JKC1z-IR1FZ-0kuev-u5KXH(1879048193)
+commWarning||37955-2ZIAw-w69mU-hYz19-WsEqL (1)::unknown route and no broker, dropping message time_grant:From (1) Granted Time(1e-08) to (131073)
+37955-2ZIAw-w69mU-hYz19-WsEqL (0)::||disconnecting

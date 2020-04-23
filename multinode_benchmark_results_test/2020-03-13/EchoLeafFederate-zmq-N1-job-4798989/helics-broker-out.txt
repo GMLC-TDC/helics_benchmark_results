@@ -1,0 +1,18 @@
+1834-63Elf-wPq88-MegnU-QIDxL (0)::connecting
+1834-63Elf-wPq88-MegnU-QIDxL (0)::||connected on tcp://127.0.0.1:23404
+1834-63Elf-wPq88-MegnU-QIDxL (1)::registering broker 1849-SofJG-VA7j0-zsCUl-yhK43(1879048192) on route 1
+1834-63Elf-wPq88-MegnU-QIDxL (1)::registering federate echohub(131072) on route 1
+1834-63Elf-wPq88-MegnU-QIDxL (1)::registering broker 1875-EyvIb-YLZcS-Tg8ZS-f0xTe(1879048193) on route 2
+1834-63Elf-wPq88-MegnU-QIDxL (1)::registering federate echoleaf_0(131073) on route 2
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	2 federates [min 2]
+	0/2 brokers/cores [min 0]
+	2 publications
+	0 inputs
+	0 endpoints
+	0 filters
+<<<<<<<<<
+1834-63Elf-wPq88-MegnU-QIDxL (0)::got disconnect from 1875-EyvIb-YLZcS-Tg8ZS-f0xTe(1879048193)
+1834-63Elf-wPq88-MegnU-QIDxL (0)::got disconnect from 1849-SofJG-VA7j0-zsCUl-yhK43(1879048192)
+1834-63Elf-wPq88-MegnU-QIDxL (0)::||disconnecting

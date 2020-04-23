@@ -1,0 +1,39 @@
+2487-SIZW7-dIcHL-8QWr5-F7ZPg (0)::connecting
+2487-SIZW7-dIcHL-8QWr5-F7ZPg (0)::||connected on 127.0.0.1:23901
+2487-SIZW7-dIcHL-8QWr5-F7ZPg (1)::registering broker 2499-oNTTr-UYOLH-WKlMw-RUrGA(1879048192) on route 1
+2487-SIZW7-dIcHL-8QWr5-F7ZPg (1)::registering federate echohub(131072) on route 1
+2487-SIZW7-dIcHL-8QWr5-F7ZPg (1)::registering broker 2579-gkWKx-AGY3F-pp79O-oiTMl(1879048193) on route 2
+2487-SIZW7-dIcHL-8QWr5-F7ZPg (1)::registering federate echoleaf_2(131073) on route 2
+2487-SIZW7-dIcHL-8QWr5-F7ZPg (1)::registering broker 9789-2qlYp-X9TZy-s07f7-b5kKV(1879048194) on route 3
+2487-SIZW7-dIcHL-8QWr5-F7ZPg (1)::registering federate echoleaf_1(131074) on route 3
+2487-SIZW7-dIcHL-8QWr5-F7ZPg (1)::registering broker 19654-EYF4O-YaWc3-zGUVd-5Xwaa(1879048195) on route 4
+2487-SIZW7-dIcHL-8QWr5-F7ZPg (1)::registering broker 327-N6rhf-NoioR-atYMk-zNcgX(1879048196) on route 5
+2487-SIZW7-dIcHL-8QWr5-F7ZPg (1)::registering broker 55081-PdGwm-YP2Ak-9o2Q2-J9yrI(1879048197) on route 6
+2487-SIZW7-dIcHL-8QWr5-F7ZPg (1)::registering broker 12996-KOZvn-8Kg4T-S6P0Z-3ef8g(1879048198) on route 7
+2487-SIZW7-dIcHL-8QWr5-F7ZPg (1)::registering broker 65681-OGin1-bh4w5-er2Xg-YbHx3(1879048199) on route 8
+2487-SIZW7-dIcHL-8QWr5-F7ZPg (1)::registering broker 44687-Qr5yf-Y4vAH-DIdxm-iQFUS(1879048200) on route 9
+2487-SIZW7-dIcHL-8QWr5-F7ZPg (1)::registering federate echoleaf_4(131075) on route 4
+2487-SIZW7-dIcHL-8QWr5-F7ZPg (1)::registering federate echoleaf_7(131076) on route 5
+2487-SIZW7-dIcHL-8QWr5-F7ZPg (1)::registering federate echoleaf_0(131077) on route 6
+2487-SIZW7-dIcHL-8QWr5-F7ZPg (1)::registering federate echoleaf_5(131078) on route 7
+2487-SIZW7-dIcHL-8QWr5-F7ZPg (1)::registering federate echoleaf_6(131079) on route 8
+2487-SIZW7-dIcHL-8QWr5-F7ZPg (1)::registering federate echoleaf_3(131080) on route 9
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	9 federates [min 9]
+	0/9 brokers/cores [min 0]
+	16 publications
+	0 inputs
+	0 endpoints
+	0 filters
+<<<<<<<<<
+2487-SIZW7-dIcHL-8QWr5-F7ZPg (0)::got disconnect from 2579-gkWKx-AGY3F-pp79O-oiTMl(1879048193)
+2487-SIZW7-dIcHL-8QWr5-F7ZPg (0)::got disconnect from 327-N6rhf-NoioR-atYMk-zNcgX(1879048196)
+2487-SIZW7-dIcHL-8QWr5-F7ZPg (0)::got disconnect from 9789-2qlYp-X9TZy-s07f7-b5kKV(1879048194)
+2487-SIZW7-dIcHL-8QWr5-F7ZPg (0)::got disconnect from 19654-EYF4O-YaWc3-zGUVd-5Xwaa(1879048195)
+2487-SIZW7-dIcHL-8QWr5-F7ZPg (0)::got disconnect from 55081-PdGwm-YP2Ak-9o2Q2-J9yrI(1879048197)
+2487-SIZW7-dIcHL-8QWr5-F7ZPg (0)::got disconnect from 65681-OGin1-bh4w5-er2Xg-YbHx3(1879048199)
+2487-SIZW7-dIcHL-8QWr5-F7ZPg (0)::got disconnect from 12996-KOZvn-8Kg4T-S6P0Z-3ef8g(1879048198)
+2487-SIZW7-dIcHL-8QWr5-F7ZPg (0)::got disconnect from 44687-Qr5yf-Y4vAH-DIdxm-iQFUS(1879048200)
+2487-SIZW7-dIcHL-8QWr5-F7ZPg (0)::got disconnect from 2499-oNTTr-UYOLH-WKlMw-RUrGA(1879048192)
+2487-SIZW7-dIcHL-8QWr5-F7ZPg (0)::||disconnecting

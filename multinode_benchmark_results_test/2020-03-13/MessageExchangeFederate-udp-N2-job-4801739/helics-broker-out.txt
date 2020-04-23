@@ -1,0 +1,19 @@
+34156-kIr1T-9s0RC-SSlhq-5DK6l (0)::connecting
+34156-kIr1T-9s0RC-SSlhq-5DK6l (0)::||connected on 127.0.0.1:23901
+34156-kIr1T-9s0RC-SSlhq-5DK6l (1)::registering broker 34194-px50S-Z8uKR-xFssN-WaBoa(1879048192) on route 1
+34156-kIr1T-9s0RC-SSlhq-5DK6l (1)::registering federate msgExchange_1(131072) on route 1
+34156-kIr1T-9s0RC-SSlhq-5DK6l (1)::registering broker 19821-DdUBX-sk7rx-kekOQ-NT8FM(1879048193) on route 2
+34156-kIr1T-9s0RC-SSlhq-5DK6l (1)::registering federate msgExchange_0(131073) on route 2
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	2 federates [min 2]
+	0/2 brokers/cores [min 0]
+	0 publications
+	0 inputs
+	2 endpoints
+	0 filters
+<<<<<<<<<
+34156-kIr1T-9s0RC-SSlhq-5DK6l (1)::entering Exec Mode
+34156-kIr1T-9s0RC-SSlhq-5DK6l (0)::got disconnect from 34194-px50S-Z8uKR-xFssN-WaBoa(1879048192)
+34156-kIr1T-9s0RC-SSlhq-5DK6l (0)::got disconnect from 19821-DdUBX-sk7rx-kekOQ-NT8FM(1879048193)
+34156-kIr1T-9s0RC-SSlhq-5DK6l (0)::||disconnecting

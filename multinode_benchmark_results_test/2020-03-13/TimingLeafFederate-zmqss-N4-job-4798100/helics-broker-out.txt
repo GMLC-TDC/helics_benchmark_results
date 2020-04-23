@@ -1,0 +1,27 @@
+30921-YzPOw-OP8Ai-RPypm-scNQs (0)::connecting
+30921-YzPOw-OP8Ai-RPypm-scNQs (0)::||connected on tcp://127.0.0.1:23404
+30921-YzPOw-OP8Ai-RPypm-scNQs (1)::registering broker 30934-aQcW1-KaYNW-qyR5Q-CJ44O(1879048192) on route 1
+30921-YzPOw-OP8Ai-RPypm-scNQs (1)::registering federate echohub(131072) on route 1
+30921-YzPOw-OP8Ai-RPypm-scNQs (1)::registering broker 30985-xDYvc-CpWxI-HhOat-WDy3w(1879048193) on route 2
+30921-YzPOw-OP8Ai-RPypm-scNQs (1)::registering federate echoleaf_1(131073) on route 2
+30921-YzPOw-OP8Ai-RPypm-scNQs (1)::registering broker 38598-4zZuZ-Dpufd-nvtni-BNqLp(1879048194) on route 3
+30921-YzPOw-OP8Ai-RPypm-scNQs (1)::registering broker 37247-dv0V6-fA2hL-y1e6F-Zg7mn(1879048195) on route 4
+30921-YzPOw-OP8Ai-RPypm-scNQs (1)::registering federate echoleaf_0(131074) on route 3
+30921-YzPOw-OP8Ai-RPypm-scNQs (1)::registering federate echoleaf_3(131075) on route 4
+30921-YzPOw-OP8Ai-RPypm-scNQs (1)::registering broker 28941-OEc30-YTr5n-KsJfZ-3Xa9e(1879048196) on route 5
+30921-YzPOw-OP8Ai-RPypm-scNQs (1)::registering federate echoleaf_2(131076) on route 5
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	5 federates [min 5]
+	0/5 brokers/cores [min 0]
+	8 publications
+	0 inputs
+	0 endpoints
+	0 filters
+<<<<<<<<<
+30921-YzPOw-OP8Ai-RPypm-scNQs (0)::got disconnect from 37247-dv0V6-fA2hL-y1e6F-Zg7mn(1879048195)
+30921-YzPOw-OP8Ai-RPypm-scNQs (0)::got disconnect from 30985-xDYvc-CpWxI-HhOat-WDy3w(1879048193)
+30921-YzPOw-OP8Ai-RPypm-scNQs (0)::got disconnect from 38598-4zZuZ-Dpufd-nvtni-BNqLp(1879048194)
+30921-YzPOw-OP8Ai-RPypm-scNQs (0)::got disconnect from 28941-OEc30-YTr5n-KsJfZ-3Xa9e(1879048196)
+30921-YzPOw-OP8Ai-RPypm-scNQs (0)::got disconnect from 30934-aQcW1-KaYNW-qyR5Q-CJ44O(1879048192)
+30921-YzPOw-OP8Ai-RPypm-scNQs (0)::||disconnecting

@@ -1,0 +1,19 @@
+28842-5zuxe-GkbNz-wycfE-Yza6P (0)::connecting
+28842-5zuxe-GkbNz-wycfE-Yza6P (0)::||connected on 127.0.0.1:33133
+28842-5zuxe-GkbNz-wycfE-Yza6P (1)::registering broker 28878-Ol3wK-WW5WN-ZjyHM-geAmy(1879048192) on route 1
+28842-5zuxe-GkbNz-wycfE-Yza6P (1)::registering federate msgExchange_1(131072) on route 1
+28842-5zuxe-GkbNz-wycfE-Yza6P (1)::registering broker 66710-PmGMB-4mYfV-4sHle-OYvn1(1879048193) on route 2
+28842-5zuxe-GkbNz-wycfE-Yza6P (1)::registering federate msgExchange_0(131073) on route 2
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	2 federates [min 2]
+	0/2 brokers/cores [min 0]
+	0 publications
+	0 inputs
+	2 endpoints
+	0 filters
+<<<<<<<<<
+28842-5zuxe-GkbNz-wycfE-Yza6P (1)::entering Exec Mode
+28842-5zuxe-GkbNz-wycfE-Yza6P (0)::got disconnect from 28878-Ol3wK-WW5WN-ZjyHM-geAmy(1879048192)
+28842-5zuxe-GkbNz-wycfE-Yza6P (0)::got disconnect from 66710-PmGMB-4mYfV-4sHle-OYvn1(1879048193)
+28842-5zuxe-GkbNz-wycfE-Yza6P (0)::||disconnecting

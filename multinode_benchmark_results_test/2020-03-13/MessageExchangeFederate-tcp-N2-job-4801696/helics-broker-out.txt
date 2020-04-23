@@ -1,0 +1,19 @@
+40645-oetb1-h8bXN-set8U-tWPB7 (0)::connecting
+40645-oetb1-h8bXN-set8U-tWPB7 (0)::||connected on 127.0.0.1:24160
+40645-oetb1-h8bXN-set8U-tWPB7 (1)::registering broker 40684-eB2Ao-t7Gpd-QN4pG-Tbgvc(1879048192) on route 1
+40645-oetb1-h8bXN-set8U-tWPB7 (1)::registering federate msgExchange_1(131072) on route 1
+40645-oetb1-h8bXN-set8U-tWPB7 (1)::registering broker 42644-q8REI-OEMrY-ywfFR-8TBWN(1879048193) on route 2
+40645-oetb1-h8bXN-set8U-tWPB7 (1)::registering federate msgExchange_0(131073) on route 2
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	2 federates [min 2]
+	0/2 brokers/cores [min 0]
+	0 publications
+	0 inputs
+	2 endpoints
+	0 filters
+<<<<<<<<<
+40645-oetb1-h8bXN-set8U-tWPB7 (1)::entering Exec Mode
+40645-oetb1-h8bXN-set8U-tWPB7 (0)::got disconnect from 40684-eB2Ao-t7Gpd-QN4pG-Tbgvc(1879048192)
+40645-oetb1-h8bXN-set8U-tWPB7 (0)::got disconnect from 42644-q8REI-OEMrY-ywfFR-8TBWN(1879048193)
+40645-oetb1-h8bXN-set8U-tWPB7 (0)::||disconnecting

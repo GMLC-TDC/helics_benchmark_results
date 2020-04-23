@@ -1,0 +1,25 @@
+54367-xfPgJ-uZYYc-SCcSg-sfypZ (0)::connecting
+54367-xfPgJ-uZYYc-SCcSg-sfypZ (0)::||connected on tcp://127.0.0.1:23404
+54367-xfPgJ-uZYYc-SCcSg-sfypZ (1)::registering broker 54422-9XRoq-f3rqg-R4fAR-l7eAB(1879048192) on route 1
+54367-xfPgJ-uZYYc-SCcSg-sfypZ (1)::registering federate ringlink_1(131072) on route 1
+54367-xfPgJ-uZYYc-SCcSg-sfypZ (1)::registering broker 28690-h9aUx-Wb8Jo-K6G2x-NwAgH(1879048193) on route 2
+54367-xfPgJ-uZYYc-SCcSg-sfypZ (1)::registering broker 2133-XhHEX-NCoT9-ypSCI-6Q7Pp(1879048194) on route 3
+54367-xfPgJ-uZYYc-SCcSg-sfypZ (1)::registering federate ringlink_2(131073) on route 2
+54367-xfPgJ-uZYYc-SCcSg-sfypZ (1)::registering federate ringlink_0(131074) on route 3
+54367-xfPgJ-uZYYc-SCcSg-sfypZ (1)::registering broker 30170-0CkQC-IwbiN-1znz3-O4fCG(1879048195) on route 4
+54367-xfPgJ-uZYYc-SCcSg-sfypZ (1)::registering federate ringlink_3(131075) on route 4
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	4 federates [min 4]
+	0/4 brokers/cores [min 0]
+	4 publications
+	0 inputs
+	0 endpoints
+	0 filters
+<<<<<<<<<
+54367-xfPgJ-uZYYc-SCcSg-sfypZ (0)::got disconnect from 28690-h9aUx-Wb8Jo-K6G2x-NwAgH(1879048193)
+54367-xfPgJ-uZYYc-SCcSg-sfypZ (0)::got disconnect from 30170-0CkQC-IwbiN-1znz3-O4fCG(1879048195)
+54367-xfPgJ-uZYYc-SCcSg-sfypZ (0)::got disconnect from 2133-XhHEX-NCoT9-ypSCI-6Q7Pp(1879048194)
+54367-xfPgJ-uZYYc-SCcSg-sfypZ (0)::got disconnect from 54422-9XRoq-f3rqg-R4fAR-l7eAB(1879048192)
+commWarning||54367-xfPgJ-uZYYc-SCcSg-sfypZ (1)::unknown route and no broker, dropping message pub:From (131072) handle(1) size 100 at 5e-06 to 131073
+54367-xfPgJ-uZYYc-SCcSg-sfypZ (0)::||disconnecting

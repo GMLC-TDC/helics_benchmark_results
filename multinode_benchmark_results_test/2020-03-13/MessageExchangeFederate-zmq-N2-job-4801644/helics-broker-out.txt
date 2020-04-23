@@ -1,0 +1,19 @@
+3462-e2ygt-YilKE-kLViY-Pj7Zc (0)::connecting
+3462-e2ygt-YilKE-kLViY-Pj7Zc (0)::||connected on tcp://127.0.0.1:23404
+3462-e2ygt-YilKE-kLViY-Pj7Zc (1)::registering broker 3504-G6yCl-dPSBG-VB4ms-194oW(1879048192) on route 1
+3462-e2ygt-YilKE-kLViY-Pj7Zc (1)::registering federate msgExchange_0(131072) on route 1
+3462-e2ygt-YilKE-kLViY-Pj7Zc (1)::registering broker 42184-2SmOp-3kS2s-nZcJ6-Rdrbt(1879048193) on route 2
+3462-e2ygt-YilKE-kLViY-Pj7Zc (1)::registering federate msgExchange_1(131073) on route 2
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	2 federates [min 2]
+	0/2 brokers/cores [min 0]
+	0 publications
+	0 inputs
+	2 endpoints
+	0 filters
+<<<<<<<<<
+3462-e2ygt-YilKE-kLViY-Pj7Zc (1)::entering Exec Mode
+3462-e2ygt-YilKE-kLViY-Pj7Zc (0)::got disconnect from 3504-G6yCl-dPSBG-VB4ms-194oW(1879048192)
+3462-e2ygt-YilKE-kLViY-Pj7Zc (0)::got disconnect from 42184-2SmOp-3kS2s-nZcJ6-Rdrbt(1879048193)
+3462-e2ygt-YilKE-kLViY-Pj7Zc (0)::||disconnecting

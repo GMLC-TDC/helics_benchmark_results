@@ -1,0 +1,22 @@
+46246-oDefu-dwqnZ-4ETQn-DEsLL (0)::connecting
+46246-oDefu-dwqnZ-4ETQn-DEsLL (0)::||connected on 127.0.0.1:33133
+46246-oDefu-dwqnZ-4ETQn-DEsLL (1)::registering broker 46283-wWksp-SuKl8-6V2dI-YN9Qp(1879048192) on route 1
+commWarning||46246-oDefu-dwqnZ-4ETQn-DEsLL (1)::(tcpss) unknown message destination message dropped broker_ack:From 1
+46246-oDefu-dwqnZ-4ETQn-DEsLL (1)::registering broker 71706-CUxkT-bnzy2-OsizE-4p5VK(1879048193) on route 2
+commWarning||46246-oDefu-dwqnZ-4ETQn-DEsLL (1)::(tcpss) unknown message destination message dropped broker_ack:From 1
+46246-oDefu-dwqnZ-4ETQn-DEsLL (1)::registering federate ringlink_1(131072) on route 3
+46246-oDefu-dwqnZ-4ETQn-DEsLL (1)::registering federate ringlink_0(131073) on route 4
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	2 federates [min 2]
+	0/2 brokers/cores [min 0]
+	2 publications
+	0 inputs
+	0 endpoints
+	0 filters
+<<<<<<<<<
+46246-oDefu-dwqnZ-4ETQn-DEsLL (0)::got disconnect from 71706-CUxkT-bnzy2-OsizE-4p5VK(1879048193)
+commWarning||46246-oDefu-dwqnZ-4ETQn-DEsLL (1)::(tcpss) unknown message destination message dropped time_grant:From (131072) Granted Time(5e-06) to (131073)
+46246-oDefu-dwqnZ-4ETQn-DEsLL (0)::got disconnect from 46283-wWksp-SuKl8-6V2dI-YN9Qp(1879048192)
+commWarning||46246-oDefu-dwqnZ-4ETQn-DEsLL (1)::(tcpss) unknown message destination message dropped pub:From (131072) handle(1) size 100 at 5e-06 to 131073
+46246-oDefu-dwqnZ-4ETQn-DEsLL (0)::||disconnecting

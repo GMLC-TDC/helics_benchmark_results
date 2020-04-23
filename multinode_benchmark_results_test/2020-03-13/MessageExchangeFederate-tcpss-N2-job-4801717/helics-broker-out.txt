@@ -1,0 +1,21 @@
+17932-ozUwO-I1bs7-XfQp1-AmssM (0)::connecting
+17932-ozUwO-I1bs7-XfQp1-AmssM (0)::||connected on 127.0.0.1:33133
+17932-ozUwO-I1bs7-XfQp1-AmssM (1)::registering broker 17970-YTa2q-2oZ9u-VrIdz-Wl5M3(1879048192) on route 1
+17932-ozUwO-I1bs7-XfQp1-AmssM (1)::registering federate msgExchange_0(131072) on route 1
+17932-ozUwO-I1bs7-XfQp1-AmssM (1)::registering broker 38331-eT1ro-bBTib-eh4BR-qHMFx(1879048193) on route 2
+17932-ozUwO-I1bs7-XfQp1-AmssM (1)::registering federate msgExchange_1(131073) on route 2
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	2 federates [min 2]
+	0/2 brokers/cores [min 0]
+	0 publications
+	0 inputs
+	2 endpoints
+	0 filters
+<<<<<<<<<
+17932-ozUwO-I1bs7-XfQp1-AmssM (1)::entering Exec Mode
+17932-ozUwO-I1bs7-XfQp1-AmssM (0)::got disconnect from 38331-eT1ro-bBTib-eh4BR-qHMFx(1879048193)
+commWarning||17932-ozUwO-I1bs7-XfQp1-AmssM (1)::(tcpss) unknown message destination message dropped time_grant:From (1) Granted Time(1e-08) to (131073)
+17932-ozUwO-I1bs7-XfQp1-AmssM (0)::got disconnect from 17970-YTa2q-2oZ9u-VrIdz-Wl5M3(1879048192)
+commWarning||17932-ozUwO-I1bs7-XfQp1-AmssM (1)::(tcpss) unknown message destination message dropped time_grant:From (1) Granted Time(1e-08) to (131072)
+17932-ozUwO-I1bs7-XfQp1-AmssM (0)::||disconnecting

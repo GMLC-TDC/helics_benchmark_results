@@ -1,0 +1,19 @@
+41774-unK7K-6XFWR-2jt9D-E9Z3P (0)::connecting
+41774-unK7K-6XFWR-2jt9D-E9Z3P (0)::||connected on 127.0.0.1:33133
+41774-unK7K-6XFWR-2jt9D-E9Z3P (1)::registering broker 41810-wm7uZ-wT2Qy-xZVJc-AcnXL(1879048192) on route 1
+41774-unK7K-6XFWR-2jt9D-E9Z3P (1)::registering federate msgExchange_1(131072) on route 1
+41774-unK7K-6XFWR-2jt9D-E9Z3P (1)::registering broker 32075-ZKD1U-I9JkH-xftOo-t62Xh(1879048193) on route 2
+41774-unK7K-6XFWR-2jt9D-E9Z3P (1)::registering federate msgExchange_0(131073) on route 2
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	2 federates [min 2]
+	0/2 brokers/cores [min 0]
+	0 publications
+	0 inputs
+	2 endpoints
+	0 filters
+<<<<<<<<<
+41774-unK7K-6XFWR-2jt9D-E9Z3P (1)::entering Exec Mode
+41774-unK7K-6XFWR-2jt9D-E9Z3P (0)::got disconnect from 41810-wm7uZ-wT2Qy-xZVJc-AcnXL(1879048192)
+41774-unK7K-6XFWR-2jt9D-E9Z3P (0)::got disconnect from 32075-ZKD1U-I9JkH-xftOo-t62Xh(1879048193)
+41774-unK7K-6XFWR-2jt9D-E9Z3P (0)::||disconnecting

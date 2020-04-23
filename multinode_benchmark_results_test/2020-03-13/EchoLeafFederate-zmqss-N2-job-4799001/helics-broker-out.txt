@@ -1,0 +1,21 @@
+61598-VmkbY-FqBBl-MAVjn-iVse9 (0)::connecting
+61598-VmkbY-FqBBl-MAVjn-iVse9 (0)::||connected on tcp://127.0.0.1:23404
+61598-VmkbY-FqBBl-MAVjn-iVse9 (1)::registering broker 61611-HkbHE-3aVS3-P2QkP-eYbUI(1879048192) on route 1
+61598-VmkbY-FqBBl-MAVjn-iVse9 (1)::registering federate echohub(131072) on route 1
+61598-VmkbY-FqBBl-MAVjn-iVse9 (1)::registering broker 61645-14k6G-rn1hA-rmYCE-W0IyD(1879048193) on route 2
+61598-VmkbY-FqBBl-MAVjn-iVse9 (1)::registering federate echoleaf_1(131073) on route 2
+61598-VmkbY-FqBBl-MAVjn-iVse9 (1)::registering broker 42722-29BZI-K0HP0-IFVhw-aHUSu(1879048194) on route 3
+61598-VmkbY-FqBBl-MAVjn-iVse9 (1)::registering federate echoleaf_0(131074) on route 3
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	3 federates [min 3]
+	0/3 brokers/cores [min 0]
+	4 publications
+	0 inputs
+	0 endpoints
+	0 filters
+<<<<<<<<<
+61598-VmkbY-FqBBl-MAVjn-iVse9 (0)::got disconnect from 61645-14k6G-rn1hA-rmYCE-W0IyD(1879048193)
+61598-VmkbY-FqBBl-MAVjn-iVse9 (0)::got disconnect from 42722-29BZI-K0HP0-IFVhw-aHUSu(1879048194)
+61598-VmkbY-FqBBl-MAVjn-iVse9 (0)::got disconnect from 61611-HkbHE-3aVS3-P2QkP-eYbUI(1879048192)
+61598-VmkbY-FqBBl-MAVjn-iVse9 (0)::||disconnecting

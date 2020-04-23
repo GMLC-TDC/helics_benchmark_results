@@ -1,0 +1,18 @@
+56155-fx7Fj-W0WSl-IGOdB-ll1E9 (0)::connecting
+56155-fx7Fj-W0WSl-IGOdB-ll1E9 (0)::||connected on 127.0.0.1:23901
+56155-fx7Fj-W0WSl-IGOdB-ll1E9 (1)::registering broker 56166-B01nv-cx2eV-AIWMw-Rd0AY(1879048192) on route 1
+56155-fx7Fj-W0WSl-IGOdB-ll1E9 (1)::registering federate echohub(131072) on route 1
+56155-fx7Fj-W0WSl-IGOdB-ll1E9 (1)::registering broker 56190-E0tMB-O1r3s-6MfAq-nolmg(1879048193) on route 2
+56155-fx7Fj-W0WSl-IGOdB-ll1E9 (1)::registering federate echoleaf_0(131073) on route 2
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	2 federates [min 2]
+	0/2 brokers/cores [min 0]
+	2 publications
+	0 inputs
+	0 endpoints
+	0 filters
+<<<<<<<<<
+56155-fx7Fj-W0WSl-IGOdB-ll1E9 (0)::got disconnect from 56190-E0tMB-O1r3s-6MfAq-nolmg(1879048193)
+56155-fx7Fj-W0WSl-IGOdB-ll1E9 (0)::got disconnect from 56166-B01nv-cx2eV-AIWMw-Rd0AY(1879048192)
+56155-fx7Fj-W0WSl-IGOdB-ll1E9 (0)::||disconnecting

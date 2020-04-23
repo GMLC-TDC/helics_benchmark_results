@@ -1,0 +1,20 @@
+46786-KrLJ5-Wx7fb-j9tc4-TCDjT (0)::connecting
+46786-KrLJ5-Wx7fb-j9tc4-TCDjT (0)::||connected on 127.0.0.1:33133
+46786-KrLJ5-Wx7fb-j9tc4-TCDjT (1)::registering broker 46822-JxnJH-Pmluo-echMS-W8BO6(1879048192) on route 1
+46786-KrLJ5-Wx7fb-j9tc4-TCDjT (1)::registering federate msgExchange_0(131072) on route 1
+46786-KrLJ5-Wx7fb-j9tc4-TCDjT (1)::registering broker 45439-oA8l5-PebcK-2kuKE-QPgkV(1879048193) on route 2
+46786-KrLJ5-Wx7fb-j9tc4-TCDjT (1)::registering federate msgExchange_1(131073) on route 2
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	2 federates [min 2]
+	0/2 brokers/cores [min 0]
+	0 publications
+	0 inputs
+	2 endpoints
+	0 filters
+<<<<<<<<<
+46786-KrLJ5-Wx7fb-j9tc4-TCDjT (1)::entering Exec Mode
+46786-KrLJ5-Wx7fb-j9tc4-TCDjT (0)::got disconnect from 45439-oA8l5-PebcK-2kuKE-QPgkV(1879048193)
+46786-KrLJ5-Wx7fb-j9tc4-TCDjT (0)::got disconnect from 46822-JxnJH-Pmluo-echMS-W8BO6(1879048192)
+46786-KrLJ5-Wx7fb-j9tc4-TCDjT (0)::||disconnecting
+commWarning||46786-KrLJ5-Wx7fb-j9tc4-TCDjT (1)::(tcpss) unknown message destination message dropped time_grant:From (1) Granted Time(1e-08) to (131072)

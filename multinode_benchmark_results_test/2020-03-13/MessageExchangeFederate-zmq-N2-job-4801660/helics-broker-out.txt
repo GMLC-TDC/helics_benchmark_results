@@ -1,0 +1,19 @@
+10653-jZHXw-iGQsL-Aa4Uz-yY181 (0)::connecting
+10653-jZHXw-iGQsL-Aa4Uz-yY181 (0)::||connected on tcp://127.0.0.1:23404
+10653-jZHXw-iGQsL-Aa4Uz-yY181 (1)::registering broker 10692-tg0bh-1IkR2-m1NWl-1r2Fd(1879048192) on route 1
+10653-jZHXw-iGQsL-Aa4Uz-yY181 (1)::registering federate msgExchange_0(131072) on route 1
+10653-jZHXw-iGQsL-Aa4Uz-yY181 (1)::registering broker 15820-OLbE8-QfuyC-wbiwX-4VIL5(1879048193) on route 2
+10653-jZHXw-iGQsL-Aa4Uz-yY181 (1)::registering federate msgExchange_1(131073) on route 2
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	2 federates [min 2]
+	0/2 brokers/cores [min 0]
+	0 publications
+	0 inputs
+	2 endpoints
+	0 filters
+<<<<<<<<<
+10653-jZHXw-iGQsL-Aa4Uz-yY181 (1)::entering Exec Mode
+10653-jZHXw-iGQsL-Aa4Uz-yY181 (0)::got disconnect from 10692-tg0bh-1IkR2-m1NWl-1r2Fd(1879048192)
+10653-jZHXw-iGQsL-Aa4Uz-yY181 (0)::got disconnect from 15820-OLbE8-QfuyC-wbiwX-4VIL5(1879048193)
+10653-jZHXw-iGQsL-Aa4Uz-yY181 (0)::||disconnecting

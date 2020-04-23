@@ -1,0 +1,19 @@
+47086-wUli3-bdmWn-z8Q2T-k2z9y (0)::connecting
+47086-wUli3-bdmWn-z8Q2T-k2z9y (0)::||connected on 127.0.0.1:33133
+47086-wUli3-bdmWn-z8Q2T-k2z9y (1)::registering broker 47123-46pRs-RslgI-fGf0I-b72QD(1879048192) on route 1
+47086-wUli3-bdmWn-z8Q2T-k2z9y (1)::registering federate msgExchange_0(131072) on route 1
+47086-wUli3-bdmWn-z8Q2T-k2z9y (1)::registering broker 6649-Fug1e-ms2r1-Gp1fB-aZzjv(1879048193) on route 2
+47086-wUli3-bdmWn-z8Q2T-k2z9y (1)::registering federate msgExchange_1(131073) on route 2
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	2 federates [min 2]
+	0/2 brokers/cores [min 0]
+	0 publications
+	0 inputs
+	2 endpoints
+	0 filters
+<<<<<<<<<
+47086-wUli3-bdmWn-z8Q2T-k2z9y (1)::entering Exec Mode
+47086-wUli3-bdmWn-z8Q2T-k2z9y (0)::got disconnect from 47123-46pRs-RslgI-fGf0I-b72QD(1879048192)
+47086-wUli3-bdmWn-z8Q2T-k2z9y (0)::got disconnect from 6649-Fug1e-ms2r1-Gp1fB-aZzjv(1879048193)
+47086-wUli3-bdmWn-z8Q2T-k2z9y (0)::||disconnecting

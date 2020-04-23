@@ -1,0 +1,19 @@
+30953-knPFV-ETzMB-D8RTJ-7lK8f (0)::connecting
+30953-knPFV-ETzMB-D8RTJ-7lK8f (0)::||connected on tcp://127.0.0.1:23404
+30953-knPFV-ETzMB-D8RTJ-7lK8f (1)::registering broker 30992-PZlnP-pcFNw-COIYF-1TYka(1879048192) on route 1
+30953-knPFV-ETzMB-D8RTJ-7lK8f (1)::registering federate phold_0(131072) on route 1
+30953-knPFV-ETzMB-D8RTJ-7lK8f (1)::registering broker 45029-SwD9s-yAT48-glGXZ-kn4gq(1879048193) on route 2
+30953-knPFV-ETzMB-D8RTJ-7lK8f (1)::registering federate phold_1(131073) on route 2
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	2 federates [min 2]
+	0/2 brokers/cores [min 0]
+	0 publications
+	0 inputs
+	2 endpoints
+	0 filters
+<<<<<<<<<
+30953-knPFV-ETzMB-D8RTJ-7lK8f (1)::entering Exec Mode
+30953-knPFV-ETzMB-D8RTJ-7lK8f (0)::got disconnect from 30992-PZlnP-pcFNw-COIYF-1TYka(1879048192)
+30953-knPFV-ETzMB-D8RTJ-7lK8f (0)::got disconnect from 45029-SwD9s-yAT48-glGXZ-kn4gq(1879048193)
+30953-knPFV-ETzMB-D8RTJ-7lK8f (0)::||disconnecting

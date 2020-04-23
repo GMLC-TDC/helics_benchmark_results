@@ -1,0 +1,40 @@
+33310-1EIPV-BjHrH-z4XKT-SoW9x (0)::connecting
+33310-1EIPV-BjHrH-z4XKT-SoW9x (0)::||connected on 127.0.0.1:24160
+33310-1EIPV-BjHrH-z4XKT-SoW9x (1)::registering broker 33321-8Befz-YdMkl-0drTu-mpN0c(1879048192) on route 1
+33310-1EIPV-BjHrH-z4XKT-SoW9x (1)::registering federate echohub(131072) on route 1
+33310-1EIPV-BjHrH-z4XKT-SoW9x (1)::registering broker 33401-8BpPj-hbWXu-SIM6m-U9H5m(1879048193) on route 2
+33310-1EIPV-BjHrH-z4XKT-SoW9x (1)::registering federate echoleaf_4(131073) on route 2
+33310-1EIPV-BjHrH-z4XKT-SoW9x (1)::registering broker 42022-9B2Il-ILzhz-e9KsN-bClOH(1879048194) on route 3
+33310-1EIPV-BjHrH-z4XKT-SoW9x (1)::registering broker 23631-W1WP8-aTbxF-75Xhi-PbA0n(1879048195) on route 4
+33310-1EIPV-BjHrH-z4XKT-SoW9x (1)::registering broker 9730-0F5ch-Tnys8-MVxgp-DVYzN(1879048196) on route 5
+33310-1EIPV-BjHrH-z4XKT-SoW9x (1)::registering broker 29330-ObOHr-Srgvo-8yiJ6-U6ZiF(1879048197) on route 6
+33310-1EIPV-BjHrH-z4XKT-SoW9x (1)::registering broker 54022-fNIom-wvH7o-asBtg-Mescr(1879048198) on route 7
+33310-1EIPV-BjHrH-z4XKT-SoW9x (1)::registering broker 41055-FS1UH-9AFYH-QP561-pLHKT(1879048199) on route 8
+33310-1EIPV-BjHrH-z4XKT-SoW9x (1)::registering broker 2935-BcxnK-71c8M-QgoT5-MCikg(1879048200) on route 9
+33310-1EIPV-BjHrH-z4XKT-SoW9x (1)::registering federate echoleaf_7(131074) on route 3
+33310-1EIPV-BjHrH-z4XKT-SoW9x (1)::registering federate echoleaf_1(131075) on route 4
+33310-1EIPV-BjHrH-z4XKT-SoW9x (1)::registering federate echoleaf_5(131076) on route 5
+33310-1EIPV-BjHrH-z4XKT-SoW9x (1)::registering federate echoleaf_3(131077) on route 6
+33310-1EIPV-BjHrH-z4XKT-SoW9x (1)::registering federate echoleaf_0(131078) on route 7
+33310-1EIPV-BjHrH-z4XKT-SoW9x (1)::registering federate echoleaf_6(131079) on route 8
+33310-1EIPV-BjHrH-z4XKT-SoW9x (1)::registering federate echoleaf_2(131080) on route 9
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	9 federates [min 9]
+	0/9 brokers/cores [min 0]
+	0 publications
+	0 inputs
+	9 endpoints
+	0 filters
+<<<<<<<<<
+33310-1EIPV-BjHrH-z4XKT-SoW9x (1)::entering Exec Mode
+33310-1EIPV-BjHrH-z4XKT-SoW9x (0)::got disconnect from 42022-9B2Il-ILzhz-e9KsN-bClOH(1879048194)
+33310-1EIPV-BjHrH-z4XKT-SoW9x (0)::got disconnect from 33401-8BpPj-hbWXu-SIM6m-U9H5m(1879048193)
+33310-1EIPV-BjHrH-z4XKT-SoW9x (0)::got disconnect from 23631-W1WP8-aTbxF-75Xhi-PbA0n(1879048195)
+33310-1EIPV-BjHrH-z4XKT-SoW9x (0)::got disconnect from 9730-0F5ch-Tnys8-MVxgp-DVYzN(1879048196)
+33310-1EIPV-BjHrH-z4XKT-SoW9x (0)::got disconnect from 29330-ObOHr-Srgvo-8yiJ6-U6ZiF(1879048197)
+33310-1EIPV-BjHrH-z4XKT-SoW9x (0)::got disconnect from 2935-BcxnK-71c8M-QgoT5-MCikg(1879048200)
+33310-1EIPV-BjHrH-z4XKT-SoW9x (0)::got disconnect from 41055-FS1UH-9AFYH-QP561-pLHKT(1879048199)
+33310-1EIPV-BjHrH-z4XKT-SoW9x (0)::got disconnect from 54022-fNIom-wvH7o-asBtg-Mescr(1879048198)
+33310-1EIPV-BjHrH-z4XKT-SoW9x (0)::got disconnect from 33321-8Befz-YdMkl-0drTu-mpN0c(1879048192)
+33310-1EIPV-BjHrH-z4XKT-SoW9x (0)::||disconnecting

@@ -1,0 +1,18 @@
+59852-GP1Sw-6ebPp-8y5Lo-Xut8a (0)::connecting
+59852-GP1Sw-6ebPp-8y5Lo-Xut8a (0)::||connected on tcp://127.0.0.1:23404
+59852-GP1Sw-6ebPp-8y5Lo-Xut8a (1)::registering broker 59865-i8ypQ-Ft3x8-ZuJlm-fBueo(1879048192) on route 1
+59852-GP1Sw-6ebPp-8y5Lo-Xut8a (1)::registering federate echohub(131072) on route 1
+59852-GP1Sw-6ebPp-8y5Lo-Xut8a (1)::registering broker 59891-UdH6Y-n4jcY-5gJEw-iJf5n(1879048193) on route 2
+59852-GP1Sw-6ebPp-8y5Lo-Xut8a (1)::registering federate echoleaf_0(131073) on route 2
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	2 federates [min 2]
+	0/2 brokers/cores [min 0]
+	2 publications
+	0 inputs
+	0 endpoints
+	0 filters
+<<<<<<<<<
+59852-GP1Sw-6ebPp-8y5Lo-Xut8a (0)::got disconnect from 59891-UdH6Y-n4jcY-5gJEw-iJf5n(1879048193)
+59852-GP1Sw-6ebPp-8y5Lo-Xut8a (0)::got disconnect from 59865-i8ypQ-Ft3x8-ZuJlm-fBueo(1879048192)
+59852-GP1Sw-6ebPp-8y5Lo-Xut8a (0)::||disconnecting

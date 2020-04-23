@@ -1,0 +1,22 @@
+26089-Aj7sG-Mj8Hk-MbDX9-7qX2j (0)::connecting
+26089-Aj7sG-Mj8Hk-MbDX9-7qX2j (0)::||connected on tcp://127.0.0.1:23404
+26089-Aj7sG-Mj8Hk-MbDX9-7qX2j (1)::registering broker 26103-pHZPP-OW5LT-w1KPq-vcPww(1879048192) on route 1
+26089-Aj7sG-Mj8Hk-MbDX9-7qX2j (1)::registering federate echohub(131072) on route 1
+26089-Aj7sG-Mj8Hk-MbDX9-7qX2j (1)::registering broker 26138-pJ6II-0WaWm-hRqrD-wQEMs(1879048193) on route 2
+26089-Aj7sG-Mj8Hk-MbDX9-7qX2j (1)::registering federate echoleaf_1(131073) on route 2
+26089-Aj7sG-Mj8Hk-MbDX9-7qX2j (1)::registering broker 62206-1ejNE-0bvdo-fL1TY-AOmch(1879048194) on route 3
+26089-Aj7sG-Mj8Hk-MbDX9-7qX2j (1)::registering federate echoleaf_0(131074) on route 3
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	3 federates [min 3]
+	0/3 brokers/cores [min 0]
+	0 publications
+	0 inputs
+	3 endpoints
+	0 filters
+<<<<<<<<<
+26089-Aj7sG-Mj8Hk-MbDX9-7qX2j (1)::entering Exec Mode
+26089-Aj7sG-Mj8Hk-MbDX9-7qX2j (0)::got disconnect from 26138-pJ6II-0WaWm-hRqrD-wQEMs(1879048193)
+26089-Aj7sG-Mj8Hk-MbDX9-7qX2j (0)::got disconnect from 62206-1ejNE-0bvdo-fL1TY-AOmch(1879048194)
+26089-Aj7sG-Mj8Hk-MbDX9-7qX2j (0)::got disconnect from 26103-pHZPP-OW5LT-w1KPq-vcPww(1879048192)
+26089-Aj7sG-Mj8Hk-MbDX9-7qX2j (0)::||disconnecting

@@ -1,0 +1,37 @@
+34928-bGOcj-yntaE-3pFEO-5j6tS (0)::connecting
+34928-bGOcj-yntaE-3pFEO-5j6tS (0)::||connected on 127.0.0.1:33133
+34928-bGOcj-yntaE-3pFEO-5j6tS (1)::registering broker 35003-wvviz-EFOOq-XRo65-s8Ive(1879048192) on route 1
+34928-bGOcj-yntaE-3pFEO-5j6tS (1)::registering federate phold_6(131072) on route 1
+34928-bGOcj-yntaE-3pFEO-5j6tS (1)::registering broker 66560-R8wss-M8Dwx-B9Lp3-6D8RS(1879048193) on route 2
+34928-bGOcj-yntaE-3pFEO-5j6tS (1)::registering broker 50383-Asolz-5XhML-FZ88c-HYpJ0(1879048194) on route 3
+34928-bGOcj-yntaE-3pFEO-5j6tS (1)::registering broker 53642-xtd6q-o8kBw-C6Y44-ytcjf(1879048195) on route 4
+34928-bGOcj-yntaE-3pFEO-5j6tS (1)::registering broker 8260-Bn9ch-wEtYY-iFUsE-ESOLh(1879048196) on route 5
+34928-bGOcj-yntaE-3pFEO-5j6tS (1)::registering broker 56809-ZidyD-xrpJm-tHq6e-zQyUa(1879048197) on route 6
+34928-bGOcj-yntaE-3pFEO-5j6tS (1)::registering federate phold_5(131073) on route 2
+34928-bGOcj-yntaE-3pFEO-5j6tS (1)::registering federate phold_2(131074) on route 3
+34928-bGOcj-yntaE-3pFEO-5j6tS (1)::registering federate phold_4(131075) on route 4
+34928-bGOcj-yntaE-3pFEO-5j6tS (1)::registering federate phold_7(131076) on route 5
+34928-bGOcj-yntaE-3pFEO-5j6tS (1)::registering federate phold_3(131077) on route 6
+34928-bGOcj-yntaE-3pFEO-5j6tS (1)::registering broker 29033-ut9nO-1HtgE-OnmEk-TkT8R(1879048198) on route 7
+34928-bGOcj-yntaE-3pFEO-5j6tS (1)::registering broker 14248-BcUBD-FLy9x-iLjzv-rskpB(1879048199) on route 8
+34928-bGOcj-yntaE-3pFEO-5j6tS (1)::registering federate phold_0(131078) on route 7
+34928-bGOcj-yntaE-3pFEO-5j6tS (1)::registering federate phold_1(131079) on route 8
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	8 federates [min 8]
+	0/8 brokers/cores [min 0]
+	0 publications
+	0 inputs
+	8 endpoints
+	0 filters
+<<<<<<<<<
+34928-bGOcj-yntaE-3pFEO-5j6tS (1)::entering Exec Mode
+34928-bGOcj-yntaE-3pFEO-5j6tS (0)::got disconnect from 35003-wvviz-EFOOq-XRo65-s8Ive(1879048192)
+34928-bGOcj-yntaE-3pFEO-5j6tS (0)::got disconnect from 50383-Asolz-5XhML-FZ88c-HYpJ0(1879048194)
+34928-bGOcj-yntaE-3pFEO-5j6tS (0)::got disconnect from 29033-ut9nO-1HtgE-OnmEk-TkT8R(1879048198)
+34928-bGOcj-yntaE-3pFEO-5j6tS (0)::got disconnect from 56809-ZidyD-xrpJm-tHq6e-zQyUa(1879048197)
+34928-bGOcj-yntaE-3pFEO-5j6tS (0)::got disconnect from 66560-R8wss-M8Dwx-B9Lp3-6D8RS(1879048193)
+34928-bGOcj-yntaE-3pFEO-5j6tS (0)::got disconnect from 14248-BcUBD-FLy9x-iLjzv-rskpB(1879048199)
+34928-bGOcj-yntaE-3pFEO-5j6tS (0)::got disconnect from 8260-Bn9ch-wEtYY-iFUsE-ESOLh(1879048196)
+34928-bGOcj-yntaE-3pFEO-5j6tS (0)::got disconnect from 53642-xtd6q-o8kBw-C6Y44-ytcjf(1879048195)
+34928-bGOcj-yntaE-3pFEO-5j6tS (0)::||disconnecting

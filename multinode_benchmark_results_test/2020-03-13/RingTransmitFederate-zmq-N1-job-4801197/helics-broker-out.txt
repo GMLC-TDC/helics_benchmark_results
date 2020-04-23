@@ -1,0 +1,15 @@
+38759-ozqpo-XgGm1-LEwoF-hco1A (0)::connecting
+38759-ozqpo-XgGm1-LEwoF-hco1A (0)::||connected on tcp://127.0.0.1:23404
+38759-ozqpo-XgGm1-LEwoF-hco1A (1)::registering broker 38790-7mLYK-S3V6U-w4qa5-0rrp3(1879048192) on route 1
+38759-ozqpo-XgGm1-LEwoF-hco1A (1)::registering federate ringlink_0(131072) on route 1
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	1 federates [min 1]
+	0/1 brokers/cores [min 0]
+	1 publications
+	0 inputs
+	0 endpoints
+	0 filters
+<<<<<<<<<
+38759-ozqpo-XgGm1-LEwoF-hco1A (0)::got disconnect from 38790-7mLYK-S3V6U-w4qa5-0rrp3(1879048192)
+38759-ozqpo-XgGm1-LEwoF-hco1A (0)::||disconnecting

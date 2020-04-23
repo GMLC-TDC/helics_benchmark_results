@@ -1,0 +1,20 @@
+49762-9hemC-5UxdY-rYJTZ-DrOYt (0)::connecting
+49762-9hemC-5UxdY-rYJTZ-DrOYt (0)::||connected on 127.0.0.1:24160
+49762-9hemC-5UxdY-rYJTZ-DrOYt (1)::registering broker 49801-wEXGt-uYwSJ-zreV5-hunkL(1879048192) on route 1
+49762-9hemC-5UxdY-rYJTZ-DrOYt (1)::registering federate msgExchange_0(131072) on route 1
+49762-9hemC-5UxdY-rYJTZ-DrOYt (1)::registering broker 65805-Kzpzi-4Fa7V-LXYNH-SE45d(1879048193) on route 2
+49762-9hemC-5UxdY-rYJTZ-DrOYt (1)::registering federate msgExchange_1(131073) on route 2
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	2 federates [min 2]
+	0/2 brokers/cores [min 0]
+	0 publications
+	0 inputs
+	2 endpoints
+	0 filters
+<<<<<<<<<
+49762-9hemC-5UxdY-rYJTZ-DrOYt (1)::entering Exec Mode
+49762-9hemC-5UxdY-rYJTZ-DrOYt (0)::got disconnect from 65805-Kzpzi-4Fa7V-LXYNH-SE45d(1879048193)
+49762-9hemC-5UxdY-rYJTZ-DrOYt (0)::got disconnect from 49801-wEXGt-uYwSJ-zreV5-hunkL(1879048192)
+49762-9hemC-5UxdY-rYJTZ-DrOYt (0)::||disconnecting
+commWarning||49762-9hemC-5UxdY-rYJTZ-DrOYt (1)::(tcp) unknown message destination message dropped time_grant:From (1) Granted Time(1e-08) to (131072)

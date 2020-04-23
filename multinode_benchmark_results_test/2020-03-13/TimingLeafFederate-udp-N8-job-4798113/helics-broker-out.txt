@@ -1,0 +1,39 @@
+67101-0qcS2-jRMCF-BDQew-v8mfv (0)::connecting
+67101-0qcS2-jRMCF-BDQew-v8mfv (0)::||connected on 127.0.0.1:23901
+67101-0qcS2-jRMCF-BDQew-v8mfv (1)::registering broker 67114-VFUfm-cMVSw-eOIX0-5PD4C(1879048192) on route 1
+67101-0qcS2-jRMCF-BDQew-v8mfv (1)::registering federate echohub(131072) on route 1
+67101-0qcS2-jRMCF-BDQew-v8mfv (1)::registering broker 67196-2ouiQ-Hvo7a-cnkZH-LBRXP(1879048193) on route 2
+67101-0qcS2-jRMCF-BDQew-v8mfv (1)::registering federate echoleaf_2(131073) on route 2
+67101-0qcS2-jRMCF-BDQew-v8mfv (1)::registering broker 15165-I91x4-5p9N1-YLMde-b5BI4(1879048194) on route 3
+67101-0qcS2-jRMCF-BDQew-v8mfv (1)::registering broker 21969-2TBjx-wLUGl-KpWrk-3MUwr(1879048195) on route 4
+67101-0qcS2-jRMCF-BDQew-v8mfv (1)::registering broker 44648-egTIc-fk4u9-oHwl3-hFeCR(1879048196) on route 5
+67101-0qcS2-jRMCF-BDQew-v8mfv (1)::registering broker 5122-07RcS-Bzk05-rTcaI-zZrCL(1879048197) on route 6
+67101-0qcS2-jRMCF-BDQew-v8mfv (1)::registering broker 14936-aYEjq-0CoBe-n8CZm-Y39Jl(1879048198) on route 7
+67101-0qcS2-jRMCF-BDQew-v8mfv (1)::registering broker 34864-g4sDw-cQveA-ZZbHI-FHygb(1879048199) on route 8
+67101-0qcS2-jRMCF-BDQew-v8mfv (1)::registering federate echoleaf_0(131074) on route 3
+67101-0qcS2-jRMCF-BDQew-v8mfv (1)::registering federate echoleaf_6(131075) on route 4
+67101-0qcS2-jRMCF-BDQew-v8mfv (1)::registering federate echoleaf_4(131076) on route 5
+67101-0qcS2-jRMCF-BDQew-v8mfv (1)::registering federate echoleaf_3(131077) on route 6
+67101-0qcS2-jRMCF-BDQew-v8mfv (1)::registering federate echoleaf_1(131078) on route 7
+67101-0qcS2-jRMCF-BDQew-v8mfv (1)::registering broker 52899-TLc7Q-kBOuH-xB7Hi-6S7qJ(1879048200) on route 9
+67101-0qcS2-jRMCF-BDQew-v8mfv (1)::registering federate echoleaf_7(131079) on route 8
+67101-0qcS2-jRMCF-BDQew-v8mfv (1)::registering federate echoleaf_5(131080) on route 9
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	9 federates [min 9]
+	0/9 brokers/cores [min 0]
+	16 publications
+	0 inputs
+	0 endpoints
+	0 filters
+<<<<<<<<<
+67101-0qcS2-jRMCF-BDQew-v8mfv (0)::got disconnect from 67196-2ouiQ-Hvo7a-cnkZH-LBRXP(1879048193)
+67101-0qcS2-jRMCF-BDQew-v8mfv (0)::got disconnect from 44648-egTIc-fk4u9-oHwl3-hFeCR(1879048196)
+67101-0qcS2-jRMCF-BDQew-v8mfv (0)::got disconnect from 5122-07RcS-Bzk05-rTcaI-zZrCL(1879048197)
+67101-0qcS2-jRMCF-BDQew-v8mfv (0)::got disconnect from 15165-I91x4-5p9N1-YLMde-b5BI4(1879048194)
+67101-0qcS2-jRMCF-BDQew-v8mfv (0)::got disconnect from 34864-g4sDw-cQveA-ZZbHI-FHygb(1879048199)
+67101-0qcS2-jRMCF-BDQew-v8mfv (0)::got disconnect from 52899-TLc7Q-kBOuH-xB7Hi-6S7qJ(1879048200)
+67101-0qcS2-jRMCF-BDQew-v8mfv (0)::got disconnect from 21969-2TBjx-wLUGl-KpWrk-3MUwr(1879048195)
+67101-0qcS2-jRMCF-BDQew-v8mfv (0)::got disconnect from 14936-aYEjq-0CoBe-n8CZm-Y39Jl(1879048198)
+67101-0qcS2-jRMCF-BDQew-v8mfv (0)::got disconnect from 67114-VFUfm-cMVSw-eOIX0-5PD4C(1879048192)
+67101-0qcS2-jRMCF-BDQew-v8mfv (0)::||disconnecting

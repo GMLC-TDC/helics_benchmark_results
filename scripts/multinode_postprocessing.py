@@ -185,6 +185,9 @@ def parse_header_lines(json_file, json_results, uuid_str):
                 json_results[uuid_str]['mhz_per_cpu'] = speed
                 logging.error('{}: Failed to parse CPU MODEL line'.format(
                         json_file['name']))
+        elif 'NUM CPU' in line:
+            print(line[-2:])
+            json_results[uuid_str]['num_cpus'] = line[-2:]
         elif 'ELAPSED TIME' in line:
             json_results[uuid_str]['elapsed_time'] = line[19:]
             match = re.search('ns', line)
@@ -276,14 +279,6 @@ def parse_and_add_benchmark_metadata(json_results):
         else:
             json_results = _add_date(key, json_results)
         
-        # if 'helics_version_string' not in json_results.values():
-        #     json_results[key]['helics_version_string'] =\
-        #         '2.4.0-base-benchmark-federate-g1e9ac3ab-dirty (2020-02-24)'
-        # else:
-        #     print('"helics_version_string" is in json_results.')
-        #     # json_results[key]['helics_version_string'] =\
-        #     #     '2.4.0-base-benchmark-federate-g1e9ac3ab-dirty (2020-02-24)'
-        
         # Adding benchmark to json_results
         path = json_results[key]['path']
 #        filename = json_results[key]['filename']
@@ -292,44 +287,18 @@ def parse_and_add_benchmark_metadata(json_results):
             
         elif 'EchoLeafFederate' in path:
             json_results[key]['benchmark'] = 'EchoLeafFederate'
-            # json_results[key]['helics_version_string'] =\
-            #     '2.4.0-base-benchmark-federate-g1e9ac3ab-dirty (2020-02-24)'
-            # json_results[key]['helics_version'] = '2.4.0'
-            # json_results[key]['zmq_version_string'] = 'ZMQ v4.1.5'
-            # json_results[key]['zmq_version'] = '4.1.5'
         
         elif 'EchoMessageLeafFederate' in path:
-            json_results[key]['benchmark'] = 'EchoMessageLeafFederate'
-            # json_results[key]['helics_version_string'] =\
-            #     '2.4.0-base-benchmark-federate-g1e9ac3ab-dirty (2020-02-24)'
-            # json_results[key]['helics_version'] = '2.4.0'
-            # json_results[key]['zmq_version_string'] = 'ZMQ v4.1.5'
-            # json_results[key]['zmq_version'] = '4.1.5'
-            
+            json_results[key]['benchmark'] = 'EchoMessageLeafFederate'            
         
         elif 'MessageExchangeFederate' in path:
             json_results[key]['benchmark'] = 'MessageExchangeFederate'
-            # json_results[key]['helics_version_string'] =\
-            #     '2.4.0-base-benchmark-federate-g1e9ac3ab-dirty (2020-02-24)'
-            # json_results[key]['helics_version'] = '2.4.0'
-            # json_results[key]['zmq_version_string'] = 'ZMQ v4.1.5'
-            # json_results[key]['zmq_version'] = '4.1.5'
             
         elif 'RingTransmitFederate' in path:
             json_results[key]['benchmark'] = 'RingTransmitFederate'
-            # json_results[key]['helics_version_string'] =\
-            #     '2.4.0-base-benchmark-federate-g1e9ac3ab-dirty (2020-02-24)'
-            # json_results[key]['helics_version'] = '2.4.0'
-            # json_results[key]['zmq_version_string'] = 'ZMQ v4.1.5'
-            # json_results[key]['zmq_version'] = '4.1.5'
             
         elif 'TimingLeafFederate' in path:
             json_results[key]['benchmark'] = 'TimingLeafFederate'
-            # json_results[key]['helics_version_string'] =\
-            #     '2.4.0-base-benchmark-federate-g1e9ac3ab-dirty (2020-02-24)'
-            # json_results[key]['helics_version'] = '2.4.0'
-            # json_results[key]['zmq_version_string'] = 'ZMQ v4.1.5'
-            # json_results[key]['zmq_version'] = '4.1.5'
     return json_results
 
 
@@ -672,7 +641,7 @@ if __name__ == '__main__':
 #    print(script_path)
     head, tail = os.path.split(script_path)
     m_benchmark_results_dir = os.path.join(head, 
-                                           'multinode_benchmark_results')
+                                           'multinode_benchmark_results_test')
     parser.add_argument('-m',
                         '--m_benchmark_results_dir',
                         nargs='?',

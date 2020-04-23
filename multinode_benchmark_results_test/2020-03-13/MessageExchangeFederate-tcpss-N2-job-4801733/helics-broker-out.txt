@@ -1,0 +1,19 @@
+10231-BKSlk-e0BhC-1Ud75-nkUAi (0)::connecting
+10231-BKSlk-e0BhC-1Ud75-nkUAi (0)::||connected on 127.0.0.1:33133
+10231-BKSlk-e0BhC-1Ud75-nkUAi (1)::registering broker 10267-naGLN-6Dnkj-Y0jsM-XlUOh(1879048192) on route 1
+10231-BKSlk-e0BhC-1Ud75-nkUAi (1)::registering federate msgExchange_0(131072) on route 1
+10231-BKSlk-e0BhC-1Ud75-nkUAi (1)::registering broker 68650-5yiaY-FdDEz-Cwtdp-WH3v2(1879048193) on route 2
+10231-BKSlk-e0BhC-1Ud75-nkUAi (1)::registering federate msgExchange_1(131073) on route 2
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	2 federates [min 2]
+	0/2 brokers/cores [min 0]
+	0 publications
+	0 inputs
+	2 endpoints
+	0 filters
+<<<<<<<<<
+10231-BKSlk-e0BhC-1Ud75-nkUAi (1)::entering Exec Mode
+10231-BKSlk-e0BhC-1Ud75-nkUAi (0)::got disconnect from 10267-naGLN-6Dnkj-Y0jsM-XlUOh(1879048192)
+10231-BKSlk-e0BhC-1Ud75-nkUAi (0)::got disconnect from 68650-5yiaY-FdDEz-Cwtdp-WH3v2(1879048193)
+10231-BKSlk-e0BhC-1Ud75-nkUAi (0)::||disconnecting

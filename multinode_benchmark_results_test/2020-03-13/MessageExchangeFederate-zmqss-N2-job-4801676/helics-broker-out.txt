@@ -1,0 +1,19 @@
+68226-JKeJN-d5M8J-M5N5B-ShsCH (0)::connecting
+68226-JKeJN-d5M8J-M5N5B-ShsCH (0)::||connected on tcp://127.0.0.1:23404
+68226-JKeJN-d5M8J-M5N5B-ShsCH (1)::registering broker 68266-vPoFX-eNDmR-yWqQs-UgZf6(1879048192) on route 1
+68226-JKeJN-d5M8J-M5N5B-ShsCH (1)::registering federate msgExchange_0(131072) on route 1
+68226-JKeJN-d5M8J-M5N5B-ShsCH (1)::registering broker 45417-4uHFC-aJQoy-8a1ua-rnGMR(1879048193) on route 2
+68226-JKeJN-d5M8J-M5N5B-ShsCH (1)::registering federate msgExchange_1(131073) on route 2
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	2 federates [min 2]
+	0/2 brokers/cores [min 0]
+	0 publications
+	0 inputs
+	2 endpoints
+	0 filters
+<<<<<<<<<
+68226-JKeJN-d5M8J-M5N5B-ShsCH (1)::entering Exec Mode
+68226-JKeJN-d5M8J-M5N5B-ShsCH (0)::got disconnect from 68266-vPoFX-eNDmR-yWqQs-UgZf6(1879048192)
+68226-JKeJN-d5M8J-M5N5B-ShsCH (0)::got disconnect from 45417-4uHFC-aJQoy-8a1ua-rnGMR(1879048193)
+68226-JKeJN-d5M8J-M5N5B-ShsCH (0)::||disconnecting

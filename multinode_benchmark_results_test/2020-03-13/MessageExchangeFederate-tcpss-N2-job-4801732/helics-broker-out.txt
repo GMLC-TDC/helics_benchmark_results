@@ -1,0 +1,20 @@
+68118-BOF2S-U5Oub-xVBuY-Tpvia (0)::connecting
+68118-BOF2S-U5Oub-xVBuY-Tpvia (0)::||connected on 127.0.0.1:33133
+68118-BOF2S-U5Oub-xVBuY-Tpvia (1)::registering broker 68154-cDKqC-1p42f-Fe2Eo-mS6KX(1879048192) on route 1
+68118-BOF2S-U5Oub-xVBuY-Tpvia (1)::registering federate msgExchange_0(131072) on route 1
+68118-BOF2S-U5Oub-xVBuY-Tpvia (1)::registering broker 22970-fcWlW-8rho4-Gbt1n-0auHI(1879048193) on route 2
+68118-BOF2S-U5Oub-xVBuY-Tpvia (1)::registering federate msgExchange_1(131073) on route 2
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	2 federates [min 2]
+	0/2 brokers/cores [min 0]
+	0 publications
+	0 inputs
+	2 endpoints
+	0 filters
+<<<<<<<<<
+68118-BOF2S-U5Oub-xVBuY-Tpvia (1)::entering Exec Mode
+68118-BOF2S-U5Oub-xVBuY-Tpvia (0)::got disconnect from 22970-fcWlW-8rho4-Gbt1n-0auHI(1879048193)
+68118-BOF2S-U5Oub-xVBuY-Tpvia (0)::got disconnect from 68154-cDKqC-1p42f-Fe2Eo-mS6KX(1879048192)
+68118-BOF2S-U5Oub-xVBuY-Tpvia (0)::||disconnecting
+commWarning||68118-BOF2S-U5Oub-xVBuY-Tpvia (1)::(tcpss) unknown message destination message dropped time_grant:From (1) Granted Time(1e-08) to (131072)

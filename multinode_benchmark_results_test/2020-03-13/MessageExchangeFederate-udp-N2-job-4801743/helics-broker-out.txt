@@ -1,0 +1,19 @@
+47869-pmlJO-1kkdk-kxZQK-fiRN2 (0)::connecting
+47869-pmlJO-1kkdk-kxZQK-fiRN2 (0)::||connected on 127.0.0.1:23901
+47869-pmlJO-1kkdk-kxZQK-fiRN2 (1)::registering broker 47908-uzv1C-TbYLN-Rnoub-ubYe4(1879048192) on route 1
+47869-pmlJO-1kkdk-kxZQK-fiRN2 (1)::registering federate msgExchange_0(131072) on route 1
+47869-pmlJO-1kkdk-kxZQK-fiRN2 (1)::registering broker 46363-EK2In-VOYjf-wOM1D-bCEhJ(1879048193) on route 2
+47869-pmlJO-1kkdk-kxZQK-fiRN2 (1)::registering federate msgExchange_1(131073) on route 2
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	2 federates [min 2]
+	0/2 brokers/cores [min 0]
+	0 publications
+	0 inputs
+	2 endpoints
+	0 filters
+<<<<<<<<<
+47869-pmlJO-1kkdk-kxZQK-fiRN2 (1)::entering Exec Mode
+47869-pmlJO-1kkdk-kxZQK-fiRN2 (0)::got disconnect from 46363-EK2In-VOYjf-wOM1D-bCEhJ(1879048193)
+47869-pmlJO-1kkdk-kxZQK-fiRN2 (0)::got disconnect from 47908-uzv1C-TbYLN-Rnoub-ubYe4(1879048192)
+47869-pmlJO-1kkdk-kxZQK-fiRN2 (0)::||disconnecting

@@ -1,0 +1,30 @@
+------------HELICS BUILD INFO -------------
+HELICS VERSION: 2.4.0-base-benchmark-federate-g1e9ac3ab-dirty (2020-02-24)
+ZMQ VERSION: ZMQ v4.1.5
+COMPILER INFO: Unix Makefiles  Linux-3.10.0-1062.1.1.1chaos.ch6.x86_64:GNU-4.9.3
+BUILD FLAGS:  -O3 -DNDEBUG  $<$<COMPILE_LANGUAGE:CXX>:-std=c++14>
+------------PROCESSOR INFO ----------------
+HOST PROCESSOR TYPE: x86_64
+CPU MODEL:  Intel(R) Xeon(R) CPU E5-2695 v4 @ 2.10GHz
+NUM CPU:36
+-------------------------------------------
+46283-wWksp-SuKl8-6V2dI-YN9Qp (0)::now waiting for the core to finish registration before proceeding
+46283-wWksp-SuKl8-6V2dI-YN9Qp (0)::broker state=-2, broker id=0, sleepcnt=7
+46283-wWksp-SuKl8-6V2dI-YN9Qp (0)::broker state=-2, broker id=0, sleepcnt=8
+46283-wWksp-SuKl8-6V2dI-YN9Qp (0)::broker state=-2, broker id=0, sleepcnt=9
+46283-wWksp-SuKl8-6V2dI-YN9Qp (0)::broker state=-2, broker id=0, sleepcnt=10
+46283-wWksp-SuKl8-6V2dI-YN9Qp (0)::broker state=-2, broker id=0, sleepcnt=11
+46283-wWksp-SuKl8-6V2dI-YN9Qp (0)::broker state=-2, broker id=0, sleepcnt=12
+46283-wWksp-SuKl8-6V2dI-YN9Qp (0)::broker state=-2, broker id=0, sleepcnt=13
+46283-wWksp-SuKl8-6V2dI-YN9Qp (0)::broker state=-2, broker id=0, sleepcnt=14
+46283-wWksp-SuKl8-6V2dI-YN9Qp (0)::broker state=-2, broker id=0, sleepcnt=15
+46283-wWksp-SuKl8-6V2dI-YN9Qp (0)::broker state=-2, broker id=0, sleepcnt=16
+46283-wWksp-SuKl8-6V2dI-YN9Qp (0)::broker state=-2, broker id=0, sleepcnt=17
+46283-wWksp-SuKl8-6V2dI-YN9Qp (0)::broker state=-2, broker id=0, sleepcnt=18
+46283-wWksp-SuKl8-6V2dI-YN9Qp (0)::broker state=-2, broker id=0, sleepcnt=19
+46283-wWksp-SuKl8-6V2dI-YN9Qp (0)::broker state=-2, broker id=0, sleepcnt=20
+46283-wWksp-SuKl8-6V2dI-YN9Qp (0)::resending reg message
+46283-wWksp-SuKl8-6V2dI-YN9Qp (0)::got resend
+46283-wWksp-SuKl8-6V2dI-YN9Qp (0)::resending broker reg
+BENCHMARK FEDERATE TYPE: RingTransmit
+ELAPSED TIME (ns): 252950271528

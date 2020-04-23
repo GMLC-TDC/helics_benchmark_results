@@ -1,0 +1,19 @@
+46525-ecuBn-nRekB-uxHFG-Avux0 (0)::connecting
+46525-ecuBn-nRekB-uxHFG-Avux0 (0)::||connected on 127.0.0.1:33133
+46525-ecuBn-nRekB-uxHFG-Avux0 (1)::registering broker 46536-rvNWL-Ik66I-geuzK-FaR2H(1879048192) on route 1
+46525-ecuBn-nRekB-uxHFG-Avux0 (1)::registering federate echohub(131072) on route 1
+46525-ecuBn-nRekB-uxHFG-Avux0 (1)::registering broker 46560-7PBz5-lUwD8-gMwfF-QT6TR(1879048193) on route 2
+commWarning||46525-ecuBn-nRekB-uxHFG-Avux0 (1)::(tcpss) unknown message destination message dropped broker_ack:From 1
+46525-ecuBn-nRekB-uxHFG-Avux0 (1)::registering federate echoleaf_0(131073) on route 3
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	2 federates [min 2]
+	0/2 brokers/cores [min 0]
+	2 publications
+	0 inputs
+	0 endpoints
+	0 filters
+<<<<<<<<<
+46525-ecuBn-nRekB-uxHFG-Avux0 (0)::got disconnect from 46560-7PBz5-lUwD8-gMwfF-QT6TR(1879048193)
+46525-ecuBn-nRekB-uxHFG-Avux0 (0)::got disconnect from 46536-rvNWL-Ik66I-geuzK-FaR2H(1879048192)
+46525-ecuBn-nRekB-uxHFG-Avux0 (0)::||disconnecting

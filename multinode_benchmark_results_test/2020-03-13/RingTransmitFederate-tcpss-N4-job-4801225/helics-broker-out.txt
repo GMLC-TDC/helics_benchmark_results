@@ -1,0 +1,25 @@
+14926-nHiGP-gLAXO-dUich-QrWdF (0)::connecting
+14926-nHiGP-gLAXO-dUich-QrWdF (0)::||connected on 127.0.0.1:33133
+14926-nHiGP-gLAXO-dUich-QrWdF (1)::registering broker 14979-HTXrv-TlpGw-75Pym-Ubmyn(1879048192) on route 1
+14926-nHiGP-gLAXO-dUich-QrWdF (1)::registering federate ringlink_1(131072) on route 1
+14926-nHiGP-gLAXO-dUich-QrWdF (1)::registering broker 72711-pWBsR-jcYGO-q609d-RkxZ8(1879048193) on route 2
+14926-nHiGP-gLAXO-dUich-QrWdF (1)::registering broker 39138-DCEJp-L0rJK-764WL-oOxkz(1879048194) on route 3
+14926-nHiGP-gLAXO-dUich-QrWdF (1)::registering federate ringlink_3(131073) on route 2
+14926-nHiGP-gLAXO-dUich-QrWdF (1)::registering broker 53161-RBWE8-41At9-ihYrL-y1PgO(1879048195) on route 4
+14926-nHiGP-gLAXO-dUich-QrWdF (1)::registering federate ringlink_0(131074) on route 3
+14926-nHiGP-gLAXO-dUich-QrWdF (1)::registering federate ringlink_2(131075) on route 4
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	4 federates [min 4]
+	0/4 brokers/cores [min 0]
+	4 publications
+	0 inputs
+	0 endpoints
+	0 filters
+<<<<<<<<<
+14926-nHiGP-gLAXO-dUich-QrWdF (0)::got disconnect from 53161-RBWE8-41At9-ihYrL-y1PgO(1879048195)
+14926-nHiGP-gLAXO-dUich-QrWdF (0)::got disconnect from 72711-pWBsR-jcYGO-q609d-RkxZ8(1879048193)
+14926-nHiGP-gLAXO-dUich-QrWdF (0)::got disconnect from 39138-DCEJp-L0rJK-764WL-oOxkz(1879048194)
+14926-nHiGP-gLAXO-dUich-QrWdF (0)::got disconnect from 14979-HTXrv-TlpGw-75Pym-Ubmyn(1879048192)
+commWarning||14926-nHiGP-gLAXO-dUich-QrWdF (1)::(tcpss) unknown message destination message dropped pub:From (131072) handle(1) size 100 at 5e-06 to 131075
+14926-nHiGP-gLAXO-dUich-QrWdF (0)::||disconnecting

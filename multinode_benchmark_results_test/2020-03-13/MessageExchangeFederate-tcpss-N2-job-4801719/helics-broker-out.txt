@@ -1,0 +1,20 @@
+45717-irfDS-dAKD3-BxByL-wcMwz (0)::connecting
+45717-irfDS-dAKD3-BxByL-wcMwz (0)::||connected on 127.0.0.1:33133
+45717-irfDS-dAKD3-BxByL-wcMwz (1)::registering broker 45753-0T4Ov-hd1Xt-3T7eM-HMOa3(1879048192) on route 1
+45717-irfDS-dAKD3-BxByL-wcMwz (1)::registering federate msgExchange_1(131072) on route 1
+45717-irfDS-dAKD3-BxByL-wcMwz (1)::registering broker 44508-Byfy4-0oGLa-W0bZ4-mDlgD(1879048193) on route 2
+45717-irfDS-dAKD3-BxByL-wcMwz (1)::registering federate msgExchange_0(131073) on route 2
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	2 federates [min 2]
+	0/2 brokers/cores [min 0]
+	0 publications
+	0 inputs
+	2 endpoints
+	0 filters
+<<<<<<<<<
+45717-irfDS-dAKD3-BxByL-wcMwz (1)::entering Exec Mode
+45717-irfDS-dAKD3-BxByL-wcMwz (0)::got disconnect from 44508-Byfy4-0oGLa-W0bZ4-mDlgD(1879048193)
+45717-irfDS-dAKD3-BxByL-wcMwz (0)::got disconnect from 45753-0T4Ov-hd1Xt-3T7eM-HMOa3(1879048192)
+45717-irfDS-dAKD3-BxByL-wcMwz (0)::||disconnecting
+commWarning||45717-irfDS-dAKD3-BxByL-wcMwz (1)::(tcpss) unknown message destination message dropped time_grant:From (1) Granted Time(1e-08) to (131072)

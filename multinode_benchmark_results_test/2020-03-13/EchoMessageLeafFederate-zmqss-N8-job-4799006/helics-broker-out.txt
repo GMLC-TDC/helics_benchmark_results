@@ -1,0 +1,41 @@
+20708-8E26T-MwMjH-xLdIR-jJDx0 (0)::connecting
+20708-8E26T-MwMjH-xLdIR-jJDx0 (0)::||connected on tcp://127.0.0.1:23404
+20708-8E26T-MwMjH-xLdIR-jJDx0 (1)::registering broker 20723-cyY3G-wQtEl-ni8zI-bPNYT(1879048192) on route 1
+20708-8E26T-MwMjH-xLdIR-jJDx0 (1)::registering federate echohub(131072) on route 1
+20708-8E26T-MwMjH-xLdIR-jJDx0 (1)::registering broker 20807-qTlaP-tq4GL-pfNzC-jnvuK(1879048193) on route 2
+20708-8E26T-MwMjH-xLdIR-jJDx0 (1)::registering federate echoleaf_0(131073) on route 2
+20708-8E26T-MwMjH-xLdIR-jJDx0 (1)::registering broker 16529-LrsiI-Av1G0-GdUGL-VSTcE(1879048194) on route 3
+20708-8E26T-MwMjH-xLdIR-jJDx0 (1)::registering broker 11231-3P2pH-6uYGg-r0Ks3-rrGyi(1879048195) on route 4
+20708-8E26T-MwMjH-xLdIR-jJDx0 (1)::registering broker 41766-vAbqp-0hV0Q-ykOmP-sCEW2(1879048196) on route 5
+20708-8E26T-MwMjH-xLdIR-jJDx0 (1)::registering broker 69180-suefE-hDlmI-TmsYO-2oSDM(1879048197) on route 6
+20708-8E26T-MwMjH-xLdIR-jJDx0 (1)::registering broker 34880-AevmN-cOMRC-cxpAa-Qbe2e(1879048198) on route 7
+20708-8E26T-MwMjH-xLdIR-jJDx0 (1)::registering broker 28169-iactF-K1aMN-Hapkg-QiXSX(1879048199) on route 8
+20708-8E26T-MwMjH-xLdIR-jJDx0 (1)::registering federate echoleaf_5(131074) on route 3
+20708-8E26T-MwMjH-xLdIR-jJDx0 (1)::registering federate echoleaf_4(131075) on route 4
+20708-8E26T-MwMjH-xLdIR-jJDx0 (1)::registering broker 990-se7pa-y1hxa-nrPHD-IaT09(1879048200) on route 9
+20708-8E26T-MwMjH-xLdIR-jJDx0 (1)::registering federate echoleaf_3(131076) on route 5
+20708-8E26T-MwMjH-xLdIR-jJDx0 (1)::registering federate echoleaf_2(131077) on route 6
+20708-8E26T-MwMjH-xLdIR-jJDx0 (1)::registering federate echoleaf_1(131078) on route 7
+20708-8E26T-MwMjH-xLdIR-jJDx0 (1)::registering federate echoleaf_7(131079) on route 8
+20708-8E26T-MwMjH-xLdIR-jJDx0 (1)::registering federate echoleaf_6(131080) on route 9
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	9 federates [min 9]
+	0/9 brokers/cores [min 0]
+	0 publications
+	0 inputs
+	9 endpoints
+	0 filters
+<<<<<<<<<
+20708-8E26T-MwMjH-xLdIR-jJDx0 (1)::entering Exec Mode
+20708-8E26T-MwMjH-xLdIR-jJDx0 (0)::got disconnect from 20807-qTlaP-tq4GL-pfNzC-jnvuK(1879048193)
+20708-8E26T-MwMjH-xLdIR-jJDx0 (0)::got disconnect from 28169-iactF-K1aMN-Hapkg-QiXSX(1879048199)
+commWarning||20708-8E26T-MwMjH-xLdIR-jJDx0 (1)::unknown route and no broker, dropping message time_grant:From (1) Granted Time(5.0020000000000006e-06) to (131079)
+20708-8E26T-MwMjH-xLdIR-jJDx0 (0)::got disconnect from 16529-LrsiI-Av1G0-GdUGL-VSTcE(1879048194)
+20708-8E26T-MwMjH-xLdIR-jJDx0 (0)::got disconnect from 41766-vAbqp-0hV0Q-ykOmP-sCEW2(1879048196)
+20708-8E26T-MwMjH-xLdIR-jJDx0 (0)::got disconnect from 34880-AevmN-cOMRC-cxpAa-Qbe2e(1879048198)
+20708-8E26T-MwMjH-xLdIR-jJDx0 (0)::got disconnect from 990-se7pa-y1hxa-nrPHD-IaT09(1879048200)
+20708-8E26T-MwMjH-xLdIR-jJDx0 (0)::got disconnect from 11231-3P2pH-6uYGg-r0Ks3-rrGyi(1879048195)
+20708-8E26T-MwMjH-xLdIR-jJDx0 (0)::got disconnect from 69180-suefE-hDlmI-TmsYO-2oSDM(1879048197)
+20708-8E26T-MwMjH-xLdIR-jJDx0 (0)::got disconnect from 20723-cyY3G-wQtEl-ni8zI-bPNYT(1879048192)
+20708-8E26T-MwMjH-xLdIR-jJDx0 (0)::||disconnecting
