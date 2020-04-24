@@ -760,7 +760,7 @@ if __name__ == '__main__':
     parser.add_argument('-b', 
                         '--bmk_type', 
                         nargs='?', 
-                        default='full')
+                        default='key')
     parser.add_argument('-o', 
                         '--output_path', 
                         nargs='?', 
