@@ -1138,15 +1138,15 @@ if __name__ == '__main__':
     parser.add_argument('-j', 
                         '--json_file', 
                         nargs='?', 
-                        default='multinode_bm_results_test.json')
+                        default='bm_results.json')
     parser.add_argument('-b', 
                         '--bmk_type', 
                         nargs='?', 
-                        default='multinode')
+                        default='key')
     parser.add_argument('-o', 
                         '--output_path', 
                         nargs='?', 
-                        default=os.path.join(script_path, 
+                        default=os.path.join(head, 
                                              'summary_spreadsheets'))
     args = parser.parse_args()
     _auto_run(args)
