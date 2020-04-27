@@ -42,10 +42,28 @@ def get_ratio(dataframe, groupby_columns, index_columns, filter_columns,
     Args:
         dataframe (str) - Pandas dataframe object that contains the 
         desired information for calculating metrics' ratios.
+        
+        groupby_columns (list) - List of columns to group the dataframe
+        by.
+        
+        index_columns (list) - List of columns to set as the index
+        after calculating the ratios.
+        
+        filter_columns (list) - List of columns to filter the grouped
+        dataframe by for calculating the ratios.
+        
+        value_columns (list) - List of specific values to locate in the
+        dataframe to be used for the denominator of the ratios.
+        
+        metric_columns (list) - List of metrics to get ratios for.
+        
+        time (str) - Used to assert there is a one-to-one relationship
+        between a metric value and the time value; should be 'real_time'
+        or 'elapsed_time'.
     
     Returns:
-        final_df (str) - Pandas dataframe that contains the original
-        information plus the mterics' ratios' results.
+        final_df (pandas dataframe) - Contains the original
+        information plus the metrics' ratios' results.
     """
     
     lst = []
@@ -67,7 +85,7 @@ def get_ratio(dataframe, groupby_columns, index_columns, filter_columns,
                             a_df.loc['{}'.format(vs), 
                                      '{}'.format(time)])
                 except Exception as e:
-                    logging.error('core type "{}" does not exist'.format(e))
+                    logging.error('core type {} is not in the index'.format(e))
                     a_df['{}_ratio'.format(ms)] = np.nan
                     a_df['{}_ratio'.format(time)] = np.nan
                 a_df = a_df.reset_index()
@@ -77,7 +95,6 @@ def get_ratio(dataframe, groupby_columns, index_columns, filter_columns,
                 a_df = a_df[cols]
                 lst.append(a_df)
     ratio_df = pd.concat(lst).set_index(index_columns).reset_index()
-            
     return ratio_df
 
 
@@ -86,12 +103,20 @@ def get_slopes(dataframe, benchmark, xdatas, ydatas):
     and the core_types.
     
     Args:
-        dataframe (str) - Pandas dataframe that contains all the 
+        dataframe (pandas dataframe) - Contains all the 
         desired information along with the results of the
         metrics' ratios' calculations.
+        
+        benchmark (str) - Specific benchmark to get slopes for.
+        
+        xdatas (list) - List of values to be considered as x-values
+        in a linear regression approach to get the slope.
+        
+        ydatas (list) - List of values to be considered as y-values
+        in a linear regression approach to get the slope.
     
     Returns:
-        slope_df (str) - Pandas dataframe with the original
+        slope_df (pandas dataframe) - Contains the original
         desired information, the mterics' ratios' results, and the
         calculated slopes for the metrics' ratios.
     """
@@ -121,7 +146,6 @@ def get_slopes(dataframe, benchmark, xdatas, ydatas):
         df = pd.DataFrame(data, index=[s for s in range(len(slopes))])
         df_list.append(df)
     slope_df = pd.concat(df_list, axis=0, ignore_index=True)
-        
     return slope_df
 
 
@@ -130,11 +154,29 @@ def create_metrics(dataframe, filter_columns, groupby_columns, metric_names,
     """This function creates/calculates the desired metrics for analysis.
     
     Args:
-        dataframe (str) - Pandas dataframe that contains all the 
+        dataframe (pandas dataframe) - Contains all the 
         desired information for analysis.
         
+        filter_columns (list) - List of columns to use to create a
+        subset of the original dataframe.
+        
+        groupby_columns (list) - List of columns to use to group the
+        dataframe subset.
+        
+        metric_names (list) - List of names for the metrics that are
+        to be created/calculated.
+        
+        columns (list) - List of tuples of columns to use for calculating
+        the metrics.
+        
+        operations (list) - List of mathematical operations to perform
+        when calculating the metrics; should be either '*' or '/'.
+        
+        time (str) - Used for getting a ratio of the times; should be
+        'real_time' or 'elapsed_time'.
+        
     Returns:
-        main_df (str) - Pandas dataframe that contains the original
+        main_df (pandas dataframe) - Contains the original
         desired information and the new created/calculated metrics to
         be used for analysis.
     """
@@ -156,8 +198,206 @@ def create_metrics(dataframe, filter_columns, groupby_columns, metric_names,
             logging.error('Invalid operation; should be "/" or "*".')
     
     main_df = df
-    
     return main_df
+
+
+def cpu_score(dataframe, bm_type):
+    """This function calculates the CPU Benchmark Score
+    for a given dataframe and benchmark type.
+    
+    Args:
+        dataframe (pandas dataframe) - Contains all the information
+        for calculating the CPU Benchmark Score.
+        
+        bm_type (str) - The type of benchmark; 'full', 'key', or 
+        'multinode'.
+        
+    Returns:
+        score_df (pandas dataframe) - A dataframe that contains the 
+        original information along with the calculates CPU
+        benchmark score(s).
+    """
+    if bm_type == 'full':
+        dataframe = dataframe[dataframe.benchmark != 'cEchoBenchmark']
+        df_list = []
+        for g, df in dataframe.groupby('helics_version_string'):
+            score_df = df
+            score_df = score_df.set_index('benchmark')
+            try:
+                fed_scores = [score_df.loc[i, 'spf'].mean()\
+                              for i in score_df.index.unique()\
+                                  if i != 'messageSendBenchmark']
+                cycles = [score_df.loc[i, 'cpf'].mean()\
+                          for i in score_df.index.unique()\
+                              if i != 'messageSendBenchmark']
+                # TODO: Play with different values for normalizing the scores 
+                # and multiplying by 10000 or something.
+                # TODO: Generalize this function to be used for all the 
+                # benchmark results.
+                if 'messageSendBenchmark' in score_df.index\
+                    and 'messageLookupBenchmark' in score_df.index:
+                    spi = score_df.loc['messageLookupBenchmark', 'spi'].mean()
+                    cpi = score_df.loc['messageLookupBenchmark', 'cpi'].mean()
+                    spms = score_df.loc['messageSendBenchmark', 'spms'].mean()
+                    cpms = score_df.loc['messageSendBenchmark', 'cpms'].mean()
+                    spmc = score_df.loc['messageSendBenchmark', 'spmc'].mean()
+                    cpmc = score_df.loc['messageSendBenchmark', 'cpmc'].mean()
+                    all_scores = np.array(
+                        fed_scores+cycles+[spi, cpi, spms, cpms, spmc, cpmc])
+                    score_df['cpu_score'] = np.round(
+                        np.mean((all_scores/(0.5*np.median(all_scores)))),
+                        decimals=0)
+                elif 'messageSendBenchmark' in score_df.index\
+                    and 'messageLookupBenchmark' not in score_df.index:
+                    spms = score_df.loc['messageSendBenchmark', 'spms'].mean()
+                    cpms = score_df.loc['messageSendBenchmark', 'cpms'].mean()
+                    spmc = score_df.loc['messageSendBenchmark', 'spmc'].mean()
+                    cpmc = score_df.loc['messageSendBenchmark', 'cpmc'].mean()
+                    all_scores = np.array(
+                        fed_scores+cycles+[spms, cpms, spmc, cpmc])
+                    score_df['cpu_score'] = np.round(
+                        np.mean((all_scores/(0.5*np.median(all_scores)))), 
+                        decimals=0)
+                elif 'messageSendBenchmark' not in score_df.index\
+                    and 'messageLookupBenchmark' in score_df.index:
+                    spi = score_df.loc['messageLookupBenchmark', 'spi'].mean()
+                    cpi = score_df.loc['messageLookupBenchmark', 'cpi'].mean()
+                    all_scores = np.array(fed_scores+cycles+[spi, cpi])
+                    score_df['cpu_score'] = np.round(
+                        np.mean((all_scores/(0.5*np.median(all_scores)))), 
+                        decimals=0)
+                elif 'messageSendBenchmark' not in score_df.index\
+                    and 'messageLookupBenchmark' not in score_df.index:
+                    all_scores = np.array(fed_scores+cycles)
+                    score_df['cpu_score'] = np.round(
+                        np.mean((all_scores/(0.5*np.median(all_scores)))), 
+                        decimals=0)
+                else:
+                    logging.error('Failed to calculate score for {}'.format(g))
+            except Exception as e:
+                logging.error('benchmark {} does not exist'.format(e))
+                score_df['cpu_score'] = np.nan
+            score_df = score_df.reset_index()
+            score_df = score_df[['helics_version_string', 'date', 'benchmark', 
+                                 'cpu_score', 'cpf', 'cpi', 
+                                 'cpms', 'cpmc', 'spf', 
+                                 'spi', 'spmc', 'spms']]
+            df_list.append(score_df)
+        score_df = pd.concat(df_list).set_index(
+            'helics_version_string').reset_index()
+    elif bm_type == 'key':
+        df_list = []
+        for g, df in dataframe.groupby('helics_version_string'):
+            score_df = df
+            score_df = score_df.set_index('benchmark')
+            try:
+                fed_scores = [score_df.loc[i, 'spf'].mean()\
+                              for i in score_df.index.unique()]
+                cycles = [score_df.loc[i, 'cpf'].mean()\
+                          for i in score_df.index.unique()]
+                if 'messageLookupBenchmark' in score_df.index:
+                    spi = score_df.loc['messageLookupBenchmark', 'spi'].mean()
+                    cpi = score_df.loc['messageLookupBenchmark', 'cpi'].mean()
+                    all_scores = np.array(
+                        fed_scores+cycles+[spi, cpi])
+                    score_df['cpu_score'] = np.round(
+                        np.mean((all_scores/(0.5*np.median(all_scores)))),
+                        decimals=0)
+                elif 'messageLookupBenchmark' not in score_df.index:
+                    all_scores = np.array(fed_scores+cycles)
+                    score_df['cpu_score'] = np.round(
+                        np.mean((all_scores/(0.5*np.median(all_scores)))), 
+                        decimals=0)
+                else:
+                    logging.error('Failed to calculate score for {}'.format(g))
+            except Exception as e:
+                logging.error('benchmark {} does not exist'.format(e))
+                score_df['cpu_score'] = np.nan
+            score_df = score_df.reset_index()
+            score_df = score_df[[
+                'helics_version_string', 'date', 'benchmark', 'cpu_score', 
+                'cpf', 'cpi', 'spf', 'spi'
+                ]]
+            df_list.append(score_df)
+        score_df = pd.concat(df_list).set_index(
+            'helics_version_string').reset_index()
+    elif bm_type == 'multinode':
+        df_list = []
+        for g, df in dataframe.groupby('helics_version_string'):
+            score_df = df
+            score_df = score_df.set_index('benchmark')
+            try:
+                fed_scores = [score_df.loc[i, 'spf'].mean()\
+                              for i in score_df.index.unique()\
+                                  if i != 'MessageExchangeFederate']
+                cycles = [score_df.loc[i, 'cpf'].mean()\
+                          for i in score_df.index.unique()\
+                              if i != 'MessageExchangeFederate']
+                if 'MessageExchangeFederate' in score_df.index\
+                    and 'PholdFederate' in score_df.index:
+                    spe = score_df.loc['PholdFederate', 'spe'].mean()
+                    cpe = score_df.loc['PholdFederate', 'cpe'].mean()
+                    cpmc = score_df.loc[
+                        'MessageExchangeFederate', 'cpmc'].mean()
+                    cpms = score_df.loc[
+                        'MessageExchangeFederate', 'cpms'].mean()
+                    spms = score_df.loc[
+                        'MessageExchangeFederate', 'spms'].mean()
+                    spmc = score_df.loc[
+                        'MessageExchangeFederate', 'spmc'].mean()
+                    all_scores = np.array(
+                        fed_scores+cycles+[spe, cpe, cpmc, cpms, spms, spmc])
+                    score_df['cpu_score'] = np.round(
+                        np.mean((all_scores/(0.5*np.median(all_scores)))),
+                        decimals=0)
+                elif 'MessageExchangeFederate' in score_df.index\
+                    and 'PholdFederate' not in score_df.index:
+                    cpmc = score_df.loc[
+                        'MessageExchangeFederate', 'cpmc'].mean()
+                    cpms = score_df.loc[
+                        'MessageExchangeFederate', 'cpms'].mean()
+                    spms = score_df.loc[
+                        'MessageExchangeFederate', 'spms'].mean()
+                    spmc = score_df.loc[
+                        'MessageExchangeFederate', 'spmc'].mean()
+                    all_scores = np.array(
+                        fed_scores+cycles+[spms, spmc, cpmc, cpms])
+                    score_df['cpu_score'] = np.round(
+                        np.mean((all_scores/(0.5*np.median(all_scores)))), 
+                        decimals=0)
+                elif 'MessageExchangeFederate' not in score_df.index\
+                    and 'PholdFederate' in score_df.index:
+                    spe = score_df.loc['PholdFederate', 'spe'].mean()
+                    cpe = score_df.loc['PholdFederate', 'cpe'].mean()
+                    all_scores = np.array(
+                        fed_scores+cycles+[spe, cpe])
+                    score_df['cpu_score'] = np.round(
+                        np.mean((all_scores/(0.5*np.median(all_scores)))), 
+                        decimals=0)
+                elif 'MessageExchangeFederate' not in score_df.index\
+                    and 'messageLookupBenchmark' not in score_df.index:
+                    all_scores = np.array(
+                        fed_scores+cycles)
+                    score_df['cpu_score'] = np.round(
+                        np.mean((all_scores/(0.5*np.median(all_scores)))), 
+                        decimals=0)
+                else:
+                    logging.error('Failed to calculate score for {}'.format(g))
+            except Exception as e:
+                logging.error('benchmark {} does not exist'.format(e))
+                score_df['cpu_score'] = np.nan
+            score_df = score_df.reset_index()
+            score_df = score_df[[
+                'helics_version_string', 'date', 'benchmark', 'cpu_score', 
+                'cpf', 'cpe', 'spf', 'spe', 
+                'spmc', 'spms', 'cpms', 'cpmc'
+                ]]
+            df_list.append(score_df)
+        score_df = pd.concat(df_list).set_index(
+            'helics_version_string').reset_index()
+    else:
+        logging.error('Invalid value; should be "full", "key" or "multinode".')
+    return score_df
 
 
 def relative_standard_deviation(x):
@@ -173,7 +413,6 @@ def relative_standard_deviation(x):
         np.std(x) / np.mean(x) (float) - The relative standard
         deviation.
     """
-    
     return np.std(x) / np.mean(x)
 
 
@@ -182,25 +421,39 @@ def create_pivot_tables(dataframe, index_columns, value_columns):
     spreadsheet.
     
     Args:
-        dataframe (str) - Final formatted dataframe that contains
-        all the information, results/calculations for analysis.
-        output_path (str) - Path to send the Excel spreadsheet.
+        dataframe (pandas dataframe) - Final formatted dataframe that 
+        contains all the information, results/calculations for analysis.
+        
+        index_columns (list) - List of columns to be the indices
+        for the pivot table.
+        
+        value_columns (list) - List of metrics for the pivot table
+        to compute values; the default computation is mean.
     
     Returns:
-        (null)
+        p (pandas pivot table) - Pivot table of the final dataframe.
     """    
     # Creating pivot_tables:
     p = pd.pivot_table(
-            dataframe, 
-            index=index_columns, 
-            values=value_columns, 
-            fill_value='null')
+        dataframe, index=index_columns, values=value_columns, fill_value='')
     return p
 
 
 def create_spreadsheet1(dataframe, filename, output_path):
     """This function combines all the above functions and
-    creates a spreadsheet for 'benchmark_type' = 'full'.
+    creates a spreadsheet and csv for 'benchmark_type' = 'full'.
+    
+    Args:
+        dataframe (pandas dataframe) - Contains all the information
+        for analysis.
+        
+        filename (str) - Name of the file for saving the results as
+        an excel spreadsheet and csv file.
+        
+        output_path (str) - Location to send the analysis files.
+    
+    Returns:
+        (null)
     """
     print('Filtering it to just bmk_type = "full"...')
     dataframe = dataframe[(dataframe.benchmark_type == 'full') & 
@@ -218,73 +471,99 @@ def create_spreadsheet1(dataframe, filename, output_path):
     timing_df = dataframe[dataframe.benchmark == 'timingBenchmark']
     # Getting all necessary info for the functions
     print('Saving the necessary information to memory...')
-    met_fed_cols = ['benchmark', 'run_id', 'core_type', 'num_cpus', 
-                    'mhz_per_cpu', 'federate_count', 'real_time']
-    met_fed_groupby_cols = ['benchmark', 'run_id', 'core_type', 
-                            'num_cpus', 'mhz_per_cpu', 'federate_count']
+    met_fed_cols = [
+        'benchmark', 'helics_version_string', 'date', 'run_id', 'core_type', 
+        'num_cpus', 'mhz_per_cpu', 'federate_count', 'real_time'
+        ]
+    met_fed_groupby_cols = [
+        'benchmark', 'helics_version_string', 'date', 'run_id', 
+        'core_type', 'num_cpus', 'mhz_per_cpu', 'federate_count'
+        ]
     met_fed_metrics = ['spf', 'new_mhz_per_cpu', 'cpf']
-    met_fed_cols_tuples = [('real_time', 'federate_count'), 
-                           ('real_time', 'mhz_per_cpu'), 
-                           ('spf', 'new_mhz_per_cpu')] 
+    met_fed_cols_tuples = [
+        ('real_time', 'federate_count'), ('real_time', 'mhz_per_cpu'), 
+        ('spf', 'new_mhz_per_cpu')
+        ] 
     met_fed_ops = ['/', '*', '*']
-    r_fed_groupby_columns = ['benchmark', 'run_id', 'num_cpus', 
-                             'mhz_per_cpu', 'federate_count']
+    r_fed_groupby_columns = [
+        'benchmark', 'helics_version_string', 'date', 'run_id', 
+        'num_cpus', 'mhz_per_cpu', 'federate_count'
+        ]
     r_fed_index_columns = met_fed_cols
     r_fed_filter_columns = ['federate_count']*2
     r_fed_value_columns = ['inproc']*2
     r_fed_metric_columns = ['spf', 'cpf']
     
-    met_filt_cols = ['benchmark', 'run_id', 'core_type', 'num_cpus', 
-                     'mhz_per_cpu', 'federate_count', 'filter_location', 'real_time']
-    met_filt_groupby_cols = ['benchmark', 'run_id', 'core_type', 
-                             'num_cpus', 'mhz_per_cpu', 'federate_count', 
-                             'filter_location']
+    met_filt_cols = [
+        'benchmark', 'helics_version_string', 'date', 'run_id', 
+        'core_type', 'num_cpus', 'mhz_per_cpu', 'federate_count', 
+        'filter_location', 'real_time'
+        ]
+    met_filt_groupby_cols = [
+        'benchmark', 'helics_version_string', 'date', 'run_id', 'core_type', 
+        'num_cpus', 'mhz_per_cpu', 'federate_count', 'filter_location'
+        ]
     met_filt_metrics = met_fed_metrics
     met_filt_cols_tuples = met_fed_cols_tuples
     met_filt_ops = met_fed_ops
-    r_filt_groupby_columns = ['benchmark', 'run_id', 'num_cpus', 
-                              'mhz_per_cpu', 'filter_location', 'federate_count']
+    r_filt_groupby_columns = [
+        'benchmark', 'helics_version_string', 'date', 'run_id', 
+        'num_cpus', 'mhz_per_cpu', 'filter_location', 'federate_count'
+        ]
     r_filt_index_columns = met_filt_cols
     r_filt_filter_columns = r_fed_filter_columns
     r_filt_value_columns = r_fed_value_columns
     r_filt_metric_columns = r_fed_metric_columns
     
-    met_int_cols = ['benchmark', 'run_id', 'core_type', 'num_cpus', 
-                    'mhz_per_cpu', 'federate_count', 'interface_count', 'real_time']
-    met_int_groupby_cols = ['benchmark', 'run_id', 'core_type', 'num_cpus', 
-                            'mhz_per_cpu', 'federate_count', 'interface_count']
+    met_int_cols = [
+        'benchmark', 'helics_version_string', 'date', 'run_id', 
+        'core_type', 'num_cpus', 'mhz_per_cpu', 'federate_count', 
+        'interface_count', 'real_time'
+        ]
+    met_int_groupby_cols = [
+        'benchmark', 'helics_version_string', 'date', 'run_id', 'core_type', 
+        'num_cpus', 'mhz_per_cpu', 'federate_count', 'interface_count'
+        ]
     met_int_metrics = ['spf', 'spi', 'new_mhz_per_cpu', 'cpf', 'cpi']
-    met_int_cols_tuples = [('real_time', 'federate_count'), 
-                           ('real_time', 'interface_count'), 
-                           ('real_time', 'mhz_per_cpu'), 
-                           ('spf', 'new_mhz_per_cpu'), 
-                           ('spi', 'new_mhz_per_cpu')]
+    met_int_cols_tuples = [
+        ('real_time', 'federate_count'), ('real_time', 'interface_count'), 
+        ('real_time', 'mhz_per_cpu'), ('spf', 'new_mhz_per_cpu'), 
+        ('spi', 'new_mhz_per_cpu')
+        ]
     met_int_ops = ['/', '/', '*', '*', '*']
-    r_int_groupby_columns = ['benchmark', 'run_id', 'num_cpus', 
-                             'mhz_per_cpu', 'federate_count', 'interface_count']
+    r_int_groupby_columns = [
+        'benchmark', 'helics_version_string', 'date', 'run_id', 
+        'num_cpus', 'mhz_per_cpu', 'federate_count', 'interface_count'
+        ]
     r_int_index_columns = met_int_cols
     r_int_filter_columns = ['interface_count']*4
     r_int_value_columns = ['inproc']*4
     r_int_metric_columns = ['spf', 'spi', 'cpf', 'cpi']
     
-    met_msg_cols = ['benchmark', 'run_id', 'core_type', 'num_cpus', 
-                    'mhz_per_cpu', 'message_count', 'message_size', 'real_time']
-    met_msg_groupby_cols = ['benchmark', 'run_id', 'core_type', 'num_cpus', 
-                            'mhz_per_cpu', 'message_count', 'message_size']
+    met_msg_cols = [
+        'benchmark', 'helics_version_string', 'date', 'run_id', 
+        'core_type', 'num_cpus', 'mhz_per_cpu', 'message_count', 
+        'message_size', 'real_time'
+        ]
+    met_msg_groupby_cols = [
+        'benchmark', 'helics_version_string', 'date', 'run_id', 'core_type', 
+        'num_cpus', 'mhz_per_cpu', 'message_count', 'message_size'
+        ]
     met_msg_metrics = ['spms', 'spmc', 'new_mhz_per_cpu', 'cpms', 'cpmc']
-    met_msg_cols_tuples = [('real_time', 'message_size'), 
-                           ('real_time', 'message_count'), 
-                           ('real_time', 'mhz_per_cpu'), 
-                           ('spms', 'new_mhz_per_cpu'), 
-                           ('spmc', 'new_mhz_per_cpu')]
+    met_msg_cols_tuples = [
+        ('real_time', 'message_size'), ('real_time', 'message_count'), 
+        ('real_time', 'mhz_per_cpu'), ('spms', 'new_mhz_per_cpu'), 
+        ('spmc', 'new_mhz_per_cpu')
+        ]
     met_msg_ops = ['/', '/', '*', '*', '*']
-    r_msg_groupby_columns = ['benchmark', 'run_id', 'num_cpus', 
-                             'mhz_per_cpu', 'message_size', 'message_count']
+    r_msg_groupby_columns = [
+        'benchmark', 'helics_version_string', 'date', 'run_id', 
+        'num_cpus', 'mhz_per_cpu', 'message_size', 'message_count'
+        ]
     r_msg_index_columns = met_msg_cols
     r_msg_filter_columns = ['message_count']*4
     r_msg_value_columns = ['inproc']*4
     r_msg_metric_columns = ['spms', 'spmc', 'cpms', 'cpmc']
-    
     
     # Applying the functions
     print('Creating the desired metrics and getting the ratios...')
@@ -348,6 +627,18 @@ def create_spreadsheet1(dataframe, filename, output_path):
                        'real_time'),
         r_msg_groupby_columns, r_msg_index_columns, r_msg_filter_columns, 
         r_msg_value_columns, r_msg_metric_columns, 'real_time')
+    
+    print('Calculating CPU benchmark score...')
+    ratio_df = pd.concat(
+        [c_echo_ratio, echo_msg_ratio, echo_ratio, filter_ratio,
+         msg_lkp_ratio, msg_send_ratio, phold_ratio, ring_msg_ratio,
+         ring_ratio, timing_ratio], axis=0, ignore_index=True)
+    score_df = cpu_score(ratio_df, 'full')
+    score_p = create_pivot_tables(
+        score_df, 
+        ['helics_version_string', 'cpu_score', 'benchmark', 'date'],
+        ['cpf', 'cpi', 'cpmc', 'cpms', 'spf', 'spi', 'spmc', 'spms'])
+    
     print('Creating the pivot table and saving to excel...')
     c_echo_p = create_pivot_tables(
         c_echo_ratio, 
@@ -403,6 +694,8 @@ def create_spreadsheet1(dataframe, filename, output_path):
          'real_time_ratio'])
     file_path = os.path.join(output_path, '{}.xlsx'.format(filename))
     with pd.ExcelWriter(file_path) as writer:
+        score_p.to_excel(writer, 
+                         sheet_name='CPU Benchmark Score')
         c_echo_p.to_excel(writer, 
                           sheet_name='{}'.format('cEchoBenchmark'))
         echo_p.to_excel(writer, 
@@ -426,17 +719,30 @@ def create_spreadsheet1(dataframe, filename, output_path):
     print('Successfully saved the data to excel.')
     
     print('Saving data as .csv file...')
-    main_df = pd.concat(
-        [c_echo_ratio, echo_msg_ratio, echo_ratio, filter_ratio,
-         msg_lkp_ratio, msg_send_ratio, phold_ratio, ring_msg_ratio,
-         ring_ratio, timing_ratio], 
-        axis=0, 
-        ignore_index=True)
+    main_df = pd.merge(
+        ratio_df, score_df, how='outer', on=[
+            'benchmark', 'helics_version_string', 'date', 'cpi', 
+            'cpf', 'cpmc', 'cpms', 'spf', 
+            'spi', 'spmc', 'spms'
+            ])
     main_df.to_csv(r'{}\{}.csv'.format(os.path.join(output_path), filename))
+    print('Successfully saved data as .csv file.')
 
 def create_spreadsheet2(dataframe, filename, output_path):
     """This function combines all the above functions and
-    creates a spreadsheet for 'benchmark_type' = 'key'.
+    creates a spreadsheet and csv for 'benchmark_type' = 'key'.
+    
+    Args:
+        dataframe (pandas dataframe) - Contains all the information
+        for analysis.
+        
+        filename (str) - Name of the file for saving the results as
+        an excel spreadsheet and csv file.
+        
+        output_path (str) - Location to send the analysis files.
+    
+    Returns:
+        (null)
     """
     print('Filtering it to just bmk_type = "key"...')
     dataframe = dataframe[(dataframe.benchmark_type == 'key') &
@@ -447,26 +753,38 @@ def create_spreadsheet2(dataframe, filename, output_path):
     timing_df = dataframe[dataframe.benchmark == 'timingBenchmark']
     # Getting all necessary info for the functions
     print('Saving the necessary information to memory...')
-    met_fed_cols = ['benchmark', 'run_id', 'core_type', 'num_cpus', 
-                    'mhz_per_cpu', 'federate_count', 'real_time']
-    met_fed_groupby_cols = ['benchmark', 'run_id', 'core_type', 
-                            'num_cpus', 'mhz_per_cpu', 'federate_count']
+    met_fed_cols = [
+        'benchmark', 'helics_version_string', 'date',
+        'run_id', 'core_type', 'num_cpus', 
+        'mhz_per_cpu', 'federate_count', 'real_time'
+        ]
+    met_fed_groupby_cols = [
+        'benchmark', 'helics_version_string', 'date', 'run_id', 
+        'core_type', 'num_cpus', 'mhz_per_cpu', 'federate_count'
+        ]
     met_fed_metrics = ['spf', 'new_mhz_per_cpu', 'cpf']
     met_fed_cols_tuples = [('real_time', 'federate_count'), 
                            ('real_time', 'mhz_per_cpu'), 
                            ('spf', 'new_mhz_per_cpu')] 
     met_fed_ops = ['/', '*', '*']
-    r_fed_groupby_columns = ['benchmark', 'run_id', 'num_cpus', 
-                             'mhz_per_cpu', 'federate_count']
+    r_fed_groupby_columns = [
+        'benchmark', 'helics_version_string', 'date', 'run_id', 
+        'num_cpus', 'mhz_per_cpu', 'federate_count']
     r_fed_index_columns = met_fed_cols
     r_fed_filter_columns = ['federate_count']*2
     r_fed_value_columns = ['inproc']*2
     r_fed_metric_columns = ['spf', 'cpf']
     
-    met_int_cols = ['benchmark', 'run_id', 'core_type', 'num_cpus', 
-                    'mhz_per_cpu', 'federate_count', 'interface_count', 'real_time']
-    met_int_groupby_cols = ['benchmark', 'run_id', 'core_type', 'num_cpus', 
-                            'mhz_per_cpu', 'federate_count', 'interface_count']
+    met_int_cols = [
+        'benchmark', 'helics_version_string', 'date', 'run_id', 
+        'core_type', 'num_cpus', 'mhz_per_cpu', 'federate_count', 
+        'interface_count', 'real_time'
+        ]
+    met_int_groupby_cols = [
+        'benchmark', 'helics_version_string', 'date', 
+        'run_id', 'core_type', 'num_cpus', 
+        'mhz_per_cpu', 'federate_count', 'interface_count'
+        ]
     met_int_metrics = ['spf', 'spi', 'new_mhz_per_cpu', 'cpf', 'cpi']
     met_int_cols_tuples = [('real_time', 'federate_count'), 
                            ('real_time', 'interface_count'), 
@@ -474,8 +792,10 @@ def create_spreadsheet2(dataframe, filename, output_path):
                            ('spf', 'new_mhz_per_cpu'), 
                            ('spi', 'new_mhz_per_cpu')]
     met_int_ops = ['/', '/', '*', '*', '*']
-    r_int_groupby_columns = ['benchmark', 'run_id', 'num_cpus', 
-                             'mhz_per_cpu', 'federate_count', 'interface_count']
+    r_int_groupby_columns = [
+        'benchmark', 'helics_version_string', 'date', 'run_id', 
+        'num_cpus', 'mhz_per_cpu', 'federate_count', 'interface_count'
+        ]
     r_int_index_columns = met_int_cols
     r_int_filter_columns = ['interface_count']*4
     r_int_value_columns = ['inproc']*4
@@ -507,6 +827,18 @@ def create_spreadsheet2(dataframe, filename, output_path):
                        'real_time'),
         r_int_groupby_columns, r_int_index_columns, r_int_filter_columns, 
         r_int_value_columns, r_int_metric_columns, 'real_time')
+    
+    print('Calculating CPU benchmark score...')
+    ratio_df = pd.concat(
+        [echo_msg_ratio, echo_ratio, msg_lkp_ratio, timing_ratio], 
+        axis=0, 
+        ignore_index=True)
+    score_df = cpu_score(ratio_df, 'key')
+    score_p = create_pivot_tables(
+        score_df, 
+        ['helics_version_string', 'cpu_score', 'benchmark', 'date'],
+        ['cpf', 'cpi', 'spf', 'spi'])
+    
     print('Creating the pivot table and saving to excel...')
     echo_p = create_pivot_tables(
         echo_ratio, 
@@ -531,6 +863,8 @@ def create_spreadsheet2(dataframe, filename, output_path):
          'real_time_ratio'])
     file_path = os.path.join(output_path, '{}.xlsx'.format(filename))
     with pd.ExcelWriter(file_path) as writer:
+        score_p.to_excel(writer, 
+                         sheet_name='CPU Benchmark Score')
         echo_p.to_excel(writer, 
                         sheet_name='{}'.format('echoBenchmark'))
         echo_msg_p.to_excel(writer, 
@@ -541,17 +875,30 @@ def create_spreadsheet2(dataframe, filename, output_path):
                            sheet_name='{}'.format('messageLookupBenchmark'))
     print('Successfully saved the data to excel.')
     
-    print('Saving the data as a .csv file...')
-    main_df = pd.concat(
-        [echo_msg_ratio, echo_ratio, msg_lkp_ratio, timing_ratio], 
-        axis=0, 
-        ignore_index=True)
+    print('Saving data as .csv file...')
+    main_df = pd.merge(
+        ratio_df, score_df, how='outer', on=[
+            'benchmark', 'helics_version_string', 'date', 'cpi', 
+            'cpf', 'spf', 'spi'
+            ])
     main_df.to_csv(r'{}\{}.csv'.format(os.path.join(output_path), filename))
     print('Successfully saved data as .csv file.')
         
 def create_spreadsheet3(dataframe, filename, output_path):
     """This function combines all the above functions and
-    creates a spreadhsheet for multinode benchmark results.
+    creates a spreadhsheet and for multinode benchmark results.
+    
+    Args:
+        dataframe (pandas dataframe) - Contains all the information
+        for analysis.
+        
+        filename (str) - Name of the file for saving the results as
+        an excel spreadsheet and csv file.
+        
+        output_path (str) - Location to send the analysis files.
+    
+    Returns:
+        (null)
     """
     print('Processing data for multinode benchmark results...')
     echo_df = dataframe[dataframe.benchmark == 'EchoLeafFederate']
@@ -562,48 +909,74 @@ def create_spreadsheet3(dataframe, filename, output_path):
     timing_df = dataframe[dataframe.benchmark == 'TimingLeafFederate']
     # Getting all necessary info for the functions
     print('Saving the necessary information to memory...')
-    met_fed_cols = ['benchmark', 'core_type', 'federate_count', 'elapsed_time']
-    met_fed_groupby_cols = ['benchmark', 'core_type', 'federate_count']
-    met_fed_metrics = ['spf']
-    met_fed_cols_tuples = [('elapsed_time', 'federate_count')] 
-    met_fed_ops = ['/']
-    r_fed_groupby_columns = ['benchmark', 'federate_count']
+    met_fed_cols = [
+        'benchmark', 'helics_version_string', 'date', 'mhz_per_cpu', 
+        'core_type', 'federate_count', 'elapsed_time'
+        ]
+    met_fed_groupby_cols = [
+        'benchmark', 'helics_version_string', 'date', 
+        'mhz_per_cpu', 'core_type', 'federate_count'
+        ]
+    met_fed_metrics = ['spf', 'new_mhz_per_cpu', 'cpf']
+    met_fed_cols_tuples = [('elapsed_time', 'federate_count'), 
+                           ('elapsed_time', 'mhz_per_cpu'), 
+                           ('spf', 'new_mhz_per_cpu')] 
+    met_fed_ops = ['/', '*', '*']
+    r_fed_groupby_columns = [
+        'benchmark', 'helics_version_string', 'date', 
+        'mhz_per_cpu', 'federate_count'
+        ]
     r_fed_index_columns = met_fed_cols
-    r_fed_filter_columns = ['federate_count']
-    r_fed_value_columns = ['tcp']
-    r_fed_metric_columns = ['spf']
+    r_fed_filter_columns = ['federate_count']*2
+    r_fed_value_columns = ['tcp']*2
+    r_fed_metric_columns = ['spf', 'cpf']
     
-    met_p_cols = ['benchmark', 'core_type', 'mhz_per_cpu', 
-                  'federate_count', 'EvCount', 'elapsed_time']
-    met_p_groupby_cols = ['benchmark', 'core_type', 'mhz_per_cpu', 
-                          'federate_count', 'EvCount']
+    met_p_cols = [
+        'benchmark', 'helics_version_string', 'date', 'core_type', 
+        'mhz_per_cpu', 'federate_count', 'EvCount', 'elapsed_time'
+        ]
+    met_p_groupby_cols = [
+        'benchmark', 'helics_version_string', 'date', 'core_type', 
+        'mhz_per_cpu', 'federate_count', 'EvCount'
+        ]
     met_p_metrics = ['spf', 'spe', 'new_mhz_per_cpu', 'cpf', 'cpe']
     met_p_cols_tuples = [('elapsed_time', 'federate_count'), 
                          ('elapsed_time', 'EvCount'), 
                          ('elapsed_time', 'mhz_per_cpu'), 
-                         ('new_mhz_per_cpu', 'spf'), 
-                         ('new_mhz_per_cpu', 'spe')] 
+                         ('spf', 'new_mhz_per_cpu'), 
+                         ('spe', 'new_mhz_per_cpu')] 
     met_p_ops = ['/', '/', '*', '*', '*']
-    r_p_groupby_columns = ['benchmark', 'mhz_per_cpu', 
-                           'federate_count', 'EvCount']
+    r_p_groupby_columns = [
+        'benchmark', 'helics_version_string', 'date', 
+        'mhz_per_cpu', 'federate_count', 'EvCount'
+        ]
     r_p_index_columns = met_fed_cols
     r_p_filter_columns = ['federate_count']*4
     r_p_value_columns = ['tcp']*4
     r_p_metric_columns = ['spf', 'spe', 'cpf', 'cpe']
     
-    met_msg_cols = ['benchmark', 'core_type', 'message_count', 
-                    'message_size', 'elapsed_time']
-    met_msg_groupby_cols = ['benchmark', 'core_type', 
-                            'message_count', 'message_size']
-    met_msg_metrics = ['spms', 'spmc']
+    met_msg_cols = [
+        'benchmark', 'helics_version_string', 'date', 'core_type', 
+        'mhz_per_cpu', 'message_count', 'message_size', 'elapsed_time'
+        ]
+    met_msg_groupby_cols = [
+        'benchmark', 'helics_version_string', 'date', 'core_type', 
+        'mhz_per_cpu','message_count', 'message_size'
+        ]
+    met_msg_metrics = ['spms', 'spmc', 'new_mhz_per_cpu', 'cpms', 'cpmc']
     met_msg_cols_tuples = [('elapsed_time', 'message_size'), 
-                           ('elapsed_time', 'message_count')]
-    met_msg_ops = ['/', '/']
-    r_msg_groupby_columns = ['benchmark', 'message_size', 'message_count']
+                           ('elapsed_time', 'message_count'), 
+                           ('elapsed_time', 'mhz_per_cpu'), 
+                           ('spms', 'new_mhz_per_cpu'), 
+                           ('spmc', 'new_mhz_per_cpu')]
+    met_msg_ops = ['/', '/', '*', '*', '*']
+    r_msg_groupby_columns = [
+        'benchmark', 'helics_version_string', 'date', 
+        'mhz_per_cpu', 'message_size', 'message_count']
     r_msg_index_columns = met_msg_cols
-    r_msg_filter_columns = ['message_count']*2
-    r_msg_value_columns = ['tcp']*2
-    r_msg_metric_columns = ['spms', 'spmc']
+    r_msg_filter_columns = ['message_count']*4
+    r_msg_value_columns = ['tcp']*4
+    r_msg_metric_columns = ['spms', 'spmc', 'cpms', 'cpmc']
     
     # Applying the functions
     print('Creating the desired metrics and getting the ratios...')
@@ -643,6 +1016,16 @@ def create_spreadsheet3(dataframe, filename, output_path):
                        'elapsed_time'),
         r_p_groupby_columns, r_p_index_columns, r_p_filter_columns, 
         r_p_value_columns, r_p_metric_columns, 'elapsed_time')
+    print('Calculating CPU benchmark score...')
+    ratio_df = pd.concat(
+        [echo_msg_ratio, echo_ratio, msg_ratio, 
+          phold_ratio, ring_ratio, timing_ratio], axis=0, ignore_index=True)
+    score_df = cpu_score(ratio_df, 'multinode')
+    score_p = create_pivot_tables(
+        score_df, 
+        ['helics_version_string', 'cpu_score', 'benchmark', 'date'],
+        ['cpf', 'cpe', 'cpmc', 'cpms', 'spf', 'spe', 'spmc', 'spms'])
+    
     print('Creating the pivot table and saving to excel...')
     echo_p = create_pivot_tables(
         echo_ratio, 
@@ -664,13 +1047,15 @@ def create_spreadsheet3(dataframe, filename, output_path):
         phold_ratio, 
         ['benchmark', 'federate_count', 'core_type'], 
         ['spf_ratio', 'spe_ratio', 'cpf_ratio', 'cpe_ratio', 
-         'elapsed_time_ratio'])
+          'elapsed_time_ratio'])
     msg_p = create_pivot_tables(
         msg_ratio, 
         ['benchmark', 'message_size', 'message_count', 'core_type'], 
         ['spms_ratio', 'spmc_ratio', 'elapsed_time_ratio'])
     file_path = os.path.join(output_path, '{}.xlsx'.format(filename))
     with pd.ExcelWriter(file_path) as writer:
+        score_p.to_excel(writer, 
+                          sheet_name='CPU Benchmark Score')
         echo_p.to_excel(writer, 
                         sheet_name='{}'.format('EchoLeafFederate'))
         echo_msg_p.to_excel(writer, 
@@ -680,19 +1065,19 @@ def create_spreadsheet3(dataframe, filename, output_path):
         timing_p.to_excel(writer, 
                           sheet_name='{}'.format('TimingLeafFederate'))
         phold_p.to_excel(writer, 
-                         sheet_name='{}'.format('PholdFederate'))
+                          sheet_name='{}'.format('PholdFederate'))
         msg_p.to_excel(writer, 
-                       sheet_name='{}'.format('MessageExchangeFederate'))
+                        sheet_name='{}'.format('MessageExchangeFederate'))
             
     print('Successfully saved the data to excel.')
     
     print('Saving data as .csv file.')
-    main_df = pd.concat(
-        [echo_ratio, echo_msg_ratio, msg_ratio,
-         phold_ratio, ring_ratio, timing_ratio],
-        axis=0, 
-        ignore_index=True)
+    main_df = pd.merge(ratio_df, score_df, how='outer', on=[
+        'benchmark', 'helics_version_string', 'date', 'cpe', 
+            'cpf', 'spf', 'cpmc', 'cpms',
+            'spe', 'spmc', 'spms'])
     main_df.to_csv(r'{}\{}.csv'.format(os.path.join(output_path), filename))
+    print('Successfully saved data as .csv file.')
 
 
 def _auto_run(args):
@@ -748,24 +1133,20 @@ if __name__ == '__main__':
     # path for the results folder. Default only works if being run
     # from the "scripts" directory in the repository structure.
     script_path = os.path.dirname(os.path.realpath(__file__))
-#    print(script_path)
     head, tail = os.path.split(script_path)
-#    print('head: ', head)
-#    print('tail: ', tail)
 #    benchmark_summary_dir = os.path.join(head, )
     parser.add_argument('-j', 
                         '--json_file', 
                         nargs='?', 
-                        default='bm_results.json')
+                        default='multinode_bm_results_test.json')
     parser.add_argument('-b', 
                         '--bmk_type', 
                         nargs='?', 
-                        default='key')
+                        default='multinode')
     parser.add_argument('-o', 
                         '--output_path', 
                         nargs='?', 
-                        default=os.path.join(head, 
+                        default=os.path.join(script_path, 
                                              'summary_spreadsheets'))
     args = parser.parse_args()
-    
     _auto_run(args)
