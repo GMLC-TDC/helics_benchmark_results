@@ -191,9 +191,11 @@ def parse_header_lines(json_file, json_results, uuid_str):
         elif 'ELAPSED TIME' in line:
             json_results[uuid_str]['elapsed_time'] = line[19:]
             match = re.search('ns', line)
-#            print(match)
+            # print(match)
             if match:
-                json_results[uuid_str]['time_unit'] = match.group(0)[1:-2]
+                # print('option 1:', match.group(0))
+                # print('option 2:', match.group(0)[:])
+                json_results[uuid_str]['time_unit'] = match.group(0)[:]
 #                print(json_results[uuid_str]['time_unit'])
             else:
                 logging.error('{}: Failed to parse ELAPSED TIME line.'.format(
@@ -612,7 +614,7 @@ def _auto_run(args):
         d[file].update(json_results)
         json_results = {}
     if args.write_json_output:
-        with open('multinode_bm_results_test.json', 'w') as outfile:
+        with open('multinode_bm_results.json', 'w') as outfile:
             json.dump(d, outfile)
     ### CGR (2020-03-17): Commenting out for now for testing purposes:
 #    if args.write_json_output:

@@ -406,7 +406,7 @@ def make_SA_graphs(meta_bmk_df, bm_list, run_id, output_path):
             df = meta_bmk_df[(meta_bmk_df.benchmark == 'timingBenchmark') & 
                              (meta_bmk_df.benchmark_type == 'full') & 
                              (meta_bmk_df.run_id == '{}'.format(run_id))]
-            bmk_plotting.sa_plot(meta_bmk_df, 
+            bmk_plotting.sa_plot(df, 
                                  'federate_count',
                                  'real_time',
                                  'timingBenchmark',

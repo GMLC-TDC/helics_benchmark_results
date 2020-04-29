@@ -192,7 +192,9 @@ def make_dataframe2(json_results):
     # Converting 'elapsed_time' from nanoseconds to seconds.
     meta_bmk_df['elapsed_time'] = meta_bmk_df['elapsed_time'].apply(
         lambda x: float(x)*10**(-9))
-    meta_bmk_df = meta_bmk_df.replace({'time_unit': 's'})
+    meta_bmk_df = meta_bmk_df.reset_index()
+    meta_bmk_df = meta_bmk_df.replace({'time_unit': {'ns': 's', 
+                                                     'nan': 's'}})
     csv_path = os.path.join(os.getcwd(), 'multinode_bmk_meta_df.csv')
     meta_bmk_df.to_csv(r'{}'.format(csv_path))
     
