@@ -356,9 +356,9 @@ def _add_run_id(key, json_results):
         json_results (dict) - json_results with run_id added for
         the indicated results file.
     """
-    match = re.search('\d\-out.txt', json_results[key]['filename'])
+    match = re.search('-job-\d+', json_results[key]['path'])
     if match:
-        run_id = match.group(0)[0:-4]
+        run_id = match.group(0)[5:]
         json_results[key]['run_id'] = run_id
     else:
         json_results[key]['run_id'] = ''
