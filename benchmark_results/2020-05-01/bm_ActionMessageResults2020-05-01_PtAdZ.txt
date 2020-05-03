@@ -1,0 +1,147 @@
+HELICS_BENCHMARK: actionMessageBenchmark
+------------HELICS BUILD INFO -------------
+HELICS VERSION: 2.5.0 (2020-04-26)
+ZMQ VERSION: ZMQ v4.3.2
+COMPILER INFO: Visual Studio 15 2017 Win32 Windows-10.0.18363:MSVC-19.16.27039.0
+BUILD FLAGS: /DWIN32 /D_WINDOWS /GR /EHsc /O2 /Ob2 /DNDEBUG /machine:X86 /EHsc;/std:c++14 
+------------PROCESSOR INFO ----------------
+HOST PROCESSOR TYPE: AMD64
+CPU MODEL: AMD Ryzen Threadripper 1950X 16-Core Processor 
+NUM CPU:32
+-------------------------------------------
+{
+  "context": {
+    "date": "05/02/20 08:45:57",
+    "host_name": "SIRIUS",
+    "executable": "Release\\ActionMessageBenchmarks.exe",
+    "num_cpus": 32,
+    "mhz_per_cpu": 3394,
+    "cpu_scaling_enabled": false,
+    "caches": [
+      {
+        "type": "Data",
+        "level": 1,
+        "size": 32768000,
+        "num_sharing": 2
+      },
+      {
+        "type": "Instruction",
+        "level": 1,
+        "size": 65536000,
+        "num_sharing": 2
+      },
+      {
+        "type": "Unified",
+        "level": 2,
+        "size": 524288000,
+        "num_sharing": 2
+      },
+      {
+        "type": "Unified",
+        "level": 3,
+        "size": 8388608000,
+        "num_sharing": 8
+      }
+    ],
+    "load_avg": [],
+    "library_build_type": "release"
+  },
+  "benchmarks": [
+    {
+      "name": "BMtoString",
+      "run_name": "BMtoString",
+      "run_type": "iteration",
+      "repetitions": 0,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 26352941,
+      "real_time": 2.8015552419597764e+01,
+      "cpu_time": 2.8459821619150592e+01,
+      "time_unit": "ns"
+    },
+    {
+      "name": "BMfromString",
+      "run_name": "BMfromString",
+      "run_type": "iteration",
+      "repetitions": 0,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 18666667,
+      "real_time": 3.7374883260942120e+01,
+      "cpu_time": 3.7667410041653390e+01,
+      "time_unit": "ns"
+    },
+    {
+      "name": "BMtoStringTime",
+      "run_name": "BMtoStringTime",
+      "run_type": "iteration",
+      "repetitions": 0,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 44800000,
+      "real_time": 1.5525212053587115e+01,
+      "cpu_time": 1.5345982142857142e+01,
+      "time_unit": "ns"
+    },
+    {
+      "name": "BMfromStringTime",
+      "run_name": "BMfromStringTime",
+      "run_type": "iteration",
+      "repetitions": 0,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 40727273,
+      "real_time": 1.6003477571392203e+01,
+      "cpu_time": 1.5729631591096217e+01,
+      "time_unit": "ns"
+    },
+    {
+      "name": "BMpacketize",
+      "run_name": "BMpacketize",
+      "run_type": "iteration",
+      "repetitions": 0,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 20363636,
+      "real_time": 3.4030268464816736e+01,
+      "cpu_time": 3.3761161317163598e+01,
+      "time_unit": "ns"
+    },
+    {
+      "name": "BMdepacketize",
+      "run_name": "BMdepacketize",
+      "run_type": "iteration",
+      "repetitions": 0,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 17920000,
+      "real_time": 3.9026339285896938e+01,
+      "cpu_time": 3.9236886160714285e+01,
+      "time_unit": "ns"
+    },
+    {
+      "name": "BMpacketizeStrings",
+      "run_name": "BMpacketizeStrings",
+      "run_type": "iteration",
+      "repetitions": 0,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 896000,
+      "real_time": 8.2148571428725904e+02,
+      "cpu_time": 8.1961495535714289e+02,
+      "time_unit": "ns"
+    },
+    {
+      "name": "BMdepacketizeStrings",
+      "run_name": "BMdepacketizeStrings",
+      "run_type": "iteration",
+      "repetitions": 0,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 640000,
+      "real_time": 1.0246345312452831e+03,
+      "cpu_time": 1.0253906250000000e+03,
+      "time_unit": "ns"
+    }
+  ]
+}
