@@ -1205,11 +1205,11 @@ if __name__ == '__main__':
     parser.add_argument('-j', 
                         '--json_file', 
                         nargs='?', 
-                        default='bm_results.json')
+                        default='multinode_bm_results.json')
     parser.add_argument('-b', 
                         '--bmk_type', 
                         nargs='?', 
-                        default='full')
+                        default='multinode')
     parser.add_argument('-o', 
                         '--output_path', 
                         nargs='?', 
