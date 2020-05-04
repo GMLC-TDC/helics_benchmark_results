@@ -23,9 +23,8 @@ import hvplot.pandas
 logger = logging.getLogger(__name__)
 
 def sa_plot(
-        dataframe, x_axis, y_axis, 
-        bm_name, bm_type, by_bool, 
-        by_name, run_id, output_path):
+        dataframe, x_axis, y_axis, bm_name, 
+        by_bool, by_name, run_id, output_path):
     """This function creates a plot of the specified data and sends it
     to the output_path.
     
@@ -62,48 +61,10 @@ def sa_plot(
         
     """
     # Checking if benchmark_type is 'full' or 'key'
-    if bm_type == 'full':
-        if by_bool == True:
-            # Filtering the dataframe so that there are not
-            # any duplicate 'y-values' to plot; otherwise, there 
-            # will be spikes in the graph.
-            dataframe = dataframe.groupby(
-                ['{}'.format(by_name), 
-                 '{}'.format(x_axis)])['{}'.format(y_axis)].min().reset_index()
-            plot = dataframe.sort_values('{}'.format(x_axis)).hvplot.line(
-                '{}'.format(x_axis), 
-                '{}'.format(y_axis),
-                ylabel='{} (s)'.format(y_axis),
-                title='run_id {} {}: {} vs {}'.format(
-                    run_id, bm_name, x_axis, y_axis),
-                by='{}'.format(by_name),
-                alpha=0.5).opts(
-                    width=590, height=360, logx=True, logy=True, fontsize={
-                        'title': 9.5, 'labels': 10, 'legend': 9, 
-                        'xticks': 8, 'yticks': 10
-                        })
-            save_path = os.path.join(
-                output_path, '{}_{}.png'.format(run_id, bm_name))
-        else:
-            dataframe = dataframe.groupby(
-                '{}'.format(x_axis))['{}'.format(y_axis)].min().reset_index()
-            plot = dataframe.sort_values('{}'.format(x_axis)).hvplot.line(
-                '{}'.format(x_axis), 
-                '{}'.format(y_axis),
-                ylabel='{} (s)'.format(y_axis),
-                title='run_id {} {}: {} vs {}'.format(
-                    run_id, bm_name, x_axis, y_axis),
-                alpha=0.5).opts(
-                    width=590, height=360, logx=True, logy=True, fontsize={
-                        'title': 9.5, 'labels': 10, 'legend': 9, 
-                        'xticks': 8, 'yticks': 10
-                        })
-            save_path = os.path.join(
-                output_path, '{}_{}.png'.format(run_id, bm_name))
-    elif bm_type == 'key':
+    if by_bool == True:
         # Filtering the dataframe so that there are not
         # any duplicate 'y-values' to plot; otherwise, there 
-        # will be spikes in the graph. 
+        # will be spikes in the graph.
         dataframe = dataframe.groupby(
             ['{}'.format(by_name), 
              '{}'.format(x_axis)])['{}'.format(y_axis)].min().reset_index()
@@ -111,16 +72,32 @@ def sa_plot(
             '{}'.format(x_axis), 
             '{}'.format(y_axis),
             ylabel='{} (s)'.format(y_axis),
-            title='{} tracking: {} vs {}'.format(
-                bm_name, x_axis, y_axis),
+            title='run_id {} {}: {} vs {}'.format(
+                run_id, bm_name, x_axis, y_axis),
             by='{}'.format(by_name),
-            alpha=0.5, 
-            rot=90).opts(
+            alpha=0.5).opts(
                 width=590, height=360, logx=True, logy=True, fontsize={
                     'title': 9.5, 'labels': 10, 'legend': 9, 
-                    'xticks': 8, 'yticks': 10})
+                    'xticks': 8, 'yticks': 10
+                    })
         save_path = os.path.join(
-            output_path, '{}_tracking.png'.format(bm_name))
+            output_path, '{}_{}.png'.format(run_id, bm_name))
+    else:
+        dataframe = dataframe.groupby(
+            '{}'.format(x_axis))['{}'.format(y_axis)].min().reset_index()
+        plot = dataframe.sort_values('{}'.format(x_axis)).hvplot.line(
+            '{}'.format(x_axis), 
+            '{}'.format(y_axis),
+            ylabel='{} (s)'.format(y_axis),
+            title='run_id {} {}: {} vs {}'.format(
+                run_id, bm_name, x_axis, y_axis),
+            alpha=0.5).opts(
+                width=590, height=360, logx=True, logy=True, fontsize={
+                    'title': 9.5, 'labels': 10, 'legend': 9, 
+                    'xticks': 8, 'yticks': 10
+                    })
+        save_path = os.path.join(
+            output_path, '{}_{}.png'.format(run_id, bm_name))
     hvplot.save(plot, save_path)
     logging.info('Created graph file {}'.format(output_path))
 
@@ -197,7 +174,8 @@ def cr_plot(
     # It includes all the run_ids.
     run_id_str = '_'.join(run_id_list)
     save_path = os.path.join(
-        output_path, '{}_{}_{}Core.png'.format(run_id_str, bm_name, core_type))
+        output_path, '{}_{}_{}Core.png'.format(
+            run_id_str, bm_name, core_type))
     hvplot.save(plot, save_path)
     logging.info('Created graph file {}'.format(output_path))
 
