@@ -394,25 +394,7 @@ NUM CPU:32
       "real_time": 1.3225734799998463e+04,
       "cpu_time": 1.1562500000000000e+03,
       "time_unit": "ms"
-    }127408-2otwG-x1GUa-Dd9V6-DvY8L (0)::now waiting for the core to finish registration before proceeding
-127408-2otwG-x1GUa-Dd9V6-DvY8L (0)::broker state=-2, broker id=0, sleepcnt=7
-127408-2otwG-x1GUa-Dd9V6-DvY8L (0)::broker state=-2, broker id=0, sleepcnt=8
-127408-2otwG-x1GUa-Dd9V6-DvY8L (0)::broker state=-2, broker id=0, sleepcnt=9
-127408-2otwG-x1GUa-Dd9V6-DvY8L (0)::broker state=-2, broker id=0, sleepcnt=10
-127408-2otwG-x1GUa-Dd9V6-DvY8L (0)::broker state=-2, broker id=0, sleepcnt=11
-127408-2otwG-x1GUa-Dd9V6-DvY8L (0)::broker state=-2, broker id=0, sleepcnt=12
-127408-2otwG-x1GUa-Dd9V6-DvY8L (0)::broker state=-2, broker id=0, sleepcnt=13
-127408-2otwG-x1GUa-Dd9V6-DvY8L (0)::broker state=-2, broker id=0, sleepcnt=14
-127408-2otwG-x1GUa-Dd9V6-DvY8L (0)::broker state=-2, broker id=0, sleepcnt=15
-127408-2otwG-x1GUa-Dd9V6-DvY8L (0)::broker state=-2, broker id=0, sleepcnt=16
-127408-2otwG-x1GUa-Dd9V6-DvY8L (0)::broker state=-2, broker id=0, sleepcnt=17
-127408-2otwG-x1GUa-Dd9V6-DvY8L (0)::broker state=-2, broker id=0, sleepcnt=18
-127408-2otwG-x1GUa-Dd9V6-DvY8L (0)::broker state=-2, broker id=0, sleepcnt=19
-127408-2otwG-x1GUa-Dd9V6-DvY8L (0)::broker state=-2, broker id=0, sleepcnt=20
-127408-2otwG-x1GUa-Dd9V6-DvY8L (0)::resending reg message
-127408-2otwG-x1GUa-Dd9V6-DvY8L (0)::got resend
-127408-2otwG-x1GUa-Dd9V6-DvY8L (0)::resending broker reg
-,
+    },
     {
       "name": "BM_ringMessage_multiCore/tcpssCore/10/iterations:3/real_time",
       "run_name": "BM_ringMessage_multiCore/tcpssCore/10/iterations:3/real_time",

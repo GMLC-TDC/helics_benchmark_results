@@ -26,7 +26,7 @@ from scipy.stats import linregress as lr
 import logging
 import pprint
 import os
-import make_dataframe as md
+from make_dataframe import make_dataframe1, make_dataframe2
 import sys
 
 # Setting up logger
@@ -230,10 +230,6 @@ def cpu_score(dataframe, bm_type):
                 cycles = [score_df.loc[i, 'cpf'].mean()\
                           for i in score_df.index.unique()\
                               if i != 'messageSendBenchmark']
-                # TODO: Play with different values for normalizing the scores 
-                # and multiplying by 10000 or something.
-                # TODO: Generalize this function to be used for all the 
-                # benchmark results.
                 if 'messageSendBenchmark' in score_df.index\
                     and 'messageLookupBenchmark' in score_df.index:
                     spi = score_df.loc['messageLookupBenchmark', 'spi'].mean()
@@ -245,7 +241,7 @@ def cpu_score(dataframe, bm_type):
                     all_scores = np.array(
                         fed_scores+cycles+[spi, cpi, spms, cpms, spmc, cpmc])
                     score_df['cpu_score'] = np.round(
-                        np.mean((all_scores/(0.5*np.median(all_scores)))),
+                        np.mean((all_scores/(np.median(all_scores)))),
                         decimals=0)
                 elif 'messageSendBenchmark' in score_df.index\
                     and 'messageLookupBenchmark' not in score_df.index:
@@ -256,7 +252,7 @@ def cpu_score(dataframe, bm_type):
                     all_scores = np.array(
                         fed_scores+cycles+[spms, cpms, spmc, cpmc])
                     score_df['cpu_score'] = np.round(
-                        np.mean((all_scores/(0.5*np.median(all_scores)))), 
+                        np.mean((all_scores/(np.median(all_scores)))), 
                         decimals=0)
                 elif 'messageSendBenchmark' not in score_df.index\
                     and 'messageLookupBenchmark' in score_df.index:
@@ -264,13 +260,13 @@ def cpu_score(dataframe, bm_type):
                     cpi = score_df.loc['messageLookupBenchmark', 'cpi'].mean()
                     all_scores = np.array(fed_scores+cycles+[spi, cpi])
                     score_df['cpu_score'] = np.round(
-                        np.mean((all_scores/(0.5*np.median(all_scores)))), 
+                        np.mean((all_scores/(np.median(all_scores)))), 
                         decimals=0)
                 elif 'messageSendBenchmark' not in score_df.index\
                     and 'messageLookupBenchmark' not in score_df.index:
                     all_scores = np.array(fed_scores+cycles)
                     score_df['cpu_score'] = np.round(
-                        np.mean((all_scores/(0.5*np.median(all_scores)))), 
+                        np.mean((all_scores/(np.median(all_scores)))), 
                         decimals=0)
                 else:
                     logging.error('Failed to calculate score for {}'.format(g))
@@ -301,12 +297,12 @@ def cpu_score(dataframe, bm_type):
                     all_scores = np.array(
                         fed_scores+cycles+[spi, cpi])
                     score_df['cpu_score'] = np.round(
-                        np.mean((all_scores/(0.5*np.median(all_scores)))),
+                        np.mean((all_scores/(np.median(all_scores)))),
                         decimals=0)
                 elif 'messageLookupBenchmark' not in score_df.index:
                     all_scores = np.array(fed_scores+cycles)
                     score_df['cpu_score'] = np.round(
-                        np.mean((all_scores/(0.5*np.median(all_scores)))), 
+                        np.mean((all_scores/(np.median(all_scores)))), 
                         decimals=0)
                 else:
                     logging.error('Failed to calculate score for {}'.format(g))
@@ -348,7 +344,7 @@ def cpu_score(dataframe, bm_type):
                     all_scores = np.array(
                         fed_scores+cycles+[spe, cpe, cpmc, cpms, spms, spmc])
                     score_df['cpu_score'] = np.round(
-                        np.mean((all_scores/(0.5*np.median(all_scores)))),
+                        np.mean((all_scores/(np.median(all_scores)))),
                         decimals=0)
                 elif 'MessageExchangeFederate' in score_df.index\
                     and 'PholdFederate' not in score_df.index:
@@ -363,7 +359,7 @@ def cpu_score(dataframe, bm_type):
                     all_scores = np.array(
                         fed_scores+cycles+[spms, spmc, cpmc, cpms])
                     score_df['cpu_score'] = np.round(
-                        np.mean((all_scores/(0.5*np.median(all_scores)))), 
+                        np.mean((all_scores/(np.median(all_scores)))), 
                         decimals=0)
                 elif 'MessageExchangeFederate' not in score_df.index\
                     and 'PholdFederate' in score_df.index:
@@ -372,14 +368,14 @@ def cpu_score(dataframe, bm_type):
                     all_scores = np.array(
                         fed_scores+cycles+[spe, cpe])
                     score_df['cpu_score'] = np.round(
-                        np.mean((all_scores/(0.5*np.median(all_scores)))), 
+                        np.mean((all_scores/(np.median(all_scores)))), 
                         decimals=0)
                 elif 'MessageExchangeFederate' not in score_df.index\
                     and 'messageLookupBenchmark' not in score_df.index:
                     all_scores = np.array(
                         fed_scores+cycles)
                     score_df['cpu_score'] = np.round(
-                        np.mean((all_scores/(0.5*np.median(all_scores)))), 
+                        np.mean((all_scores/(np.median(all_scores)))), 
                         decimals=0)
                 else:
                     logging.error('Failed to calculate score for {}'.format(g))
@@ -1078,6 +1074,39 @@ def create_spreadsheet3(dataframe, filename, output_path):
             'spe', 'spmc', 'spms'])
     main_df.to_csv(r'{}\{}.csv'.format(os.path.join(output_path), filename))
     print('Successfully saved data as .csv file.')
+    
+    
+def create_table(
+        dataframe, drop_columns, subset_columns, output_path, filename):
+    """This function creates a metadata reference table for
+    each run-id in the (multinode) benchmark results files.
+    
+    Args:
+        dataframe (pandas dataframe) - Contains all the information
+        for each run-id.
+        
+        drop_columns (list) - List of columns to ignore in the reference
+        table; the summary spreadsheet/csv contains counts and metrics,
+        which we don't need for the reference table.
+        
+        subset_columns (list) - List of columns for creating a subset
+        for getting rid of duplicates.
+        
+        output_path (path) - Path to send the reference table.
+        
+        filename (str) - Name of the reference table.
+        
+    Returns:
+        (null)
+    """
+    dataframe = dataframe.drop(columns=drop_columns)
+    dataframe = dataframe.sort_values(subset_columns).set_index(
+        subset_columns).reset_index()
+    dataframe = dataframe.drop_duplicates(
+        subset=subset_columns, keep='last')
+    dataframe.index = list(range(len(dataframe.run_id)))
+    # dataframe = dataframe.set_index('index').reset_index()
+    dataframe.to_csv(r'{}\{}.csv'.format(output_path, filename))
 
 
 def _auto_run(args):
@@ -1099,29 +1128,67 @@ def _auto_run(args):
     """
     if args.bmk_type == 'full':
         print('Creating the meta benchmark dataframe...')
-        dataframe = md.make_dataframe1(args.json_file)
+        dataframe = make_dataframe1(args.json_file)
         create_spreadsheet1(dataframe, 
                             'full_benchmark_results_summary', 
                             args.output_path)
+        dataframe = dataframe[
+            (dataframe.benchmark_type == 'full') & 
+            (dataframe.benchmark != 'actionMessageBenchmark') &
+            (dataframe.benchmark != 'conversionBenchmark')
+            ]
+        create_table(
+            dataframe, 
+            ['federate_count', 'EvCount', 'interface_count', 
+             'message_size', 'message_count', 'real_time', 'cpu_time', 
+             'info_id', 'benchmark_id', 'cache_id', 'executable', 
+             'name', 'identifier_id', 'benchmark', 'core_type', 
+             'filename', 'run_name'], 
+            ['run_id'],
+            args.output_path, 
+            'bmk_type_full_metadata')
     elif args.bmk_type == 'key':
         print('Creating the meta benchmark dataframe...')
-        dataframe = md.make_dataframe1(args.json_file)
+        dataframe = make_dataframe1(args.json_file)
         create_spreadsheet2(dataframe, 
                             'key_benchmark_results_summary', 
                             args.output_path)
+        dataframe = dataframe[
+            (dataframe.benchmark_type == 'key') &
+            (dataframe.benchmark != 'conversionBenchmark')
+            ]
+        create_table(
+            dataframe, 
+            ['federate_count', 'EvCount', 'interface_count', 
+             'message_size', 'message_count', 'real_time', 'cpu_time', 
+             'info_id', 'benchmark_id', 'cache_id', 'executable', 
+             'name', 'identifier_id', 'benchmark', 'core_type', 
+             'filename', 'run_name'], 
+            ['run_id'],
+            args.output_path, 
+            'bmk_type_key_metadata')
     elif args.bmk_type == 'multinode':
         print('Creating the meta benchmark dataframe...')
-        dataframe = md.make_dataframe2(args.json_file)
+        dataframe = make_dataframe2(args.json_file)
         create_spreadsheet3(dataframe, 
                             'multinode_benchmark_results_summary', 
                             args.output_path)
+        create_table(
+            dataframe, 
+            ['index', 'federate_count', 'EvCount', 'message_size', 
+             'message_count', 'elapsed_time', 'benchmark_type', 'identifier_id', 
+             'benchmark', 'core_type', 'filename'], 
+            ['run_id'],
+            args.output_path, 
+            'multinode_metadata')
     else:
-        logging.error('Invalid string; bmk_type should be "full", "key", or\
-                      "multinode".')
+        logging.error(
+            'Invalid; bmk_type should be "full", "key", or "multinode".')
     
 
 if __name__ == '__main__':
-    fileHandle = logging.FileHandler("benchmark_results_summary.log", mode='w')
+    fileHandle = logging.FileHandler(
+        "benchmark_results_summary.log", mode='w')
     fileHandle.setLevel(logging.DEBUG)
     streamHandle = logging.StreamHandler(sys.stdout)
     streamHandle.setLevel(logging.ERROR)

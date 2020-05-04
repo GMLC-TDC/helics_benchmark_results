@@ -124,9 +124,9 @@ def make_dataframe1(json_results):
         lambda x: float(x)*10**(-9) if x.index == 'ns' else float(x)*10**(-3))
     meta_bmk_df.cpu_time = meta_bmk_df.cpu_time.apply(
         lambda x: float(x)*10**(-9) if x.index == 'ns' else float(x)*10**(-3))
-    meta_bmk_df = meta_bmk_df.replace({'time_unit': {'ns': 's',
-                                                     'ms': 's'}})
     meta_bmk_df = meta_bmk_df.reset_index()
+    meta_bmk_df = meta_bmk_df.replace({'time_unit': {'ns': 's',
+                                                      'ms': 's'}})
     csv_path = os.path.join(os.getcwd(), 'bmk_meta_df.csv')
     meta_bmk_df.to_csv(r'{}'.format(csv_path))
     
