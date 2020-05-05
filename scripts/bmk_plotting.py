@@ -72,14 +72,12 @@ def sa_plot(
             '{}'.format(x_axis), 
             '{}'.format(y_axis),
             ylabel='{} (s)'.format(y_axis),
-            title='run_id {} {}: {} vs {}'.format(
-                run_id, bm_name, x_axis, y_axis),
             by='{}'.format(by_name),
-            alpha=0.5).opts(
-                width=590, height=360, logx=True, logy=True, fontsize={
-                    'title': 9.5, 'labels': 10, 'legend': 9, 
-                    'xticks': 8, 'yticks': 10
-                    })
+            alpha=0.5).opts(width=590, height=360, logx=True, logy=True, 
+                            title='run_id {} {}: {} vs {}'.format(
+                                run_id, bm_name, x_axis, y_axis), fontsize={
+                                    'title': 9.5, 'labels': 10, 'legend': 9, 
+                                    'xticks': 8, 'yticks': 10})
         save_path = os.path.join(
             output_path, '{}_{}.png'.format(run_id, bm_name))
     else:
@@ -89,13 +87,11 @@ def sa_plot(
             '{}'.format(x_axis), 
             '{}'.format(y_axis),
             ylabel='{} (s)'.format(y_axis),
+            alpha=0.5).opts(width=590, height=360, logx=True, logy=True,
             title='run_id {} {}: {} vs {}'.format(
-                run_id, bm_name, x_axis, y_axis),
-            alpha=0.5).opts(
-                width=590, height=360, logx=True, logy=True, fontsize={
-                    'title': 9.5, 'labels': 10, 'legend': 9, 
-                    'xticks': 8, 'yticks': 10
-                    })
+                run_id, bm_name, x_axis, y_axis), fontsize={
+                    'title': 9.5, 'labels': 10, 'legend': 9, 'xticks': 8, 
+                    'yticks': 10})
         save_path = os.path.join(
             output_path, '{}_{}.png'.format(run_id, bm_name))
     hvplot.save(plot, save_path)
@@ -154,8 +150,7 @@ def cr_plot(
                 '{}'.format(x_axis))['{}'.format(y_axis)].min().reset_index()
         plots = x_y_map.sort_values('{}'.format(x_axis)).hvplot.line(
                 '{}'.format(x_axis), 
-                '{}'.format(y_axis), 
-                title='{}: {} vs {}'.format(bm_name, x_axis, y_axis),
+                '{}'.format(y_axis),
                 label='run_id: {}, core_type: {}, {}: {}'.format(
                     run_id, core_type, comparison_parameter, 
                     plots['{}'.format(comparison_parameter)].unique()), 
@@ -166,9 +161,10 @@ def cr_plot(
     # Holoviews allows you to plot graphs on the same plot.
     plot = (reduce((lambda x, y: x*y), my_plots)).opts(
         width=590, height=360, logx=True, 
-        logy=True, legend_position='top_left', fontsize={
-            'title': 9.5, 'labels': 10, 'legend': 9, 
-            'xticks': 8, 'yticks': 10
+        logy=True, legend_position='top_left', title='{}: {} vs {}'.format(
+            bm_name, x_axis, y_axis), 
+        fontsize={
+            'title': 9.5, 'labels': 10, 'legend': 9, 'xticks': 8, 'yticks': 10
             })
     # The beginning part of the image's name.
     # It includes all the run_ids.
@@ -253,27 +249,21 @@ def ir_plot(
             plot1 = gpd1.reset_index().sort_values(
                 '{}'.format(x_axis)).hvplot.line(
                     '{}'.format(x_axis), 
-                    'seconds_per_count', 
-                    title='{} v {} {}: {} vs {}'.format(
-                        bm_name1, bm_name2, title_part, 
-                        x_axis, 'seconds_per_count'),
+                    'seconds_per_count',
                     label='{}, run_id: {}, core_type: {}'.format(
                         df1.benchmark.unique(), run_id, core_type),
                     alpha=0.5)
             plot2 = gpd2.reset_index().sort_values(
                 '{}'.format(x_axis)).hvplot.line(
                     '{}'.format(x_axis), 
-                    'seconds_per_count', 
-                    title='{} v {} {}: {} vs {}'.format(
-                        bm_name1, bm_name2, title_part, 
-                        x_axis, 'seconds_per_count'),
+                    'seconds_per_count',
                     label='{}, run_id: {}, core_type: {}'.format(
                         df2.benchmark.unique(), run_id, core_type),
                     alpha=0.5)
             core_type_str = ''.join(core_type)
             save_path = os.path.join(
-                output_path, '{}_{}_vs_{}_{}Core{}.png'.format(
-                    run_id, bm_name1, bm_name2, core_type_str, metric_type))
+                output_path, '{}_{}_vs_{}_{}_{}Core.png'.format(
+                    run_id, bm_name1, bm_name2, core_type_str, title_part))
         else:
             pass
     else:
@@ -287,8 +277,6 @@ def ir_plot(
                 '{}'.format(x_axis), 
                 '{}'.format(y_axis),
                 ylabel='{} (s)'.format(y_axis),
-                title='{} v {} {}: {} vs {}'.format(
-                    bm_name1, bm_name2, title_part, x_axis, y_axis),
                 label='{}, run_id: {}, core_type: {}'.format(
                     df1.benchmark.unique(), run_id, core_type),
                 alpha=0.5)
@@ -296,8 +284,6 @@ def ir_plot(
                 '{}'.format(x_axis), 
                 '{}'.format(y_axis),
                 ylabel='{} (s)'.format(y_axis),
-                title='{} v {} {}: {} vs {}'.format(
-                    bm_name1, bm_name2, title_part, x_axis, y_axis),
                 label='{}, run_id: {}, core_type: {}'.format(
                     df2.benchmark.unique(), run_id, core_type),
                 alpha=0.5)
@@ -307,10 +293,11 @@ def ir_plot(
                 run_id, bm_name1, bm_name2, core_type_str))
     plots = [plot1, plot2]
     plot = (reduce((lambda x, y: x*y), plots)).opts(
-        width=590, height=360, logx=True,
-        logy=True, legend_position='top_left', fontsize={
-            'title': 9.5, 'labels': 10, 'legend': 9, 
-            'xticks': 8, 'yticks': 10})
+        width=590, height=360, logx=True, logy=True, legend_position='top_left', 
+        title='{} v {}: {}'.format(
+            bm_name1, bm_name2, title_part), fontsize={
+                'title': 9.5, 'labels': 10, 'legend': 9, 'xticks': 8, 
+                'yticks': 10})
     hvplot.save(plot, save_path)
     logging.info('Created graph file {}'.format(output_path))
 
@@ -376,11 +363,11 @@ def mm_plot(
                     '{}'.format(x_axis), 
                     'counts_per_second', 
                     ylabel='EvCounts per second',
-                    title='{} {}: EvCounts/s vs {}'.format(
-                        title_part, bm_name, x_axis),
                     by='{}'.format(param1),
                     alpha=0.5).opts(
-                        width=590, height=360, logy=True, fontsize={
+                        width=590, height=360, logy=True,
+                    title='{} {}: EvCounts/s vs {}'.format(
+                        title_part, bm_name, x_axis), fontsize={
                             'title': 9.5, 'labels': 10, 'legend': 9, 
                             'xticks': 8, 'yticks': 10
                             })
@@ -398,14 +385,15 @@ def mm_plot(
                     '{}'.format(x_axis), 
                     '{}'.format(y_axis), 
                     ylabel='{} (s)'.format(y_axis),
-                    title='{} {}: {} {} vs {}'.format(
-                        title_part, bm_name, y_axis, metric_type, x_axis),
                     by='{}'.format(param1),
                     alpha=0.5).opts(
-                        width=590, height=360, logy=True, fontsize={
-                            'title': 9.5, 'labels': 10, 'legend': 9, 
-                            'xticks': 8, 'yticks': 10
-                            })
+                        width=590, height=360, logy=True, 
+                        title='{} {}: {} {} vs {}'.format(
+                            title_part, bm_name, y_axis, metric_type, 
+                            x_axis), fontsize={
+                                'title': 9.5, 'labels': 10, 'legend': 9, 
+                                'xticks': 8, 'yticks': 10
+                                })
             save_path = os.path.join(
                 output_path, '{}_{}_{}.png'.format(
                     bm_name, y_axis, metric_type))
@@ -419,11 +407,11 @@ def mm_plot(
                 '{}'.format(x_axis), 
                 '{}'.format(y_axis), 
                 ylabel='{} (s)'.format(y_axis),
-                title='{} {}: {} vs {}'.format(
-                    title_part, bm_name, x_axis, y_axis),
                 by='{}'.format(param1),
                 alpha=0.5).opts(
-                    width=590, height=360, logx=True, logy=True, fontsize={
+                    width=590, height=360, logx=True, logy=True,
+                title='{} {}: {} vs {}'.format(
+                    title_part, bm_name, x_axis, y_axis), fontsize={
                         'title': 9.5, 'labels': 10, 'legend': 9, 
                         'xticks': 8, 'yticks': 10
                         })
@@ -441,5 +429,5 @@ def mm_plot(
 #     meta_bmk_df = md.make_dataframe1(json_file)
 #     timing = meta_bmk_df[meta_bmk_df.benchmark == 'timingBenchmark']
 #     sa_plot(
-#         timing, 'federate_count', 'real_time', 'timingBenchmark', 'full', 
+#         timing, 'federate_count', 'real_time', 'timingBenchmark', 
 #         True, 'core_type', '7vGM3', os.path.join(os.getcwd()))
