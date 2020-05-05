@@ -44,7 +44,8 @@ import sys
 # Installation of FPDF is: python -m pip install fpdf
 # Installation of hvplot.pandas is: conda install -c pyviz hvplot
 # Installation of selenium is: conda install -c bokeh selenium
-# Installation of phantomjs is: brew tap homebrew/cask; brew cask install phantomjs
+# Installation of phantomjs is: brew tap homebrew/cask; brew cask 
+# install phantomjs
 
 # TDH: Setting up logging
 logger = logging.getLogger(__name__)
