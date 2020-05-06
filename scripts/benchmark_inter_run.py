@@ -28,14 +28,15 @@ import shutil
 import benchmark_postprocessing as bmpp
 import benchmark_inter_run_pdf as birp
 import standard_analysis as sa
-import bmk_plotting
+from bmk_plotting import ir_plot
 import make_dataframe as md
 import sys
 
 # Installation of FPDF is: python -m pip install fpdf
 # Installation of hvplot.pandas is: conda install -c pyviz hvplot
 # Installation of selenium is: conda install -c bokeh selenium
-# Installation of phantomjs is: brew tap homebrew/cask; brew cask install phantomjs
+# Installation of phantomjs is: brew tap homebrew/cask; brew cask install 
+# phantomjs
 
 # TDH: Setting up logging
 logger = logging.getLogger(__name__)
@@ -51,6 +52,7 @@ def find_specific_run_id(benchmark_results_dir, run_id_list):
     Args:
         benchmark_results_dir (str) - root folder that contains all
         results from the run IDs specified in run_id_list.
+        
         run_id_list (list) - List of strings defining the run IDs to
         compare
 
@@ -83,8 +85,10 @@ def find_specific_run_id(benchmark_results_dir, run_id_list):
                         if 'bm_data_path' not in run_id_dict[run_id].keys():
                             run_id_dict[run_id]['bm_data_path'] = root
                         if file not in run_id_dict[run_id]['files']:
-                            run_id_dict[run_id]['files'].append(os.path.join(root, file))
-                            logging.info('Added file to process {}'.format(file))
+                            run_id_dict[run_id]['files'].append(
+                                os.path.join(root, file))
+                            logging.info('Added file to process {}'.format(
+                                file))
     return run_id_dict
 
 
@@ -96,6 +100,7 @@ def create_output_path(output_path_list, delete_existing_report):
     Args:
         output_path (str) - Path to the results folder for the comparison
         of these run-IDs
+        
         delete_existing_report (bool) - Flag indicating whether any
         existing report folder should be deleted (True) or not (False)
 
@@ -134,19 +139,20 @@ def create_output_path(output_path_list, delete_existing_report):
                 logging.error('Failed to create directory {}'.format(output))
 
 
-def make_inter_run_graphs(meta_bmk_df,
-                          run_id,
-                          bm_list,
-                          core_type,
+def make_inter_run_graphs(meta_bmk_df, run_id, bm_list, core_type, 
                           output_path):
     """This function creates inter-run graphs of multiple benchmarks, for a
     given run_id.
     
     Args:
         meta_bmk_df (pandas dataframe) - Full dataset.
+        
         run_id (str) - Specific run_id used to create this plot.
+        
         bm_list (list) - List of benchmarks to create inter-run graphs.
+        
         core_type_list - Specific core_types used to create this plot.
+        
         output_path (str) - Location to send the graph.
     
     Returns:
@@ -155,66 +161,36 @@ def make_inter_run_graphs(meta_bmk_df,
     if 'echoBenchmark' in bm_list and 'timingBenchmark' in bm_list:
         df1 = meta_bmk_df[meta_bmk_df.benchmark == 'echoBenchmark']
         df2 = meta_bmk_df[meta_bmk_df.benchmark == 'timingBenchmark']
-        if run_id in list(df1.run_id.unique()) and run_id in list(df2.run_id.unique()):
-            if core_type in list(df1.core_type.unique()) and core_type in list(df2.core_type.unique()):
-                bmk_plotting.ir_plot(df1,
-                                     df2, 
-                                     'federate_count',
-                                     'real_time',
-                                     'echo',
-                                     'timing',
-                                     False,
-                                     'seconds_per_count',
-                                     '',
-                                     run_id,
-                                     core_type,
-                                     output_path)
-                bmk_plotting.ir_plot(df1,
-                                     df2, 
-                                     'federate_count',
-                                     'real_time',
-                                     'echo',
-                                     'timing',
-                                     True,
-                                     'seconds_per_count',
-                                     '',
-                                     run_id,
-                                     core_type,
-                                     output_path)
+        if any(df1.run_id.isin(df2.run_id)) and any(
+                df1.core_type.isin(df2.core_type)):
+            ir_plot(
+                df1, df2, 'federate_count', 'real_time', 
+                'echo', 'timing', False, '', 
+                'fed_ct vs real_time', run_id, core_type, output_path)
+            ir_plot(
+                df1, df2, 'federate_count', 'real_time', 
+                'echo', 'timing', True, 'spc', 
+                'fed_ct vs spf', run_id, core_type, output_path)
         else:
-            pass
+            logging.error(
+                'run_id {} is not in both benchmark dataframes'.format(run_id))
         
     if 'echoBenchmark' in bm_list and 'cEchoBenchmark' in bm_list:
         df1 = meta_bmk_df[meta_bmk_df.benchmark == 'echoBenchmark']
         df2 = meta_bmk_df[meta_bmk_df.benchmark == 'cEchoBenchmark']
-        if run_id in list(df1.run_id.unique()) and run_id in list(df2.run_id.unique()):
-            if core_type in list(df1.core_type.unique()) and core_type in list(df2.core_type.unique()):
-                bmk_plotting.ir_plot(df1,
-                                     df2, 
-                                     'federate_count',
-                                     'real_time',
-                                     'echo',
-                                     'cEcho',
-                                     False,
-                                     'seconds_per_count',
-                                     '',
-                                     run_id,
-                                     core_type,
-                                     output_path)
-                bmk_plotting.ir_plot(df1,
-                                     df2, 
-                                     'federate_count',
-                                     'real_time',
-                                     'echo',
-                                     'cEcho',
-                                     True,
-                                     'seconds_per_count',
-                                     '',
-                                     run_id,
-                                     core_type,
-                                     output_path)
+        if any(df1.run_id.isin(df2.run_id)) and any(
+                df1.core_type.isin(df2.core_type)):
+            ir_plot(
+                df1, df2, 'federate_count', 'real_time',
+                'echo', 'cEcho', False, '', 
+                'fed_ct vs real_time', run_id, core_type, output_path)
+            ir_plot(
+                df1, df2, 'federate_count', 'real_time',
+                'echo', 'cEcho', True, 'spc',
+                'fed_ct vs spf', run_id, core_type, output_path)
         else:
-            pass
+            logging.error(
+                'run_id {} is not in both benchmark dataframes'.format(run_id))
 
 
 def _auto_run(args):
@@ -237,8 +213,8 @@ def _auto_run(args):
         
         '-c' or '--core_type_list' - List of core_types for the graphs.
         
-        '-o' or '--output_path_list' - List of output paths for each run_id to 
-        send the inter-run reports.
+        '-o' or '--output_path_list' - List of output paths for each 
+        run_id to send the inter-run reports.
 
         '-d' or '--delete_all_reports' - "True" or "False" to indicate
         if existing reports should be over-written
@@ -260,14 +236,11 @@ def _auto_run(args):
     counter = 0
     for run_id in args.run_id_list:
         for core_type in args.core_type_list:
-            make_inter_run_graphs(meta_bmk_df,
-                                  run_id,
-                                  args.bm_list,
-                                  core_type,
-                                  args.output_path_list[counter])
-        birp.create_inter_run_id_report(args.output_path_list[counter],
-                                        json_results,
-                                        run_id)
+            make_inter_run_graphs(
+                meta_bmk_df, run_id, args.bm_list, core_type,
+                args.output_path_list[counter])
+        birp.create_inter_run_id_report(
+            args.output_path_list[counter], json_results, run_id)
         counter += 1
 
 
@@ -319,7 +292,8 @@ if __name__ == '__main__':
     for run_id in args.run_id_list:
         dir_name = '' + str(run_id) + '_inter_run_report'
         dir_name_list.append(dir_name)
-    default_output_path_list = [os.path.join(output_dir, d) for d in dir_name_list]
+    default_output_path_list = [
+        os.path.join(output_dir, d) for d in dir_name_list]
     parser.add_argument('-o',
                         '--output_path_list',
                         nargs='?',

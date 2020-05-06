@@ -263,7 +263,7 @@ def ir_plot(
             core_type_str = ''.join(core_type)
             save_path = os.path.join(
                 output_path, '{}_{}_vs_{}_{}_{}Core.png'.format(
-                    run_id, bm_name1, bm_name2, core_type_str, title_part))
+                    run_id, bm_name1, bm_name2, title_part, core_type_str))
         else:
             pass
     else:
