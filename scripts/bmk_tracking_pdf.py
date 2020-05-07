@@ -48,6 +48,7 @@ def create_benchmark_tracking_report(output_path, meta_bmk_df):
     Args:
         output_path (str) - Path where graph images are located and PDF
         report will be saved.
+        
         json_results (dict) - benchmark results
     
     Returns:
@@ -79,47 +80,54 @@ def grab_header_metadata(meta_bmk_df):
     """This function creates the header metadata as a string
 
     Args:
-        json_results (dict) - benchmark results
-        run_id (str) - five character unique identifier for a particular
-        benchmark run
+        meta_bmk_df (pandas dataframe) - Full dataset
 
     Returns:
         header_metadata_str (str) - Formatted header metadata for report
     """
     # Setting up the header string
     header_metadata_str = ''
-    meta_bmk_df = meta_bmk_df[(meta_bmk_df.benchmark_type == 'key') & 
-                              (meta_bmk_df.benchmark != 'conversionBenchmark') & 
-                              (meta_bmk_df.mhz_per_cpu >= 3300) &
-                              (meta_bmk_df.mhz_per_cpu <= 3450)]
+    meta_bmk_df = meta_bmk_df[
+        (meta_bmk_df.benchmark_type == 'key') & 
+        (meta_bmk_df.benchmark != 'conversionBenchmark') & 
+        (meta_bmk_df.mhz_per_cpu >= 3300) &
+        (meta_bmk_df.mhz_per_cpu <= 3450)]
     
     # Adding metadata information to lists for the header
     benchmarks = [i for i in meta_bmk_df.benchmark.unique()]
-    generators = [i for i in meta_bmk_df.generator.unique()]
-    systems = [i for i in meta_bmk_df.system.unique()]
-    system_versions = [i for i in meta_bmk_df.system_version.unique()]
+    # generators = [i for i in meta_bmk_df.generator.unique()]
+    # systems = [i for i in meta_bmk_df.system.unique()]
+    # system_versions = [i for i in meta_bmk_df.system_version.unique()]
     platforms = [i for i in meta_bmk_df.platform.unique()]
-    cxx_compilers = [i for i in meta_bmk_df.cxx_compiler.unique()]
-    cxx_compiler_versions = [i for i in meta_bmk_df.cxx_compiler_version.unique()]
-    compiler_strings = [i for i in meta_bmk_df.build_flags_string.unique()]
-    host_names = [i for i in meta_bmk_df.host_name.unique()]
-    host_processors = [i for i in meta_bmk_df.host_processor.unique()]
-    num_cpus = sorted([i for i in meta_bmk_df.num_cpus.unique()])
+    # cxx_compilers = [i for i in meta_bmk_df.cxx_compiler.unique()]
+    # cxx_compiler_versions = [
+        # i for i in meta_bmk_df.cxx_compiler_version.unique()]
+    # compiler_strings = [i for i in meta_bmk_df.build_flags_string.unique()]
+    # host_names = [i for i in meta_bmk_df.host_name.unique()]
+    # host_processors = [i for i in meta_bmk_df.host_processor.unique()]
+    # num_cpus = sorted([i for i in meta_bmk_df.num_cpus.unique()])
     mhz_per_cpus = sorted([i for i in meta_bmk_df.mhz_per_cpu.unique()])
     
     # Adding all necessary metadata to the header
-    header_metadata_str += '{:<25}{}\n\n'.format('BENCHMARKS:', benchmarks)        
-    header_metadata_str += '{:<25}{}\n\n'.format('generator:', 'Unix Makefiles')
-    header_metadata_str += '{:<25}{}\n\n'.format('system:', 'Linux')
-    header_metadata_str += '{:<25}{}\n\n'.format('system version:', '4.15.0-1052-aws:')
+    header_metadata_str += '{:<25}{}\n\n'.format(
+        'BENCHMARKS:', benchmarks)        
+    header_metadata_str += '{:<25}{}\n\n'.format(
+        'generator:', 'Unix Makefiles')
+    header_metadata_str += '{:<25}{}\n\n'.format(
+        'system:', 'Linux')
+    header_metadata_str += '{:<25}{}\n\n'.format(
+        'system version:', '4.15.0-1052-aws:')
     header_metadata_str += '{:<25}{}\n\n'.format('platform:', platforms)
     header_metadata_str += '{:<25}{}\n\n'.format('C++ compiler:', 'GNU')
-    header_metadata_str += '{:<25}{}\n\n'.format('C++ compiler version:', '9.2.1')
-#    header_metadata_str += '{:<25}{}\n\n'.format('Build flag string:', compiler_strings)
+    header_metadata_str += '{:<25}{}\n\n'.format(
+        'C++ compiler version:', '9.2.1')
+    # header_metadata_str += '{:<25}{}\n\n'.format(
+    #     'Build flag string:', compiler_strings)
 #    header_metadata_str += '{:<25}{}\n\n'.format('host name:', host_names)
     header_metadata_str += '{:<25}{}\n\n'.format('host processor:', 'x86_64')
     header_metadata_str += '{:<25}{}\n\n'.format('CPU core count:', 36)
-    header_metadata_str += '{:<25}{}\n\n'.format('processor speed (MHz):', mhz_per_cpus)
+    header_metadata_str += '{:<25}{}\n\n'.format(
+        'processor speed (MHz):', mhz_per_cpus)
 
     header_metadata_str = header_metadata_str + '\n' + '\n'
     logging.info('Final metadata header:\n{}'.format(header_metadata_str))
@@ -158,6 +166,7 @@ def make_benchmark_track_graphs(meta_bmk_df, output_path):
     Args:
         meta_bmk_df (pandas dataframe) - Contains all of the 'tracking'
         benchmarks' data.
+        
         output_path (str) - Path to send the graphs.
         
     Returns:
@@ -175,15 +184,10 @@ def make_benchmark_track_graphs(meta_bmk_df, output_path):
                             (meta_bmk_df.cxx_compiler_version == '9.2.1') & 
                             (meta_bmk_df.mhz_per_cpu >= 3300) &
                             (meta_bmk_df.mhz_per_cpu <= 3450)]
-        bmk_plotting.sa_plot(track,
-                             'date',
-                             'real_time', 
-                             'echoMessage', 
-                             'key',
-                             by_bool=True, 
-                             by_name='core_type',
-                             run_id='', 
-                             output_path=output_path)
+        bmk_plotting.sa_plot(
+            track, 'date', 'real_time', 
+            'tracking', by_bool=True, by_name='core_type', 
+            run_id='echoMessage', output_path=output_path)
     if 'echoBenchmark' in list(meta_bmk_df.benchmark.unique()):
         track = meta_bmk_df[(meta_bmk_df.benchmark == 'echoBenchmark') & 
                             (meta_bmk_df.benchmark_type == 'key') & 
@@ -196,15 +200,10 @@ def make_benchmark_track_graphs(meta_bmk_df, output_path):
                             (meta_bmk_df.cxx_compiler_version == '9.2.1') & 
                             (meta_bmk_df.mhz_per_cpu >= 3300) &
                             (meta_bmk_df.mhz_per_cpu <= 3450)]
-        bmk_plotting.sa_plot(track,
-                             'date',
-                             'real_time', 
-                             'echo', 
-                             'key',
-                             by_bool=True, 
-                             by_name='core_type', 
-                             run_id='', 
-                             output_path=output_path)
+        bmk_plotting.sa_plot(
+            track, 'date', 'real_time', 
+            'tracking', by_bool=True, by_name='core_type', 
+            run_id='echo', output_path=output_path)
     if 'messageLookupBenchmark' in list(meta_bmk_df.benchmark.unique()):
         track = meta_bmk_df[(meta_bmk_df.benchmark == 'messageLookupBenchmark') & 
                             (meta_bmk_df.benchmark_type == 'key') & 
@@ -217,15 +216,10 @@ def make_benchmark_track_graphs(meta_bmk_df, output_path):
                             (meta_bmk_df.cxx_compiler_version == '9.2.1') & 
                             (meta_bmk_df.mhz_per_cpu >= 3300) &
                             (meta_bmk_df.mhz_per_cpu <= 3450)]
-        bmk_plotting.sa_plot(track,
-                             'date',
-                             'real_time', 
-                             'messageLookup', 
-                             'key',
-                             by_bool=True, 
-                             by_name='core_type', 
-                             run_id='', 
-                             output_path=output_path)
+        bmk_plotting.sa_plot(
+            track, 'date', 'real_time', 
+            'tracking', by_bool=True, by_name='core_type', 
+            run_id='messageLookup', output_path=output_path)
     if 'timingBenchmark' in list(meta_bmk_df.benchmark.unique()):
         track = meta_bmk_df[(meta_bmk_df.benchmark == 'timingBenchmark') & 
                             (meta_bmk_df.benchmark_type == 'key') & 
@@ -238,15 +232,10 @@ def make_benchmark_track_graphs(meta_bmk_df, output_path):
                             (meta_bmk_df.cxx_compiler_version == '9.2.1') & 
                             (meta_bmk_df.mhz_per_cpu >= 3300) &
                             (meta_bmk_df.mhz_per_cpu <= 3450)]
-        bmk_plotting.sa_plot(track,
-                             'date',
-                             'real_time', 
-                             'timing', 
-                             'key',
-                             by_bool=True, 
-                             by_name='core_type', 
-                             run_id='', 
-                             output_path=output_path)
+        bmk_plotting.sa_plot(
+            track, 'date', 'real_time', 
+            'tracking', by_bool=True, by_name='core_type', 
+            run_id='timing', output_path=output_path)
         
 
 def _auto_run(args):

@@ -72,7 +72,8 @@ def sa_plot(
             '{}'.format(x_axis), 
             '{}'.format(y_axis),
             ylabel='{} (s)'.format(y_axis),
-            by='{}'.format(by_name),
+            by='{}'.format(by_name), 
+            rot=90,
             alpha=0.5).opts(width=590, height=360, logx=True, logy=True, 
                             title='run_id {} {}: {} vs {}'.format(
                                 run_id, bm_name, x_axis, y_axis), fontsize={
@@ -86,7 +87,8 @@ def sa_plot(
         plot = dataframe.sort_values('{}'.format(x_axis)).hvplot.line(
             '{}'.format(x_axis), 
             '{}'.format(y_axis),
-            ylabel='{} (s)'.format(y_axis),
+            ylabel='{} (s)'.format(y_axis), 
+            rot=90,
             alpha=0.5).opts(width=590, height=360, logx=True, logy=True,
             title='run_id {} {}: {} vs {}'.format(
                 run_id, bm_name, x_axis, y_axis), fontsize={
