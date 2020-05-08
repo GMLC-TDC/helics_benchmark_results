@@ -5,8 +5,8 @@ Created on Wed Dec 11 19:03:59 2019
 This script provides general plotting functions
 for analysis reports.  These functions take a set of specified
 arguments and create a Holoviews plot object of that set.  These
-functions also save each plot as a .png, which eases the
-ability to incorporate plots into the analysis reports.
+functions also save each plot as a .png for ease of
+incorporating plots into the analysis reports.
 
 Further descriptions of the functions are contained in the 
 documentation string of each function.
@@ -44,21 +44,19 @@ def sa_plot(
         bm_name (str) - Specific benchmark's name; added to the 
         title of the graph and name of the saved image.
         
-        bm_type (str) - Benchmark_type = 'full' or 'key'.
-        
         by_bool (bool) - If True, the keyword argument 'by' will be added
         to the hvplot.line() function, along with the by_name parameter; 
         otherwise, 'by' will not be added.
         
         by_name (str) - Parameter for the 'by' keyword argument in the
         hvplot.line() function; only added if by_bool equals True.
+        
         run_id (str) - 5 character unique identifier for the run-ID.
         
         output_path (str) - Path where graphs should be saved.
     
     Returns:
         (null)
-        
     """
     # Checking if benchmark_type is 'full' or 'key'
     if by_bool == True:
@@ -109,8 +107,7 @@ def cr_plot(
     The use for this function is to compare the results of different
     comparison parameters for a given set of run_ids.  The comparison
     parameter that is specified will be different for each run_id, but 
-    other run_ids' data will be identical; hence why we want to compare 
-    it across the run_ids in the run_id_list
+    other run_ids' data will be identical.
     
     Args:
         dataframe (pandas dataframe) - Contains all benchmark results
@@ -137,7 +134,6 @@ def cr_plot(
     
     Returns:
         (null)
-        
     """
     my_plots = []
     for run_id in run_id_list:
@@ -227,7 +223,6 @@ def ir_plot(
     
     Returns:
         (null)
-        
     """
     # Checking to see if a metric is desired.
     if metric_bool == True:
@@ -324,9 +319,9 @@ def mm_plot(
         y_axis (str) - y-axis data from the dataframe object that should be
         given to the hvplot.line() function.
         
-        param1 (str) - Used to filter dataframe within the .groupby() function.
+        param1 (str) - Used to filter dataframe within the groupby() function.
         
-        param2 (str) - Used to filter dataframe within the .groupby() function.
+        param2 (str) - Used to filter dataframe within the groupby() function.
         
         metric_bool (bool) - If a metric plot is needed (such as counts per
         second), then this is 'True', and it will have a corresponding

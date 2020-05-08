@@ -4,10 +4,10 @@ Created on Thu Mar 12 07:40:00 2020
 
 Creates metrics and calculates ratios for analysis
 of HELICS performance for a given benchmark.  For each
-benchmark, a spreadsheet that summarizes the calculated
-metrics and ratios is generated.  A spreadsheet for all 
+benchmark, a spreadsheet and csv that summarizes the calculated
+metrics and ratios are generated.  A spreadsheet for all 
 the benchmarks is created and saved as a single Excel 
-spreadsheet.
+spreadsheet and csv file.
 
 This script can be run as a standalone script to generate the summary
 spreadsheet for all the benchmarks results.
@@ -65,7 +65,6 @@ def get_ratio(dataframe, groupby_columns, index_columns, filter_columns,
         final_df (pandas dataframe) - Contains the original
         information plus the metrics' ratios' results.
     """
-    
     lst = []
     for fs, vs, ms in zip(filter_columns, value_columns, metric_columns):
         for g, df in dataframe.groupby(groupby_columns):
@@ -180,9 +179,8 @@ def create_metrics(dataframe, filter_columns, groupby_columns, metric_names,
         desired information and the new created/calculated metrics to
         be used for analysis.
     """
-    ### Making sure there is a one-to-one relationship between real_time
-    ### and federate_count, etc.
-    
+    # Making sure there is a one-to-one relationship between real_time
+    # and federate_count, etc.
     df = dataframe[filter_columns].groupby(
         groupby_columns)['{}'.format(time)].min()
     df.name = '{}'.format(time)
@@ -1111,17 +1109,21 @@ def create_table(
 
 def _auto_run(args):
     """This function executes when the script is called as a stand-alone
-    executable.
+    executable.  It is used both for development/testing as well as the
+    primary executable for generating the results summary files.
+
+    A more complete description of this code can be found in the
+    docstring at the beginning of this file.
     
     Args:
-        -b or --bmk_type (str) - Identifier for type of summary results
+        '-b' or '--bmk_type' - Identifier for type of summary results
         should be produced; should be "full", "key", or "multinode" and
         "json_file" should be changed accordingly.
         
-        -j or --json_file (str) - JSON file of all the benchmark results
+        '-j' or '--json_file' - JSON file of all the benchmark results
         data.
         
-        -o or --output_path (str) - Path to send the spreadsheet.
+        '-o' or '--output_path' - Path to send the spreadsheet.
     Returns:
         (null)
         

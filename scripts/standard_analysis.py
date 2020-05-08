@@ -163,6 +163,7 @@ def find_bm_to_graph(json_results, run_id):
     Args:
         json_results (dict) - Dictionary containing metadata and results
         keyed off the path for each benchmark results file.
+        
         run_id (str) - specific run-ID to evaluate
 
     Returns:
@@ -193,8 +194,10 @@ def make_SA_graphs(meta_bmk_df, bm_list, run_id, output_path):
     Args:
         meta_bmk_df (pandas dataframe) - Contains all benchmark results
         and associated metadata.
+        
         bm_list (list) - list of small dictionaries storing the benchmark 
         name and type ("full" or "key")
+        
         run_id (str) - 5 character unique identifier for the run-ID
         output_path (str) - Path where graphs should be saved
 
@@ -349,6 +352,7 @@ def sort_results_files(file_list):
     Returns:
         bm_files (list) - List of full paths to benchmark files that are
         classified as "full"
+        
         bmk_files (list) - List of full paths to benchmark files that
         are classified as "key"
     """

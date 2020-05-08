@@ -107,15 +107,14 @@ def create_output_path(output_path_list, delete_existing_report):
     Returns:
         null
     """
-
-    # "head" will be the full path to and including "cross_case_comparison"
+    # "head" will be the full path to and including "benchmark_tracking"
     # "tail" will be just the name of the report folder
     for output in output_path_list:
         head, tail = os.path.split(output)
     
         # TDH (2020-01-14)
-        # If for some reason the parent folder that contains all the cross-
-        # run-ID comparisons does not exist it needs to be created. If it
+        # If for some reason the parent folder that contains all the inter-run
+        # information does not exist it needs to be created. If it
         # does exist we can just move on.
         if os.path.exists(head):
             pass
@@ -127,7 +126,7 @@ def create_output_path(output_path_list, delete_existing_report):
                 print('Failed to create directory {}'.format(head))
     
         # TDH (2020-01-14)
-        # Now working on creating the folder specific to the run IDs being
+        # Now working on creating the folder specific to the benchmarks being
         # compared.
         if os.path.exists(output):
             if delete_existing_report:
@@ -142,7 +141,9 @@ def create_output_path(output_path_list, delete_existing_report):
 def make_inter_run_graphs(meta_bmk_df, run_id, bm_list, core_type, 
                           output_path):
     """This function creates inter-run graphs of multiple benchmarks, for a
-    given run_id.
+    given run_id.  In other words, given a run-id, this function creates
+    plots of the echoBenchmark and cEchoBenchmark results for making
+    comparisons.
     
     Args:
         meta_bmk_df (pandas dataframe) - Full dataset.
@@ -156,7 +157,7 @@ def make_inter_run_graphs(meta_bmk_df, run_id, bm_list, core_type,
         output_path (str) - Location to send the graph.
     
     Returns:
-        null
+        (null)
     """
     if 'echoBenchmark' in bm_list and 'timingBenchmark' in bm_list:
         df1 = meta_bmk_df[meta_bmk_df.benchmark == 'echoBenchmark']
@@ -256,7 +257,6 @@ if __name__ == '__main__':
     streamHandle.setLevel(logging.ERROR)
     logging.basicConfig(level=logging.INFO,
                         handlers=[fileHandle, streamHandle])
-
     # TDH: Standard argument parsing
     parser = argparse.ArgumentParser(description='Generate PDF report.')
     # TDH: Have to do a little bit of work to generate a good default
@@ -303,6 +303,5 @@ if __name__ == '__main__':
                         nargs='?',
                         default=False)
     args = parser.parse_args()
-
     # TDH: Run the standard analysis
     _auto_run(args)

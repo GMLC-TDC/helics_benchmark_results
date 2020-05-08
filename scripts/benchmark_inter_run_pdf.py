@@ -42,12 +42,14 @@ def create_inter_run_id_report(output_path, json_results, run_id):
     Args:
         output_path (str) - Path where graph images are located and PDF
         report will be saved.
-        json_results (dict) - benchmark results
-        run_id (str) - five character unique identifier for a particular
+        
+        json_results (dict) - Benchmark results
+        
+        run_id (str) - Five character unique identifier for a particular
         benchmark run
 
     Returns:
-        null
+        (null)
     """
     # Create the PDF object
     pdf = FPDF()
@@ -76,13 +78,13 @@ def grab_header_metadata(json_results, run_id):
 
     Args:
         json_results (dict) - benchmark results
+        
         run_id (str) - five character unique identifier for a particular
         benchmark run
 
     Returns:
         header_metadata_str (str) - Formatted header metadata for report
     """
-
     # TDH (2019-12-20): Since all the metadata is common for each run, I
     # can grab the metadata I need from any of the results files
     # corresponding to the indicated run.
@@ -199,7 +201,7 @@ def get_unique_run_ids(json_results):
     dictionary.
 
     Args:
-        json_results (dict) - benchmark results
+        json_results (dict) - enchmark results
 
     Returns:
         run_id_list (list) - List of unique run ID strings in json_results
@@ -230,10 +232,8 @@ def _auto_run(args):
     Returns:
         (nothing)
     """
-    # CGR (2020-01-22) Copied and pasted over to this file for ease-of-use
-    # purposes.
-    # TDH (2020-01-13) For developement testing the following section
-    # replicates the functionality of "standard_analysis.py" so that
+    # CGR (2020-01-22) For developement testing the following section
+    # replicates the functionality of "benchmark_inter_run.py" so that
     # json_results can be created and used to create the graph image
     # files.
     import benchmark_postprocessing as bmpp
@@ -275,7 +275,6 @@ if __name__ == '__main__':
     streamHandle.setLevel(logging.ERROR)
     logging.basicConfig(level=logging.INFO,
                         handlers=[fileHandle, streamHandle])
-
     # TDH (2020-01-13): Standard argument parsing
     parser = argparse.ArgumentParser(description='Generate PDF report.')
     parser.add_argument('-r',

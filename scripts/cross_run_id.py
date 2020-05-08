@@ -47,12 +47,11 @@ import math
 # Installation of FPDF is: python -m pip install fpdf
 # Installation of hvplot.pandas is: conda install -c pyviz hvplot
 # Installation of selenium is: conda install -c bokeh selenium
-# Installation of phantomjs is: brew tap homebrew/cask; brew cask install phantomjs
+# Installation of phantomjs is: brew tap homebrew/cask; brew cask install 
+# phantomjs
 
 # Setting up logging
 logger = logging.getLogger(__name__)
-
-
 
 # Setting up pretty printing, mostly for debugging.
 pp = pprint.PrettyPrinter(indent=4)
@@ -71,6 +70,7 @@ def find_specific_run_id(benchmark_results_dir, run_id_list):
     Args:
         benchmark_results_dir (str) - root folder that contains all
         results from the run IDs specified in run_id_list.
+        
         run_id_list (list) - List of strings defining the run IDs to
         compare
 
@@ -118,17 +118,16 @@ def create_output_path(output_path, delete_existing_report):
     Args:
         output_path (str) - Path to the results folder for the comparison
         of these run-IDs
+        
         delete_existing_report (bool) - Flag indicating whether any
         existing report folder should be deleted (True) or not (False)
 
     Returns:
         null
     """
-
     # "head" will be the full path to and including "cross_case_comparison"
     # "tail" will be just the name of the report folder
     head, tail = os.path.split(output_path)
-
     # TDH (2020-01-14)
     # If for some reason the parent folder that contains all the cross-
     # run-ID comparisons does not exist it needs to be created. If it
@@ -141,7 +140,6 @@ def create_output_path(output_path, delete_existing_report):
         except OSError:
             logging.error('Failed to create directory {}'.format(head))
             print('Failed to create directory {}'.format(head))
-
     # TDH (2020-01-14)
     # Now working on creating the folder specific to the run IDs being
     # compared.
@@ -163,6 +161,7 @@ def find_common_bm_to_graph(json_results, run_id_dict):
     Args:
         json_results (dict) - Contains metadata and results
         keyed off the path for each benchmark results file.
+        
         run_id_dict (dict) - Contains file metadata associated with
         each run ID
 
@@ -188,7 +187,6 @@ def find_common_bm_to_graph(json_results, run_id_dict):
             else:
                 bm_name = bm_name + '_full'
             bm_dict[json_results[bm]['run_id']].append(bm_name)
-
     # TDH (2019-12-27): pick list of benchmarks in first list
     # arbitrarily as reference for comparison
     key = list(run_id_dict.keys())[0]
@@ -212,7 +210,6 @@ def find_common_bm_to_graph(json_results, run_id_dict):
             bm_name_parts = bm.split('_')
             bm_name = bm_name_parts[0]
             bm_list_to_graph.append({'bm_name': bm_name, 'bm_type':bm_type})
-
     return bm_list_to_graph
 
 def make_cross_run_id_graphs(meta_bmk_df, bm_list, run_id_list, output_path,
@@ -231,10 +228,14 @@ def make_cross_run_id_graphs(meta_bmk_df, bm_list, run_id_list, output_path,
 
     Args:
         meta_bmk_df (pandas dataframe) - Full dataset
+        
         bm (string) - benchmark being compared
+        
         run_id_list (list) - list of run-ID strings
+        
         output_path (string) - path to where output graphs should be
         saved
+        
         comparison_parameter - parameter of partiular interest that the
         user expects to differ across run-IDs.
 
@@ -257,17 +258,20 @@ def make_cross_run_id_graphs(meta_bmk_df, bm_list, run_id_list, output_path,
                     df, 'federate_count', 'real_time', 'cEchoBenchmark',
                     run_id_list, core_type, comparison_parameter, output_path)
         if bm['bm_name'] == 'echoMessageBenchmark':
-            df = meta_bmk_df[(meta_bmk_df.benchmark == 'echoMessageBenchmark') & 
-                             (meta_bmk_df.benchmark_type == 'full')]
+            df = meta_bmk_df[
+                (meta_bmk_df.benchmark == 'echoMessageBenchmark') & 
+                (meta_bmk_df.benchmark_type == 'full')]
             for core_type in df.core_type.unique():
                 bmk_plotting.cr_plot(
                     df, 'federate_count', 'real_time', 'echoMessageBenchmark',
                     run_id_list, core_type, comparison_parameter, output_path)
         if bm['bm_name'] == 'messageLookupBenchmark':
-            df = meta_bmk_df[meta_bmk_df.benchmark == 'messageLookupBenchmark']
+            df = meta_bmk_df[
+                meta_bmk_df.benchmark == 'messageLookupBenchmark']
             ml1 = df[(df.benchmark_type == 'full') & (df.federate_count == 2)]
             ml2 = df[(df.benchmark_type == 'full') & (df.federate_count == 8)]
-            ml3 = df[(df.benchmark_type == 'full') & (df.federate_count == 64)]
+            ml3 = df[
+                (df.benchmark_type == 'full') & (df.federate_count == 64)]
             bmk_plotting.cr_plot(
                 ml1, 'interface_count', 'real_time', 'messageLookup, fed_ct=2', 
                 run_id_list,'inproc', comparison_parameter, output_path)
@@ -290,9 +294,10 @@ def make_cross_run_id_graphs(meta_bmk_df, bm_list, run_id_list, output_path,
                     df, 'federate_count', 'real_time', 'ringBenchmark',
                     run_id_list, core_type, comparison_parameter, output_path)
         if bm['bm_name'] == 'ringMessageBenchmark':
-            df = meta_bmk_df[(meta_bmk_df.benchmark == 'ringMessageBenchmark') &
-                             (meta_bmk_df.benchmark_type == 'full') & 
-                             (meta_bmk_df.core_type != 'singleCore')]
+            df = meta_bmk_df[
+                (meta_bmk_df.benchmark == 'ringMessageBenchmark') &
+                (meta_bmk_df.benchmark_type == 'full') & 
+                (meta_bmk_df.core_type != 'singleCore')]
             for core_type in df.core_type.unique():
                 # TDH (2020-01-09) - Special case because only a single data
                 # point is run for the singleCore data. All the others have
@@ -309,8 +314,9 @@ def make_cross_run_id_graphs(meta_bmk_df, bm_list, run_id_list, output_path,
                     meta_bmk_df, 'federate_count', 'real_time', 'pholdBenchmark',
                     run_id_list, core_type, comparison_parameter, output_path)
         if bm['bm_name'] == 'messageSendBenchmark':
-            df = meta_bmk_df[(meta_bmk_df.benchmark == 'messageSendBenchmark') & 
-                             (meta_bmk_df.benchmark_type == 'full')]
+            df = meta_bmk_df[
+                (meta_bmk_df.benchmark == 'messageSendBenchmark') & 
+                (meta_bmk_df.benchmark_type == 'full')]
             bmk_plotting.cr_plot(
                 df, 'message_size', 'real_time', 'messageSend, singleCore', 
                 run_id_list, 'singleCore', comparison_parameter, output_path)
@@ -416,7 +422,6 @@ def _auto_run(args):
     print('Finished the cross-run_id analysis.')
 
 
-
 if __name__ == '__main__':
     # TDH: This slightly complex mess allows lower importance messages
     # to be sent to the log file and ERROR messages to additionally
@@ -429,9 +434,7 @@ if __name__ == '__main__':
     streamHandle.setLevel(logging.ERROR)
     logging.basicConfig(level=logging.INFO,
                         handlers=[fileHandle, streamHandle])
-
     parser = argparse.ArgumentParser(description='Cross case comparison')
-
     # TDH: Have to do a little bit of work to generate a good default
     # path for the results folder. Default only works if being run
     # from the "scripts" directory in the repository structure.
@@ -456,7 +459,6 @@ if __name__ == '__main__':
                         '--comparison_parameter_list',
                         nargs='?',
                         default=parameter_list)
-
     # TDH (2019-12-27)
     # Building the output results directory name based on the run IDs
     # specified
