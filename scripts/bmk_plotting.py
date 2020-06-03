@@ -269,15 +269,15 @@ def cr_plot(
     # Plotting all the plots in the list into one plot;
     # Holoviews allows you to plot graphs on the same plot.
     min_y = my_plots[0]['{}'.format(y_axis)].min()
+    max_y = my_plots[0]['{}'.format(y_axis)].max()
     plot = (reduce((lambda x, y: x*y), my_plots)).opts(
         width=625, height=380, 
         logx=True, logy=True, 
-        legend_position='bottom_right', legend_cols=2,  
-        yformatter='%.3f',   
-        ylim=(min_y*10.0**(-1), None), title=\
+        legend_position='bottom_right', yformatter='%.8f',   
+        ylim=(min_y*10.0**(-2), max_y*10.0**(1)), title=\
             '{}: {} vs {}'.format(bm_name, x_axis, y_axis), 
-        fontsize={'title': 8.5, 'labels': 10, 'legend': 8,
-                  'legend_title': 8, 'xticks': 8, 'yticks': 10})
+        fontsize={'title': 8.5, 'labels': 10, 'legend': 7.5,
+                  'legend_title': 7.5, 'xticks': 8, 'yticks': 10})
     # The beginning part of the image's name.
     # It includes all the run_ids.
     run_id_str = '_'.join(run_id_list)
