@@ -251,6 +251,9 @@ def cr_plot(
         # each run_id in the list of run_is
         plots = dataframe[(dataframe.run_id == '{}'.format(run_id)) & 
                           (dataframe.core_type == '{}'.format(core_type))]
+        plots = plots.set_index('run_id')
+        param_string = plots.at[run_id, '{}'.format(comparison_parameter)][0]
+        plots = plots.reset_index()
         # Filtering the dataframe further so that there are not
         # duplicate 'y-values' to plot; otherwise, there will be
         # spikes in the graphs.
@@ -260,8 +263,7 @@ def cr_plot(
                 '{}'.format(x_axis), 
                 '{}'.format(y_axis),
                 label='run_id: {}, core_type: {}, {}: {}'.format(
-                    run_id, core_type, comparison_parameter, 
-                    plots['{}'.format(comparison_parameter)].unique()), 
+                    run_id, core_type, comparison_parameter, param_string), 
                 line_width=3,
                 alpha=0.5)
         # Appending the plot for each run_id into a list of plots.
@@ -361,17 +363,19 @@ def ir_plot(
             plot1 = gpd1.reset_index().sort_values(
                 '{}'.format(x_axis)).hvplot.line(
                 '{}'.format(x_axis), 
-                'seconds_per_count',
+                'seconds_per_count', 
+                ylabel='seconds_per_federate_count',
                 label='{}, run_id: {}, core_type: {}'.format(
-                    df1.benchmark.unique(), run_id, core_type), 
+                    bm_name1, run_id, core_type), 
                 line_width=3,
                 alpha=0.5)
             plot2 = gpd2.reset_index().sort_values(
                 '{}'.format(x_axis)).hvplot.line(
                 '{}'.format(x_axis), 
-                'seconds_per_count',
+                'seconds_per_count', 
+                ylabel='seconds_per_federate_count',
                 label='{}, run_id: {}, core_type: {}'.format(
-                    df2.benchmark.unique(), run_id, core_type), 
+                    bm_name2, run_id, core_type), 
                 line_width=3,
                 alpha=0.5)
             core_type_str = ''.join(core_type)
@@ -392,7 +396,7 @@ def ir_plot(
                 '{}'.format(y_axis),
                 ylabel='{} (s)'.format(y_axis),
                 label='{}, run_id: {}, core_type: {}'.format(
-                    df1.benchmark.unique(), run_id, core_type), 
+                    bm_name1, run_id, core_type), 
                 line_width=3,
                 alpha=0.5)
         plot2 = df2.sort_values('{}'.format(x_axis)).hvplot.line(
@@ -400,7 +404,7 @@ def ir_plot(
                 '{}'.format(y_axis),
                 ylabel='{} (s)'.format(y_axis),
                 label='{}, run_id: {}, core_type: {}'.format(
-                    df2.benchmark.unique(), run_id, core_type), 
+                    bm_name2, run_id, core_type), 
                 line_width=3,
                 alpha=0.5)
         core_type_str = ''.join(core_type)
@@ -408,15 +412,15 @@ def ir_plot(
             output_path, '{}_{}_vs_{}_{}Core.png'.format(
                 run_id, bm_name1, bm_name2, core_type_str))
     plots = [plot1, plot2]
-    min_y = plots[0]['{}'.format(y_axis)].min()
+    # min_y = plot1['{}'.format(y_axis)].min()
     plot = (reduce((lambda x, y: x*y), plots)).opts(
-        width=625, height=380, logx=True, 
-        logy=True, legend_position='bottom_right', legend_cols=2, 
-        yformatter='%.3f',   
-        ylim=(min_y*10.0**(-1), None), title=\
+        width=625, height=380, 
+        logx=True, logy=True, 
+        legend_position='bottom_right', yformatter='%.3f', 
+        ylim=(10.0**(-3), None), title=\
             '{} v {}: {}'.format(bm_name1, bm_name2, title_part), 
-        fontsize={'title': 8.5, 'labels': 10, 'legend': 8, 
-                  'legend_title': 8, 'xticks': 8, 'yticks': 10})
+        fontsize={'title': 9, 'labels': 10, 'legend': 9, 
+                  'xticks': 8, 'yticks': 10})
     hvplot.save(plot, save_path)
     logging.info('Created graph file {}'.format(output_path))
 
