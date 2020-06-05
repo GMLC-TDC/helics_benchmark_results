@@ -167,11 +167,11 @@ def make_inter_run_graphs(meta_bmk_df, run_id, bm_list, core_type,
             ir_plot(
                 df1, df2, 'federate_count', 'real_time', 
                 'echo', 'timing', False, '', 
-                'fed_ct vs real_time', run_id, core_type, output_path)
+                'federate_count vs real_time', run_id, core_type, output_path)
             ir_plot(
                 df1, df2, 'federate_count', 'real_time', 
                 'echo', 'timing', True, 'spc', 
-                'fed_ct vs spf', run_id, core_type, output_path)
+                'federate_count vs spf', run_id, core_type, output_path)
         else:
             logging.error(
                 'run_id {} is not in both benchmark dataframes'.format(run_id))
@@ -184,11 +184,11 @@ def make_inter_run_graphs(meta_bmk_df, run_id, bm_list, core_type,
             ir_plot(
                 df1, df2, 'federate_count', 'real_time',
                 'echo', 'cEcho', False, '', 
-                'fed_ct vs real_time', run_id, core_type, output_path)
+                'federate_count vs real_time', run_id, core_type, output_path)
             ir_plot(
                 df1, df2, 'federate_count', 'real_time',
                 'echo', 'cEcho', True, 'spc',
-                'fed_ct vs spf', run_id, core_type, output_path)
+                'federate_count vs spf', run_id, core_type, output_path)
         else:
             logging.error(
                 'run_id {} is not in both benchmark dataframes'.format(run_id))

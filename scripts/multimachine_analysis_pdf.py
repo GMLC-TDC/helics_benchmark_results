@@ -25,13 +25,10 @@ import pprint
 import os
 import sys
 from fpdf import FPDF
-import collections as co
 import bmk_plotting
-import multinode_postprocessing as mpp
 import make_dataframe as md
 
 # Installation of FPDF is: python -m pip install fpdf
-
 
 # Setting up logging
 logger = logging.getLogger(__name__)
@@ -285,102 +282,61 @@ def make_multinode_graphs(dataframe, output_path):
     Returns:
         (null)
     """
-    if 'PholdFederate' in list(dataframe.benchmark.unique()):
-        df = dataframe[dataframe.benchmark == 'PholdFederate']
-        bmk_plotting.mm_plot(df, 
-                             'federate_count', 
-                             'elapsed_time', 
-                             'core_type', 
-                             '', 
-                             False, 
-                             '', 
-                             'PholdFederate', 
-                             'Multinode',
-                             output_path)
-        bmk_plotting.mm_plot(df,
-                             'federate_count',
-                             'elapsed_time',
-                             'core_type',
-                             'EvCount',
-                             True,
-                             'cps',
-                             'PholdFederate',
-                             'Multinode',
-                             output_path)
-    elif 'EchoLeafFederate' in list(dataframe.benchmark.unique()):
-        df = dataframe[dataframe.benchmark == 'EchoLeafFederate']
-        bmk_plotting.mm_plot(df, 
-                             'federate_count', 
-                             'elapsed_time', 
-                             'core_type', 
-                             '', 
-                             False, 
-                             '', 
-                             'EchoLeafFederate', 
-                             'Multinode',
-                             output_path)
-    elif 'EchoMessageLeafFederate' in list(dataframe.benchmark.unique()):
-        df = dataframe[dataframe.benchmark == 'EchoMessageLeafFederate']
-        bmk_plotting.mm_plot(df, 
-                             'federate_count', 
-                             'elapsed_time', 
-                             'core_type', 
-                             '', 
-                             False, 
-                             '', 
-                             'EchoMessageLeafFederate', 
-                             'Multinode',
-                             output_path)
-    elif 'MessageExchangeFederate' in list(dataframe.benchmark.unique()):
-        pass
-        df = dataframe[dataframe.benchmark == 'MessageExchangeFederate']
-        bmk_plotting.mm_plot(df, 
-                             'message_count', 
-                             'elapsed_time', 
-                             'core_type', 
-                             '', 
-                             False, 
-                             '', 
-                             'MessageExchange_2', 
-                             'Multinode',
-                             output_path)
-        bmk_plotting.mm_plot(df, 
-                             'message_size', 
-                             'elapsed_time', 
-                             'core_type', 
-                             '', 
-                             False, 
-                             '', 
-                             'MessageExchange_1', 
-                             'Multinode',
-                             output_path)
-    elif 'RingTransmitFederate' in list(dataframe.benchmark.unique()):
-        df = dataframe[dataframe.benchmark == 'RingTransmitFederate']
-        bmk_plotting.mm_plot(df, 
-                             'federate_count', 
-                             'elapsed_time', 
-                             'core_type', 
-                             '', 
-                             False, 
-                             '', 
-                             'RingTransmitFederate', 
-                             'Multinode',
-                             output_path)
-    elif 'TimingLeafFederate' in list(dataframe.benchmark.unique()):
-        df = dataframe[dataframe.benchmark == 'TimingLeafFederate']
-        bmk_plotting.mm_plot(df, 
-                             'federate_count', 
-                             'elapsed_time', 
-                             'core_type', 
-                             '', 
-                             False, 
-                             '', 
-                             'TimingLeafFederate', 
-                             'Multinode',
-                             output_path)
-    
-    else:
-        logging.error('Failed to create graphs')
+    for benchmark in dataframe.benchmark.unique():
+        if benchmark == 'PholdFederate':
+            df = dataframe[dataframe.benchmark == 'PholdFederate']
+            bmk_plotting.mm_plot(
+                df, 'federate_count', 'elapsed_time', 
+                'core_type', '', False, 
+                '', 'PholdFederate', 'Multinode',
+                output_path)
+            bmk_plotting.mm_plot(
+                df, 'federate_count', 'elapsed_time',
+                'core_type', 'EvCount', True,
+                'cps', 'PholdFederate', 'Multinode',
+                output_path)
+        elif benchmark == 'EchoLeafFederate':
+            df = dataframe[dataframe.benchmark == 'EchoLeafFederate']
+            bmk_plotting.mm_plot(
+                df, 'federate_count', 'elapsed_time', 
+                'core_type', '', False, 
+                '', 'EchoLeafFederate', 'Multinode',
+                output_path)
+        elif benchmark == 'EchoMessageLeafFederate':
+            df = dataframe[dataframe.benchmark == 'EchoMessageLeafFederate']
+            bmk_plotting.mm_plot(
+                df, 'federate_count', 'elapsed_time', 
+                'core_type', '', False, 
+                '', 'EchoMessageLeafFederate', 'Multinode',
+                output_path)
+        elif benchmark == 'MessageExchangeFederate':
+            df = dataframe[dataframe.benchmark == 'MessageExchangeFederate']
+            bmk_plotting.mm_plot(
+                df, 'message_count', 'elapsed_time', 
+                'core_type', '', False, 
+                '', 'MessageExchange_2', 'Multinode',
+                output_path)
+            bmk_plotting.mm_plot(
+                df, 'message_size', 'elapsed_time', 
+                'core_type', '', False, 
+                '', 'MessageExchange_1', 'Multinode',
+                output_path)
+        elif benchmark == 'RingTransmitFederate':
+            df = dataframe[dataframe.benchmark == 'RingTransmitFederate']
+            bmk_plotting.mm_plot(
+                df, 'federate_count', 'elapsed_time', 
+                'core_type', '', False, 
+                '', 'RingTransmitFederate', 'Multinode',
+                output_path)
+        elif benchmark == 'TimingLeafFederate':
+            df = dataframe[dataframe.benchmark == 'TimingLeafFederate']
+            bmk_plotting.mm_plot(
+                df, 'federate_count', 'elapsed_time', 
+                'core_type', '', False, 
+                '', 'TimingLeafFederate', 'Multinode',
+                output_path)
+        else:
+            logging.error('Failed to create graphs')
 
 
 def _auto_run(args):
@@ -410,12 +366,11 @@ def _auto_run(args):
     multi_bmk_df = md.make_dataframe2(args.json_file)
     for date in multi_bmk_df.date.unique():
         print('DATE:', date)
-        output_path = os.path.join(args.multinode_benchmark_results_dir, 
-                                   date)
+        output_path = os.path.join(args.multinode_benchmark_results_dir, date)
         df = multi_bmk_df[multi_bmk_df.date == date]
         make_multinode_graphs(df, output_path)
-        create_multimachine_report(output_path,
-                                   df)
+        create_multimachine_report(output_path, df)
+    print('Finished the analysis.')
 
 if __name__ == '__main__':
     # TDH: This slightly complex mess allows lower importance messages
@@ -439,7 +394,7 @@ if __name__ == '__main__':
     parser.add_argument('-j',
                         '--json_file',
                         nargs='?',
-                        default='multinode_bm_results_test.json')
+                        default='multinode_bm_results.json')
     args = parser.parse_args()
     # CGR (2020-03-25) - Create the PDF for multinode analysis
     _auto_run(args)

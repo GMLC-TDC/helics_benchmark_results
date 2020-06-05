@@ -643,7 +643,7 @@ if __name__ == '__main__':
 #    print(script_path)
     head, tail = os.path.split(script_path)
     m_benchmark_results_dir = os.path.join(head, 
-                                           'multinode_benchmark_results_test')
+                                           'multinode_benchmark_results')
     parser.add_argument('-m',
                         '--m_benchmark_results_dir',
                         nargs='?',
