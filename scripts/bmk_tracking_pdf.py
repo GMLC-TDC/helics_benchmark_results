@@ -157,30 +157,33 @@ def make_benchmark_track_graphs(meta_bmk_df, output_path):
     Returns:
         (null)
     """
-    if 'echoMessageBenchmark' in list(meta_bmk_df.benchmark.unique()):
-        track = meta_bmk_df[meta_bmk_df.benchmark == 'echoMessageBenchmark']
-        bmk_plotting.sa_plot(
-            track, 'date', 'real_time', 
-            'tracking', by_bool=True, by_name='core_type', 
-            run_id='echoMessage', output_path=output_path)
-    if 'echoBenchmark' in list(meta_bmk_df.benchmark.unique()):
-        track = meta_bmk_df[meta_bmk_df.benchmark == 'echoBenchmark']
-        bmk_plotting.sa_plot(
-            track, 'date', 'real_time', 
-            'tracking', by_bool=True, by_name='core_type', 
-            run_id='echo', output_path=output_path)
-    if 'messageLookupBenchmark' in list(meta_bmk_df.benchmark.unique()):
-        track = meta_bmk_df[meta_bmk_df.benchmark == 'messageLookupBenchmark']
-        bmk_plotting.sa_plot(
-            track, 'date', 'real_time', 
-            'tracking', by_bool=True, by_name='core_type', 
-            run_id='messageLookup', output_path=output_path)
-    if 'timingBenchmark' in list(meta_bmk_df.benchmark.unique()):
-        track = meta_bmk_df[meta_bmk_df.benchmark == 'timingBenchmark']
-        bmk_plotting.sa_plot(
-            track, 'date', 'real_time', 
-            'tracking', by_bool=True, by_name='core_type', 
-            run_id='timing', output_path=output_path)
+    for benchmark in meta_bmk_df.benchmark.unique():
+        if benchmark == 'echoMessageBenchmark':
+            track = meta_bmk_df[meta_bmk_df.benchmark == 'echoMessageBenchmark']
+            bmk_plotting.sa_plot(
+                track, 'date', 'real_time', 
+                'tracking', by_bool=True, by_name='core_type', 
+                run_id='echoMessage', output_path=output_path)
+        elif benchmark == 'echoBenchmark':
+            track = meta_bmk_df[meta_bmk_df.benchmark == 'echoBenchmark']
+            bmk_plotting.sa_plot(
+                track, 'date', 'real_time', 
+                'tracking', by_bool=True, by_name='core_type', 
+                run_id='echo', output_path=output_path)
+        elif benchmark == 'messageLookupBenchmark':
+            track = meta_bmk_df[meta_bmk_df.benchmark == 'messageLookupBenchmark']
+            bmk_plotting.sa_plot(
+                track, 'date', 'real_time', 
+                'tracking', by_bool=True, by_name='core_type', 
+                run_id='messageLookup', output_path=output_path)
+        elif benchmark == 'timingBenchmark':
+            track = meta_bmk_df[meta_bmk_df.benchmark == 'timingBenchmark']
+            bmk_plotting.sa_plot(
+                track, 'date', 'real_time', 
+                'tracking', by_bool=True, by_name='core_type', 
+                run_id='timing', output_path=output_path)
+        else:
+            logging.error('Invalid benchmark {}'.format(benchmark))
         
 
 def _auto_run(args):

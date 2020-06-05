@@ -75,13 +75,14 @@ def sa_plot(
                 'EvCount_per_second',
                 ylabel='EvCount_per_second',
                 line_width=3,
-                by='{}'.format(by_name),
+                by='{}'.format(by_name), 
+                rot=90,
                 alpha=0.5).opts(
                     width=625, height=380, 
                     logx=True, logy=True, 
                     legend_position='bottom_right', legend_cols=2, 
-                    yformatter='%.2f',
-                    ylim=(min_y*10.0**(-1), None), title=\
+                    yformatter='%.3f',
+                    ylim=(min_y*10.0**(-2), None), title=\
                         'run_id {} {}: {} vs {}'.format(
                             run_id, bm_name, x_axis, 'EvCount_per_second'), 
                     fontsize={'title': 8.5, 'labels': 10, 'legend': 8, 
@@ -127,13 +128,14 @@ def sa_plot(
                 '{}'.format(y_axis),
                 ylabel='{} (s)'.format(y_axis),
                 line_width=3,
-                by='{}'.format(by_name),
+                by='{}'.format(by_name), 
+                rot=90,
                 alpha=0.5).opts(
                     width=625, height=380, 
                     logx=True, logy=True, 
                     legend_position='bottom_right', legend_cols=2, 
-                    yformatter='%.2f',   
-                    ylim=(min_y*10.0**(-1), None), title=\
+                    yformatter='%.3f',   
+                    ylim=(min_y*10.0**(-2), None), title=\
                         'run_id {} {}: {} vs {}'.format(
                             run_id, bm_name, x_axis, y_axis), 
                     fontsize={'title': 8.5, 'labels': 10, 'legend': 8, 
@@ -149,7 +151,8 @@ def sa_plot(
                 '{}'.format(x_axis), 
                 '{}'.format(y_axis),
                 ylabel='{} (s)'.format(y_axis), 
-                line_width=3,
+                line_width=3, 
+                rot=90,
                 alpha=0.5).opts(
                     width=625, height=380, 
                     logx=True, logy=True, 
@@ -169,7 +172,8 @@ def sa_plot(
                 '{}'.format(x_axis), 
                 '{}'.format(y_axis),
                 ylabel='{} (s)'.format(y_axis), 
-                line_width=3,
+                line_width=3, 
+                rot=90,
                 alpha=0.5).opts(
                     width=625, height=380, logx=True, 
                     logy=True, yformatter='%.6f', ylim=(min_y*10.0**(-1), None), 
@@ -188,7 +192,8 @@ def sa_plot(
                 '{}'.format(x_axis), 
                 '{}'.format(y_axis),
                 ylabel='{} (s)'.format(y_axis), 
-                line_width=3,
+                line_width=3, 
+                rot=90,
                 alpha=0.5).opts(
                     width=625, height=380, 
                     logx=True, logy=True, 
