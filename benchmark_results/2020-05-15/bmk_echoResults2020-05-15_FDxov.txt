@@ -1,0 +1,147 @@
+HELICS_BENCHMARK: echoBenchmark
+------------HELICS BUILD INFO -------------
+HELICS VERSION: 2.5.0-develop-g3830ba9b (2020-05-15)
+ZMQ VERSION: ZMQ v4.3.2
+COMPILER INFO: Unix Makefiles  Linux-4.15.0-1052-aws:GNU-9.3.0
+BUILD FLAGS:  -O3 -DNDEBUG  $<$<COMPILE_LANGUAGE:CXX>:-std=c++14> 
+------------PROCESSOR INFO ----------------
+HOST PROCESSOR TYPE: x86_64
+CPU MODEL:  Intel(R) Xeon(R) Platinum 8124M CPU @ 3.00GHz
+NUM CPU:36
+-------------------------------------------
+{
+  "context": {
+    "date": "2020-05-15 09:20:12",
+    "host_name": "de44a44f4bf9",
+    "executable": "./echoBenchmarks",
+    "num_cpus": 36,
+    "mhz_per_cpu": 3400,
+    "cpu_scaling_enabled": false,
+    "caches": [
+      {
+        "type": "Data",
+        "level": 1,
+        "size": 32000000,
+        "num_sharing": 2
+      },
+      {
+        "type": "Instruction",
+        "level": 1,
+        "size": 32000000,
+        "num_sharing": 2
+      },
+      {
+        "type": "Unified",
+        "level": 2,
+        "size": 1024000000,
+        "num_sharing": 2
+      },
+      {
+        "type": "Unified",
+        "level": 3,
+        "size": 25344000000,
+        "num_sharing": 36
+      }
+    ],
+    "load_avg": [21.21,26.97,27.58],
+    "library_build_type": "debug"
+  },
+  "benchmarks": [
+    {
+      "name": "BMecho_singleCore/4/iterations:1/real_time",
+      "run_name": "BMecho_singleCore/4/iterations:1/real_time",
+      "run_type": "iteration",
+      "repetitions": 0,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 1,
+      "real_time": 5.8955007999975351e+02,
+      "cpu_time": 3.4464564100000001e+02,
+      "time_unit": "ms"
+    },
+    {
+      "name": "BMecho_multiCore/inprocCore/4/real_time",
+      "run_name": "BMecho_multiCore/inprocCore/4/real_time",
+      "run_type": "iteration",
+      "repetitions": 0,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 1,
+      "real_time": 1.0567612600007124e+03,
+      "cpu_time": 4.1952916699999992e+02,
+      "time_unit": "ms"
+    },
+    {
+      "name": "BMecho_multiCore/zmqCore/4/iterations:1/real_time",
+      "run_name": "BMecho_multiCore/zmqCore/4/iterations:1/real_time",
+      "run_type": "iteration",
+      "repetitions": 0,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 1,
+      "real_time": 2.1508564949999709e+03,
+      "cpu_time": 4.5543695199999991e+02,
+      "time_unit": "ms"
+    },
+    {
+      "name": "BMecho_multiCore/zmqssCore/4/iterations:1/real_time",
+      "run_name": "BMecho_multiCore/zmqssCore/4/iterations:1/real_time",
+      "run_type": "iteration",
+      "repetitions": 0,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 1,
+      "real_time": 2.1351038779976079e+03,
+      "cpu_time": 4.9892964399999994e+02,
+      "time_unit": "ms"
+    },
+    {
+      "name": "BMecho_multiCore/ipcCore/4/iterations:1/real_time",
+      "run_name": "BMecho_multiCore/ipcCore/4/iterations:1/real_time",
+      "run_type": "iteration",
+      "repetitions": 0,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 1,
+      "real_time": 1.7021845780000149e+03,
+      "cpu_time": 4.4594479600000005e+02,
+      "time_unit": "ms"
+    },
+    {
+      "name": "BMecho_multiCore/tcpCore/4/iterations:1/real_time",
+      "run_name": "BMecho_multiCore/tcpCore/4/iterations:1/real_time",
+      "run_type": "iteration",
+      "repetitions": 0,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 1,
+      "real_time": 4.7839985049995448e+03,
+      "cpu_time": 4.8910060700000014e+02,
+      "time_unit": "ms"
+    },
+    {
+      "name": "BMecho_multiCore/tcpssCore/4/iterations:1/real_time",
+      "run_name": "BMecho_multiCore/tcpssCore/4/iterations:1/real_time",
+      "run_type": "iteration",
+      "repetitions": 0,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 1,
+      "real_time": 2.8528423062200088e+05,
+      "cpu_time": 6.2035946799999931e+02,
+      "time_unit": "ms"
+    },
+    {
+      "name": "BMecho_multiCore/udpCore/4/iterations:1/real_time",
+      "run_name": "BMecho_multiCore/udpCore/4/iterations:1/real_time",
+      "run_type": "iteration",
+      "repetitions": 0,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 1,
+      "real_time": 1.1940804630012281e+03,
+      "cpu_time": 4.8381881699999951e+02,
+      "time_unit": "ms"
+    }
+  ]
+}

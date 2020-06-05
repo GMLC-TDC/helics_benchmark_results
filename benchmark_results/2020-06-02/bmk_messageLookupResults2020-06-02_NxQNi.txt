@@ -1,0 +1,111 @@
+HELICS_BENCHMARK: messageLookupBenchmark
+------------HELICS BUILD INFO -------------
+HELICS VERSION: 2.5.1-develop-g6bf1fc3d (2020-06-02)
+ZMQ VERSION: ZMQ v4.3.2
+COMPILER INFO: Unix Makefiles  Linux-5.3.0-1017-aws:GNU-9.3.0
+BUILD FLAGS:  -O3 -DNDEBUG  $<$<COMPILE_LANGUAGE:CXX>:-std=c++14> 
+------------PROCESSOR INFO ----------------
+HOST PROCESSOR TYPE: x86_64
+CPU MODEL:  Intel(R) Xeon(R) Platinum 8124M CPU @ 3.00GHz
+NUM CPU:36
+-------------------------------------------
+{
+  "context": {
+    "date": "2020-06-02 09:21:32",
+    "host_name": "a9435cde2838",
+    "executable": "../../bin/messageLookupBenchmarks",
+    "num_cpus": 36,
+    "mhz_per_cpu": 3306,
+    "cpu_scaling_enabled": false,
+    "caches": [
+      {
+        "type": "Data",
+        "level": 1,
+        "size": 32000000,
+        "num_sharing": 2
+      },
+      {
+        "type": "Instruction",
+        "level": 1,
+        "size": 32000000,
+        "num_sharing": 2
+      },
+      {
+        "type": "Unified",
+        "level": 2,
+        "size": 1024000000,
+        "num_sharing": 2
+      },
+      {
+        "type": "Unified",
+        "level": 3,
+        "size": 25344000000,
+        "num_sharing": 36
+      }
+    ],
+    "load_avg": [9.86,12.2,15],
+    "library_build_type": "debug"
+  },
+  "benchmarks": [
+    {
+      "name": "BMmgen_singleCore/1024/iterations:1/real_time",
+      "run_name": "BMmgen_singleCore/1024/iterations:1/real_time",
+      "run_type": "iteration",
+      "repetitions": 0,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 1,
+      "real_time": 1.5386050560191507e+03,
+      "cpu_time": 1.5380850060000000e+03,
+      "time_unit": "ms"
+    },
+    {
+      "name": "BMmgen_singleCore/4096/iterations:1/real_time",
+      "run_name": "BMmgen_singleCore/4096/iterations:1/real_time",
+      "run_type": "iteration",
+      "repetitions": 0,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 1,
+      "real_time": 6.6973032850073650e+03,
+      "cpu_time": 6.6969463060000007e+03,
+      "time_unit": "ms"
+    },
+    {
+      "name": "BMmgen_multiCore/inprocCore/4096/2/iterations:1/real_time",
+      "run_name": "BMmgen_multiCore/inprocCore/4096/2/iterations:1/real_time",
+      "run_type": "iteration",
+      "repetitions": 0,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 1,
+      "real_time": 3.6319416389887920e+03,
+      "cpu_time": 3.4798132160000018e+03,
+      "time_unit": "ms"
+    },
+    {
+      "name": "BMmgen_multiCore/inprocCore/4096/8/iterations:1/real_time",
+      "run_name": "BMmgen_multiCore/inprocCore/4096/8/iterations:1/real_time",
+      "run_type": "iteration",
+      "repetitions": 0,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 1,
+      "real_time": 1.2610479779978050e+03,
+      "cpu_time": 1.0330227410000000e+03,
+      "time_unit": "ms"
+    },
+    {
+      "name": "BMmgen_multiCore/inprocCore/4096/64/iterations:1/real_time",
+      "run_name": "BMmgen_multiCore/inprocCore/4096/64/iterations:1/real_time",
+      "run_type": "iteration",
+      "repetitions": 0,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 1,
+      "real_time": 4.2015443229902303e+03,
+      "cpu_time": 3.1984424699999892e+02,
+      "time_unit": "ms"
+    }
+  ]
+}

@@ -1,0 +1,267 @@
+HELICS_BENCHMARK: conversionBenchmark
+------------HELICS BUILD INFO -------------
+HELICS VERSION: 2.5.1-develop-gbcb9010b (2020-05-31)
+ZMQ VERSION: ZMQ v4.3.2
+COMPILER INFO: Unix Makefiles  Linux-4.15.0-1052-aws:GNU-9.3.0
+BUILD FLAGS:  -O3 -DNDEBUG  $<$<COMPILE_LANGUAGE:CXX>:-std=c++14> 
+------------PROCESSOR INFO ----------------
+HOST PROCESSOR TYPE: x86_64
+CPU MODEL:  Intel(R) Xeon(R) Platinum 8124M CPU @ 3.00GHz
+NUM CPU:36
+-------------------------------------------
+{
+  "context": {
+    "date": "2020-05-31 09:21:09",
+    "host_name": "bd423026f7bb",
+    "executable": "../../bin/conversionBenchmarks",
+    "num_cpus": 36,
+    "mhz_per_cpu": 3300,
+    "cpu_scaling_enabled": false,
+    "caches": [
+      {
+        "type": "Data",
+        "level": 1,
+        "size": 32000000,
+        "num_sharing": 2
+      },
+      {
+        "type": "Instruction",
+        "level": 1,
+        "size": 32000000,
+        "num_sharing": 2
+      },
+      {
+        "type": "Unified",
+        "level": 2,
+        "size": 1024000000,
+        "num_sharing": 2
+      },
+      {
+        "type": "Unified",
+        "level": 3,
+        "size": 25344000000,
+        "num_sharing": 36
+      }
+    ],
+    "load_avg": [39.09,38.75,37.68],
+    "library_build_type": "debug"
+  },
+  "benchmarks": [
+    {
+      "name": "BMconversion/double_conv",
+      "run_name": "BMconversion/double_conv",
+      "run_type": "iteration",
+      "repetitions": 0,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 789301,
+      "real_time": 8.4188099849539071e+02,
+      "cpu_time": 8.3180065526332805e+02,
+      "time_unit": "ns"
+    },
+    {
+      "name": "BMconversion/int64_conv",
+      "run_name": "BMconversion/int64_conv",
+      "run_type": "iteration",
+      "repetitions": 0,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 964728,
+      "real_time": 8.5533126021099361e+02,
+      "cpu_time": 8.5520938440679652e+02,
+      "time_unit": "ns"
+    },
+    {
+      "name": "BMconversion/uint64_conv",
+      "run_name": "BMconversion/uint64_conv",
+      "run_type": "iteration",
+      "repetitions": 0,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 787524,
+      "real_time": 8.3375270978830997e+02,
+      "cpu_time": 8.2488385877763722e+02,
+      "time_unit": "ns"
+    },
+    {
+      "name": "BMconversion/int_conv",
+      "run_name": "BMconversion/int_conv",
+      "run_type": "iteration",
+      "repetitions": 0,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 789990,
+      "real_time": 8.4652464586519125e+02,
+      "cpu_time": 8.4309913036873854e+02,
+      "time_unit": "ns"
+    },
+    {
+      "name": "BMconversion/complex_conv",
+      "run_name": "BMconversion/complex_conv",
+      "run_type": "iteration",
+      "repetitions": 0,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 641713,
+      "real_time": 1.0703020945673338e+03,
+      "cpu_time": 1.0589982422048481e+03,
+      "time_unit": "ns"
+    },
+    {
+      "name": "BMconversion/string_conv",
+      "run_name": "BMconversion/string_conv",
+      "run_type": "iteration",
+      "repetitions": 0,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 13811130,
+      "real_time": 4.7795190038471773e+01,
+      "cpu_time": 4.7782927827049647e+01,
+      "time_unit": "ns"
+    },
+    {
+      "name": "BMconversion/string_conv_med",
+      "run_name": "BMconversion/string_conv_med",
+      "run_type": "iteration",
+      "repetitions": 0,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 8494754,
+      "real_time": 7.3140392999941611e+01,
+      "cpu_time": 7.2310800524653231e+01,
+      "time_unit": "ns"
+    },
+    {
+      "name": "BMconversion/string_conv_long",
+      "run_name": "BMconversion/string_conv_long",
+      "run_type": "iteration",
+      "repetitions": 0,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 8169428,
+      "real_time": 7.5276378589981093e+01,
+      "cpu_time": 7.4773808521232993e+01,
+      "time_unit": "ns"
+    },
+    {
+      "name": "BMconversion/vector_conv",
+      "run_name": "BMconversion/vector_conv",
+      "run_type": "iteration",
+      "repetitions": 0,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 638899,
+      "real_time": 1.0316910998212445e+03,
+      "cpu_time": 1.0252982177151639e+03,
+      "time_unit": "ns"
+    },
+    {
+      "name": "BMinterpret/double_interp",
+      "run_name": "BMinterpret/double_interp",
+      "run_type": "iteration",
+      "repetitions": 0,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 873743,
+      "real_time": 8.3043188101679812e+02,
+      "cpu_time": 8.2330552920023365e+02,
+      "time_unit": "ns"
+    },
+    {
+      "name": "BMinterpret/int64_interp",
+      "run_name": "BMinterpret/int64_interp",
+      "run_type": "iteration",
+      "repetitions": 0,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 808564,
+      "real_time": 8.0284368954415027e+02,
+      "cpu_time": 7.9298726013030512e+02,
+      "time_unit": "ns"
+    },
+    {
+      "name": "BMinterpret/uint64_interp",
+      "run_name": "BMinterpret/uint64_interp",
+      "run_type": "iteration",
+      "repetitions": 0,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 810455,
+      "real_time": 8.0155273149653840e+02,
+      "cpu_time": 7.9615855908100855e+02,
+      "time_unit": "ns"
+    },
+    {
+      "name": "BMinterpret/int_interp",
+      "run_name": "BMinterpret/int_interp",
+      "run_type": "iteration",
+      "repetitions": 0,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 836822,
+      "real_time": 7.9572457344681959e+02,
+      "cpu_time": 7.9083783767635020e+02,
+      "time_unit": "ns"
+    },
+    {
+      "name": "BMinterpret/complex_interp",
+      "run_name": "BMinterpret/complex_interp",
+      "run_type": "iteration",
+      "repetitions": 0,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 651790,
+      "real_time": 1.0753881203939843e+03,
+      "cpu_time": 1.0703380291198087e+03,
+      "time_unit": "ns"
+    },
+    {
+      "name": "BMinterpret/string_interp",
+      "run_name": "BMinterpret/string_interp",
+      "run_type": "iteration",
+      "repetitions": 0,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 8137637,
+      "real_time": 7.9323227124712574e+01,
+      "cpu_time": 7.8626174281305467e+01,
+      "time_unit": "ns"
+    },
+    {
+      "name": "BMinterpret/string_interp_med",
+      "run_name": "BMinterpret/string_interp_med",
+      "run_type": "iteration",
+      "repetitions": 0,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 5795353,
+      "real_time": 1.1126959254800680e+02,
+      "cpu_time": 1.1124339190382378e+02,
+      "time_unit": "ns"
+    },
+    {
+      "name": "BMinterpret/string_interp_long",
+      "run_name": "BMinterpret/string_interp_long",
+      "run_type": "iteration",
+      "repetitions": 0,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 5658470,
+      "real_time": 1.1018649740878202e+02,
+      "cpu_time": 1.0925797715636924e+02,
+      "time_unit": "ns"
+    },
+    {
+      "name": "BMinterpret/vector_interp",
+      "run_name": "BMinterpret/vector_interp",
+      "run_type": "iteration",
+      "repetitions": 0,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 539805,
+      "real_time": 1.2201717991026887e+03,
+      "cpu_time": 1.2125439390150141e+03,
+      "time_unit": "ns"
+    }
+  ]
+}
