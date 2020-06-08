@@ -61,8 +61,9 @@ def sa_plot(
         
     """
     # Checking if benchmark_type is 'full' or 'key'
+    benchmark = dataframe.benchmark.unique()[0]
     if by_bool == True:
-        if dataframe.benchmark.unique() == 'pholdBenchmark':
+        if benchmark == 'pholdBenchmark':
             dataframe = dataframe.groupby(
                 ['{}'.format(by_name), 
                  'EvCount',
@@ -77,44 +78,47 @@ def sa_plot(
                 line_width=3,
                 by='{}'.format(by_name), 
                 rot=90,
-                alpha=0.5).opts(
+                alpha=0.75).opts(
                     width=625, height=380, 
                     logx=True, logy=True, 
                     legend_position='bottom_right', legend_cols=2, 
-                    yformatter='%.3f',
-                    ylim=(min_y*10.0**(-2), None), title=\
+                    ylim=(10.0**(2), None), title=\
                         'run_id {} {}: {} vs {}'.format(
                             run_id, bm_name, x_axis, 'EvCount_per_second'), 
                     fontsize={'title': 8.5, 'labels': 10, 'legend': 8, 
                               'legend_title': 8, 'xticks': 8, 'yticks': 10})
             save_path = os.path.join(
                 output_path, '{}_{}.png'.format(run_id, bm_name))
-        # elif dataframe.benchmark.unique() == 'messageSendBenchmark':
-        #     print(bm_name)
-        #     if 'core_type' in list(dataframe.columns.unique()):
-        #         print('core type is in the dataframe')
-        #     dataframe = dataframe.groupby(
-        #         '{}'.format(x_axis))['{}'.format(y_axis)].min().reset_index()
-        #     min_y = dataframe['{}'.format(y_axis)].min()
-        #     plot = dataframe.sort_values('{}'.format(x_axis)).hvplot.line(
-        #         '{}'.format(x_axis), 
-        #         '{}'.format(y_axis),
-        #         ylabel='{} (s)'.format(y_axis), 
-        #         line_width=3,
-        #         by='{}'.format(by_name),
-        #         alpha=0.5).opts(
-        #             width=625, height=380, 
-        #             logx=True, logy=True, 
-        #             legend_position='bottom_right', legend_cols=2, 
-        #               yformatter='%.3f', 
-        #             ylim=(min_y*10.0**(-1), None), title=\
-        #                 'run_id {} {}: {} vs {}'.format(
-        #                     run_id, bm_name, x_axis, y_axis), 
-        #             fontsize={'title': 8.5, 'labels': 10, 
-        #                       'legend': 8, 'legend_title':8, 
-        #                       'xticks': 8, 'yticks': 10})
-        #     save_path = os.path.join(
-        #         output_path, '{}_{}.png'.format(run_id, bm_name))
+        elif benchmark == 'messageSendBenchmark':
+            dataframe = dataframe.groupby(
+                ['{}'.format(x_axis), 
+                 '{}'.format(by_name)])['{}'.format(y_axis)].min().reset_index()
+            min_y = dataframe['{}'.format(y_axis)].min()
+            plot = (dataframe.sort_values('{}'.format(x_axis)).hvplot.line(
+                '{}'.format(x_axis), 
+                '{}'.format(y_axis),
+                ylabel='{} (s)'.format(y_axis), 
+                line_width=3,
+                by='{}'.format(by_name), 
+                rot=90,
+                alpha=0.75)\
+                    *dataframe.sort_values('{}'.format(x_axis)).hvplot.scatter(
+                        '{}'.format(x_axis), 
+                        '{}'.format(y_axis), 
+                        ylabel='{} (s)'.format(y_axis), 
+                        by='{}'.format(by_name), 
+                        alpha=0.75)).opts(
+                            width=625, height=380, 
+                            logx=True, logy=True, 
+                            legend_position='bottom_right', legend_cols=2, 
+                            yformatter='%.4f', ylim=(min_y*10.0**(-1), None), 
+                            title='run_id {} {}: {} vs {}'.format(
+                                run_id, bm_name, x_axis, y_axis), 
+                            fontsize={'title': 8.5, 'labels': 10, 
+                                      'legend': 8, 'legend_title':8, 
+                                      'xticks': 8, 'yticks': 10})
+            save_path = os.path.join(
+                output_path, '{}_{}.png'.format(run_id, bm_name))
         else:
             # Filtering the dataframe so that there are not
             # any duplicate 'y-values' to plot; otherwise, there 
@@ -130,41 +134,46 @@ def sa_plot(
                 line_width=3,
                 by='{}'.format(by_name), 
                 rot=90,
-                alpha=0.5).opts(
+                alpha=0.75).opts(
                     width=625, height=380, 
                     logx=True, logy=True, 
                     legend_position='bottom_right', legend_cols=2, 
-                    yformatter='%.3f',   
-                    ylim=(min_y*10.0**(-2), None), title=\
-                        'run_id {} {}: {} vs {}'.format(
-                            run_id, bm_name, x_axis, y_axis), 
+                    yformatter='%.3f', ylim=(min_y*10.0**(-2), None), 
+                    title='run_id {} {}: {} vs {}'.format(
+                        run_id, bm_name, x_axis, y_axis), 
                     fontsize={'title': 8.5, 'labels': 10, 'legend': 8, 
                               'legend_title': 8, 'xticks': 8, 'yticks': 10})
             save_path = os.path.join(
                 output_path, '{}_{}.png'.format(run_id, bm_name))
     else:
-        if dataframe.benchmark.unique() == 'messageSendBenchmark':
+        if benchmark == 'messageSendBenchmark':
             dataframe = dataframe.groupby(
                 '{}'.format(x_axis))['{}'.format(y_axis)].min().reset_index()
             min_y = dataframe['{}'.format(y_axis)].min()
-            plot = dataframe.sort_values('{}'.format(x_axis)).hvplot.scatter(
+            plot = (dataframe.sort_values('{}'.format(x_axis)).hvplot.scatter(
                 '{}'.format(x_axis), 
                 '{}'.format(y_axis),
                 ylabel='{} (s)'.format(y_axis), 
-                line_width=3, 
                 rot=90,
-                alpha=0.5).opts(
-                    width=625, height=380, 
-                    logx=True, logy=True, 
-                    yformatter='%.3f', ylim=(min_y*10.0**(-1), None), 
-                    title=\
-                        'run_id {} {}: {} vs {}'.format(
-                            run_id, bm_name, x_axis, y_axis), 
-                    fontsize={'title': 8.5, 'labels': 10, 'legend': 8, 
-                              'legend_title':8, 'xticks': 8, 'yticks': 10})
+                alpha=0.75)\
+                    *dataframe.sort_values('{}'.format(x_axis)).hvplot.line(
+                        '{}'.format(x_axis), 
+                        '{}'.format(y_axis), 
+                        ylabel='{} (s)'.format(y_axis), 
+                        line_width=3, 
+                        rot=90, 
+                        alpha=0.75)).opts(
+                            width=625, height=380, 
+                            logx=True, logy=True, 
+                            yformatter='%.3f', ylim=(min_y*10.0**(-1), None), 
+                            title='run_id {} {}: {} vs {}'.format(
+                                run_id, bm_name, x_axis, y_axis), 
+                            fontsize={'title': 8.5, 'labels': 10, 
+                                      'legend': 8, 'legend_title':8, 
+                                      'xticks': 8, 'yticks': 10})
             save_path = os.path.join(
                 output_path, '{}_{}.png'.format(run_id, bm_name))
-        elif dataframe.benchmark.unique() == 'messageLookupBenchmark':
+        elif benchmark == 'messageLookupBenchmark':
             dataframe = dataframe.groupby(
                 '{}'.format(x_axis))['{}'.format(y_axis)].min().reset_index()
             min_y = dataframe['{}'.format(y_axis)].min()
@@ -174,10 +183,9 @@ def sa_plot(
                 ylabel='{} (s)'.format(y_axis), 
                 line_width=3, 
                 rot=90,
-                alpha=0.5).opts(
+                alpha=0.75).opts(
                     width=625, height=380, logx=True, 
-                    logy=True, yformatter='%.6f', ylim=(min_y*10.0**(-1), None), 
-                    title=\
+                    logy=True, title=\
                         'run_id {} {}: {} vs {}'.format(
                             run_id, bm_name, x_axis, y_axis), 
                     fontsize={'title': 8.5, 'labels': 10, 'legend': 8, 
@@ -194,13 +202,12 @@ def sa_plot(
                 ylabel='{} (s)'.format(y_axis), 
                 line_width=3, 
                 rot=90,
-                alpha=0.5).opts(
+                alpha=0.75).opts(
                     width=625, height=380, 
                     logx=True, logy=True, 
                     legend_position='bottom_right', legend_cols=2, 
-                      yformatter='%.2f', 
-                    ylim=(min_y*10.0**(-1), None), title=\
-                        'run_id {} {}: {} vs {}'.format(
+                    yformatter='%.2f', ylim=(min_y*10.0**(-1), None), 
+                    title='run_id {} {}: {} vs {}'.format(
                             run_id, bm_name, x_axis, y_axis), 
                     fontsize={'title': 8.5, 'labels': 10, 'legend': 8, 
                               'legend_title':8, 'xticks': 8, 'yticks': 10})
@@ -269,7 +276,7 @@ def cr_plot(
                 label='run_id: {}, core_type: {}, {}: {}'.format(
                     run_id, core_type, comparison_parameter, param_string), 
                 line_width=3,
-                alpha=0.5)
+                alpha=0.75)
         # Appending the plot for each run_id into a list of plots.
         my_plots.append(plots)
     # Plotting all the plots in the list into one plot;
@@ -372,7 +379,7 @@ def ir_plot(
                 label='{}, run_id: {}, core_type: {}'.format(
                     bm_name1, run_id, core_type), 
                 line_width=3,
-                alpha=0.5)
+                alpha=0.75)
             plot2 = gpd2.reset_index().sort_values(
                 '{}'.format(x_axis)).hvplot.line(
                 '{}'.format(x_axis), 
@@ -381,7 +388,7 @@ def ir_plot(
                 label='{}, run_id: {}, core_type: {}'.format(
                     bm_name2, run_id, core_type), 
                 line_width=3,
-                alpha=0.5)
+                alpha=0.75)
             core_type_str = ''.join(core_type)
             save_path = os.path.join(
                 output_path, '{}_{}_vs_{}_{}_{}Core.png'.format(
@@ -402,7 +409,7 @@ def ir_plot(
                 label='{}, run_id: {}, core_type: {}'.format(
                     bm_name1, run_id, core_type), 
                 line_width=3,
-                alpha=0.5)
+                alpha=0.75)
         plot2 = df2.sort_values('{}'.format(x_axis)).hvplot.line(
                 '{}'.format(x_axis), 
                 '{}'.format(y_axis),
@@ -410,7 +417,7 @@ def ir_plot(
                 label='{}, run_id: {}, core_type: {}'.format(
                     bm_name2, run_id, core_type), 
                 line_width=3,
-                alpha=0.5)
+                alpha=0.75)
         core_type_str = ''.join(core_type)
         save_path = os.path.join(
             output_path, '{}_{}_vs_{}_{}Core.png'.format(
@@ -493,14 +500,13 @@ def mm_plot(
                     ylabel='EvCounts per second', 
                     line_width=3,
                     by='{}'.format(param1),
-                    alpha=0.5).opts(
+                    alpha=0.75).opts(
                         width=625, height=380, 
                         logx=True, logy=True, 
                         legend_position='bottom_right', 
-                        yformatter='%.3f',   
-                        ylim=(10**(-3), None), title=\
-                            '{} {}: EvCounts/s vs {}'.format(
-                                title_part, bm_name, x_axis), 
+                        yformatter='%.3f', ylim=(10**(-3), None), 
+                        title='{} {}: EvCounts/s vs {}'.format(
+                            title_part, bm_name, x_axis), 
                         fontsize={'title': 9, 'labels': 10, 
                                   'legend': 8, 'legend_title': 8, 
                                   'xticks': 8, 'yticks': 10})
@@ -520,13 +526,12 @@ def mm_plot(
                 ylabel='{} (s)'.format(y_axis), 
                 line_width=3,
                 by='{}'.format(param1),
-                alpha=0.5).opts(
+                alpha=0.75).opts(
                     width=625, height=380, 
                     logx=True, logy=True, 
                     legend_position='bottom_right', legend_cols=1,
-                    yformatter='%.4f', 
-                    ylim=(10.0**(-4), None),title=\
-                    '{} {}: {} vs {}'.format(
+                    yformatter='%.4f', ylim=(10.0**(-4), None), 
+                    title='{} {}: {} vs {}'.format(
                         title_part, bm_name, x_axis, y_axis), 
                     fontsize={'title': 9, 'labels': 10, 'legend': 8, 
                               'legend_title': 8, 'xticks': 8, 'yticks': 10})
@@ -538,28 +543,25 @@ def mm_plot(
     logging.info('Created graph file {}'.format(output_path))
  
 # Testing:
-if __name__ == '__main__':
-    import make_dataframe as md
-    json_file = 'bm_results.json'
-    meta_bmk_df = md.make_dataframe1(json_file)
-    timing = meta_bmk_df[(meta_bmk_df.benchmark == 'timingBenchmark') & 
-                          (meta_bmk_df.run_id == '7vGM3')]
-    phold = meta_bmk_df[(meta_bmk_df.benchmark == 'pholdBenchmark') & 
-                        (meta_bmk_df.run_id == '7vGM3')]
-    msg_1 = meta_bmk_df[(meta_bmk_df.benchmark == 'messageSendBenchmark') & 
-                        (meta_bmk_df.message_count == 1) & 
-                        (meta_bmk_df.run_id == '7vGM3')]
-    plot1 = sa_plot(
-        phold, 'federate_count', 'real_time', 'pholdBenchmark', 
-        True, 'core_type', '7vGM3', os.path.join(os.getcwd()))
-    plot2 = sa_plot(
-        timing, 'federate_count', 'real_time', 'timingBenchmark', 
-        True, 'core_type', '7vGM3', os.path.join(os.getcwd()))
-    plot3 = sa_plot(msg_1, 'message_size', 'real_time', 'messageSendBenchmark', 
-        True, 'core_type', '7vGM3', os.path.join(os.getcwd()))
-#     # print('saving...')
-#     # plot_list = [plot1, plot2]
-#     # for i, p in enumerate(plot_list):
-#     #     hvplot.save(p, '{}\{}_{}.png'.format(
-#     #         os.path.join(os.getcwd()), 'timingBenchmark', i))
-#     # print('plot is saved')
+# if __name__ == '__main__':
+#     import make_dataframe as md
+#     json_file = 'bm_results.json'
+#     meta_bmk_df = md.make_dataframe1(json_file)
+#     timing = meta_bmk_df[(meta_bmk_df.benchmark == 'timingBenchmark') & 
+#                           (meta_bmk_df.run_id == '7vGM3')]
+#     phold = meta_bmk_df[(meta_bmk_df.benchmark == 'pholdBenchmark') & 
+#                         (meta_bmk_df.run_id == '7vGM3')]
+#     msg_1 = meta_bmk_df[(meta_bmk_df.benchmark == 'messageSendBenchmark') & 
+#                         (meta_bmk_df.message_count == 1) & 
+#                         (meta_bmk_df.run_id == '7vGM3')]
+#     msg_2 = meta_bmk_df[(meta_bmk_df.benchmark == 'messageLookupBenchmark') & 
+#                         (meta_bmk_df.core_type == 'inproc') & 
+#                         (meta_bmk_df.federate_count == 2)]
+#     plot1 = sa_plot(
+#         phold, 'federate_count', 'real_time', 'pholdBenchmark', 
+#         True, 'core_type', '7vGM3', os.path.join(os.getcwd()))
+#     plot2 = sa_plot(
+#         msg_2, 'interface_count', 'real_time', 'messageLookupBenchmark', 
+#         False, '', '7vGM3', os.path.join(os.getcwd()))
+#     plot3 = sa_plot(msg_1, 'message_size', 'real_time', 'messageSendBenchmark', 
+#         True, 'core_type', '7vGM3', os.path.join(os.getcwd()))
