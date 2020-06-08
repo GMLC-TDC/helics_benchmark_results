@@ -41,8 +41,6 @@ import bmk_plotting
 import make_dataframe as md
 import standard_analysis as sa
 import sys
-import holoviews as hv
-import math
 
 # Installation of FPDF is: python -m pip install fpdf
 # Installation of hvplot.pandas is: conda install -c pyviz hvplot
