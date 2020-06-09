@@ -256,40 +256,78 @@ def cr_plot(
         (null)
         
     """
+    benchmark = dataframe.benchmark.unique()[0]
     my_plots = []
+    min_ys = []
+    max_ys = []
     for run_id in run_id_list:
-        # Filtering the dataframe by the core_type given and
-        # each run_id in the list of run_is
-        plots = dataframe[(dataframe.run_id == '{}'.format(run_id)) & 
-                          (dataframe.core_type == '{}'.format(core_type))]
-        plots = plots.set_index('run_id')
-        param_string = plots.at[run_id, '{}'.format(comparison_parameter)][0]
-        plots = plots.reset_index()
-        # Filtering the dataframe further so that there are not
-        # duplicate 'y-values' to plot; otherwise, there will be
-        # spikes in the graphs.
-        x_y_map = plots.groupby(
+        if benchmark == 'messageSendBenchmark':
+            # Filtering the dataframe by the core_type given and
+            # each run_id in the list of run_is
+            plots = dataframe[(dataframe.run_id == '{}'.format(run_id)) & 
+                              (dataframe.core_type == '{}'.format(core_type))]
+            plots = plots.set_index('run_id')
+            param_string = plots.at[run_id, 
+                                    '{}'.format(comparison_parameter)][0]
+            plots = plots.reset_index()
+            # Filtering the dataframe further so that there are not
+            # duplicate 'y-values' to plot; otherwise, there will be
+            # spikes in the graphs.
+            x_y_map = plots.groupby(
                 '{}'.format(x_axis))['{}'.format(y_axis)].min().reset_index()
-        plots = x_y_map.sort_values('{}'.format(x_axis)).hvplot.line(
+            min_y = x_y_map['{}'.format(y_axis)].min()
+            max_y = x_y_map['{}'.format(y_axis)].max()
+            plots = (x_y_map.sort_values('{}'.format(x_axis)).hvplot.scatter(
+                '{}'.format(x_axis), 
+                '{}'.format(y_axis),
+                label='run_id: {}, core_type: {}, {}: {}'.format(
+                    run_id, core_type, comparison_parameter, param_string),
+                alpha=0.75)\
+                *x_y_map.sort_values('{}'.format(x_axis)).hvplot.line(
+                '{}'.format(x_axis), 
+                '{}'.format(y_axis),
+                label='run_id: {}, core_type: {}, {}: {}'.format(
+                    run_id, core_type, comparison_parameter, param_string), 
+                line_width=3,
+                alpha=0.75))
+            # Appending the plot for each run_id into a list of plots.
+            min_ys.append(min_y)
+            max_ys.append(max_y)
+            my_plots.append(plots)
+        else:
+            # Filtering the dataframe by the core_type given and
+            # each run_id in the list of run_is
+            plots = dataframe[(dataframe.run_id == '{}'.format(run_id)) & 
+                              (dataframe.core_type == '{}'.format(core_type))]
+            plots = plots.set_index('run_id')
+            param_string = plots.at[run_id, '{}'.format(comparison_parameter)][0]
+            plots = plots.reset_index()
+            # Filtering the dataframe further so that there are not
+            # duplicate 'y-values' to plot; otherwise, there will be
+            # spikes in the graphs.
+            x_y_map = plots.groupby(
+                '{}'.format(x_axis))['{}'.format(y_axis)].min().reset_index()
+            min_y = x_y_map['{}'.format(y_axis)].min()
+            max_y = x_y_map['{}'.format(y_axis)].max()
+            plots = x_y_map.sort_values('{}'.format(x_axis)).hvplot.line(
                 '{}'.format(x_axis), 
                 '{}'.format(y_axis),
                 label='run_id: {}, core_type: {}, {}: {}'.format(
                     run_id, core_type, comparison_parameter, param_string), 
                 line_width=3,
                 alpha=0.75)
-        # Appending the plot for each run_id into a list of plots.
-        my_plots.append(plots)
-    # Plotting all the plots in the list into one plot;
-    # Holoviews allows you to plot graphs on the same plot.
-    benchmark = dataframe.benchmark.unique()[0]
-    min_y = my_plots[0]['{}'.format(y_axis)].min()
-    max_y = my_plots[0]['{}'.format(y_axis)].max()
+            # Appending the plot for each run_id into a list of plots.
+            min_ys.append(min_y)
+            max_ys.append(max_y)
+            my_plots.append(plots)
+    y_min = min_ys[0]
+    y_max = max_ys[0]
     if benchmark == 'messageSendBenchmark':
         plot = (reduce((lambda x, y: x*y), my_plots)).opts(
             width=625, height=380, 
             logx=True, logy=True, 
             legend_position='bottom_right', yformatter='%.4f',   
-            ylim=(min_y*10.0**(-2), max_y*10.0**(1)), title=\
+            ylim=(y_min*10.0**(-2), y_max*10.0**(2)), title=\
                 '{}: {} vs {}'.format(bm_name, x_axis, y_axis), 
             fontsize={'title': 8.5, 'labels': 10, 'legend': 7.5,
                       'legend_title': 7.5, 'xticks': 8, 'yticks': 10})
@@ -297,7 +335,7 @@ def cr_plot(
         plot = (reduce((lambda x, y: x*y), my_plots)).opts(
             width=625, height=380, logx=True, 
             logy=True, legend_position='bottom_right', 
-            ylim=(min_y*10.0**(-2), max_y*10.0**(1)), title=\
+            ylim=(y_min*10.0**(-2), y_max*10.0**(1)), title=\
                 '{}: {} vs {}'.format(bm_name, x_axis, y_axis), 
             fontsize={'title': 8.5, 'labels': 10, 'legend': 7.5,
                       'legend_title': 7.5, 'xticks': 8, 'yticks': 10})
@@ -306,7 +344,7 @@ def cr_plot(
             width=625, height=380, 
             logx=True, logy=True, 
             legend_position='bottom_right', yformatter='%.3f', 
-            ylim=(min_y*10.0**(-2), max_y*10.0**(1)), title=\
+            ylim=(y_min*10.0**(-2), y_max*10.0**(1)), title=\
                 '{}: {} vs {}'.format(bm_name, x_axis, y_axis), 
             fontsize={'title': 8.5, 'labels': 10, 'legend': 7.5,
                       'legend_title': 7.5, 'xticks': 8, 'yticks': 10})
