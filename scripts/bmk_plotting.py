@@ -254,7 +254,6 @@ def cr_plot(
     
     Returns:
         (null)
-        
     """
     benchmark = dataframe.benchmark.unique()[0]
     my_plots = []
