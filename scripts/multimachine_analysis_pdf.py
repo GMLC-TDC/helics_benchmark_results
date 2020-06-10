@@ -47,7 +47,7 @@ def create_multimachine_report(output_path, dataframe):
     Returns:
         (null)
     """
-        # Create the PDF object
+    # Create the PDF object
     pdf = FPDF()
     pdf.add_page()
     pdf.set_font("Courier", size=8)
@@ -69,7 +69,6 @@ def create_multimachine_report(output_path, dataframe):
     pdf.output(report_path)
 
 
-
 def grab_header_metadata(dataframe):
     """This function creates the header metadata as a string.
 
@@ -79,7 +78,6 @@ def grab_header_metadata(dataframe):
     Returns:
         header_metadata_str (str) - Formatted header metadata for report
     """
-
     # TDH (2019-12-20): Since all the metadata is common for each run, I
     # can grab the metadata I need from any of the results files
     # corresponding to the indicated run.

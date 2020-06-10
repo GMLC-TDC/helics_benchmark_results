@@ -559,7 +559,7 @@ def mm_plot(
                     alpha=0.75).opts(
                         width=625, height=380, 
                         logx=True, logy=True, 
-                        legend_position='bottom_right', 
+                        legend_position='bottom_right', legend_cols=2,
                         yformatter='%.3f', ylim=(10**(-3), None), 
                         title='{} {}: EvCounts/s vs {}'.format(
                             title_part, bm_name, x_axis), 
@@ -585,7 +585,7 @@ def mm_plot(
                 alpha=0.75).opts(
                     width=625, height=380, 
                     logx=True, logy=True, 
-                    legend_position='bottom_right', legend_cols=1,
+                    legend_position='bottom_right', legend_cols=2,
                     yformatter='%.4f', ylim=(10.0**(-4), None), 
                     title='{} {}: {} vs {}'.format(
                         title_part, bm_name, x_axis, y_axis), 

@@ -71,7 +71,6 @@ def create_standard_analysis_report(output_path, json_results, run_id):
     pdf.output(report_path)
 
 
-
 def grab_header_metadata(json_results, run_id):
     """This function creates the header metadata as a string
 
@@ -92,13 +91,6 @@ def grab_header_metadata(json_results, run_id):
         if json_results[key]['run_id'] == run_id:
             break
     header_metadata_str = ''
-    if 'benchmark' in json_results[key]:
-        header_metadata_str = header_metadata_str + '{:<25}{}\n\n'.format(
-            'BENCHMARK:',
-            json_results[key]['benchmark'])
-    else:
-        logging.warning('"benchmark" not found in metadata.')
-
     if 'run_id' in json_results[key]:
         header_metadata_str = header_metadata_str + '{:<25}{}\n'.format(
             'run ID:',
@@ -294,7 +286,6 @@ def _auto_run(args):
         create_standard_analysis_report(output_path,
                                         json_results,
                                         run_id)
-
 
 
 if __name__ == '__main__':
