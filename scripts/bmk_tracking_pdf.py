@@ -95,25 +95,26 @@ def grab_header_metadata(meta_bmk_df):
     # Adding metadata information to lists for the header
     benchmarks = [i for i in meta_bmk_df.benchmark.unique()]
     platforms = [i for i in meta_bmk_df.platform.unique()]
-    mhz_per_cpus = sorted([i for i in meta_bmk_df.mhz_per_cpu.unique()])
+    mhz_per_cpus = sorted([str(i) for i in meta_bmk_df.mhz_per_cpu.unique()])
     
     # Adding all necessary metadata to the header
-    header_metadata_str += '{:<25}{}\n\n'.format(
-        'BENCHMARKS:', benchmarks)        
-    header_metadata_str += '{:<25}{}\n\n'.format(
+    header_metadata_str += '{:<25}{}\n'.format(
+        'BENCHMARKS:', ', '.join(benchmarks))        
+    header_metadata_str += '{:<25}{}\n'.format(
         'generator:', 'Unix Makefiles')
-    header_metadata_str += '{:<25}{}\n\n'.format(
+    header_metadata_str += '{:<25}{}\n'.format(
         'system:', 'Linux')
-    header_metadata_str += '{:<25}{}\n\n'.format(
+    header_metadata_str += '{:<25}{}\n'.format(
         'system version:', '4.15.0-1052-aws:')
-    header_metadata_str += '{:<25}{}\n\n'.format('platform:', platforms)
-    header_metadata_str += '{:<25}{}\n\n'.format('C++ compiler:', 'GNU')
-    header_metadata_str += '{:<25}{}\n\n'.format(
+    # header_metadata_str += '{:<25}{}\n'.format(
+    #     'platform:', ' ,'.join(platforms))
+    header_metadata_str += '{:<25}{}\n'.format('C++ compiler:', 'GNU')
+    header_metadata_str += '{:<25}{}\n'.format(
         'C++ compiler version:', '9.2.1')
-    header_metadata_str += '{:<25}{}\n\n'.format('host processor:', 'x86_64')
-    header_metadata_str += '{:<25}{}\n\n'.format('CPU core count:', 36)
-    header_metadata_str += '{:<25}{}\n\n'.format(
-        'processor speed (MHz):', mhz_per_cpus)
+    header_metadata_str += '{:<25}{}\n'.format('host processor:', 'x86_64')
+    header_metadata_str += '{:<25}{}\n'.format('CPU core count:', 36)
+    header_metadata_str += '{:<25}{}\n'.format(
+        'processor speed (MHz):', ', '.join(mhz_per_cpus))
     header_metadata_str = header_metadata_str + '\n' + '\n'
     logging.info('Final metadata header:\n{}'.format(header_metadata_str))
     return header_metadata_str

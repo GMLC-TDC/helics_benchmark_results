@@ -126,7 +126,10 @@ def make_dataframe1(json_results):
         lambda x: float(x)*10**(-9) if x.index == 'ns' else float(x)*10**(-3))
     meta_bmk_df = meta_bmk_df.reset_index()
     meta_bmk_df = meta_bmk_df.replace({'time_unit': {'ns': 's',
-                                                      'ms': 's'}})
+                                                     'ms': 's'}})
+    meta_bmk_df = meta_bmk_df.reset_index()
+    meta_bmk_df['date'] = pd.to_datetime(meta_bmk_df.date)
+    meta_bmk_df['date'] = meta_bmk_df['date'].astype(str)
     csv_path = os.path.join(os.getcwd(), 'bmk_meta_df.csv')
     meta_bmk_df.to_csv(r'{}'.format(csv_path))
     
@@ -136,7 +139,7 @@ def make_dataframe1(json_results):
         csv_path, 
         index_col='Unnamed: 0', 
         dtype={'platform': object, 'filter_location': object})
-    os.remove(csv_path)
+    # os.remove(csv_path)
     return final_meta_bmk_df
 
 
@@ -193,6 +196,8 @@ def make_dataframe2(json_results):
     meta_bmk_df['elapsed_time'] = meta_bmk_df['elapsed_time'].apply(
         lambda x: float(x)*10**(-9))
     meta_bmk_df = meta_bmk_df.reset_index()
+    meta_bmk_df['date'] = pd.to_datetime(meta_bmk_df.date.astype(str))
+    meta_bmk_df['date'] = meta_bmk_df['date'].astype(str)
     meta_bmk_df = meta_bmk_df.replace({'time_unit': {'ns': 's', 
                                                      'nan': 's'}})
     csv_path = os.path.join(os.getcwd(), 'multinode_bmk_meta_df.csv')
@@ -225,7 +230,7 @@ def make_dataframe2(json_results):
         a_df = a_df.reset_index()
         my_list.append(a_df)
     main_df = pd.concat(my_list, axis=0, ignore_index=True)
-    os.remove(csv_path)
+    # os.remove(csv_path)
     return main_df
 
 
