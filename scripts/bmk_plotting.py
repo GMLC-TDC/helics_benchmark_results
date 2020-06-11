@@ -260,6 +260,7 @@ def cr_plot(
     min_ys = []
     max_ys = []
     for run_id in run_id_list:
+        print(run_id)
         if benchmark == 'messageSendBenchmark':
             # Filtering the dataframe by the core_type given and
             # each run_id in the list of run_is
@@ -299,7 +300,8 @@ def cr_plot(
             plots = dataframe[(dataframe.run_id == '{}'.format(run_id)) & 
                               (dataframe.core_type == '{}'.format(core_type))]
             plots = plots.set_index('run_id')
-            param_string = plots.at[run_id, '{}'.format(comparison_parameter)][0]
+            param_string = plots.at[run_id, 
+                                    '{}'.format(comparison_parameter)][0]
             plots = plots.reset_index()
             # Filtering the dataframe further so that there are not
             # duplicate 'y-values' to plot; otherwise, there will be

@@ -241,6 +241,7 @@ def make_cross_run_id_graphs(meta_bmk_df, bm_list, run_id_list, output_path,
         null
     """
     for bm in bm_list:
+        print(bm['bm_name'])
         if bm['bm_name'] == 'echoBenchmark':
             df = meta_bmk_df[(meta_bmk_df.benchmark == 'echoBenchmark') & 
                              (meta_bmk_df.benchmark_type == 'full')]
@@ -329,13 +330,17 @@ def make_cross_run_id_graphs(meta_bmk_df, bm_list, run_id_list, output_path,
                     run_id_list, core_type, comparison_parameter, output_path)
         if bm['bm_name'] == 'filterBenchmark':
             df = meta_bmk_df[(meta_bmk_df.benchmark == 'filterBenchmark') & 
-                             (meta_bmk_df.benchmark_type == 'full')]
+                              (meta_bmk_df.benchmark_type == 'full')]
             bmk_plotting.cr_plot(
                 df, 'federate_count', 'real_time', 'filter, singleCore',
                 run_id_list, 'singleCore', comparison_parameter, output_path)
             for core_type in df.core_type.unique():
+                print(core_type)
                 dest = df[df.filter_location == 'destination']
                 src = df[df.filter_location == 'source']
+                if core_type not in list(src.core_type.unique()) or\
+                    core_type not in list(dest.core_type.unique()):
+                    continue
                 bmk_plotting.cr_plot(
                     src, 'federate_count', 'real_time', 'filter, fltr_loc=source',
                     run_id_list, core_type, comparison_parameter, output_path)
@@ -408,6 +413,7 @@ def _auto_run(args):
             valid_params.append(p)
     path = os.path.join(args.output_path)
     for v in valid_params:
+        print('comparison parameter:', v)
         output_path = os.path.join(path, '{}'.format(v))
         print('creating a path...\n')
         create_output_path(output_path, args.delete_report)
@@ -448,11 +454,12 @@ if __name__ == '__main__':
     parser.add_argument('-l',
                         '--run_id_list',
                         nargs='+',
-                        default=['aUZF6', 'Zu60n'])
+                        default=['YL2EQ', 'kkJWd'])
     parameter_list = [
     'mhz_per_cpu', 'helics_version', 'generator', 'system', 
     'system_version', 'platform', 'cxx_compiler', 'cxx_compiler_version', 
-    'build_flags_string', 'host_name', 'host_processor', 'num_cpus', 'date']
+    'build_flags_string', 'host_name', 'host_processor', 'num_cpus', 'date',
+    'library_build_type']
     parser.add_argument('-p',
                         '--comparison_parameter_list',
                         nargs='?',
