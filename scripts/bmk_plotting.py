@@ -260,7 +260,6 @@ def cr_plot(
     min_ys = []
     max_ys = []
     for run_id in run_id_list:
-        print(run_id)
         if benchmark == 'messageSendBenchmark':
             # Filtering the dataframe by the core_type given and
             # each run_id in the list of run_is
@@ -277,19 +276,34 @@ def cr_plot(
                 '{}'.format(x_axis))['{}'.format(y_axis)].min().reset_index()
             min_y = x_y_map['{}'.format(y_axis)].min()
             max_y = x_y_map['{}'.format(y_axis)].max()
-            plots = (x_y_map.sort_values('{}'.format(x_axis)).hvplot.scatter(
-                '{}'.format(x_axis), 
-                '{}'.format(y_axis),
-                label='run_id: {}, core_type: {}, {}: {}'.format(
-                    run_id, core_type, comparison_parameter, param_string),
-                alpha=0.75)\
-                *x_y_map.sort_values('{}'.format(x_axis)).hvplot.line(
-                '{}'.format(x_axis), 
-                '{}'.format(y_axis),
-                label='run_id: {}, core_type: {}, {}: {}'.format(
-                    run_id, core_type, comparison_parameter, param_string), 
-                line_width=3,
-                alpha=0.75))
+            if comparison_parameter == 'build_flags_string':
+                plots = (x_y_map.sort_values('{}'.format(x_axis)).hvplot.scatter(
+                    '{}'.format(x_axis), 
+                    '{}'.format(y_axis),
+                    label='run_id: {}, core_type: {}'.format(
+                        run_id, core_type),
+                    alpha=0.75)\
+                    *x_y_map.sort_values('{}'.format(x_axis)).hvplot.line(
+                    '{}'.format(x_axis), 
+                    '{}'.format(y_axis),
+                    label='run_id: {}, core_type: {}'.format(
+                        run_id, core_type), 
+                    line_width=3,
+                    alpha=0.75))
+            else:
+                plots = (x_y_map.sort_values('{}'.format(x_axis)).hvplot.scatter(
+                    '{}'.format(x_axis), 
+                    '{}'.format(y_axis),
+                    label='run_id: {}, core_type: {}, {}: {}'.format(
+                        run_id, core_type, comparison_parameter, param_string),
+                    alpha=0.75)\
+                    *x_y_map.sort_values('{}'.format(x_axis)).hvplot.line(
+                    '{}'.format(x_axis), 
+                    '{}'.format(y_axis),
+                    label='run_id: {}, core_type: {}, {}: {}'.format(
+                        run_id, core_type, comparison_parameter, param_string), 
+                    line_width=3,
+                    alpha=0.75))
             # Appending the plot for each run_id into a list of plots.
             min_ys.append(min_y)
             max_ys.append(max_y)
@@ -310,13 +324,22 @@ def cr_plot(
                 '{}'.format(x_axis))['{}'.format(y_axis)].min().reset_index()
             min_y = x_y_map['{}'.format(y_axis)].min()
             max_y = x_y_map['{}'.format(y_axis)].max()
-            plots = x_y_map.sort_values('{}'.format(x_axis)).hvplot.line(
-                '{}'.format(x_axis), 
-                '{}'.format(y_axis),
-                label='run_id: {}, core_type: {}, {}: {}'.format(
-                    run_id, core_type, comparison_parameter, param_string), 
-                line_width=3,
-                alpha=0.75)
+            if comparison_parameter == 'build_flags_string':
+                plots = x_y_map.sort_values('{}'.format(x_axis)).hvplot.line(
+                    '{}'.format(x_axis), 
+                    '{}'.format(y_axis),
+                    label='run_id: {}, core_type: {}'.format(
+                        run_id, core_type), 
+                    line_width=3,
+                    alpha=0.75)
+            else:
+                plots = x_y_map.sort_values('{}'.format(x_axis)).hvplot.line(
+                    '{}'.format(x_axis), 
+                    '{}'.format(y_axis),
+                    label='run_id: {}, core_type: {}, {}: {}'.format(
+                        run_id, core_type, comparison_parameter, param_string), 
+                    line_width=3,
+                    alpha=0.75)
             # Appending the plot for each run_id into a list of plots.
             min_ys.append(min_y)
             max_ys.append(max_y)
