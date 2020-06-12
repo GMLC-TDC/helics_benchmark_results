@@ -139,7 +139,7 @@ def make_dataframe1(json_results):
         csv_path, 
         index_col='Unnamed: 0', 
         dtype={'platform': object, 'filter_location': object})
-    # os.remove(csv_path)
+    os.remove(csv_path)
     return final_meta_bmk_df
 
 
@@ -230,7 +230,7 @@ def make_dataframe2(json_results):
         a_df = a_df.reset_index()
         my_list.append(a_df)
     main_df = pd.concat(my_list, axis=0, ignore_index=True)
-    # os.remove(csv_path)
+    os.remove(csv_path)
     return main_df
 
 
