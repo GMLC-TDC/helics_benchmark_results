@@ -266,8 +266,8 @@ def cr_plot(
             plots = dataframe[(dataframe.run_id == '{}'.format(run_id)) & 
                               (dataframe.core_type == '{}'.format(core_type))]
             plots = plots.set_index('run_id')
-            param_string = plots.at[run_id, 
-                                    '{}'.format(comparison_parameter)][0]
+            param_string = str(plots.at[run_id, 
+                                    '{}'.format(comparison_parameter)][0])
             plots = plots.reset_index()
             # Filtering the dataframe further so that there are not
             # duplicate 'y-values' to plot; otherwise, there will be
@@ -314,8 +314,8 @@ def cr_plot(
             plots = dataframe[(dataframe.run_id == '{}'.format(run_id)) & 
                               (dataframe.core_type == '{}'.format(core_type))]
             plots = plots.set_index('run_id')
-            param_string = plots.at[run_id, 
-                                    '{}'.format(comparison_parameter)][0]
+            param_string = str(plots.at[
+                run_id, '{}'.format(comparison_parameter)][0])
             plots = plots.reset_index()
             # Filtering the dataframe further so that there are not
             # duplicate 'y-values' to plot; otherwise, there will be

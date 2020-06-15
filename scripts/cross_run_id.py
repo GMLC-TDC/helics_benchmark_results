@@ -207,12 +207,28 @@ def find_common_bm_to_graph(json_results, run_id_dict):
             # Extracting the base benchmark name for storage in the list
             bm_name_parts = bm.split('_')
             bm_name = bm_name_parts[0]
-            bm_list_to_graph.append({'bm_name': bm_name, 'bm_type':bm_type})
+            bm_list_to_graph.append({'bm_name': bm_name, 'bm_type': bm_type})
     return bm_list_to_graph
+
+
+def find_common_core_types(meta_bmk_df, run_id_list):
+    """In order to compare multiple run-ids, there needs to be
+    congruency among them.  This function asserts that the run-ids share
+    common core types.  If there are only a subset of core types in
+    common among the run-ids, this function returns that subset as a
+    list to be used elsewhere.
+    """
+    core_types = []
+    for run_id in run_id_list:
+        c_set = set(meta_bmk_df[meta_bmk_df.run_id == '{}'.format(
+            run_id)]['core_type'].unique())
+        core_types.append(c_set)
+    new_core_types = list(set.intersection(*core_types))
+    return new_core_types
+
 
 def make_cross_run_id_graphs(meta_bmk_df, bm_list, run_id_list, output_path,
                              comparison_parameter):
-
     """Based on the specified benchmark (bm), the appropriate graphing
     function is called. Since the graph is saved in the graphing function
     we need to pass in the output path. Rather than having a legend
@@ -245,70 +261,28 @@ def make_cross_run_id_graphs(meta_bmk_df, bm_list, run_id_list, output_path,
         if bm['bm_name'] == 'echoBenchmark':
             df = meta_bmk_df[(meta_bmk_df.benchmark == 'echoBenchmark') & 
                              (meta_bmk_df.benchmark_type == 'full')]
-            if 'Zu60n' in run_id_list:
-                core_df = df[df.run_id == 'Zu60n']
-                core_types = list(core_df.core_type.unique())
-                for core_type in core_types:
-                    bmk_plotting.cr_plot(
-                        df, 'federate_count', 'real_time', 'echoBenchmark',
-                        run_id_list, core_type, comparison_parameter, output_path)
-            elif 'YL2EQ' in run_id_list:
-                core_df = df[df.run_id == 'YL2EQ']
-                core_types = list(core_df.core_type.unique())
-                for core_type in core_types:
-                    bmk_plotting.cr_plot(
-                        df, 'federate_count', 'real_time', 'echoBenchmark',
-                        run_id_list, core_type, comparison_parameter, output_path)
-            else:
-                for core_type in df.core_type.unique():
-                    bmk_plotting.cr_plot(
-                        df, 'federate_count', 'real_time', 'echoBenchmark',
-                        run_id_list, core_type, comparison_parameter, output_path)
+            core_types = find_common_core_types(df, run_id_list)
+            for core_type in core_types:
+                bmk_plotting.cr_plot(
+                    df, 'federate_count', 'real_time', 'echoBenchmark',
+                    run_id_list, core_type, comparison_parameter, output_path)
         if bm['bm_name'] == 'cEchoBenchmark':
             df = meta_bmk_df[(meta_bmk_df.benchmark == 'cEchoBenchmark') & 
                              (meta_bmk_df.benchmark_type == 'full')]
-            if 'Zu60n' in run_id_list:
-                core_df = df[df.run_id == 'Zu60n']
-                core_types = list(core_df.core_type.unique())
-                for core_type in core_types:
-                    bmk_plotting.cr_plot(
-                        df, 'federate_count', 'real_time', 'cEchoBenchmark',
-                        run_id_list, core_type, comparison_parameter, output_path)
-            elif 'YL2EQ' in run_id_list:
-                core_df = df[df.run_id == 'YL2EQ']
-                core_types = list(core_df.core_type.unique())
-                for core_type in core_types:
-                    bmk_plotting.cr_plot(
-                        df, 'federate_count', 'real_time', 'cEchoBenchmark',
-                        run_id_list, core_type, comparison_parameter, output_path)
-            else:
-                for core_type in df.core_type.unique():
-                    bmk_plotting.cr_plot(
-                        df, 'federate_count', 'real_time', 'cEchoBenchmark',
-                        run_id_list, core_type, comparison_parameter, output_path)
+            core_types = find_common_core_types(df, run_id_list)
+            for core_type in core_types:
+                bmk_plotting.cr_plot(
+                    df, 'federate_count', 'real_time', 'cEchoBenchmark',
+                    run_id_list, core_type, comparison_parameter, output_path)
         if bm['bm_name'] == 'echoMessageBenchmark':
             df = meta_bmk_df[
                 (meta_bmk_df.benchmark == 'echoMessageBenchmark') & 
                 (meta_bmk_df.benchmark_type == 'full')]
-            if 'Zu60n' in run_id_list:
-                core_df = df[df.run_id == 'Zu60n']
-                core_types = list(core_df.core_type.unique())
-                for core_type in core_types:
-                    bmk_plotting.cr_plot(
-                        df, 'federate_count', 'real_time', 'echoMessageBenchmark',
-                        run_id_list, core_type, comparison_parameter, output_path)
-            elif 'YL2EQ' in run_id_list:
-                core_df = df[df.run_id == 'YL2EQ']
-                core_types = list(core_df.core_type.unique())
-                for core_type in core_types:
-                    bmk_plotting.cr_plot(
-                        df, 'federate_count', 'real_time', 'echoMessageBenchmark',
-                        run_id_list, core_type, comparison_parameter, output_path)
-            else:
-                for core_type in df.core_type.unique():
-                    bmk_plotting.cr_plot(
-                        df, 'federate_count', 'real_time', 'echoMessageBenchmark',
-                        run_id_list, core_type, comparison_parameter, output_path)
+            core_types = find_common_core_types(df, run_id_list)
+            for core_type in core_types:
+                bmk_plotting.cr_plot(
+                    df, 'federate_count', 'real_time', 'echoMessageBenchmark',
+                    run_id_list, core_type, comparison_parameter, output_path)
         if bm['bm_name'] == 'messageLookupBenchmark':
             df = meta_bmk_df[
                 meta_bmk_df.benchmark == 'messageLookupBenchmark']
@@ -333,25 +307,11 @@ def make_cross_run_id_graphs(meta_bmk_df, bm_list, run_id_list, output_path,
             df = meta_bmk_df[(meta_bmk_df.benchmark == 'ringBenchmark') &
                              (meta_bmk_df.benchmark_type == 'full') & 
                              (meta_bmk_df.core_type != 'singleCore')]
-            if 'Zu60n' in run_id_list:
-                core_df = df[df.run_id == 'Zu60n']
-                core_types = list(core_df.core_type.unique())
-                for core_type in core_types:
-                    bmk_plotting.cr_plot(
-                        df, 'federate_count', 'real_time', 'ringBenchmark',
-                        run_id_list, core_type, comparison_parameter, output_path)
-            elif 'YL2EQ' in run_id_list:
-                core_df = df[df.run_id == 'YL2EQ']
-                core_types = list(core_df.core_type.unique())
-                for core_type in core_types:
-                    bmk_plotting.cr_plot(
-                        df, 'federate_count', 'real_time', 'ringBenchmark',
-                        run_id_list, core_type, comparison_parameter, output_path)
-            else:
-                for core_type in df.core_type.unique():
-                    bmk_plotting.cr_plot(
-                        df, 'federate_count', 'real_time', 'ringBenchmark',
-                        run_id_list, core_type, comparison_parameter, output_path)
+            core_types = find_common_core_types(df, run_id_list)
+            for core_type in core_types:
+                bmk_plotting.cr_plot(
+                    df, 'federate_count', 'real_time', 'ringBenchmark',
+                    run_id_list, core_type, comparison_parameter, output_path)
         if bm['bm_name'] == 'ringMessageBenchmark':
             # TDH (2020-01-09) - Special case because only a single data
             # point is run for the singleCore data. All the others have
@@ -361,47 +321,19 @@ def make_cross_run_id_graphs(meta_bmk_df, bm_list, run_id_list, output_path,
                 (meta_bmk_df.benchmark == 'ringMessageBenchmark') &
                 (meta_bmk_df.benchmark_type == 'full') & 
                 (meta_bmk_df.core_type != 'singleCore')]
-            if 'Zu60n' in run_id_list:
-                core_df = df[df.run_id == 'Zu60n']
-                core_types = list(core_df.core_type.unique())
-                for core_type in core_types:
-                    bmk_plotting.cr_plot(
-                        df, 'federate_count', 'real_time', 'ringMessageBenchmark',
-                        run_id_list, core_type, comparison_parameter, output_path)
-            elif 'YL2EQ' in run_id_list:
-                core_df = df[df.run_id == 'YL2EQ']
-                core_types = list(core_df.core_type.unique())
-                for core_type in core_types:
-                    bmk_plotting.cr_plot(
-                        df, 'federate_count', 'real_time', 'ringMessageBenchmark',
-                        run_id_list, core_type, comparison_parameter, output_path)
-            else:
-                for core_type in df.core_type.unique():
-                    bmk_plotting.cr_plot(
-                        df, 'federate_count', 'real_time', 'ringMessageBenchmark',
-                        run_id_list, core_type, comparison_parameter, output_path)
+            core_types = find_common_core_types(df, run_id_list)
+            for core_type in core_types:
+                bmk_plotting.cr_plot(
+                    df, 'federate_count', 'real_time', 'ringMessageBenchmark',
+                    run_id_list, core_type, comparison_parameter, output_path)
         if bm['bm_name'] == 'pholdBenchmark':
             df = meta_bmk_df[(meta_bmk_df.benchmark == 'pholdBenchmark') &
                              (meta_bmk_df.benchmark_type == 'full')]
-            if 'Zu60n' in run_id_list:
-                core_df = df[df.run_id == 'Zu60n']
-                core_types = list(core_df.core_type.unique())
-                for core_type in core_types:
-                    bmk_plotting.cr_plot(
-                        meta_bmk_df, 'federate_count', 'real_time', 'pholdBenchmark',
-                        run_id_list, core_type, comparison_parameter, output_path)
-            elif 'YL2EQ' in run_id_list:
-                core_df = df[df.run_id == 'YL2EQ']
-                core_types = list(core_df.core_type.unique())
-                for core_type in core_types:
-                    bmk_plotting.cr_plot(
-                        meta_bmk_df, 'federate_count', 'real_time', 'pholdBenchmark',
-                        run_id_list, core_type, comparison_parameter, output_path)
-            else:
-                for core_type in df.core_type.unique():
-                    bmk_plotting.cr_plot(
-                        meta_bmk_df, 'federate_count', 'real_time', 'pholdBenchmark',
-                        run_id_list, core_type, comparison_parameter, output_path)
+            core_types = find_common_core_types(df, run_id_list)
+            for core_type in core_types:
+                bmk_plotting.cr_plot(
+                    meta_bmk_df, 'federate_count', 'real_time', 'pholdBenchmark',
+                    run_id_list, core_type, comparison_parameter, output_path)
         if bm['bm_name'] == 'messageSendBenchmark':
             df = meta_bmk_df[
                 (meta_bmk_df.benchmark == 'messageSendBenchmark') & 
@@ -409,102 +341,41 @@ def make_cross_run_id_graphs(meta_bmk_df, bm_list, run_id_list, output_path,
             bmk_plotting.cr_plot(
                 df, 'message_size', 'real_time', 'messageSend, singleCore', 
                 run_id_list, 'singleCore', comparison_parameter, output_path)
-            if 'Zu60n' in run_id_list:
-                core_df = df[df.run_id == 'Zu60n']
-                core_types = list(core_df.core_type.unique())
-                for core_type in core_types:
-                    ms1 = df[df.message_count == 1]
-                    ms2 = df[df.message_size == 1]
-                    bmk_plotting.cr_plot(
-                        ms1, 'message_size', 'real_time', 'messageSend, msg_ct=1',
-                        run_id_list, core_type, comparison_parameter, output_path)
-                    bmk_plotting.cr_plot(
-                        ms2, 'message_count', 'real_time', 'messageSend, msg_sz=1',
-                        run_id_list, core_type, comparison_parameter, output_path)
-            elif 'YL2EQ' in run_id_list:
-                core_df = df[df.run_id == 'YL2EQ']
-                core_types = list(core_df.core_type.unique())
-                for core_type in core_types:
-                    ms1 = df[df.message_count == 1]
-                    ms2 = df[df.message_size == 1]
-                    bmk_plotting.cr_plot(
-                        ms1, 'message_size', 'real_time', 'messageSend, msg_ct=1',
-                        run_id_list, core_type, comparison_parameter, output_path)
-                    bmk_plotting.cr_plot(
-                        ms2, 'message_count', 'real_time', 'messageSend, msg_sz=1',
-                        run_id_list, core_type, comparison_parameter, output_path)
-            else:
-                for core_type in df.core_type.unique():
-                    ms1 = df[df.message_count == 1]
-                    ms2 = df[df.message_size == 1]
-                    bmk_plotting.cr_plot(
-                        ms1, 'message_size', 'real_time', 'messageSend, msg_ct=1',
-                        run_id_list, core_type, comparison_parameter, output_path)
-                    bmk_plotting.cr_plot(
-                        ms2, 'message_count', 'real_time', 'messageSend, msg_sz=1',
-                        run_id_list, core_type, comparison_parameter, output_path)
+            core_types = find_common_core_types(df, run_id_list)
+            for core_type in core_types:
+                ms1 = df[df.message_count == 1]
+                ms2 = df[df.message_size == 1]
+                bmk_plotting.cr_plot(
+                    ms1, 'message_size', 'real_time', 'messageSend, msg_ct=1',
+                    run_id_list, core_type, comparison_parameter, output_path)
+                bmk_plotting.cr_plot(
+                    ms2, 'message_count', 'real_time', 'messageSend, msg_sz=1',
+                    run_id_list, core_type, comparison_parameter, output_path)
         if bm['bm_name'] == 'filterBenchmark':
             df = meta_bmk_df[(meta_bmk_df.benchmark == 'filterBenchmark') & 
                               (meta_bmk_df.benchmark_type == 'full')]
             bmk_plotting.cr_plot(
                 df, 'federate_count', 'real_time', 'filter, singleCore',
                 run_id_list, 'singleCore', comparison_parameter, output_path)
-            if 'Zu60n' in run_id_list:
-                core_df = df[df.run_id == 'Zu60n']
-                core_types = list(core_df.core_type.unique())
-                dest = df[df.filter_location == 'destination']
-                src = df[df.filter_location == 'source']
-                for core_type in core_types:
-                    bmk_plotting.cr_plot(
-                        src, 'federate_count', 'real_time', 'filter, fltr_loc=source',
-                        run_id_list, core_type, comparison_parameter, output_path)
-                    bmk_plotting.cr_plot(
-                        dest, 'federate_count', 'real_time', 'filter, fltr_loc=dest',
-                        run_id_list, core_type, comparison_parameter, output_path)
-            elif 'YL2EQ' in run_id_list:
-                core_df = df[df.run_id == 'YL2EQ']
-                c_list = [i for i in core_df['core_type'].unique() if i != 'ipc']
-                dest = df[df.filter_location == 'destination']
-                src = df[df.filter_location == 'source']
-                for c in c_list:
-                    bmk_plotting.cr_plot(
-                        src, 'federate_count', 'real_time', 'filter, fltr_loc=source',
-                        run_id_list, c, comparison_parameter, output_path)
-                    bmk_plotting.cr_plot(
-                        dest, 'federate_count', 'real_time', 'filter, fltr_loc=dest',
-                        run_id_list, c, comparison_parameter, output_path)
-            else:
-                dest = df[df.filter_location == 'destination']
-                src = df[df.filter_location == 'source']
-                for core_type in df.core_type.unique():
-                    bmk_plotting.cr_plot(
-                        src, 'federate_count', 'real_time', 'filter, fltr_loc=source',
-                        run_id_list, core_type, comparison_parameter, output_path)
-                    bmk_plotting.cr_plot(
-                        dest, 'federate_count', 'real_time', 'filter, fltr_loc=dest',
-                        run_id_list, core_type, comparison_parameter, output_path)
+            core_types = find_common_core_types(df, run_id_list)
+            core_types = [c for c in core_types if c != 'ipc']
+            dest = df[df.filter_location == 'destination']
+            src = df[df.filter_location == 'source']
+            for core_type in core_types:
+                bmk_plotting.cr_plot(
+                    src, 'federate_count', 'real_time', 'filter, fltr_loc=source',
+                    run_id_list, core_type, comparison_parameter, output_path)
+                bmk_plotting.cr_plot(
+                    dest, 'federate_count', 'real_time', 'filter, fltr_loc=dest',
+                    run_id_list, core_type, comparison_parameter, output_path)
         if bm['bm_name'] == 'timingBenchmark':
             df = meta_bmk_df[(meta_bmk_df.benchmark == 'timingBenchmark') & 
                              (meta_bmk_df.benchmark_type == 'full')]
-            if 'Zu60n' in run_id_list:
-                core_df = df[df.run_id == 'Zu60n']
-                core_types = list(core_df.core_type.unique())
-                for core_type in core_types:
-                    bmk_plotting.cr_plot(
-                        meta_bmk_df, 'federate_count', 'real_time', 'timingBenchmark',
-                        run_id_list, core_type, comparison_parameter, output_path)
-            elif 'YL2EQ' in run_id_list:
-                core_df = df[df.run_id == 'YL2EQ']
-                core_types = list(core_df.core_type.unique())
-                for core_type in core_types:
-                    bmk_plotting.cr_plot(
-                        meta_bmk_df, 'federate_count', 'real_time', 'timingBenchmark',
-                        run_id_list, core_type, comparison_parameter, output_path)
-            else:
-                for core_type in df.core_type.unique():
-                    bmk_plotting.cr_plot(
-                        meta_bmk_df, 'federate_count', 'real_time', 'timingBenchmark',
-                        run_id_list, core_type, comparison_parameter, output_path)
+            core_types = find_common_core_types(df, run_id_list)
+            for core_type in core_types:
+                bmk_plotting.cr_plot(
+                    meta_bmk_df, 'federate_count', 'real_time', 'timingBenchmark',
+                    run_id_list, core_type, comparison_parameter, output_path)
 
 
 def _auto_run(args):
@@ -605,7 +476,7 @@ if __name__ == '__main__':
     parser.add_argument('-l',
                         '--run_id_list',
                         nargs='+',
-                        default=['Md3vp', 'p8BJW'])
+                        default=['YL2EQ', 'kkJWd'])
     parameter_list = [
     'mhz_per_cpu', 'helics_version', 'generator', 'system', 
     'system_version', 'platform', 'cxx_compiler', 'cxx_compiler_version', 
