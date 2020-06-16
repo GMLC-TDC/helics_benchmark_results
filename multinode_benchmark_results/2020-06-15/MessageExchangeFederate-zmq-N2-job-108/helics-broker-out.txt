@@ -1,0 +1,19 @@
+30465-EGfUc-o1Rww-ekKc9-w4ts2 (0)::connecting
+30465-EGfUc-o1Rww-ekKc9-w4ts2 (0)::||connected on tcp://127.0.0.1:23404
+30465-EGfUc-o1Rww-ekKc9-w4ts2 (1)::registering broker 30523-9flmp-qQau1-4aHRZ-1pvXg(1879048192) on route 1
+30465-EGfUc-o1Rww-ekKc9-w4ts2 (1)::registering broker 22759-vIuF7-vo6YM-V59di-E6oKh(1879048193) on route 2
+30465-EGfUc-o1Rww-ekKc9-w4ts2 (1)::registering federate msgExchange_0(131072) on route 1
+30465-EGfUc-o1Rww-ekKc9-w4ts2 (1)::registering federate msgExchange_1(131073) on route 2
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	2 federates [min 2]
+	0/2 brokers/cores [min 0]
+	0 publications
+	0 inputs
+	2 endpoints
+	0 filters
+<<<<<<<<<
+30465-EGfUc-o1Rww-ekKc9-w4ts2 (1)::entering Exec Mode
+30465-EGfUc-o1Rww-ekKc9-w4ts2 (0)::got disconnect from 22759-vIuF7-vo6YM-V59di-E6oKh(1879048193)
+30465-EGfUc-o1Rww-ekKc9-w4ts2 (0)::got disconnect from 30523-9flmp-qQau1-4aHRZ-1pvXg(1879048192)
+30465-EGfUc-o1Rww-ekKc9-w4ts2 (0)::||disconnecting

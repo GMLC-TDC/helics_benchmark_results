@@ -1,0 +1,19 @@
+27625-09gpX-oMthB-s6T6o-uNVsH (0)::connecting
+27625-09gpX-oMthB-s6T6o-uNVsH (0)::||connected on 127.0.0.1:23901
+27625-09gpX-oMthB-s6T6o-uNVsH (1)::registering broker 27695-g7rGO-vBRdw-ZxE5e-JswwF(1879048192) on route 1
+27625-09gpX-oMthB-s6T6o-uNVsH (1)::registering broker 27577-BjHb1-M7c5d-A4feY-LEIJI(1879048193) on route 2
+27625-09gpX-oMthB-s6T6o-uNVsH (1)::registering federate msgExchange_0(131072) on route 1
+27625-09gpX-oMthB-s6T6o-uNVsH (1)::registering federate msgExchange_1(131073) on route 2
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	2 federates [min 2]
+	0/2 brokers/cores [min 0]
+	0 publications
+	0 inputs
+	2 endpoints
+	0 filters
+<<<<<<<<<
+27625-09gpX-oMthB-s6T6o-uNVsH (1)::entering Exec Mode
+27625-09gpX-oMthB-s6T6o-uNVsH (0)::got disconnect from 27695-g7rGO-vBRdw-ZxE5e-JswwF(1879048192)
+27625-09gpX-oMthB-s6T6o-uNVsH (0)::got disconnect from 27577-BjHb1-M7c5d-A4feY-LEIJI(1879048193)
+27625-09gpX-oMthB-s6T6o-uNVsH (0)::||disconnecting

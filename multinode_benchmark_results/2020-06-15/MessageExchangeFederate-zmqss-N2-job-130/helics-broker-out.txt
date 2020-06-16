@@ -1,0 +1,19 @@
+32763-T9aVJ-Nc162-0hOgw-nFbnb (0)::connecting
+32763-T9aVJ-Nc162-0hOgw-nFbnb (0)::||connected on tcp://127.0.0.1:23404
+32763-T9aVJ-Nc162-0hOgw-nFbnb (1)::registering broker 348-S9GCJ-pCVmB-7eh8a-X4XeP(1879048192) on route 1
+32763-T9aVJ-Nc162-0hOgw-nFbnb (1)::registering broker 23763-b86nT-HRXFm-mrnz5-0dUAz(1879048193) on route 2
+32763-T9aVJ-Nc162-0hOgw-nFbnb (1)::registering federate msgExchange_1(131072) on route 1
+32763-T9aVJ-Nc162-0hOgw-nFbnb (1)::registering federate msgExchange_0(131073) on route 2
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	2 federates [min 2]
+	0/2 brokers/cores [min 0]
+	0 publications
+	0 inputs
+	2 endpoints
+	0 filters
+<<<<<<<<<
+32763-T9aVJ-Nc162-0hOgw-nFbnb (1)::entering Exec Mode
+32763-T9aVJ-Nc162-0hOgw-nFbnb (0)::got disconnect from 23763-b86nT-HRXFm-mrnz5-0dUAz(1879048193)
+32763-T9aVJ-Nc162-0hOgw-nFbnb (0)::got disconnect from 348-S9GCJ-pCVmB-7eh8a-X4XeP(1879048192)
+32763-T9aVJ-Nc162-0hOgw-nFbnb (0)::||disconnecting

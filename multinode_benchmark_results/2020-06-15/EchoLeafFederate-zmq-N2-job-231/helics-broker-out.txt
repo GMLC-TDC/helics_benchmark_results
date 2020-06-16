@@ -1,0 +1,23 @@
+1101-zjWrM-pwJQK-3AFpk-HtDzu (0)::connecting
+1101-zjWrM-pwJQK-3AFpk-HtDzu (0)::||connected on tcp://127.0.0.1:23404
+1101-zjWrM-pwJQK-3AFpk-HtDzu (1)::registering broker 1138-gSln2-rhcnL-kxn0G-vjIty(1879048192) on route 1
+1101-zjWrM-pwJQK-3AFpk-HtDzu (1)::registering broker 1167-XMdhF-4NuOQ-YoTlV-E8PJs(1879048193) on route 2
+1101-zjWrM-pwJQK-3AFpk-HtDzu (1)::registering federate echohub(131072) on route 1
+1101-zjWrM-pwJQK-3AFpk-HtDzu (1)::registering broker 2767-v7EgO-5PppZ-yholI-SKFws(1879048194) on route 3
+1101-zjWrM-pwJQK-3AFpk-HtDzu (1)::registering federate echoleaf_0(131073) on route 2
+1101-zjWrM-pwJQK-3AFpk-HtDzu (1)::registering federate echoleaf_1(131074) on route 3
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	3 federates [min 3]
+	0/3 brokers/cores [min 0]
+	4 publications
+	0 inputs
+	0 endpoints
+	0 filters
+<<<<<<<<<
+1101-zjWrM-pwJQK-3AFpk-HtDzu (0)::got disconnect from 1167-XMdhF-4NuOQ-YoTlV-E8PJs(1879048193)
+1101-zjWrM-pwJQK-3AFpk-HtDzu (0)::got disconnect from 2767-v7EgO-5PppZ-yholI-SKFws(1879048194)
+commWarning||1101-zjWrM-pwJQK-3AFpk-HtDzu (1)::unknown route and no broker, dropping message time_request:From (131072) Time(5.0020000000000006e-06, 0.15000000000000002, 5.0020000000000006e-06) to (131073)
+commWarning||1101-zjWrM-pwJQK-3AFpk-HtDzu (1)::unknown route and no broker, dropping message time_request:From (131072) Time(5.0020000000000006e-06, 0.15000000000000002, 5.0020000000000006e-06) to (131074)
+1101-zjWrM-pwJQK-3AFpk-HtDzu (0)::got disconnect from 1138-gSln2-rhcnL-kxn0G-vjIty(1879048192)
+1101-zjWrM-pwJQK-3AFpk-HtDzu (0)::||disconnecting

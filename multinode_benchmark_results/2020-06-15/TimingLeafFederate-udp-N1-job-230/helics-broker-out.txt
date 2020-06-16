@@ -1,0 +1,18 @@
+29038-yqbj9-5ABB7-aJd2d-mn1d9 (0)::connecting
+29038-yqbj9-5ABB7-aJd2d-mn1d9 (0)::||connected on 127.0.0.1:23901
+29038-yqbj9-5ABB7-aJd2d-mn1d9 (1)::registering broker 29049-x2A2g-YdVnX-ZJmjW-XQ8sU(1879048192) on route 1
+29038-yqbj9-5ABB7-aJd2d-mn1d9 (1)::registering broker 29069-hOUfB-FCmGi-NtlxK-JNRip(1879048193) on route 2
+29038-yqbj9-5ABB7-aJd2d-mn1d9 (1)::registering federate timinghub(131072) on route 1
+29038-yqbj9-5ABB7-aJd2d-mn1d9 (1)::registering federate timingleaf_0(131073) on route 2
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	2 federates [min 2]
+	0/2 brokers/cores [min 0]
+	2 publications
+	0 inputs
+	0 endpoints
+	0 filters
+<<<<<<<<<
+29038-yqbj9-5ABB7-aJd2d-mn1d9 (0)::got disconnect from 29069-hOUfB-FCmGi-NtlxK-JNRip(1879048193)
+29038-yqbj9-5ABB7-aJd2d-mn1d9 (0)::got disconnect from 29049-x2A2g-YdVnX-ZJmjW-XQ8sU(1879048192)
+29038-yqbj9-5ABB7-aJd2d-mn1d9 (0)::||disconnecting

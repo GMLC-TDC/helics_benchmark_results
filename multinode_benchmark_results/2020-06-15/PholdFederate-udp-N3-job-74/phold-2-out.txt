@@ -1,0 +1,4 @@
+BENCHMARK FEDERATE TYPE: PHOLD
+srun: error: pi4: task 0: Segmentation fault
+ELAPSED TIME (ns): 9243485234
+EVENT COUNT: 16544

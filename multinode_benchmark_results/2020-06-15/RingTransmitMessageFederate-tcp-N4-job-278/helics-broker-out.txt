@@ -1,0 +1,28 @@
+7859-OZKDH-QuOHJ-kVkBN-dXtuM (0)::connecting
+7859-OZKDH-QuOHJ-kVkBN-dXtuM (0)::||connected on 127.0.0.1:24160
+7859-OZKDH-QuOHJ-kVkBN-dXtuM (1)::registering broker 7909-65diM-ziCsF-xllnn-GYnOn(1879048192) on route 1
+7859-OZKDH-QuOHJ-kVkBN-dXtuM (1)::registering broker 24894-21RdK-D84As-f6w64-wOedW(1879048193) on route 2
+7859-OZKDH-QuOHJ-kVkBN-dXtuM (1)::registering broker 24462-oLyCh-eS9RK-lo4Nu-wYsOy(1879048194) on route 3
+7859-OZKDH-QuOHJ-kVkBN-dXtuM (1)::registering broker 26384-P6zON-C6Mqa-OOTeh-dywHd(1879048195) on route 4
+7859-OZKDH-QuOHJ-kVkBN-dXtuM (1)::registering federate ringlink_2(131072) on route 1
+7859-OZKDH-QuOHJ-kVkBN-dXtuM (1)::registering federate ringlink_0(131073) on route 2
+7859-OZKDH-QuOHJ-kVkBN-dXtuM (1)::registering federate ringlink_1(131074) on route 3
+7859-OZKDH-QuOHJ-kVkBN-dXtuM (1)::registering federate ringlink_3(131075) on route 4
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	4 federates [min 4]
+	0/4 brokers/cores [min 0]
+	0 publications
+	0 inputs
+	4 endpoints
+	0 filters
+<<<<<<<<<
+7859-OZKDH-QuOHJ-kVkBN-dXtuM (1)::entering Exec Mode
+7859-OZKDH-QuOHJ-kVkBN-dXtuM (0)::got disconnect from 24462-oLyCh-eS9RK-lo4Nu-wYsOy(1879048194)
+7859-OZKDH-QuOHJ-kVkBN-dXtuM (0)::got disconnect from 7909-65diM-ziCsF-xllnn-GYnOn(1879048192)
+commWarning||7859-OZKDH-QuOHJ-kVkBN-dXtuM (1)::(tcp) unknown message destination message dropped time_grant:From (1) Granted Time(4.999e-06) to (131072)
+commWarning||7859-OZKDH-QuOHJ-kVkBN-dXtuM (1)::(tcp) unknown message destination message dropped time_request:From (1) Time(5e-06, 5e-06, 5e-06) to (131072)
+7859-OZKDH-QuOHJ-kVkBN-dXtuM (0)::got disconnect from 26384-P6zON-C6Mqa-OOTeh-dywHd(1879048195)
+commWarning||7859-OZKDH-QuOHJ-kVkBN-dXtuM (1)::(tcp) unknown message destination message dropped send_message:From (ept_0)(131073:0) To ept_1 size 100 at 4.999e-06
+7859-OZKDH-QuOHJ-kVkBN-dXtuM (0)::got disconnect from 24894-21RdK-D84As-f6w64-wOedW(1879048193)
+7859-OZKDH-QuOHJ-kVkBN-dXtuM (0)::||disconnecting

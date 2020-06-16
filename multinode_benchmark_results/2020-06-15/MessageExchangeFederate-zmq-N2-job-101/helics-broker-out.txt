@@ -1,0 +1,20 @@
+29719-vkegS-ym17F-5Iy81-o3xF2 (0)::connecting
+29719-vkegS-ym17F-5Iy81-o3xF2 (0)::||connected on tcp://127.0.0.1:23404
+29719-vkegS-ym17F-5Iy81-o3xF2 (1)::registering broker 29796-lUXDx-lt6Bp-l4pIe-SeCRC(1879048192) on route 1
+29719-vkegS-ym17F-5Iy81-o3xF2 (1)::registering broker 22420-nMfEO-xUcoh-sJEWU-b2W4y(1879048193) on route 2
+29719-vkegS-ym17F-5Iy81-o3xF2 (1)::registering federate msgExchange_1(131072) on route 1
+29719-vkegS-ym17F-5Iy81-o3xF2 (1)::registering federate msgExchange_0(131073) on route 2
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	2 federates [min 2]
+	0/2 brokers/cores [min 0]
+	0 publications
+	0 inputs
+	2 endpoints
+	0 filters
+<<<<<<<<<
+29719-vkegS-ym17F-5Iy81-o3xF2 (1)::entering Exec Mode
+29719-vkegS-ym17F-5Iy81-o3xF2 (0)::got disconnect from 22420-nMfEO-xUcoh-sJEWU-b2W4y(1879048193)
+29719-vkegS-ym17F-5Iy81-o3xF2 (0)::got disconnect from 29796-lUXDx-lt6Bp-l4pIe-SeCRC(1879048192)
+commWarning||29719-vkegS-ym17F-5Iy81-o3xF2 (1)::unknown route and no broker, dropping message time_grant:From (1) Granted Time(1e-08) to (131072)
+29719-vkegS-ym17F-5Iy81-o3xF2 (0)::||disconnecting

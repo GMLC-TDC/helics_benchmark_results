@@ -1,0 +1,5 @@
+23714-l2RHZ-TrjPR-ZIro6-2mSZI (0)::connecting
+commERROR||23714-l2RHZ-TrjPR-ZIro6-2mSZI (1)::Unable to bind zmq reply socket giving up tcp://*:23405
+commERROR||23714-l2RHZ-TrjPR-ZIro6-2mSZI (1)::receiver connection failure
+Broker is unable to connect
+

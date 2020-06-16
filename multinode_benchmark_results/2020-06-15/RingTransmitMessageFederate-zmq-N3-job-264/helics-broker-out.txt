@@ -1,0 +1,23 @@
+717-gVS0P-NFztD-OWAdw-eI3MW (0)::connecting
+717-gVS0P-NFztD-OWAdw-eI3MW (0)::||connected on tcp://127.0.0.1:23404
+717-gVS0P-NFztD-OWAdw-eI3MW (1)::registering broker 784-5lKUT-NkyI9-sXNnT-1HoK1(1879048192) on route 1
+717-gVS0P-NFztD-OWAdw-eI3MW (1)::registering broker 20404-SlgQg-q7BxO-2LPs1-weSCG(1879048193) on route 2
+717-gVS0P-NFztD-OWAdw-eI3MW (1)::registering broker 18553-lZ8j3-vtZX5-awWLV-22gmL(1879048194) on route 3
+717-gVS0P-NFztD-OWAdw-eI3MW (1)::registering federate ringlink_0(131072) on route 1
+717-gVS0P-NFztD-OWAdw-eI3MW (1)::registering federate ringlink_2(131073) on route 2
+717-gVS0P-NFztD-OWAdw-eI3MW (1)::registering federate ringlink_1(131074) on route 3
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	3 federates [min 3]
+	0/3 brokers/cores [min 0]
+	0 publications
+	0 inputs
+	3 endpoints
+	0 filters
+<<<<<<<<<
+717-gVS0P-NFztD-OWAdw-eI3MW (1)::entering Exec Mode
+717-gVS0P-NFztD-OWAdw-eI3MW (0)::got disconnect from 18553-lZ8j3-vtZX5-awWLV-22gmL(1879048194)
+717-gVS0P-NFztD-OWAdw-eI3MW (0)::got disconnect from 20404-SlgQg-q7BxO-2LPs1-weSCG(1879048193)
+commWarning||717-gVS0P-NFztD-OWAdw-eI3MW (1)::unknown route and no broker, dropping message send_message:From (ept_0)(131072:0) To ept_1 size 100 at 4.999e-06
+717-gVS0P-NFztD-OWAdw-eI3MW (0)::got disconnect from 784-5lKUT-NkyI9-sXNnT-1HoK1(1879048192)
+717-gVS0P-NFztD-OWAdw-eI3MW (0)::||disconnecting

@@ -1,0 +1,3 @@
+srun: Job step aborted: Waiting up to 32 seconds for job step to finish.
+slurmstepd-pi2: error: *** STEP 296.0 ON pi2 CANCELLED AT 2020-06-16T01:30:48 DUE TO TIME LIMIT ***
+srun: error: pi2: task 0: Terminated

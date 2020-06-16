@@ -1,0 +1,4 @@
+7196-s7xzO-m2qzw-3WWMG-VTNEU (0)::broker responded with error: already in initialization mode
+7196-s7xzO-m2qzw-3WWMG-VTNEU (0)::broker responded with error: already in initialization mode
+Uncaught exception occurred
+srun: error: pi5: task 0: Exited with exit code 1

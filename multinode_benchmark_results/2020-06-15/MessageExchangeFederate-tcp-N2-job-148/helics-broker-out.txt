@@ -1,0 +1,19 @@
+2153-DkTKJ-rQkUi-xbGaI-BuCf1 (0)::connecting
+2153-DkTKJ-rQkUi-xbGaI-BuCf1 (0)::||connected on 127.0.0.1:24160
+2153-DkTKJ-rQkUi-xbGaI-BuCf1 (1)::registering broker 2204-N48e6-1aLEn-B6pJn-MQ7B8(1879048192) on route 1
+2153-DkTKJ-rQkUi-xbGaI-BuCf1 (1)::registering broker 24549-eLjjR-OBJc2-MWZpm-ZXtxa(1879048193) on route 2
+2153-DkTKJ-rQkUi-xbGaI-BuCf1 (1)::registering federate msgExchange_0(131072) on route 1
+2153-DkTKJ-rQkUi-xbGaI-BuCf1 (1)::registering federate msgExchange_1(131073) on route 2
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	2 federates [min 2]
+	0/2 brokers/cores [min 0]
+	0 publications
+	0 inputs
+	2 endpoints
+	0 filters
+<<<<<<<<<
+2153-DkTKJ-rQkUi-xbGaI-BuCf1 (1)::entering Exec Mode
+2153-DkTKJ-rQkUi-xbGaI-BuCf1 (0)::got disconnect from 24549-eLjjR-OBJc2-MWZpm-ZXtxa(1879048193)
+2153-DkTKJ-rQkUi-xbGaI-BuCf1 (0)::got disconnect from 2204-N48e6-1aLEn-B6pJn-MQ7B8(1879048192)
+2153-DkTKJ-rQkUi-xbGaI-BuCf1 (0)::||disconnecting

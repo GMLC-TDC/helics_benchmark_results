@@ -1,0 +1,20 @@
+20185-TiJTf-CnKeR-TGvYk-aUkRw (0)::connecting
+20185-TiJTf-CnKeR-TGvYk-aUkRw (0)::||connected on tcp://127.0.0.1:23404
+20185-TiJTf-CnKeR-TGvYk-aUkRw (1)::registering broker 20233-2Qxfo-HMmx5-xHLHP-doVwb(1879048192) on route 1
+20185-TiJTf-CnKeR-TGvYk-aUkRw (1)::registering broker 19035-zuLT1-cDmwk-ytvYe-XlKCX(1879048193) on route 2
+20185-TiJTf-CnKeR-TGvYk-aUkRw (1)::registering federate ringlink_0(131072) on route 1
+20185-TiJTf-CnKeR-TGvYk-aUkRw (1)::registering federate ringlink_1(131073) on route 2
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	2 federates [min 2]
+	0/2 brokers/cores [min 0]
+	0 publications
+	0 inputs
+	2 endpoints
+	0 filters
+<<<<<<<<<
+20185-TiJTf-CnKeR-TGvYk-aUkRw (1)::entering Exec Mode
+20185-TiJTf-CnKeR-TGvYk-aUkRw (0)::got disconnect from 19035-zuLT1-cDmwk-ytvYe-XlKCX(1879048193)
+commWarning||20185-TiJTf-CnKeR-TGvYk-aUkRw (1)::unknown route and no broker, dropping message send_message:From (ept_0)(131072:0) To ept_1 size 100 at 4.999e-06
+20185-TiJTf-CnKeR-TGvYk-aUkRw (0)::got disconnect from 20233-2Qxfo-HMmx5-xHLHP-doVwb(1879048192)
+20185-TiJTf-CnKeR-TGvYk-aUkRw (0)::||disconnecting

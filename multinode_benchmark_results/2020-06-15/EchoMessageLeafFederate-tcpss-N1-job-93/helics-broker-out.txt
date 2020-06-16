@@ -1,0 +1,20 @@
+24724-I2V1I-sF1YS-fz3Ca-mwYqQ (0)::connecting
+24724-I2V1I-sF1YS-fz3Ca-mwYqQ (0)::||connected on 127.0.0.1:33133
+24724-I2V1I-sF1YS-fz3Ca-mwYqQ (1)::registering broker 24776-TtgFf-CULby-4dTGp-yqzjj(1879048192) on route 1
+24724-I2V1I-sF1YS-fz3Ca-mwYqQ (1)::registering broker 24795-9nYD1-0Me21-Vjtdz-3ORS9(1879048193) on route 2
+24724-I2V1I-sF1YS-fz3Ca-mwYqQ (1)::registering federate echohub(131072) on route 1
+24724-I2V1I-sF1YS-fz3Ca-mwYqQ (1)::registering federate echoleaf_0(131073) on route 2
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	2 federates [min 2]
+	0/2 brokers/cores [min 0]
+	0 publications
+	0 inputs
+	2 endpoints
+	0 filters
+<<<<<<<<<
+24724-I2V1I-sF1YS-fz3Ca-mwYqQ (1)::entering Exec Mode
+24724-I2V1I-sF1YS-fz3Ca-mwYqQ (0)::got disconnect from 24795-9nYD1-0Me21-Vjtdz-3ORS9(1879048193)
+24724-I2V1I-sF1YS-fz3Ca-mwYqQ (0)::got disconnect from 24776-TtgFf-CULby-4dTGp-yqzjj(1879048192)
+24724-I2V1I-sF1YS-fz3Ca-mwYqQ (0)::||disconnecting
+commWarning||24724-I2V1I-sF1YS-fz3Ca-mwYqQ (1)::(tcpss) unknown message destination message dropped time_grant:From (1) Granted Time(0.15000000000000002) to (131072)

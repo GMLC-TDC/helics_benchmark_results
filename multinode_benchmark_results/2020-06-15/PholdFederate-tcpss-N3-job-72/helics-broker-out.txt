@@ -1,0 +1,22 @@
+22386-4qVxV-1S2uS-5bGCQ-uaPmf (0)::connecting
+22386-4qVxV-1S2uS-5bGCQ-uaPmf (0)::||connected on 127.0.0.1:33133
+22386-4qVxV-1S2uS-5bGCQ-uaPmf (1)::registering broker 22422-Bq7mu-dxYgN-Y9dOW-wFYLL(1879048192) on route 1
+22386-4qVxV-1S2uS-5bGCQ-uaPmf (1)::registering broker 17678-vxkfa-utfIg-hmrz6-Jk9Nx(1879048193) on route 2
+22386-4qVxV-1S2uS-5bGCQ-uaPmf (1)::registering broker 15711-gSa4z-25Spv-YR0AZ-9tHeJ(1879048194) on route 3
+22386-4qVxV-1S2uS-5bGCQ-uaPmf (1)::registering federate phold_1(131072) on route 1
+22386-4qVxV-1S2uS-5bGCQ-uaPmf (1)::registering federate phold_0(131073) on route 2
+22386-4qVxV-1S2uS-5bGCQ-uaPmf (1)::registering federate phold_2(131074) on route 3
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	3 federates [min 3]
+	0/3 brokers/cores [min 0]
+	0 publications
+	0 inputs
+	3 endpoints
+	0 filters
+<<<<<<<<<
+22386-4qVxV-1S2uS-5bGCQ-uaPmf (1)::entering Exec Mode
+22386-4qVxV-1S2uS-5bGCQ-uaPmf (0)::got disconnect from 22422-Bq7mu-dxYgN-Y9dOW-wFYLL(1879048192)
+22386-4qVxV-1S2uS-5bGCQ-uaPmf (0)::got disconnect from 17678-vxkfa-utfIg-hmrz6-Jk9Nx(1879048193)
+22386-4qVxV-1S2uS-5bGCQ-uaPmf (0)::got disconnect from 15711-gSa4z-25Spv-YR0AZ-9tHeJ(1879048194)
+22386-4qVxV-1S2uS-5bGCQ-uaPmf (0)::||disconnecting

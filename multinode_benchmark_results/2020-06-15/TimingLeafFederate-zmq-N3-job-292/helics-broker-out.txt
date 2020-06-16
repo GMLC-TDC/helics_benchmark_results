@@ -1,0 +1,5 @@
+23756-NC2WY-gvTBx-TMfQD-joSJP (0)::connecting
+commERROR||23756-NC2WY-gvTBx-TMfQD-joSJP (1)::Unable to bind zmq reply socket giving up tcp://*:23405
+commERROR||23756-NC2WY-gvTBx-TMfQD-joSJP (1)::receiver connection failure
+Broker is unable to connect
+

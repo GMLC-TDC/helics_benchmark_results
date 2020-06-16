@@ -1,0 +1,18 @@
+28729-R52dK-ZHpSu-EghKc-BWZRd (0)::connecting
+28729-R52dK-ZHpSu-EghKc-BWZRd (0)::||connected on 127.0.0.1:24160
+28729-R52dK-ZHpSu-EghKc-BWZRd (1)::registering broker 28755-2RuYc-ZHfHx-3aWFa-OAwWd(1879048192) on route 1
+28729-R52dK-ZHpSu-EghKc-BWZRd (1)::registering broker 28789-a7OVx-H2jzQ-SSLvG-V9wys(1879048193) on route 2
+28729-R52dK-ZHpSu-EghKc-BWZRd (1)::registering federate echohub(131072) on route 1
+28729-R52dK-ZHpSu-EghKc-BWZRd (1)::registering federate echoleaf_0(131073) on route 2
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	2 federates [min 2]
+	0/2 brokers/cores [min 0]
+	2 publications
+	0 inputs
+	0 endpoints
+	0 filters
+<<<<<<<<<
+28729-R52dK-ZHpSu-EghKc-BWZRd (0)::got disconnect from 28789-a7OVx-H2jzQ-SSLvG-V9wys(1879048193)
+28729-R52dK-ZHpSu-EghKc-BWZRd (0)::got disconnect from 28755-2RuYc-ZHfHx-3aWFa-OAwWd(1879048192)
+28729-R52dK-ZHpSu-EghKc-BWZRd (0)::||disconnecting

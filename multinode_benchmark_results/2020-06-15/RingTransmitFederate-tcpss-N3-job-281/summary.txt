@@ -1,0 +1,5 @@
+DATE: 2020-06-16 00:13:36
+CLUSTER: picl
+NUM NODES: 3
+FEDS PER NODE: 1
+TOPOLOGY:  single_broker

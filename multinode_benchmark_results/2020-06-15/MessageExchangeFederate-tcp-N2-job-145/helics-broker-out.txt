@@ -1,0 +1,19 @@
+1864-cC329-E399c-fkwtG-RpdJO (0)::connecting
+1864-cC329-E399c-fkwtG-RpdJO (0)::||connected on 127.0.0.1:24160
+1864-cC329-E399c-fkwtG-RpdJO (1)::registering broker 1909-RYSqw-PWdZW-21Bdq-o543h(1879048192) on route 1
+1864-cC329-E399c-fkwtG-RpdJO (1)::registering broker 24425-J5rEG-HIi2c-h2oOP-HzMRx(1879048193) on route 2
+1864-cC329-E399c-fkwtG-RpdJO (1)::registering federate msgExchange_0(131072) on route 1
+1864-cC329-E399c-fkwtG-RpdJO (1)::registering federate msgExchange_1(131073) on route 2
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	2 federates [min 2]
+	0/2 brokers/cores [min 0]
+	0 publications
+	0 inputs
+	2 endpoints
+	0 filters
+<<<<<<<<<
+1864-cC329-E399c-fkwtG-RpdJO (1)::entering Exec Mode
+1864-cC329-E399c-fkwtG-RpdJO (0)::got disconnect from 1909-RYSqw-PWdZW-21Bdq-o543h(1879048192)
+1864-cC329-E399c-fkwtG-RpdJO (0)::got disconnect from 24425-J5rEG-HIi2c-h2oOP-HzMRx(1879048193)
+1864-cC329-E399c-fkwtG-RpdJO (0)::||disconnecting

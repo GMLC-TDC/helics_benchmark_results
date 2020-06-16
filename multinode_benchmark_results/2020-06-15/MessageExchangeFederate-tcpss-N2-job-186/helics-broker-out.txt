@@ -1,0 +1,19 @@
+4756-lvTBw-tTTrk-FfqFe-T7JAp (0)::connecting
+4756-lvTBw-tTTrk-FfqFe-T7JAp (0)::||connected on 127.0.0.1:33133
+4756-lvTBw-tTTrk-FfqFe-T7JAp (1)::registering broker 4814-rhNei-ON84K-9rB2x-83ftL(1879048192) on route 1
+4756-lvTBw-tTTrk-FfqFe-T7JAp (1)::registering broker 25716-4QXjQ-QRROO-HPyGz-GlmVY(1879048193) on route 2
+4756-lvTBw-tTTrk-FfqFe-T7JAp (1)::registering federate msgExchange_0(131072) on route 1
+4756-lvTBw-tTTrk-FfqFe-T7JAp (1)::registering federate msgExchange_1(131073) on route 2
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	2 federates [min 2]
+	0/2 brokers/cores [min 0]
+	0 publications
+	0 inputs
+	2 endpoints
+	0 filters
+<<<<<<<<<
+4756-lvTBw-tTTrk-FfqFe-T7JAp (1)::entering Exec Mode
+4756-lvTBw-tTTrk-FfqFe-T7JAp (0)::got disconnect from 25716-4QXjQ-QRROO-HPyGz-GlmVY(1879048193)
+4756-lvTBw-tTTrk-FfqFe-T7JAp (0)::got disconnect from 4814-rhNei-ON84K-9rB2x-83ftL(1879048192)
+4756-lvTBw-tTTrk-FfqFe-T7JAp (0)::||disconnecting

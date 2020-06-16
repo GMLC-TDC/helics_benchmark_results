@@ -1,0 +1,15 @@
+28851-fAPes-SWszy-FuAMW-50g8U (0)::connecting
+28851-fAPes-SWszy-FuAMW-50g8U (0)::||connected on 127.0.0.1:33133
+28851-fAPes-SWszy-FuAMW-50g8U (1)::registering broker 28886-FjX73-Qam7V-8EMw8-VDK08(1879048192) on route 1
+28851-fAPes-SWszy-FuAMW-50g8U (1)::registering federate ringlink_0(131072) on route 1
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	1 federates [min 1]
+	0/1 brokers/cores [min 0]
+	0 publications
+	0 inputs
+	1 endpoints
+	0 filters
+<<<<<<<<<
+28851-fAPes-SWszy-FuAMW-50g8U (0)::got disconnect from 28886-FjX73-Qam7V-8EMw8-VDK08(1879048192)
+28851-fAPes-SWszy-FuAMW-50g8U (0)::||disconnecting

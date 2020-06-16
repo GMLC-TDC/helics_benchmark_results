@@ -1,0 +1,19 @@
+3570-vRoUq-rm8zW-wFdlX-DZ6iK (0)::connecting
+3570-vRoUq-rm8zW-wFdlX-DZ6iK (0)::||connected on 127.0.0.1:24160
+3570-vRoUq-rm8zW-wFdlX-DZ6iK (1)::registering broker 3597-WWLCs-D87E2-osY5K-7OUGj(1879048192) on route 1
+3570-vRoUq-rm8zW-wFdlX-DZ6iK (1)::registering broker 25176-Flywe-1lcjO-8lNbv-nDHln(1879048193) on route 2
+3570-vRoUq-rm8zW-wFdlX-DZ6iK (1)::registering federate msgExchange_0(131072) on route 1
+3570-vRoUq-rm8zW-wFdlX-DZ6iK (1)::registering federate msgExchange_1(131073) on route 2
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	2 federates [min 2]
+	0/2 brokers/cores [min 0]
+	0 publications
+	0 inputs
+	2 endpoints
+	0 filters
+<<<<<<<<<
+3570-vRoUq-rm8zW-wFdlX-DZ6iK (1)::entering Exec Mode
+3570-vRoUq-rm8zW-wFdlX-DZ6iK (0)::got disconnect from 25176-Flywe-1lcjO-8lNbv-nDHln(1879048193)
+3570-vRoUq-rm8zW-wFdlX-DZ6iK (0)::got disconnect from 3597-WWLCs-D87E2-osY5K-7OUGj(1879048192)
+3570-vRoUq-rm8zW-wFdlX-DZ6iK (0)::||disconnecting

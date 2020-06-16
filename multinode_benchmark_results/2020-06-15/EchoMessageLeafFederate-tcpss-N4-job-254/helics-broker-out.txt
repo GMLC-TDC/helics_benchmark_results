@@ -1,0 +1,29 @@
+21675-r0Jpn-YPDyD-2zU6i-Xuaxa (0)::connecting
+21675-r0Jpn-YPDyD-2zU6i-Xuaxa (0)::||connected on 127.0.0.1:33133
+21675-r0Jpn-YPDyD-2zU6i-Xuaxa (1)::registering broker 21699-lF8Jt-b178Z-tH4ye-YOfcY(1879048192) on route 1
+21675-r0Jpn-YPDyD-2zU6i-Xuaxa (1)::registering broker 21736-Ixh5e-qbOl2-2U9Bd-lrDc3(1879048193) on route 2
+21675-r0Jpn-YPDyD-2zU6i-Xuaxa (1)::registering federate echohub(131072) on route 1
+21675-r0Jpn-YPDyD-2zU6i-Xuaxa (1)::registering broker 7825-7RkC8-CAHVF-kzMNe-d2e5x(1879048194) on route 3
+21675-r0Jpn-YPDyD-2zU6i-Xuaxa (1)::registering broker 9518-pBVjK-aubPy-OJTv8-oQ5qw(1879048195) on route 4
+21675-r0Jpn-YPDyD-2zU6i-Xuaxa (1)::registering broker 8530-SoEKz-PfpDF-9vJJu-1COMX(1879048196) on route 5
+21675-r0Jpn-YPDyD-2zU6i-Xuaxa (1)::registering federate echoleaf_0(131073) on route 2
+21675-r0Jpn-YPDyD-2zU6i-Xuaxa (1)::registering federate echoleaf_1(131074) on route 3
+21675-r0Jpn-YPDyD-2zU6i-Xuaxa (1)::registering federate echoleaf_2(131075) on route 4
+21675-r0Jpn-YPDyD-2zU6i-Xuaxa (1)::registering federate echoleaf_3(131076) on route 5
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	5 federates [min 5]
+	0/5 brokers/cores [min 0]
+	0 publications
+	0 inputs
+	5 endpoints
+	0 filters
+<<<<<<<<<
+21675-r0Jpn-YPDyD-2zU6i-Xuaxa (1)::entering Exec Mode
+21675-r0Jpn-YPDyD-2zU6i-Xuaxa (0)::got disconnect from 7825-7RkC8-CAHVF-kzMNe-d2e5x(1879048194)
+21675-r0Jpn-YPDyD-2zU6i-Xuaxa (0)::got disconnect from 8530-SoEKz-PfpDF-9vJJu-1COMX(1879048196)
+21675-r0Jpn-YPDyD-2zU6i-Xuaxa (0)::got disconnect from 21736-Ixh5e-qbOl2-2U9Bd-lrDc3(1879048193)
+21675-r0Jpn-YPDyD-2zU6i-Xuaxa (0)::got disconnect from 9518-pBVjK-aubPy-OJTv8-oQ5qw(1879048195)
+21675-r0Jpn-YPDyD-2zU6i-Xuaxa (0)::got disconnect from 21699-lF8Jt-b178Z-tH4ye-YOfcY(1879048192)
+commWarning||21675-r0Jpn-YPDyD-2zU6i-Xuaxa (1)::(tcpss) unknown message destination message dropped time_grant:From (1) Granted Time(0.15000000000000002) to (131072)
+21675-r0Jpn-YPDyD-2zU6i-Xuaxa (0)::||disconnecting

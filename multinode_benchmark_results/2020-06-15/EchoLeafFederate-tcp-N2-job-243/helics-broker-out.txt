@@ -1,0 +1,21 @@
+15232-qMzDQ-EKz9G-O8chK-e8eMB (0)::connecting
+15232-qMzDQ-EKz9G-O8chK-e8eMB (0)::||connected on 127.0.0.1:24160
+15232-qMzDQ-EKz9G-O8chK-e8eMB (1)::registering broker 15253-2RjFC-Ss0WY-GTLKS-52D3e(1879048192) on route 1
+15232-qMzDQ-EKz9G-O8chK-e8eMB (1)::registering broker 15283-sbpee-Kfid8-y6brB-5oD2d(1879048193) on route 2
+15232-qMzDQ-EKz9G-O8chK-e8eMB (1)::registering federate echohub(131072) on route 1
+15232-qMzDQ-EKz9G-O8chK-e8eMB (1)::registering broker 2175-gQjVx-IG4QB-dyuZT-FG3Ya(1879048194) on route 3
+15232-qMzDQ-EKz9G-O8chK-e8eMB (1)::registering federate echoleaf_1(131073) on route 2
+15232-qMzDQ-EKz9G-O8chK-e8eMB (1)::registering federate echoleaf_0(131074) on route 3
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	3 federates [min 3]
+	0/3 brokers/cores [min 0]
+	4 publications
+	0 inputs
+	0 endpoints
+	0 filters
+<<<<<<<<<
+15232-qMzDQ-EKz9G-O8chK-e8eMB (0)::got disconnect from 15283-sbpee-Kfid8-y6brB-5oD2d(1879048193)
+15232-qMzDQ-EKz9G-O8chK-e8eMB (0)::got disconnect from 2175-gQjVx-IG4QB-dyuZT-FG3Ya(1879048194)
+15232-qMzDQ-EKz9G-O8chK-e8eMB (0)::got disconnect from 15253-2RjFC-Ss0WY-GTLKS-52D3e(1879048192)
+15232-qMzDQ-EKz9G-O8chK-e8eMB (0)::||disconnecting

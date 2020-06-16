@@ -1,0 +1,19 @@
+27420-7FRvS-gS4Yw-hyWxj-QPBAc (0)::connecting
+27420-7FRvS-gS4Yw-hyWxj-QPBAc (0)::||connected on 127.0.0.1:23901
+27420-7FRvS-gS4Yw-hyWxj-QPBAc (1)::registering broker 27490-WB7kM-e1t9v-SInyL-h0iBC(1879048192) on route 1
+27420-7FRvS-gS4Yw-hyWxj-QPBAc (1)::registering broker 27490-GFIwN-19WhS-hEeIk-IQ6tD(1879048193) on route 2
+27420-7FRvS-gS4Yw-hyWxj-QPBAc (1)::registering federate msgExchange_0(131072) on route 1
+27420-7FRvS-gS4Yw-hyWxj-QPBAc (1)::registering federate msgExchange_1(131073) on route 2
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	2 federates [min 2]
+	0/2 brokers/cores [min 0]
+	0 publications
+	0 inputs
+	2 endpoints
+	0 filters
+<<<<<<<<<
+27420-7FRvS-gS4Yw-hyWxj-QPBAc (1)::entering Exec Mode
+27420-7FRvS-gS4Yw-hyWxj-QPBAc (0)::got disconnect from 27490-WB7kM-e1t9v-SInyL-h0iBC(1879048192)
+27420-7FRvS-gS4Yw-hyWxj-QPBAc (0)::got disconnect from 27490-GFIwN-19WhS-hEeIk-IQ6tD(1879048193)
+27420-7FRvS-gS4Yw-hyWxj-QPBAc (0)::||disconnecting

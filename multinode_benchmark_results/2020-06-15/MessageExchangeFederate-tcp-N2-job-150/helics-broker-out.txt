@@ -1,0 +1,20 @@
+2347-Ta0iK-LXAKj-Matff-s4n9m (0)::connecting
+2347-Ta0iK-LXAKj-Matff-s4n9m (0)::||connected on 127.0.0.1:24160
+2347-Ta0iK-LXAKj-Matff-s4n9m (1)::registering broker 2393-nDmHJ-n96fL-6WlLN-2yHCu(1879048192) on route 1
+2347-Ta0iK-LXAKj-Matff-s4n9m (1)::registering broker 24628-il1KK-PndAi-J09Qi-C8Kzj(1879048193) on route 2
+2347-Ta0iK-LXAKj-Matff-s4n9m (1)::registering federate msgExchange_0(131072) on route 1
+2347-Ta0iK-LXAKj-Matff-s4n9m (1)::registering federate msgExchange_1(131073) on route 2
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	2 federates [min 2]
+	0/2 brokers/cores [min 0]
+	0 publications
+	0 inputs
+	2 endpoints
+	0 filters
+<<<<<<<<<
+2347-Ta0iK-LXAKj-Matff-s4n9m (1)::entering Exec Mode
+2347-Ta0iK-LXAKj-Matff-s4n9m (0)::got disconnect from 24628-il1KK-PndAi-J09Qi-C8Kzj(1879048193)
+2347-Ta0iK-LXAKj-Matff-s4n9m (0)::got disconnect from 2393-nDmHJ-n96fL-6WlLN-2yHCu(1879048192)
+commWarning||2347-Ta0iK-LXAKj-Matff-s4n9m (1)::(tcp) unknown message destination message dropped time_grant:From (1) Granted Time(1e-08) to (131072)
+2347-Ta0iK-LXAKj-Matff-s4n9m (0)::||disconnecting

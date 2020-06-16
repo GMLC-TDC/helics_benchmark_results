@@ -1,0 +1,4 @@
+Uncaught exception occurred
+6799-1opGt-cwYmr-ij7jL-uvXzD (0)::broker responded with error for registration of timingleaf_1::duplicate federate name detected
+
+srun: error: pi3: task 0: Exited with exit code 1

@@ -1,0 +1,15 @@
+8827-1VuGg-F3Z4n-d2Rfp-1VWNj (0)::connecting
+8827-1VuGg-F3Z4n-d2Rfp-1VWNj (0)::||connected on 127.0.0.1:23901
+8827-1VuGg-F3Z4n-d2Rfp-1VWNj (1)::registering broker 8853-LqYUc-avzwa-WNZKv-4bDz9(1879048192) on route 1
+8827-1VuGg-F3Z4n-d2Rfp-1VWNj (1)::registering federate ringlink_0(131072) on route 1
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	1 federates [min 1]
+	0/1 brokers/cores [min 0]
+	0 publications
+	0 inputs
+	1 endpoints
+	0 filters
+<<<<<<<<<
+8827-1VuGg-F3Z4n-d2Rfp-1VWNj (0)::got disconnect from 8853-LqYUc-avzwa-WNZKv-4bDz9(1879048192)
+8827-1VuGg-F3Z4n-d2Rfp-1VWNj (0)::||disconnecting

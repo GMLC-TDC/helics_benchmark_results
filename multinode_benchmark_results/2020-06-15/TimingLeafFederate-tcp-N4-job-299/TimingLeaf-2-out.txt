@@ -1,0 +1,4 @@
+6892-eUUAe-WvZvM-mg0Ip-m7Uy4 (0)::broker responded with error: already in initialization mode
+6892-eUUAe-WvZvM-mg0Ip-m7Uy4 (0)::broker responded with error: already in initialization mode
+Uncaught exception occurred
+srun: error: pi3: task 0: Exited with exit code 1

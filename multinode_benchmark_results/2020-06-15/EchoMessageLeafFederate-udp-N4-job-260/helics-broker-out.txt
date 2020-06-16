@@ -1,0 +1,21 @@
+28152-7732w-sqLgZ-1bEEa-sWuBu (0)::connecting
+28152-7732w-sqLgZ-1bEEa-sWuBu (0)::||connected on 127.0.0.1:23901
+28152-7732w-sqLgZ-1bEEa-sWuBu (1)::registering broker 28165-FVnGp-DHAPJ-46dYJ-cKE5Z(1879048192) on route 1
+28152-7732w-sqLgZ-1bEEa-sWuBu (1)::registering federate echohub(131072) on route 1
+28152-7732w-sqLgZ-1bEEa-sWuBu (1)::registering broker 28212-6fYrb-AP1bd-cksNz-xKD6D(1879048193) on route 2
+28152-7732w-sqLgZ-1bEEa-sWuBu (1)::registering broker 15578-fSmeq-RLYOc-e8Wwl-PK85n(1879048194) on route 3
+28152-7732w-sqLgZ-1bEEa-sWuBu (1)::registering broker 13832-4tneY-YB7EI-IBPtK-47n73(1879048195) on route 4
+28152-7732w-sqLgZ-1bEEa-sWuBu (1)::registering broker 14454-ckcjm-aVdyd-pU26P-1zONw(1879048196) on route 5
+28152-7732w-sqLgZ-1bEEa-sWuBu (1)::registering federate echoleaf_0(131073) on route 2
+28152-7732w-sqLgZ-1bEEa-sWuBu (1)::registering federate echoleaf_3(131074) on route 3
+28152-7732w-sqLgZ-1bEEa-sWuBu (1)::registering federate echoleaf_1(131075) on route 4
+28152-7732w-sqLgZ-1bEEa-sWuBu (1)::registering federate echoleaf_2(131076) on route 5
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	5 federates [min 5]
+	0/5 brokers/cores [min 0]
+	0 publications
+	0 inputs
+	5 endpoints
+	0 filters
+<<<<<<<<<

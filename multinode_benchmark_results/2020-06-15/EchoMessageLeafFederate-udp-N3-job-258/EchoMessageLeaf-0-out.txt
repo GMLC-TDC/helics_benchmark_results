@@ -1,0 +1,2 @@
+srun: Job step aborted: Waiting up to 32 seconds for job step to finish.
+slurmstepd-pi3: error: *** STEP 258.1 ON pi3 CANCELLED AT 2020-06-15T23:19:18 DUE TO TIME LIMIT ***

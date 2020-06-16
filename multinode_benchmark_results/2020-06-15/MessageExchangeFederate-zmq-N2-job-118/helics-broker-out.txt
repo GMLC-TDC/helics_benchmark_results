@@ -1,0 +1,19 @@
+31513-YyHqT-jdlg3-OQ7iR-uutDT (0)::connecting
+31513-YyHqT-jdlg3-OQ7iR-uutDT (0)::||connected on tcp://127.0.0.1:23404
+31513-YyHqT-jdlg3-OQ7iR-uutDT (1)::registering broker 31557-m6Nu6-gR22c-AvIrX-i2UnE(1879048192) on route 1
+31513-YyHqT-jdlg3-OQ7iR-uutDT (1)::registering broker 23209-XYVW4-Swpzv-4Mril-2CU9A(1879048193) on route 2
+31513-YyHqT-jdlg3-OQ7iR-uutDT (1)::registering federate msgExchange_0(131072) on route 1
+31513-YyHqT-jdlg3-OQ7iR-uutDT (1)::registering federate msgExchange_1(131073) on route 2
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	2 federates [min 2]
+	0/2 brokers/cores [min 0]
+	0 publications
+	0 inputs
+	2 endpoints
+	0 filters
+<<<<<<<<<
+31513-YyHqT-jdlg3-OQ7iR-uutDT (1)::entering Exec Mode
+31513-YyHqT-jdlg3-OQ7iR-uutDT (0)::got disconnect from 23209-XYVW4-Swpzv-4Mril-2CU9A(1879048193)
+31513-YyHqT-jdlg3-OQ7iR-uutDT (0)::got disconnect from 31557-m6Nu6-gR22c-AvIrX-i2UnE(1879048192)
+31513-YyHqT-jdlg3-OQ7iR-uutDT (0)::||disconnecting

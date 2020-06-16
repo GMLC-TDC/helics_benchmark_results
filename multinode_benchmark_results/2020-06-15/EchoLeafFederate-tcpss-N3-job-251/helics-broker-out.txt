@@ -1,0 +1,24 @@
+17471-rFNLL-AQPkL-HmHvJ-Zf8Zf (0)::connecting
+17471-rFNLL-AQPkL-HmHvJ-Zf8Zf (0)::||connected on 127.0.0.1:33133
+17471-rFNLL-AQPkL-HmHvJ-Zf8Zf (1)::registering broker 17510-aWPGO-b5Sez-m16WP-fqDX8(1879048192) on route 1
+17471-rFNLL-AQPkL-HmHvJ-Zf8Zf (1)::registering broker 17541-0u4Yk-RsgPt-sehPB-t4BxA(1879048193) on route 2
+17471-rFNLL-AQPkL-HmHvJ-Zf8Zf (1)::registering federate echohub(131072) on route 1
+17471-rFNLL-AQPkL-HmHvJ-Zf8Zf (1)::registering broker 3905-8qfbK-gzE73-2xSlm-w15BB(1879048194) on route 3
+17471-rFNLL-AQPkL-HmHvJ-Zf8Zf (1)::registering broker 5580-vX5qR-x7Kzk-9fIYG-6lGxi(1879048195) on route 4
+17471-rFNLL-AQPkL-HmHvJ-Zf8Zf (1)::registering federate echoleaf_0(131073) on route 2
+17471-rFNLL-AQPkL-HmHvJ-Zf8Zf (1)::registering federate echoleaf_1(131074) on route 3
+17471-rFNLL-AQPkL-HmHvJ-Zf8Zf (1)::registering federate echoleaf_2(131075) on route 4
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	4 federates [min 4]
+	0/4 brokers/cores [min 0]
+	6 publications
+	0 inputs
+	0 endpoints
+	0 filters
+<<<<<<<<<
+17471-rFNLL-AQPkL-HmHvJ-Zf8Zf (0)::got disconnect from 17541-0u4Yk-RsgPt-sehPB-t4BxA(1879048193)
+17471-rFNLL-AQPkL-HmHvJ-Zf8Zf (0)::got disconnect from 5580-vX5qR-x7Kzk-9fIYG-6lGxi(1879048195)
+17471-rFNLL-AQPkL-HmHvJ-Zf8Zf (0)::got disconnect from 3905-8qfbK-gzE73-2xSlm-w15BB(1879048194)
+17471-rFNLL-AQPkL-HmHvJ-Zf8Zf (0)::got disconnect from 17510-aWPGO-b5Sez-m16WP-fqDX8(1879048192)
+17471-rFNLL-AQPkL-HmHvJ-Zf8Zf (0)::||disconnecting

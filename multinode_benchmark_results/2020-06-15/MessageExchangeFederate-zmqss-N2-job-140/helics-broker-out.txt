@@ -1,0 +1,19 @@
+1336-zY3Zi-oUEWJ-ZcxHJ-Ydu9W (0)::connecting
+1336-zY3Zi-oUEWJ-ZcxHJ-Ydu9W (0)::||connected on tcp://127.0.0.1:23404
+1336-zY3Zi-oUEWJ-ZcxHJ-Ydu9W (1)::registering broker 1393-IR2Lc-sS0wp-1FHT4-A1rve(1879048192) on route 1
+1336-zY3Zi-oUEWJ-ZcxHJ-Ydu9W (1)::registering broker 24205-kuwGd-u5xJ0-psxzJ-NdqxB(1879048193) on route 2
+1336-zY3Zi-oUEWJ-ZcxHJ-Ydu9W (1)::registering federate msgExchange_0(131072) on route 1
+1336-zY3Zi-oUEWJ-ZcxHJ-Ydu9W (1)::registering federate msgExchange_1(131073) on route 2
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	2 federates [min 2]
+	0/2 brokers/cores [min 0]
+	0 publications
+	0 inputs
+	2 endpoints
+	0 filters
+<<<<<<<<<
+1336-zY3Zi-oUEWJ-ZcxHJ-Ydu9W (1)::entering Exec Mode
+1336-zY3Zi-oUEWJ-ZcxHJ-Ydu9W (0)::got disconnect from 24205-kuwGd-u5xJ0-psxzJ-NdqxB(1879048193)
+1336-zY3Zi-oUEWJ-ZcxHJ-Ydu9W (0)::got disconnect from 1393-IR2Lc-sS0wp-1FHT4-A1rve(1879048192)
+1336-zY3Zi-oUEWJ-ZcxHJ-Ydu9W (0)::||disconnecting

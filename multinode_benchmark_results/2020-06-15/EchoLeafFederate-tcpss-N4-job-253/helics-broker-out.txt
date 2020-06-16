@@ -1,0 +1,27 @@
+20078-tqbYK-0Uxkf-Xc2BO-kIrYo (0)::connecting
+20078-tqbYK-0Uxkf-Xc2BO-kIrYo (0)::||connected on 127.0.0.1:33133
+20078-tqbYK-0Uxkf-Xc2BO-kIrYo (1)::registering broker 20099-FdH7o-Z0QHc-DCFvP-ktdqh(1879048192) on route 1
+20078-tqbYK-0Uxkf-Xc2BO-kIrYo (1)::registering federate echohub(131072) on route 1
+20078-tqbYK-0Uxkf-Xc2BO-kIrYo (1)::registering broker 20136-g4UOW-V1JO8-zDSrN-uEOvI(1879048193) on route 2
+20078-tqbYK-0Uxkf-Xc2BO-kIrYo (1)::registering broker 7014-Oc2jB-KdoKG-Sriw0-ANERh(1879048194) on route 3
+20078-tqbYK-0Uxkf-Xc2BO-kIrYo (1)::registering broker 6316-eEuiJ-v1Upx-HfMpq-AILgd(1879048195) on route 4
+20078-tqbYK-0Uxkf-Xc2BO-kIrYo (1)::registering broker 8003-dbLUe-CYrdg-m48T2-yW8y7(1879048196) on route 5
+20078-tqbYK-0Uxkf-Xc2BO-kIrYo (1)::registering federate echoleaf_1(131073) on route 2
+20078-tqbYK-0Uxkf-Xc2BO-kIrYo (1)::registering federate echoleaf_3(131074) on route 3
+20078-tqbYK-0Uxkf-Xc2BO-kIrYo (1)::registering federate echoleaf_0(131075) on route 4
+20078-tqbYK-0Uxkf-Xc2BO-kIrYo (1)::registering federate echoleaf_2(131076) on route 5
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	5 federates [min 5]
+	0/5 brokers/cores [min 0]
+	8 publications
+	0 inputs
+	0 endpoints
+	0 filters
+<<<<<<<<<
+20078-tqbYK-0Uxkf-Xc2BO-kIrYo (0)::got disconnect from 8003-dbLUe-CYrdg-m48T2-yW8y7(1879048196)
+20078-tqbYK-0Uxkf-Xc2BO-kIrYo (0)::got disconnect from 7014-Oc2jB-KdoKG-Sriw0-ANERh(1879048194)
+20078-tqbYK-0Uxkf-Xc2BO-kIrYo (0)::got disconnect from 6316-eEuiJ-v1Upx-HfMpq-AILgd(1879048195)
+20078-tqbYK-0Uxkf-Xc2BO-kIrYo (0)::got disconnect from 20136-g4UOW-V1JO8-zDSrN-uEOvI(1879048193)
+20078-tqbYK-0Uxkf-Xc2BO-kIrYo (0)::got disconnect from 20099-FdH7o-Z0QHc-DCFvP-ktdqh(1879048192)
+20078-tqbYK-0Uxkf-Xc2BO-kIrYo (0)::||disconnecting

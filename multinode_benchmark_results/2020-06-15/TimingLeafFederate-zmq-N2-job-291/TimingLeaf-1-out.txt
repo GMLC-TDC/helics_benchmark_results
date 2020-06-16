@@ -1,0 +1,4 @@
+18994-eHWO5-xFZIV-9j0Sb-LFx7A (0)::broker responded with error: already in initialization mode
+18994-eHWO5-xFZIV-9j0Sb-LFx7A (0)::broker responded with error: already in initialization mode
+Uncaught exception occurred
+srun: error: pi3: task 0: Exited with exit code 1

@@ -1,0 +1,4 @@
+Uncaught exception occurred
+srun: error: pi2: task 0: Exited with exit code 1
+9164-vvv9L-JEajq-0hmB8-uQuMr (0)::broker responded with error for registration of timingleaf_0::duplicate federate name detected
+

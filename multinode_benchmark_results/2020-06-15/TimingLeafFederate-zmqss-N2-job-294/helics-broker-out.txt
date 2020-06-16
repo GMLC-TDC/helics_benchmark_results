@@ -1,0 +1,21 @@
+1541-qoGN1-Viazs-asfAh-5jfq0 (0)::connecting
+1541-qoGN1-Viazs-asfAh-5jfq0 (0)::||connected on tcp://127.0.0.1:23404
+1541-qoGN1-Viazs-asfAh-5jfq0 (1)::registering broker 1631-nOZ9T-gkEXg-H7LUr-inDuS(1879048192) on route 1
+1541-qoGN1-Viazs-asfAh-5jfq0 (1)::registering federate timinghub(131072) on route 1
+1541-qoGN1-Viazs-asfAh-5jfq0 (1)::registering broker 1659-Rpjer-LacM0-LroKK-23OhC(1879048193) on route 2
+1541-qoGN1-Viazs-asfAh-5jfq0 (1)::registering broker 18960-H1n20-Joeq7-O6wSQ-RtHST(1879048194) on route 3
+1541-qoGN1-Viazs-asfAh-5jfq0 (1)::registering federate timingleaf_1(131073) on route 2
+1541-qoGN1-Viazs-asfAh-5jfq0 (1)::registering federate timingleaf_0(131074) on route 3
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	3 federates [min 3]
+	0/3 brokers/cores [min 0]
+	4 publications
+	0 inputs
+	0 endpoints
+	0 filters
+<<<<<<<<<
+1541-qoGN1-Viazs-asfAh-5jfq0 (0)::got disconnect from 1659-Rpjer-LacM0-LroKK-23OhC(1879048193)
+1541-qoGN1-Viazs-asfAh-5jfq0 (0)::got disconnect from 18960-H1n20-Joeq7-O6wSQ-RtHST(1879048194)
+1541-qoGN1-Viazs-asfAh-5jfq0 (0)::got disconnect from 1631-nOZ9T-gkEXg-H7LUr-inDuS(1879048192)
+1541-qoGN1-Viazs-asfAh-5jfq0 (0)::||disconnecting

@@ -1,0 +1,27 @@
+20816-Lj5AM-nkTlY-SY0PP-pdrVB (0)::connecting
+20816-Lj5AM-nkTlY-SY0PP-pdrVB (0)::||connected on 127.0.0.1:33133
+20816-Lj5AM-nkTlY-SY0PP-pdrVB (1)::registering broker 20854-zahfK-VPoDZ-6b6W1-rqX85(1879048192) on route 1
+20816-Lj5AM-nkTlY-SY0PP-pdrVB (1)::registering broker 6610-1Hh2h-916aa-Q5bhu-9Cj3R(1879048193) on route 2
+20816-Lj5AM-nkTlY-SY0PP-pdrVB (1)::registering broker 4888-a3iD4-q4l1z-vUqkr-wrw59(1879048194) on route 3
+20816-Lj5AM-nkTlY-SY0PP-pdrVB (1)::registering broker 4489-Dan89-hlutH-pnBEp-l5x6b(1879048195) on route 4
+20816-Lj5AM-nkTlY-SY0PP-pdrVB (1)::registering federate ringlink_1(131072) on route 1
+20816-Lj5AM-nkTlY-SY0PP-pdrVB (1)::registering federate ringlink_3(131073) on route 2
+20816-Lj5AM-nkTlY-SY0PP-pdrVB (1)::registering federate ringlink_2(131074) on route 3
+20816-Lj5AM-nkTlY-SY0PP-pdrVB (1)::registering federate ringlink_0(131075) on route 4
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	4 federates [min 4]
+	0/4 brokers/cores [min 0]
+	0 publications
+	0 inputs
+	4 endpoints
+	0 filters
+<<<<<<<<<
+20816-Lj5AM-nkTlY-SY0PP-pdrVB (1)::entering Exec Mode
+20816-Lj5AM-nkTlY-SY0PP-pdrVB (0)::got disconnect from 20854-zahfK-VPoDZ-6b6W1-rqX85(1879048192)
+20816-Lj5AM-nkTlY-SY0PP-pdrVB (0)::got disconnect from 4888-a3iD4-q4l1z-vUqkr-wrw59(1879048194)
+commWarning||20816-Lj5AM-nkTlY-SY0PP-pdrVB (1)::(tcpss) unknown message destination message dropped time_request:From (1) Time(5e-06, 5e-06, 5e-06) to (131074)
+20816-Lj5AM-nkTlY-SY0PP-pdrVB (0)::got disconnect from 6610-1Hh2h-916aa-Q5bhu-9Cj3R(1879048193)
+commWarning||20816-Lj5AM-nkTlY-SY0PP-pdrVB (1)::(tcpss) unknown message destination message dropped send_message:From (ept_0)(131075:0) To ept_1 size 100 at 4.999e-06
+20816-Lj5AM-nkTlY-SY0PP-pdrVB (0)::got disconnect from 4489-Dan89-hlutH-pnBEp-l5x6b(1879048195)
+20816-Lj5AM-nkTlY-SY0PP-pdrVB (0)::||disconnecting

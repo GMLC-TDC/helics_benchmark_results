@@ -1,0 +1,3 @@
+24152-GbDMl-5xA8T-memwi-GrBRF (0)::broker responded with error: already in initialization mode
+24152-GbDMl-5xA8T-memwi-GrBRF (0)::broker responded with error: already in initialization mode
+Uncaught exception occurred

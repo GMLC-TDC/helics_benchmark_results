@@ -1,0 +1,19 @@
+5578-MVX4I-PMO6Z-Du2ye-b4a9c (0)::connecting
+5578-MVX4I-PMO6Z-Du2ye-b4a9c (0)::||connected on 127.0.0.1:23901
+5578-MVX4I-PMO6Z-Du2ye-b4a9c (1)::registering broker 5605-Zhsln-fz6pE-1l2ad-JPWTi(1879048192) on route 1
+5578-MVX4I-PMO6Z-Du2ye-b4a9c (1)::registering broker 26074-Gtu5d-5qCMi-3MqPn-vkWN0(1879048193) on route 2
+5578-MVX4I-PMO6Z-Du2ye-b4a9c (1)::registering federate msgExchange_1(131072) on route 1
+5578-MVX4I-PMO6Z-Du2ye-b4a9c (1)::registering federate msgExchange_0(131073) on route 2
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	2 federates [min 2]
+	0/2 brokers/cores [min 0]
+	0 publications
+	0 inputs
+	2 endpoints
+	0 filters
+<<<<<<<<<
+5578-MVX4I-PMO6Z-Du2ye-b4a9c (1)::entering Exec Mode
+5578-MVX4I-PMO6Z-Du2ye-b4a9c (0)::got disconnect from 26074-Gtu5d-5qCMi-3MqPn-vkWN0(1879048193)
+5578-MVX4I-PMO6Z-Du2ye-b4a9c (0)::got disconnect from 5605-Zhsln-fz6pE-1l2ad-JPWTi(1879048192)
+5578-MVX4I-PMO6Z-Du2ye-b4a9c (0)::||disconnecting

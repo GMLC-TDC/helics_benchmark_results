@@ -1,0 +1,22 @@
+23018-OwczV-YuBz2-UZZ3s-Et9EO (0)::connecting
+23018-OwczV-YuBz2-UZZ3s-Et9EO (0)::||connected on 127.0.0.1:23901
+23018-OwczV-YuBz2-UZZ3s-Et9EO (1)::registering broker 23058-NkwA2-wUqQ9-Mb3Ti-59k87(1879048192) on route 1
+23018-OwczV-YuBz2-UZZ3s-Et9EO (1)::registering broker 23084-fq0jn-HUSRM-Uwm8f-o4wBm(1879048193) on route 2
+23018-OwczV-YuBz2-UZZ3s-Et9EO (1)::registering federate echohub(131072) on route 1
+23018-OwczV-YuBz2-UZZ3s-Et9EO (1)::registering broker 9062-HXYu2-nF1lm-pF8sf-Ypn8i(1879048194) on route 3
+23018-OwczV-YuBz2-UZZ3s-Et9EO (1)::registering federate echoleaf_0(131073) on route 2
+23018-OwczV-YuBz2-UZZ3s-Et9EO (1)::registering federate echoleaf_1(131074) on route 3
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	3 federates [min 3]
+	0/3 brokers/cores [min 0]
+	4 publications
+	0 inputs
+	0 endpoints
+	0 filters
+<<<<<<<<<
+23018-OwczV-YuBz2-UZZ3s-Et9EO (0)::got disconnect from 9062-HXYu2-nF1lm-pF8sf-Ypn8i(1879048194)
+23018-OwczV-YuBz2-UZZ3s-Et9EO (0)::got disconnect from 23084-fq0jn-HUSRM-Uwm8f-o4wBm(1879048193)
+commWarning||23018-OwczV-YuBz2-UZZ3s-Et9EO (1)::(udp) unknown route, message dropped time_request:From (131072) Time(5.0020000000000006e-06, 0.15000000000000002, 5.0020000000000006e-06) to (131073)
+23018-OwczV-YuBz2-UZZ3s-Et9EO (0)::got disconnect from 23058-NkwA2-wUqQ9-Mb3Ti-59k87(1879048192)
+23018-OwczV-YuBz2-UZZ3s-Et9EO (0)::||disconnecting

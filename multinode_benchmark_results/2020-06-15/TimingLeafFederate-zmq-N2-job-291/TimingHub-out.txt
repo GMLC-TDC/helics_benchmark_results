@@ -1,0 +1,3 @@
+1669-2Jd5M-rkqGf-exGPO-RzaAj (0)::broker responded with error: already in initialization mode
+1669-2Jd5M-rkqGf-exGPO-RzaAj (0)::broker responded with error: already in initialization mode
+Uncaught exception occurred

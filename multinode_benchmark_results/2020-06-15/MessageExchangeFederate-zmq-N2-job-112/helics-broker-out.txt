@@ -1,0 +1,19 @@
+30880-2BEvI-C8Ol7-vU5jW-Voq0S (0)::connecting
+30880-2BEvI-C8Ol7-vU5jW-Voq0S (0)::||connected on tcp://127.0.0.1:23404
+30880-2BEvI-C8Ol7-vU5jW-Voq0S (1)::registering broker 30943-IkY6x-u9NyE-coF3K-Xdx5O(1879048192) on route 1
+30880-2BEvI-C8Ol7-vU5jW-Voq0S (1)::registering broker 22957-vgrcO-hF8g9-U85ib-Bb5M9(1879048193) on route 2
+30880-2BEvI-C8Ol7-vU5jW-Voq0S (1)::registering federate msgExchange_0(131072) on route 1
+30880-2BEvI-C8Ol7-vU5jW-Voq0S (1)::registering federate msgExchange_1(131073) on route 2
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	2 federates [min 2]
+	0/2 brokers/cores [min 0]
+	0 publications
+	0 inputs
+	2 endpoints
+	0 filters
+<<<<<<<<<
+30880-2BEvI-C8Ol7-vU5jW-Voq0S (1)::entering Exec Mode
+30880-2BEvI-C8Ol7-vU5jW-Voq0S (0)::got disconnect from 22957-vgrcO-hF8g9-U85ib-Bb5M9(1879048193)
+30880-2BEvI-C8Ol7-vU5jW-Voq0S (0)::got disconnect from 30943-IkY6x-u9NyE-coF3K-Xdx5O(1879048192)
+30880-2BEvI-C8Ol7-vU5jW-Voq0S (0)::||disconnecting

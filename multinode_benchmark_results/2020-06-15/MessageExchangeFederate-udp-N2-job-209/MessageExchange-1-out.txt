@@ -1,0 +1,3 @@
+BENCHMARK FEDERATE TYPE: MessageExchange
+ELAPSED TIME (ns): 11819985
+srun: error: pi5: task 0: Segmentation fault

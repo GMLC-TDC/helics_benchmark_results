@@ -1,0 +1,20 @@
+20776-OJ3HO-V006d-FW0lY-Ix17h (0)::connecting
+20776-OJ3HO-V006d-FW0lY-Ix17h (0)::||connected on tcp://127.0.0.1:23404
+20776-OJ3HO-V006d-FW0lY-Ix17h (1)::registering broker 20825-wIZWj-BaSy4-BRhJS-M3BYt(1879048192) on route 1
+20776-OJ3HO-V006d-FW0lY-Ix17h (1)::registering broker 19505-8JNEM-MKFK5-puHo4-XQSZ6(1879048193) on route 2
+20776-OJ3HO-V006d-FW0lY-Ix17h (1)::registering federate ringlink_0(131072) on route 1
+20776-OJ3HO-V006d-FW0lY-Ix17h (1)::registering federate ringlink_1(131073) on route 2
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	2 federates [min 2]
+	0/2 brokers/cores [min 0]
+	0 publications
+	0 inputs
+	2 endpoints
+	0 filters
+<<<<<<<<<
+20776-OJ3HO-V006d-FW0lY-Ix17h (1)::entering Exec Mode
+20776-OJ3HO-V006d-FW0lY-Ix17h (0)::got disconnect from 19505-8JNEM-MKFK5-puHo4-XQSZ6(1879048193)
+commWarning||20776-OJ3HO-V006d-FW0lY-Ix17h (1)::unknown route and no broker, dropping message send_message:From (ept_0)(131072:0) To ept_1 size 100 at 4.999e-06
+20776-OJ3HO-V006d-FW0lY-Ix17h (0)::got disconnect from 20825-wIZWj-BaSy4-BRhJS-M3BYt(1879048192)
+20776-OJ3HO-V006d-FW0lY-Ix17h (0)::||disconnecting

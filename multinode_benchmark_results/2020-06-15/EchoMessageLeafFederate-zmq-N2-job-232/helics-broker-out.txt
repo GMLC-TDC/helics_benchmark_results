@@ -1,0 +1,22 @@
+1255-0yvQp-gtOmM-eOYRQ-nCDmf (0)::connecting
+1255-0yvQp-gtOmM-eOYRQ-nCDmf (0)::||connected on tcp://127.0.0.1:23404
+1255-0yvQp-gtOmM-eOYRQ-nCDmf (1)::registering broker 1282-VrmIV-aqwSj-h6N6u-811ux(1879048192) on route 1
+1255-0yvQp-gtOmM-eOYRQ-nCDmf (1)::registering broker 1310-GagF9-7q1pL-5gyJv-om2J0(1879048193) on route 2
+1255-0yvQp-gtOmM-eOYRQ-nCDmf (1)::registering federate echohub(131072) on route 1
+1255-0yvQp-gtOmM-eOYRQ-nCDmf (1)::registering broker 2824-HhdY5-nRJ0v-PSggj-mFIxN(1879048194) on route 3
+1255-0yvQp-gtOmM-eOYRQ-nCDmf (1)::registering federate echoleaf_1(131073) on route 2
+1255-0yvQp-gtOmM-eOYRQ-nCDmf (1)::registering federate echoleaf_0(131074) on route 3
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	3 federates [min 3]
+	0/3 brokers/cores [min 0]
+	0 publications
+	0 inputs
+	3 endpoints
+	0 filters
+<<<<<<<<<
+1255-0yvQp-gtOmM-eOYRQ-nCDmf (1)::entering Exec Mode
+1255-0yvQp-gtOmM-eOYRQ-nCDmf (0)::got disconnect from 1310-GagF9-7q1pL-5gyJv-om2J0(1879048193)
+1255-0yvQp-gtOmM-eOYRQ-nCDmf (0)::got disconnect from 2824-HhdY5-nRJ0v-PSggj-mFIxN(1879048194)
+1255-0yvQp-gtOmM-eOYRQ-nCDmf (0)::got disconnect from 1282-VrmIV-aqwSj-h6N6u-811ux(1879048192)
+1255-0yvQp-gtOmM-eOYRQ-nCDmf (0)::||disconnecting

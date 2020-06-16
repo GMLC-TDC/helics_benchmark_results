@@ -1,0 +1,19 @@
+4965-roEsH-vojxd-meJk9-LPtk2 (0)::connecting
+4965-roEsH-vojxd-meJk9-LPtk2 (0)::||connected on 127.0.0.1:33133
+4965-roEsH-vojxd-meJk9-LPtk2 (1)::registering broker 5020-hgCNP-77T9F-xJ2Vf-zHRWy(1879048192) on route 1
+4965-roEsH-vojxd-meJk9-LPtk2 (1)::registering broker 25807-EQz5j-5hSxn-U2tB7-pflVv(1879048193) on route 2
+4965-roEsH-vojxd-meJk9-LPtk2 (1)::registering federate msgExchange_1(131072) on route 1
+4965-roEsH-vojxd-meJk9-LPtk2 (1)::registering federate msgExchange_0(131073) on route 2
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	2 federates [min 2]
+	0/2 brokers/cores [min 0]
+	0 publications
+	0 inputs
+	2 endpoints
+	0 filters
+<<<<<<<<<
+4965-roEsH-vojxd-meJk9-LPtk2 (1)::entering Exec Mode
+4965-roEsH-vojxd-meJk9-LPtk2 (0)::got disconnect from 25807-EQz5j-5hSxn-U2tB7-pflVv(1879048193)
+4965-roEsH-vojxd-meJk9-LPtk2 (0)::got disconnect from 5020-hgCNP-77T9F-xJ2Vf-zHRWy(1879048192)
+4965-roEsH-vojxd-meJk9-LPtk2 (0)::||disconnecting

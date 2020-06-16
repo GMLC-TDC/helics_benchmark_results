@@ -1,0 +1,5 @@
+1572-fZV1u-I2ZnT-VwKo6-q4O77 (0)::connecting
+commERROR||1572-fZV1u-I2ZnT-VwKo6-q4O77 (1)::Unable to bind zmq reply socket giving up tcp://*:23405
+commERROR||1572-fZV1u-I2ZnT-VwKo6-q4O77 (1)::receiver connection failure
+Broker is unable to connect
+

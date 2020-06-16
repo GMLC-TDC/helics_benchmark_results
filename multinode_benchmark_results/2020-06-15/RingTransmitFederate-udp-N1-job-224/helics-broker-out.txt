@@ -1,0 +1,15 @@
+28936-vG6rO-PVqCH-lVOpN-XBORl (0)::connecting
+28936-vG6rO-PVqCH-lVOpN-XBORl (0)::||connected on 127.0.0.1:23901
+28936-vG6rO-PVqCH-lVOpN-XBORl (1)::registering broker 28973-OYxo9-mi2s5-jtNsH-6gisC(1879048192) on route 1
+28936-vG6rO-PVqCH-lVOpN-XBORl (1)::registering federate ringlink_0(131072) on route 1
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	1 federates [min 1]
+	0/1 brokers/cores [min 0]
+	1 publications
+	0 inputs
+	0 endpoints
+	0 filters
+<<<<<<<<<
+28936-vG6rO-PVqCH-lVOpN-XBORl (0)::got disconnect from 28973-OYxo9-mi2s5-jtNsH-6gisC(1879048192)
+28936-vG6rO-PVqCH-lVOpN-XBORl (0)::||disconnecting

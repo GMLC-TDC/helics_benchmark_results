@@ -1,0 +1,20 @@
+2455-Q1I9d-Zurnh-yoqPi-vADqz (0)::connecting
+2455-Q1I9d-Zurnh-yoqPi-vADqz (0)::||connected on 127.0.0.1:24160
+2455-Q1I9d-Zurnh-yoqPi-vADqz (1)::registering broker 2500-0qzCI-jQdXV-MSg0c-A3Gsx(1879048192) on route 1
+2455-Q1I9d-Zurnh-yoqPi-vADqz (1)::registering broker 24693-X24KJ-KSatT-AMAS3-pBbK0(1879048193) on route 2
+2455-Q1I9d-Zurnh-yoqPi-vADqz (1)::registering federate msgExchange_1(131072) on route 1
+2455-Q1I9d-Zurnh-yoqPi-vADqz (1)::registering federate msgExchange_0(131073) on route 2
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	2 federates [min 2]
+	0/2 brokers/cores [min 0]
+	0 publications
+	0 inputs
+	2 endpoints
+	0 filters
+<<<<<<<<<
+2455-Q1I9d-Zurnh-yoqPi-vADqz (1)::entering Exec Mode
+2455-Q1I9d-Zurnh-yoqPi-vADqz (0)::got disconnect from 24693-X24KJ-KSatT-AMAS3-pBbK0(1879048193)
+2455-Q1I9d-Zurnh-yoqPi-vADqz (0)::got disconnect from 2500-0qzCI-jQdXV-MSg0c-A3Gsx(1879048192)
+commWarning||2455-Q1I9d-Zurnh-yoqPi-vADqz (1)::(tcp) unknown message destination message dropped time_grant:From (1) Granted Time(1e-08) to (131072)
+2455-Q1I9d-Zurnh-yoqPi-vADqz (0)::||disconnecting

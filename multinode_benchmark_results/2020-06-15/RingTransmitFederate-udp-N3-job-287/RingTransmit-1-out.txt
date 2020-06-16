@@ -1,0 +1,3 @@
+BENCHMARK FEDERATE TYPE: RingTransmit
+ELAPSED TIME (ns): 9525823017
+srun: error: pi4: task 0: Segmentation fault

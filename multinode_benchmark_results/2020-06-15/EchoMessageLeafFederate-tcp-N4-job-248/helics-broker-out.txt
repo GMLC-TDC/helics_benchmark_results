@@ -1,0 +1,29 @@
+15970-ctrCR-SWhul-5Ob6C-5QBrU (0)::connecting
+15970-ctrCR-SWhul-5Ob6C-5QBrU (0)::||connected on 127.0.0.1:24160
+15970-ctrCR-SWhul-5Ob6C-5QBrU (1)::registering broker 15991-C2teV-1Ybbx-LfAcz-5RhKe(1879048192) on route 1
+15970-ctrCR-SWhul-5Ob6C-5QBrU (1)::registering broker 16029-aMJIk-aOM7C-Lft7g-Ll0Wm(1879048193) on route 2
+15970-ctrCR-SWhul-5Ob6C-5QBrU (1)::registering federate echohub(131072) on route 1
+15970-ctrCR-SWhul-5Ob6C-5QBrU (1)::registering broker 4184-cREuT-OlKQT-dYqOh-M6hUe(1879048194) on route 3
+15970-ctrCR-SWhul-5Ob6C-5QBrU (1)::registering broker 2593-T8pcE-xERfQ-o7Lo5-hKQ2V(1879048195) on route 4
+15970-ctrCR-SWhul-5Ob6C-5QBrU (1)::registering broker 3320-PmDwh-Y4kj1-qc9Jn-xVi6A(1879048196) on route 5
+15970-ctrCR-SWhul-5Ob6C-5QBrU (1)::registering federate echoleaf_0(131073) on route 2
+15970-ctrCR-SWhul-5Ob6C-5QBrU (1)::registering federate echoleaf_3(131074) on route 3
+15970-ctrCR-SWhul-5Ob6C-5QBrU (1)::registering federate echoleaf_1(131075) on route 4
+15970-ctrCR-SWhul-5Ob6C-5QBrU (1)::registering federate echoleaf_2(131076) on route 5
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	5 federates [min 5]
+	0/5 brokers/cores [min 0]
+	0 publications
+	0 inputs
+	5 endpoints
+	0 filters
+<<<<<<<<<
+15970-ctrCR-SWhul-5Ob6C-5QBrU (1)::entering Exec Mode
+15970-ctrCR-SWhul-5Ob6C-5QBrU (0)::got disconnect from 2593-T8pcE-xERfQ-o7Lo5-hKQ2V(1879048195)
+15970-ctrCR-SWhul-5Ob6C-5QBrU (0)::got disconnect from 16029-aMJIk-aOM7C-Lft7g-Ll0Wm(1879048193)
+15970-ctrCR-SWhul-5Ob6C-5QBrU (0)::got disconnect from 3320-PmDwh-Y4kj1-qc9Jn-xVi6A(1879048196)
+15970-ctrCR-SWhul-5Ob6C-5QBrU (0)::got disconnect from 4184-cREuT-OlKQT-dYqOh-M6hUe(1879048194)
+15970-ctrCR-SWhul-5Ob6C-5QBrU (0)::got disconnect from 15991-C2teV-1Ybbx-LfAcz-5RhKe(1879048192)
+15970-ctrCR-SWhul-5Ob6C-5QBrU (0)::||disconnecting
+commWarning||15970-ctrCR-SWhul-5Ob6C-5QBrU (1)::(tcp) unknown message destination message dropped time_grant:From (1) Granted Time(0.15000000000000002) to (131072)

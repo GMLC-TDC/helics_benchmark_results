@@ -1,0 +1,27 @@
+14564-ABuOe-GiLNB-Qk6ml-CDh6W (0)::connecting
+14564-ABuOe-GiLNB-Qk6ml-CDh6W (0)::||connected on tcp://127.0.0.1:23404
+14564-ABuOe-GiLNB-Qk6ml-CDh6W (1)::registering broker 14573-LuHZy-QEwgp-OpFM5-fypwH(1879048192) on route 1
+14564-ABuOe-GiLNB-Qk6ml-CDh6W (1)::registering broker 14607-VuTSz-c8tvU-lpFem-SxnKC(1879048193) on route 2
+14564-ABuOe-GiLNB-Qk6ml-CDh6W (1)::registering federate echohub(131072) on route 1
+14564-ABuOe-GiLNB-Qk6ml-CDh6W (1)::registering broker 1878-TvdWE-Swlqd-Lnxry-DhgAx(1879048194) on route 3
+14564-ABuOe-GiLNB-Qk6ml-CDh6W (1)::registering broker 3383-8eSLL-P5GcS-CZRFE-MNEwW(1879048195) on route 4
+14564-ABuOe-GiLNB-Qk6ml-CDh6W (1)::registering federate echoleaf_2(131073) on route 2
+14564-ABuOe-GiLNB-Qk6ml-CDh6W (1)::registering federate echoleaf_0(131074) on route 3
+14564-ABuOe-GiLNB-Qk6ml-CDh6W (1)::registering federate echoleaf_1(131075) on route 4
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	4 federates [min 4]
+	0/4 brokers/cores [min 0]
+	6 publications
+	0 inputs
+	0 endpoints
+	0 filters
+<<<<<<<<<
+14564-ABuOe-GiLNB-Qk6ml-CDh6W (0)::got disconnect from 14607-VuTSz-c8tvU-lpFem-SxnKC(1879048193)
+14564-ABuOe-GiLNB-Qk6ml-CDh6W (0)::got disconnect from 3383-8eSLL-P5GcS-CZRFE-MNEwW(1879048195)
+14564-ABuOe-GiLNB-Qk6ml-CDh6W (0)::got disconnect from 1878-TvdWE-Swlqd-Lnxry-DhgAx(1879048194)
+commWarning||14564-ABuOe-GiLNB-Qk6ml-CDh6W (1)::unknown route and no broker, dropping message time_request:From (131072) Time(5.0020000000000006e-06, 0.15000000000000002, 5.0020000000000006e-06) to (131073)
+commWarning||14564-ABuOe-GiLNB-Qk6ml-CDh6W (1)::unknown route and no broker, dropping message time_request:From (131072) Time(5.0020000000000006e-06, 0.15000000000000002, 5.0020000000000006e-06) to (131074)
+commWarning||14564-ABuOe-GiLNB-Qk6ml-CDh6W (1)::unknown route and no broker, dropping message time_request:From (131072) Time(5.0020000000000006e-06, 0.15000000000000002, 5.0020000000000006e-06) to (131075)
+14564-ABuOe-GiLNB-Qk6ml-CDh6W (0)::got disconnect from 14573-LuHZy-QEwgp-OpFM5-fypwH(1879048192)
+14564-ABuOe-GiLNB-Qk6ml-CDh6W (0)::||disconnecting

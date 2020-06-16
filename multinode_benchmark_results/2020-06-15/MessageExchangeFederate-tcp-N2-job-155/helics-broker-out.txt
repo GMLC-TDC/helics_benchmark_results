@@ -1,0 +1,20 @@
+2839-v0Teu-LJzIF-3kLAM-PmncX (0)::connecting
+2839-v0Teu-LJzIF-3kLAM-PmncX (0)::||connected on 127.0.0.1:24160
+2839-v0Teu-LJzIF-3kLAM-PmncX (1)::registering broker 2881-Q2Opr-BUXJT-DNSys-rjPA8(1879048192) on route 1
+2839-v0Teu-LJzIF-3kLAM-PmncX (1)::registering broker 24845-3KIUb-h8Zch-GnayT-OHPdT(1879048193) on route 2
+2839-v0Teu-LJzIF-3kLAM-PmncX (1)::registering federate msgExchange_0(131072) on route 1
+2839-v0Teu-LJzIF-3kLAM-PmncX (1)::registering federate msgExchange_1(131073) on route 2
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	2 federates [min 2]
+	0/2 brokers/cores [min 0]
+	0 publications
+	0 inputs
+	2 endpoints
+	0 filters
+<<<<<<<<<
+2839-v0Teu-LJzIF-3kLAM-PmncX (1)::entering Exec Mode
+2839-v0Teu-LJzIF-3kLAM-PmncX (0)::got disconnect from 24845-3KIUb-h8Zch-GnayT-OHPdT(1879048193)
+2839-v0Teu-LJzIF-3kLAM-PmncX (0)::got disconnect from 2881-Q2Opr-BUXJT-DNSys-rjPA8(1879048192)
+2839-v0Teu-LJzIF-3kLAM-PmncX (0)::||disconnecting
+commWarning||2839-v0Teu-LJzIF-3kLAM-PmncX (1)::(tcp) unknown message destination message dropped time_grant:From (1) Granted Time(1e-08) to (131072)

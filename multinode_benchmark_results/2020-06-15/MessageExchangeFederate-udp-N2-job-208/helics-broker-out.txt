@@ -1,0 +1,19 @@
+5883-nA6d0-WXEsy-RJnSv-eKZxe (0)::connecting
+5883-nA6d0-WXEsy-RJnSv-eKZxe (0)::||connected on 127.0.0.1:23901
+5883-nA6d0-WXEsy-RJnSv-eKZxe (1)::registering broker 5924-ovrTD-D4vri-DsXFp-H8EXp(1879048192) on route 1
+5883-nA6d0-WXEsy-RJnSv-eKZxe (1)::registering broker 26206-U8UzM-F0G6i-nBuHp-VDHHd(1879048193) on route 2
+5883-nA6d0-WXEsy-RJnSv-eKZxe (1)::registering federate msgExchange_1(131072) on route 1
+5883-nA6d0-WXEsy-RJnSv-eKZxe (1)::registering federate msgExchange_0(131073) on route 2
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	2 federates [min 2]
+	0/2 brokers/cores [min 0]
+	0 publications
+	0 inputs
+	2 endpoints
+	0 filters
+<<<<<<<<<
+5883-nA6d0-WXEsy-RJnSv-eKZxe (1)::entering Exec Mode
+5883-nA6d0-WXEsy-RJnSv-eKZxe (0)::got disconnect from 26206-U8UzM-F0G6i-nBuHp-VDHHd(1879048193)
+5883-nA6d0-WXEsy-RJnSv-eKZxe (0)::got disconnect from 5924-ovrTD-D4vri-DsXFp-H8EXp(1879048192)
+5883-nA6d0-WXEsy-RJnSv-eKZxe (0)::||disconnecting

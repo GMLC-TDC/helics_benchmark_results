@@ -1,0 +1,3 @@
+BENCHMARK FEDERATE TYPE: TimingLeaf
+ELAPSED TIME (ns): 10091569313
+srun: error: pi2: task 0: Segmentation fault

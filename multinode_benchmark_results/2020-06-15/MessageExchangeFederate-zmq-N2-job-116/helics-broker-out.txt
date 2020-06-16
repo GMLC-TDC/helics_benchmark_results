@@ -1,0 +1,20 @@
+31315-N9zTy-4EKAl-u5Kh9-ohsAG (0)::connecting
+31315-N9zTy-4EKAl-u5Kh9-ohsAG (0)::||connected on tcp://127.0.0.1:23404
+31315-N9zTy-4EKAl-u5Kh9-ohsAG (1)::registering broker 23114-2d5CL-y7vQ9-q2SB1-NwP3v(1879048192) on route 1
+31315-N9zTy-4EKAl-u5Kh9-ohsAG (1)::registering broker 31344-Z3jcU-QDIlh-I5F00-buWyz(1879048193) on route 2
+31315-N9zTy-4EKAl-u5Kh9-ohsAG (1)::registering federate msgExchange_0(131072) on route 1
+31315-N9zTy-4EKAl-u5Kh9-ohsAG (1)::registering federate msgExchange_1(131073) on route 2
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	2 federates [min 2]
+	0/2 brokers/cores [min 0]
+	0 publications
+	0 inputs
+	2 endpoints
+	0 filters
+<<<<<<<<<
+31315-N9zTy-4EKAl-u5Kh9-ohsAG (1)::entering Exec Mode
+31315-N9zTy-4EKAl-u5Kh9-ohsAG (0)::got disconnect from 23114-2d5CL-y7vQ9-q2SB1-NwP3v(1879048192)
+31315-N9zTy-4EKAl-u5Kh9-ohsAG (0)::got disconnect from 31344-Z3jcU-QDIlh-I5F00-buWyz(1879048193)
+commWarning||31315-N9zTy-4EKAl-u5Kh9-ohsAG (1)::unknown route and no broker, dropping message time_grant:From (1) Granted Time(1e-08) to (131073)
+31315-N9zTy-4EKAl-u5Kh9-ohsAG (0)::||disconnecting

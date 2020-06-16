@@ -1,0 +1,22 @@
+21636-mpehC-SW0AO-HhsFN-CQbYk (0)::connecting
+21636-mpehC-SW0AO-HhsFN-CQbYk (0)::||connected on tcp://127.0.0.1:23404
+21636-mpehC-SW0AO-HhsFN-CQbYk (1)::registering broker 21709-PUWjq-iK5iZ-UbZ2Z-xe2qQ(1879048192) on route 1
+21636-mpehC-SW0AO-HhsFN-CQbYk (1)::registering broker 17271-NSJ73-yl8k2-xkPp4-kz8dm(1879048193) on route 2
+21636-mpehC-SW0AO-HhsFN-CQbYk (1)::registering broker 15307-iO8Iv-IgmKn-AfqvB-2ej28(1879048194) on route 3
+21636-mpehC-SW0AO-HhsFN-CQbYk (1)::registering federate phold_2(131072) on route 1
+21636-mpehC-SW0AO-HhsFN-CQbYk (1)::registering federate phold_0(131073) on route 2
+21636-mpehC-SW0AO-HhsFN-CQbYk (1)::registering federate phold_1(131074) on route 3
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	3 federates [min 3]
+	0/3 brokers/cores [min 0]
+	0 publications
+	0 inputs
+	3 endpoints
+	0 filters
+<<<<<<<<<
+21636-mpehC-SW0AO-HhsFN-CQbYk (1)::entering Exec Mode
+21636-mpehC-SW0AO-HhsFN-CQbYk (0)::got disconnect from 15307-iO8Iv-IgmKn-AfqvB-2ej28(1879048194)
+21636-mpehC-SW0AO-HhsFN-CQbYk (0)::got disconnect from 17271-NSJ73-yl8k2-xkPp4-kz8dm(1879048193)
+21636-mpehC-SW0AO-HhsFN-CQbYk (0)::got disconnect from 21709-PUWjq-iK5iZ-UbZ2Z-xe2qQ(1879048192)
+21636-mpehC-SW0AO-HhsFN-CQbYk (0)::||disconnecting

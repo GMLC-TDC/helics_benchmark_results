@@ -1,0 +1,21 @@
+24576-WdyJA-biu6o-8TkrU-NdKdM (0)::connecting
+24576-WdyJA-biu6o-8TkrU-NdKdM (0)::||connected on tcp://127.0.0.1:23404
+24576-WdyJA-biu6o-8TkrU-NdKdM (1)::registering broker 24617-s0F9o-tBLtA-qbXH3-2gJ8X(1879048192) on route 1
+24576-WdyJA-biu6o-8TkrU-NdKdM (1)::registering broker 24639-NoMLb-y1OOd-yfZZu-WZGYb(1879048193) on route 2
+24576-WdyJA-biu6o-8TkrU-NdKdM (1)::registering federate echohub(131072) on route 1
+24576-WdyJA-biu6o-8TkrU-NdKdM (1)::registering federate echoleaf_0(131073) on route 2
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	2 federates [min 2]
+	0/2 brokers/cores [min 0]
+	0 publications
+	0 inputs
+	2 endpoints
+	0 filters
+<<<<<<<<<
+24576-WdyJA-biu6o-8TkrU-NdKdM (1)::entering Exec Mode
+24576-WdyJA-biu6o-8TkrU-NdKdM (0)::got disconnect from 24639-NoMLb-y1OOd-yfZZu-WZGYb(1879048193)
+commWarning||24576-WdyJA-biu6o-8TkrU-NdKdM (1)::unknown route and no broker, dropping message time_grant:From (1) Granted Time(5.0020000000000006e-06) to (131073)
+24576-WdyJA-biu6o-8TkrU-NdKdM (0)::got disconnect from 24617-s0F9o-tBLtA-qbXH3-2gJ8X(1879048192)
+commWarning||24576-WdyJA-biu6o-8TkrU-NdKdM (1)::unknown route and no broker, dropping message time_grant:From (1) Granted Time(0.15000000000000002) to (131072)
+24576-WdyJA-biu6o-8TkrU-NdKdM (0)::||disconnecting

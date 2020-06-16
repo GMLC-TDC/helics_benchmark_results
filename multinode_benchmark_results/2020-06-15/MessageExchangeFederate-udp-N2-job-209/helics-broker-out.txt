@@ -1,0 +1,19 @@
+28115-mCTdi-nebqm-6gQHX-TKetp (0)::connecting
+28115-mCTdi-nebqm-6gQHX-TKetp (0)::||connected on 127.0.0.1:23901
+28115-mCTdi-nebqm-6gQHX-TKetp (1)::registering broker 28174-zs2Ry-5gOgW-dfq7Q-EIOkA(1879048192) on route 1
+28115-mCTdi-nebqm-6gQHX-TKetp (1)::registering broker 27778-PlztB-GBgDl-x7xym-WyZkZ(1879048193) on route 2
+28115-mCTdi-nebqm-6gQHX-TKetp (1)::registering federate msgExchange_0(131072) on route 1
+28115-mCTdi-nebqm-6gQHX-TKetp (1)::registering federate msgExchange_1(131073) on route 2
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	2 federates [min 2]
+	0/2 brokers/cores [min 0]
+	0 publications
+	0 inputs
+	2 endpoints
+	0 filters
+<<<<<<<<<
+28115-mCTdi-nebqm-6gQHX-TKetp (1)::entering Exec Mode
+28115-mCTdi-nebqm-6gQHX-TKetp (0)::got disconnect from 27778-PlztB-GBgDl-x7xym-WyZkZ(1879048193)
+28115-mCTdi-nebqm-6gQHX-TKetp (0)::got disconnect from 28174-zs2Ry-5gOgW-dfq7Q-EIOkA(1879048192)
+28115-mCTdi-nebqm-6gQHX-TKetp (0)::||disconnecting

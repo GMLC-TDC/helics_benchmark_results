@@ -1,0 +1,25 @@
+15609-eDUU4-6r9Ta-EACQO-cRgjX (0)::connecting
+15609-eDUU4-6r9Ta-EACQO-cRgjX (0)::||connected on 127.0.0.1:24160
+15609-eDUU4-6r9Ta-EACQO-cRgjX (1)::registering broker 15631-ecazd-ZjHOB-u2hEw-tl0VJ(1879048192) on route 1
+15609-eDUU4-6r9Ta-EACQO-cRgjX (1)::registering broker 15663-A4svD-xA4xU-Ohu5s-xUeSy(1879048193) on route 2
+15609-eDUU4-6r9Ta-EACQO-cRgjX (1)::registering federate echohub(131072) on route 1
+15609-eDUU4-6r9Ta-EACQO-cRgjX (1)::registering broker 3975-nTFBn-x98gn-M1shJ-A35N5(1879048194) on route 3
+15609-eDUU4-6r9Ta-EACQO-cRgjX (1)::registering broker 2391-6nrTD-1kLdR-s6BI5-Q3m23(1879048195) on route 4
+15609-eDUU4-6r9Ta-EACQO-cRgjX (1)::registering federate echoleaf_1(131073) on route 2
+15609-eDUU4-6r9Ta-EACQO-cRgjX (1)::registering federate echoleaf_2(131074) on route 3
+15609-eDUU4-6r9Ta-EACQO-cRgjX (1)::registering federate echoleaf_0(131075) on route 4
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	4 federates [min 4]
+	0/4 brokers/cores [min 0]
+	0 publications
+	0 inputs
+	4 endpoints
+	0 filters
+<<<<<<<<<
+15609-eDUU4-6r9Ta-EACQO-cRgjX (1)::entering Exec Mode
+15609-eDUU4-6r9Ta-EACQO-cRgjX (0)::got disconnect from 15663-A4svD-xA4xU-Ohu5s-xUeSy(1879048193)
+15609-eDUU4-6r9Ta-EACQO-cRgjX (0)::got disconnect from 2391-6nrTD-1kLdR-s6BI5-Q3m23(1879048195)
+15609-eDUU4-6r9Ta-EACQO-cRgjX (0)::got disconnect from 3975-nTFBn-x98gn-M1shJ-A35N5(1879048194)
+15609-eDUU4-6r9Ta-EACQO-cRgjX (0)::got disconnect from 15631-ecazd-ZjHOB-u2hEw-tl0VJ(1879048192)
+15609-eDUU4-6r9Ta-EACQO-cRgjX (0)::||disconnecting

@@ -1,0 +1,20 @@
+25948-ZAsAf-HPScV-4SweV-Uiqg0 (0)::connecting
+25948-ZAsAf-HPScV-4SweV-Uiqg0 (0)::||connected on 127.0.0.1:24160
+25948-ZAsAf-HPScV-4SweV-Uiqg0 (1)::registering broker 25989-YRnKf-dKJHQ-xT66f-YVpA1(1879048192) on route 1
+25948-ZAsAf-HPScV-4SweV-Uiqg0 (1)::registering broker 24558-gfOPq-KscSf-zZVOn-25Wwy(1879048193) on route 2
+25948-ZAsAf-HPScV-4SweV-Uiqg0 (1)::registering federate ringlink_1(131072) on route 1
+25948-ZAsAf-HPScV-4SweV-Uiqg0 (1)::registering federate ringlink_0(131073) on route 2
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	2 federates [min 2]
+	0/2 brokers/cores [min 0]
+	0 publications
+	0 inputs
+	2 endpoints
+	0 filters
+<<<<<<<<<
+25948-ZAsAf-HPScV-4SweV-Uiqg0 (1)::entering Exec Mode
+25948-ZAsAf-HPScV-4SweV-Uiqg0 (0)::got disconnect from 25989-YRnKf-dKJHQ-xT66f-YVpA1(1879048192)
+25948-ZAsAf-HPScV-4SweV-Uiqg0 (0)::got disconnect from 24558-gfOPq-KscSf-zZVOn-25Wwy(1879048193)
+commWarning||25948-ZAsAf-HPScV-4SweV-Uiqg0 (1)::(tcp) unknown message destination message dropped send_message:From (ept_0)(131073:0) To ept_1 size 100 at 4.999e-06
+25948-ZAsAf-HPScV-4SweV-Uiqg0 (0)::||disconnecting

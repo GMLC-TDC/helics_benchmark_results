@@ -1,0 +1,23 @@
+23058-l9LOL-ER52p-8xoWi-3I7n5 (0)::connecting
+23058-l9LOL-ER52p-8xoWi-3I7n5 (0)::||connected on 127.0.0.1:23901
+23058-l9LOL-ER52p-8xoWi-3I7n5 (1)::registering broker 23109-M9xgN-AVDTf-Be8FM-ABeHW(1879048192) on route 1
+23058-l9LOL-ER52p-8xoWi-3I7n5 (1)::registering broker 6467-I48OC-e1yPN-AAAE9-HGF6P(1879048193) on route 2
+23058-l9LOL-ER52p-8xoWi-3I7n5 (1)::registering broker 8668-CMm2h-JTvrr-syvMh-pP9MQ(1879048194) on route 3
+23058-l9LOL-ER52p-8xoWi-3I7n5 (1)::registering federate ringlink_0(131072) on route 1
+23058-l9LOL-ER52p-8xoWi-3I7n5 (1)::registering federate ringlink_1(131073) on route 2
+23058-l9LOL-ER52p-8xoWi-3I7n5 (1)::registering federate ringlink_2(131074) on route 3
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	3 federates [min 3]
+	0/3 brokers/cores [min 0]
+	0 publications
+	0 inputs
+	3 endpoints
+	0 filters
+<<<<<<<<<
+23058-l9LOL-ER52p-8xoWi-3I7n5 (1)::entering Exec Mode
+23058-l9LOL-ER52p-8xoWi-3I7n5 (0)::got disconnect from 6467-I48OC-e1yPN-AAAE9-HGF6P(1879048193)
+23058-l9LOL-ER52p-8xoWi-3I7n5 (0)::got disconnect from 8668-CMm2h-JTvrr-syvMh-pP9MQ(1879048194)
+commWarning||23058-l9LOL-ER52p-8xoWi-3I7n5 (1)::(udp) unknown route, message dropped send_message:From (ept_0)(131072:0) To ept_1 size 100 at 4.999e-06
+23058-l9LOL-ER52p-8xoWi-3I7n5 (0)::got disconnect from 23109-M9xgN-AVDTf-Be8FM-ABeHW(1879048192)
+23058-l9LOL-ER52p-8xoWi-3I7n5 (0)::||disconnecting
