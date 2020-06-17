@@ -1,0 +1,20 @@
+45098-vHOyc-CZHke-RRIhI-jfk7p (0)::now waiting for the core to finish registration before proceeding
+45098-vHOyc-CZHke-RRIhI-jfk7p (0)::broker state=-2, broker id=0, sleepcnt=7
+45098-vHOyc-CZHke-RRIhI-jfk7p (0)::broker state=-2, broker id=0, sleepcnt=8
+45098-vHOyc-CZHke-RRIhI-jfk7p (0)::broker state=-2, broker id=0, sleepcnt=9
+45098-vHOyc-CZHke-RRIhI-jfk7p (0)::broker state=-2, broker id=0, sleepcnt=10
+45098-vHOyc-CZHke-RRIhI-jfk7p (0)::broker state=-2, broker id=0, sleepcnt=11
+45098-vHOyc-CZHke-RRIhI-jfk7p (0)::broker state=-2, broker id=0, sleepcnt=12
+45098-vHOyc-CZHke-RRIhI-jfk7p (0)::broker state=-2, broker id=0, sleepcnt=13
+45098-vHOyc-CZHke-RRIhI-jfk7p (0)::broker state=-2, broker id=0, sleepcnt=14
+45098-vHOyc-CZHke-RRIhI-jfk7p (0)::broker state=-2, broker id=0, sleepcnt=15
+45098-vHOyc-CZHke-RRIhI-jfk7p (0)::broker state=-2, broker id=0, sleepcnt=16
+45098-vHOyc-CZHke-RRIhI-jfk7p (0)::broker state=-2, broker id=0, sleepcnt=17
+45098-vHOyc-CZHke-RRIhI-jfk7p (0)::broker state=-2, broker id=0, sleepcnt=18
+45098-vHOyc-CZHke-RRIhI-jfk7p (0)::broker state=-2, broker id=0, sleepcnt=19
+45098-vHOyc-CZHke-RRIhI-jfk7p (0)::broker state=-2, broker id=0, sleepcnt=20
+45098-vHOyc-CZHke-RRIhI-jfk7p (0)::resending reg message
+45098-vHOyc-CZHke-RRIhI-jfk7p (0)::got resend
+45098-vHOyc-CZHke-RRIhI-jfk7p (0)::resending broker reg
+BENCHMARK FEDERATE TYPE: RingTransmit
+ELAPSED TIME (ns): 698027831063

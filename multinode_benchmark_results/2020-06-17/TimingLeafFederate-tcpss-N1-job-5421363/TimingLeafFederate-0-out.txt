@@ -1,0 +1,20 @@
+5582-cH7sJ-W57Fs-GZOLr-NLCw8 (0)::now waiting for the core to finish registration before proceeding
+5582-cH7sJ-W57Fs-GZOLr-NLCw8 (0)::broker state=-2, broker id=0, sleepcnt=7
+5582-cH7sJ-W57Fs-GZOLr-NLCw8 (0)::broker state=-2, broker id=0, sleepcnt=8
+5582-cH7sJ-W57Fs-GZOLr-NLCw8 (0)::broker state=-2, broker id=0, sleepcnt=9
+5582-cH7sJ-W57Fs-GZOLr-NLCw8 (0)::broker state=-2, broker id=0, sleepcnt=10
+5582-cH7sJ-W57Fs-GZOLr-NLCw8 (0)::broker state=-2, broker id=0, sleepcnt=11
+5582-cH7sJ-W57Fs-GZOLr-NLCw8 (0)::broker state=-2, broker id=0, sleepcnt=12
+5582-cH7sJ-W57Fs-GZOLr-NLCw8 (0)::broker state=-2, broker id=0, sleepcnt=13
+5582-cH7sJ-W57Fs-GZOLr-NLCw8 (0)::broker state=-2, broker id=0, sleepcnt=14
+5582-cH7sJ-W57Fs-GZOLr-NLCw8 (0)::broker state=-2, broker id=0, sleepcnt=15
+5582-cH7sJ-W57Fs-GZOLr-NLCw8 (0)::broker state=-2, broker id=0, sleepcnt=16
+5582-cH7sJ-W57Fs-GZOLr-NLCw8 (0)::broker state=-2, broker id=0, sleepcnt=17
+5582-cH7sJ-W57Fs-GZOLr-NLCw8 (0)::broker state=-2, broker id=0, sleepcnt=18
+5582-cH7sJ-W57Fs-GZOLr-NLCw8 (0)::broker state=-2, broker id=0, sleepcnt=19
+5582-cH7sJ-W57Fs-GZOLr-NLCw8 (0)::broker state=-2, broker id=0, sleepcnt=20
+5582-cH7sJ-W57Fs-GZOLr-NLCw8 (0)::resending reg message
+5582-cH7sJ-W57Fs-GZOLr-NLCw8 (0)::got resend
+5582-cH7sJ-W57Fs-GZOLr-NLCw8 (0)::resending broker reg
+BENCHMARK FEDERATE TYPE: TimingLeaf
+ELAPSED TIME (ns): 204937226504

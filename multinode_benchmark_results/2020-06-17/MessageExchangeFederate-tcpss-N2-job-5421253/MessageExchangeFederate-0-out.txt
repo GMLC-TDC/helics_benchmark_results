@@ -1,0 +1,20 @@
+20406-7Gr5C-JmDE7-Bj92q-tgEod (0)::now waiting for the core to finish registration before proceeding
+20406-7Gr5C-JmDE7-Bj92q-tgEod (0)::broker state=-2, broker id=0, sleepcnt=7
+20406-7Gr5C-JmDE7-Bj92q-tgEod (0)::broker state=-2, broker id=0, sleepcnt=8
+20406-7Gr5C-JmDE7-Bj92q-tgEod (0)::broker state=-2, broker id=0, sleepcnt=9
+20406-7Gr5C-JmDE7-Bj92q-tgEod (0)::broker state=-2, broker id=0, sleepcnt=10
+20406-7Gr5C-JmDE7-Bj92q-tgEod (0)::broker state=-2, broker id=0, sleepcnt=11
+20406-7Gr5C-JmDE7-Bj92q-tgEod (0)::broker state=-2, broker id=0, sleepcnt=12
+20406-7Gr5C-JmDE7-Bj92q-tgEod (0)::broker state=-2, broker id=0, sleepcnt=13
+20406-7Gr5C-JmDE7-Bj92q-tgEod (0)::broker state=-2, broker id=0, sleepcnt=14
+20406-7Gr5C-JmDE7-Bj92q-tgEod (0)::broker state=-2, broker id=0, sleepcnt=15
+20406-7Gr5C-JmDE7-Bj92q-tgEod (0)::broker state=-2, broker id=0, sleepcnt=16
+20406-7Gr5C-JmDE7-Bj92q-tgEod (0)::broker state=-2, broker id=0, sleepcnt=17
+20406-7Gr5C-JmDE7-Bj92q-tgEod (0)::broker state=-2, broker id=0, sleepcnt=18
+20406-7Gr5C-JmDE7-Bj92q-tgEod (0)::broker state=-2, broker id=0, sleepcnt=19
+20406-7Gr5C-JmDE7-Bj92q-tgEod (0)::broker state=-2, broker id=0, sleepcnt=20
+20406-7Gr5C-JmDE7-Bj92q-tgEod (0)::resending reg message
+20406-7Gr5C-JmDE7-Bj92q-tgEod (0)::got resend
+20406-7Gr5C-JmDE7-Bj92q-tgEod (0)::resending broker reg
+BENCHMARK FEDERATE TYPE: MessageExchange
+ELAPSED TIME (ns): 582422121

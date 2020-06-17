@@ -1,0 +1,21 @@
+46287-Vj9e0-8Ctom-WHOS9-6VJvK (0)::now waiting for the core to finish registration before proceeding
+46287-Vj9e0-8Ctom-WHOS9-6VJvK (0)::broker state=-2, broker id=0, sleepcnt=7
+46287-Vj9e0-8Ctom-WHOS9-6VJvK (0)::broker state=-2, broker id=0, sleepcnt=8
+46287-Vj9e0-8Ctom-WHOS9-6VJvK (0)::broker state=-2, broker id=0, sleepcnt=9
+46287-Vj9e0-8Ctom-WHOS9-6VJvK (0)::broker state=-2, broker id=0, sleepcnt=10
+46287-Vj9e0-8Ctom-WHOS9-6VJvK (0)::broker state=-2, broker id=0, sleepcnt=11
+46287-Vj9e0-8Ctom-WHOS9-6VJvK (0)::broker state=-2, broker id=0, sleepcnt=12
+46287-Vj9e0-8Ctom-WHOS9-6VJvK (0)::broker state=-2, broker id=0, sleepcnt=13
+46287-Vj9e0-8Ctom-WHOS9-6VJvK (0)::broker state=-2, broker id=0, sleepcnt=14
+46287-Vj9e0-8Ctom-WHOS9-6VJvK (0)::broker state=-2, broker id=0, sleepcnt=15
+46287-Vj9e0-8Ctom-WHOS9-6VJvK (0)::broker state=-2, broker id=0, sleepcnt=16
+46287-Vj9e0-8Ctom-WHOS9-6VJvK (0)::broker state=-2, broker id=0, sleepcnt=17
+46287-Vj9e0-8Ctom-WHOS9-6VJvK (0)::broker state=-2, broker id=0, sleepcnt=18
+46287-Vj9e0-8Ctom-WHOS9-6VJvK (0)::broker state=-2, broker id=0, sleepcnt=19
+46287-Vj9e0-8Ctom-WHOS9-6VJvK (0)::broker state=-2, broker id=0, sleepcnt=20
+46287-Vj9e0-8Ctom-WHOS9-6VJvK (0)::resending reg message
+46287-Vj9e0-8Ctom-WHOS9-6VJvK (0)::got resend
+46287-Vj9e0-8Ctom-WHOS9-6VJvK (0)::resending broker reg
+BENCHMARK FEDERATE TYPE: PHOLD
+ELAPSED TIME (ns): 384689209116
+EVENT COUNT: 17171
