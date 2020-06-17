@@ -45,7 +45,7 @@ import sys
 # Installation of FPDF is: python -m pip install fpdf
 # Installation of hvplot.pandas is: conda install -c pyviz hvplot
 # Installation of selenium is: conda install -c bokeh selenium
-# Installation of phantomjs is: brew tap homebrew/cask; brew cask install 
+# Installation of phantomjs is: brew tap homebrew/cask; brew cask install
 # phantomjs
 
 # Setting up logging
@@ -60,6 +60,8 @@ pp = pprint.PrettyPrinter(indent=4)
 # names in the results dictionarey (json_results) and dataframe. The
 # header of the results PDF shows the values of each of these pieces of
 # metdata associated with each run-ID.
+
+
 def find_specific_run_id(benchmark_results_dir, run_id_list):
     """This function traverses the directory structure starting at the
     root folder of benchmark_results_dir looking for the folders that
@@ -68,7 +70,7 @@ def find_specific_run_id(benchmark_results_dir, run_id_list):
     Args:
         benchmark_results_dir (str) - root folder that contains all
         results from the run IDs specified in run_id_list.
-        
+
         run_id_list (list) - List of strings defining the run IDs to
         compare
 
@@ -116,7 +118,7 @@ def create_output_path(output_path, delete_existing_report):
     Args:
         output_path (str) - Path to the results folder for the comparison
         of these run-IDs
-        
+
         delete_existing_report (bool) - Flag indicating whether any
         existing report folder should be deleted (True) or not (False)
 
@@ -159,7 +161,7 @@ def find_common_bm_to_graph(json_results, run_id_dict):
     Args:
         json_results (dict) - Contains metadata and results
         keyed off the path for each benchmark results file.
-        
+
         run_id_dict (dict) - Contains file metadata associated with
         each run ID
 
@@ -242,14 +244,14 @@ def make_cross_run_id_graphs(meta_bmk_df, bm_list, run_id_list, output_path,
 
     Args:
         meta_bmk_df (pandas dataframe) - Full dataset
-        
+
         bm (string) - benchmark being compared
-        
+
         run_id_list (list) - list of run-ID strings
-        
+
         output_path (string) - path to where output graphs should be
         saved
-        
+
         comparison_parameter - parameter of partiular interest that the
         user expects to differ across run-IDs.
 
@@ -259,7 +261,7 @@ def make_cross_run_id_graphs(meta_bmk_df, bm_list, run_id_list, output_path,
     for bm in bm_list:
         print(bm['bm_name'])
         if bm['bm_name'] == 'echoBenchmark':
-            df = meta_bmk_df[(meta_bmk_df.benchmark == 'echoBenchmark') & 
+            df = meta_bmk_df[(meta_bmk_df.benchmark == 'echoBenchmark') &
                              (meta_bmk_df.benchmark_type == 'full')]
             core_types = find_common_core_types(df, run_id_list)
             for core_type in core_types:
@@ -267,7 +269,7 @@ def make_cross_run_id_graphs(meta_bmk_df, bm_list, run_id_list, output_path,
                     df, 'federate_count', 'real_time', 'echoBenchmark',
                     run_id_list, core_type, comparison_parameter, output_path)
         if bm['bm_name'] == 'cEchoBenchmark':
-            df = meta_bmk_df[(meta_bmk_df.benchmark == 'cEchoBenchmark') & 
+            df = meta_bmk_df[(meta_bmk_df.benchmark == 'cEchoBenchmark') &
                              (meta_bmk_df.benchmark_type == 'full')]
             core_types = find_common_core_types(df, run_id_list)
             for core_type in core_types:
@@ -276,7 +278,7 @@ def make_cross_run_id_graphs(meta_bmk_df, bm_list, run_id_list, output_path,
                     run_id_list, core_type, comparison_parameter, output_path)
         if bm['bm_name'] == 'echoMessageBenchmark':
             df = meta_bmk_df[
-                (meta_bmk_df.benchmark == 'echoMessageBenchmark') & 
+                (meta_bmk_df.benchmark == 'echoMessageBenchmark') &
                 (meta_bmk_df.benchmark_type == 'full')]
             core_types = find_common_core_types(df, run_id_list)
             for core_type in core_types:
@@ -291,21 +293,23 @@ def make_cross_run_id_graphs(meta_bmk_df, bm_list, run_id_list, output_path,
             ml3 = df[
                 (df.benchmark_type == 'full') & (df.federate_count == 64)]
             bmk_plotting.cr_plot(
-                ml1, 'interface_count', 'real_time', 'messageLookup, fed_ct=2', 
-                run_id_list,'inproc', comparison_parameter, output_path)
+                ml1, 'interface_count', 'real_time',
+                'messageLookup, fed_ct=2', run_id_list, 'inproc',
+                comparison_parameter, output_path)
             bmk_plotting.cr_plot(
                 ml2, 'interface_count', 'real_time', 'messageLookup, fed_ct=8',
                 run_id_list, 'inproc', comparison_parameter, output_path)
             bmk_plotting.cr_plot(
-                ml3, 'interface_count', 'real_time', 'messageLookup, fed_ct=64',
-                run_id_list, 'inproc', comparison_parameter, output_path)
+                ml3, 'interface_count', 'real_time',
+                'messageLookup, fed_ct=64', run_id_list, 'inproc',
+                comparison_parameter, output_path)
         if bm['bm_name'] == 'ringBenchmark':
             # TDH (2020-01-09) - Special case because only a single data
             # point is run for the singleCore data. All the others have
             # multiple data points and can actually be used to form a
             # graph.
             df = meta_bmk_df[(meta_bmk_df.benchmark == 'ringBenchmark') &
-                             (meta_bmk_df.benchmark_type == 'full') & 
+                             (meta_bmk_df.benchmark_type == 'full') &
                              (meta_bmk_df.core_type != 'singleCore')]
             core_types = find_common_core_types(df, run_id_list)
             for core_type in core_types:
@@ -319,7 +323,7 @@ def make_cross_run_id_graphs(meta_bmk_df, bm_list, run_id_list, output_path,
             # graph.
             df = meta_bmk_df[
                 (meta_bmk_df.benchmark == 'ringMessageBenchmark') &
-                (meta_bmk_df.benchmark_type == 'full') & 
+                (meta_bmk_df.benchmark_type == 'full') &
                 (meta_bmk_df.core_type != 'singleCore')]
             core_types = find_common_core_types(df, run_id_list)
             for core_type in core_types:
@@ -332,14 +336,15 @@ def make_cross_run_id_graphs(meta_bmk_df, bm_list, run_id_list, output_path,
             core_types = find_common_core_types(df, run_id_list)
             for core_type in core_types:
                 bmk_plotting.cr_plot(
-                    meta_bmk_df, 'federate_count', 'real_time', 'pholdBenchmark',
-                    run_id_list, core_type, comparison_parameter, output_path)
+                    meta_bmk_df, 'federate_count', 'real_time',
+                    'pholdBenchmark', run_id_list, core_type,
+                    comparison_parameter, output_path)
         if bm['bm_name'] == 'messageSendBenchmark':
             df = meta_bmk_df[
-                (meta_bmk_df.benchmark == 'messageSendBenchmark') & 
+                (meta_bmk_df.benchmark == 'messageSendBenchmark') &
                 (meta_bmk_df.benchmark_type == 'full')]
             bmk_plotting.cr_plot(
-                df, 'message_size', 'real_time', 'messageSend, singleCore', 
+                df, 'message_size', 'real_time', 'messageSend, singleCore',
                 run_id_list, 'singleCore', comparison_parameter, output_path)
             core_types = find_common_core_types(df, run_id_list)
             for core_type in core_types:
@@ -352,8 +357,8 @@ def make_cross_run_id_graphs(meta_bmk_df, bm_list, run_id_list, output_path,
                     ms2, 'message_count', 'real_time', 'messageSend, msg_sz=1',
                     run_id_list, core_type, comparison_parameter, output_path)
         if bm['bm_name'] == 'filterBenchmark':
-            df = meta_bmk_df[(meta_bmk_df.benchmark == 'filterBenchmark') & 
-                              (meta_bmk_df.benchmark_type == 'full')]
+            df = meta_bmk_df[(meta_bmk_df.benchmark == 'filterBenchmark') &
+                             (meta_bmk_df.benchmark_type == 'full')]
             bmk_plotting.cr_plot(
                 df, 'federate_count', 'real_time', 'filter, singleCore',
                 run_id_list, 'singleCore', comparison_parameter, output_path)
@@ -363,19 +368,22 @@ def make_cross_run_id_graphs(meta_bmk_df, bm_list, run_id_list, output_path,
             src = df[df.filter_location == 'source']
             for core_type in core_types:
                 bmk_plotting.cr_plot(
-                    src, 'federate_count', 'real_time', 'filter, fltr_loc=source',
-                    run_id_list, core_type, comparison_parameter, output_path)
+                    src, 'federate_count', 'real_time',
+                    'filter, fltr_loc=source', run_id_list, core_type,
+                    comparison_parameter, output_path)
                 bmk_plotting.cr_plot(
-                    dest, 'federate_count', 'real_time', 'filter, fltr_loc=dest',
-                    run_id_list, core_type, comparison_parameter, output_path)
+                    dest, 'federate_count', 'real_time',
+                    'filter, fltr_loc=dest', run_id_list, core_type,
+                    comparison_parameter, output_path)
         if bm['bm_name'] == 'timingBenchmark':
-            df = meta_bmk_df[(meta_bmk_df.benchmark == 'timingBenchmark') & 
+            df = meta_bmk_df[(meta_bmk_df.benchmark == 'timingBenchmark') &
                              (meta_bmk_df.benchmark_type == 'full')]
             core_types = find_common_core_types(df, run_id_list)
             for core_type in core_types:
                 bmk_plotting.cr_plot(
-                    meta_bmk_df, 'federate_count', 'real_time', 'timingBenchmark',
-                    run_id_list, core_type, comparison_parameter, output_path)
+                    meta_bmk_df, 'federate_count', 'real_time',
+                    'timingBenchmark', run_id_list, core_type,
+                    comparison_parameter, output_path)
 
 
 def _auto_run(args):
@@ -394,7 +402,7 @@ def _auto_run(args):
 
         '-l' or '--run_id_list' - Python list of run IDs to compare
 
-        '-p' or '--comparison_parameter_list' - Particular parameter list that 
+        '-p' or '--comparison_parameter_list' - Particular parameter list that
         we are interested in using for comparisons
 
         '-o' or '--output_path' - Path to location where output will be
@@ -428,10 +436,10 @@ def _auto_run(args):
     print('checking to see which parameters are valid...\n')
     for p in args.comparison_parameter_list:
         header, diff = criPDF.grab_header_metadata(
-            json_results, 
-            criPDF.get_run_id_keys(json_results, args.run_id_list), 
+            json_results,
+            criPDF.get_run_id_keys(json_results, args.run_id_list),
             p)
-        if diff == True:
+        if diff is True:
             valid_params.append(p)
     path = os.path.join(args.output_path)
     for v in valid_params:
@@ -444,7 +452,8 @@ def _auto_run(args):
             meta_bmk_df, bm_list, list(run_id_dict.keys()), output_path, v)
         print('creating the cross-run_id analysis report...\n')
         criPDF.create_cross_run_id_report(
-            json_results, list(run_id_dict.keys()), output_path, parameter_list)
+            json_results, list(run_id_dict.keys()),
+            output_path, parameter_list)
     print('Finished the cross-run_id analysis.')
 
 
@@ -467,7 +476,7 @@ if __name__ == '__main__':
     # Also used to define the default location for the output folder
     script_path = os.path.dirname(os.path.realpath(__file__))
     head, tail = os.path.split(script_path)
-    benchmark_results_dir = os.path.join(head,'benchmark_results')
+    benchmark_results_dir = os.path.join(head, 'benchmark_results')
     output_dir = os.path.join(head, 'cross_case_comparison')
     parser.add_argument('-r',
                         '--benchmark_results_dir',
@@ -478,10 +487,11 @@ if __name__ == '__main__':
                         nargs='+',
                         default=['YL2EQ', 'kkJWd'])
     parameter_list = [
-    'mhz_per_cpu', 'helics_version', 'generator', 'system', 
-    'system_version', 'platform', 'cxx_compiler', 'cxx_compiler_version', 
-    'build_flags_string', 'host_name', 'host_processor', 'num_cpus', 'date',
-    'library_build_type']
+        'mhz_per_cpu', 'helics_version', 'generator',
+        'system', 'system_version', 'platform',
+        'cxx_compiler', 'cxx_compiler_version', 'build_flags_string',
+        'host_name', 'host_processor', 'num_cpus',
+        'date', 'library_build_type']
     parser.add_argument('-p',
                         '--comparison_parameter_list',
                         nargs='?',
