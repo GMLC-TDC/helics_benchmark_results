@@ -1,0 +1,19 @@
+5270-pC5Q7-LlV7k-7vNv5-UaRyP (0)::connecting
+5270-pC5Q7-LlV7k-7vNv5-UaRyP (0)::||connected on 127.0.0.1:23901
+5270-pC5Q7-LlV7k-7vNv5-UaRyP (1)::registering broker 5312-lSUC3-Xzpai-Wto5S-Z3H1t(1879048192) on route 1
+5270-pC5Q7-LlV7k-7vNv5-UaRyP (1)::registering broker 25951-fqe46-uFHv0-CchhR-Gv9tt(1879048193) on route 2
+5270-pC5Q7-LlV7k-7vNv5-UaRyP (1)::registering federate msgExchange_1(131072) on route 1
+5270-pC5Q7-LlV7k-7vNv5-UaRyP (1)::registering federate msgExchange_0(131073) on route 2
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	2 federates [min 2]
+	0/2 brokers/cores [min 0]
+	0 publications
+	0 inputs
+	2 endpoints
+	0 filters
+<<<<<<<<<
+5270-pC5Q7-LlV7k-7vNv5-UaRyP (1)::entering Exec Mode
+5270-pC5Q7-LlV7k-7vNv5-UaRyP (0)::got disconnect from 25951-fqe46-uFHv0-CchhR-Gv9tt(1879048193)
+5270-pC5Q7-LlV7k-7vNv5-UaRyP (0)::got disconnect from 5312-lSUC3-Xzpai-Wto5S-Z3H1t(1879048192)
+5270-pC5Q7-LlV7k-7vNv5-UaRyP (0)::||disconnecting

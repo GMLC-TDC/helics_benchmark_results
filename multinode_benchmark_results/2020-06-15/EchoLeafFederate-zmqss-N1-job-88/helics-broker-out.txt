@@ -1,0 +1,18 @@
+23596-vhwO5-lEPCb-KJC4V-0m24N (0)::connecting
+23596-vhwO5-lEPCb-KJC4V-0m24N (0)::||connected on tcp://127.0.0.1:23404
+23596-vhwO5-lEPCb-KJC4V-0m24N (1)::registering broker 23609-pDrA5-uesK4-6qipE-1DquA(1879048192) on route 1
+23596-vhwO5-lEPCb-KJC4V-0m24N (1)::registering broker 23631-eyPHJ-LM0aJ-X7dFV-b3Iey(1879048193) on route 2
+23596-vhwO5-lEPCb-KJC4V-0m24N (1)::registering federate echohub(131072) on route 1
+23596-vhwO5-lEPCb-KJC4V-0m24N (1)::registering federate echoleaf_0(131073) on route 2
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	2 federates [min 2]
+	0/2 brokers/cores [min 0]
+	2 publications
+	0 inputs
+	0 endpoints
+	0 filters
+<<<<<<<<<
+23596-vhwO5-lEPCb-KJC4V-0m24N (0)::got disconnect from 23631-eyPHJ-LM0aJ-X7dFV-b3Iey(1879048193)
+23596-vhwO5-lEPCb-KJC4V-0m24N (0)::got disconnect from 23609-pDrA5-uesK4-6qipE-1DquA(1879048192)
+23596-vhwO5-lEPCb-KJC4V-0m24N (0)::||disconnecting

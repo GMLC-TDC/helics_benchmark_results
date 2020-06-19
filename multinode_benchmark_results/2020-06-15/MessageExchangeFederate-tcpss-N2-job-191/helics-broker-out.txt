@@ -1,0 +1,19 @@
+27238-ZpE3m-sRYmp-YA1qk-ynKK1 (0)::connecting
+27238-ZpE3m-sRYmp-YA1qk-ynKK1 (0)::||connected on 127.0.0.1:33133
+27238-ZpE3m-sRYmp-YA1qk-ynKK1 (1)::registering broker 27280-vkFI6-5ZwhZ-7Djvx-NaZth(1879048192) on route 1
+27238-ZpE3m-sRYmp-YA1qk-ynKK1 (1)::registering broker 27386-a69lY-J5S6z-n2Kni-vUir5(1879048193) on route 2
+27238-ZpE3m-sRYmp-YA1qk-ynKK1 (1)::registering federate msgExchange_1(131072) on route 1
+27238-ZpE3m-sRYmp-YA1qk-ynKK1 (1)::registering federate msgExchange_0(131073) on route 2
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	2 federates [min 2]
+	0/2 brokers/cores [min 0]
+	0 publications
+	0 inputs
+	2 endpoints
+	0 filters
+<<<<<<<<<
+27238-ZpE3m-sRYmp-YA1qk-ynKK1 (1)::entering Exec Mode
+27238-ZpE3m-sRYmp-YA1qk-ynKK1 (0)::got disconnect from 27386-a69lY-J5S6z-n2Kni-vUir5(1879048193)
+27238-ZpE3m-sRYmp-YA1qk-ynKK1 (0)::got disconnect from 27280-vkFI6-5ZwhZ-7Djvx-NaZth(1879048192)
+27238-ZpE3m-sRYmp-YA1qk-ynKK1 (0)::||disconnecting

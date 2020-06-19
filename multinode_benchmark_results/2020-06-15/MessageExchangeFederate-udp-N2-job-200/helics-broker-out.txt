@@ -1,0 +1,19 @@
+5467-juj67-VrtSm-1tkFp-dC62T (0)::connecting
+5467-juj67-VrtSm-1tkFp-dC62T (0)::||connected on 127.0.0.1:23901
+5467-juj67-VrtSm-1tkFp-dC62T (1)::registering broker 5508-EIGSH-pIsN1-zdUDi-HDPbD(1879048192) on route 1
+5467-juj67-VrtSm-1tkFp-dC62T (1)::registering broker 26040-NwE0r-VO7cE-KPOyY-3x311(1879048193) on route 2
+5467-juj67-VrtSm-1tkFp-dC62T (1)::registering federate msgExchange_1(131072) on route 1
+5467-juj67-VrtSm-1tkFp-dC62T (1)::registering federate msgExchange_0(131073) on route 2
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	2 federates [min 2]
+	0/2 brokers/cores [min 0]
+	0 publications
+	0 inputs
+	2 endpoints
+	0 filters
+<<<<<<<<<
+5467-juj67-VrtSm-1tkFp-dC62T (1)::entering Exec Mode
+5467-juj67-VrtSm-1tkFp-dC62T (0)::got disconnect from 26040-NwE0r-VO7cE-KPOyY-3x311(1879048193)
+5467-juj67-VrtSm-1tkFp-dC62T (0)::got disconnect from 5508-EIGSH-pIsN1-zdUDi-HDPbD(1879048192)
+5467-juj67-VrtSm-1tkFp-dC62T (0)::||disconnecting

@@ -1,0 +1,24 @@
+24513-q2hwR-1iLVh-WOwW0-vmaPe (0)::connecting
+24513-q2hwR-1iLVh-WOwW0-vmaPe (0)::||connected on 127.0.0.1:23901
+24513-q2hwR-1iLVh-WOwW0-vmaPe (1)::registering broker 24520-Twf10-0oBvg-4nGId-fV932(1879048192) on route 1
+24513-q2hwR-1iLVh-WOwW0-vmaPe (1)::registering broker 24552-Om8oR-yxAC7-pTrex-jFLLi(1879048193) on route 2
+24513-q2hwR-1iLVh-WOwW0-vmaPe (1)::registering federate timinghub(131072) on route 1
+24513-q2hwR-1iLVh-WOwW0-vmaPe (1)::registering broker 7050-V1edf-EtJyV-E1TI1-3nk9X(1879048194) on route 3
+24513-q2hwR-1iLVh-WOwW0-vmaPe (1)::registering broker 9241-dWIZo-X89Ok-onHDK-19Qqi(1879048195) on route 4
+24513-q2hwR-1iLVh-WOwW0-vmaPe (1)::registering federate timingleaf_1(131073) on route 2
+24513-q2hwR-1iLVh-WOwW0-vmaPe (1)::registering federate timingleaf_2(131074) on route 3
+24513-q2hwR-1iLVh-WOwW0-vmaPe (1)::registering federate timingleaf_0(131075) on route 4
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	4 federates [min 4]
+	0/4 brokers/cores [min 0]
+	6 publications
+	0 inputs
+	0 endpoints
+	0 filters
+<<<<<<<<<
+24513-q2hwR-1iLVh-WOwW0-vmaPe (0)::got disconnect from 24552-Om8oR-yxAC7-pTrex-jFLLi(1879048193)
+24513-q2hwR-1iLVh-WOwW0-vmaPe (0)::got disconnect from 7050-V1edf-EtJyV-E1TI1-3nk9X(1879048194)
+24513-q2hwR-1iLVh-WOwW0-vmaPe (0)::got disconnect from 9241-dWIZo-X89Ok-onHDK-19Qqi(1879048195)
+24513-q2hwR-1iLVh-WOwW0-vmaPe (0)::got disconnect from 24520-Twf10-0oBvg-4nGId-fV932(1879048192)
+24513-q2hwR-1iLVh-WOwW0-vmaPe (0)::||disconnecting

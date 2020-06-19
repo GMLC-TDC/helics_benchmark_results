@@ -1,0 +1,20 @@
+1320-vdVCM-NJE7B-NXXef-Hh52Q (0)::connecting
+1320-vdVCM-NJE7B-NXXef-Hh52Q (0)::||connected on tcp://127.0.0.1:23404
+1320-vdVCM-NJE7B-NXXef-Hh52Q (1)::registering broker 1377-ZbqJl-g6v0e-GWX3f-6rxqH(1879048192) on route 1
+1320-vdVCM-NJE7B-NXXef-Hh52Q (1)::registering broker 18900-6F1k3-63uHd-TCfXT-HxKqV(1879048193) on route 2
+1320-vdVCM-NJE7B-NXXef-Hh52Q (1)::registering federate ringlink_0(131072) on route 1
+1320-vdVCM-NJE7B-NXXef-Hh52Q (1)::registering federate ringlink_1(131073) on route 2
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	2 federates [min 2]
+	0/2 brokers/cores [min 0]
+	2 publications
+	0 inputs
+	0 endpoints
+	0 filters
+<<<<<<<<<
+1320-vdVCM-NJE7B-NXXef-Hh52Q (0)::got disconnect from 1377-ZbqJl-g6v0e-GWX3f-6rxqH(1879048192)
+commWarning||1320-vdVCM-NJE7B-NXXef-Hh52Q (1)::unknown route and no broker, dropping message time_grant:From (131073) Granted Time(5e-06) to (131072)
+commWarning||1320-vdVCM-NJE7B-NXXef-Hh52Q (1)::unknown route and no broker, dropping message pub:From (131073) handle(1) size 100 at 5e-06 to 131072
+1320-vdVCM-NJE7B-NXXef-Hh52Q (0)::got disconnect from 18900-6F1k3-63uHd-TCfXT-HxKqV(1879048193)
+1320-vdVCM-NJE7B-NXXef-Hh52Q (0)::||disconnecting

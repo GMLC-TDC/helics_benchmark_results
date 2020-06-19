@@ -1,0 +1,27 @@
+24088-xeEnf-sDX4q-nPgpA-9hQBY (0)::connecting
+24088-xeEnf-sDX4q-nPgpA-9hQBY (0)::||connected on 127.0.0.1:33133
+24088-xeEnf-sDX4q-nPgpA-9hQBY (1)::registering broker 24158-FjC57-kGU8b-5JXQx-gU1HK(1879048192) on route 1
+24088-xeEnf-sDX4q-nPgpA-9hQBY (1)::registering broker 20282-TgGXk-2znCO-UvGsN-YQ4Z5(1879048193) on route 2
+24088-xeEnf-sDX4q-nPgpA-9hQBY (1)::registering broker 19234-iLtz7-pf6oq-sHBWB-MPlVH(1879048194) on route 3
+24088-xeEnf-sDX4q-nPgpA-9hQBY (1)::registering broker 17291-QBwvs-ibXwB-K78YE-Opjf6(1879048195) on route 4
+24088-xeEnf-sDX4q-nPgpA-9hQBY (1)::registering federate phold_0(131072) on route 1
+24088-xeEnf-sDX4q-nPgpA-9hQBY (1)::registering federate phold_3(131073) on route 2
+24088-xeEnf-sDX4q-nPgpA-9hQBY (1)::registering federate phold_2(131074) on route 3
+24088-xeEnf-sDX4q-nPgpA-9hQBY (1)::registering federate phold_1(131075) on route 4
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	4 federates [min 4]
+	0/4 brokers/cores [min 0]
+	0 publications
+	0 inputs
+	4 endpoints
+	0 filters
+<<<<<<<<<
+24088-xeEnf-sDX4q-nPgpA-9hQBY (1)::entering Exec Mode
+24088-xeEnf-sDX4q-nPgpA-9hQBY (0)::got disconnect from 20282-TgGXk-2znCO-UvGsN-YQ4Z5(1879048193)
+24088-xeEnf-sDX4q-nPgpA-9hQBY (0)::got disconnect from 17291-QBwvs-ibXwB-K78YE-Opjf6(1879048195)
+commWarning||24088-xeEnf-sDX4q-nPgpA-9hQBY (1)::(tcpss) unknown message destination message dropped time_grant:From (1) Granted Time(1e-05) to (131073)
+24088-xeEnf-sDX4q-nPgpA-9hQBY (0)::got disconnect from 24158-FjC57-kGU8b-5JXQx-gU1HK(1879048192)
+24088-xeEnf-sDX4q-nPgpA-9hQBY (0)::got disconnect from 19234-iLtz7-pf6oq-sHBWB-MPlVH(1879048194)
+commWarning||24088-xeEnf-sDX4q-nPgpA-9hQBY (1)::(tcpss) unknown message destination message dropped send_message:From (phold_0/ept)(131072:0) To phold_3/ept size 2 at 1.0019e-05
+24088-xeEnf-sDX4q-nPgpA-9hQBY (0)::||disconnecting

@@ -1,0 +1,21 @@
+27644-GRnjf-CrdaK-I0xjG-1rtiK (0)::connecting
+27644-GRnjf-CrdaK-I0xjG-1rtiK (0)::||connected on 127.0.0.1:23901
+27644-GRnjf-CrdaK-I0xjG-1rtiK (1)::registering broker 27669-srUU9-RwWUp-xQxHu-bXyu6(1879048192) on route 1
+27644-GRnjf-CrdaK-I0xjG-1rtiK (1)::registering broker 27695-NTR6m-mamyL-H7903-cYncE(1879048193) on route 2
+27644-GRnjf-CrdaK-I0xjG-1rtiK (1)::registering federate timinghub(131072) on route 1
+27644-GRnjf-CrdaK-I0xjG-1rtiK (1)::registering broker 26068-kjoxC-dU35C-h8lIr-2Ieni(1879048194) on route 3
+27644-GRnjf-CrdaK-I0xjG-1rtiK (1)::registering federate timingleaf_0(131073) on route 2
+27644-GRnjf-CrdaK-I0xjG-1rtiK (1)::registering federate timingleaf_1(131074) on route 3
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	3 federates [min 3]
+	0/3 brokers/cores [min 0]
+	4 publications
+	0 inputs
+	0 endpoints
+	0 filters
+<<<<<<<<<
+27644-GRnjf-CrdaK-I0xjG-1rtiK (0)::got disconnect from 27695-NTR6m-mamyL-H7903-cYncE(1879048193)
+27644-GRnjf-CrdaK-I0xjG-1rtiK (0)::got disconnect from 26068-kjoxC-dU35C-h8lIr-2Ieni(1879048194)
+27644-GRnjf-CrdaK-I0xjG-1rtiK (0)::got disconnect from 27669-srUU9-RwWUp-xQxHu-bXyu6(1879048192)
+27644-GRnjf-CrdaK-I0xjG-1rtiK (0)::||disconnecting

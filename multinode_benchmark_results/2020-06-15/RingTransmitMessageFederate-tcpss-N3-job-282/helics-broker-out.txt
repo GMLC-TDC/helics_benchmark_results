@@ -1,0 +1,24 @@
+12638-PnNao-7fCAD-b0FG3-5G2NB (0)::connecting
+12638-PnNao-7fCAD-b0FG3-5G2NB (0)::||connected on 127.0.0.1:33133
+12638-PnNao-7fCAD-b0FG3-5G2NB (1)::registering broker 12713-y6Ljv-CrOYX-fhs2S-Niw9X(1879048192) on route 1
+12638-PnNao-7fCAD-b0FG3-5G2NB (1)::registering broker 28999-Q4ImW-MNosS-4WVXk-Dsu0k(1879048193) on route 2
+12638-PnNao-7fCAD-b0FG3-5G2NB (1)::registering broker 31128-QLNsK-TRtTI-nYsub-ZPGIo(1879048194) on route 3
+12638-PnNao-7fCAD-b0FG3-5G2NB (1)::registering federate ringlink_0(131072) on route 1
+12638-PnNao-7fCAD-b0FG3-5G2NB (1)::registering federate ringlink_2(131073) on route 2
+12638-PnNao-7fCAD-b0FG3-5G2NB (1)::registering federate ringlink_1(131074) on route 3
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	3 federates [min 3]
+	0/3 brokers/cores [min 0]
+	0 publications
+	0 inputs
+	3 endpoints
+	0 filters
+<<<<<<<<<
+12638-PnNao-7fCAD-b0FG3-5G2NB (1)::entering Exec Mode
+12638-PnNao-7fCAD-b0FG3-5G2NB (0)::got disconnect from 31128-QLNsK-TRtTI-nYsub-ZPGIo(1879048194)
+12638-PnNao-7fCAD-b0FG3-5G2NB (0)::got disconnect from 28999-Q4ImW-MNosS-4WVXk-Dsu0k(1879048193)
+commWarning||12638-PnNao-7fCAD-b0FG3-5G2NB (1)::(tcpss) unknown message destination message dropped send_message:From (ept_0)(131072:0) To ept_1 size 100 at 4.999e-06
+12638-PnNao-7fCAD-b0FG3-5G2NB (0)::got disconnect from 12713-y6Ljv-CrOYX-fhs2S-Niw9X(1879048192)
+12638-PnNao-7fCAD-b0FG3-5G2NB (0)::||disconnecting
+commWarning||12638-PnNao-7fCAD-b0FG3-5G2NB (1)::(tcpss) unknown message destination message dropped time_grant:From (1) Granted Time(5e-06) to (131072)

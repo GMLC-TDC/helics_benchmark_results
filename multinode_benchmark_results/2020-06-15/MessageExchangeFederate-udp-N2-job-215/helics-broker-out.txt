@@ -1,0 +1,15 @@
+28422-Cra3x-ni7ZJ-0WCfs-K7YpV (0)::connecting
+28422-Cra3x-ni7ZJ-0WCfs-K7YpV (0)::||connected on 127.0.0.1:23901
+28422-Cra3x-ni7ZJ-0WCfs-K7YpV (1)::registering broker 28472-SMIhb-ApHNa-MNbmW-ZGc0f(1879048192) on route 1
+28422-Cra3x-ni7ZJ-0WCfs-K7YpV (1)::registering broker 27905-ZG4d1-JufSD-NzTz5-mUAai(1879048193) on route 2
+28422-Cra3x-ni7ZJ-0WCfs-K7YpV (1)::registering federate msgExchange_1(131072) on route 1
+28422-Cra3x-ni7ZJ-0WCfs-K7YpV (1)::registering federate msgExchange_0(131073) on route 2
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	2 federates [min 2]
+	0/2 brokers/cores [min 0]
+	0 publications
+	0 inputs
+	2 endpoints
+	0 filters
+<<<<<<<<<

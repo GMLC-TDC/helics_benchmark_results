@@ -1,0 +1,21 @@
+1575-yBIfe-Mk9JR-AdIMw-X3XSZ (0)::connecting
+1575-yBIfe-Mk9JR-AdIMw-X3XSZ (0)::||connected on 127.0.0.1:33133
+1575-yBIfe-Mk9JR-AdIMw-X3XSZ (1)::registering broker 1667-xWHVG-qZsCn-uF9DT-Y6naH(1879048192) on route 1
+1575-yBIfe-Mk9JR-AdIMw-X3XSZ (1)::registering federate timinghub(131072) on route 1
+1575-yBIfe-Mk9JR-AdIMw-X3XSZ (1)::registering broker 1731-DL21g-SkbzI-6tjnT-3G3Sv(1879048193) on route 2
+1575-yBIfe-Mk9JR-AdIMw-X3XSZ (1)::registering broker 18983-lCKBw-wGY2R-mYj6q-MblXI(1879048194) on route 3
+1575-yBIfe-Mk9JR-AdIMw-X3XSZ (1)::registering federate timingleaf_0(131073) on route 2
+1575-yBIfe-Mk9JR-AdIMw-X3XSZ (1)::registering federate timingleaf_1(131074) on route 3
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	3 federates [min 3]
+	0/3 brokers/cores [min 0]
+	4 publications
+	0 inputs
+	0 endpoints
+	0 filters
+<<<<<<<<<
+1575-yBIfe-Mk9JR-AdIMw-X3XSZ (0)::got disconnect from 1731-DL21g-SkbzI-6tjnT-3G3Sv(1879048193)
+1575-yBIfe-Mk9JR-AdIMw-X3XSZ (0)::got disconnect from 18983-lCKBw-wGY2R-mYj6q-MblXI(1879048194)
+1575-yBIfe-Mk9JR-AdIMw-X3XSZ (0)::got disconnect from 1667-xWHVG-qZsCn-uF9DT-Y6naH(1879048192)
+1575-yBIfe-Mk9JR-AdIMw-X3XSZ (0)::||disconnecting

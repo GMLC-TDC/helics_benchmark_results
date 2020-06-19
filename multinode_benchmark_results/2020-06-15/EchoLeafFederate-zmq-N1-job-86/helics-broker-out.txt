@@ -1,0 +1,18 @@
+28571-yR4H2-oGE9i-NCLxj-ZaS0O (0)::connecting
+28571-yR4H2-oGE9i-NCLxj-ZaS0O (0)::||connected on tcp://127.0.0.1:23404
+28571-yR4H2-oGE9i-NCLxj-ZaS0O (1)::registering broker 28609-E7D8o-zxMs8-FjKUJ-Pfl2S(1879048192) on route 1
+28571-yR4H2-oGE9i-NCLxj-ZaS0O (1)::registering broker 28631-BdWFH-eEW2M-PNIL9-YCzV9(1879048193) on route 2
+28571-yR4H2-oGE9i-NCLxj-ZaS0O (1)::registering federate echohub(131072) on route 1
+28571-yR4H2-oGE9i-NCLxj-ZaS0O (1)::registering federate echoleaf_0(131073) on route 2
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	2 federates [min 2]
+	0/2 brokers/cores [min 0]
+	2 publications
+	0 inputs
+	0 endpoints
+	0 filters
+<<<<<<<<<
+28571-yR4H2-oGE9i-NCLxj-ZaS0O (0)::got disconnect from 28631-BdWFH-eEW2M-PNIL9-YCzV9(1879048193)
+28571-yR4H2-oGE9i-NCLxj-ZaS0O (0)::got disconnect from 28609-E7D8o-zxMs8-FjKUJ-Pfl2S(1879048192)
+28571-yR4H2-oGE9i-NCLxj-ZaS0O (0)::||disconnecting

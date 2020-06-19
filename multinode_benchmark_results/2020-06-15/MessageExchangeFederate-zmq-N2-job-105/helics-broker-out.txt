@@ -1,0 +1,20 @@
+30161-2K3kh-xk25H-nzs3P-XUMbD (0)::connecting
+30161-2K3kh-xk25H-nzs3P-XUMbD (0)::||connected on tcp://127.0.0.1:23404
+30161-2K3kh-xk25H-nzs3P-XUMbD (1)::registering broker 30190-2VTgQ-XouHE-UNhe6-xzfLS(1879048192) on route 1
+30161-2K3kh-xk25H-nzs3P-XUMbD (1)::registering broker 22596-9xBCZ-Kx0kq-EdCXC-mRmun(1879048193) on route 2
+30161-2K3kh-xk25H-nzs3P-XUMbD (1)::registering federate msgExchange_0(131072) on route 1
+30161-2K3kh-xk25H-nzs3P-XUMbD (1)::registering federate msgExchange_1(131073) on route 2
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	2 federates [min 2]
+	0/2 brokers/cores [min 0]
+	0 publications
+	0 inputs
+	2 endpoints
+	0 filters
+<<<<<<<<<
+30161-2K3kh-xk25H-nzs3P-XUMbD (1)::entering Exec Mode
+30161-2K3kh-xk25H-nzs3P-XUMbD (0)::got disconnect from 22596-9xBCZ-Kx0kq-EdCXC-mRmun(1879048193)
+30161-2K3kh-xk25H-nzs3P-XUMbD (0)::got disconnect from 30190-2VTgQ-XouHE-UNhe6-xzfLS(1879048192)
+commWarning||30161-2K3kh-xk25H-nzs3P-XUMbD (1)::unknown route and no broker, dropping message time_grant:From (1) Granted Time(1e-08) to (131072)
+30161-2K3kh-xk25H-nzs3P-XUMbD (0)::||disconnecting

@@ -1,0 +1,21 @@
+16131-ufPYS-IWqgs-oU3Hg-tMNiK (0)::connecting
+16131-ufPYS-IWqgs-oU3Hg-tMNiK (0)::||connected on 127.0.0.1:33133
+16131-ufPYS-IWqgs-oU3Hg-tMNiK (1)::registering broker 16178-WKJQa-pu26X-H3joj-IyTTp(1879048192) on route 1
+16131-ufPYS-IWqgs-oU3Hg-tMNiK (1)::registering broker 16203-dTkwg-QizkO-l5GDB-dOBi2(1879048193) on route 2
+16131-ufPYS-IWqgs-oU3Hg-tMNiK (1)::registering federate echohub(131072) on route 1
+16131-ufPYS-IWqgs-oU3Hg-tMNiK (1)::registering broker 2682-LQyfU-SH3H1-IilN7-nEpEo(1879048194) on route 3
+16131-ufPYS-IWqgs-oU3Hg-tMNiK (1)::registering federate echoleaf_1(131073) on route 2
+16131-ufPYS-IWqgs-oU3Hg-tMNiK (1)::registering federate echoleaf_0(131074) on route 3
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	3 federates [min 3]
+	0/3 brokers/cores [min 0]
+	4 publications
+	0 inputs
+	0 endpoints
+	0 filters
+<<<<<<<<<
+16131-ufPYS-IWqgs-oU3Hg-tMNiK (0)::got disconnect from 2682-LQyfU-SH3H1-IilN7-nEpEo(1879048194)
+16131-ufPYS-IWqgs-oU3Hg-tMNiK (0)::got disconnect from 16203-dTkwg-QizkO-l5GDB-dOBi2(1879048193)
+16131-ufPYS-IWqgs-oU3Hg-tMNiK (0)::got disconnect from 16178-WKJQa-pu26X-H3joj-IyTTp(1879048192)
+16131-ufPYS-IWqgs-oU3Hg-tMNiK (0)::||disconnecting

@@ -1,0 +1,19 @@
+29946-uu4Qz-bND6h-CUdXZ-B5tQk (0)::connecting
+29946-uu4Qz-bND6h-CUdXZ-B5tQk (0)::||connected on tcp://127.0.0.1:23404
+29946-uu4Qz-bND6h-CUdXZ-B5tQk (1)::registering broker 29986-12bsn-YY8zV-CWj7U-lsO00(1879048192) on route 1
+29946-uu4Qz-bND6h-CUdXZ-B5tQk (1)::registering broker 22503-SFA53-ltoDz-90FIs-10cdi(1879048193) on route 2
+29946-uu4Qz-bND6h-CUdXZ-B5tQk (1)::registering federate msgExchange_0(131072) on route 1
+29946-uu4Qz-bND6h-CUdXZ-B5tQk (1)::registering federate msgExchange_1(131073) on route 2
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	2 federates [min 2]
+	0/2 brokers/cores [min 0]
+	0 publications
+	0 inputs
+	2 endpoints
+	0 filters
+<<<<<<<<<
+29946-uu4Qz-bND6h-CUdXZ-B5tQk (1)::entering Exec Mode
+29946-uu4Qz-bND6h-CUdXZ-B5tQk (0)::got disconnect from 22503-SFA53-ltoDz-90FIs-10cdi(1879048193)
+29946-uu4Qz-bND6h-CUdXZ-B5tQk (0)::got disconnect from 29986-12bsn-YY8zV-CWj7U-lsO00(1879048192)
+29946-uu4Qz-bND6h-CUdXZ-B5tQk (0)::||disconnecting

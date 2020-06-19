@@ -1,0 +1,19 @@
+5972-VONs7-SU54r-wSCMD-VWmBn (0)::connecting
+5972-VONs7-SU54r-wSCMD-VWmBn (0)::||connected on 127.0.0.1:23901
+5972-VONs7-SU54r-wSCMD-VWmBn (1)::registering broker 6017-87Ret-NzGqz-eHg3V-3qipL(1879048192) on route 1
+5972-VONs7-SU54r-wSCMD-VWmBn (1)::registering broker 26257-w8mRG-ELzGY-7ig0H-eo0WK(1879048193) on route 2
+5972-VONs7-SU54r-wSCMD-VWmBn (1)::registering federate msgExchange_1(131072) on route 1
+5972-VONs7-SU54r-wSCMD-VWmBn (1)::registering federate msgExchange_0(131073) on route 2
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	2 federates [min 2]
+	0/2 brokers/cores [min 0]
+	0 publications
+	0 inputs
+	2 endpoints
+	0 filters
+<<<<<<<<<
+5972-VONs7-SU54r-wSCMD-VWmBn (1)::entering Exec Mode
+5972-VONs7-SU54r-wSCMD-VWmBn (0)::got disconnect from 6017-87Ret-NzGqz-eHg3V-3qipL(1879048192)
+5972-VONs7-SU54r-wSCMD-VWmBn (0)::got disconnect from 26257-w8mRG-ELzGY-7ig0H-eo0WK(1879048193)
+5972-VONs7-SU54r-wSCMD-VWmBn (0)::||disconnecting

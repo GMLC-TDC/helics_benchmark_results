@@ -1,0 +1,23 @@
+6551-Pn4F9-2ysCa-jq6yC-09POZ (0)::connecting
+6551-Pn4F9-2ysCa-jq6yC-09POZ (0)::||connected on tcp://127.0.0.1:23404
+6551-Pn4F9-2ysCa-jq6yC-09POZ (1)::registering broker 6586-5O0ss-lQ6XW-CTfYm-Hex8B(1879048192) on route 1
+6551-Pn4F9-2ysCa-jq6yC-09POZ (1)::registering broker 25558-6Z1P2-MMRMk-7HG1z-hvwYE(1879048193) on route 2
+6551-Pn4F9-2ysCa-jq6yC-09POZ (1)::registering broker 23707-WKQNm-DPsDG-JlnDb-pKuMU(1879048194) on route 3
+6551-Pn4F9-2ysCa-jq6yC-09POZ (1)::registering federate ringlink_0(131072) on route 1
+6551-Pn4F9-2ysCa-jq6yC-09POZ (1)::registering federate ringlink_2(131073) on route 2
+6551-Pn4F9-2ysCa-jq6yC-09POZ (1)::registering federate ringlink_1(131074) on route 3
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	3 federates [min 3]
+	0/3 brokers/cores [min 0]
+	0 publications
+	0 inputs
+	3 endpoints
+	0 filters
+<<<<<<<<<
+6551-Pn4F9-2ysCa-jq6yC-09POZ (1)::entering Exec Mode
+6551-Pn4F9-2ysCa-jq6yC-09POZ (0)::got disconnect from 23707-WKQNm-DPsDG-JlnDb-pKuMU(1879048194)
+6551-Pn4F9-2ysCa-jq6yC-09POZ (0)::got disconnect from 25558-6Z1P2-MMRMk-7HG1z-hvwYE(1879048193)
+commWarning||6551-Pn4F9-2ysCa-jq6yC-09POZ (1)::unknown route and no broker, dropping message send_message:From (ept_0)(131072:0) To ept_1 size 100 at 4.999e-06
+6551-Pn4F9-2ysCa-jq6yC-09POZ (0)::got disconnect from 6586-5O0ss-lQ6XW-CTfYm-Hex8B(1879048192)
+6551-Pn4F9-2ysCa-jq6yC-09POZ (0)::||disconnecting

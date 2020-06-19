@@ -1,0 +1,25 @@
+23244-rdmYH-kxlXC-DYAY9-b7dO4 (0)::connecting
+23244-rdmYH-kxlXC-DYAY9-b7dO4 (0)::||connected on 127.0.0.1:23901
+23244-rdmYH-kxlXC-DYAY9-b7dO4 (1)::registering broker 23299-lEh18-ZhOGY-pkS0n-VGeUR(1879048192) on route 1
+23244-rdmYH-kxlXC-DYAY9-b7dO4 (1)::registering broker 6925-KWAoX-VkNzI-8Ufgk-YBHbD(1879048193) on route 2
+23244-rdmYH-kxlXC-DYAY9-b7dO4 (1)::registering broker 8764-1KPcx-h4gSq-3hsnC-ykgBW(1879048194) on route 3
+23244-rdmYH-kxlXC-DYAY9-b7dO4 (1)::registering broker 6567-76Cy1-4L87P-IGnyl-qQf9c(1879048195) on route 4
+23244-rdmYH-kxlXC-DYAY9-b7dO4 (1)::registering federate ringlink_1(131072) on route 1
+23244-rdmYH-kxlXC-DYAY9-b7dO4 (1)::registering federate ringlink_3(131073) on route 2
+23244-rdmYH-kxlXC-DYAY9-b7dO4 (1)::registering federate ringlink_2(131074) on route 3
+23244-rdmYH-kxlXC-DYAY9-b7dO4 (1)::registering federate ringlink_0(131075) on route 4
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	4 federates [min 4]
+	0/4 brokers/cores [min 0]
+	4 publications
+	0 inputs
+	0 endpoints
+	0 filters
+<<<<<<<<<
+23244-rdmYH-kxlXC-DYAY9-b7dO4 (0)::got disconnect from 8764-1KPcx-h4gSq-3hsnC-ykgBW(1879048194)
+23244-rdmYH-kxlXC-DYAY9-b7dO4 (0)::got disconnect from 6925-KWAoX-VkNzI-8Ufgk-YBHbD(1879048193)
+23244-rdmYH-kxlXC-DYAY9-b7dO4 (0)::got disconnect from 6567-76Cy1-4L87P-IGnyl-qQf9c(1879048195)
+commWarning||23244-rdmYH-kxlXC-DYAY9-b7dO4 (1)::(udp) unknown route, message dropped pub:From (131072) handle(1) size 100 at 5e-06 to 131074
+23244-rdmYH-kxlXC-DYAY9-b7dO4 (0)::got disconnect from 23299-lEh18-ZhOGY-pkS0n-VGeUR(1879048192)
+23244-rdmYH-kxlXC-DYAY9-b7dO4 (0)::||disconnecting

@@ -1,0 +1,25 @@
+6737-KHNVH-o9QGG-gw6SL-hi976 (0)::connecting
+6737-KHNVH-o9QGG-gw6SL-hi976 (0)::||connected on tcp://127.0.0.1:23404
+6737-KHNVH-o9QGG-gw6SL-hi976 (1)::registering broker 6778-4D49T-Bi2vt-hMQVL-Ln3lT(1879048192) on route 1
+6737-KHNVH-o9QGG-gw6SL-hi976 (1)::registering broker 25666-7ibqa-9PKN9-7fUTj-6b58R(1879048193) on route 2
+6737-KHNVH-o9QGG-gw6SL-hi976 (1)::registering broker 24293-AHcEb-kZcQV-kBrwr-3jKns(1879048194) on route 3
+6737-KHNVH-o9QGG-gw6SL-hi976 (1)::registering broker 23802-TnJtI-2EPfZ-dFaE1-BFkvS(1879048195) on route 4
+6737-KHNVH-o9QGG-gw6SL-hi976 (1)::registering federate ringlink_1(131072) on route 1
+6737-KHNVH-o9QGG-gw6SL-hi976 (1)::registering federate ringlink_2(131073) on route 2
+6737-KHNVH-o9QGG-gw6SL-hi976 (1)::registering federate ringlink_3(131074) on route 3
+6737-KHNVH-o9QGG-gw6SL-hi976 (1)::registering federate ringlink_0(131075) on route 4
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	4 federates [min 4]
+	0/4 brokers/cores [min 0]
+	4 publications
+	0 inputs
+	0 endpoints
+	0 filters
+<<<<<<<<<
+6737-KHNVH-o9QGG-gw6SL-hi976 (0)::got disconnect from 25666-7ibqa-9PKN9-7fUTj-6b58R(1879048193)
+6737-KHNVH-o9QGG-gw6SL-hi976 (0)::got disconnect from 24293-AHcEb-kZcQV-kBrwr-3jKns(1879048194)
+6737-KHNVH-o9QGG-gw6SL-hi976 (0)::got disconnect from 23802-TnJtI-2EPfZ-dFaE1-BFkvS(1879048195)
+6737-KHNVH-o9QGG-gw6SL-hi976 (0)::got disconnect from 6778-4D49T-Bi2vt-hMQVL-Ln3lT(1879048192)
+commWarning||6737-KHNVH-o9QGG-gw6SL-hi976 (1)::unknown route and no broker, dropping message pub:From (131072) handle(1) size 100 at 5e-06 to 131073
+6737-KHNVH-o9QGG-gw6SL-hi976 (0)::||disconnecting

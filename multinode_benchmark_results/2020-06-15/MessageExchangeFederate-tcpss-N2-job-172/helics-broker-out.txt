@@ -1,0 +1,20 @@
+4045-eqocS-NKQWE-Y7Hvc-9fHk4 (0)::connecting
+4045-eqocS-NKQWE-Y7Hvc-9fHk4 (0)::||connected on 127.0.0.1:33133
+4045-eqocS-NKQWE-Y7Hvc-9fHk4 (1)::registering broker 4110-0gjo1-BN6PS-pxwiH-Uow1v(1879048192) on route 1
+4045-eqocS-NKQWE-Y7Hvc-9fHk4 (1)::registering broker 25405-4z8i8-DUqkI-f7Mac-LwXnr(1879048193) on route 2
+4045-eqocS-NKQWE-Y7Hvc-9fHk4 (1)::registering federate msgExchange_1(131072) on route 1
+4045-eqocS-NKQWE-Y7Hvc-9fHk4 (1)::registering federate msgExchange_0(131073) on route 2
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	2 federates [min 2]
+	0/2 brokers/cores [min 0]
+	0 publications
+	0 inputs
+	2 endpoints
+	0 filters
+<<<<<<<<<
+4045-eqocS-NKQWE-Y7Hvc-9fHk4 (1)::entering Exec Mode
+4045-eqocS-NKQWE-Y7Hvc-9fHk4 (0)::got disconnect from 4110-0gjo1-BN6PS-pxwiH-Uow1v(1879048192)
+4045-eqocS-NKQWE-Y7Hvc-9fHk4 (0)::got disconnect from 25405-4z8i8-DUqkI-f7Mac-LwXnr(1879048193)
+4045-eqocS-NKQWE-Y7Hvc-9fHk4 (0)::||disconnecting
+commWarning||4045-eqocS-NKQWE-Y7Hvc-9fHk4 (1)::(tcpss) unknown message destination message dropped time_grant:From (1) Granted Time(1e-08) to (131073)

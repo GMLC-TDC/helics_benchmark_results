@@ -1,0 +1,19 @@
+2252-VRRVZ-xkfaw-8khvW-AoUgu (0)::connecting
+2252-VRRVZ-xkfaw-8khvW-AoUgu (0)::||connected on 127.0.0.1:24160
+2252-VRRVZ-xkfaw-8khvW-AoUgu (1)::registering broker 2295-1t1Py-nvRE1-ZnE3T-Q1Bpu(1879048192) on route 1
+2252-VRRVZ-xkfaw-8khvW-AoUgu (1)::registering broker 24602-w0AWu-L7qe8-dqFEY-cYEod(1879048193) on route 2
+2252-VRRVZ-xkfaw-8khvW-AoUgu (1)::registering federate msgExchange_1(131072) on route 1
+2252-VRRVZ-xkfaw-8khvW-AoUgu (1)::registering federate msgExchange_0(131073) on route 2
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	2 federates [min 2]
+	0/2 brokers/cores [min 0]
+	0 publications
+	0 inputs
+	2 endpoints
+	0 filters
+<<<<<<<<<
+2252-VRRVZ-xkfaw-8khvW-AoUgu (1)::entering Exec Mode
+2252-VRRVZ-xkfaw-8khvW-AoUgu (0)::got disconnect from 24602-w0AWu-L7qe8-dqFEY-cYEod(1879048193)
+2252-VRRVZ-xkfaw-8khvW-AoUgu (0)::got disconnect from 2295-1t1Py-nvRE1-ZnE3T-Q1Bpu(1879048192)
+2252-VRRVZ-xkfaw-8khvW-AoUgu (0)::||disconnecting

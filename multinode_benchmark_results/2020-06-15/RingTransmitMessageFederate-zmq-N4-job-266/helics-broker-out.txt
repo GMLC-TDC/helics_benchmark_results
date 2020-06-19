@@ -1,0 +1,27 @@
+1096-Dkz5M-YZ4PC-GGRJc-wIlrm (0)::connecting
+1096-Dkz5M-YZ4PC-GGRJc-wIlrm (0)::||connected on tcp://127.0.0.1:23404
+1096-Dkz5M-YZ4PC-GGRJc-wIlrm (1)::registering broker 1171-orehn-66oFY-9XIwr-nChOh(1879048192) on route 1
+1096-Dkz5M-YZ4PC-GGRJc-wIlrm (1)::registering broker 20630-PRZYM-o638r-xCDiq-dsrvX(1879048193) on route 2
+1096-Dkz5M-YZ4PC-GGRJc-wIlrm (1)::registering broker 19377-pZQWl-Yc01a-2mudq-V7Ne4(1879048194) on route 3
+1096-Dkz5M-YZ4PC-GGRJc-wIlrm (1)::registering broker 18770-BiYhh-KNn3H-1PnSb-PcAMR(1879048195) on route 4
+1096-Dkz5M-YZ4PC-GGRJc-wIlrm (1)::registering federate ringlink_0(131072) on route 1
+1096-Dkz5M-YZ4PC-GGRJc-wIlrm (1)::registering federate ringlink_2(131073) on route 2
+1096-Dkz5M-YZ4PC-GGRJc-wIlrm (1)::registering federate ringlink_3(131074) on route 3
+1096-Dkz5M-YZ4PC-GGRJc-wIlrm (1)::registering federate ringlink_1(131075) on route 4
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	4 federates [min 4]
+	0/4 brokers/cores [min 0]
+	0 publications
+	0 inputs
+	4 endpoints
+	0 filters
+<<<<<<<<<
+1096-Dkz5M-YZ4PC-GGRJc-wIlrm (1)::entering Exec Mode
+1096-Dkz5M-YZ4PC-GGRJc-wIlrm (0)::got disconnect from 18770-BiYhh-KNn3H-1PnSb-PcAMR(1879048195)
+1096-Dkz5M-YZ4PC-GGRJc-wIlrm (0)::got disconnect from 20630-PRZYM-o638r-xCDiq-dsrvX(1879048193)
+commWarning||1096-Dkz5M-YZ4PC-GGRJc-wIlrm (1)::unknown route and no broker, dropping message time_request:From (1) Time(5e-06, 5e-06, 5e-06) to (131073)
+1096-Dkz5M-YZ4PC-GGRJc-wIlrm (0)::got disconnect from 19377-pZQWl-Yc01a-2mudq-V7Ne4(1879048194)
+commWarning||1096-Dkz5M-YZ4PC-GGRJc-wIlrm (1)::unknown route and no broker, dropping message send_message:From (ept_0)(131072:0) To ept_1 size 100 at 4.999e-06
+1096-Dkz5M-YZ4PC-GGRJc-wIlrm (0)::got disconnect from 1171-orehn-66oFY-9XIwr-nChOh(1879048192)
+1096-Dkz5M-YZ4PC-GGRJc-wIlrm (0)::||disconnecting

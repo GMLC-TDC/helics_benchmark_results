@@ -1,0 +1,4 @@
+24417-gOefd-4aCnO-KpyfD-2oEAU (0)::broker responded with error: already in initialization mode
+24417-gOefd-4aCnO-KpyfD-2oEAU (0)::broker responded with error: already in initialization mode
+Uncaught exception occurred
+srun: error: pi2: task 0: Exited with exit code 1

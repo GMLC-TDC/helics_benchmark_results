@@ -1,0 +1,22 @@
+4866-kCpAF-8u7Jt-TZKkw-VTL05 (0)::connecting
+4866-kCpAF-8u7Jt-TZKkw-VTL05 (0)::||connected on 127.0.0.1:33133
+4866-kCpAF-8u7Jt-TZKkw-VTL05 (1)::registering broker 4900-1zoCo-MgdRz-WfINy-4iuBK(1879048192) on route 1
+4866-kCpAF-8u7Jt-TZKkw-VTL05 (1)::registering broker 25759-TGz7l-giGpj-J7VmX-UIfvO(1879048193) on route 2
+4866-kCpAF-8u7Jt-TZKkw-VTL05 (1)::registering federate msgExchange_1(131072) on route 1
+4866-kCpAF-8u7Jt-TZKkw-VTL05 (1)::registering federate msgExchange_0(131073) on route 2
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	2 federates [min 2]
+	0/2 brokers/cores [min 0]
+	0 publications
+	0 inputs
+	2 endpoints
+	0 filters
+<<<<<<<<<
+4866-kCpAF-8u7Jt-TZKkw-VTL05 (1)::entering Exec Mode
+4866-kCpAF-8u7Jt-TZKkw-VTL05 (0)::got disconnect from 4900-1zoCo-MgdRz-WfINy-4iuBK(1879048192)
+4866-kCpAF-8u7Jt-TZKkw-VTL05 (0)::got disconnect from 25759-TGz7l-giGpj-J7VmX-UIfvO(1879048193)
+commWarning||4866-kCpAF-8u7Jt-TZKkw-VTL05 (1)::(tcpss) unknown message destination message dropped time_request:From (1) Time(1e-08, 1.9e-08, 1e-08) to (131072)
+4866-kCpAF-8u7Jt-TZKkw-VTL05 (0)::||disconnecting
+commWarning||4866-kCpAF-8u7Jt-TZKkw-VTL05 (1)::(tcpss) unknown message destination message dropped time_request:From (1) Time(1e-08, 1e-08, 1e-08) to (131072)
+commWarning||4866-kCpAF-8u7Jt-TZKkw-VTL05 (1)::(tcpss) unknown message destination message dropped time_grant:From (1) Granted Time(1e-08) to (131072)

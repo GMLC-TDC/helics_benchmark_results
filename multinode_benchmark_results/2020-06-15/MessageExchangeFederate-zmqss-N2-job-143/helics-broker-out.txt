@@ -1,0 +1,19 @@
+1647-McfUY-INfgi-0iFLp-7gzCO (0)::connecting
+1647-McfUY-INfgi-0iFLp-7gzCO (0)::||connected on tcp://127.0.0.1:23404
+1647-McfUY-INfgi-0iFLp-7gzCO (1)::registering broker 1723-Q7NsZ-EZ5jp-Pr4fv-iM4IJ(1879048192) on route 1
+1647-McfUY-INfgi-0iFLp-7gzCO (1)::registering broker 24348-KGsds-NCwlg-rIZEG-DPrGU(1879048193) on route 2
+1647-McfUY-INfgi-0iFLp-7gzCO (1)::registering federate msgExchange_0(131072) on route 1
+1647-McfUY-INfgi-0iFLp-7gzCO (1)::registering federate msgExchange_1(131073) on route 2
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	2 federates [min 2]
+	0/2 brokers/cores [min 0]
+	0 publications
+	0 inputs
+	2 endpoints
+	0 filters
+<<<<<<<<<
+1647-McfUY-INfgi-0iFLp-7gzCO (1)::entering Exec Mode
+1647-McfUY-INfgi-0iFLp-7gzCO (0)::got disconnect from 1723-Q7NsZ-EZ5jp-Pr4fv-iM4IJ(1879048192)
+1647-McfUY-INfgi-0iFLp-7gzCO (0)::got disconnect from 24348-KGsds-NCwlg-rIZEG-DPrGU(1879048193)
+1647-McfUY-INfgi-0iFLp-7gzCO (0)::||disconnecting

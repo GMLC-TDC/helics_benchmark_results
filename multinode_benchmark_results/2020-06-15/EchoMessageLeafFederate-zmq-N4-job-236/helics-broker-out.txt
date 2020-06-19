@@ -1,0 +1,30 @@
+14233-WcnQk-EdmAy-QJ9pK-Lkx3x (0)::connecting
+14233-WcnQk-EdmAy-QJ9pK-Lkx3x (0)::||connected on tcp://127.0.0.1:23404
+14233-WcnQk-EdmAy-QJ9pK-Lkx3x (1)::registering broker 14242-ZAQNB-Nao8t-XARGc-zSruA(1879048192) on route 1
+14233-WcnQk-EdmAy-QJ9pK-Lkx3x (1)::registering broker 14282-gxpuS-oJAda-ftH5e-kJIMc(1879048193) on route 2
+14233-WcnQk-EdmAy-QJ9pK-Lkx3x (1)::registering federate echohub(131072) on route 1
+14233-WcnQk-EdmAy-QJ9pK-Lkx3x (1)::registering broker 1716-vZvlK-EK3RT-QslsB-rNbJr(1879048194) on route 3
+14233-WcnQk-EdmAy-QJ9pK-Lkx3x (1)::registering broker 2528-7uojT-cjyq3-Lyqvv-CF5fa(1879048195) on route 4
+14233-WcnQk-EdmAy-QJ9pK-Lkx3x (1)::registering broker 3133-wP5N2-lcpkw-zut1r-qdaFg(1879048196) on route 5
+14233-WcnQk-EdmAy-QJ9pK-Lkx3x (1)::registering federate echoleaf_0(131073) on route 2
+14233-WcnQk-EdmAy-QJ9pK-Lkx3x (1)::registering federate echoleaf_1(131074) on route 3
+14233-WcnQk-EdmAy-QJ9pK-Lkx3x (1)::registering federate echoleaf_2(131075) on route 4
+14233-WcnQk-EdmAy-QJ9pK-Lkx3x (1)::registering federate echoleaf_3(131076) on route 5
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	5 federates [min 5]
+	0/5 brokers/cores [min 0]
+	0 publications
+	0 inputs
+	5 endpoints
+	0 filters
+<<<<<<<<<
+14233-WcnQk-EdmAy-QJ9pK-Lkx3x (1)::entering Exec Mode
+14233-WcnQk-EdmAy-QJ9pK-Lkx3x (0)::got disconnect from 14282-gxpuS-oJAda-ftH5e-kJIMc(1879048193)
+14233-WcnQk-EdmAy-QJ9pK-Lkx3x (0)::got disconnect from 3133-wP5N2-lcpkw-zut1r-qdaFg(1879048196)
+14233-WcnQk-EdmAy-QJ9pK-Lkx3x (0)::got disconnect from 1716-vZvlK-EK3RT-QslsB-rNbJr(1879048194)
+14233-WcnQk-EdmAy-QJ9pK-Lkx3x (0)::got disconnect from 2528-7uojT-cjyq3-Lyqvv-CF5fa(1879048195)
+commWarning||14233-WcnQk-EdmAy-QJ9pK-Lkx3x (1)::unknown route and no broker, dropping message time_grant:From (1) Granted Time(5.0020000000000006e-06) to (131075)
+14233-WcnQk-EdmAy-QJ9pK-Lkx3x (0)::got disconnect from 14242-ZAQNB-Nao8t-XARGc-zSruA(1879048192)
+commWarning||14233-WcnQk-EdmAy-QJ9pK-Lkx3x (1)::unknown route and no broker, dropping message time_grant:From (1) Granted Time(0.15000000000000002) to (131072)
+14233-WcnQk-EdmAy-QJ9pK-Lkx3x (0)::||disconnecting

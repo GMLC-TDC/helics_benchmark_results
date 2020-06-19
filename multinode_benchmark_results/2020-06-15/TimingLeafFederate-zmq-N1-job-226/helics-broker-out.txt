@@ -1,0 +1,5 @@
+9017-bYAUW-cMYT8-Wz8l5-im7pI (0)::connecting
+commERROR||9017-bYAUW-cMYT8-Wz8l5-im7pI (1)::Unable to bind zmq reply socket giving up tcp://*:23405
+commERROR||9017-bYAUW-cMYT8-Wz8l5-im7pI (1)::receiver connection failure
+Broker is unable to connect
+

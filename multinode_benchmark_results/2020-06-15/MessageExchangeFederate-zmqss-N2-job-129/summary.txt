@@ -1,0 +1,17 @@
+------------HELICS BUILD INFO -------------
+HELICS VERSION: 2.5.1-develop-g80ecfd1e (2020-06-04)
+ZMQ VERSION: ZMQ v4.3.1
+COMPILER INFO: Unix Makefiles  Linux-4.19.97-v7l+:GNU-8.3.0
+BUILD FLAGS:  -O3 -DNDEBUG  $<$<COMPILE_LANGUAGE:CXX>:-std=c++14>
+------------PROCESSOR INFO ----------------
+HOST PROCESSOR TYPE: armv7l
+CPU MODEL:  ARMv7 Processor rev 3 (v7l)
+NUM CPU:4
+-------------------------------------------
+DATE: 2020-06-15 21:49:09
+CLUSTER: picl
+NUM NODES: 2
+FEDS PER NODE: 1
+TOPOLOGY:  single_broker
+MESSAGE SIZE: 64
+MESSAGE COUNT: 4

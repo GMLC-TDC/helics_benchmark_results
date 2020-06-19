@@ -1,0 +1,26 @@
+21271-3pT3S-kTE7g-AgB1G-0ZSwO (0)::connecting
+21271-3pT3S-kTE7g-AgB1G-0ZSwO (0)::||connected on tcp://127.0.0.1:23404
+21271-3pT3S-kTE7g-AgB1G-0ZSwO (1)::registering broker 21324-qSpFj-QvOOh-D3PP7-KBpUG(1879048192) on route 1
+21271-3pT3S-kTE7g-AgB1G-0ZSwO (1)::registering broker 17055-1DzPI-mRXUQ-04bJk-TZUHx(1879048193) on route 2
+21271-3pT3S-kTE7g-AgB1G-0ZSwO (1)::registering broker 15103-3DDXW-9bcSA-1hDqv-AjXRy(1879048194) on route 3
+21271-3pT3S-kTE7g-AgB1G-0ZSwO (1)::registering federate phold_1(131072) on route 1
+21271-3pT3S-kTE7g-AgB1G-0ZSwO (1)::registering federate phold_2(131073) on route 2
+21271-3pT3S-kTE7g-AgB1G-0ZSwO (1)::registering federate phold_0(131074) on route 3
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	3 federates [min 3]
+	0/3 brokers/cores [min 0]
+	0 publications
+	0 inputs
+	3 endpoints
+	0 filters
+<<<<<<<<<
+21271-3pT3S-kTE7g-AgB1G-0ZSwO (1)::entering Exec Mode
+21271-3pT3S-kTE7g-AgB1G-0ZSwO (0)::got disconnect from 21324-qSpFj-QvOOh-D3PP7-KBpUG(1879048192)
+21271-3pT3S-kTE7g-AgB1G-0ZSwO (0)::got disconnect from 17055-1DzPI-mRXUQ-04bJk-TZUHx(1879048193)
+21271-3pT3S-kTE7g-AgB1G-0ZSwO (0)::got disconnect from 15103-3DDXW-9bcSA-1hDqv-AjXRy(1879048194)
+commWarning||21271-3pT3S-kTE7g-AgB1G-0ZSwO (1)::unknown route and no broker, dropping message time_grant:From (1) Granted Time(1e-05) to (131073)
+commWarning||21271-3pT3S-kTE7g-AgB1G-0ZSwO (1)::unknown route and no broker, dropping message time_grant:From (1) Granted Time(1e-05) to (131074)
+commWarning||21271-3pT3S-kTE7g-AgB1G-0ZSwO (1)::unknown route and no broker, dropping message time_request:From (1) Time(1e-05, 1e-05, 1e-05) to (131074)
+commWarning||21271-3pT3S-kTE7g-AgB1G-0ZSwO (1)::unknown route and no broker, dropping message time_grant:From (1) Granted Time(1e-05) to (131074)
+21271-3pT3S-kTE7g-AgB1G-0ZSwO (0)::||disconnecting

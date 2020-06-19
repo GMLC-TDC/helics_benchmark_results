@@ -1,0 +1,15 @@
+20084-fneRC-PJvO7-0qJcd-aXvTO (0)::connecting
+20084-fneRC-PJvO7-0qJcd-aXvTO (0)::||connected on tcp://127.0.0.1:23404
+20084-fneRC-PJvO7-0qJcd-aXvTO (1)::registering broker 20133-MEcsG-Iu1AD-88p38-Tb7K3(1879048192) on route 1
+20084-fneRC-PJvO7-0qJcd-aXvTO (1)::registering federate phold_0(131072) on route 1
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	1 federates [min 1]
+	0/1 brokers/cores [min 0]
+	0 publications
+	0 inputs
+	1 endpoints
+	0 filters
+<<<<<<<<<
+20084-fneRC-PJvO7-0qJcd-aXvTO (0)::got disconnect from 20133-MEcsG-Iu1AD-88p38-Tb7K3(1879048192)
+20084-fneRC-PJvO7-0qJcd-aXvTO (0)::||disconnecting

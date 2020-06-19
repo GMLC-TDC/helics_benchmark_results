@@ -1,0 +1,19 @@
+32637-8JbjB-3Lai7-6OYaZ-HPJWR (0)::connecting
+32637-8JbjB-3Lai7-6OYaZ-HPJWR (0)::||connected on tcp://127.0.0.1:23404
+32637-8JbjB-3Lai7-6OYaZ-HPJWR (1)::registering broker 32712-B0QCp-taqIw-Z6c3J-kang9(1879048192) on route 1
+32637-8JbjB-3Lai7-6OYaZ-HPJWR (1)::registering broker 23710-aIyr5-1Ii6i-7aVOS-PC8rH(1879048193) on route 2
+32637-8JbjB-3Lai7-6OYaZ-HPJWR (1)::registering federate msgExchange_1(131072) on route 1
+32637-8JbjB-3Lai7-6OYaZ-HPJWR (1)::registering federate msgExchange_0(131073) on route 2
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	2 federates [min 2]
+	0/2 brokers/cores [min 0]
+	0 publications
+	0 inputs
+	2 endpoints
+	0 filters
+<<<<<<<<<
+32637-8JbjB-3Lai7-6OYaZ-HPJWR (1)::entering Exec Mode
+32637-8JbjB-3Lai7-6OYaZ-HPJWR (0)::got disconnect from 23710-aIyr5-1Ii6i-7aVOS-PC8rH(1879048193)
+32637-8JbjB-3Lai7-6OYaZ-HPJWR (0)::got disconnect from 32712-B0QCp-taqIw-Z6c3J-kang9(1879048192)
+32637-8JbjB-3Lai7-6OYaZ-HPJWR (0)::||disconnecting

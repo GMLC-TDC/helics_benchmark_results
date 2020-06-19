@@ -1,0 +1,3 @@
+9071-DR0IF-OFKAp-z8L8M-tiHmd (0)::broker responded with error for registration of timinghub::duplicate federate name detected
+
+Uncaught exception occurred

@@ -1,0 +1,19 @@
+26434-TfOqJ-LKr9A-5ie9N-6ob2N (0)::connecting
+26434-TfOqJ-LKr9A-5ie9N-6ob2N (0)::||connected on 127.0.0.1:33133
+26434-TfOqJ-LKr9A-5ie9N-6ob2N (1)::registering broker 26488-hzRJq-7jNWw-G7IF5-Ne04Y(1879048192) on route 1
+26434-TfOqJ-LKr9A-5ie9N-6ob2N (1)::registering broker 27038-roqhX-Rm28x-mYvpd-wWP7W(1879048193) on route 2
+26434-TfOqJ-LKr9A-5ie9N-6ob2N (1)::registering federate msgExchange_0(131072) on route 1
+26434-TfOqJ-LKr9A-5ie9N-6ob2N (1)::registering federate msgExchange_1(131073) on route 2
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	2 federates [min 2]
+	0/2 brokers/cores [min 0]
+	0 publications
+	0 inputs
+	2 endpoints
+	0 filters
+<<<<<<<<<
+26434-TfOqJ-LKr9A-5ie9N-6ob2N (1)::entering Exec Mode
+26434-TfOqJ-LKr9A-5ie9N-6ob2N (0)::got disconnect from 27038-roqhX-Rm28x-mYvpd-wWP7W(1879048193)
+26434-TfOqJ-LKr9A-5ie9N-6ob2N (0)::got disconnect from 26488-hzRJq-7jNWw-G7IF5-Ne04Y(1879048192)
+26434-TfOqJ-LKr9A-5ie9N-6ob2N (0)::||disconnecting

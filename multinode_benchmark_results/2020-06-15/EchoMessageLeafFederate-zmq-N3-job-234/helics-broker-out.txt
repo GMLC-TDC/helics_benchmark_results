@@ -1,0 +1,27 @@
+13872-URIW7-DBYG0-4gIRg-P5Gzp (0)::connecting
+13872-URIW7-DBYG0-4gIRg-P5Gzp (0)::||connected on tcp://127.0.0.1:23404
+13872-URIW7-DBYG0-4gIRg-P5Gzp (1)::registering broker 13907-U4EQl-HioC1-v04Ei-dV1XY(1879048192) on route 1
+13872-URIW7-DBYG0-4gIRg-P5Gzp (1)::registering federate echohub(131072) on route 1
+13872-URIW7-DBYG0-4gIRg-P5Gzp (1)::registering broker 13941-s5r2T-BaddH-0tB9p-gv8Tn(1879048193) on route 2
+13872-URIW7-DBYG0-4gIRg-P5Gzp (1)::registering broker 1566-i0lIV-5iFoP-0gkZS-o3Bez(1879048194) on route 3
+13872-URIW7-DBYG0-4gIRg-P5Gzp (1)::registering broker 2983-WXt7O-mZeCA-vOBpq-0Oayo(1879048195) on route 4
+13872-URIW7-DBYG0-4gIRg-P5Gzp (1)::registering federate echoleaf_2(131073) on route 2
+13872-URIW7-DBYG0-4gIRg-P5Gzp (1)::registering federate echoleaf_1(131074) on route 3
+13872-URIW7-DBYG0-4gIRg-P5Gzp (1)::registering federate echoleaf_0(131075) on route 4
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	4 federates [min 4]
+	0/4 brokers/cores [min 0]
+	0 publications
+	0 inputs
+	4 endpoints
+	0 filters
+<<<<<<<<<
+13872-URIW7-DBYG0-4gIRg-P5Gzp (1)::entering Exec Mode
+13872-URIW7-DBYG0-4gIRg-P5Gzp (0)::got disconnect from 13941-s5r2T-BaddH-0tB9p-gv8Tn(1879048193)
+13872-URIW7-DBYG0-4gIRg-P5Gzp (0)::got disconnect from 2983-WXt7O-mZeCA-vOBpq-0Oayo(1879048195)
+commWarning||13872-URIW7-DBYG0-4gIRg-P5Gzp (1)::unknown route and no broker, dropping message time_grant:From (1) Granted Time(5.0020000000000006e-06) to (131075)
+13872-URIW7-DBYG0-4gIRg-P5Gzp (0)::got disconnect from 1566-i0lIV-5iFoP-0gkZS-o3Bez(1879048194)
+commWarning||13872-URIW7-DBYG0-4gIRg-P5Gzp (1)::unknown route and no broker, dropping message time_grant:From (1) Granted Time(5.0020000000000006e-06) to (131074)
+13872-URIW7-DBYG0-4gIRg-P5Gzp (0)::got disconnect from 13907-U4EQl-HioC1-v04Ei-dV1XY(1879048192)
+13872-URIW7-DBYG0-4gIRg-P5Gzp (0)::||disconnecting

@@ -1,0 +1,19 @@
+1235-jnWq6-3bUT2-TPl5Q-KKVmE (0)::connecting
+1235-jnWq6-3bUT2-TPl5Q-KKVmE (0)::||connected on tcp://127.0.0.1:23404
+1235-jnWq6-3bUT2-TPl5Q-KKVmE (1)::registering broker 1272-sp7Oc-pNhE6-7wfzy-fw0fi(1879048192) on route 1
+1235-jnWq6-3bUT2-TPl5Q-KKVmE (1)::registering broker 24129-od6wN-m0ZkZ-H8InC-FlVyh(1879048193) on route 2
+1235-jnWq6-3bUT2-TPl5Q-KKVmE (1)::registering federate msgExchange_0(131072) on route 1
+1235-jnWq6-3bUT2-TPl5Q-KKVmE (1)::registering federate msgExchange_1(131073) on route 2
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	2 federates [min 2]
+	0/2 brokers/cores [min 0]
+	0 publications
+	0 inputs
+	2 endpoints
+	0 filters
+<<<<<<<<<
+1235-jnWq6-3bUT2-TPl5Q-KKVmE (1)::entering Exec Mode
+1235-jnWq6-3bUT2-TPl5Q-KKVmE (0)::got disconnect from 24129-od6wN-m0ZkZ-H8InC-FlVyh(1879048193)
+1235-jnWq6-3bUT2-TPl5Q-KKVmE (0)::got disconnect from 1272-sp7Oc-pNhE6-7wfzy-fw0fi(1879048192)
+1235-jnWq6-3bUT2-TPl5Q-KKVmE (0)::||disconnecting

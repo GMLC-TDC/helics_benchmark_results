@@ -1,0 +1,19 @@
+5069-PP5gh-7RfrX-PvJid-MRzMW (0)::connecting
+5069-PP5gh-7RfrX-PvJid-MRzMW (0)::||connected on 127.0.0.1:23901
+5069-PP5gh-7RfrX-PvJid-MRzMW (1)::registering broker 5115-rQqWN-ifIq5-d4NTd-agq8m(1879048192) on route 1
+5069-PP5gh-7RfrX-PvJid-MRzMW (1)::registering broker 25862-NqCsP-HH4CU-AgfgE-qcwIc(1879048193) on route 2
+5069-PP5gh-7RfrX-PvJid-MRzMW (1)::registering federate msgExchange_0(131072) on route 1
+5069-PP5gh-7RfrX-PvJid-MRzMW (1)::registering federate msgExchange_1(131073) on route 2
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	2 federates [min 2]
+	0/2 brokers/cores [min 0]
+	0 publications
+	0 inputs
+	2 endpoints
+	0 filters
+<<<<<<<<<
+5069-PP5gh-7RfrX-PvJid-MRzMW (1)::entering Exec Mode
+5069-PP5gh-7RfrX-PvJid-MRzMW (0)::got disconnect from 25862-NqCsP-HH4CU-AgfgE-qcwIc(1879048193)
+5069-PP5gh-7RfrX-PvJid-MRzMW (0)::got disconnect from 5115-rQqWN-ifIq5-d4NTd-agq8m(1879048192)
+5069-PP5gh-7RfrX-PvJid-MRzMW (0)::||disconnecting

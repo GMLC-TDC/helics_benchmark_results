@@ -1,0 +1,2 @@
+helics_benchmarks: /clusterfs/HELICS/src/helics/network/tcp/TcpHelperClasses.cpp:276: size_t helics::tcp::TcpConnection::send(const string&): Assertion `sz == dataString.size()' failed.
+srun: error: pi5: task 0: Aborted

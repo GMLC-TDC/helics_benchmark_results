@@ -1,0 +1,3 @@
+BENCHMARK FEDERATE TYPE: EchoLeaf
+ELAPSED TIME (ns): 9412901341
+srun: error: pi2: task 0: Segmentation fault

@@ -1,0 +1,23 @@
+3245-j6QLK-8KLJ4-QJsfi-lmyLG (0)::connecting
+3245-j6QLK-8KLJ4-QJsfi-lmyLG (0)::||connected on tcp://127.0.0.1:23404
+3245-j6QLK-8KLJ4-QJsfi-lmyLG (1)::registering broker 3254-UFLdf-v8g06-1n09e-9BKeu(1879048192) on route 1
+3245-j6QLK-8KLJ4-QJsfi-lmyLG (1)::registering broker 3282-1OIcJ-El270-TwI0p-Bgjry(1879048193) on route 2
+3245-j6QLK-8KLJ4-QJsfi-lmyLG (1)::registering federate echohub(131072) on route 1
+3245-j6QLK-8KLJ4-QJsfi-lmyLG (1)::registering broker 2617-S3HSh-gXYBp-wrwbb-6xGT1(1879048194) on route 3
+3245-j6QLK-8KLJ4-QJsfi-lmyLG (1)::registering federate echoleaf_0(131073) on route 2
+3245-j6QLK-8KLJ4-QJsfi-lmyLG (1)::registering federate echoleaf_1(131074) on route 3
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	3 federates [min 3]
+	0/3 brokers/cores [min 0]
+	0 publications
+	0 inputs
+	3 endpoints
+	0 filters
+<<<<<<<<<
+3245-j6QLK-8KLJ4-QJsfi-lmyLG (1)::entering Exec Mode
+3245-j6QLK-8KLJ4-QJsfi-lmyLG (0)::got disconnect from 3282-1OIcJ-El270-TwI0p-Bgjry(1879048193)
+3245-j6QLK-8KLJ4-QJsfi-lmyLG (0)::got disconnect from 2617-S3HSh-gXYBp-wrwbb-6xGT1(1879048194)
+commWarning||3245-j6QLK-8KLJ4-QJsfi-lmyLG (1)::unknown route and no broker, dropping message time_grant:From (1) Granted Time(5.0020000000000006e-06) to (131074)
+3245-j6QLK-8KLJ4-QJsfi-lmyLG (0)::got disconnect from 3254-UFLdf-v8g06-1n09e-9BKeu(1879048192)
+3245-j6QLK-8KLJ4-QJsfi-lmyLG (0)::||disconnecting

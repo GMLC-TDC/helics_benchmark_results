@@ -1,0 +1,19 @@
+21831-GFMvK-fP1Lj-TNou0-pNcHO (0)::connecting
+21831-GFMvK-fP1Lj-TNou0-pNcHO (0)::||connected on 127.0.0.1:23901
+21831-GFMvK-fP1Lj-TNou0-pNcHO (1)::registering broker 21845-WJ8s8-aDGtp-0epjm-6xquB(1879048192) on route 1
+21831-GFMvK-fP1Lj-TNou0-pNcHO (1)::registering broker 21865-bhPRD-SGc2q-LICEX-pdiYp(1879048193) on route 2
+21831-GFMvK-fP1Lj-TNou0-pNcHO (1)::registering federate echohub(131072) on route 1
+21831-GFMvK-fP1Lj-TNou0-pNcHO (1)::registering federate echoleaf_0(131073) on route 2
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	2 federates [min 2]
+	0/2 brokers/cores [min 0]
+	0 publications
+	0 inputs
+	2 endpoints
+	0 filters
+<<<<<<<<<
+21831-GFMvK-fP1Lj-TNou0-pNcHO (1)::entering Exec Mode
+21831-GFMvK-fP1Lj-TNou0-pNcHO (0)::got disconnect from 21865-bhPRD-SGc2q-LICEX-pdiYp(1879048193)
+21831-GFMvK-fP1Lj-TNou0-pNcHO (0)::got disconnect from 21845-WJ8s8-aDGtp-0epjm-6xquB(1879048192)
+21831-GFMvK-fP1Lj-TNou0-pNcHO (0)::||disconnecting

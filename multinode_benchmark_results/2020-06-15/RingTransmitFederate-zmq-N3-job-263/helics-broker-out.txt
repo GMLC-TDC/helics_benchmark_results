@@ -1,0 +1,22 @@
+547-lf7PJ-Ns9uS-Jx4PC-lh4Sb (0)::connecting
+547-lf7PJ-Ns9uS-Jx4PC-lh4Sb (0)::||connected on tcp://127.0.0.1:23404
+547-lf7PJ-Ns9uS-Jx4PC-lh4Sb (1)::registering broker 602-60mMo-Lbu23-WWPD6-HzVNX(1879048192) on route 1
+547-lf7PJ-Ns9uS-Jx4PC-lh4Sb (1)::registering broker 20315-pLW54-cfQH1-Akh5S-naukJ(1879048193) on route 2
+547-lf7PJ-Ns9uS-Jx4PC-lh4Sb (1)::registering broker 18456-GAJZc-rvuJB-vahp5-AsTE2(1879048194) on route 3
+547-lf7PJ-Ns9uS-Jx4PC-lh4Sb (1)::registering federate ringlink_1(131072) on route 1
+547-lf7PJ-Ns9uS-Jx4PC-lh4Sb (1)::registering federate ringlink_2(131073) on route 2
+547-lf7PJ-Ns9uS-Jx4PC-lh4Sb (1)::registering federate ringlink_0(131074) on route 3
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	3 federates [min 3]
+	0/3 brokers/cores [min 0]
+	3 publications
+	0 inputs
+	0 endpoints
+	0 filters
+<<<<<<<<<
+547-lf7PJ-Ns9uS-Jx4PC-lh4Sb (0)::got disconnect from 20315-pLW54-cfQH1-Akh5S-naukJ(1879048193)
+547-lf7PJ-Ns9uS-Jx4PC-lh4Sb (0)::got disconnect from 18456-GAJZc-rvuJB-vahp5-AsTE2(1879048194)
+commWarning||547-lf7PJ-Ns9uS-Jx4PC-lh4Sb (1)::unknown route and no broker, dropping message pub:From (131072) handle(1) size 100 at 5e-06 to 131073
+547-lf7PJ-Ns9uS-Jx4PC-lh4Sb (0)::got disconnect from 602-60mMo-Lbu23-WWPD6-HzVNX(1879048192)
+547-lf7PJ-Ns9uS-Jx4PC-lh4Sb (0)::||disconnecting

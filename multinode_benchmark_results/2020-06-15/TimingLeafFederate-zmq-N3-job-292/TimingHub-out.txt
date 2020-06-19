@@ -1,0 +1,3 @@
+23988-UpeUv-KqOPX-fLLNx-9BOnd (0)::broker responded with error for registration of timinghub::duplicate federate name detected
+
+Uncaught exception occurred

@@ -1,0 +1,15 @@
+8444-iHeIh-CAIdG-yFjtC-hTFaK (0)::connecting
+8444-iHeIh-CAIdG-yFjtC-hTFaK (0)::||connected on tcp://127.0.0.1:23404
+8444-iHeIh-CAIdG-yFjtC-hTFaK (1)::registering broker 8490-zl0GI-4Kmgf-i70cg-1U2S9(1879048192) on route 1
+8444-iHeIh-CAIdG-yFjtC-hTFaK (1)::registering federate ringlink_0(131072) on route 1
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	1 federates [min 1]
+	0/1 brokers/cores [min 0]
+	1 publications
+	0 inputs
+	0 endpoints
+	0 filters
+<<<<<<<<<
+8444-iHeIh-CAIdG-yFjtC-hTFaK (0)::got disconnect from 8490-zl0GI-4Kmgf-i70cg-1U2S9(1879048192)
+8444-iHeIh-CAIdG-yFjtC-hTFaK (0)::||disconnecting

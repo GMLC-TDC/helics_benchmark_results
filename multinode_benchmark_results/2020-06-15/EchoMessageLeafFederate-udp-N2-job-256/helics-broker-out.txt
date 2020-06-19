@@ -1,0 +1,22 @@
+10759-R2dCE-Un4kL-u5qqw-oU2pX (0)::connecting
+10759-R2dCE-Un4kL-u5qqw-oU2pX (0)::||connected on 127.0.0.1:23901
+10759-R2dCE-Un4kL-u5qqw-oU2pX (1)::registering broker 10788-vj5G0-VToXB-3XQFm-t6O9U(1879048192) on route 1
+10759-R2dCE-Un4kL-u5qqw-oU2pX (1)::registering broker 10814-9H8D8-ylqrw-iSnvf-C1lHh(1879048193) on route 2
+10759-R2dCE-Un4kL-u5qqw-oU2pX (1)::registering federate echohub(131072) on route 1
+10759-R2dCE-Un4kL-u5qqw-oU2pX (1)::registering broker 9746-MDOJa-HtM5D-VHzLO-Rar4V(1879048194) on route 3
+10759-R2dCE-Un4kL-u5qqw-oU2pX (1)::registering federate echoleaf_0(131073) on route 2
+10759-R2dCE-Un4kL-u5qqw-oU2pX (1)::registering federate echoleaf_1(131074) on route 3
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	3 federates [min 3]
+	0/3 brokers/cores [min 0]
+	0 publications
+	0 inputs
+	3 endpoints
+	0 filters
+<<<<<<<<<
+10759-R2dCE-Un4kL-u5qqw-oU2pX (1)::entering Exec Mode
+10759-R2dCE-Un4kL-u5qqw-oU2pX (0)::got disconnect from 10814-9H8D8-ylqrw-iSnvf-C1lHh(1879048193)
+10759-R2dCE-Un4kL-u5qqw-oU2pX (0)::got disconnect from 9746-MDOJa-HtM5D-VHzLO-Rar4V(1879048194)
+10759-R2dCE-Un4kL-u5qqw-oU2pX (0)::got disconnect from 10788-vj5G0-VToXB-3XQFm-t6O9U(1879048192)
+10759-R2dCE-Un4kL-u5qqw-oU2pX (0)::||disconnecting

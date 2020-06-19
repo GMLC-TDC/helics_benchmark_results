@@ -1,0 +1,21 @@
+1581-RivrB-miq4P-Y7YjN-B8Qb5 (0)::connecting
+1581-RivrB-miq4P-Y7YjN-B8Qb5 (0)::||connected on 127.0.0.1:24160
+1581-RivrB-miq4P-Y7YjN-B8Qb5 (1)::registering broker 1675-GLOts-ggQG3-KGLzP-IT6gd(1879048192) on route 1
+1581-RivrB-miq4P-Y7YjN-B8Qb5 (1)::registering federate timinghub(131072) on route 1
+1581-RivrB-miq4P-Y7YjN-B8Qb5 (1)::registering broker 1748-lda6z-krjNf-tQ7Dq-U5tSs(1879048193) on route 2
+1581-RivrB-miq4P-Y7YjN-B8Qb5 (1)::registering broker 19003-Kp6Li-TdBfj-oNbS7-AgNgl(1879048194) on route 3
+1581-RivrB-miq4P-Y7YjN-B8Qb5 (1)::registering federate timingleaf_1(131073) on route 2
+1581-RivrB-miq4P-Y7YjN-B8Qb5 (1)::registering federate timingleaf_0(131074) on route 3
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	3 federates [min 3]
+	0/3 brokers/cores [min 0]
+	4 publications
+	0 inputs
+	0 endpoints
+	0 filters
+<<<<<<<<<
+1581-RivrB-miq4P-Y7YjN-B8Qb5 (0)::got disconnect from 1748-lda6z-krjNf-tQ7Dq-U5tSs(1879048193)
+1581-RivrB-miq4P-Y7YjN-B8Qb5 (0)::got disconnect from 19003-Kp6Li-TdBfj-oNbS7-AgNgl(1879048194)
+1581-RivrB-miq4P-Y7YjN-B8Qb5 (0)::got disconnect from 1675-GLOts-ggQG3-KGLzP-IT6gd(1879048192)
+1581-RivrB-miq4P-Y7YjN-B8Qb5 (0)::||disconnecting

@@ -1,0 +1,4 @@
+9083-WQBrI-CTJIX-k1kRj-GrltV (0)::broker responded with error: already in initialization mode
+9083-WQBrI-CTJIX-k1kRj-GrltV (0)::broker responded with error: already in initialization mode
+Uncaught exception occurred
+srun: error: pi4: task 0: Exited with exit code 1

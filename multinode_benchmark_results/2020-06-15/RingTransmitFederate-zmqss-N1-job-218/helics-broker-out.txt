@@ -1,0 +1,15 @@
+28659-Hg4gF-PilQL-gd4HS-rcuVv (0)::connecting
+28659-Hg4gF-PilQL-gd4HS-rcuVv (0)::||connected on tcp://127.0.0.1:23404
+28659-Hg4gF-PilQL-gd4HS-rcuVv (1)::registering broker 28686-LDP0g-2ADNl-gYaGR-3V7UF(1879048192) on route 1
+28659-Hg4gF-PilQL-gd4HS-rcuVv (1)::registering federate ringlink_0(131072) on route 1
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	1 federates [min 1]
+	0/1 brokers/cores [min 0]
+	1 publications
+	0 inputs
+	0 endpoints
+	0 filters
+<<<<<<<<<
+28659-Hg4gF-PilQL-gd4HS-rcuVv (0)::got disconnect from 28686-LDP0g-2ADNl-gYaGR-3V7UF(1879048192)
+28659-Hg4gF-PilQL-gd4HS-rcuVv (0)::||disconnecting

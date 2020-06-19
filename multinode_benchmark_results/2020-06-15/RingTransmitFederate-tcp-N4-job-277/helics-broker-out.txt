@@ -1,0 +1,25 @@
+7639-ak4rd-pRHRb-VfdHe-wzp37 (0)::connecting
+7639-ak4rd-pRHRb-VfdHe-wzp37 (0)::||connected on 127.0.0.1:24160
+7639-ak4rd-pRHRb-VfdHe-wzp37 (1)::registering broker 7696-v6o6R-JZYcV-qVail-vFNFR(1879048192) on route 1
+7639-ak4rd-pRHRb-VfdHe-wzp37 (1)::registering broker 24325-7Y5no-gpjFh-gwU5m-hU22e(1879048193) on route 2
+7639-ak4rd-pRHRb-VfdHe-wzp37 (1)::registering broker 26250-BkmfY-ijDTc-PsxbQ-E0arC(1879048194) on route 3
+7639-ak4rd-pRHRb-VfdHe-wzp37 (1)::registering broker 24773-zyVz3-1XfqK-yXML9-MDOC5(1879048195) on route 4
+7639-ak4rd-pRHRb-VfdHe-wzp37 (1)::registering federate ringlink_0(131072) on route 1
+7639-ak4rd-pRHRb-VfdHe-wzp37 (1)::registering federate ringlink_3(131073) on route 2
+7639-ak4rd-pRHRb-VfdHe-wzp37 (1)::registering federate ringlink_1(131074) on route 3
+7639-ak4rd-pRHRb-VfdHe-wzp37 (1)::registering federate ringlink_2(131075) on route 4
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	4 federates [min 4]
+	0/4 brokers/cores [min 0]
+	4 publications
+	0 inputs
+	0 endpoints
+	0 filters
+<<<<<<<<<
+7639-ak4rd-pRHRb-VfdHe-wzp37 (0)::got disconnect from 24773-zyVz3-1XfqK-yXML9-MDOC5(1879048195)
+7639-ak4rd-pRHRb-VfdHe-wzp37 (0)::got disconnect from 24325-7Y5no-gpjFh-gwU5m-hU22e(1879048193)
+7639-ak4rd-pRHRb-VfdHe-wzp37 (0)::got disconnect from 7696-v6o6R-JZYcV-qVail-vFNFR(1879048192)
+commWarning||7639-ak4rd-pRHRb-VfdHe-wzp37 (1)::(tcp) unknown message destination message dropped pub:From (131074) handle(1) size 100 at 5e-06 to 131075
+7639-ak4rd-pRHRb-VfdHe-wzp37 (0)::got disconnect from 26250-BkmfY-ijDTc-PsxbQ-E0arC(1879048194)
+7639-ak4rd-pRHRb-VfdHe-wzp37 (0)::||disconnecting

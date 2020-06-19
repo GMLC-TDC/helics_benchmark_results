@@ -1,0 +1,24 @@
+1411-FKp5p-nIEeL-ChbhG-ZUFET (0)::connecting
+1411-FKp5p-nIEeL-ChbhG-ZUFET (0)::||connected on tcp://127.0.0.1:23404
+1411-FKp5p-nIEeL-ChbhG-ZUFET (1)::registering broker 1450-fDmWA-WNh6T-ywiHx-nMzQy(1879048192) on route 1
+1411-FKp5p-nIEeL-ChbhG-ZUFET (1)::registering federate echohub(131072) on route 1
+1411-FKp5p-nIEeL-ChbhG-ZUFET (1)::registering broker 1489-m3QoZ-3VF7T-ygTJB-8mTMh(1879048193) on route 2
+1411-FKp5p-nIEeL-ChbhG-ZUFET (1)::registering broker 2895-AGqtI-oG0ro-88lIK-rj1zP(1879048194) on route 3
+1411-FKp5p-nIEeL-ChbhG-ZUFET (1)::registering broker 2313-1X0W8-rs4ni-YcUPu-NJapH(1879048195) on route 4
+1411-FKp5p-nIEeL-ChbhG-ZUFET (1)::registering federate echoleaf_0(131073) on route 2
+1411-FKp5p-nIEeL-ChbhG-ZUFET (1)::registering federate echoleaf_1(131074) on route 3
+1411-FKp5p-nIEeL-ChbhG-ZUFET (1)::registering federate echoleaf_2(131075) on route 4
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	4 federates [min 4]
+	0/4 brokers/cores [min 0]
+	6 publications
+	0 inputs
+	0 endpoints
+	0 filters
+<<<<<<<<<
+1411-FKp5p-nIEeL-ChbhG-ZUFET (0)::got disconnect from 1489-m3QoZ-3VF7T-ygTJB-8mTMh(1879048193)
+1411-FKp5p-nIEeL-ChbhG-ZUFET (0)::got disconnect from 2895-AGqtI-oG0ro-88lIK-rj1zP(1879048194)
+1411-FKp5p-nIEeL-ChbhG-ZUFET (0)::got disconnect from 2313-1X0W8-rs4ni-YcUPu-NJapH(1879048195)
+1411-FKp5p-nIEeL-ChbhG-ZUFET (0)::got disconnect from 1450-fDmWA-WNh6T-ywiHx-nMzQy(1879048192)
+1411-FKp5p-nIEeL-ChbhG-ZUFET (0)::||disconnecting

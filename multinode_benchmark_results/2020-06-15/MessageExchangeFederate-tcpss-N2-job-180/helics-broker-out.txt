@@ -1,0 +1,19 @@
+4457-DGhjc-5UCkP-NZ7vn-thqNq (0)::connecting
+4457-DGhjc-5UCkP-NZ7vn-thqNq (0)::||connected on 127.0.0.1:33133
+4457-DGhjc-5UCkP-NZ7vn-thqNq (1)::registering broker 4502-gxExL-ReAAu-p6e4R-m7hTb(1879048192) on route 1
+4457-DGhjc-5UCkP-NZ7vn-thqNq (1)::registering broker 25582-tursj-mt9mz-pRwKP-k2kR2(1879048193) on route 2
+4457-DGhjc-5UCkP-NZ7vn-thqNq (1)::registering federate msgExchange_0(131072) on route 1
+4457-DGhjc-5UCkP-NZ7vn-thqNq (1)::registering federate msgExchange_1(131073) on route 2
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	2 federates [min 2]
+	0/2 brokers/cores [min 0]
+	0 publications
+	0 inputs
+	2 endpoints
+	0 filters
+<<<<<<<<<
+4457-DGhjc-5UCkP-NZ7vn-thqNq (1)::entering Exec Mode
+4457-DGhjc-5UCkP-NZ7vn-thqNq (0)::got disconnect from 4502-gxExL-ReAAu-p6e4R-m7hTb(1879048192)
+4457-DGhjc-5UCkP-NZ7vn-thqNq (0)::got disconnect from 25582-tursj-mt9mz-pRwKP-k2kR2(1879048193)
+4457-DGhjc-5UCkP-NZ7vn-thqNq (0)::||disconnecting

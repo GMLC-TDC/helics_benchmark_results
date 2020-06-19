@@ -1,0 +1,15 @@
+14029-Bn0CI-vj73m-Wv6bg-YnEMh (0)::connecting
+14029-Bn0CI-vj73m-Wv6bg-YnEMh (0)::||connected on tcp://127.0.0.1:23404
+14029-Bn0CI-vj73m-Wv6bg-YnEMh (1)::registering broker 14077-rDC9M-64j49-e1HHS-CLtGF(1879048192) on route 1
+14029-Bn0CI-vj73m-Wv6bg-YnEMh (1)::registering federate phold_0(131072) on route 1
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	1 federates [min 1]
+	0/1 brokers/cores [min 0]
+	0 publications
+	0 inputs
+	1 endpoints
+	0 filters
+<<<<<<<<<
+14029-Bn0CI-vj73m-Wv6bg-YnEMh (0)::got disconnect from 14077-rDC9M-64j49-e1HHS-CLtGF(1879048192)
+14029-Bn0CI-vj73m-Wv6bg-YnEMh (0)::||disconnecting

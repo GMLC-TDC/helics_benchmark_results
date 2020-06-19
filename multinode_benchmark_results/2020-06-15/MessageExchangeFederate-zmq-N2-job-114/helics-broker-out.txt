@@ -1,0 +1,19 @@
+31105-9l0TW-z1I5I-htWjQ-p5mUJ (0)::connecting
+31105-9l0TW-z1I5I-htWjQ-p5mUJ (0)::||connected on tcp://127.0.0.1:23404
+31105-9l0TW-z1I5I-htWjQ-p5mUJ (1)::registering broker 31138-BDvfi-q1WYz-DcJoh-ayxRh(1879048192) on route 1
+31105-9l0TW-z1I5I-htWjQ-p5mUJ (1)::registering broker 23036-4pgiB-oD0hZ-YLDWJ-mhqQX(1879048193) on route 2
+31105-9l0TW-z1I5I-htWjQ-p5mUJ (1)::registering federate msgExchange_0(131072) on route 1
+31105-9l0TW-z1I5I-htWjQ-p5mUJ (1)::registering federate msgExchange_1(131073) on route 2
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	2 federates [min 2]
+	0/2 brokers/cores [min 0]
+	0 publications
+	0 inputs
+	2 endpoints
+	0 filters
+<<<<<<<<<
+31105-9l0TW-z1I5I-htWjQ-p5mUJ (1)::entering Exec Mode
+31105-9l0TW-z1I5I-htWjQ-p5mUJ (0)::got disconnect from 23036-4pgiB-oD0hZ-YLDWJ-mhqQX(1879048193)
+31105-9l0TW-z1I5I-htWjQ-p5mUJ (0)::got disconnect from 31138-BDvfi-q1WYz-DcJoh-ayxRh(1879048192)
+31105-9l0TW-z1I5I-htWjQ-p5mUJ (0)::||disconnecting

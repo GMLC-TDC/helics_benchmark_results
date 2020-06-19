@@ -1,0 +1,25 @@
+897-tX29Q-23rZo-ANrGT-xR9i5 (0)::connecting
+897-tX29Q-23rZo-ANrGT-xR9i5 (0)::||connected on tcp://127.0.0.1:23404
+897-tX29Q-23rZo-ANrGT-xR9i5 (1)::registering broker 957-g64z4-0XCBC-yBEua-Q6YWs(1879048192) on route 1
+897-tX29Q-23rZo-ANrGT-xR9i5 (1)::registering broker 18631-ii8A4-EDZCz-ONo1a-gmWyw(1879048193) on route 2
+897-tX29Q-23rZo-ANrGT-xR9i5 (1)::registering broker 19237-IoRBM-0zREA-wyrOX-xWMyW(1879048194) on route 3
+897-tX29Q-23rZo-ANrGT-xR9i5 (1)::registering broker 20505-yIN2J-QshnP-3EQQV-8P0me(1879048195) on route 4
+897-tX29Q-23rZo-ANrGT-xR9i5 (1)::registering federate ringlink_0(131072) on route 1
+897-tX29Q-23rZo-ANrGT-xR9i5 (1)::registering federate ringlink_2(131073) on route 2
+897-tX29Q-23rZo-ANrGT-xR9i5 (1)::registering federate ringlink_1(131074) on route 3
+897-tX29Q-23rZo-ANrGT-xR9i5 (1)::registering federate ringlink_3(131075) on route 4
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	4 federates [min 4]
+	0/4 brokers/cores [min 0]
+	4 publications
+	0 inputs
+	0 endpoints
+	0 filters
+<<<<<<<<<
+897-tX29Q-23rZo-ANrGT-xR9i5 (0)::got disconnect from 18631-ii8A4-EDZCz-ONo1a-gmWyw(1879048193)
+897-tX29Q-23rZo-ANrGT-xR9i5 (0)::got disconnect from 20505-yIN2J-QshnP-3EQQV-8P0me(1879048195)
+897-tX29Q-23rZo-ANrGT-xR9i5 (0)::got disconnect from 957-g64z4-0XCBC-yBEua-Q6YWs(1879048192)
+897-tX29Q-23rZo-ANrGT-xR9i5 (0)::got disconnect from 19237-IoRBM-0zREA-wyrOX-xWMyW(1879048194)
+commWarning||897-tX29Q-23rZo-ANrGT-xR9i5 (1)::unknown route and no broker, dropping message pub:From (131074) handle(1) size 100 at 5e-06 to 131073
+897-tX29Q-23rZo-ANrGT-xR9i5 (0)::||disconnecting

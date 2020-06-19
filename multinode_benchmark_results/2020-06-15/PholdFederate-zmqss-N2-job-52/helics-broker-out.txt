@@ -1,0 +1,19 @@
+15206-ZXPdA-3bj1J-mXtWt-xXPrc (0)::connecting
+15206-ZXPdA-3bj1J-mXtWt-xXPrc (0)::||connected on tcp://127.0.0.1:23404
+15206-ZXPdA-3bj1J-mXtWt-xXPrc (1)::registering broker 15249-CuK2z-qlcqk-889aP-ejI4e(1879048192) on route 1
+15206-ZXPdA-3bj1J-mXtWt-xXPrc (1)::registering broker 16425-zc1lQ-XfGvw-6i1K3-o1GD3(1879048193) on route 2
+15206-ZXPdA-3bj1J-mXtWt-xXPrc (1)::registering federate phold_0(131072) on route 1
+15206-ZXPdA-3bj1J-mXtWt-xXPrc (1)::registering federate phold_1(131073) on route 2
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	2 federates [min 2]
+	0/2 brokers/cores [min 0]
+	0 publications
+	0 inputs
+	2 endpoints
+	0 filters
+<<<<<<<<<
+15206-ZXPdA-3bj1J-mXtWt-xXPrc (1)::entering Exec Mode
+15206-ZXPdA-3bj1J-mXtWt-xXPrc (0)::got disconnect from 16425-zc1lQ-XfGvw-6i1K3-o1GD3(1879048193)
+15206-ZXPdA-3bj1J-mXtWt-xXPrc (0)::got disconnect from 15249-CuK2z-qlcqk-889aP-ejI4e(1879048192)
+15206-ZXPdA-3bj1J-mXtWt-xXPrc (0)::||disconnecting

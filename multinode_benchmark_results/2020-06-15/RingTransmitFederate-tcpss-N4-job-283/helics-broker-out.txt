@@ -1,0 +1,19 @@
+14018-VNeZS-vmHCy-1RrzP-bKXn9 (0)::connecting
+14018-VNeZS-vmHCy-1RrzP-bKXn9 (0)::||connected on 127.0.0.1:33133
+14018-VNeZS-vmHCy-1RrzP-bKXn9 (1)::registering broker 14075-DlPqG-0lmNH-tO51i-dMFU1(1879048192) on route 1
+14018-VNeZS-vmHCy-1RrzP-bKXn9 (1)::registering broker 30248-Pg0cU-zcKRz-mkBcJ-3n96W(1879048193) on route 2
+14018-VNeZS-vmHCy-1RrzP-bKXn9 (1)::registering federate ringlink_0(131072) on route 1
+14018-VNeZS-vmHCy-1RrzP-bKXn9 (1)::registering broker 30641-xn5K6-JNIwa-TgL9g-0VGHM(1879048194) on route 3
+14018-VNeZS-vmHCy-1RrzP-bKXn9 (1)::registering broker 32366-Wxypi-gaHYn-GzBVm-ldgFJ(1879048195) on route 4
+14018-VNeZS-vmHCy-1RrzP-bKXn9 (1)::registering federate ringlink_1(131073) on route 2
+14018-VNeZS-vmHCy-1RrzP-bKXn9 (1)::registering federate ringlink_2(131074) on route 3
+14018-VNeZS-vmHCy-1RrzP-bKXn9 (1)::registering federate ringlink_3(131075) on route 4
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	4 federates [min 4]
+	0/4 brokers/cores [min 0]
+	4 publications
+	0 inputs
+	0 endpoints
+	0 filters
+<<<<<<<<<

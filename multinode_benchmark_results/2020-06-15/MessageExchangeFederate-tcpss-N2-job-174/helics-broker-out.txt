@@ -1,0 +1,19 @@
+4171-8VdIJ-4xmuZ-7uke5-r434n (0)::connecting
+4171-8VdIJ-4xmuZ-7uke5-r434n (0)::||connected on 127.0.0.1:33133
+4171-8VdIJ-4xmuZ-7uke5-r434n (1)::registering broker 4197-r9UT9-SaT25-4YBct-fhMsw(1879048192) on route 1
+4171-8VdIJ-4xmuZ-7uke5-r434n (1)::registering broker 25427-ZaHw1-tdHX0-5X45g-ySih2(1879048193) on route 2
+4171-8VdIJ-4xmuZ-7uke5-r434n (1)::registering federate msgExchange_0(131072) on route 1
+4171-8VdIJ-4xmuZ-7uke5-r434n (1)::registering federate msgExchange_1(131073) on route 2
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	2 federates [min 2]
+	0/2 brokers/cores [min 0]
+	0 publications
+	0 inputs
+	2 endpoints
+	0 filters
+<<<<<<<<<
+4171-8VdIJ-4xmuZ-7uke5-r434n (1)::entering Exec Mode
+4171-8VdIJ-4xmuZ-7uke5-r434n (0)::got disconnect from 25427-ZaHw1-tdHX0-5X45g-ySih2(1879048193)
+4171-8VdIJ-4xmuZ-7uke5-r434n (0)::got disconnect from 4197-r9UT9-SaT25-4YBct-fhMsw(1879048192)
+4171-8VdIJ-4xmuZ-7uke5-r434n (0)::||disconnecting

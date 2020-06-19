@@ -1,0 +1,26 @@
+22171-URm1d-dtv0n-1F26y-rbA73 (0)::connecting
+22171-URm1d-dtv0n-1F26y-rbA73 (0)::||connected on 127.0.0.1:24160
+22171-URm1d-dtv0n-1F26y-rbA73 (1)::registering broker 22256-KoB4k-ZoDLv-iWkUM-T0veD(1879048192) on route 1
+22171-URm1d-dtv0n-1F26y-rbA73 (1)::registering broker 17575-3jRTz-x20Lv-zPKnS-FdZPP(1879048193) on route 2
+22171-URm1d-dtv0n-1F26y-rbA73 (1)::registering broker 15611-Il67L-rNW8M-xmWDb-x42b7(1879048194) on route 3
+22171-URm1d-dtv0n-1F26y-rbA73 (1)::registering broker 18617-m9vTW-zlQFH-NMvFa-Pfvxg(1879048195) on route 4
+22171-URm1d-dtv0n-1F26y-rbA73 (1)::registering federate phold_3(131072) on route 1
+22171-URm1d-dtv0n-1F26y-rbA73 (1)::registering federate phold_0(131073) on route 2
+22171-URm1d-dtv0n-1F26y-rbA73 (1)::registering federate phold_1(131074) on route 3
+22171-URm1d-dtv0n-1F26y-rbA73 (1)::registering federate phold_2(131075) on route 4
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	4 federates [min 4]
+	0/4 brokers/cores [min 0]
+	0 publications
+	0 inputs
+	4 endpoints
+	0 filters
+<<<<<<<<<
+22171-URm1d-dtv0n-1F26y-rbA73 (1)::entering Exec Mode
+22171-URm1d-dtv0n-1F26y-rbA73 (0)::got disconnect from 22256-KoB4k-ZoDLv-iWkUM-T0veD(1879048192)
+22171-URm1d-dtv0n-1F26y-rbA73 (0)::got disconnect from 17575-3jRTz-x20Lv-zPKnS-FdZPP(1879048193)
+22171-URm1d-dtv0n-1F26y-rbA73 (0)::got disconnect from 15611-Il67L-rNW8M-xmWDb-x42b7(1879048194)
+22171-URm1d-dtv0n-1F26y-rbA73 (0)::got disconnect from 18617-m9vTW-zlQFH-NMvFa-Pfvxg(1879048195)
+commWarning||22171-URm1d-dtv0n-1F26y-rbA73 (1)::(tcp) unknown message destination message dropped send_message:From (phold_0/ept)(131073:0) To phold_3/ept size 2 at 1.0019e-05
+22171-URm1d-dtv0n-1F26y-rbA73 (0)::||disconnecting

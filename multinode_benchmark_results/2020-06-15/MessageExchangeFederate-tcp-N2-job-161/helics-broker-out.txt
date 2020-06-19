@@ -1,0 +1,19 @@
+25746-w3mUz-PMJjq-bGTxN-GyazG (0)::connecting
+25746-w3mUz-PMJjq-bGTxN-GyazG (0)::||connected on 127.0.0.1:24160
+25746-w3mUz-PMJjq-bGTxN-GyazG (1)::registering broker 25802-8M2wJ-PQc6A-LpS7p-9LSbN(1879048192) on route 1
+25746-w3mUz-PMJjq-bGTxN-GyazG (1)::registering broker 26707-EVPo4-V5n0z-4YVYb-8p2F7(1879048193) on route 2
+25746-w3mUz-PMJjq-bGTxN-GyazG (1)::registering federate msgExchange_0(131072) on route 1
+25746-w3mUz-PMJjq-bGTxN-GyazG (1)::registering federate msgExchange_1(131073) on route 2
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	2 federates [min 2]
+	0/2 brokers/cores [min 0]
+	0 publications
+	0 inputs
+	2 endpoints
+	0 filters
+<<<<<<<<<
+25746-w3mUz-PMJjq-bGTxN-GyazG (1)::entering Exec Mode
+25746-w3mUz-PMJjq-bGTxN-GyazG (0)::got disconnect from 26707-EVPo4-V5n0z-4YVYb-8p2F7(1879048193)
+25746-w3mUz-PMJjq-bGTxN-GyazG (0)::got disconnect from 25802-8M2wJ-PQc6A-LpS7p-9LSbN(1879048192)
+25746-w3mUz-PMJjq-bGTxN-GyazG (0)::||disconnecting

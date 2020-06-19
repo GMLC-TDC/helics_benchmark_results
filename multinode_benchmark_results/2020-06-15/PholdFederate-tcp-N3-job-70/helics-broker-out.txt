@@ -1,0 +1,22 @@
+22012-tAqqg-skafo-mpWBX-EUtWq (0)::connecting
+22012-tAqqg-skafo-mpWBX-EUtWq (0)::||connected on 127.0.0.1:24160
+22012-tAqqg-skafo-mpWBX-EUtWq (1)::registering broker 22077-i77Tt-Zsz2C-UYKgv-AFgAY(1879048192) on route 1
+22012-tAqqg-skafo-mpWBX-EUtWq (1)::registering broker 17488-peXj7-LLCGB-NS5dk-60l17(1879048193) on route 2
+22012-tAqqg-skafo-mpWBX-EUtWq (1)::registering broker 15518-8O6VT-EKuBp-WKyFc-lnJ4G(1879048194) on route 3
+22012-tAqqg-skafo-mpWBX-EUtWq (1)::registering federate phold_0(131072) on route 1
+22012-tAqqg-skafo-mpWBX-EUtWq (1)::registering federate phold_2(131073) on route 2
+22012-tAqqg-skafo-mpWBX-EUtWq (1)::registering federate phold_1(131074) on route 3
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	3 federates [min 3]
+	0/3 brokers/cores [min 0]
+	0 publications
+	0 inputs
+	3 endpoints
+	0 filters
+<<<<<<<<<
+22012-tAqqg-skafo-mpWBX-EUtWq (1)::entering Exec Mode
+22012-tAqqg-skafo-mpWBX-EUtWq (0)::got disconnect from 15518-8O6VT-EKuBp-WKyFc-lnJ4G(1879048194)
+22012-tAqqg-skafo-mpWBX-EUtWq (0)::got disconnect from 22077-i77Tt-Zsz2C-UYKgv-AFgAY(1879048192)
+22012-tAqqg-skafo-mpWBX-EUtWq (0)::got disconnect from 17488-peXj7-LLCGB-NS5dk-60l17(1879048193)
+22012-tAqqg-skafo-mpWBX-EUtWq (0)::||disconnecting

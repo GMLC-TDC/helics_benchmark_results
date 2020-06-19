@@ -1,0 +1,19 @@
+27327-bn4co-t53gg-cBdZg-oIlg6 (0)::connecting
+27327-bn4co-t53gg-cBdZg-oIlg6 (0)::||connected on 127.0.0.1:23901
+27327-bn4co-t53gg-cBdZg-oIlg6 (1)::registering broker 27368-QZRsq-MAVR6-FXgDY-FW3nO(1879048192) on route 1
+27327-bn4co-t53gg-cBdZg-oIlg6 (1)::registering broker 27429-r4rBO-HwlBo-QMdXC-m7wc7(1879048193) on route 2
+27327-bn4co-t53gg-cBdZg-oIlg6 (1)::registering federate msgExchange_0(131072) on route 1
+27327-bn4co-t53gg-cBdZg-oIlg6 (1)::registering federate msgExchange_1(131073) on route 2
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	2 federates [min 2]
+	0/2 brokers/cores [min 0]
+	0 publications
+	0 inputs
+	2 endpoints
+	0 filters
+<<<<<<<<<
+27327-bn4co-t53gg-cBdZg-oIlg6 (1)::entering Exec Mode
+27327-bn4co-t53gg-cBdZg-oIlg6 (0)::got disconnect from 27429-r4rBO-HwlBo-QMdXC-m7wc7(1879048193)
+27327-bn4co-t53gg-cBdZg-oIlg6 (0)::got disconnect from 27368-QZRsq-MAVR6-FXgDY-FW3nO(1879048192)
+27327-bn4co-t53gg-cBdZg-oIlg6 (0)::||disconnecting

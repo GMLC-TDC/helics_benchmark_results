@@ -1,0 +1,26 @@
+7477-rrUKG-5IUbs-cXnMq-3rWac (0)::connecting
+7477-rrUKG-5IUbs-cXnMq-3rWac (0)::||connected on 127.0.0.1:24160
+7477-rrUKG-5IUbs-cXnMq-3rWac (1)::registering broker 7528-AFKaR-ZW9ZL-9snez-Qoupx(1879048192) on route 1
+7477-rrUKG-5IUbs-cXnMq-3rWac (1)::registering broker 24233-tgOyy-UgTzU-1W0FV-USLS1(1879048193) on route 2
+7477-rrUKG-5IUbs-cXnMq-3rWac (1)::registering broker 26156-sNntc-P5OpI-wllZN-NPMZb(1879048194) on route 3
+7477-rrUKG-5IUbs-cXnMq-3rWac (1)::registering federate ringlink_1(131072) on route 1
+7477-rrUKG-5IUbs-cXnMq-3rWac (1)::registering federate ringlink_0(131073) on route 2
+7477-rrUKG-5IUbs-cXnMq-3rWac (1)::registering federate ringlink_2(131074) on route 3
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	3 federates [min 3]
+	0/3 brokers/cores [min 0]
+	0 publications
+	0 inputs
+	3 endpoints
+	0 filters
+<<<<<<<<<
+7477-rrUKG-5IUbs-cXnMq-3rWac (1)::entering Exec Mode
+7477-rrUKG-5IUbs-cXnMq-3rWac (0)::got disconnect from 7528-AFKaR-ZW9ZL-9snez-Qoupx(1879048192)
+commWarning||7477-rrUKG-5IUbs-cXnMq-3rWac (1)::(tcp) unknown message destination message dropped time_request:From (1) Time(5e-06, 5e-06, 5e-06) to (131072)
+7477-rrUKG-5IUbs-cXnMq-3rWac (0)::got disconnect from 26156-sNntc-P5OpI-wllZN-NPMZb(1879048194)
+commWarning||7477-rrUKG-5IUbs-cXnMq-3rWac (1)::(tcp) unknown message destination message dropped time_grant:From (1) Granted Time(4.999e-06) to (131074)
+commWarning||7477-rrUKG-5IUbs-cXnMq-3rWac (1)::(tcp) unknown message destination message dropped time_request:From (1) Time(5e-06, 5e-06, 5e-06) to (131074)
+commWarning||7477-rrUKG-5IUbs-cXnMq-3rWac (1)::(tcp) unknown message destination message dropped send_message:From (ept_0)(131073:0) To ept_1 size 100 at 4.999e-06
+7477-rrUKG-5IUbs-cXnMq-3rWac (0)::got disconnect from 24233-tgOyy-UgTzU-1W0FV-USLS1(1879048193)
+7477-rrUKG-5IUbs-cXnMq-3rWac (0)::||disconnecting

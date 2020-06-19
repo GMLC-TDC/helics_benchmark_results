@@ -1,0 +1,15 @@
+8553-M51rj-UHSyT-pUVSt-0S02g (0)::connecting
+8553-M51rj-UHSyT-pUVSt-0S02g (0)::||connected on tcp://127.0.0.1:23404
+8553-M51rj-UHSyT-pUVSt-0S02g (1)::registering broker 8580-rstd2-BptjA-FmStG-wmLlB(1879048192) on route 1
+8553-M51rj-UHSyT-pUVSt-0S02g (1)::registering federate ringlink_0(131072) on route 1
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	1 federates [min 1]
+	0/1 brokers/cores [min 0]
+	0 publications
+	0 inputs
+	1 endpoints
+	0 filters
+<<<<<<<<<
+8553-M51rj-UHSyT-pUVSt-0S02g (0)::got disconnect from 8580-rstd2-BptjA-FmStG-wmLlB(1879048192)
+8553-M51rj-UHSyT-pUVSt-0S02g (0)::||disconnecting

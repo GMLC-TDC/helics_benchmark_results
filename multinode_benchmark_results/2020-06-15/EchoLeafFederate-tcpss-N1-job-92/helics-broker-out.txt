@@ -1,0 +1,18 @@
+23745-kre8U-vQ13b-nIfJG-T0tz1 (0)::connecting
+23745-kre8U-vQ13b-nIfJG-T0tz1 (0)::||connected on 127.0.0.1:33133
+23745-kre8U-vQ13b-nIfJG-T0tz1 (1)::registering broker 23779-LpnGz-bWXOx-cPbHt-8y2sD(1879048192) on route 1
+23745-kre8U-vQ13b-nIfJG-T0tz1 (1)::registering broker 23798-aLr6U-PQ3f5-2qn5t-Q3gVv(1879048193) on route 2
+23745-kre8U-vQ13b-nIfJG-T0tz1 (1)::registering federate echohub(131072) on route 1
+23745-kre8U-vQ13b-nIfJG-T0tz1 (1)::registering federate echoleaf_0(131073) on route 2
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	2 federates [min 2]
+	0/2 brokers/cores [min 0]
+	2 publications
+	0 inputs
+	0 endpoints
+	0 filters
+<<<<<<<<<
+23745-kre8U-vQ13b-nIfJG-T0tz1 (0)::got disconnect from 23798-aLr6U-PQ3f5-2qn5t-Q3gVv(1879048193)
+23745-kre8U-vQ13b-nIfJG-T0tz1 (0)::got disconnect from 23779-LpnGz-bWXOx-cPbHt-8y2sD(1879048192)
+23745-kre8U-vQ13b-nIfJG-T0tz1 (0)::||disconnecting

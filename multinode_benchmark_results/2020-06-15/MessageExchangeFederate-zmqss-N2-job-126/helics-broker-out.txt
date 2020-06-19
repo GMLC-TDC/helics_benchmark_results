@@ -1,0 +1,20 @@
+32335-RztK6-fNuIE-8cJLE-j1dhm (0)::connecting
+32335-RztK6-fNuIE-8cJLE-j1dhm (0)::||connected on tcp://127.0.0.1:23404
+32335-RztK6-fNuIE-8cJLE-j1dhm (1)::registering broker 32383-t4dnG-kGfX1-OcKoS-OXghm(1879048192) on route 1
+32335-RztK6-fNuIE-8cJLE-j1dhm (1)::registering broker 23582-Zf3Uj-Is1c6-WIQgM-zefkB(1879048193) on route 2
+32335-RztK6-fNuIE-8cJLE-j1dhm (1)::registering federate msgExchange_0(131072) on route 1
+32335-RztK6-fNuIE-8cJLE-j1dhm (1)::registering federate msgExchange_1(131073) on route 2
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	2 federates [min 2]
+	0/2 brokers/cores [min 0]
+	0 publications
+	0 inputs
+	2 endpoints
+	0 filters
+<<<<<<<<<
+32335-RztK6-fNuIE-8cJLE-j1dhm (1)::entering Exec Mode
+32335-RztK6-fNuIE-8cJLE-j1dhm (0)::got disconnect from 32383-t4dnG-kGfX1-OcKoS-OXghm(1879048192)
+32335-RztK6-fNuIE-8cJLE-j1dhm (0)::got disconnect from 23582-Zf3Uj-Is1c6-WIQgM-zefkB(1879048193)
+commWarning||32335-RztK6-fNuIE-8cJLE-j1dhm (1)::unknown route and no broker, dropping message time_grant:From (1) Granted Time(1e-08) to (131073)
+32335-RztK6-fNuIE-8cJLE-j1dhm (0)::||disconnecting

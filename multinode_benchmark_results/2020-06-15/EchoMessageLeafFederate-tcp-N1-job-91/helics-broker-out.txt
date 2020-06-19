@@ -1,0 +1,19 @@
+21692-uPA8a-7MUHB-nKQ1b-ORJgo (0)::connecting
+21692-uPA8a-7MUHB-nKQ1b-ORJgo (0)::||connected on 127.0.0.1:24160
+21692-uPA8a-7MUHB-nKQ1b-ORJgo (1)::registering broker 21699-JO9QD-T6HDB-EPlTg-0uQhB(1879048192) on route 1
+21692-uPA8a-7MUHB-nKQ1b-ORJgo (1)::registering broker 21719-XJaHl-GjNGb-qDPjB-s6rlO(1879048193) on route 2
+21692-uPA8a-7MUHB-nKQ1b-ORJgo (1)::registering federate echohub(131072) on route 1
+21692-uPA8a-7MUHB-nKQ1b-ORJgo (1)::registering federate echoleaf_0(131073) on route 2
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	2 federates [min 2]
+	0/2 brokers/cores [min 0]
+	0 publications
+	0 inputs
+	2 endpoints
+	0 filters
+<<<<<<<<<
+21692-uPA8a-7MUHB-nKQ1b-ORJgo (1)::entering Exec Mode
+21692-uPA8a-7MUHB-nKQ1b-ORJgo (0)::got disconnect from 21719-XJaHl-GjNGb-qDPjB-s6rlO(1879048193)
+21692-uPA8a-7MUHB-nKQ1b-ORJgo (0)::got disconnect from 21699-JO9QD-T6HDB-EPlTg-0uQhB(1879048192)
+21692-uPA8a-7MUHB-nKQ1b-ORJgo (0)::||disconnecting

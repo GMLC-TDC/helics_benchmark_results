@@ -1,0 +1,2 @@
+Uncaught exception occurred
+srun: error: pi2: task 0: Exited with exit code 1

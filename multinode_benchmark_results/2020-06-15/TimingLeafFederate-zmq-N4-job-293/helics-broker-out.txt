@@ -1,0 +1,5 @@
+23722-2LqAU-HW6Aj-7lH4w-mys85 (0)::connecting
+commERROR||23722-2LqAU-HW6Aj-7lH4w-mys85 (1)::Unable to bind zmq reply socket giving up tcp://*:23405
+commERROR||23722-2LqAU-HW6Aj-7lH4w-mys85 (1)::receiver connection failure
+Broker is unable to connect
+

@@ -1,0 +1,24 @@
+25888-nWkCd-sTIdy-Db9A9-wLFdS (0)::connecting
+25888-nWkCd-sTIdy-Db9A9-wLFdS (0)::||connected on 127.0.0.1:23901
+25888-nWkCd-sTIdy-Db9A9-wLFdS (1)::registering broker 25943-PEIHf-zfA09-zBvr8-5vLoX(1879048192) on route 1
+25888-nWkCd-sTIdy-Db9A9-wLFdS (1)::registering broker 19003-usZsU-Et2pK-QkDPd-olfB2(1879048193) on route 2
+25888-nWkCd-sTIdy-Db9A9-wLFdS (1)::registering broker 20965-9gnIm-aBBdB-oud9V-AIaOE(1879048194) on route 3
+25888-nWkCd-sTIdy-Db9A9-wLFdS (1)::registering federate phold_0(131072) on route 1
+25888-nWkCd-sTIdy-Db9A9-wLFdS (1)::registering federate phold_1(131073) on route 2
+25888-nWkCd-sTIdy-Db9A9-wLFdS (1)::registering federate phold_2(131074) on route 3
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	3 federates [min 3]
+	0/3 brokers/cores [min 0]
+	0 publications
+	0 inputs
+	3 endpoints
+	0 filters
+<<<<<<<<<
+25888-nWkCd-sTIdy-Db9A9-wLFdS (1)::entering Exec Mode
+25888-nWkCd-sTIdy-Db9A9-wLFdS (0)::got disconnect from 19003-usZsU-Et2pK-QkDPd-olfB2(1879048193)
+25888-nWkCd-sTIdy-Db9A9-wLFdS (0)::got disconnect from 25943-PEIHf-zfA09-zBvr8-5vLoX(1879048192)
+commWarning||25888-nWkCd-sTIdy-Db9A9-wLFdS (1)::(udp) unknown route, message dropped time_grant:From (1) Granted Time(1e-05) to (131072)
+25888-nWkCd-sTIdy-Db9A9-wLFdS (0)::got disconnect from 20965-9gnIm-aBBdB-oud9V-AIaOE(1879048194)
+commWarning||25888-nWkCd-sTIdy-Db9A9-wLFdS (1)::(udp) unknown route, message dropped time_grant:From (1) Granted Time(1e-05) to (131073)
+25888-nWkCd-sTIdy-Db9A9-wLFdS (0)::||disconnecting

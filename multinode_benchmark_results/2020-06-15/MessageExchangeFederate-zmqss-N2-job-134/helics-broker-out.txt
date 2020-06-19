@@ -1,0 +1,19 @@
+729-00Zen-yqKeo-6HVGr-W82Si (0)::connecting
+729-00Zen-yqKeo-6HVGr-W82Si (0)::||connected on tcp://127.0.0.1:23404
+729-00Zen-yqKeo-6HVGr-W82Si (1)::registering broker 776-T4WJb-GxZUi-FcT3R-fPGVk(1879048192) on route 1
+729-00Zen-yqKeo-6HVGr-W82Si (1)::registering broker 23922-e31iQ-lAoWP-V8chp-21Bww(1879048193) on route 2
+729-00Zen-yqKeo-6HVGr-W82Si (1)::registering federate msgExchange_1(131072) on route 1
+729-00Zen-yqKeo-6HVGr-W82Si (1)::registering federate msgExchange_0(131073) on route 2
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	2 federates [min 2]
+	0/2 brokers/cores [min 0]
+	0 publications
+	0 inputs
+	2 endpoints
+	0 filters
+<<<<<<<<<
+729-00Zen-yqKeo-6HVGr-W82Si (1)::entering Exec Mode
+729-00Zen-yqKeo-6HVGr-W82Si (0)::got disconnect from 23922-e31iQ-lAoWP-V8chp-21Bww(1879048193)
+729-00Zen-yqKeo-6HVGr-W82Si (0)::got disconnect from 776-T4WJb-GxZUi-FcT3R-fPGVk(1879048192)
+729-00Zen-yqKeo-6HVGr-W82Si (0)::||disconnecting

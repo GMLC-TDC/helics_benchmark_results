@@ -1,0 +1,19 @@
+23356-iogMt-Hcnrs-DA8sw-vx52N (0)::connecting
+23356-iogMt-Hcnrs-DA8sw-vx52N (0)::||connected on 127.0.0.1:23901
+23356-iogMt-Hcnrs-DA8sw-vx52N (1)::registering broker 23383-sP3WN-8QJvt-9451y-hva1O(1879048192) on route 1
+23356-iogMt-Hcnrs-DA8sw-vx52N (1)::registering broker 23415-gj76y-FZZ2V-EuQyH-xPcAk(1879048193) on route 2
+23356-iogMt-Hcnrs-DA8sw-vx52N (1)::registering federate echohub(131072) on route 1
+23356-iogMt-Hcnrs-DA8sw-vx52N (1)::registering broker 9205-RzviO-aMsRc-nkwOR-r8hTq(1879048194) on route 3
+23356-iogMt-Hcnrs-DA8sw-vx52N (1)::registering broker 10967-kXVzT-sfYtm-foh1n-ihYvt(1879048195) on route 4
+23356-iogMt-Hcnrs-DA8sw-vx52N (1)::registering federate echoleaf_1(131073) on route 2
+23356-iogMt-Hcnrs-DA8sw-vx52N (1)::registering federate echoleaf_0(131074) on route 3
+23356-iogMt-Hcnrs-DA8sw-vx52N (1)::registering federate echoleaf_2(131075) on route 4
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	4 federates [min 4]
+	0/4 brokers/cores [min 0]
+	0 publications
+	0 inputs
+	4 endpoints
+	0 filters
+<<<<<<<<<

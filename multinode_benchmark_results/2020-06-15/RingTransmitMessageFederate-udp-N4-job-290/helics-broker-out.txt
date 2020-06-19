@@ -1,0 +1,26 @@
+23420-h9bE4-YLVTO-LKRtv-EncYU (0)::connecting
+23420-h9bE4-YLVTO-LKRtv-EncYU (0)::||connected on 127.0.0.1:23901
+23420-h9bE4-YLVTO-LKRtv-EncYU (1)::registering broker 23492-e86Eo-rlgm6-uEkkE-z8R1x(1879048192) on route 1
+23420-h9bE4-YLVTO-LKRtv-EncYU (1)::registering broker 8853-EZ5Kz-KyoHl-ECBru-IRrGi(1879048193) on route 2
+23420-h9bE4-YLVTO-LKRtv-EncYU (1)::registering broker 6657-bIypy-A9QRU-JDDpE-GRUrW(1879048194) on route 3
+23420-h9bE4-YLVTO-LKRtv-EncYU (1)::registering broker 7014-nHrqt-qpUrn-sd1Ds-yMu7B(1879048195) on route 4
+23420-h9bE4-YLVTO-LKRtv-EncYU (1)::registering federate ringlink_0(131072) on route 1
+23420-h9bE4-YLVTO-LKRtv-EncYU (1)::registering federate ringlink_2(131073) on route 2
+23420-h9bE4-YLVTO-LKRtv-EncYU (1)::registering federate ringlink_3(131074) on route 3
+23420-h9bE4-YLVTO-LKRtv-EncYU (1)::registering federate ringlink_1(131075) on route 4
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	4 federates [min 4]
+	0/4 brokers/cores [min 0]
+	0 publications
+	0 inputs
+	4 endpoints
+	0 filters
+<<<<<<<<<
+23420-h9bE4-YLVTO-LKRtv-EncYU (1)::entering Exec Mode
+23420-h9bE4-YLVTO-LKRtv-EncYU (0)::got disconnect from 7014-nHrqt-qpUrn-sd1Ds-yMu7B(1879048195)
+23420-h9bE4-YLVTO-LKRtv-EncYU (0)::got disconnect from 8853-EZ5Kz-KyoHl-ECBru-IRrGi(1879048193)
+23420-h9bE4-YLVTO-LKRtv-EncYU (0)::got disconnect from 6657-bIypy-A9QRU-JDDpE-GRUrW(1879048194)
+commWarning||23420-h9bE4-YLVTO-LKRtv-EncYU (1)::(udp) unknown route, message dropped send_message:From (ept_0)(131072:0) To ept_1 size 100 at 4.999e-06
+23420-h9bE4-YLVTO-LKRtv-EncYU (0)::got disconnect from 23492-e86Eo-rlgm6-uEkkE-z8R1x(1879048192)
+23420-h9bE4-YLVTO-LKRtv-EncYU (0)::||disconnecting

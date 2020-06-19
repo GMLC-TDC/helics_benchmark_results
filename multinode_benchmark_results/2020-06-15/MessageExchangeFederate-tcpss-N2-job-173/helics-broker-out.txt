@@ -1,0 +1,19 @@
+26324-f6YCj-tvWyX-hqpsL-kCZBK (0)::connecting
+26324-f6YCj-tvWyX-hqpsL-kCZBK (0)::||connected on 127.0.0.1:33133
+26324-f6YCj-tvWyX-hqpsL-kCZBK (1)::registering broker 26378-Uue9d-pk5D6-BEBDX-dmk3F(1879048192) on route 1
+26324-f6YCj-tvWyX-hqpsL-kCZBK (1)::registering broker 26984-SURCa-r8SUs-UKgUx-HrIfK(1879048193) on route 2
+26324-f6YCj-tvWyX-hqpsL-kCZBK (1)::registering federate msgExchange_0(131072) on route 1
+26324-f6YCj-tvWyX-hqpsL-kCZBK (1)::registering federate msgExchange_1(131073) on route 2
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	2 federates [min 2]
+	0/2 brokers/cores [min 0]
+	0 publications
+	0 inputs
+	2 endpoints
+	0 filters
+<<<<<<<<<
+26324-f6YCj-tvWyX-hqpsL-kCZBK (1)::entering Exec Mode
+26324-f6YCj-tvWyX-hqpsL-kCZBK (0)::got disconnect from 26984-SURCa-r8SUs-UKgUx-HrIfK(1879048193)
+26324-f6YCj-tvWyX-hqpsL-kCZBK (0)::got disconnect from 26378-Uue9d-pk5D6-BEBDX-dmk3F(1879048192)
+26324-f6YCj-tvWyX-hqpsL-kCZBK (0)::||disconnecting

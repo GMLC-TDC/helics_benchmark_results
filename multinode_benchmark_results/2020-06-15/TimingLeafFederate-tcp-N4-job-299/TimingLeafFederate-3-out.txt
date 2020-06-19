@@ -1,0 +1,4 @@
+24190-8b4JC-4wjGE-VTKdd-SeOTc (0)::broker responded with error: already in initialization mode
+24190-8b4JC-4wjGE-VTKdd-SeOTc (0)::broker responded with error: already in initialization mode
+Uncaught exception occurred
+srun: error: pi2: task 0: Exited with exit code 1

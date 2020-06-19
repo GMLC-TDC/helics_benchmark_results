@@ -1,0 +1,18 @@
+9030-mGizG-hSrGo-OrIJ7-3W3BB (0)::connecting
+9030-mGizG-hSrGo-OrIJ7-3W3BB (0)::||connected on 127.0.0.1:33133
+9030-mGizG-hSrGo-OrIJ7-3W3BB (1)::registering broker 9077-PneF3-JliRC-5F6tG-nhHu2(1879048192) on route 1
+9030-mGizG-hSrGo-OrIJ7-3W3BB (1)::registering federate timinghub(131072) on route 1
+9030-mGizG-hSrGo-OrIJ7-3W3BB (1)::registering broker 9166-JBJRz-LzQyK-rPsrK-mWtf8(1879048193) on route 2
+9030-mGizG-hSrGo-OrIJ7-3W3BB (1)::registering federate timingleaf_0(131073) on route 2
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	2 federates [min 2]
+	0/2 brokers/cores [min 0]
+	2 publications
+	0 inputs
+	0 endpoints
+	0 filters
+<<<<<<<<<
+9030-mGizG-hSrGo-OrIJ7-3W3BB (0)::got disconnect from 9166-JBJRz-LzQyK-rPsrK-mWtf8(1879048193)
+9030-mGizG-hSrGo-OrIJ7-3W3BB (0)::got disconnect from 9077-PneF3-JliRC-5F6tG-nhHu2(1879048192)
+9030-mGizG-hSrGo-OrIJ7-3W3BB (0)::||disconnecting

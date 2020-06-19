@@ -1,0 +1,4 @@
+1746-iXD1n-Yzo2H-w5GOP-DQyEa (0)::broker responded with error: already in initialization mode
+1746-iXD1n-Yzo2H-w5GOP-DQyEa (0)::broker responded with error: already in initialization mode
+Uncaught exception occurred
+srun: error: pi2: task 0: Exited with exit code 1

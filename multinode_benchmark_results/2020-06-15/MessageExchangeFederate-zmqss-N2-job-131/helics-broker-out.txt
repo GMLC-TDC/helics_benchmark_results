@@ -1,0 +1,19 @@
+404-Hwhf8-CTwS0-VGXlD-8ppEN (0)::connecting
+404-Hwhf8-CTwS0-VGXlD-8ppEN (0)::||connected on tcp://127.0.0.1:23404
+404-Hwhf8-CTwS0-VGXlD-8ppEN (1)::registering broker 459-eBvpl-ShrOR-BaFSh-0wYs6(1879048192) on route 1
+404-Hwhf8-CTwS0-VGXlD-8ppEN (1)::registering broker 23792-qdOUS-lg75W-MFthc-H56xp(1879048193) on route 2
+404-Hwhf8-CTwS0-VGXlD-8ppEN (1)::registering federate msgExchange_1(131072) on route 1
+404-Hwhf8-CTwS0-VGXlD-8ppEN (1)::registering federate msgExchange_0(131073) on route 2
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	2 federates [min 2]
+	0/2 brokers/cores [min 0]
+	0 publications
+	0 inputs
+	2 endpoints
+	0 filters
+<<<<<<<<<
+404-Hwhf8-CTwS0-VGXlD-8ppEN (1)::entering Exec Mode
+404-Hwhf8-CTwS0-VGXlD-8ppEN (0)::got disconnect from 459-eBvpl-ShrOR-BaFSh-0wYs6(1879048192)
+404-Hwhf8-CTwS0-VGXlD-8ppEN (0)::got disconnect from 23792-qdOUS-lg75W-MFthc-H56xp(1879048193)
+404-Hwhf8-CTwS0-VGXlD-8ppEN (0)::||disconnecting

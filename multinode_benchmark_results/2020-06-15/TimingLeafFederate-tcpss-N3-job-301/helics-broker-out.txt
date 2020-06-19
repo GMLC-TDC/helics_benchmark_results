@@ -1,0 +1,25 @@
+24240-wdUgt-uzRmy-dCtF9-e9kzP (0)::connecting
+24240-wdUgt-uzRmy-dCtF9-e9kzP (0)::||connected on 127.0.0.1:33133
+24240-wdUgt-uzRmy-dCtF9-e9kzP (1)::registering broker 24261-AIjHl-dSx05-BZ88k-3Lpix(1879048192) on route 1
+24240-wdUgt-uzRmy-dCtF9-e9kzP (1)::registering broker 24292-DSGBr-Q5Cno-Sv68n-DN1uP(1879048193) on route 2
+24240-wdUgt-uzRmy-dCtF9-e9kzP (1)::registering federate timinghub(131072) on route 1
+24240-wdUgt-uzRmy-dCtF9-e9kzP (1)::registering broker 9138-VnqqX-dnZlQ-XvLtl-lXJhJ(1879048194) on route 3
+24240-wdUgt-uzRmy-dCtF9-e9kzP (1)::registering broker 6945-dp59I-N4y9k-yEvo6-ek4Uc(1879048195) on route 4
+24240-wdUgt-uzRmy-dCtF9-e9kzP (1)::registering federate timingleaf_2(131073) on route 2
+24240-wdUgt-uzRmy-dCtF9-e9kzP (1)::registering federate timingleaf_1(131074) on route 3
+24240-wdUgt-uzRmy-dCtF9-e9kzP (1)::registering federate timingleaf_0(131075) on route 4
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	4 federates [min 4]
+	0/4 brokers/cores [min 0]
+	6 publications
+	0 inputs
+	0 endpoints
+	0 filters
+<<<<<<<<<
+commWarning||24240-wdUgt-uzRmy-dCtF9-e9kzP (1)::(tcpss) unknown message destination message dropped broker_ack:From 1
+24240-wdUgt-uzRmy-dCtF9-e9kzP (0)::got disconnect from 6945-dp59I-N4y9k-yEvo6-ek4Uc(1879048195)
+24240-wdUgt-uzRmy-dCtF9-e9kzP (0)::got disconnect from 24292-DSGBr-Q5Cno-Sv68n-DN1uP(1879048193)
+24240-wdUgt-uzRmy-dCtF9-e9kzP (0)::got disconnect from 9138-VnqqX-dnZlQ-XvLtl-lXJhJ(1879048194)
+24240-wdUgt-uzRmy-dCtF9-e9kzP (0)::got disconnect from 24261-AIjHl-dSx05-BZ88k-3Lpix(1879048192)
+24240-wdUgt-uzRmy-dCtF9-e9kzP (0)::||disconnecting

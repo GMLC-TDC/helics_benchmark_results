@@ -1,0 +1,19 @@
+32129-V7Q76-ZrUMz-pt5oA-vvTia (0)::connecting
+32129-V7Q76-ZrUMz-pt5oA-vvTia (0)::||connected on tcp://127.0.0.1:23404
+32129-V7Q76-ZrUMz-pt5oA-vvTia (1)::registering broker 32190-8fhDE-OdEti-mAi2i-Fsa0q(1879048192) on route 1
+32129-V7Q76-ZrUMz-pt5oA-vvTia (1)::registering broker 23489-yM37A-KXjAS-mwaJc-N9BOO(1879048193) on route 2
+32129-V7Q76-ZrUMz-pt5oA-vvTia (1)::registering federate msgExchange_1(131072) on route 1
+32129-V7Q76-ZrUMz-pt5oA-vvTia (1)::registering federate msgExchange_0(131073) on route 2
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	2 federates [min 2]
+	0/2 brokers/cores [min 0]
+	0 publications
+	0 inputs
+	2 endpoints
+	0 filters
+<<<<<<<<<
+32129-V7Q76-ZrUMz-pt5oA-vvTia (1)::entering Exec Mode
+32129-V7Q76-ZrUMz-pt5oA-vvTia (0)::got disconnect from 23489-yM37A-KXjAS-mwaJc-N9BOO(1879048193)
+32129-V7Q76-ZrUMz-pt5oA-vvTia (0)::got disconnect from 32190-8fhDE-OdEti-mAi2i-Fsa0q(1879048192)
+32129-V7Q76-ZrUMz-pt5oA-vvTia (0)::||disconnecting

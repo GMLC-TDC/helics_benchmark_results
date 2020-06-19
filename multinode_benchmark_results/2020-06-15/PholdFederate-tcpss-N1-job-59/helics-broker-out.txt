@@ -1,0 +1,15 @@
+14126-qdB5B-lSEtX-Z1lfd-ocM8U (0)::connecting
+14126-qdB5B-lSEtX-Z1lfd-ocM8U (0)::||connected on 127.0.0.1:33133
+14126-qdB5B-lSEtX-Z1lfd-ocM8U (1)::registering broker 14178-oWL45-b7EaT-RhMYr-FwaHH(1879048192) on route 1
+14126-qdB5B-lSEtX-Z1lfd-ocM8U (1)::registering federate phold_0(131072) on route 1
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	1 federates [min 1]
+	0/1 brokers/cores [min 0]
+	0 publications
+	0 inputs
+	1 endpoints
+	0 filters
+<<<<<<<<<
+14126-qdB5B-lSEtX-Z1lfd-ocM8U (0)::got disconnect from 14178-oWL45-b7EaT-RhMYr-FwaHH(1879048192)
+14126-qdB5B-lSEtX-Z1lfd-ocM8U (0)::||disconnecting

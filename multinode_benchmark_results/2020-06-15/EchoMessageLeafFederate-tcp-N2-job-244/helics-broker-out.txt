@@ -1,0 +1,22 @@
+3719-a5lP4-pg8Ua-BRpyK-UNcQf (0)::connecting
+3719-a5lP4-pg8Ua-BRpyK-UNcQf (0)::||connected on 127.0.0.1:24160
+3719-a5lP4-pg8Ua-BRpyK-UNcQf (1)::registering broker 3730-NfnqI-6Kjvl-GtPZy-jaw9k(1879048192) on route 1
+3719-a5lP4-pg8Ua-BRpyK-UNcQf (1)::registering broker 3756-1TaqX-e1tQ3-6IYV2-sOcuo(1879048193) on route 2
+3719-a5lP4-pg8Ua-BRpyK-UNcQf (1)::registering federate echohub(131072) on route 1
+3719-a5lP4-pg8Ua-BRpyK-UNcQf (1)::registering broker 2948-qyk6u-3d015-Yyty6-WH90N(1879048194) on route 3
+3719-a5lP4-pg8Ua-BRpyK-UNcQf (1)::registering federate echoleaf_0(131073) on route 2
+3719-a5lP4-pg8Ua-BRpyK-UNcQf (1)::registering federate echoleaf_1(131074) on route 3
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	3 federates [min 3]
+	0/3 brokers/cores [min 0]
+	0 publications
+	0 inputs
+	3 endpoints
+	0 filters
+<<<<<<<<<
+3719-a5lP4-pg8Ua-BRpyK-UNcQf (1)::entering Exec Mode
+3719-a5lP4-pg8Ua-BRpyK-UNcQf (0)::got disconnect from 3756-1TaqX-e1tQ3-6IYV2-sOcuo(1879048193)
+3719-a5lP4-pg8Ua-BRpyK-UNcQf (0)::got disconnect from 2948-qyk6u-3d015-Yyty6-WH90N(1879048194)
+3719-a5lP4-pg8Ua-BRpyK-UNcQf (0)::got disconnect from 3730-NfnqI-6Kjvl-GtPZy-jaw9k(1879048192)
+3719-a5lP4-pg8Ua-BRpyK-UNcQf (0)::||disconnecting

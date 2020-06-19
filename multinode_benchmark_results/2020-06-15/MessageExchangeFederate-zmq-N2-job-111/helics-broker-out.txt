@@ -1,0 +1,19 @@
+30779-0DreT-yJMf7-uXIx7-fPU9E (0)::connecting
+30779-0DreT-yJMf7-uXIx7-fPU9E (0)::||connected on tcp://127.0.0.1:23404
+30779-0DreT-yJMf7-uXIx7-fPU9E (1)::registering broker 30826-hJWZZ-kY7AR-nMlCG-pINIH(1879048192) on route 1
+30779-0DreT-yJMf7-uXIx7-fPU9E (1)::registering broker 22888-FVxnU-dlFn5-3jrec-ceXVV(1879048193) on route 2
+30779-0DreT-yJMf7-uXIx7-fPU9E (1)::registering federate msgExchange_1(131072) on route 1
+30779-0DreT-yJMf7-uXIx7-fPU9E (1)::registering federate msgExchange_0(131073) on route 2
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	2 federates [min 2]
+	0/2 brokers/cores [min 0]
+	0 publications
+	0 inputs
+	2 endpoints
+	0 filters
+<<<<<<<<<
+30779-0DreT-yJMf7-uXIx7-fPU9E (1)::entering Exec Mode
+30779-0DreT-yJMf7-uXIx7-fPU9E (0)::got disconnect from 22888-FVxnU-dlFn5-3jrec-ceXVV(1879048193)
+30779-0DreT-yJMf7-uXIx7-fPU9E (0)::got disconnect from 30826-hJWZZ-kY7AR-nMlCG-pINIH(1879048192)
+30779-0DreT-yJMf7-uXIx7-fPU9E (0)::||disconnecting

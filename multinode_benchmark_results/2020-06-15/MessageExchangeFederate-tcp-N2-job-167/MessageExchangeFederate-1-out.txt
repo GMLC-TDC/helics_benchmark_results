@@ -1,0 +1,5 @@
+26104-kn6dK-uzTeq-3j9D8-t3K2G (1879048192)::lost comms with 1879048193
+msgExchange_1 (131072) (0)::lost comms with 1879048193
+msgExchange_1 (131072) (0)::Time mismatch detected granted time >requested time 9223372036.854776 vs 1.6e-08
+Exception occurred while running the benchmark
+srun: error: pi4: task 0: Segmentation fault

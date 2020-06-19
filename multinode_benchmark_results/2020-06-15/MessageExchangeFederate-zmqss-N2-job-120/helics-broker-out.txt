@@ -1,0 +1,19 @@
+31719-3KbVC-1udFV-OmSfd-vfxKx (0)::connecting
+31719-3KbVC-1udFV-OmSfd-vfxKx (0)::||connected on tcp://127.0.0.1:23404
+31719-3KbVC-1udFV-OmSfd-vfxKx (1)::registering broker 31766-r1jzm-xVLeN-2Psi8-Go5g8(1879048192) on route 1
+31719-3KbVC-1udFV-OmSfd-vfxKx (1)::registering broker 23297-QONZr-7NjJN-Zcx3u-xLRYm(1879048193) on route 2
+31719-3KbVC-1udFV-OmSfd-vfxKx (1)::registering federate msgExchange_0(131072) on route 1
+31719-3KbVC-1udFV-OmSfd-vfxKx (1)::registering federate msgExchange_1(131073) on route 2
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	2 federates [min 2]
+	0/2 brokers/cores [min 0]
+	0 publications
+	0 inputs
+	2 endpoints
+	0 filters
+<<<<<<<<<
+31719-3KbVC-1udFV-OmSfd-vfxKx (1)::entering Exec Mode
+31719-3KbVC-1udFV-OmSfd-vfxKx (0)::got disconnect from 23297-QONZr-7NjJN-Zcx3u-xLRYm(1879048193)
+31719-3KbVC-1udFV-OmSfd-vfxKx (0)::got disconnect from 31766-r1jzm-xVLeN-2Psi8-Go5g8(1879048192)
+31719-3KbVC-1udFV-OmSfd-vfxKx (0)::||disconnecting

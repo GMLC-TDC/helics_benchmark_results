@@ -1,0 +1,19 @@
+25856-rXhzQ-BWEb0-9fpmU-7Gf4C (0)::connecting
+25856-rXhzQ-BWEb0-9fpmU-7Gf4C (0)::||connected on 127.0.0.1:24160
+25856-rXhzQ-BWEb0-9fpmU-7Gf4C (1)::registering broker 25911-PfaJj-M4JQ7-TFdOW-KeJtQ(1879048192) on route 1
+25856-rXhzQ-BWEb0-9fpmU-7Gf4C (1)::registering broker 26756-PC02V-1XdWq-W2HGJ-oxzaB(1879048193) on route 2
+25856-rXhzQ-BWEb0-9fpmU-7Gf4C (1)::registering federate msgExchange_0(131072) on route 1
+25856-rXhzQ-BWEb0-9fpmU-7Gf4C (1)::registering federate msgExchange_1(131073) on route 2
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	2 federates [min 2]
+	0/2 brokers/cores [min 0]
+	0 publications
+	0 inputs
+	2 endpoints
+	0 filters
+<<<<<<<<<
+25856-rXhzQ-BWEb0-9fpmU-7Gf4C (1)::entering Exec Mode
+25856-rXhzQ-BWEb0-9fpmU-7Gf4C (0)::got disconnect from 26756-PC02V-1XdWq-W2HGJ-oxzaB(1879048193)
+25856-rXhzQ-BWEb0-9fpmU-7Gf4C (0)::got disconnect from 25911-PfaJj-M4JQ7-TFdOW-KeJtQ(1879048192)
+25856-rXhzQ-BWEb0-9fpmU-7Gf4C (0)::||disconnecting

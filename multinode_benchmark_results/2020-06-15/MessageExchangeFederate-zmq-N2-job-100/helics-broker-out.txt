@@ -1,0 +1,20 @@
+29636-bEdRu-yJFVY-GYw60-89pj4 (0)::connecting
+29636-bEdRu-yJFVY-GYw60-89pj4 (0)::||connected on tcp://127.0.0.1:23404
+29636-bEdRu-yJFVY-GYw60-89pj4 (1)::registering broker 29669-SvhbZ-RUq1C-jQoyL-xhext(1879048192) on route 1
+29636-bEdRu-yJFVY-GYw60-89pj4 (1)::registering broker 22334-Dx3aR-Vw9Qx-eUSxM-yWUs7(1879048193) on route 2
+29636-bEdRu-yJFVY-GYw60-89pj4 (1)::registering federate msgExchange_0(131072) on route 1
+29636-bEdRu-yJFVY-GYw60-89pj4 (1)::registering federate msgExchange_1(131073) on route 2
+root (1)::entering initialization mode
+root (1)::Federation Summary> 
+	2 federates [min 2]
+	0/2 brokers/cores [min 0]
+	0 publications
+	0 inputs
+	2 endpoints
+	0 filters
+<<<<<<<<<
+29636-bEdRu-yJFVY-GYw60-89pj4 (1)::entering Exec Mode
+29636-bEdRu-yJFVY-GYw60-89pj4 (0)::got disconnect from 29669-SvhbZ-RUq1C-jQoyL-xhext(1879048192)
+29636-bEdRu-yJFVY-GYw60-89pj4 (0)::got disconnect from 22334-Dx3aR-Vw9Qx-eUSxM-yWUs7(1879048193)
+commWarning||29636-bEdRu-yJFVY-GYw60-89pj4 (1)::unknown route and no broker, dropping message time_grant:From (1) Granted Time(1e-08) to (131073)
+29636-bEdRu-yJFVY-GYw60-89pj4 (0)::||disconnecting

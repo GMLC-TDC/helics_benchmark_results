@@ -1,0 +1,3 @@
+BENCHMARK FEDERATE TYPE: EchoMessageLeaf
+ELAPSED TIME (ns): 313926182342
+srun: error: pi3: task 0: Segmentation fault
