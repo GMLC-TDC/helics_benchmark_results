@@ -61,6 +61,12 @@ def sa_plot(
         (null)
     """
     # Checking if benchmark_type is 'full' or 'key'
+    if dataframe.benchmark_type.unique() == 'full':
+        TITLE = 'run_id {} {}: {} vs {}'.format(
+            run_id, bm_name, x_axis, 'EvCount_per_second')
+    else:
+        TITLE = '{} {}: {} vs {}'.format(
+            run_id, bm_name, x_axis, 'EvCount_per_second')
     benchmark = dataframe.benchmark.unique()[0]
     if by_bool is True:
         if benchmark == 'pholdBenchmark':
@@ -84,8 +90,7 @@ def sa_plot(
                     ylim=(10.0**(2), None), fontsize={
                         'title': 8.5, 'labels': 10, 'legend': 8,
                         'legend_title': 8, 'xticks': 8, 'yticks': 10},
-                    title='run_id {} {}: {} vs {}'.format(
-                        run_id, bm_name, x_axis, 'EvCount_per_second'))
+                    title=TITLE)
             save_path = os.path.join(
                 output_path, '{}_{}.png'.format(run_id, bm_name))
         elif benchmark == 'messageSendBenchmark':
@@ -112,11 +117,10 @@ def sa_plot(
                             logx=True, logy=True,
                             legend_position='bottom_right', legend_cols=2,
                             yformatter='%.4f', ylim=(min_y*10.0**(-1), None),
-                            title='run_id {} {}: {} vs {}'.format(
-                                run_id, bm_name, x_axis, y_axis),
-                            fontsize={'title': 8.5, 'labels': 10,
-                                      'legend': 8, 'legend_title': 8,
-                                      'xticks': 8, 'yticks': 10})
+                            title=TITLE, fontsize={
+                                'title': 8.5, 'labels': 10,
+                                'legend': 8, 'legend_title': 8,
+                                'xticks': 8, 'yticks': 10})
             save_path = os.path.join(
                 output_path, '{}_{}.png'.format(run_id, bm_name))
         else:
@@ -139,10 +143,9 @@ def sa_plot(
                     logx=True, logy=True,
                     legend_position='bottom_right', legend_cols=2,
                     yformatter='%.3f', ylim=(min_y*10.0**(-2), None),
-                    title='run_id {} {}: {} vs {}'.format(
-                        run_id, bm_name, x_axis, y_axis),
-                    fontsize={'title': 8.5, 'labels': 10, 'legend': 8,
-                              'legend_title': 8, 'xticks': 8, 'yticks': 10})
+                    title=TITLE, fontsize={
+                        'title': 8.5, 'labels': 10, 'legend': 8,
+                        'legend_title': 8, 'xticks': 8, 'yticks': 10})
             save_path = os.path.join(
                 output_path, '{}_{}.png'.format(run_id, bm_name))
     else:
@@ -166,11 +169,10 @@ def sa_plot(
                             width=625, height=380,
                             logx=True, logy=True,
                             yformatter='%.3f', ylim=(min_y*10.0**(-1), None),
-                            title='run_id {} {}: {} vs {}'.format(
-                                run_id, bm_name, x_axis, y_axis),
-                            fontsize={'title': 8.5, 'labels': 10,
-                                      'legend': 8, 'legend_title': 8,
-                                      'xticks': 8, 'yticks': 10})
+                            title=TITLE, fontsize={
+                                'title': 8.5, 'labels': 10,
+                                'legend': 8, 'legend_title': 8,
+                                'xticks': 8, 'yticks': 10})
             save_path = os.path.join(
                 output_path, '{}_{}.png'.format(run_id, bm_name))
         elif benchmark == 'messageLookupBenchmark':
@@ -185,10 +187,9 @@ def sa_plot(
                 rot=90,
                 alpha=0.75).opts(
                     width=625, height=380, logx=True,
-                    logy=True, title='run_id {} {}: {} vs {}'.format(
-                        run_id, bm_name, x_axis, y_axis),
-                    fontsize={'title': 8.5, 'labels': 10, 'legend': 8,
-                              'xticks': 8, 'yticks': 10})
+                    logy=True, title=TITLE, fontsize={
+                        'title': 8.5, 'labels': 10, 'legend': 8,
+                        'xticks': 8, 'yticks': 10})
             save_path = os.path.join(
                 output_path, '{}_{}.png'.format(run_id, bm_name))
         else:
@@ -206,10 +207,9 @@ def sa_plot(
                     logx=True, logy=True,
                     legend_position='bottom_right', legend_cols=2,
                     yformatter='%.2f', ylim=(min_y*10.0**(-1), None),
-                    title='run_id {} {}: {} vs {}'.format(
-                            run_id, bm_name, x_axis, y_axis),
-                    fontsize={'title': 8.5, 'labels': 10, 'legend': 8,
-                              'legend_title': 8, 'xticks': 8, 'yticks': 10})
+                    title=TITLE, fontsize={
+                        'title': 8.5, 'labels': 10, 'legend': 8,
+                        'legend_title': 8, 'xticks': 8, 'yticks': 10})
             save_path = os.path.join(
                 output_path, '{}_{}.png'.format(run_id, bm_name))
     hvplot.save(plot, save_path)

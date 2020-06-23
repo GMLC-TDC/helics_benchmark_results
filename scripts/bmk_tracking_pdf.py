@@ -26,11 +26,13 @@ import argparse
 import logging
 import pprint
 import os
+import pandas as pd
 import sys
 from fpdf import FPDF
 import standard_analysis as sa
 import bmk_plotting
 import make_dataframe as md
+import hvplot.pandas
 
 # Installation of FPDF is: python -m pip install fpdf
 
@@ -158,29 +160,31 @@ def make_benchmark_track_graphs(meta_bmk_df, output_path):
     Returns:
         (null)
     """
+    meta_bmk_df.date = pd.to_datetime(meta_bmk_df.date)
+    meta_bmk_df['DATE'] = [str(d.date()) for d in meta_bmk_df.date]
     for benchmark in meta_bmk_df.benchmark.unique():
         if benchmark == 'echoMessageBenchmark':
             track = meta_bmk_df[meta_bmk_df.benchmark == 'echoMessageBenchmark']
             bmk_plotting.sa_plot(
-                track, 'date', 'real_time', 
+                track, 'DATE', 'real_time', 
                 'tracking', by_bool=True, by_name='core_type', 
                 run_id='echoMessage', output_path=output_path)
         elif benchmark == 'echoBenchmark':
             track = meta_bmk_df[meta_bmk_df.benchmark == 'echoBenchmark']
             bmk_plotting.sa_plot(
-                track, 'date', 'real_time', 
+                track, 'DATE', 'real_time', 
                 'tracking', by_bool=True, by_name='core_type', 
                 run_id='echo', output_path=output_path)
         elif benchmark == 'messageLookupBenchmark':
             track = meta_bmk_df[meta_bmk_df.benchmark == 'messageLookupBenchmark']
             bmk_plotting.sa_plot(
-                track, 'date', 'real_time', 
+                track, 'DATE', 'real_time', 
                 'tracking', by_bool=True, by_name='core_type', 
                 run_id='messageLookup', output_path=output_path)
         elif benchmark == 'timingBenchmark':
             track = meta_bmk_df[meta_bmk_df.benchmark == 'timingBenchmark']
             bmk_plotting.sa_plot(
-                track, 'date', 'real_time', 
+                track, 'DATE', 'real_time', 
                 'tracking', by_bool=True, by_name='core_type', 
                 run_id='timing', output_path=output_path)
         else:
@@ -220,6 +224,9 @@ def _auto_run(args):
     
     # Creating the report PDF
     meta_bmk_df = md.make_dataframe1(args.json_file)
+    action_df = meta_bmk_df[
+        (meta_bmk_df.benchmark_type == 'full') &
+        (meta_bmk_df.benchmark == 'actionMessageBenchmark')]
     meta_bmk_df = meta_bmk_df[
         (meta_bmk_df.benchmark_type == 'key') & 
         (meta_bmk_df.host_processor == 'x86_64') & 
@@ -235,6 +242,39 @@ def _auto_run(args):
     make_benchmark_track_graphs(meta_bmk_df, output_path)
     create_benchmark_tracking_report(output_path,
                                      meta_bmk_df)
+    # Creating 
+    action_df = action_df.replace(
+        {'run_name': {'BM_AM_toString': 'BMtoString', 
+                      'BM_AM_FromString': 'BMfromString', 
+                      'BM_AM_toString_time': 'BMtoStringTime', 
+                      'BM_AM_FromString_time': 'BMfromStringTime', 
+                      'BM_AM_packetize': 'BMpacketize', 
+                      'BM_AM_depacketize': 'BMdepacketize', 
+                      'BM_AM_packetize_strings': 'BMpacketizeStrings', 
+                      'BM_AM_depacketize_strings': 'BMdepacketizeStrings'}})
+    action_df.date = pd.to_datetime(action_df.date)
+    action_df['DATE'] = [str(d.date()) for d in action_df.date]
+    action_df = action_df.groupby(
+                ['run_name', 'DATE'])['real_time'].min().reset_index()
+    min_y = action_df['real_time'].min()
+    plot = action_df.sort_values('DATE').hvplot.line(
+        'DATE',
+        'real_time',
+        ylabel='real_time (s)',
+        line_width=3,
+        by='run_name',
+        rot=90,
+        alpha=0.75).opts(
+            width=800, height=380,
+            logx=True, logy=True,
+            yformatter='%.3f', ylim=(min_y*10.0**(-1), None),
+            title='actionMessage: DATE vs real_time', fontsize={
+                'title': 8.5, 'labels': 10, 'legend': 8,
+                'legend_title': 8, 'xticks': 8, 'yticks': 10})
+    head, tail = os.path.split(output_path)
+    save_path = os.path.join(
+        head, 'actionMessage_tracking.png')
+    hvplot.save(plot, save_path)
 
 
 if __name__ == '__main__':
