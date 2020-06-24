@@ -183,8 +183,8 @@ def parse_header_lines(json_file, json_results, uuid_str):
             else:
                 speed = np.nan
                 json_results[uuid_str]['mhz_per_cpu'] = speed
-                logging.error('{}: Failed to parse CPU MODEL line'.format(
-                        json_file['name']))
+                # logging.error('{}: Failed to parse CPU MODEL line'.format(
+                #         json_file['name']))
         elif 'NUM CPU' in line:
             # print(line[-2:])
             json_results[uuid_str]['num_cpus'] = line[-2:]
@@ -406,7 +406,7 @@ def _add_federate_count(key, json_results):
     ### is added to the multinode_benchmark_results folder.
     match = re.search('N\d\-job-\d*', json_results[key]['path'])
     if match:
-        number_of_nodes = match.group(0)[1:-12]
+        number_of_nodes = match.group(0)[1:2]
         json_results[key]['federate_count'] = float(number_of_nodes * 1)
     else:
         json_results[key]['federate_count'] = ''
@@ -597,13 +597,12 @@ def _auto_run(args):
 #    print(args.m_benchmark_results_dir)
     for root, dirs, files in os.walk(args.m_benchmark_results_dir):
         for file in files:
-            if file != 'helics-broker-out.txt':
+            if file != 'helics-broker-out.txt' and file != 'folderrename.sh':
                 file_list.append(os.path.join(root, file))
             else:
                 pass
     d = co.defaultdict(dict)
     for file in file_list:
-#        print('Current file: ', file)
 #        print('')
 #        print('parsing the file')
 #        print('')
