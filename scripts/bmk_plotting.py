@@ -60,16 +60,17 @@ def sa_plot(
     Returns:
         (null)
     """
-    # Checking if benchmark_type is 'full' or 'key'
     if dataframe.benchmark_type.unique() == 'full':
         TITLE = 'run_id {} {}: {} vs {}'.format(
-            run_id, bm_name, x_axis, 'EvCount_per_second')
+            run_id, bm_name, x_axis, y_axis)
     else:
         TITLE = '{} {}: {} vs {}'.format(
-            run_id, bm_name, x_axis, 'EvCount_per_second')
+            run_id, bm_name, x_axis, y_axis)
     benchmark = dataframe.benchmark.unique()[0]
     if by_bool is True:
-        if benchmark == 'pholdBenchmark':
+        if 'pholdBenchmark' == benchmark:
+            p_title = 'run_id {} {}: {} vs {}'.format(
+                run_id, bm_name, x_axis, 'EvCount_per_second')
             dataframe = dataframe.groupby(
                 ['{}'.format(by_name),
                  'EvCount',
@@ -90,10 +91,10 @@ def sa_plot(
                     ylim=(10.0**(2), None), fontsize={
                         'title': 8.5, 'labels': 10, 'legend': 8,
                         'legend_title': 8, 'xticks': 8, 'yticks': 10},
-                    title=TITLE)
+                    title=p_title)
             save_path = os.path.join(
                 output_path, '{}_{}.png'.format(run_id, bm_name))
-        elif benchmark == 'messageSendBenchmark':
+        elif 'messageSendBenchmark' == benchmark:
             dataframe = dataframe.groupby(
                 ['{}'.format(x_axis),
                  '{}'.format(by_name)])[
@@ -149,7 +150,7 @@ def sa_plot(
             save_path = os.path.join(
                 output_path, '{}_{}.png'.format(run_id, bm_name))
     else:
-        if benchmark == 'messageSendBenchmark':
+        if 'messageSendBenchmark' == benchmark:
             dataframe = dataframe.groupby(
                 '{}'.format(x_axis))['{}'.format(y_axis)].min().reset_index()
             min_y = dataframe['{}'.format(y_axis)].min()
@@ -175,7 +176,7 @@ def sa_plot(
                                 'xticks': 8, 'yticks': 10})
             save_path = os.path.join(
                 output_path, '{}_{}.png'.format(run_id, bm_name))
-        elif benchmark == 'messageLookupBenchmark':
+        elif 'messageLookupBenchmark' == benchmark:
             dataframe = dataframe.groupby(
                 '{}'.format(x_axis))['{}'.format(y_axis)].min().reset_index()
             min_y = dataframe['{}'.format(y_axis)].min()
@@ -639,8 +640,8 @@ def mm_plot(
 #                         (meta_bmk_df.message_count == 1) &
 #                         (meta_bmk_df.run_id == '7vGM3')]
 #     msg_2 = meta_bmk_df[(meta_bmk_df.benchmark == 'messageLookupBenchmark') &
-#                         (meta_bmk_df.core_type == 'inproc') &
-#                         (meta_bmk_df.federate_count == 2)]
+#                         (meta_bmk_df.federate_count == 2) &
+#                         (meta_bmk_df.run_id == '7vGM3')]
 #     plot1 = sa_plot(
 #         phold, 'federate_count', 'real_time', 'pholdBenchmark',
 #         True, 'core_type', '7vGM3', os.path.join(os.getcwd()))

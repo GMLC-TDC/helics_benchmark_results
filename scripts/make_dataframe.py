@@ -125,22 +125,20 @@ def make_dataframe1(json_results):
     meta_bmk_df.cpu_time = meta_bmk_df.cpu_time.apply(
         lambda x: float(x)*10**(-9) if x.index == 'ns' else float(x)*10**(-3))
     meta_bmk_df = meta_bmk_df.reset_index()
+    # Making sure results have the correct units and are the correct
+    # data type
     meta_bmk_df = meta_bmk_df.replace({'time_unit': {'ns': 's',
-                                                     'ms': 's'}})
-    meta_bmk_df = meta_bmk_df.reset_index()
+                                                     'ms': 's'}}).reset_index()
     meta_bmk_df['date'] = pd.to_datetime(meta_bmk_df.date)
     meta_bmk_df['date'] = meta_bmk_df['date'].astype(str)
-    csv_path = os.path.join(os.getcwd(), 'bmk_meta_df.csv')
-    meta_bmk_df.to_csv(r'{}'.format(csv_path))
-    
-    # Reading in the csv; seems unnecessary, but works due to
-    # plotting difficulties.
-    final_meta_bmk_df = pd.read_csv(
-        csv_path, 
-        index_col='Unnamed: 0', 
-        dtype={'platform': object, 'filter_location': object})
-    os.remove(csv_path)
-    return final_meta_bmk_df
+    meta_bmk_df['federate_count'] = meta_bmk_df['federate_count'].astype(float)
+    meta_bmk_df['interface_count'] = meta_bmk_df['interface_count'].astype(float)
+    meta_bmk_df['EvCount'] = meta_bmk_df['EvCount'].astype(float)
+    meta_bmk_df['message_size'] = meta_bmk_df['message_size'].astype(float)
+    meta_bmk_df['message_count'] = meta_bmk_df['message_count'].astype(float)
+    meta_bmk_df['real_time'] = meta_bmk_df['real_time'].astype(float)
+    meta_bmk_df['cpu_time'] = meta_bmk_df['cpu_time'].astype(float)
+    return meta_bmk_df
 
 
 def make_dataframe2(json_results):
@@ -200,17 +198,15 @@ def make_dataframe2(json_results):
     meta_bmk_df['date'] = meta_bmk_df['date'].astype(str)
     meta_bmk_df = meta_bmk_df.replace({'time_unit': {'ns': 's', 
                                                      'nan': 's'}})
-    csv_path = os.path.join(os.getcwd(), 'multinode_bmk_meta_df.csv')
-    meta_bmk_df.to_csv(r'{}'.format(csv_path))
-    
-    # Reading in the csv; seems unnecessary, but works due to
-    # plotting difficulties.
-    final_meta_bmk_df = pd.read_csv(
-        csv_path, index_col='Unnamed: 0', dtype={'platform': object})
+    meta_bmk_df['federate_count'] = meta_bmk_df['federate_count'].astype(float)
+    meta_bmk_df['EvCount'] = meta_bmk_df['EvCount'].astype(float)
+    meta_bmk_df['message_size'] = meta_bmk_df['message_size'].astype(float)
+    meta_bmk_df['message_count'] = meta_bmk_df['message_count'].astype(float)
+    meta_bmk_df['elapsed_time'] = meta_bmk_df['real_time'].astype(float)
     my_list = []
     # Creating a map from "summary.txt" files to the other
     # multinode benchmark results files.
-    for g, df in final_meta_bmk_df.groupby(['path', 'benchmark', 'core_type']):
+    for g, df in meta_bmk_df.groupby(['path', 'benchmark', 'core_type']):
         a_df = df
         a_df = a_df.set_index('filename')
         try: 
@@ -230,18 +226,19 @@ def make_dataframe2(json_results):
         a_df = a_df.reset_index()
         my_list.append(a_df)
     main_df = pd.concat(my_list, axis=0, ignore_index=True)
-    os.remove(csv_path)
     return main_df
 
 
-### Testing that my function works
+# Testing that my function works
 # if __name__ == '__main__':
 #     json_file1 = 'bm_results.json'
 #     final_meta_bmk_df = make_dataframe1(json_file1)
-    
+#     final_meta_bmk_df.to_csv(r'{}/bmk_df_test.csv'.format(
+#         os.path.join(os.getcwd())))
 #     json_file2 = 'multinode_bm_results.json'
 #     multi_bmk_df = make_dataframe2(json_file2)
-    
+#     multi_bmk_df.to_csv(r'{}/multi_bmk_df.csv'.format(
+#         os.path.join(os.getcwd())))
 #    json_file3 = 'multinode_bm_results_test.json'
 #    multi_bmk_df = make_dataframe2(json_file3)
 #    print('COLUMNS:', multi_bmk_df.columns.unique())
