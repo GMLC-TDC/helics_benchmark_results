@@ -18,7 +18,7 @@ import pprint
 import os
 import json
 import re
-# import uuid
+import platform
 import sys
 import standard_analysis as sa
 
@@ -177,6 +177,8 @@ def parse_header_lines(json_file, json_results, uuid_str):
         if 'HELICS_BENCHMARK:' in line:
             if 'echo_cResults' in json_results[uuid_str]['filename']:
                 json_results[uuid_str]['benchmark'] = 'cEchoBenchmark'
+            elif 'echo_pyResults' in json_results[uuid_str]['filename']:
+                json_results[uuid_str]['benchmark'] = 'pyEchoBenchmark'
             else:
                 json_results[uuid_str]['benchmark'] = line[18:]
         elif 'HELICS VERSION:' in line:
@@ -593,6 +595,10 @@ def _parse_compiler_string(uuid, json_results):
             json_results[uuid]['generator'] = item
             matched_generator = True
             break
+        else:
+            json_results[uuid]['generator'] = ''
+            matched_generator = False
+            
     if matched_generator == False:
         err_str = 'Unable to match element in string "{}" to ' \
                   'known generator in compiler options: {}'
@@ -642,7 +648,63 @@ def _parse_compiler_string(uuid, json_results):
         elif match_windows:
             # Windows
             json_results[uuid]['system'] = 'Windows'
-            windows_version =  match_windows.group(0)[8:]
+            windows_version = match_windows.group(0)[8:]
+            json_results[uuid]['system_version'] = windows_version
+        elif match_darwin:
+            # Darwin (Mac) system
+            json_results[uuid]['system'] = 'Darwin'
+            darwin_version = match_darwin.group(0)[7:]
+            json_results[uuid]['system_version'] = darwin_version
+
+            # Splitting up the Linux version string
+            match3 = re.search('\d+\.', darwin_version)
+            json_results[uuid]['darwin_kernel_version'] = match3.group(0)[:-1]
+            match3 = re.search('\.\d+\.', darwin_version)
+            json_results[uuid]['darwin_major_version'] = match3.group(0)[1:-1]
+            match3 = re.search('\.\d+$', darwin_version)
+            json_results[uuid]['darwin_minor_version'] = match3.group(0)[1:]
+    elif not match:
+        match_linux = re.search('Linux-.*?:', compiler_str)
+        match_windows = re.search('Windows-[\d|\.]*', compiler_str)
+        match_darwin = re.search('Darwin-[\d|\.]*', compiler_str)
+        if match_linux:
+            # Linux system
+            json_results[uuid]['system'] = 'Linux'
+            linux_version = match_linux.group(0)[6:]
+            json_results[uuid]['system_version'] = linux_version
+
+            # Splitting up the Linux version string
+            match3= re.search('\d+\.',linux_version)
+            json_results[uuid]['linux_kernel_version'] = match3.group(0)[:-1]
+            match3 = re.search('\.\d+\.', linux_version)
+            json_results[uuid]['linux_major_version'] = match3.group(0)[1:-1]
+            match3 = re.search('\.\d+-', linux_version)
+            json_results[uuid]['linux_minor_version'] = match3.group(0)[1:-1]
+
+            # TDH: There's some weirdness with the bug fix version
+            # and/or distro string. I'm doing my best to handle it.
+            match3 = re.search('-\d+-', linux_version)
+            if match3:
+                json_results[uuid]['linux_bug_fix_version'] =\
+                    match3.group(0)[1:-1]
+                match4 = re.search('-(?!\d).*$', linux_version)
+                json_results[uuid]['linux_distro_string'] =\
+                    match4.group(0)[1:-1]
+            else:
+                match3 = re.search('-.*:(?!-\d+\.\d+\.\d+-)', linux_version)
+                if match3:
+                    json_results[uuid]['linux_bug_fix_version'] = \
+                        match3.group(0)[1:-1]
+                    json_results[uuid]['linux_distro_string'] = ''
+                else:
+                    err_str = 'Unable to parse Linux ' \
+                              'kernel bug fix version: {}'
+                    err_str = err_str.format(linux_version)
+                    logging.error(err_str)
+        elif match_windows:
+            # Windows
+            json_results[uuid]['system'] = 'Windows'
+            windows_version = match_windows.group(0)[8:]
             json_results[uuid]['system_version'] = windows_version
         elif match_darwin:
             # Darwin (Mac) system
@@ -663,40 +725,68 @@ def _parse_compiler_string(uuid, json_results):
         logging.error(err_str)
 
 
-    # Platform
-    # TDH: This string can be null so I'm having to find it by process
-    # of elimination
-    match = re.search('.*?[Windows|Linux]-', compiler_str)
-    trimmed_str = re.sub(json_results[uuid]['generator'], '', match.group(0))
-    trimmed_str = re.sub(json_results[uuid]['system'], '', trimmed_str)
-    trimmed_str = re.sub('-', '', trimmed_str)
-    trimmed_str = trimmed_str.strip()
-    json_results[uuid]['platform'] = trimmed_str
+    # Platform    
+    if matched_generator is False:
+        json_results[uuid]['platform'] = ''
+    else:
+        # TDH: This string can be null so I'm having to find it by process
+        # of elimination
+        match = re.search('.*?[Windows|Linux]-', compiler_str)
+        trimmed_str = re.sub(
+            json_results[uuid]['generator'], '', match.group(0))
+        trimmed_str = re.sub(json_results[uuid]['system'], '', trimmed_str)
+        trimmed_str = re.sub('-', '', trimmed_str)
+        trimmed_str = trimmed_str.strip()
+        # print('current platform', trimmed_str)
+        json_results[uuid]['platform'] = trimmed_str
 
 
-
-    # CXX compiler
-    match = re.search(':.*$', compiler_str)
-    if match:
-        # compiler name
-        match2 = re.search(':.*-', match.group(0))
-
-        if match2:
-            cxx_compiler = match2.group(0)[1:-1]
-            json_results[uuid]['cxx_compiler'] = cxx_compiler
+    if matched_generator is False:
+        # Python compiler
+        match = re.search(':.*$', compiler_str)
+        if match:
+            # compiler name
+            match2 = re.search(':.*-', match.group(0))
+    
+            if match2:
+                py_compiler = match2.group(0)[1:-1]
+                json_results[uuid]['py_compiler'] = py_compiler
+            else:
+                json_results[uuid]['py_compiler'] = ''
+    
+            # compiler version
+            match2 = re.search('-.*$', match.group(0))
+            if match2:
+                py_compiler_version = match2.group(0)[1:]
+                json_results[uuid]['py_compiler_version'] = py_compiler_version
+            else:
+                json_results[uuid]['py_compiler_version'] = ''
+        else:
+            json_results[uuid]['py_compiler'] = ''
+            json_results[uuid]['py_compiler_version'] = ''
+    else:
+        # CXX compiler
+        match = re.search(':.*$', compiler_str)
+        if match:
+            # compiler name
+            match2 = re.search(':.*-', match.group(0))
+    
+            if match2:
+                cxx_compiler = match2.group(0)[1:-1]
+                json_results[uuid]['cxx_compiler'] = cxx_compiler
+            else:
+                json_results[uuid]['cxx_compiler'] = ''
+    
+            # compiler version
+            match2 = re.search('-.*$', match.group(0))
+            if match2:
+                cxx_compiler_version = match2.group(0)[1:]
+                json_results[uuid]['cxx_compiler_version'] = cxx_compiler_version
+            else:
+                json_results[uuid]['cxx_compiler_version'] = ''
         else:
             json_results[uuid]['cxx_compiler'] = ''
-
-        # compiler version
-        match2 = re.search('-.*$', match.group(0))
-        if match2:
-            cxx_compiler_version = match2.group(0)[1:]
-            json_results[uuid]['cxx_compiler_version'] = cxx_compiler_version
-        else:
             json_results[uuid]['cxx_compiler_version'] = ''
-    else:
-        json_results[uuid]['cxx_compiler'] = ''
-        json_results[uuid]['cxx_compiler_version'] = ''
 
     return json_results
 
@@ -732,7 +822,7 @@ def _auto_run(args):
         json_results.update(parse_files(file_list))
         json_results = parse_and_add_benchmark_metadata(json_results)
     if args.write_json_output:
-        with open('bm_results.json', 'w') as outfile:
+        with open('bm_results_test.json', 'w') as outfile:
             json.dump(json_results, outfile)
 
     # TDH (2019-12-19): Trouble-shooting function whose purpose you'll
