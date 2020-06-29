@@ -198,11 +198,19 @@ def make_dataframe2(json_results):
     meta_bmk_df['date'] = meta_bmk_df['date'].astype(str)
     meta_bmk_df = meta_bmk_df.replace({'time_unit': {'ns': 's', 
                                                      'nan': 's'}})
-    meta_bmk_df['federate_count'] = meta_bmk_df['federate_count'].astype(float)
+    print(meta_bmk_df.federate_count.unique())
+    meta_bmk_df = meta_bmk_df.replace({'federate_count': {'1.0': 1.0,
+                                                          '2.0': 2.0,
+                                                          '4.0': 4.0,
+                                                          '8.0': 8.0,
+                                                          '': np.nan,
+                                                          '3.0': 3.0,
+                                                          '9.0': 9.0}})
+    print(meta_bmk_df.federate_count.unique())
     meta_bmk_df['EvCount'] = meta_bmk_df['EvCount'].astype(float)
     meta_bmk_df['message_size'] = meta_bmk_df['message_size'].astype(float)
     meta_bmk_df['message_count'] = meta_bmk_df['message_count'].astype(float)
-    meta_bmk_df['elapsed_time'] = meta_bmk_df['real_time'].astype(float)
+    meta_bmk_df['elapsed_time'] = meta_bmk_df['elapsed_time'].astype(float)
     my_list = []
     # Creating a map from "summary.txt" files to the other
     # multinode benchmark results files.
