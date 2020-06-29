@@ -1,0 +1,6 @@
+Started MPI service loop for rank 2
+commMessage||:MpiComms() - commAddress = 2:0
+BENCHMARK FEDERATE TYPE: MessageExchange
+ELAPSED TIME (ns): 34111017
+About to finalize MPI for rank 2
+MPI Finalized for rank 2

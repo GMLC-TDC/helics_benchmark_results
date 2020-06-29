@@ -1,0 +1,7 @@
+Started MPI service loop for rank 0
+commMessage||:MpiComms() - commAddress = 0:0
+commMessage||24710-z4pbT-7fAiN-uYyOi-KmF0N (1)::Shutdown RX Loop for 0:0
+commMessage||24710-z4pbT-7fAiN-uYyOi-KmF0N (1)::Shutdown TX Loop for 0:0
+MpiBroker destructor for 0:0
+About to finalize MPI for rank 0
+MPI Finalized for rank 0
