@@ -569,32 +569,31 @@ def mm_plot(
         # created.
         if metric_type == 'counts_per_second' or metric_type == 'cps':
             # Calculating the metric.
-            gpd = dataframe.groupby(
-                ['{}'.format(x_axis),
-                 '{}'.format(param1)])['{}'.format(param2)].sum()\
-                    / dataframe.groupby(
-                        ['{}'.format(x_axis),
-                         '{}'.format(param1)])['{}'.format(y_axis)].mean()
-            gpd.name = 'counts_per_second'
-            # Creating the plot.
+            dataframe['counts_per_second'] = dataframe['EvCount']\
+                / dataframe['{}'.format(y_axis)]
+            gpd = dataframe.groupby([
+                '{}'.format(x_axis),
+                '{}'.format(param1)])['counts_per_second'].min()
             gpd = gpd.reset_index()
+            # Creating the plot.
+            min_y = gpd['counts_per_second'].min()
             plot = gpd.sort_values(
                 '{}'.format(x_axis)).hvplot.line(
-                    '{}'.format(x_axis),
-                    'counts_per_second',
-                    ylabel='EvCounts per second',
-                    line_width=3,
-                    by='{}'.format(param1),
-                    alpha=0.75).opts(
-                        width=625, height=380,
-                        logx=True, logy=True,
-                        legend_position='bottom_right', legend_cols=2,
-                        yformatter='%.3f', ylim=(10**(-3), None),
-                        title='{} {}: EvCounts/s vs {}'.format(
-                            title_part, bm_name, x_axis),
-                        fontsize={'title': 9, 'labels': 10,
-                                  'legend': 8, 'legend_title': 8,
-                                  'xticks': 8, 'yticks': 10})
+                '{}'.format(x_axis),
+                'counts_per_second',
+                ylabel='EvCounts per second',
+                line_width=3,
+                by='{}'.format(param1),
+                alpha=0.75).opts(
+                    width=625, height=450,
+                    logx=True, logy=True,
+                    legend_position='top', legend_cols=2,
+                    yformatter='%.2f',
+                    title='{} {}: EvCounts/s vs {}'.format(
+                        title_part, bm_name, x_axis),
+                    fontsize={'title': 9, 'labels': 10,
+                              'legend': 8, 'legend_title': 8,
+                              'xticks': 8, 'yticks': 7.5})
             save_path = os.path.join(
                 output_path, '{}_{}.png'.format(bm_name, metric_type))
     elif metric_bool is False:
@@ -603,7 +602,7 @@ def mm_plot(
              '{}'.format(param1)])['{}'.format(y_axis)].min()
         gpd = gpd.reset_index()
         # Creating the plot.
-        gpd = gpd.reset_index()
+        min_y = gpd['{}'.format(y_axis)].min()
         plot = gpd.sort_values('{}'.format(x_axis)).hvplot.line(
                 '{}'.format(x_axis),
                 '{}'.format(y_axis),
@@ -611,14 +610,14 @@ def mm_plot(
                 line_width=3,
                 by='{}'.format(param1),
                 alpha=0.75).opts(
-                    width=625, height=380,
+                    width=625, height=450,
                     logx=True, logy=True,
-                    legend_position='bottom_right', legend_cols=2,
-                    yformatter='%.4f', ylim=(10.0**(-4), None),
+                    legend_position='top', legend_cols=2,
+                    yformatter='%.3f',
                     title='{} {}: {} vs {}'.format(
                         title_part, bm_name, x_axis, y_axis),
                     fontsize={'title': 9, 'labels': 10, 'legend': 8,
-                              'legend_title': 8, 'xticks': 8, 'yticks': 10})
+                              'legend_title': 8, 'xticks': 8, 'yticks': 7.5})
         save_path = os.path.join(
             output_path, '{}_{}.png'.format(title_part, bm_name))
     else:
