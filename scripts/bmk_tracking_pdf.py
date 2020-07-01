@@ -224,9 +224,8 @@ def _auto_run(args):
     
     # Creating the report PDF
     meta_bmk_df = md.make_dataframe1(args.json_file)
-    action_df = meta_bmk_df[
-        (meta_bmk_df.benchmark_type == 'full') &
-        (meta_bmk_df.benchmark == 'actionMessageBenchmark')]
+    conv_df = meta_bmk_df[
+        (meta_bmk_df.benchmark == 'conversionBenchmark')]
     meta_bmk_df = meta_bmk_df[
         (meta_bmk_df.benchmark_type == 'key') & 
         (meta_bmk_df.host_processor == 'x86_64') & 
@@ -243,21 +242,37 @@ def _auto_run(args):
     create_benchmark_tracking_report(output_path,
                                      meta_bmk_df)
     # Creating 
-    action_df = action_df.replace(
-        {'run_name': {'BM_AM_toString': 'BMtoString', 
-                      'BM_AM_FromString': 'BMfromString', 
-                      'BM_AM_toString_time': 'BMtoStringTime', 
-                      'BM_AM_FromString_time': 'BMfromStringTime', 
-                      'BM_AM_packetize': 'BMpacketize', 
-                      'BM_AM_depacketize': 'BMdepacketize', 
-                      'BM_AM_packetize_strings': 'BMpacketizeStrings', 
-                      'BM_AM_depacketize_strings': 'BMdepacketizeStrings'}})
-    action_df.date = pd.to_datetime(action_df.date)
-    action_df['DATE'] = [str(d.date()) for d in action_df.date]
-    action_df = action_df.groupby(
-                ['run_name', 'DATE'])['real_time'].min().reset_index()
-    min_y = action_df['real_time'].min()
-    plot = action_df.sort_values('DATE').hvplot.line(
+    conv_df = conv_df.replace(
+        {'run_name': {
+            'BM_conversion/double_conv': 'BMconversion/double_conv',
+            'BM_conversion/int64_conv': 'BMconversion/int64_conv',
+            'BM_conversion/uint64_conv': 'BMconversion/uint64_conv',
+            'BM_conversion/int_conv': 'BMconversion/int_conv',
+            'BM_conversion/complex_conv': 'BMconversion/complex_conv',
+            'BM_conversion/string_conv': 'BMconversion/string_conv',
+            'BM_conversion/string_conv_med': 'BMconversion/string_conv_med',
+            'BM_conversion/string_conv_long': 'BMconversion/string_conv_long',
+            'BM_conversion/vector_conv': 'BMconversion/vector_conv',
+            'BM_interpret/double_interp': 'BMinterpret/double_interp',
+            'BM_interpret/int64_interp': 'BMinterpret/int64_interp',
+            'BM_interpret/uint64_interp': 'BMinterpret/uint64_interp',
+            'BM_interpret/int_interp': 'BMinterpret/int_interp',
+            'BM_interpret/complex_interp': 'BMinterpret/complex_interp',
+            'BM_interpret/string_interp': 'BMinterpret/string_interp',
+            'BM_interpret/string_interp_med': 'BMinterpret/string_interp_med',
+            'BM_interpret/string_interp_long':
+                'BMinterpret/string_interp_long',
+            'BM_interpret/vector_interp': 'BMinterpret/vector_interp'}})
+    conv_df.date = pd.to_datetime(conv_df.date)
+    conv_df['DATE'] = [str(d.date()) for d in conv_df.date]
+    conv_df = conv_df.groupby(
+                ['run_name', 
+                 'DATE', 
+                 'benchmark_type'])['real_time'].min().reset_index()
+    min_y = conv_df['real_time'].min()
+    df1 = conv_df[conv_df.benchmark_type == 'full']
+    df2 = conv_df[conv_df.benchmark_type == 'key']
+    plot1 = df1.sort_values('DATE').hvplot.line(
         'DATE',
         'real_time',
         ylabel='real_time (s)',
@@ -265,16 +280,29 @@ def _auto_run(args):
         by='run_name',
         rot=90,
         alpha=0.75).opts(
-            width=800, height=380,
+            width=1000, height=550,
             logx=True, logy=True,
             yformatter='%.3f', ylim=(min_y*10.0**(-1), None),
-            title='actionMessage: DATE vs real_time', fontsize={
-                'title': 8.5, 'labels': 10, 'legend': 8,
+            title='conversion - full: DATE vs real_time', fontsize={
+                'title': 8.5, 'labels': 10, 'legend': 6.5,
+                'legend_title': 8, 'xticks': 8, 'yticks': 10})
+    plot2 = df2.sort_values('DATE').hvplot.line(
+        'DATE',
+        'real_time',
+        ylabel='real_time (s)',
+        line_width=3,
+        by='run_name',
+        rot=90,
+        alpha=0.75).opts(
+            width=1000, height=550,
+            logx=True, logy=True,
+            yformatter='%.3f', ylim=(min_y*10.0**(-1), None),
+            title='conversion - key: DATE vs real_time', fontsize={
+                'title': 8.5, 'labels': 10, 'legend': 6.5,
                 'legend_title': 8, 'xticks': 8, 'yticks': 10})
     head, tail = os.path.split(output_path)
-    save_path = os.path.join(
-        head, 'actionMessage_tracking.png')
-    hvplot.save(plot, save_path)
+    hvplot.save(plot1, os.path.join(head, 'conversion_tracking_full.png'))
+    hvplot.save(plot2, os.path.join(head, 'conversion_tracking_key.png'))
 
 
 if __name__ == '__main__':
