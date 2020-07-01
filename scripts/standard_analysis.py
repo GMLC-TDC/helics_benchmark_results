@@ -228,35 +228,14 @@ def make_SA_graphs(meta_bmk_df, bm_list, run_id, output_path):
                 df, 'federate_count', 'real_time', 'echoMessageBenchmark',
                 True, 'core_type', run_id, output_path)
         elif bm['bm_name'] == 'messageLookupBenchmark' and bm['bm_type'] == 'full':
-            df1 = meta_bmk_df[
+            df = meta_bmk_df[
                 (meta_bmk_df.benchmark == 'messageLookupBenchmark') & 
                 (meta_bmk_df.core_type == 'inproc') &
                 (meta_bmk_df.benchmark_type == 'full') & 
-                (meta_bmk_df.run_id == '{}'.format(run_id)) &
-                (meta_bmk_df.federate_count == 2)]
+                (meta_bmk_df.run_id == '{}'.format(run_id))]
             sa_plot(
-                df1, 'interface_count', 'real_time',
-                'messageLookup, core_type=inproc, fed_ct=2', False, '',
-                run_id, output_path)
-            df2 = meta_bmk_df[
-                (meta_bmk_df.benchmark == 'messageLookupBenchmark') & 
-                (meta_bmk_df.core_type == 'inproc') &
-                (meta_bmk_df.benchmark_type == 'full') & 
-                (meta_bmk_df.run_id == '{}'.format(run_id)) &
-                (meta_bmk_df.federate_count == 8)]
-            sa_plot(
-                df2, 'interface_count', 'real_time',
-                'messageLookup, core_type=inproc, fed_ct=8', False, '',
-                run_id, output_path)
-            df3 = meta_bmk_df[
-                (meta_bmk_df.benchmark == 'messageLookupBenchmark') & 
-                (meta_bmk_df.core_type == 'inproc') &
-                (meta_bmk_df.benchmark_type == 'full') & 
-                (meta_bmk_df.run_id == '{}'.format(run_id)) &
-                (meta_bmk_df.federate_count == 64)]
-            sa_plot(
-                df3, 'interface_count', 'real_time',
-                'messageLookup, core_type=inproc, fed_ct=64', False, '',
+                df, 'interface_count', 'real_time',
+                'messageLookup, core_type=inproc', True, 'federate_count',
                 run_id, output_path)
         elif bm['bm_name'] == 'ringBenchmark' and bm['bm_type'] == 'full':
             df = meta_bmk_df[(meta_bmk_df.benchmark == 'ringBenchmark') & 
