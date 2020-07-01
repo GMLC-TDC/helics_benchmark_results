@@ -485,7 +485,7 @@ if __name__ == '__main__':
     parser.add_argument('-l',
                         '--run_id_list',
                         nargs='+',
-                        default=['YL2EQ', 'kkJWd'])
+                        default=['Zu60n', '882HL'])
     parameter_list = [
         'mhz_per_cpu', 'helics_version', 'generator',
         'system', 'system_version', 'platform',

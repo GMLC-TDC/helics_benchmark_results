@@ -119,12 +119,16 @@ def make_dataframe1(json_results):
     meta_bmk_df = reduce(lambda x, y: pd.merge(
         x, y, on='identifier_id', how='outer'), [info_df, cache_df, bmk_df])
     # Converting 'real_time' from nanoseconds or milliseconds to seconds.
-    meta_bmk_df = meta_bmk_df.set_index('time_unit')
-    meta_bmk_df.real_time = meta_bmk_df.real_time.apply(
-        lambda x: float(x)*10**(-9) if x.index == 'ns' else float(x)*10**(-3))
-    meta_bmk_df.cpu_time = meta_bmk_df.cpu_time.apply(
-        lambda x: float(x)*10**(-9) if x.index == 'ns' else float(x)*10**(-3))
-    meta_bmk_df = meta_bmk_df.reset_index()
+    df1 = meta_bmk_df[meta_bmk_df.time_unit == 'ns']
+    df2 = meta_bmk_df[meta_bmk_df.time_unit == 'ms']
+    df3 = meta_bmk_df[meta_bmk_df.time_unit == 's']
+    df1.real_time = df1.real_time.apply(lambda x: float(x)*10**(-9))
+    df1.cpu_time = df1.cpu_time.apply(lambda x: float(x)*10**(-9))
+    df2.real_time = df2.real_time.apply(lambda x: float(x)*10**(-3))
+    df2.cpu_time = df2.cpu_time.apply(lambda x: float(x)*10**(-3))
+    df3.real_time = df3.real_time.apply(lambda x: float(x)*1)
+    df3.cpu_time = df3.cpu_time.apply(lambda x: float(x)*1)
+    meta_bmk_df = pd.concat([df1, df2, df3], axis=0, ignore_index=True)
     # Making sure results have the correct units and are the correct
     # data type
     meta_bmk_df = meta_bmk_df.replace({'time_unit': {'ns': 's',
@@ -136,8 +140,6 @@ def make_dataframe1(json_results):
     meta_bmk_df['EvCount'] = meta_bmk_df['EvCount'].astype(float)
     meta_bmk_df['message_size'] = meta_bmk_df['message_size'].astype(float)
     meta_bmk_df['message_count'] = meta_bmk_df['message_count'].astype(float)
-    meta_bmk_df['real_time'] = meta_bmk_df['real_time'].astype(float)
-    meta_bmk_df['cpu_time'] = meta_bmk_df['cpu_time'].astype(float)
     return meta_bmk_df
 
 
