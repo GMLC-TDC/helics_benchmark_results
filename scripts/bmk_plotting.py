@@ -18,6 +18,7 @@ import logging
 from functools import reduce
 import os
 import hvplot.pandas
+import numpy as np
 
 # Setting up logging
 logger = logging.getLogger(__name__)
@@ -349,31 +350,41 @@ def cr_plot(
             min_ys.append(min_y)
             max_ys.append(max_y)
             my_plots.append(plots)
-    y_min = min_ys[0]
-    y_max = max_ys[0]
+    y_min = np.min(min_ys)
+    # y_max = max_ys[0]
     if benchmark == 'messageSendBenchmark':
         plot = (reduce((lambda x, y: x*y), my_plots)).opts(
             width=625, height=380,
             logx=True, logy=True,
             legend_position='bottom_right', yformatter='%.4f',
-            ylim=(y_min*10.0**(-2), y_max*10.0**(2)), fontsize={
+            ylim=(y_min*10.0**(-2), None), fontsize={
                 'title': 8.5, 'labels': 10, 'legend': 7.5,
                 'legend_title': 7.5, 'xticks': 8, 'yticks': 10},
             title='{}: {} vs {}'.format(bm_name, x_axis, y_axis))
     elif benchmark == 'messageLookupBenchmark':
-        plot = (reduce((lambda x, y: x*y), my_plots)).opts(
-            width=625, height=380, logx=True,
-            logy=True, legend_position='bottom_right',
-            ylim=(y_min*10.0**(-2), y_max*10.0**(1)), fontsize={
-                'title': 8.5, 'labels': 10, 'legend': 7.5,
-                'legend_title': 7.5, 'xticks': 8, 'yticks': 10},
-            title='{}: {} vs {}'.format(bm_name, x_axis, y_axis))
+        if dataframe.federate_count.unique()[0] == 8 or\
+            dataframe.federate_count.unique()[0] == 64:
+            plot = (reduce((lambda x, y: x*y), my_plots)).opts(
+                width=625, height=380, logx=True,
+                logy=True, legend_position='bottom_right',
+                ylim=(10**(-6), None), fontsize={
+                    'title': 8.5, 'labels': 10, 'legend': 7.5,
+                    'legend_title': 7.5, 'xticks': 8, 'yticks': 10},
+                title='{}: {} vs {}'.format(bm_name, x_axis, y_axis))
+        else:
+            plot = (reduce((lambda x, y: x*y), my_plots)).opts(
+                width=625, height=380, logx=True,
+                logy=True, legend_position='bottom_right',
+                ylim=(0.001, None), fontsize={
+                    'title': 8.5, 'labels': 10, 'legend': 7.5,
+                    'legend_title': 7.5, 'xticks': 8, 'yticks': 10},
+                title='{}: {} vs {}'.format(bm_name, x_axis, y_axis))
     else:
         plot = (reduce((lambda x, y: x*y), my_plots)).opts(
             width=625, height=380,
             logx=True, logy=True,
             legend_position='bottom_right', yformatter='%.3f',
-            ylim=(y_min*10.0**(-2), y_max*10.0**(1)), fontsize={
+            ylim=(0.001, None), fontsize={
                 'title': 8.5, 'labels': 10, 'legend': 7.5,
                 'legend_title': 7.5, 'xticks': 8, 'yticks': 10},
             title='{}: {} vs {}'.format(bm_name, x_axis, y_axis))
