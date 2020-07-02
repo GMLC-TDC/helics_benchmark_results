@@ -163,13 +163,13 @@ def make_dataframe2(json_results):
     lists = []
     columns = [
     'filename', 'zmq_version', 'mhz_per_cpu', 'cluster',
-    'topology', 'number_of_leaves', 'number_of_nodes', 'federate_count',
+    'topology', 'number_of_leaves', 'num_nodes', 'federate_count',
     'message_size', 'message_count', 'benchmark', 'benchmark_type',
     'helics_version_string', 'helics_version', 'zmq_version_string', 'path', 
     'compiler_info_string', 'generator', 'system', 'system_version', 
     'platform', 'core_type', 'cxx_compiler', 'cxx_compiler_version',
     'build_flags_string', 'host_processor', 'host_processor_string', 'date',
-    'run_id', 'elapsed_time', 'time_unit', 'EvCount'
+    'run_id', 'elapsed_time', 'time_unit', 'EvCount', 'feds_per_node'
     ]
     for f, f_dict in dct.items():
         for d, d_dict in f_dict.items():
@@ -212,13 +212,19 @@ def make_dataframe2(json_results):
                                                           '32.0': 32.0,
                                                           '36.0': 36.0,
                                                           '72.0': 72.0},
-                                       'number_of_nodes': {'': np.nan,
-                                                           '1': 1.0,
-                                                           '2': 2.0,
-                                                           '3': 3.0,
-                                                           '4': 4.0,
-                                                           '8': 8.0,
-                                                           '9': 9.0}})
+                                       'num_nodes': {'': np.nan,
+                                                     '1': 1.0,
+                                                     '2': 2.0,
+                                                     '3': 3.0,
+                                                     '4': 4.0,
+                                                     '8': 8.0,
+                                                     '9': 9.0},
+                                       'feds_per_node': {'nan': np.nan,
+                                                         '1.0': 1.0,
+                                                         '2.0': 2.0,
+                                                         '4.0': 4.0,
+                                                         '8.0': 8.0,
+                                                         '9.0': 9.0}})
     meta_bmk_df['EvCount'] = meta_bmk_df['EvCount'].astype(float)
     meta_bmk_df['message_size'] = meta_bmk_df['message_size'].astype(float)
     meta_bmk_df['message_count'] = meta_bmk_df['message_count'].astype(float)
@@ -241,8 +247,10 @@ def make_dataframe2(json_results):
                     a_df.loc['summary.txt', 'number_of_leaves']),
                 'federate_count': float(
                     a_df.loc['summary.txt', 'federate_count']),
-                'number_of_nodes': float(
-                    a_df.loc['summary.txt', 'number_of_nodes'])}
+                'num_nodes': float(
+                    a_df.loc['summary.txt', 'num_nodes']),
+                'feds_per_node': float(
+                    a_df.loc['summary.txt', 'feds_per_node'])}
             a_df = a_df.fillna(value=values)
         except Exception as e:
             print('{} does not exist for {} benchmark'.format(

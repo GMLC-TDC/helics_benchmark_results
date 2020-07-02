@@ -204,17 +204,19 @@ def parse_header_lines(json_file, json_results, uuid_str):
             json_results[uuid_str]['benchmark_type'] = line[25:]
         elif 'DATE:' in line:
             json_results[uuid_str]['date'] = line[6:]
+            if json_results[uuid_str]['date'] == '2020-01-08':
+                json_results[uuid_str]['federate_per_node'] = 1.0
         elif 'CLUSTER:' in line:
             json_results[uuid_str]['cluster'] = line[9:]
         elif 'NUM NODES:' in line:
-            json_results[uuid_str]['number_of_nodes'] = float(line[-1])
+            json_results[uuid_str]['num_nodes'] = float(line[-1])
         elif 'FEDS PER NODE:' in line:
             if json_results[uuid_str]['date'] == '2020-01-08':
                 pass
             else:
-                json_results[uuid_str]['federate_per_node'] = float(line[15:])
-                num_nodes = json_results[uuid_str]['number_of_nodes']
-                feds = json_results[uuid_str]['federate_per_node']
+                json_results[uuid_str]['feds_per_node'] = float(line[15:])
+                num_nodes = json_results[uuid_str]['num_nodes']
+                feds = json_results[uuid_str]['feds_per_node']
                 json_results[uuid_str]['federate_count'] = num_nodes * feds
         elif 'TOPOLOGY:' in line:
             json_results[uuid_str]['topology'] = line[11:]
@@ -239,6 +241,7 @@ def parse_header_lines(json_file, json_results, uuid_str):
             pass
         else:
             json_results[uuid_str]['mhz_per_cpu'] = np.nan
+            json_results[uuid_str]['federate_per_node'] = np.nan
                 
             # logging.error('Failed to parse line in {}.'.format(
             #     os.path.join(json_results[uuid_str]['path'],
@@ -276,15 +279,17 @@ def parse_and_add_benchmark_metadata(json_results):
             json_results = _add_number_of_nodes(key, json_results)
         if 'date' in json_results.values():
             if json_results[key]['date'] == '2020-01-08':
-                num_nodes = json_results[key]['number_of_nodes']
+                num_nodes = json_results[key]['num_nodes']
                 json_results[key]['federate_count'] = float(num_nodes) * 1
+                json_results[key]['feds_per_node'] = 1.0
             else:
                 pass
         else:
             json_results = _add_date(key, json_results)
             if json_results[key]['date'] == '2020-01-08':
-                num_nodes = json_results[key]['number_of_nodes']
+                num_nodes = json_results[key]['num_nodes']
                 json_results[key]['federate_count'] = float(num_nodes) * 1
+                json_results[key]['feds_per_node'] = 1.0
             else:
                 pass
         # if 'federate_per_node' in json_results.values():
@@ -397,12 +402,10 @@ def _add_number_of_nodes(key, json_results):
     """
     match = re.search('N\d*', json_results[key]['path'])
     if match:
-        print(match.group(0))
         number_of_nodes = match.group(0)[1:]
-        print(number_of_nodes)
-        json_results[key]['number_of_nodes'] = number_of_nodes
+        json_results[key]['num_nodes'] = number_of_nodes
     else:
-        json_results[key]['number_of_nodes'] = ''
+        json_results[key]['num_nodes'] = ''
     return json_results
 
 
