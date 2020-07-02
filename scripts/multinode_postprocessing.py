@@ -207,9 +207,15 @@ def parse_header_lines(json_file, json_results, uuid_str):
         elif 'CLUSTER:' in line:
             json_results[uuid_str]['cluster'] = line[9:]
         elif 'NUM NODES:' in line:
-            json_results[uuid_str]['number_of_nodes'] = line[11:]
+            json_results[uuid_str]['number_of_nodes'] = float(line[-1])
         elif 'FEDS PER NODE:' in line:
-            json_results[uuid_str]['federate_count'] = line[15:]
+            if json_results[uuid_str]['date'] == '2020-01-08':
+                pass
+            else:
+                json_results[uuid_str]['federate_per_node'] = float(line[15:])
+                num_nodes = json_results[uuid_str]['number_of_nodes']
+                feds = json_results[uuid_str]['federate_per_node']
+                json_results[uuid_str]['federate_count'] = num_nodes * feds
         elif 'TOPOLOGY:' in line:
             json_results[uuid_str]['topology'] = line[11:]
         elif 'NUM LEAFS:' in line:
@@ -234,10 +240,10 @@ def parse_header_lines(json_file, json_results, uuid_str):
         else:
             json_results[uuid_str]['mhz_per_cpu'] = np.nan
                 
-            logging.error('Failed to parse line in {}.'.format(
-                os.path.join(json_results[uuid_str]['path'],
-                             json_results[uuid_str]['filename'])))
-            logging.error('    {}'.format(line))
+            # logging.error('Failed to parse line in {}.'.format(
+            #     os.path.join(json_results[uuid_str]['path'],
+            #                  json_results[uuid_str]['filename'])))
+            # logging.error('    {}'.format(line))
     return json_str, json_results
 
 
@@ -260,26 +266,31 @@ def parse_and_add_benchmark_metadata(json_results):
             pass
         else:
             json_results = _add_run_id(key, json_results)
-            
         if 'core_type' in json_results.values():
             pass
         else:
             json_results = _add_core(key, json_results)
-            
         if 'number_of_nodes' in json_results.values():
             pass
         else:
             json_results = _add_number_of_nodes(key, json_results)
-            
-        if 'federate_count' in json_results.values():
-            pass
-        else:
-            json_results = _add_federate_count(key, json_results)
-            
         if 'date' in json_results.values():
-            pass
+            if json_results[key]['date'] == '2020-01-08':
+                num_nodes = json_results[key]['number_of_nodes']
+                json_results[key]['federate_count'] = float(num_nodes) * 1
+            else:
+                pass
         else:
             json_results = _add_date(key, json_results)
+            if json_results[key]['date'] == '2020-01-08':
+                num_nodes = json_results[key]['number_of_nodes']
+                json_results[key]['federate_count'] = float(num_nodes) * 1
+            else:
+                pass
+        # if 'federate_per_node' in json_results.values():
+        #     pass
+        # else:
+        #     json_results = _add_federate_count(key, json_results)
         
         # Adding benchmark to json_results
         path = json_results[key]['path']
@@ -298,6 +309,8 @@ def parse_and_add_benchmark_metadata(json_results):
             
         elif 'RingTransmitFederate' in path:
             json_results[key]['benchmark'] = 'RingTransmitFederate'
+        elif 'RingTransmitMessageFederate' in path:
+            json_results[key]['benchmark'] = 'RingTransmitMessageFederate'
             
         elif 'TimingLeafFederate' in path:
             json_results[key]['benchmark'] = 'TimingLeafFederate'
@@ -325,6 +338,7 @@ def _add_core(key, json_results):
     match3 = re.search('-udp-', path)
     match4 = re.search('-zmq-', path)
     match5 = re.search('-zmqss-', path)
+    match6 = re.search('-mpi-', path)
     if match1:
         json_results[key]['core_type'] = 'tcp'
     elif match2:
@@ -335,6 +349,8 @@ def _add_core(key, json_results):
         json_results[key]['core_type'] = 'zmq'
     elif match5:
         json_results[key]['core_type'] = 'zmqss'
+    elif match6:
+        json_results[key]['core_type'] = 'mpi'
     else:
         warn_str = 'Unable to find core type in {}; ' \
                         'setting to "unspecified"'.format(path)
@@ -379,9 +395,11 @@ def _add_number_of_nodes(key, json_results):
         json_results (dict) - json_results with run_id added for
         the indicated results file.
     """
-    match = re.search('N\d\-job-\d*', json_results[key]['path'])
+    match = re.search('N\d*', json_results[key]['path'])
     if match:
-        number_of_nodes = match.group(0)[1:-12]
+        print(match.group(0))
+        number_of_nodes = match.group(0)[1:]
+        print(number_of_nodes)
         json_results[key]['number_of_nodes'] = number_of_nodes
     else:
         json_results[key]['number_of_nodes'] = ''
@@ -402,14 +420,17 @@ def _add_federate_count(key, json_results):
         json_results (dict) - json_results with run_id added for
         the indicated results file.
     """
-    ### TODO: Modify this function once data with more federates
-    ### is added to the multinode_benchmark_results folder.
-    match = re.search('N\d\-job-\d*', json_results[key]['path'])
-    if match:
-        number_of_nodes = match.group(0)[1:2]
-        json_results[key]['federate_count'] = float(number_of_nodes * 1)
+    # TODO: Modify this function once data with more federates
+    # is added to the multinode_benchmark_results folder.
+    if json_results[key]['date'] == '2020-01-08':
+        match = re.search('N\d\-job-\d*', json_results[key]['path'])
+        if match:
+            number_of_nodes = float(match.group(0)[1:2])
+            json_results[key]['federate_count'] = number_of_nodes * 1
+        else:
+            json_results[key]['federate_count'] = ''
     else:
-        json_results[key]['federate_count'] = ''
+        pass
     return json_results
 
 
@@ -615,10 +636,6 @@ def _auto_run(args):
     if args.write_json_output:
         with open('multinode_bm_results.json', 'w') as outfile:
             json.dump(d, outfile)
-    ### CGR (2020-03-17): Commenting out for now for testing purposes:
-#    if args.write_json_output:
-#        with open('multinode_bm_results.json', 'w') as outfile:
-#            json.dump(d, outfile)
 
 
 if __name__ == '__main__':

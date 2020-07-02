@@ -199,14 +199,26 @@ def make_dataframe2(json_results):
     meta_bmk_df['date'] = pd.to_datetime(meta_bmk_df.date.astype(str))
     meta_bmk_df['date'] = meta_bmk_df['date'].astype(str)
     meta_bmk_df = meta_bmk_df.replace({'time_unit': {'ns': 's', 
-                                                     'nan': 's'}})
-    meta_bmk_df = meta_bmk_df.replace({'federate_count': {'1.0': 1.0,
+                                                     'nan': 's'},
+                                       'federate_count': {'nan': np.nan,
+                                                          '1.0': 1.0,
                                                           '2.0': 2.0,
+                                                          '3.0': 3.0,
                                                           '4.0': 4.0,
                                                           '8.0': 8.0,
-                                                          '': np.nan,
-                                                          '3.0': 3.0,
-                                                          '9.0': 9.0}})
+                                                          '9.0': 9.0,
+                                                          '16.0': 16.0,
+                                                          '18.0': 18.0,
+                                                          '32.0': 32.0,
+                                                          '36.0': 36.0,
+                                                          '72.0': 72.0},
+                                       'number_of_nodes': {'': np.nan,
+                                                           '1': 1.0,
+                                                           '2': 2.0,
+                                                           '3': 3.0,
+                                                           '4': 4.0,
+                                                           '8': 8.0,
+                                                           '9': 9.0}})
     meta_bmk_df['EvCount'] = meta_bmk_df['EvCount'].astype(float)
     meta_bmk_df['message_size'] = meta_bmk_df['message_size'].astype(float)
     meta_bmk_df['message_count'] = meta_bmk_df['message_count'].astype(float)
@@ -226,7 +238,11 @@ def make_dataframe2(json_results):
                 'cluster': str(a_df.loc['summary.txt', 'cluster']), 
                 'topology': str(a_df.loc['summary.txt', 'topology']), 
                 'number_of_leaves': float(
-                    a_df.loc['summary.txt', 'number_of_leaves'])}
+                    a_df.loc['summary.txt', 'number_of_leaves']),
+                'federate_count': float(
+                    a_df.loc['summary.txt', 'federate_count']),
+                'number_of_nodes': float(
+                    a_df.loc['summary.txt', 'number_of_nodes'])}
             a_df = a_df.fillna(value=values)
         except Exception as e:
             print('{} does not exist for {} benchmark'.format(

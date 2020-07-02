@@ -326,6 +326,13 @@ def make_multinode_graphs(dataframe, output_path):
                 'core_type', '', False, 
                 '', 'RingTransmitFederate', 'Multinode',
                 output_path)
+        elif benchmark == 'RingTransmitMessageFederate':
+            df = dataframe[dataframe.benchmark == 'RingTransmitMessageFederate']
+            bmk_plotting.mm_plot(
+                df, 'federate_count', 'elapsed_time', 
+                'core_type', '', False, 
+                '', 'RingTransmitMessageFederate', 'Multinode',
+                output_path)
         elif benchmark == 'TimingLeafFederate':
             df = dataframe[dataframe.benchmark == 'TimingLeafFederate']
             bmk_plotting.mm_plot(
