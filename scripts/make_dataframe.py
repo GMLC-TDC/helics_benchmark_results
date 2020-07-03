@@ -250,7 +250,31 @@ def make_dataframe2(json_results):
                 'num_nodes': float(
                     a_df.loc['summary.txt', 'num_nodes']),
                 'feds_per_node': float(
-                    a_df.loc['summary.txt', 'feds_per_node'])}
+                    a_df.loc['summary.txt', 'feds_per_node']),
+                'helics_version_string': 
+                    a_df.loc['summary.txt', 'helics_version_string'],
+                'helics_version': a_df.loc['summary.txt', 'helics_version'],
+                'benchmark': a_df.loc['summary.txt', 'benchmark'],
+                'date': a_df.loc['summary.txt', 'date'],
+                'zmq_version_string':
+                    a_df.loc['summary.txt', 'zmq_version_string'],
+                'zmq_version': a_df.loc['summary.txt', 'zmq_version'],
+                'compiler_info_string':
+                    a_df.loc['summary.txt', 'compiler_info_string'],
+                'cxx_compiler': a_df.loc['summary.txt', 'cxx_compiler'],
+                'cxx_compiler_version':
+                    a_df.loc['summary.txt', 'cxx_compiler_version'],
+                'system': a_df.loc['summary.txt', 'system'],
+                'system_version': a_df.loc['summary.txt', 'system_version'],
+                'generator': a_df.loc['summary.txt', 'generator'],
+                'platform': a_df.loc['summary.txt', 'platform'],
+                'build_flags_string':
+                    a_df.loc['summary.txt', 'build_flags_string'],
+                'host_processor_string':
+                    a_df.loc['summary.txt', 'host_processor_string'],
+                'host_processor': a_df.loc['summary.txt', 'host_processor'],
+                'core_type': a_df.loc['summary.txt', 'core_type'],
+                'run_id': a_df.loc['summary.txt', 'run_id']}
             a_df = a_df.fillna(value=values)
         except Exception as e:
             print('{} does not exist for {} benchmark'.format(

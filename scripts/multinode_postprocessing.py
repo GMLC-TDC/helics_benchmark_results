@@ -209,7 +209,7 @@ def parse_header_lines(json_file, json_results, uuid_str):
         elif 'CLUSTER:' in line:
             json_results[uuid_str]['cluster'] = line[9:]
         elif 'NUM NODES:' in line:
-            json_results[uuid_str]['num_nodes'] = float(line[-1])
+            json_results[uuid_str]['num_nodes'] = float(line[11:])
         elif 'FEDS PER NODE:' in line:
             if json_results[uuid_str]['date'] == '2020-01-08':
                 pass
@@ -219,7 +219,7 @@ def parse_header_lines(json_file, json_results, uuid_str):
                 feds = json_results[uuid_str]['feds_per_node']
                 json_results[uuid_str]['federate_count'] = num_nodes * feds
         elif 'TOPOLOGY:' in line:
-            json_results[uuid_str]['topology'] = line[11:]
+            json_results[uuid_str]['topology'] = line[10:].strip()
         elif 'NUM LEAFS:' in line:
             json_results[uuid_str]['number_of_leaves'] = line[11:]
         elif 'MESSAGE SIZE:' in line:
