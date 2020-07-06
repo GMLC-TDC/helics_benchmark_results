@@ -362,8 +362,8 @@ def cr_plot(
                 'legend_title': 7.5, 'xticks': 8, 'yticks': 10},
             title='{}: {} vs {}'.format(bm_name, x_axis, y_axis))
     elif benchmark == 'messageLookupBenchmark':
-        if dataframe.federate_count.unique()[0] == 8 or\
-            dataframe.federate_count.unique()[0] == 64:
+        if list(dataframe.federate_count.unique())[0] == 8.0 or\
+            list(dataframe.federate_count.unique())[0] == 64.0:
             plot = (reduce((lambda x, y: x*y), my_plots)).opts(
                 width=625, height=380, logx=True,
                 logy=True, legend_position='bottom_right',
