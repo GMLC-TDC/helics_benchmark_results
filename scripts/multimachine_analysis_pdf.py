@@ -282,17 +282,34 @@ def make_multinode_graphs(dataframe, output_path):
     """
     for benchmark in dataframe.benchmark.unique():
         if benchmark == 'PholdFederate':
-            df = dataframe[dataframe.benchmark == 'PholdFederate']
-            bmk_plotting.mm_plot(
-                df, 'federate_count', 'elapsed_time', 
-                'core_type', '', False, 
-                '', 'PholdFederate', 'Multinode',
-                output_path)
-            bmk_plotting.mm_plot(
-                df, 'federate_count', 'elapsed_time',
-                'core_type', 'EvCount', True,
-                'cps', 'PholdFederate', 'Multinode',
-                output_path)
+            if list(dataframe.date.unique())[0] >= '2020-06-27':
+                for c in dataframe.core_type.unique():
+                    df = dataframe[(dataframe.benchmark == 'PholdFederate') &
+                                   (dataframe.core_type == '{}'.format(c))]
+                    bmk_plotting.mm_plot(
+                        df, 'federate_count', 
+                        'elapsed_time', 'feds_per_node',
+                        '', False, 
+                        '', 'PholdFederate, {}, feds_per_node'.format(c),
+                        'Multinode', output_path)
+                    bmk_plotting.mm_plot(
+                        df, 'federate_count',
+                        'elapsed_time', 'feds_per_node',
+                        'EvCount', True,
+                        'cps', 'PholdFederate, {}, feds_per_node'.format(c),
+                        'Multinode', output_path)
+            else:
+                df = dataframe[dataframe.benchmark == 'PholdFederate']
+                bmk_plotting.mm_plot(
+                        df, 'federate_count', 'elapsed_time', 
+                        'core_type', '', False, 
+                        '', 'PholdFederate', 'Multinode',
+                        output_path)
+                bmk_plotting.mm_plot(
+                    df, 'federate_count', 'elapsed_time',
+                    'core_type', 'EvCount', True,
+                    'cps', 'PholdFederate', 'Multinode',
+                    output_path)
         elif benchmark == 'EchoLeafFederate':
             df = dataframe[dataframe.benchmark == 'EchoLeafFederate']
             bmk_plotting.mm_plot(
