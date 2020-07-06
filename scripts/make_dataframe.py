@@ -276,11 +276,11 @@ def make_dataframe2(json_results):
                 'core_type': a_df.loc['summary.txt', 'core_type'],
                 'run_id': a_df.loc['summary.txt', 'run_id']}
             a_df = a_df.fillna(value=values)
+            a_df = a_df.reset_index()
+            my_list.append(a_df)
         except Exception as e:
             print('{} does not exist for {} benchmark'.format(
                 e, a_df.benchmark.values[0]))
-        a_df = a_df.reset_index()
-        my_list.append(a_df)
     main_df = pd.concat(my_list, axis=0, ignore_index=True)
     return main_df
 

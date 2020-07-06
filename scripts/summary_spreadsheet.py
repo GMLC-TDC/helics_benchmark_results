@@ -222,14 +222,14 @@ def cpu_score(dataframe, bm_type):
             score_df = df
             score_df = score_df.set_index('benchmark')
             try:
-                fed_scores = [score_df.loc[i, 'spf'].mean()\
-                              for i in score_df.index.unique()\
-                                  if i != 'messageSendBenchmark']
-                cycles = [score_df.loc[i, 'cpf'].mean()\
-                          for i in score_df.index.unique()\
-                              if i != 'messageSendBenchmark']
                 if 'messageSendBenchmark' in score_df.index\
                     and 'messageLookupBenchmark' in score_df.index:
+                    fed_scores = [score_df.loc[i, 'spf'].mean()\
+                        for i in score_df.index.unique()\
+                            if i != 'messageSendBenchmark']
+                    cycles = [score_df.loc[i, 'cpf'].mean()\
+                        for i in score_df.index.unique()\
+                            if i != 'messageSendBenchmark']
                     spi = score_df.loc['messageLookupBenchmark', 'spi'].mean()
                     cpi = score_df.loc['messageLookupBenchmark', 'cpi'].mean()
                     spms = score_df.loc['messageSendBenchmark', 'spms'].mean()
@@ -243,6 +243,12 @@ def cpu_score(dataframe, bm_type):
                         decimals=0)
                 elif 'messageSendBenchmark' in score_df.index\
                     and 'messageLookupBenchmark' not in score_df.index:
+                    fed_scores = [score_df.loc[i, 'spf'].mean()\
+                        for i in score_df.index.unique()\
+                            if i != 'messageSendBenchmark']
+                    cycles = [score_df.loc[i, 'cpf'].mean()\
+                        for i in score_df.index.unique()\
+                            if i != 'messageSendBenchmark']
                     spms = score_df.loc['messageSendBenchmark', 'spms'].mean()
                     cpms = score_df.loc['messageSendBenchmark', 'cpms'].mean()
                     spmc = score_df.loc['messageSendBenchmark', 'spmc'].mean()
@@ -254,6 +260,12 @@ def cpu_score(dataframe, bm_type):
                         decimals=0)
                 elif 'messageSendBenchmark' not in score_df.index\
                     and 'messageLookupBenchmark' in score_df.index:
+                    fed_scores = [score_df.loc[i, 'spf'].mean()\
+                        for i in score_df.index.unique()\
+                            if i != 'messageSendBenchmark']
+                    cycles = [score_df.loc[i, 'cpf'].mean()\
+                        for i in score_df.index.unique()\
+                            if i != 'messageSendBenchmark']
                     spi = score_df.loc['messageLookupBenchmark', 'spi'].mean()
                     cpi = score_df.loc['messageLookupBenchmark', 'cpi'].mean()
                     all_scores = np.array(fed_scores+cycles+[spi, cpi])
@@ -262,6 +274,12 @@ def cpu_score(dataframe, bm_type):
                         decimals=0)
                 elif 'messageSendBenchmark' not in score_df.index\
                     and 'messageLookupBenchmark' not in score_df.index:
+                    fed_scores = [score_df.loc[i, 'spf'].mean()\
+                        for i in score_df.index.unique()\
+                            if i != 'messageSendBenchmark']
+                    cycles = [score_df.loc[i, 'cpf'].mean()\
+                        for i in score_df.index.unique()\
+                            if i != 'messageSendBenchmark']
                     all_scores = np.array(fed_scores+cycles)
                     score_df['cpu_score'] = np.round(
                         np.mean((all_scores/(np.median(all_scores)))), 
@@ -285,11 +303,11 @@ def cpu_score(dataframe, bm_type):
             score_df = df
             score_df = score_df.set_index('benchmark')
             try:
-                fed_scores = [score_df.loc[i, 'spf'].mean()\
-                              for i in score_df.index.unique()]
-                cycles = [score_df.loc[i, 'cpf'].mean()\
-                          for i in score_df.index.unique()]
                 if 'messageLookupBenchmark' in score_df.index:
+                    fed_scores = [score_df.loc[i, 'spf'].mean()\
+                                  for i in score_df.index.unique()]
+                    cycles = [score_df.loc[i, 'cpf'].mean()\
+                              for i in score_df.index.unique()]
                     spi = score_df.loc['messageLookupBenchmark', 'spi'].mean()
                     cpi = score_df.loc['messageLookupBenchmark', 'cpi'].mean()
                     all_scores = np.array(
@@ -298,6 +316,10 @@ def cpu_score(dataframe, bm_type):
                         np.mean((all_scores/(np.median(all_scores)))),
                         decimals=0)
                 elif 'messageLookupBenchmark' not in score_df.index:
+                    fed_scores = [score_df.loc[i, 'spf'].mean()\
+                              for i in score_df.index.unique()]
+                    cycles = [score_df.loc[i, 'cpf'].mean()\
+                              for i in score_df.index.unique()]
                     all_scores = np.array(fed_scores+cycles)
                     score_df['cpu_score'] = np.round(
                         np.mean((all_scores/(np.median(all_scores)))), 
@@ -321,14 +343,14 @@ def cpu_score(dataframe, bm_type):
             score_df = df
             score_df = score_df.set_index('benchmark')
             try:
-                fed_scores = [score_df.loc[i, 'spf'].mean()\
-                              for i in score_df.index.unique()\
-                                  if i != 'MessageExchangeFederate']
-                cycles = [score_df.loc[i, 'cpf'].mean()\
-                          for i in score_df.index.unique()\
-                              if i != 'MessageExchangeFederate']
                 if 'MessageExchangeFederate' in score_df.index\
                     and 'PholdFederate' in score_df.index:
+                    fed_scores = [score_df.loc[i, 'spf'].mean()\
+                        for i in score_df.index.unique()\
+                            if i != 'MessageExchangeFederate']
+                    cycles = [score_df.loc[i, 'cpf'].mean()\
+                        for i in score_df.index.unique()\
+                            if i != 'MessageExchangeFederate']
                     spe = score_df.loc['PholdFederate', 'spe'].mean()
                     cpe = score_df.loc['PholdFederate', 'cpe'].mean()
                     cpmc = score_df.loc[
@@ -346,6 +368,12 @@ def cpu_score(dataframe, bm_type):
                         decimals=0)
                 elif 'MessageExchangeFederate' in score_df.index\
                     and 'PholdFederate' not in score_df.index:
+                    fed_scores = [score_df.loc[i, 'spf'].mean()\
+                        for i in score_df.index.unique()\
+                            if i != 'MessageExchangeFederate']
+                    cycles = [score_df.loc[i, 'cpf'].mean()\
+                        for i in score_df.index.unique()\
+                            if i != 'MessageExchangeFederate']
                     cpmc = score_df.loc[
                         'MessageExchangeFederate', 'cpmc'].mean()
                     cpms = score_df.loc[
@@ -361,6 +389,12 @@ def cpu_score(dataframe, bm_type):
                         decimals=0)
                 elif 'MessageExchangeFederate' not in score_df.index\
                     and 'PholdFederate' in score_df.index:
+                    fed_scores = [score_df.loc[i, 'spf'].mean()\
+                        for i in score_df.index.unique()\
+                            if i != 'MessageExchangeFederate']
+                    cycles = [score_df.loc[i, 'cpf'].mean()\
+                        for i in score_df.index.unique()\
+                            if i != 'MessageExchangeFederate']
                     spe = score_df.loc['PholdFederate', 'spe'].mean()
                     cpe = score_df.loc['PholdFederate', 'cpe'].mean()
                     all_scores = np.array(
@@ -369,7 +403,13 @@ def cpu_score(dataframe, bm_type):
                         np.mean((all_scores/(np.median(all_scores)))), 
                         decimals=0)
                 elif 'MessageExchangeFederate' not in score_df.index\
-                    and 'messageLookupBenchmark' not in score_df.index:
+                    and 'PholdFederate' not in score_df.index:
+                    fed_scores = [score_df.loc[i, 'spf'].mean()\
+                        for i in score_df.index.unique()\
+                            if i != 'MessageExchangeFederate']
+                    cycles = [score_df.loc[i, 'cpf'].mean()\
+                        for i in score_df.index.unique()\
+                            if i != 'MessageExchangeFederate']
                     all_scores = np.array(
                         fed_scores+cycles)
                     score_df['cpu_score'] = np.round(
@@ -900,6 +940,7 @@ def create_spreadsheet3(dataframe, filename, output_path):
     msg_df = dataframe[dataframe.benchmark == 'MessageExchangeFederate']
     phold_df = dataframe[dataframe.benchmark == 'PholdFederate']
     ring_df = dataframe[dataframe.benchmark == 'RingTransmitFederate']
+    ring_msg_df = dataframe[dataframe.benchmark == 'RingTransmitMessageFederate']
     timing_df = dataframe[dataframe.benchmark == 'TimingLeafFederate']
     # Getting all necessary info for the functions
     print('Saving the necessary information to memory...')
@@ -976,48 +1017,55 @@ def create_spreadsheet3(dataframe, filename, output_path):
     print('Creating the desired metrics and getting the ratios...')
     echo_ratio = get_ratio(
         create_metrics(echo_df, met_fed_cols, met_fed_groupby_cols, 
-                       met_fed_metrics, met_fed_cols_tuples, met_fed_ops, 
-                       'elapsed_time'),
+                        met_fed_metrics, met_fed_cols_tuples, met_fed_ops, 
+                        'elapsed_time'),
         r_fed_groupby_columns, r_fed_index_columns, r_fed_filter_columns, 
         r_fed_value_columns, r_fed_metric_columns, 'elapsed_time')
     echo_msg_ratio = get_ratio(
         create_metrics(echo_msg_df, met_fed_cols, met_fed_groupby_cols, 
-                       met_fed_metrics, met_fed_cols_tuples, met_fed_ops, 
-                       'elapsed_time'),
+                        met_fed_metrics, met_fed_cols_tuples, met_fed_ops, 
+                        'elapsed_time'),
         r_fed_groupby_columns, r_fed_index_columns, r_fed_filter_columns, 
         r_fed_value_columns, r_fed_metric_columns, 'elapsed_time')
     timing_ratio = get_ratio(
         create_metrics(timing_df, met_fed_cols, met_fed_groupby_cols, 
-                       met_fed_metrics, met_fed_cols_tuples, met_fed_ops, 
-                       'elapsed_time'),
+                        met_fed_metrics, met_fed_cols_tuples, met_fed_ops, 
+                        'elapsed_time'),
         r_fed_groupby_columns, r_fed_index_columns, r_fed_filter_columns, 
         r_fed_value_columns, r_fed_metric_columns, 'elapsed_time')
-    ring_ratio = timing_ratio = get_ratio(
+    ring_ratio = get_ratio(
         create_metrics(ring_df, met_fed_cols,  met_fed_groupby_cols, 
-                       met_fed_metrics, met_fed_cols_tuples, met_fed_ops, 
-                       'elapsed_time'),
+                        met_fed_metrics, met_fed_cols_tuples, met_fed_ops, 
+                        'elapsed_time'),
+        r_fed_groupby_columns, r_fed_index_columns, r_fed_filter_columns, 
+        r_fed_value_columns, r_fed_metric_columns, 'elapsed_time')
+    ring_msg_ratio = get_ratio(
+        create_metrics(ring_msg_df, met_fed_cols,  met_fed_groupby_cols, 
+                        met_fed_metrics, met_fed_cols_tuples, met_fed_ops, 
+                        'elapsed_time'),
         r_fed_groupby_columns, r_fed_index_columns, r_fed_filter_columns, 
         r_fed_value_columns, r_fed_metric_columns, 'elapsed_time')
     msg_ratio = get_ratio(
         create_metrics(msg_df, met_msg_cols, met_msg_groupby_cols, 
-                       met_msg_metrics, met_msg_cols_tuples, met_msg_ops, 
-                       'elapsed_time'),
+                        met_msg_metrics, met_msg_cols_tuples, met_msg_ops, 
+                        'elapsed_time'),
         r_msg_groupby_columns, r_msg_index_columns, r_msg_filter_columns, 
         r_msg_value_columns, r_msg_metric_columns, 'elapsed_time')
     phold_ratio = get_ratio(
         create_metrics(phold_df, met_p_cols, met_p_groupby_cols, 
-                       met_p_metrics, met_p_cols_tuples, met_p_ops, 
-                       'elapsed_time'),
+                        met_p_metrics, met_p_cols_tuples, met_p_ops, 
+                        'elapsed_time'),
         r_p_groupby_columns, r_p_index_columns, r_p_filter_columns, 
         r_p_value_columns, r_p_metric_columns, 'elapsed_time')
     print('Calculating CPU benchmark score...')
     ratio_df = pd.concat(
         [echo_msg_ratio, echo_ratio, msg_ratio, 
-          phold_ratio, ring_ratio, timing_ratio], axis=0, ignore_index=True)
+         phold_ratio, ring_msg_ratio, msg_ratio,
+         timing_ratio], axis=0, ignore_index=True)
     score_df = cpu_score(ratio_df, 'multinode')
     score_p = create_pivot_tables(
         score_df, 
-        ['helics_version_string', 'cpu_score', 'benchmark', 'date'],
+        ['helics_version_string', 'cpu_score', 'date'],
         ['cpf', 'cpe', 'cpmc', 'cpms', 'spf', 'spe', 'spmc', 'spms'])
     
     print('Creating the pivot table and saving to excel...')
@@ -1035,6 +1083,10 @@ def create_spreadsheet3(dataframe, filename, output_path):
         ['spf_ratio', 'elapsed_time_ratio'])
     ring_p = create_pivot_tables(
         ring_ratio, 
+        ['benchmark', 'federate_count', 'core_type'], 
+        ['spf_ratio', 'elapsed_time_ratio'])
+    ring_msg_p = create_pivot_tables(
+        ring_msg_ratio, 
         ['benchmark', 'federate_count', 'core_type'], 
         ['spf_ratio', 'elapsed_time_ratio'])
     phold_p = create_pivot_tables(
@@ -1056,6 +1108,8 @@ def create_spreadsheet3(dataframe, filename, output_path):
                             sheet_name='{}'.format('EchoMessageLeafFederate'))
         ring_p.to_excel(writer, 
                         sheet_name='{}'.format('RingTransmitFederate'))
+        ring_msg_p.to_excel(writer, 
+                            sheet_name='{}'.format('RingTransmitMessageFederate'))
         timing_p.to_excel(writer, 
                           sheet_name='{}'.format('TimingLeafFederate'))
         phold_p.to_excel(writer, 
@@ -1065,13 +1119,14 @@ def create_spreadsheet3(dataframe, filename, output_path):
             
     print('Successfully saved the data to excel.')
     
-    print('Saving data as .csv file.')
+    print('Saving data as .gz file.')
     main_df = pd.merge(ratio_df, score_df, how='outer', on=[
         'benchmark', 'helics_version_string', 'date', 'cpe', 
-            'cpf', 'spf', 'cpmc', 'cpms',
-            'spe', 'spmc', 'spms'])
-    main_df.to_csv(r'{}\{}.csv'.format(os.path.join(output_path), filename))
-    print('Successfully saved data as .csv file.')
+        'cpf', 'spf', 'cpmc', 'cpms',
+        'spe', 'spmc', 'spms'])
+    main_df.to_csv(r'{}\{}.gz'.format(os.path.join(output_path), filename),
+                    compression='gzip')
+    print('Successfully saved data as .gz file.')
     
     
 def create_table(
@@ -1207,11 +1262,11 @@ if __name__ == '__main__':
     parser.add_argument('-j', 
                         '--json_file', 
                         nargs='?', 
-                        default='bm_results.json')
+                        default='multinode_bm_results.json')
     parser.add_argument('-b', 
                         '--bmk_type', 
                         nargs='?', 
-                        default='key')
+                        default='multinode')
     parser.add_argument('-o', 
                         '--output_path', 
                         nargs='?', 
