@@ -9,23 +9,18 @@ HELICS information; this script adds that information to the files
 so that post-processing runs properly.
 
 NOTE: This script should be run ONLY when there's missing
-metadata from the results files; otherwise, DO NOT run this file.
+metadata from the results files; otherwise, DO NOT run this file.  In
+order to run this file, a separate .txt. file must be created with the
+necessary metadata.
 
 @author: barn553
 """
 
 import argparse
-import numpy as np
-import glob
 import logging
 import pprint
 import os
-import json
-import re
-# import uuid
 import sys
-import standard_analysis as sa
-import collections as co
 
 # Setting up logging
 logger = logging.getLogger(__name__)
@@ -34,39 +29,50 @@ logger = logging.getLogger(__name__)
 # Setting up pretty printing, mostly for debugging.
 pp = pprint.PrettyPrinter(indent=4)
 
+
 def add_metadata(file):
     """This function merges two .txt files into one."""
-    data = data2 = "" 
-  
-    # Reading data from file1 
-    with open('multinode_metadata_20200313.txt') as fp: 
-        data = fp.read() 
-      
-    # Reading data from file2 
-    with open('{}'.format(file)) as fp: 
-        data2 = fp.read() 
-      
-    # Merging 2 files 
-    # To add the data of file2 
-    # from next line 
+    data = data2 = ""
+    # Reading data from file1
+    with open('multinode_metadata_20200313.txt') as fp:
+        data = fp.read()
+
+    # Reading data from file2
+    with open('{}'.format(file)) as fp:
+        data2 = fp.read()
+
+    # Merging 2 files
+    # To add the data of file2
+    # from next line
     data += "\n"
-    data += data2 
-      
-    with open ('{}'.format(file), 'w') as fp: 
+    data += data2
+
+    with open('{}'.format(file), 'w') as fp:
         fp.write(data)
+    logging.info('added the metadata to the file')
 
 
 def _auto_run(args):
-    """Runs this script."""
+    """Runs this script.
+
+    Args:
+        '-m' or '--m_benchmark_results_dir' - Path of top-level folder
+        that contains the multinode benchmark results folders/files
+        to be processed.
+
+    Returns:
+        (null)
+    """
+    logging.info('starting the execution of this script...')
     for root, dirs, files in os.walk(args.m_benchmark_results_dir):
-        print('ROOT:', root)
         for file in files:
-            print(os.path.join(root, file))
-            # print(file)
             if file != 'helics-broker-out.txt':
                 add_metadata(os.path.join(root, file))
+                logging.info('adding metadata to the file')
             else:
-                pass
+                logging.error('{} is an invalid file; cannot add metadata')
+    logging.info('successfully added metadata to the files.')
+
 
 if __name__ == '__main__':
     fileHandle = logging.FileHandler(
@@ -82,9 +88,7 @@ if __name__ == '__main__':
     # path for the results folder. Default only works if being run
     # from the "scripts" directory in the repository structure.
     script_path = os.path.dirname(os.path.realpath(__file__))
-    print(script_path)
     head, tail = os.path.split(script_path)
-    print(head)
     m_benchmark_results_dir = os.path.join(
         head, 'multinode_benchmark_results', '2020-03-13')
     parser.add_argument('-m',

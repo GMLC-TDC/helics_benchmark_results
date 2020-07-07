@@ -42,7 +42,9 @@ def create_standard_analysis_report(output_path, json_results, run_id):
     Args:
         output_path (str) - Path where graph images are located and PDF
         report will be saved.
+
         json_results (dict) - benchmark results
+
         run_id (str) - five character unique identifier for a particular
         benchmark run
 
@@ -76,6 +78,7 @@ def grab_header_metadata(json_results, run_id):
 
     Args:
         json_results (dict) - benchmark results
+
         run_id (str) - five character unique identifier for a particular
         benchmark run
 
@@ -92,104 +95,104 @@ def grab_header_metadata(json_results, run_id):
             break
     header_metadata_str = ''
     if 'run_id' in json_results[key]:
-        header_metadata_str = header_metadata_str + '{:<25}{}\n'.format(
+        header_metadata_str += '{:<25}{}\n'.format(
             'run ID:',
             json_results[key]['run_id'])
     else:
         logging.warning('"run_id" not found in metadata.')
 
     if 'date' in json_results[key]:
-        header_metadata_str = header_metadata_str + '{:<25}{}\n'.format(
+        header_metadata_str += '{:<25}{}\n'.format(
             'Timestamp:',
             json_results[key]['date'])
     else:
         logging.warning('"run_id" not found in metadata.')
 
     if 'helics_version' in json_results[key]:
-        header_metadata_str = header_metadata_str + '{:<25}{}\n'.format(
+        header_metadata_str += '{:<25}{}\n'.format(
             'HELICS version:',
             json_results[key]['helics_version'])
     else:
         logging.warning('"helics_version" not found in metadata.')
 
     if 'generator' in json_results[key]:
-        header_metadata_str = header_metadata_str + '{:<25}{}\n'.format(
+        header_metadata_str += '{:<25}{}\n'.format(
             'generator:',
             json_results[key]['generator'])
     else:
         logging.warning('"generator" not found in metadata.')
 
     if 'system' in json_results[key]:
-        header_metadata_str = header_metadata_str + '{:<25}{}\n'.format(
+        header_metadata_str += '{:<25}{}\n'.format(
             'system:',
             json_results[key]['system'])
     else:
         logging.warning('"system" not found in metadata.')
 
     if 'system_version' in json_results[key]:
-        header_metadata_str = header_metadata_str + '{:<25}{}\n'.format(
+        header_metadata_str += '{:<25}{}\n'.format(
             'system version:',
             json_results[key]['system_version'])
     else:
         logging.warning('"system_version" not found in metadata.')
 
     if 'platform' in json_results[key]:
-        header_metadata_str = header_metadata_str + '{:<25}{}\n'.format(
+        header_metadata_str += '{:<25}{}\n'.format(
             'platform:',
             json_results[key]['platform'])
     else:
         logging.warning('"platform" not found in metadata.')
 
     if 'cxx_compiler' in json_results[key]:
-        header_metadata_str = header_metadata_str + '{:<25}{}\n'.format(
+        header_metadata_str += '{:<25}{}\n'.format(
             'C++ compiler:',
             json_results[key]['cxx_compiler'])
     else:
         logging.warning('"cxx_compiler" not found in metadata.')
 
     if 'cxx_compiler_version' in json_results[key]:
-        header_metadata_str = header_metadata_str + '{:<25}{}\n'.format(
+        header_metadata_str += '{:<25}{}\n'.format(
             'C++ compiler version:',
             json_results[key]['cxx_compiler_version'])
     else:
         logging.warning('"cxx_compiler_version" not found in metadata.')
 
     if 'build_flags_string' in json_results[key]:
-        header_metadata_str = header_metadata_str + '{:<25}{}\n'.format(
+        header_metadata_str += '{:<25}{}\n'.format(
             'compiler string:',
             json_results[key]['build_flags_string'])
     else:
         logging.warning('"build_flags_string" not found in metadata.')
 
     if 'host_name' in json_results[key]:
-        header_metadata_str = header_metadata_str + '{:<25}{}\n'.format(
+        header_metadata_str += '{:<25}{}\n'.format(
             'host name:',
             json_results[key]['host_name'])
     else:
         logging.warning('"host_name" not found in metadata.')
 
     if 'host_processor' in json_results[key]:
-        header_metadata_str = header_metadata_str + '{:<25}{}\n'.format(
+        header_metadata_str += '{:<25}{}\n'.format(
             'host processor:',
             json_results[key]['host_processor'])
     else:
         logging.warning('"host_processor" not found in metadata.')
 
     if 'num_cpus' in json_results[key]:
-        header_metadata_str = header_metadata_str + '{:<25}{}\n'.format(
+        header_metadata_str += '{:<25}{}\n'.format(
             'CPU core count:',
             json_results[key]['num_cpus'])
     else:
         logging.warning('"num_cpus" not found in metadata.')
 
     if 'mhz_per_cpu' in json_results[key]:
-        header_metadata_str = header_metadata_str + '{:<25}{}\n'.format(
+        header_metadata_str += '{:<25}{}\n'.format(
             'processor speed (MHz):',
             json_results[key]['mhz_per_cpu'])
     else:
         logging.warning('"mhz_per_cpu" not found in metadata.')
 
-    header_metadata_str = header_metadata_str + '\n' + '\n'
+    header_metadata_str += '\n' + '\n'
     logging.info('Final metadata header:\n{}'.format(header_metadata_str))
     return header_metadata_str
 
@@ -215,12 +218,10 @@ def add_benchmark_graphs(pdf, output_path):
                 graph_file_path = os.path.join(output_path, file)
                 # TDH (2020-01-13) Resize graph images when adding them
                 # to the PDF.
-                # width = 0
-                # height = 0
-                # pdf.image(graph_file_path, w=width, h=height)
                 pdf.image(graph_file_path, x=15, w=175, h=100)
                 logging.info('Added graph file {} to PDF'.format(output_path))
     return pdf
+
 
 def get_unique_run_ids(json_results):
     """This function finds the unique run IDs for the provided results
@@ -237,6 +238,7 @@ def get_unique_run_ids(json_results):
         if json_results[key]['run_id'] not in run_id_list:
             run_id_list.append(json_results[key]['run_id'])
     return run_id_list
+
 
 def _auto_run(args):
     """This function executes when the script is called as a stand-alone

@@ -44,7 +44,7 @@ import sys
 # Installation of FPDF is: python -m pip install fpdf
 # Installation of hvplot.pandas is: conda install -c pyviz hvplot
 # Installation of selenium is: conda install -c bokeh selenium
-# Installation of phantomjs is: brew tap homebrew/cask; brew cask 
+# Installation of phantomjs is: brew tap homebrew/cask; brew cask
 # install phantomjs
 
 # TDH: Setting up logging
@@ -52,6 +52,7 @@ logger = logging.getLogger(__name__)
 
 # TDH: Setting up pretty printing, mostly for debugging.
 pp = pprint.PrettyPrinter(indent=4)
+
 
 def find_runs(benchmark_results_dir):
     """This function finds all runs and their associated results files
@@ -108,7 +109,7 @@ def find_runs(benchmark_results_dir):
                         run_id_dict[run_id]['bm_data_path'] = root
                     if file not in run_id_dict[run_id]['files']:
                         run_id_dict[run_id]['files'].append(
-                            os.path.join(root,file))
+                            os.path.join(root, file))
     return run_id_dict
 
 
@@ -151,7 +152,7 @@ def add_report_path(run_id_dict):
     for key in run_id_dict:
         report_dir_name = key + '_report'
         report_path = os.path.join(
-            run_id_dict[key]['bm_data_path'],report_dir_name)
+            run_id_dict[key]['bm_data_path'], report_dir_name)
         run_id_dict[key]['report_path'] = report_path
     return run_id_dict
 
@@ -163,7 +164,7 @@ def find_bm_to_graph(json_results, run_id):
     Args:
         json_results (dict) - Dictionary containing metadata and results
         keyed off the path for each benchmark results file.
-        
+
         run_id (str) - specific run-ID to evaluate
 
     Returns:
@@ -182,7 +183,7 @@ def find_bm_to_graph(json_results, run_id):
                 else:
                     bm_type = 'full'
                 bm_list_to_graph.append(
-                    {'bm_name': bm_name, 'bm_type':bm_type})
+                    {'bm_name': bm_name, 'bm_type': bm_type})
     return bm_list_to_graph
 
 
@@ -194,10 +195,10 @@ def make_SA_graphs(meta_bmk_df, bm_list, run_id, output_path):
     Args:
         meta_bmk_df (pandas dataframe) - Contains all benchmark results
         and associated metadata.
-        
-        bm_list (list) - list of small dictionaries storing the benchmark 
+
+        bm_list (list) - list of small dictionaries storing the benchmark
         name and type ("full" or "key")
-        
+
         run_id (str) - 5 character unique identifier for the run-ID
         output_path (str) - Path where graphs should be saved
 
@@ -213,66 +214,70 @@ def make_SA_graphs(meta_bmk_df, bm_list, run_id, output_path):
                 df, 'federate_count', 'real_time', 'echoBenchmark',
                 True, 'core_type', run_id, output_path)
         elif bm['bm_name'] == 'cEchoBenchmark' and bm['bm_type'] == 'full':
-            df = meta_bmk_df[(meta_bmk_df.benchmark == 'cEchoBenchmark') & 
+            df = meta_bmk_df[(meta_bmk_df.benchmark == 'cEchoBenchmark') &
                              (meta_bmk_df.benchmark_type == 'full') &
                              (meta_bmk_df.run_id == '{}'.format(run_id))]
             sa_plot(
                 df, 'federate_count', 'real_time', 'cEchoBenchmark',
                 True, 'core_type', run_id, output_path)
-        elif bm['bm_name'] == 'echoMessageBenchmark' and bm['bm_type'] == 'full':
+        elif bm['bm_name'] == 'echoMessageBenchmark' and\
+            bm['bm_type'] == 'full':
             df = meta_bmk_df[
-                (meta_bmk_df.benchmark == 'echoMessageBenchmark') & 
+                (meta_bmk_df.benchmark == 'echoMessageBenchmark') &
                 (meta_bmk_df.benchmark_type == 'full') &
                 (meta_bmk_df.run_id == '{}'.format(run_id))]
             sa_plot(
                 df, 'federate_count', 'real_time', 'echoMessageBenchmark',
                 True, 'core_type', run_id, output_path)
-        elif bm['bm_name'] == 'messageLookupBenchmark' and bm['bm_type'] == 'full':
+        elif bm['bm_name'] == 'messageLookupBenchmark' and\
+            bm['bm_type'] == 'full':
             df = meta_bmk_df[
-                (meta_bmk_df.benchmark == 'messageLookupBenchmark') & 
+                (meta_bmk_df.benchmark == 'messageLookupBenchmark') &
                 (meta_bmk_df.core_type == 'inproc') &
-                (meta_bmk_df.benchmark_type == 'full') & 
+                (meta_bmk_df.benchmark_type == 'full') &
                 (meta_bmk_df.run_id == '{}'.format(run_id))]
             sa_plot(
                 df, 'interface_count', 'real_time',
                 'messageLookup, core_type=inproc', True, 'federate_count',
                 run_id, output_path)
         elif bm['bm_name'] == 'ringBenchmark' and bm['bm_type'] == 'full':
-            df = meta_bmk_df[(meta_bmk_df.benchmark == 'ringBenchmark') & 
+            df = meta_bmk_df[(meta_bmk_df.benchmark == 'ringBenchmark') &
                              (meta_bmk_df.benchmark_type == 'full') &
                              (meta_bmk_df.run_id == '{}'.format(run_id))]
             sa_plot(
                 df, 'federate_count', 'real_time', 'ringBenchmark',
                 True, 'core_type', run_id, output_path)
-        elif bm['bm_name'] == 'ringMessageBenchmark' and bm['bm_type'] == 'full':
+        elif bm['bm_name'] == 'ringMessageBenchmark' and\
+            bm['bm_type'] == 'full':
             df = meta_bmk_df[
-                (meta_bmk_df.benchmark == 'ringMessageBenchmark') & 
+                (meta_bmk_df.benchmark == 'ringMessageBenchmark') &
                 (meta_bmk_df.benchmark_type == 'full') &
                 (meta_bmk_df.run_id == '{}'.format(run_id))]
             sa_plot(
                 df, 'federate_count', 'real_time', 'ringMessageBenchmark',
                 True, 'core_type', run_id, output_path)
         elif bm['bm_name'] == 'pholdBenchmark' and bm['bm_type'] == 'full':
-            df = meta_bmk_df[(meta_bmk_df.benchmark == 'pholdBenchmark') & 
+            df = meta_bmk_df[(meta_bmk_df.benchmark == 'pholdBenchmark') &
                              (meta_bmk_df.benchmark_type == 'full') &
                              (meta_bmk_df.run_id == '{}'.format(run_id))]
             sa_plot(
                 df, 'federate_count', 'real_time', 'pholdBenchmark',
                 True, 'core_type', run_id, output_path)
-        elif bm['bm_name'] == 'messageSendBenchmark' and bm['bm_type'] == 'full':
+        elif bm['bm_name'] == 'messageSendBenchmark' and\
+            bm['bm_type'] == 'full':
             df1 = meta_bmk_df[
-                (meta_bmk_df.benchmark == 'messageSendBenchmark') & 
+                (meta_bmk_df.benchmark == 'messageSendBenchmark') &
                 (meta_bmk_df.core_type == 'singleCore') &
                 (meta_bmk_df.benchmark_type == 'full') &
                 (meta_bmk_df.run_id == '{}'.format(run_id))]
             sa_plot(
-                df1, 'message_size', 'real_time', 
+                df1, 'message_size', 'real_time',
                 'messageSend, core_type=singleCore', False, '',
                 run_id, output_path)
             df2 = meta_bmk_df[
-                (meta_bmk_df.benchmark == 'messageSendBenchmark') & 
+                (meta_bmk_df.benchmark == 'messageSendBenchmark') &
                 (meta_bmk_df.benchmark_type == 'full') &
-                (meta_bmk_df.run_id == '{}'.format(run_id)) & 
+                (meta_bmk_df.run_id == '{}'.format(run_id)) &
                 (meta_bmk_df.message_count == 1)]
             sa_plot(
                 df2, 'message_size', 'real_time', 'messageSend, msg_ct=1',
@@ -280,21 +285,22 @@ def make_SA_graphs(meta_bmk_df, bm_list, run_id, output_path):
             df3 = meta_bmk_df[
                 (meta_bmk_df.benchmark == 'messageSendBenchmark') &
                 (meta_bmk_df.benchmark_type == 'full') &
-                (meta_bmk_df.run_id == '{}'.format(run_id)) & 
+                (meta_bmk_df.run_id == '{}'.format(run_id)) &
                 (meta_bmk_df.message_size == 1)]
             sa_plot(
                 df3, 'message_count', 'real_time', 'messageSend, msg_sz=1',
                 True, 'core_type', run_id, output_path)
-        elif bm['bm_name'] == 'filterBenchmark' and bm['bm_type']== 'full':
-            df1 = meta_bmk_df[(meta_bmk_df.benchmark == 'filterBenchmark') & 
+        elif bm['bm_name'] == 'filterBenchmark' and bm['bm_type'] == 'full':
+            df1 = meta_bmk_df[(meta_bmk_df.benchmark == 'filterBenchmark') &
                               (meta_bmk_df.core_type == 'singleCore') &
                               (meta_bmk_df.benchmark_type == 'full') &
                               (meta_bmk_df.run_id == '{}'.format(run_id))]
             sa_plot(
-                df1, 'federate_count', 'real_time',
-                'filterBenchmark, core_type=singleCore', True, 'filter_location',
+                df1, 'federate_count',
+                'real_time', 'filterBenchmark, core_type=singleCore',
+                True, 'filter_location',
                 run_id, output_path)
-            df2 = meta_bmk_df[(meta_bmk_df.benchmark == 'filterBenchmark') & 
+            df2 = meta_bmk_df[(meta_bmk_df.benchmark == 'filterBenchmark') &
                               (meta_bmk_df.filter_location == 'source') &
                               (meta_bmk_df.benchmark_type == 'full') &
                               (meta_bmk_df.run_id == '{}'.format(run_id))]
@@ -302,7 +308,7 @@ def make_SA_graphs(meta_bmk_df, bm_list, run_id, output_path):
                 df2, 'federate_count', 'real_time',
                 'filterBenchmark, filter_loc=source', True, 'core_type',
                 run_id, output_path)
-            df3 = meta_bmk_df[(meta_bmk_df.benchmark == 'filterBenchmark') & 
+            df3 = meta_bmk_df[(meta_bmk_df.benchmark == 'filterBenchmark') &
                               (meta_bmk_df.filter_location == 'destination') &
                               (meta_bmk_df.benchmark_type == 'full') &
                               (meta_bmk_df.run_id == '{}'.format(run_id))]
@@ -311,8 +317,8 @@ def make_SA_graphs(meta_bmk_df, bm_list, run_id, output_path):
                 'filterBenchmark, filter_loc=destination', True, 'core_type',
                 run_id, output_path)
         elif bm['bm_name'] == 'timingBenchmark' and bm['bm_type'] == 'full':
-            df = meta_bmk_df[(meta_bmk_df.benchmark == 'timingBenchmark') & 
-                             (meta_bmk_df.benchmark_type == 'full') & 
+            df = meta_bmk_df[(meta_bmk_df.benchmark == 'timingBenchmark') &
+                             (meta_bmk_df.benchmark_type == 'full') &
                              (meta_bmk_df.run_id == '{}'.format(run_id))]
             sa_plot(
                 df, 'federate_count', 'real_time', 'timingBenchmark',
@@ -331,7 +337,7 @@ def sort_results_files(file_list):
     Returns:
         bm_files (list) - List of full paths to benchmark files that are
         classified as "full"
-        
+
         bmk_files (list) - List of full paths to benchmark files that
         are classified as "key"
     """
@@ -347,8 +353,10 @@ def sort_results_files(file_list):
             bm_files.append(file)
         else:
             logging.error('File {} does not begin with "bm" or "bmk, '
-                          'cannot be classified, and will be ignored'.format(file))
+                          'cannot be classified, and will be ignored'.format(
+                              file))
     return bm_files, bmk_files
+
 
 def _auto_run(args):
     """This function executes when the script is called as a stand-alone
@@ -368,31 +376,22 @@ def _auto_run(args):
     Returns:
         (nothing)
     """
-    print('Starting the analysis...\n')
-    print('finding valid run_ids...\n')
+    logging.info('starting the execution of this script...')
     run_id_dict = find_runs(args.benchmark_results_dir)
-    print('adding their paths...\n')
     run_id_dict = add_report_path(run_id_dict)
     if args.delete_all_reports:
         run_id_dict = remove_all_reports(run_id_dict)
     for run_id in run_id_dict:
-        print('current run_id:', run_id)
-        print('')
-        if run_id_dict[run_id]['report_exists'] == False:
+        if run_id_dict[run_id]['report_exists'] is False:
             # TDH: For the standard analysis we only need to process the
             # "full" benchmark results files.
-            print('sorting files...\n')
             bm_files, bmk_files = sort_results_files(
                 run_id_dict[run_id]['files'])
             file_list = bm_files
-            print('parsing files...\n')
             json_results = bmpp.parse_files(file_list)
-            print('adding metadata...\n')
             json_results = bmpp.parse_and_add_benchmark_metadata(json_results)
-            print('turning data into a dataframe...\n')
             meta_bmk_df = md.make_dataframe1(json_results)
             for run_id in meta_bmk_df.run_id.unique():
-                print('finding valid benchmarks for making graphs...\n')
                 bm_list = find_bm_to_graph(json_results, run_id)
                 # TDH: Thorough attempt to safely create the results
                 # directory and provide good error reporting if
@@ -403,17 +402,14 @@ def _auto_run(args):
                     logging.error(
                         'Failed to create directory for report at {}'.format(
                             run_id_dict[run_id]['report_path']))
-                print('making graphs...\n')
-                make_SA_graphs(meta_bmk_df,
-                               bm_list,
-                               run_id,
-                               run_id_dict[run_id]['report_path'])
-                print('making the analysis report...\n')
+                make_SA_graphs(
+                    meta_bmk_df, bm_list,
+                    run_id, run_id_dict[run_id]['report_path'])
                 saPDF.create_standard_analysis_report(
                     run_id_dict[run_id]['report_path'],
                     json_results,
                     run_id)
-    print('Finished the analysis.')
+    logging.info('successfully finished the standard analysis reports.')
 
 
 if __name__ == '__main__':
@@ -436,7 +432,7 @@ if __name__ == '__main__':
     # from the "scripts" directory in the repository structure.
     script_path = os.path.dirname(os.path.realpath(__file__))
     head, tail = os.path.split(script_path)
-    benchmark_results_dir = os.path.join(head,'benchmark_results')
+    benchmark_results_dir = os.path.join(head, 'benchmark_results')
     parser.add_argument('-r',
                         '--benchmark_results_dir',
                         nargs='?',
