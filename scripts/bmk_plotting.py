@@ -24,9 +24,8 @@ import numpy as np
 logger = logging.getLogger(__name__)
 
 
-def sa_plot(
-        dataframe, x_axis, y_axis, bm_name,
-        by_bool, by_name, run_id, output_path):
+def sa_plot(dataframe, x_axis, y_axis, bm_name,
+            by_bool, by_name, run_id, output_path):
     """This function creates a plot of the specified data and sends it
     to the output_path.
 
@@ -61,6 +60,8 @@ def sa_plot(
     Returns:
         (null)
     """
+    # Checks whether the benchmark type is 'full' or 'key' and establishes
+    # the title of the plot accordingly.
     if dataframe.benchmark_type.unique() == 'full':
         TITLE = 'run_id {} {}: {} vs {}'.format(
             run_id, bm_name, x_axis, y_axis)
@@ -68,10 +69,17 @@ def sa_plot(
         TITLE = '{} {}: {} vs {}'.format(
             run_id, bm_name, x_axis, y_axis)
     benchmark = dataframe.benchmark.unique()[0]
+    # Checks whether 'by_bool' is True or not.  If it is true, the argument
+    # 'by=' is added to the holoviews line plot method.  This argument allows
+    # for multiple lines to be plotted on a single graph.  The lines will be
+    # labelled in the legend.
     if by_bool is True:
         if 'pholdBenchmark' == benchmark:
             p_title = 'run_id {} {}: {} vs {}'.format(
                 run_id, bm_name, x_axis, 'EvCount_per_second')
+            # Filtering the dataframe so that there are not
+            # any duplicate 'y-values' to plot; otherwise, there
+            # will be spikes in the graph.
             dataframe = dataframe.groupby(
                 ['{}'.format(by_name),
                  'EvCount',
@@ -96,6 +104,9 @@ def sa_plot(
             save_path = os.path.join(
                 output_path, '{}_{}.png'.format(run_id, bm_name))
         elif 'messageSendBenchmark' == benchmark:
+            # Filtering the dataframe so that there are not
+            # any duplicate 'y-values' to plot; otherwise, there
+            # will be spikes in the graph.
             dataframe = dataframe.groupby(
                 ['{}'.format(x_axis),
                  '{}'.format(by_name)])[
@@ -215,13 +226,13 @@ def sa_plot(
             save_path = os.path.join(
                 output_path, '{}_{}.png'.format(run_id, bm_name))
     hvplot.save(plot, save_path)
+    logging.info('created the analysis plot for {}, {}'.format(
+        run_id, bm_name))
     logging.info('Created graph file {}'.format(output_path))
-    # return plot
 
 
-def cr_plot(
-        dataframe, x_axis, y_axis, bm_name,
-        run_id_list, core_type, comparison_parameter, output_path):
+def cr_plot(dataframe, x_axis, y_axis, bm_name,
+            run_id_list, core_type, comparison_parameter, output_path):
     """This function creates a plot for 2 or more run_ids to compare their
     benchmark(s) and the differences in their comparison_parameters.
 
@@ -363,7 +374,7 @@ def cr_plot(
             title='{}: {} vs {}'.format(bm_name, x_axis, y_axis))
     elif benchmark == 'messageLookupBenchmark':
         if list(dataframe.federate_count.unique())[0] == 8.0 or\
-            list(dataframe.federate_count.unique())[0] == 64.0:
+                list(dataframe.federate_count.unique())[0] == 64.0:
             plot = (reduce((lambda x, y: x*y), my_plots)).opts(
                 width=625, height=380, logx=True,
                 logy=True, legend_position='bottom_right',
@@ -395,13 +406,14 @@ def cr_plot(
         output_path, '{}_{}_{}Core.png'.format(
             run_id_str, bm_name, core_type))
     hvplot.save(plot, save_path)
+    logging.info('created the cross run-id plot for {}, {}, {}'.format(
+        run_id_str, bm_name, core_type))
     logging.info('Created graph file {}'.format(output_path))
 
 
-def ir_plot(
-        dataframe1, dataframe2, x_axis, y_axis,
-        bm_name1, bm_name2, metric_bool, metric_type,
-        title_part, run_id, core_type, output_path):
+def ir_plot(dataframe1, dataframe2, x_axis, y_axis,
+            bm_name1, bm_name2, metric_bool, metric_type,
+            title_part, run_id, core_type, output_path):
     """This function creates a graph that compares different benchmark
     results data for a single run_id and core_type.
 
@@ -519,7 +531,6 @@ def ir_plot(
             output_path, '{}_{}_vs_{}_{}Core.png'.format(
                 run_id, bm_name1, bm_name2, core_type_str))
     plots = [plot1, plot2]
-    # min_y = plot1['{}'.format(y_axis)].min()
     plot = (reduce((lambda x, y: x*y), plots)).opts(
         width=625, height=380,
         logx=True, logy=True,
@@ -529,13 +540,14 @@ def ir_plot(
             'xticks': 8, 'yticks': 10},
         title='{} v {}: {}'.format(bm_name1, bm_name2, title_part))
     hvplot.save(plot, save_path)
+    logging.info('created intra-run-id plot for {}, {}, {}, {}, {}'.format(
+        run_id, bm_name1, bm_name2, core_type))
     logging.info('Created graph file {}'.format(output_path))
 
 
-def mm_plot(
-        dataframe, x_axis, y_axis, param1,
-        param2, metric_bool, metric_type, bm_name,
-        title_part, output_path):
+def mm_plot(dataframe, x_axis, y_axis, param1,
+            param2, metric_bool, metric_type, bm_name,
+            title_part, output_path):
     """This function creates a multi-line graph for multinode benchmark
     results.
 
@@ -587,7 +599,6 @@ def mm_plot(
                 '{}'.format(param1)])['counts_per_second'].min()
             gpd = gpd.reset_index()
             # Creating the plot.
-            min_y = gpd['counts_per_second'].min()
             plot = gpd.sort_values(
                 '{}'.format(x_axis)).hvplot.line(
                 '{}'.format(x_axis),
@@ -613,7 +624,6 @@ def mm_plot(
              '{}'.format(param1)])['{}'.format(y_axis)].min()
         gpd = gpd.reset_index()
         # Creating the plot.
-        min_y = gpd['{}'.format(y_axis)].min()
         plot = gpd.sort_values('{}'.format(x_axis)).hvplot.line(
                 '{}'.format(x_axis),
                 '{}'.format(y_axis),
@@ -634,6 +644,7 @@ def mm_plot(
     else:
         logging.error('Invalid value; should be True or False')
     hvplot.save(plot, save_path)
+    logging.info('created the multinode plot for {}'.format(bm_name))
     logging.info('Created graph file {}'.format(output_path))
 
 

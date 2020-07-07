@@ -41,26 +41,25 @@ logger = logging.getLogger(__name__)
 pp = pprint.PrettyPrinter(indent=4)
 
 
-def create_cross_run_id_report(json_results,
-                               run_id_list,
-                               output_path,
-                               parameter_list):
+def create_cross_run_id_report(json_results, run_id_list,
+                               output_path, parameter_list):
     """This function creates the cross-run ID PDF
 
     Args:
         json_results (dict) - benchmark results
+
         run_id_list (list) - List of strings of the run-IDs being compared
+
         output_path (str) - Path where graph images are located and PDF
         report will be saved.
+
         parameter_list (list) - List of strings of metadata parameters
         to be compared
-
 
     Returns:
         null
     """
     run_id_keys = get_run_id_keys(json_results, run_id_list)
-
 
     # Create the PDF object
     pdf = FPDF()
@@ -101,12 +100,11 @@ def create_cross_run_id_report(json_results,
         # TDH (2020-01-06): Parameters that are different get written
         # out in bold
         if diff:
-            pdf.set_font("Courier", style = 'B', size=10)
+            pdf.set_font("Courier", style='B', size=10)
             pdf.write(line_height, header_metadata_str)
         else:
             pdf.set_font("Courier", style='', size=8)
             pdf.write(line_height, header_metadata_str)
-
 
     # Add previously generated graphs to the PDF object
     pdf = saPDF.add_benchmark_graphs(pdf, output_path)
@@ -239,18 +237,10 @@ def _auto_run(args):
     delete_report = True
     comparison_parameter = 'mhz_per_cpu'
     parameter_list = [
-        'date',
-        'helics_version',
-        'generator',
-        'system',
-        'system_version',
-        'platform',
-        'cxx_compiler',
-        'cxx_compiler_version',
-        'build_flags_string',
-        'host_name',
-        'host_processor',
-        'num_cpus',
+        'date', 'helics_version', 'generator',
+        'system', 'system_version', 'platform',
+        'cxx_compiler', 'cxx_compiler_version', 'build_flags_string',
+        'host_name', 'host_processor', 'num_cpus',
         'mhz_per_cpu'
     ]
 
@@ -264,9 +254,8 @@ def _auto_run(args):
                                          'benchmark_results',
                                          benchmark_results_name)
 
-
-    run_id_dict = cri.find_specific_run_id(benchmark_results_dir,
-                                       run_id_list)
+    run_id_dict = cri.find_specific_run_id(
+        benchmark_results_dir, run_id_list)
 
     cri.create_output_path(output_path, delete_report)
     file_list = []
@@ -279,16 +268,11 @@ def _auto_run(args):
     meta_bmk_df = md.make_dataframe(json_results)
     bm_list = cri.find_common_bm_to_graph(json_results, run_id_dict)
     for bm in bm_list:
-        cri.make_cross_run_id_graphs(meta_bmk_df,
-                                 bm['bm_name'],
-                                 list(run_id_dict.keys()),
-                                 output_path,
-                                 comparison_parameter)
-    create_cross_run_id_report(json_results,
-                                run_id_list,
-                                output_path,
-                                parameter_list)
-
+        cri.make_cross_run_id_graphs(
+            meta_bmk_df, bm['bm_name'], list(run_id_dict.keys()),
+            output_path, comparison_parameter)
+    create_cross_run_id_report(
+        json_results, run_id_list, output_path, parameter_list)
 
 
 if __name__ == '__main__':

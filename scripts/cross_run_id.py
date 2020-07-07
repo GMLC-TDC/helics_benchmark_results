@@ -139,7 +139,6 @@ def create_output_path(output_path, delete_existing_report):
             os.mkdir(head)
         except OSError:
             logging.error('Failed to create directory {}'.format(head))
-            print('Failed to create directory {}'.format(head))
     # TDH (2020-01-14)
     # Now working on creating the folder specific to the run IDs being
     # compared.
@@ -259,7 +258,7 @@ def make_cross_run_id_graphs(meta_bmk_df, bm_list, run_id_list, output_path,
         null
     """
     for bm in bm_list:
-        print(bm['bm_name'])
+        logging.info('current benchmark {}'.format(bm['bm_name']))
         if bm['bm_name'] == 'echoBenchmark':
             df = meta_bmk_df[(meta_bmk_df.benchmark == 'echoBenchmark') &
                              (meta_bmk_df.benchmark_type == 'full')]
@@ -413,27 +412,22 @@ def _auto_run(args):
     Returns:
         (nothing)
     """
-    print('starting cross-run_id analysis...\n')
-    print('finding the specific run_id...\n')
+    logging.info('starting the execution of this script...')
+    logging.info('finding the specific run_id...\n')
     run_id_dict = find_specific_run_id(
         args.benchmark_results_dir, args.run_id_list)
     file_list = []
-    print('getting a list of files...\n')
+    logging.info('preparing the data')
     for run_id in run_id_dict:
         file_list.extend(run_id_dict[run_id]['files'])
-    print('sorting the files...\n')
     bm_files, bmk_files = sa.sort_results_files(file_list)
     file_list = bm_files
-    print('parsing the files...\n')
     json_results = bmpp.parse_files(file_list)
-    print('adding metadata...\n')
     json_results = bmpp.parse_and_add_benchmark_metadata(json_results)
-    print('creating a meta dataframe...\n')
     meta_bmk_df = md.make_dataframe1(json_results)
-    print('finding a benchmark in common...\n')
     bm_list = find_common_bm_to_graph(json_results, run_id_dict)
     valid_params = []
-    print('checking to see which parameters are valid...\n')
+    logging.info('checking to see which parameters are valid...\n')
     for p in args.comparison_parameter_list:
         header, diff = criPDF.grab_header_metadata(
             json_results,
@@ -443,18 +437,15 @@ def _auto_run(args):
             valid_params.append(p)
     path = os.path.join(args.output_path)
     for v in valid_params:
-        print('############## comparison parameter:', v)
         output_path = os.path.join(path, '{}'.format(v))
-        print('creating a path...\n')
         create_output_path(output_path, args.delete_report)
-        print('making graphs...\n')
         make_cross_run_id_graphs(
             meta_bmk_df, bm_list, list(run_id_dict.keys()), output_path, v)
-        print('creating the cross-run_id analysis report...\n')
         criPDF.create_cross_run_id_report(
             json_results, list(run_id_dict.keys()),
             output_path, parameter_list)
-    print('Finished the cross-run_id analysis.')
+    logging.info('Finished the cross-run_id analysis for {}.'.format(
+        args.run_id_list))
 
 
 if __name__ == '__main__':
@@ -485,7 +476,7 @@ if __name__ == '__main__':
     parser.add_argument('-l',
                         '--run_id_list',
                         nargs='+',
-                        default=['882HL', 'Md3vp'])
+                        default=['Md3vp', 'p8BJW'])
     parameter_list = [
         'mhz_per_cpu', 'helics_version', 'generator',
         'system', 'system_version', 'platform',

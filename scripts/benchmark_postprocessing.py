@@ -18,7 +18,6 @@ import pprint
 import os
 import json
 import re
-import platform
 import sys
 import standard_analysis as sa
 
@@ -28,6 +27,7 @@ logger = logging.getLogger(__name__)
 
 # Setting up pretty printing, mostly for debugging.
 pp = pprint.PrettyPrinter(indent=4)
+
 
 def parse_files(file_list):
     """This function parses and formats all the data and metadata of
@@ -48,7 +48,7 @@ def parse_files(file_list):
 
         # TDH (2020-01-17)
         # Check to make sure that file is valid and worth processing.
-        file_valid =_check_file_validity(path, filename)
+        file_valid = _check_file_validity(path, filename)
         if file_valid:
             with open(file) as json_file:
 
@@ -90,7 +90,7 @@ def parse_files(file_list):
                 # an error message is generated in the log file.
                 try:
                     json_dict = json.loads(json_str)
-                    for key,value in json_dict['context'].items():
+                    for key, value in json_dict['context'].items():
                         json_results[uuid_str][key] = value
                     json_results[uuid_str]['benchmarks'] = json_dict[
                         'benchmarks']
@@ -114,6 +114,7 @@ def _check_file_validity(path, filename):
     Args:
         path (str) - Path to (but not including) the file to be
         evaluated
+
         filename (str) - Name of file being evaluated
 
     Returns:
@@ -139,6 +140,7 @@ def _check_file_validity(path, filename):
         file_valid = False
     return file_valid
 
+
 def parse_header_lines(json_file, json_results, uuid_str):
     """This function parses the non-JSON metadata header lines in the
     results files and loads them into the dictionary. After the header
@@ -148,15 +150,18 @@ def parse_header_lines(json_file, json_results, uuid_str):
     Args:
         json_file (file obj) - Current benchmark results file being
         processed.
+
         json_results (dict) - Dictionary of all benchmark results
         (keyed by benchmark results filename) that the data and
         metadata from json_file are being added to.
+
         uuid_str (str) - Key for dictionary for this benchmark results
         file (json_file)
 
     Returns:
         json_str (str) - JSON-formatted string containing some metadata
         and all benchmark results found in json_file
+
         json_results (dict) - Dictionary with new entry containing
         header-line metadata for json_file
     """
@@ -182,25 +187,25 @@ def parse_header_lines(json_file, json_results, uuid_str):
             else:
                 json_results[uuid_str]['benchmark'] = line[18:]
         elif 'HELICS VERSION:' in line:
-            json_results[uuid_str]['helics_version_string']  = line[16:]
-            match = re.search('\d+.*?-',line)
+            json_results[uuid_str]['helics_version_string'] = line[16:]
+            match = re.search(r'\d+.*?-', line)
             if match:
                 json_results[uuid_str]['helics_version'] = \
-                    match.group(0)[ :-1] # trimming the trailing dash
+                    match.group(0)[:-1]  # trimming the trailing dash
             else:
                 logging.error(
                     '{}: Failed to parse HELICS VERSION line.'.format(
                         json_file['name']))
         elif 'ZMQ VERSION:' in line:
-            json_results[uuid_str]['zmq_version_string']  = line[12:]
-            match = re.search('v\d+\..*',line)
+            json_results[uuid_str]['zmq_version_string'] = line[12:]
+            match = re.search(r'v\d+\..*', line)
             if match:
                 json_results[uuid_str]['zmq_version'] = match.group(0)[1:]
             else:
                 logging.error('{}: Failed to parse ZMQ VERSION line.'.format(
                     json_file['name']))
         elif 'COMPILER INFO:' in line:
-            json_results[uuid_str]['compiler_info_string']  = line[15:]
+            json_results[uuid_str]['compiler_info_string'] = line[15:]
             json_results = _parse_compiler_string(uuid_str, json_results)
         elif 'BUILD FLAGS:' in line:
             json_results[uuid_str]['build_flags_string'] = line[12:]
@@ -252,14 +257,11 @@ def parse_and_add_benchmark_metadata(json_results):
                     json_results[key]['benchmarks']):
                 bm_name = results_dict['name']
                 # Core type
-                json_results = _add_core(bm_name,
-                                         filename,
-                                         json_results,
-                                         key,
-                                         idx)
+                json_results = _add_core(
+                    bm_name, filename, json_results, key, idx)
 
             info_str = ('Test type = ActionMessage\n'
-                       '          Added minimal benchmark metadata to {} ')
+                        '          Added minimal benchmark metadata to {} ')
             info_str = info_str.format(filename)
             logging.info(info_str)
         elif 'conversion' in filename:
@@ -267,13 +269,10 @@ def parse_and_add_benchmark_metadata(json_results):
                     json_results[key]['benchmarks']):
                 bm_name = results_dict['name']
                 # Core type
-                json_results = _add_core(bm_name,
-                                         filename,
-                                         json_results,
-                                         key,
-                                         idx)
+                json_results = _add_core(
+                    bm_name, filename, json_results, key, idx)
             info_str = ('Test type = Conversion\n'
-                       '          Added minimal benchmark metadata to {} ')
+                        '          Added minimal benchmark metadata to {} ')
             info_str = info_str.format(filename)
             logging.info(info_str)
         elif 'echo' in filename:
@@ -282,17 +281,14 @@ def parse_and_add_benchmark_metadata(json_results):
                 bm_name = results_dict['name']
 
                 # Federate count
-                match = re.search('/\d+/',bm_name)
+                match = re.search(r'/\d+/', bm_name)
                 federate_count = int(match.group(0)[1:-1])
                 json_results[key]['benchmarks'][idx]['federate_count'] = \
                     federate_count
 
                 # Core type
-                json_results= _add_core(bm_name,
-                                        filename,
-                                        json_results,
-                                        key,
-                                        idx)
+                json_results = _add_core(
+                    bm_name, filename, json_results, key, idx)
             if 'echoResults' in filename:
                 info_str = ('Test type = echoResults\n'
                             '          Added benchmark metadata to {} ')
@@ -307,8 +303,8 @@ def parse_and_add_benchmark_metadata(json_results):
                 bm_name = results_dict['name']
 
                 # Federate count and filter location
-                match = re.search('/\d+/\d+/', bm_name)
-                match2 = re.findall('\d+', match.group(0))
+                match = re.search(r'/\d+/\d+/', bm_name)
+                match2 = re.findall(r'\d+', match.group(0))
                 federate_count = int(match2[0])
                 if match2[1] == "1":
                     filter_location = "destination"
@@ -325,11 +321,8 @@ def parse_and_add_benchmark_metadata(json_results):
                     federate_count
 
                 # Core type
-                json_results = _add_core(bm_name,
-                                         filename,
-                                         json_results,
-                                         key,
-                                         idx)
+                json_results = _add_core(
+                    bm_name, filename, json_results, key, idx)
             info_str = ('Test type = filter\n'
                         '          Added benchmark metadata to {} ')
             info_str = info_str.format(filename)
@@ -341,8 +334,8 @@ def parse_and_add_benchmark_metadata(json_results):
 
                 if 'multiCore' in bm_name:
                     # Interface count and federate count
-                    match = re.search('/\d+/\d+/',bm_name)
-                    match2 = re.findall('\d+',match.group(0))
+                    match = re.search(r'/\d+/\d+/', bm_name)
+                    match2 = re.findall(r'\d+', match.group(0))
                     interface_count = int(match2[0])
                     federate_count = int(match2[1])
                     json_results[key]['benchmarks'][idx]['interface_count'] = \
@@ -351,11 +344,8 @@ def parse_and_add_benchmark_metadata(json_results):
                         federate_count
 
                 # Core type
-                json_results = _add_core(bm_name,
-                                         filename,
-                                         json_results,
-                                         key,
-                                         idx)
+                json_results = _add_core(
+                    bm_name, filename, json_results, key, idx)
             info_str = ('Test type = messageLookup\n'
                         '          Added benchmark metadata to {} ')
             info_str = info_str.format(filename)
@@ -366,8 +356,8 @@ def parse_and_add_benchmark_metadata(json_results):
                 bm_name = results_dict['name']
 
                 # Message size and message count
-                match = re.search('/\d+/\d+/',bm_name)
-                match2 = re.findall('\d+',match.group(0))
+                match = re.search(r'/\d+/\d+/', bm_name)
+                match2 = re.findall(r'\d+', match.group(0))
                 message_size = int(match2[0])
                 message_count = int(match2[1])
                 json_results[key]['benchmarks'][idx]['message_size'] = \
@@ -376,11 +366,8 @@ def parse_and_add_benchmark_metadata(json_results):
                     message_count
 
                 # Core type
-                json_results = _add_core(bm_name,
-                                         filename,
-                                         json_results,
-                                         key,
-                                         idx)
+                json_results = _add_core(
+                    bm_name, filename, json_results, key, idx)
             info_str = ('Test type = messageSend\n'
                         '          Added benchmark metadata to {} ')
             info_str = info_str.format(filename)
@@ -392,17 +379,14 @@ def parse_and_add_benchmark_metadata(json_results):
 
                 if 'multiCore' in bm_name:
                     # Federate count
-                    match = re.search('/\d+/',bm_name)
+                    match = re.search(r'/\d+/', bm_name)
                     federate_count = int(match.group(0)[1:-1])
                     json_results[key]['benchmarks'][idx]['federate_count'] = \
                         federate_count
 
                 # Core type
-                json_results = _add_core(bm_name,
-                                         filename,
-                                         json_results,
-                                         key,
-                                         idx)
+                json_results = _add_core(
+                    bm_name, filename, json_results, key, idx)
             if 'ringResults' in filename:
                 info_str = ('Test type = ringResults\n'
                             '          Added benchmark metadata to {} ')
@@ -417,17 +401,14 @@ def parse_and_add_benchmark_metadata(json_results):
                 bm_name = results_dict['name']
 
                 # Federate count
-                match = re.search('/\d+/',bm_name)
+                match = re.search(r'/\d+/', bm_name)
                 federate_count = int(match.group(0)[1:-1])
                 json_results[key]['benchmarks'][idx]['federate_count'] = \
                     federate_count
 
                 # Core type
-                json_results = _add_core(bm_name,
-                                         filename,
-                                         json_results,
-                                         key,
-                                         idx)
+                json_results = _add_core(
+                    bm_name, filename, json_results, key, idx)
             info_str = ('Test type = phold\n'
                         '          Added benchmark metadata to {} ')
             info_str = info_str.format(filename)
@@ -438,23 +419,19 @@ def parse_and_add_benchmark_metadata(json_results):
                 bm_name = results_dict['name']
 
                 # Federate count
-                match = re.search('/\d+/',bm_name)
+                match = re.search(r'/\d+/', bm_name)
                 federate_count = int(match.group(0)[1:-1])
                 json_results[key]['benchmarks'][idx]['federate_count'] = \
                     federate_count
 
                 # Core type
-                json_results= _add_core(bm_name,
-                                        filename,
-                                        json_results,
-                                        key,
-                                        idx)
+                json_results = _add_core(
+                    bm_name, filename, json_results, key, idx)
             info_str = ('Test type = timing\n'
                         '          Added benchmark metadata to {} ')
             info_str = info_str.format(filename)
             logging.info(info_str)
     return json_results
-
 
 
 def _add_core(bm_name, filename, json_results, key, idx):
@@ -465,12 +442,16 @@ def _add_core(bm_name, filename, json_results, key, idx):
 
         bm_name (str) - Benchmark name string which contains the core
         type information
+
         filename (str) - Path and name of file in which the benchmark
         information is contained. Only used for error reporting.
+
         json_results (dict) - Dictionary of all benchmark results
         (keyed by benchmark results filename) that the data and
         metadata from json_file are being added to.
+
         key (str) - Key for dictionary for this benchmark results
+
         idx (str) - Index of the current benchmark being processed.
         needed so core type information can be written into the correct
         location in the json_results dictionary.
@@ -496,9 +477,9 @@ def _add_core(bm_name, filename, json_results, key, idx):
     # Hopefully we can soon arrive at a convention and retroactively
     # change all the results files to conform to that convention.
     elif 'singleFed/' in bm_name:
-            json_results[key]['benchmarks'][idx]['core_type'] = 'singleFed'
+        json_results[key]['benchmarks'][idx]['core_type'] = 'singleFed'
     elif 'singleCore/' in bm_name:
-            json_results[key]['benchmarks'][idx]['core_type'] = 'singleCore'
+        json_results[key]['benchmarks'][idx]['core_type'] = 'singleCore'
     else:
         json_results[key]['benchmarks'][idx]['core_type'] = 'unspecified'
         if ('conversion' not in bm_name
@@ -555,14 +536,13 @@ def _add_run_id(key, json_results):
             json_results (dict) - json_results with run_id added for
             the indicated results file.
         """
-    match = re.search('\d_.*?\.txt', json_results[key]['filename'])
+    match = re.search(r'\d_.*?\.txt', json_results[key]['filename'])
     if match:
         run_id = match.group(0)[2:-4]
         json_results[key]['run_id'] = run_id
     else:
         json_results[key]['run_id'] = ''
     return json_results
-
 
 
 def _parse_compiler_string(uuid, json_results):
@@ -598,19 +578,19 @@ def _parse_compiler_string(uuid, json_results):
         else:
             json_results[uuid]['generator'] = ''
             matched_generator = False
-            
-    if matched_generator == False:
+
+    if matched_generator is False:
         err_str = 'Unable to match element in string "{}" to ' \
                   'known generator in compiler options: {}'
         err_str = err_str.format(match.group(0), pp.pformat(generators))
         logging.error(err_str)
 
     # System
-    match = re.search('\s.*?:', compiler_str)
+    match = re.search(r'\s.*?:', compiler_str)
     if match:
-        match_linux = re.search('Linux-.*?:', match.group(0))
-        match_windows = re.search('Windows-[\d|\.]*', match.group(0))
-        match_darwin = re.search('Darwin-[\d|\.]*', match.group(0))
+        match_linux = re.search(r'Linux-.*?:', match.group(0))
+        match_windows = re.search(r'Windows-[\d|\.]*', match.group(0))
+        match_darwin = re.search(r'Darwin-[\d|\.]*', match.group(0))
         if match_linux:
             # Linux system
             json_results[uuid]['system'] = 'Linux'
@@ -618,24 +598,24 @@ def _parse_compiler_string(uuid, json_results):
             json_results[uuid]['system_version'] = linux_version
 
             # Splitting up the Linux version string
-            match3= re.search('\d+\.',linux_version)
+            match3 = re.search(r'\d+\.', linux_version)
             json_results[uuid]['linux_kernel_version'] = match3.group(0)[:-1]
-            match3 = re.search('\.\d+\.', linux_version)
+            match3 = re.search(r'\.\d+\.', linux_version)
             json_results[uuid]['linux_major_version'] = match3.group(0)[1:-1]
-            match3 = re.search('\.\d+-', linux_version)
+            match3 = re.search(r'\.\d+-', linux_version)
             json_results[uuid]['linux_minor_version'] = match3.group(0)[1:-1]
 
             # TDH: There's some weirdness with the bug fix version
             # and/or distro string. I'm doing my best to handle it.
-            match3 = re.search('-\d+-', linux_version)
+            match3 = re.search(r'-\d+-', linux_version)
             if match3:
                 json_results[uuid]['linux_bug_fix_version'] =\
                     match3.group(0)[1:-1]
-                match4 = re.search('-(?!\d).*$', linux_version)
+                match4 = re.search(r'-(?!\d).*$', linux_version)
                 json_results[uuid]['linux_distro_string'] =\
                     match4.group(0)[1:-1]
             else:
-                match3 = re.search('-.*:(?!-\d+\.\d+\.\d+-)', linux_version)
+                match3 = re.search(r'-.*:(?!-\d+\.\d+\.\d+-)', linux_version)
                 if match3:
                     json_results[uuid]['linux_bug_fix_version'] = \
                         match3.group(0)[1:-1]
@@ -657,16 +637,16 @@ def _parse_compiler_string(uuid, json_results):
             json_results[uuid]['system_version'] = darwin_version
 
             # Splitting up the Linux version string
-            match3 = re.search('\d+\.', darwin_version)
+            match3 = re.search(r'\d+\.', darwin_version)
             json_results[uuid]['darwin_kernel_version'] = match3.group(0)[:-1]
-            match3 = re.search('\.\d+\.', darwin_version)
+            match3 = re.search(r'\.\d+\.', darwin_version)
             json_results[uuid]['darwin_major_version'] = match3.group(0)[1:-1]
-            match3 = re.search('\.\d+$', darwin_version)
+            match3 = re.search(r'\.\d+$', darwin_version)
             json_results[uuid]['darwin_minor_version'] = match3.group(0)[1:]
     elif not match:
-        match_linux = re.search('Linux-.*?:', compiler_str)
-        match_windows = re.search('Windows-[\d|\.]*', compiler_str)
-        match_darwin = re.search('Darwin-[\d|\.]*', compiler_str)
+        match_linux = re.search(r'Linux-.*?:', compiler_str)
+        match_windows = re.search(r'Windows-[\d|\.]*', compiler_str)
+        match_darwin = re.search(r'Darwin-[\d|\.]*', compiler_str)
         if match_linux:
             # Linux system
             json_results[uuid]['system'] = 'Linux'
@@ -674,24 +654,24 @@ def _parse_compiler_string(uuid, json_results):
             json_results[uuid]['system_version'] = linux_version
 
             # Splitting up the Linux version string
-            match3= re.search('\d+\.',linux_version)
+            match3 = re.search(r'\d+\.', linux_version)
             json_results[uuid]['linux_kernel_version'] = match3.group(0)[:-1]
-            match3 = re.search('\.\d+\.', linux_version)
+            match3 = re.search(r'\.\d+\.', linux_version)
             json_results[uuid]['linux_major_version'] = match3.group(0)[1:-1]
-            match3 = re.search('\.\d+-', linux_version)
+            match3 = re.search(r'\.\d+-', linux_version)
             json_results[uuid]['linux_minor_version'] = match3.group(0)[1:-1]
 
             # TDH: There's some weirdness with the bug fix version
             # and/or distro string. I'm doing my best to handle it.
-            match3 = re.search('-\d+-', linux_version)
+            match3 = re.search(r'-\d+-', linux_version)
             if match3:
                 json_results[uuid]['linux_bug_fix_version'] =\
                     match3.group(0)[1:-1]
-                match4 = re.search('-(?!\d).*$', linux_version)
+                match4 = re.search(r'-(?!\d).*$', linux_version)
                 json_results[uuid]['linux_distro_string'] =\
                     match4.group(0)[1:-1]
             else:
-                match3 = re.search('-.*:(?!-\d+\.\d+\.\d+-)', linux_version)
+                match3 = re.search(r'-.*:(?!-\d+\.\d+\.\d+-)', linux_version)
                 if match3:
                     json_results[uuid]['linux_bug_fix_version'] = \
                         match3.group(0)[1:-1]
@@ -713,25 +693,24 @@ def _parse_compiler_string(uuid, json_results):
             json_results[uuid]['system_version'] = darwin_version
 
             # Splitting up the Linux version string
-            match3 = re.search('\d+\.', darwin_version)
+            match3 = re.search(r'\d+\.', darwin_version)
             json_results[uuid]['darwin_kernel_version'] = match3.group(0)[:-1]
-            match3 = re.search('\.\d+\.', darwin_version)
+            match3 = re.search(r'\.\d+\.', darwin_version)
             json_results[uuid]['darwin_major_version'] = match3.group(0)[1:-1]
-            match3 = re.search('\.\d+$', darwin_version)
+            match3 = re.search(r'\.\d+$', darwin_version)
             json_results[uuid]['darwin_minor_version'] = match3.group(0)[1:]
     else:
         err_str = 'Unexpected compiler system data, could not parse {}'
         err_str = err_str.format(compiler_str)
         logging.error(err_str)
 
-
-    # Platform    
+    # Platform
     if matched_generator is False:
         json_results[uuid]['platform'] = ''
     else:
         # TDH: This string can be null so I'm having to find it by process
         # of elimination
-        match = re.search('.*?[Windows|Linux]-', compiler_str)
+        match = re.search(r'.*?[Windows|Linux]-', compiler_str)
         trimmed_str = re.sub(
             json_results[uuid]['generator'], '', match.group(0))
         trimmed_str = re.sub(json_results[uuid]['system'], '', trimmed_str)
@@ -740,20 +719,19 @@ def _parse_compiler_string(uuid, json_results):
         # print('current platform', trimmed_str)
         json_results[uuid]['platform'] = trimmed_str
 
-
     if matched_generator is False:
         # Python compiler
         match = re.search(':.*$', compiler_str)
         if match:
             # compiler name
             match2 = re.search(':.*-', match.group(0))
-    
+
             if match2:
                 py_compiler = match2.group(0)[1:-1]
                 json_results[uuid]['py_compiler'] = py_compiler
             else:
                 json_results[uuid]['py_compiler'] = ''
-    
+
             # compiler version
             match2 = re.search('-.*$', match.group(0))
             if match2:
@@ -770,18 +748,18 @@ def _parse_compiler_string(uuid, json_results):
         if match:
             # compiler name
             match2 = re.search(':.*-', match.group(0))
-    
+
             if match2:
                 cxx_compiler = match2.group(0)[1:-1]
                 json_results[uuid]['cxx_compiler'] = cxx_compiler
             else:
                 json_results[uuid]['cxx_compiler'] = ''
-    
+
             # compiler version
             match2 = re.search('-.*$', match.group(0))
             if match2:
-                cxx_compiler_version = match2.group(0)[1:]
-                json_results[uuid]['cxx_compiler_version'] = cxx_compiler_version
+                cxx_compiler_vers = match2.group(0)[1:]
+                json_results[uuid]['cxx_compiler_version'] = cxx_compiler_vers
             else:
                 json_results[uuid]['cxx_compiler_version'] = ''
         else:
@@ -822,12 +800,12 @@ def _auto_run(args):
         json_results.update(parse_files(file_list))
         json_results = parse_and_add_benchmark_metadata(json_results)
     if args.write_json_output:
-        with open('bm_results_test.json', 'w') as outfile:
+        with open('bm_results.json', 'w') as outfile:
             json.dump(json_results, outfile)
 
     # TDH (2019-12-19): Trouble-shooting function whose purpose you'll
     # never guess
-    #_check_missing_core_type(json_results)
+    # _check_missing_core_type(json_results)
 
 
 if __name__ == '__main__':
