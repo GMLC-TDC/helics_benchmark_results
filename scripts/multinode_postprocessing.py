@@ -179,21 +179,25 @@ def parse_header_lines(json_file, json_results, uuid_str):
                 speed = np.nan
                 json_results[uuid_str]['mhz_per_cpu'] = speed
         elif 'NUM CPU' in line:
-            json_results[uuid_str]['num_cpus'] = line[-2:]
+            json_results[uuid_str]['num_cpus'] = float(line[8:])
         elif 'ELAPSED TIME' in line:
-            json_results[uuid_str]['elapsed_time'] = line[19:]
+            json_results[uuid_str]['elapsed_time'] = float(line[19:])
             match = re.search(r'ns', line)
             if match:
                 json_results[uuid_str]['time_unit'] = match.group(0)[:]
             else:
                 logging.error('{}: Failed to parse ELAPSED TIME line.'.format(
-                        json_file['name']))
+                    json_file['name']))
         elif 'BENCHMARK FEDERATE TYPE:' in line:
             json_results[uuid_str]['benchmark_type'] = line[25:]
         elif 'DATE:' in line:
             json_results[uuid_str]['date'] = line[6:]
             if json_results[uuid_str]['date'] == '2020-01-08':
                 json_results[uuid_str]['federate_per_node'] = 1.0
+            elif json_results[uuid_str]['date'] == '2020-06-15':
+                json_results[uuid_str]['mhz_per_cpu'] = 1500.0
+            else:
+                pass
         elif 'CLUSTER:' in line:
             json_results[uuid_str]['cluster'] = line[9:]
         elif 'NUM NODES:' in line:
@@ -205,17 +209,18 @@ def parse_header_lines(json_file, json_results, uuid_str):
                 json_results[uuid_str]['feds_per_node'] = float(line[15:])
                 num_nodes = json_results[uuid_str]['num_nodes']
                 feds = json_results[uuid_str]['feds_per_node']
-                json_results[uuid_str]['federate_count'] = num_nodes * feds
+                json_results[uuid_str]['federate_count'] = float(
+                    num_nodes * feds)
         elif 'TOPOLOGY:' in line:
             json_results[uuid_str]['topology'] = line[10:].strip()
         elif 'NUM LEAFS:' in line:
-            json_results[uuid_str]['number_of_leaves'] = line[11:]
+            json_results[uuid_str]['number_of_leaves'] = float(line[11:])
         elif 'MESSAGE SIZE:' in line:
-            json_results[uuid_str]['message_size'] = line[14:]
+            json_results[uuid_str]['message_size'] = float(line[14:])
         elif 'MESSAGE COUNT:' in line:
-            json_results[uuid_str]['message_count'] = line[15:]
+            json_results[uuid_str]['message_count'] = float(line[15:])
         elif 'EVENT COUNT' in line:
-            json_results[uuid_str]['EvCount'] = line[13:]
+            json_results[uuid_str]['EvCount'] = float(line[13:])
         elif ('-------------------------------------------' in line and
               json_body == 0):
             # Last line of non-JSON header
@@ -228,8 +233,8 @@ def parse_header_lines(json_file, json_results, uuid_str):
             # Headers lines we don't need to parse and can just skip
             pass
         else:
-            json_results[uuid_str]['mhz_per_cpu'] = np.nan
-            json_results[uuid_str]['federate_per_node'] = np.nan
+            # json_results[uuid_str]['mhz_per_cpu'] = np.nan
+            # json_results[uuid_str]['federate_per_node'] = np.nan
 
             logging.error('Failed to parse line in {}.'.format(
                 os.path.join(json_results[uuid_str]['path'],
@@ -280,6 +285,10 @@ def parse_and_add_benchmark_metadata(json_results):
                 json_results[key]['feds_per_node'] = 1.0
             else:
                 pass
+        if 'mhz_per_cpu' in json_results.values():
+            pass
+        else:
+            json_results = _add_mhz_per_cpu(key, json_results)
         # Adding benchmark to json_results
         path = json_results[key]['path']
         if 'PholdFederate' in path:
@@ -437,6 +446,28 @@ def _add_date(key, json_results):
         json_results[key]['date'] = date
     else:
         json_results[key]['date'] = ''
+    return json_results
+
+
+def _add_mhz_per_cpu(key, json_results):
+    """This function adds the date of the run to json_results.
+
+    Args:
+        key (str) - Key for dictionary for this benchmark results.
+
+        json_results (dict) - Dictionary of all benchmark results
+        (keyed by benchmark results filename) that the data and
+        metadata from json_file are being added to.
+
+    Returns:
+        json_results (dict) - json_results with run_id added for
+        the indicated results file.
+    """
+    match = re.search(r'2020-06-15', json_results[key]['path'])
+    if match:
+        json_results[key]['mhz_per_cpu'] = 1500.0
+    else:
+        pass
     return json_results
 
 

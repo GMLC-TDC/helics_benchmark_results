@@ -189,7 +189,8 @@ def make_dataframe2(json_results):
         'compiler_info_string', 'generator', 'system', 'system_version',
         'platform', 'core_type', 'cxx_compiler', 'cxx_compiler_version',
         'build_flags_string', 'EvCount', 'host_processor_string', 'date',
-        'run_id', 'elapsed_time', 'time_unit', 'host_processor'
+        'run_id', 'elapsed_time', 'time_unit', 'host_processor',
+        'feds_per_node'
         ]
     for f, f_dict in dct.items():
         for d, d_dict in f_dict.items():
@@ -219,38 +220,25 @@ def make_dataframe2(json_results):
     meta_bmk_df = meta_bmk_df.reset_index()
     meta_bmk_df['date'] = pd.to_datetime(meta_bmk_df.date.astype(str))
     meta_bmk_df['date'] = meta_bmk_df['date'].astype(str)
+    meta_bmk_df = meta_bmk_df.replace('nan', np.nan)
     meta_bmk_df = meta_bmk_df.replace(
         {'time_unit': {'ns': 's',
-                       'nan': 's'},
-         'federate_count': {'nan': np.nan,
-                            '1.0': 1.0,
-                            '2.0': 2.0,
-                            '3.0': 3.0,
-                            '4.0': 4.0,
-                            '8.0': 8.0,
-                            '9.0': 9.0,
-                            '16.0': 16.0,
-                            '18.0': 18.0,
-                            '32.0': 32.0,
-                            '36.0': 36.0,
-                            '72.0': 72.0},
-         'num_nodes': {'': np.nan,
-                       '1': 1.0,
-                       '2': 2.0,
-                       '3': 3.0,
-                       '4': 4.0,
-                       '8': 8.0,
-                       '9': 9.0},
-         'feds_per_node': {'nan': np.nan,
-                           '1.0': 1.0,
-                           '2.0': 2.0,
-                           '4.0': 4.0,
-                           '8.0': 8.0,
-                           '9.0': 9.0}})
+                       'nan': 's'}})
     meta_bmk_df['EvCount'] = meta_bmk_df['EvCount'].astype(float)
     meta_bmk_df['message_size'] = meta_bmk_df['message_size'].astype(float)
     meta_bmk_df['message_count'] = meta_bmk_df['message_count'].astype(float)
     meta_bmk_df['elapsed_time'] = meta_bmk_df['elapsed_time'].astype(float)
+    fill_cols = [
+        'number_of_leaves', 'federate_count',
+        'num_nodes', 'feds_per_node',
+        'mhz_per_cpu']
+    meta_bmk_df[fill_cols] = meta_bmk_df[fill_cols].fillna(
+        method='bfill')
+    meta_bmk_df = meta_bmk_df.set_index('date')
+    meta_bmk_df[
+        (meta_bmk_df.index >= '2020-06-15 00:00:00') &
+        (meta_bmk_df.index < '2020-06-16 00:00:00')]['mhz_per_cpu'] = 1500.0
+    meta_bmk_df = meta_bmk_df.reset_index()
     my_list = []
     # Creating a map from "summary.txt" files to the other
     # multinode benchmark results files.
@@ -266,14 +254,6 @@ def make_dataframe2(json_results):
                     a_df.loc['summary.txt', 'message_count']),
                 'cluster': str(a_df.loc['summary.txt', 'cluster']),
                 'topology': str(a_df.loc['summary.txt', 'topology']),
-                'number_of_leaves': float(
-                    a_df.loc['summary.txt', 'number_of_leaves']),
-                'federate_count': float(
-                    a_df.loc['summary.txt', 'federate_count']),
-                'num_nodes': float(
-                    a_df.loc['summary.txt', 'num_nodes']),
-                'feds_per_node': float(
-                    a_df.loc['summary.txt', 'feds_per_node']),
                 'helics_version_string':
                     a_df.loc['summary.txt', 'helics_version_string'],
                 'helics_version': a_df.loc['summary.txt', 'helics_version'],
@@ -299,11 +279,11 @@ def make_dataframe2(json_results):
                 'core_type': a_df.loc['summary.txt', 'core_type'],
                 'run_id': a_df.loc['summary.txt', 'run_id']}
             a_df = a_df.fillna(value=values)
-            a_df = a_df.reset_index()
-            my_list.append(a_df)
         except Exception as e:
             print('{} does not exist for {} benchmark'.format(
                 e, a_df.benchmark.values[0]))
+        a_df = a_df.reset_index()
+        my_list.append(a_df)
     main_df = pd.concat(my_list, axis=0, ignore_index=True)
     logging.info('successfully turn multinode data into a dataframe')
     return main_df
