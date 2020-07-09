@@ -225,6 +225,8 @@ def make_dataframe2(json_results):
         {'time_unit': {'ns': 's',
                        'nan': 's'}})
     meta_bmk_df['EvCount'] = meta_bmk_df['EvCount'].astype(float)
+    meta_bmk_df['federate_count'] = meta_bmk_df['federate_count'].astype(
+        float)
     meta_bmk_df['message_size'] = meta_bmk_df['message_size'].astype(float)
     meta_bmk_df['message_count'] = meta_bmk_df['message_count'].astype(float)
     meta_bmk_df['elapsed_time'] = meta_bmk_df['elapsed_time'].astype(float)

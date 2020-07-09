@@ -7,8 +7,8 @@ this script creates a report for the multinode benchmark
 results files.  This allows the user to visualize the
 performance of the multi-machine tests.
 
-This script can be run as a standalone script to generate the 
-multinode benchmark report PDF for every run in the user-provided path. 
+This script can be run as a standalone script to generate the
+multinode benchmark report PDF for every run in the user-provided path.
 
 The command line arguments for the function can be found in the code
 following the lines following the "if __name__ == '__main__':" line
@@ -35,6 +35,7 @@ logger = logging.getLogger(__name__)
 
 # Setting up pretty printing, mostly for debugging.
 pp = pprint.PrettyPrinter(indent=4)
+
 
 def create_multimachine_report(output_path, dataframe):
     """This function creates the multinode report.
