@@ -36,8 +36,71 @@ logger = logging.getLogger(__name__)
 pp = pprint.PrettyPrinter(indent=4)
 
 
-def get_ratio(dataframe, groupby_columns, index_columns, filter_columns,
-              value_columns, metric_columns, time):
+def get_ratio1(dataframe, groupby_columns, index_columns, filter_columns,
+               value_columns, metric_columns, time):
+    """This function gets all the metrics' ratios for the entire dataframe.
+
+    Args:
+        dataframe (str) - Pandas dataframe object that contains the
+        desired information for calculating metrics' ratios.
+
+        groupby_columns (list) - List of columns to group the dataframe
+        by.
+
+        index_columns (list) - List of columns to set as the index
+        after calculating the ratios.
+
+        filter_columns (list) - List of columns to filter the grouped
+        dataframe by for calculating the ratios.
+
+        value_columns (list) - List of specific values to locate in the
+        dataframe to be used for the denominator of the ratios.
+
+        metric_columns (list) - List of metrics to get ratios for.
+
+        time (str) - Used to assert there is a one-to-one relationship
+        between a metric value and the time value; should be 'real_time'
+        or 'elapsed_time'.
+
+    Returns:
+        final_df (pandas dataframe) - Contains the original
+        information plus the metrics' ratios' results.
+    """
+    lst = []
+    for fs, vs, ms in zip(filter_columns, value_columns, metric_columns):
+        for g, df in dataframe.groupby(groupby_columns):
+            a_df = df
+            for f in a_df['{}'.format(fs)].unique():
+                a_df = a_df[a_df['{}'.format(fs)] == f]
+                a_df = a_df.set_index('core_type')
+                try:
+                    value1 = float(
+                        a_df.loc['{}'.format(vs), '{}'.format(ms)])
+                    value2 = float(
+                        a_df.loc['{}'.format(vs), '{}'.format(time)])
+                    a_df['{}_ratio'.format(ms)] = np.ma.array(
+                        a_df['{}'.format(ms)],
+                        mask=np.isnan(a_df['{}'.format(ms)])) / value1
+                    a_df['{}_ratio'.format(time)] = np.ma.array(
+                        a_df['{}'.format(time)],
+                        mask=np.isnan(a_df['{}'.format(time)])) / value2
+                except Exception as e:
+                    logging.warning('core type {} is not in the index'.format(
+                        e))
+                    a_df['{}_ratio'.format(ms)] = np.nan
+                    a_df['{}_ratio'.format(time)] = np.nan
+                a_df = a_df.reset_index()
+                cols = index_columns+['{}'.format(ms),
+                                      '{}_ratio'.format(ms),
+                                      '{}_ratio'.format(time)]
+                a_df = a_df[cols]
+                lst.append(a_df)
+    ratio_df = pd.concat(lst).set_index(index_columns).reset_index()
+    return ratio_df
+
+
+def get_ratio2(dataframe, groupby_columns, index_columns, filter_columns,
+               value_columns, metric_columns, time):
     """This function gets all the metrics' ratios for the entire dataframe.
 
     Args:
@@ -85,7 +148,8 @@ def get_ratio(dataframe, groupby_columns, index_columns, filter_columns,
                         a_df['{}'.format(time)],
                         mask=np.isnan(a_df['{}'.format(time)])) / value2
                 except Exception as e:
-                    logging.warning('core type {} is not in the index'.format(e))
+                    logging.warning('core type {} is not in the index'.format(
+                        e))
                     a_df['{}_ratio'.format(ms)] = np.nan
                     a_df['{}_ratio'.format(time)] = np.nan
                 a_df = a_df.reset_index()
@@ -686,70 +750,70 @@ def create_spreadsheet1(dataframe, filename, output_path):
 
     # Applying the functions
     logging.info('Creating the desired metrics and getting the ratios...')
-    c_echo_ratio = get_ratio(
+    c_echo_ratio = get_ratio1(
         create_metrics1(
             c_echo_df, met_fed_cols, met_fed_groupby_cols,
             met_fed_metrics, met_fed_cols_tuples, met_fed_ops,
             'real_time'),
         r_fed_groupby_columns, r_fed_index_columns, r_fed_filter_columns,
         r_fed_value_columns, r_fed_metric_columns, 'real_time')
-    echo_ratio = get_ratio(
+    echo_ratio = get_ratio1(
         create_metrics1(
             echo_res_df, met_fed_cols, met_fed_groupby_cols,
             met_fed_metrics, met_fed_cols_tuples, met_fed_ops,
             'real_time'),
         r_fed_groupby_columns, r_fed_index_columns, r_fed_filter_columns,
         r_fed_value_columns, r_fed_metric_columns, 'real_time')
-    echo_msg_ratio = get_ratio(
+    echo_msg_ratio = get_ratio1(
         create_metrics1(
             echo_msg_df, met_fed_cols, met_fed_groupby_cols,
             met_fed_metrics, met_fed_cols_tuples, met_fed_ops,
             'real_time'),
         r_fed_groupby_columns, r_fed_index_columns, r_fed_filter_columns,
         r_fed_value_columns, r_fed_metric_columns, 'real_time')
-    ring_ratio = get_ratio(
+    ring_ratio = get_ratio1(
         create_metrics1(
             ring_df, met_fed_cols, met_fed_groupby_cols,
             met_fed_metrics, met_fed_cols_tuples, met_fed_ops,
             'real_time'),
         r_fed_groupby_columns, r_fed_index_columns, r_fed_filter_columns,
         r_fed_value_columns, r_fed_metric_columns, 'real_time')
-    ring_msg_ratio = get_ratio(
+    ring_msg_ratio = get_ratio1(
         create_metrics1(
             ring_msg_df, met_fed_cols, met_fed_groupby_cols,
             met_fed_metrics, met_fed_cols_tuples, met_fed_ops,
             'real_time'),
         r_fed_groupby_columns, r_fed_index_columns, r_fed_filter_columns,
         r_fed_value_columns, r_fed_metric_columns, 'real_time')
-    phold_ratio = get_ratio(
+    phold_ratio = get_ratio1(
         create_metrics1(
             phold_df, met_fed_cols, met_fed_groupby_cols,
             met_fed_metrics, met_fed_cols_tuples, met_fed_ops,
             'real_time'),
         r_fed_groupby_columns, r_fed_index_columns, r_fed_filter_columns,
         r_fed_value_columns, r_fed_metric_columns, 'real_time')
-    filter_ratio = get_ratio(
+    filter_ratio = get_ratio1(
         create_metrics1(
             filter_df, met_filt_cols, met_filt_groupby_cols,
             met_filt_metrics, met_filt_cols_tuples,  met_filt_ops,
             'real_time'),
         r_filt_groupby_columns, r_filt_index_columns, r_filt_filter_columns,
         r_filt_value_columns, r_filt_metric_columns, 'real_time')
-    timing_ratio = get_ratio(
+    timing_ratio = get_ratio1(
         create_metrics1(
             timing_df, met_fed_cols, met_fed_groupby_cols,
             met_fed_metrics, met_fed_cols_tuples, met_fed_ops,
             'real_time'),
         r_fed_groupby_columns, r_fed_index_columns, r_fed_filter_columns,
         r_fed_value_columns, r_fed_metric_columns, 'real_time')
-    msg_lkp_ratio = get_ratio(
+    msg_lkp_ratio = get_ratio1(
         create_metrics1(
             msg_lkp_df, met_int_cols, met_int_groupby_cols,
             met_int_metrics, met_int_cols_tuples, met_int_ops,
             'real_time'),
         r_int_groupby_columns, r_int_index_columns, r_int_filter_columns,
         r_int_value_columns, r_int_metric_columns, 'real_time')
-    msg_send_ratio = get_ratio(
+    msg_send_ratio = get_ratio1(
         create_metrics1(
             msg_send_df, met_msg_cols, met_msg_groupby_cols,
             met_msg_metrics, met_msg_cols_tuples, met_msg_ops,
@@ -757,7 +821,7 @@ def create_spreadsheet1(dataframe, filename, output_path):
         r_msg_groupby_columns, r_msg_index_columns, r_msg_filter_columns,
         r_msg_value_columns, r_msg_metric_columns, 'real_time')
 
-    logging('Calculating CPU benchmark score...')
+    logging.info('Calculating CPU benchmark score...')
     ratio_df = pd.concat(
         [c_echo_ratio, echo_msg_ratio, echo_ratio, filter_ratio,
          msg_lkp_ratio, msg_send_ratio, phold_ratio, ring_msg_ratio,
@@ -930,28 +994,28 @@ def create_spreadsheet2(dataframe, filename, output_path):
     r_int_metric_columns = ['spf', 'spi', 'cpf', 'cpi']
     # Applying the functions
     logging.info('Creating the desired metrics and getting the ratios...')
-    echo_ratio = get_ratio(
+    echo_ratio = get_ratio1(
         create_metrics1(
             echo_res_df, met_fed_cols, met_fed_groupby_cols,
             met_fed_metrics, met_fed_cols_tuples, met_fed_ops,
             'real_time'),
         r_fed_groupby_columns, r_fed_index_columns, r_fed_filter_columns,
         r_fed_value_columns, r_fed_metric_columns, 'real_time')
-    echo_msg_ratio = get_ratio(
+    echo_msg_ratio = get_ratio1(
         create_metrics1(
             echo_msg_df, met_fed_cols, met_fed_groupby_cols,
             met_fed_metrics, met_fed_cols_tuples, met_fed_ops,
             'real_time'),
         r_fed_groupby_columns, r_fed_index_columns, r_fed_filter_columns,
         r_fed_value_columns, r_fed_metric_columns, 'real_time')
-    timing_ratio = get_ratio(
+    timing_ratio = get_ratio1(
         create_metrics1(
             timing_df, met_fed_cols, met_fed_groupby_cols,
             met_fed_metrics, met_fed_cols_tuples, met_fed_ops,
             'real_time'),
         r_fed_groupby_columns, r_fed_index_columns, r_fed_filter_columns,
         r_fed_value_columns, r_fed_metric_columns, 'real_time')
-    msg_lkp_ratio = get_ratio(
+    msg_lkp_ratio = get_ratio1(
         create_metrics1(
             msg_lkp_df, met_int_cols, met_int_groupby_cols,
             met_int_metrics, met_int_cols_tuples, met_int_ops,
@@ -1112,49 +1176,49 @@ def create_spreadsheet3(dataframe, filename, output_path):
     r_msg_metric_columns = ['spms', 'spmc', 'cpms', 'cpmc']
     # Applying the functions
     logging.info('Creating the desired metrics and getting the ratios...')
-    echo_ratio = get_ratio(
+    echo_ratio = get_ratio2(
         create_metrics2(
             echo_df, met_fed_cols, met_fed_groupby_cols,
             met_fed_metrics, met_fed_cols_tuples, met_fed_ops,
             'elapsed_time'),
         r_fed_groupby_columns, r_fed_index_columns, r_fed_filter_columns,
         r_fed_value_columns, r_fed_metric_columns, 'elapsed_time')
-    echo_msg_ratio = get_ratio(
+    echo_msg_ratio = get_ratio2(
         create_metrics2(
             echo_msg_df, met_fed_cols, met_fed_groupby_cols,
             met_fed_metrics, met_fed_cols_tuples, met_fed_ops,
             'elapsed_time'),
         r_fed_groupby_columns, r_fed_index_columns, r_fed_filter_columns,
         r_fed_value_columns, r_fed_metric_columns, 'elapsed_time')
-    timing_ratio = get_ratio(
+    timing_ratio = get_ratio2(
         create_metrics2(
             timing_df, met_fed_cols, met_fed_groupby_cols,
             met_fed_metrics, met_fed_cols_tuples, met_fed_ops,
             'elapsed_time'),
         r_fed_groupby_columns, r_fed_index_columns, r_fed_filter_columns,
         r_fed_value_columns, r_fed_metric_columns, 'elapsed_time')
-    ring_ratio = get_ratio(
+    ring_ratio = get_ratio2(
         create_metrics2(
             ring_df, met_fed_cols,  met_fed_groupby_cols,
             met_fed_metrics, met_fed_cols_tuples, met_fed_ops,
             'elapsed_time'),
         r_fed_groupby_columns, r_fed_index_columns, r_fed_filter_columns,
         r_fed_value_columns, r_fed_metric_columns, 'elapsed_time')
-    ring_msg_ratio = get_ratio(
+    ring_msg_ratio = get_ratio2(
         create_metrics2(
             ring_msg_df, met_fed_cols,  met_fed_groupby_cols,
             met_fed_metrics, met_fed_cols_tuples, met_fed_ops,
             'elapsed_time'),
         r_fed_groupby_columns, r_fed_index_columns, r_fed_filter_columns,
         r_fed_value_columns, r_fed_metric_columns, 'elapsed_time')
-    msg_ratio = get_ratio(
+    msg_ratio = get_ratio2(
         create_metrics2(
             msg_df, met_msg_cols, met_msg_groupby_cols,
             met_msg_metrics, met_msg_cols_tuples, met_msg_ops,
             'elapsed_time'),
         r_msg_groupby_columns, r_msg_index_columns, r_msg_filter_columns,
         r_msg_value_columns, r_msg_metric_columns, 'elapsed_time')
-    phold_ratio = get_ratio(
+    phold_ratio = get_ratio2(
         create_metrics2(
             phold_df, met_p_cols, met_p_groupby_cols,
             met_p_metrics, met_p_cols_tuples, met_p_ops,
@@ -1365,11 +1429,11 @@ if __name__ == '__main__':
     parser.add_argument('-j',
                         '--json_file',
                         nargs='?',
-                        default='multinode_bm_results.json')
+                        default='bm_results.json')
     parser.add_argument('-b',
                         '--bmk_type',
                         nargs='?',
-                        default='multinode')
+                        default='full')
     parser.add_argument('-o',
                         '--output_path',
                         nargs='?',
