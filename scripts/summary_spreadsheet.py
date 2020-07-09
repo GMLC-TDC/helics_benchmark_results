@@ -1425,7 +1425,6 @@ if __name__ == '__main__':
     # from the "scripts" directory in the repository structure.
     script_path = os.path.dirname(os.path.realpath(__file__))
     head, tail = os.path.split(script_path)
-#    benchmark_summary_dir = os.path.join(head, )
     parser.add_argument('-j',
                         '--json_file',
                         nargs='?',
