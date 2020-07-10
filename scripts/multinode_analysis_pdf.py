@@ -30,7 +30,7 @@ import make_dataframe as md
 
 # Installation of FPDF is: python -m pip install fpdf
 
-# Setting up logging
+# Setting up logger
 logger = logging.getLogger(__name__)
 
 # Setting up pretty printing, mostly for debugging.
@@ -399,7 +399,25 @@ def _auto_run(args):
         df = multi_bmk_df[multi_bmk_df.date == date]
         make_multinode_graphs(df, output_path)
         create_multimachine_report(output_path, df)
+    msg_df = multi_bmk_df[
+        (multi_bmk_df.benchmark == 'MessageExchangeFederate') &
+        (multi_bmk_df.date != '2020-03-13') &
+        (multi_bmk_df.date != '2020-06-15')]
+    output_path = os.path.join(
+        args.multinode_benchmark_results_dir, '2020-06-17')
+    logging.info('creating additional images for MessageExchangeFederate')
+    bmk_plotting.mm_plot(
+        msg_df, 'message_size', 'elapsed_time',
+        'core_type', '', False,
+        '', 'MessageExchange_3', 'Multinode',
+        output_path)
+    bmk_plotting.mm_plot(
+        msg_df, 'message_count', 'elapsed_time',
+        'core_type', '', False,
+        '', 'MessageExchange_4', 'Multinode',
+        output_path)
     logging.info('finished creating the multinode analysis reports.')
+
 
 if __name__ == '__main__':
     # TDH: This slightly complex mess allows lower importance messages
